@@ -1,0 +1,3 @@
+# docs_cangjie
+
+本仓库存放使用仓颉编程语言开发OpenHarmony应用相关的文档。
