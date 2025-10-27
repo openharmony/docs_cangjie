@@ -8,6 +8,97 @@
 import kit.ArkUI.*
 ```
 
+## interface CollectionEx\<T>
+
+```cangjie
+public interface CollectionEx<T> {
+    prop size: Int64
+    operator func [](idx: Int64, value!: T): Unit
+    operator func [](idx: Int64): T
+}
+```
+
+**功能：** 集合扩展接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+### extend\<T> Array\<T> <: CollectionEx\<T>
+
+```cangjie
+extend<T> Array<T> <: CollectionEx<T> {}
+```
+
+**功能：** 扩展泛型Array为CollectionEx子类型。
+
+### extend\<T> ArrayList\<T> <: CollectionEx\<T>
+
+```cangjie
+extend<T> ArrayList<T> <: CollectionEx<T> {}
+```
+
+**功能：** 扩展泛型ArrayList为CollectionEx子类型。
+
+### prop size
+
+```cangjie
+prop size: Int64
+```
+
+**功能：** 集合大小。
+
+**类型：** Int64
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+### operator func [](Int64, T)
+
+```cangjie
+public operator func [](idx: Int64, value!: T): Unit
+```
+
+**功能：** 设置指定索引位置的元素值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|idx|Int64|是|-|元素索引。|
+|value|T|是|-|**命名参数。** 元素值。|
+
+### operator func [](Int64)
+
+```cangjie
+public operator func [](idx: Int64): T
+```
+
+**功能：** 获取指定索引位置的元素值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|idx|Int64|是|-|元素索引。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|T|指定索引位置的元素值。|
+
 ## interface Length
 
 ```cangjie
@@ -2902,7 +2993,7 @@ public var left: ?HorizontalAlignParam
 
 **功能：** 设置组件左侧对齐方式。
 
-**类型：** ?[HorizontalAlignParam](#class-horizontalalignment)
+**类型：** ?[HorizontalAlignParam](#class-horizontalalignparam)
 
 **读写能力：** 可读写
 
@@ -2918,7 +3009,7 @@ public var right: ?HorizontalAlignParam
 
 **功能：** 设置组件右侧对齐方式。
 
-**类型：** ?[HorizontalAlignParam](#class-horizontalalignment)
+**类型：** ?[HorizontalAlignParam](#class-horizontalalignparam)
 
 **读写能力：** 可读写
 
@@ -2934,7 +3025,7 @@ public var middle: ?HorizontalAlignParam
 
 **功能：** 设置组件水平居中对齐方式。
 
-**类型：** ?[HorizontalAlignParam](#class-horizontalalignment)
+**类型：** ?[HorizontalAlignParam](#class-horizontalalignparam)
 
 **读写能力：** 可读写
 
@@ -2950,7 +3041,7 @@ public var top: ?VerticalAlignParam
 
 **功能：** 设置组件顶部对齐方式。
 
-**类型：** ?[VerticalAlignParam](#class-verticalalignment)
+**类型：** ?[VerticalAlignParam](#class-verticalalignparam)
 
 **读写能力：** 可读写
 
@@ -2966,7 +3057,7 @@ public var bottom: ?VerticalAlignParam
 
 **功能：** 设置组件底部对齐方式。
 
-**类型：** ?[VerticalAlignParam](#class-verticalalignment)
+**类型：** ?[VerticalAlignParam](#class-verticalalignparam)
 
 **读写能力：** 可读写
 
@@ -2982,7 +3073,7 @@ public var center: ?VerticalAlignParam
 
 **功能：** 设置组件垂直居中对齐方式。
 
-**类型：** ?[VerticalAlignParam](#class-verticalalignment)
+**类型：** ?[VerticalAlignParam](#class-verticalalignparam)
 
 **读写能力：** 可读写
 
@@ -3022,12 +3113,12 @@ public init(left!: ?HorizontalAlignParam = None, right!: ?HorizontalAlignParam =
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|left|?[HorizontalAlignParam](#class-horizontalalignment)|否|None|**命名参数。** 设置组件左侧对齐方式。|
-|right|?[HorizontalAlignParam](#class-horizontalalignment)|否|None|**命名参数。** 设置组件右侧对齐方式。|
-|middle|?[HorizontalAlignParam](#class-horizontalalignment)|否|None|**命名参数。** 设置组件水平居中对齐方式。|
-|top|?[VerticalAlignParam](#class-verticalalignment)|否|None|**命名参数。** 设置组件顶部对齐方式。|
-|bottom|?[VerticalAlignParam](#class-verticalalignment)|否|None|**命名参数。** 设置组件顶部对齐方式。|
-|center|?[VerticalAlignParam](#class-verticalalignment)|否|None|**命名参数。** 设置组件垂直居中对齐方式。|
+|left|?[HorizontalAlignParam](#class-horizontalalignparam)|否|None|**命名参数。** 设置组件左侧对齐方式。|
+|right|?[HorizontalAlignParam](#class-horizontalalignparam)|否|None|**命名参数。** 设置组件右侧对齐方式。|
+|middle|?[HorizontalAlignParam](#class-horizontalalignparam)|否|None|**命名参数。** 设置组件水平居中对齐方式。|
+|top|?[VerticalAlignParam](#class-verticalalignparam)|否|None|**命名参数。** 设置组件顶部对齐方式。|
+|bottom|?[VerticalAlignParam](#class-verticalalignparam)|否|None|**命名参数。** 设置组件顶部对齐方式。|
+|center|?[VerticalAlignParam](#class-verticalalignparam)|否|None|**命名参数。** 设置组件垂直居中对齐方式。|
 |bias|?[Bias](#class-bias)|否|None|**命名参数。** 设置组件对齐的偏移量。初始值为Bias()。|
 
 ## class EdgeStyles
@@ -5687,7 +5778,7 @@ public operator func !=(other: LengthUnit): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[LengthUnit](#enum-LengthUnit)|是|-|要比较的另一个LengthUnit枚举。|
+|other|[LengthUnit](#enum-lengthunit)|是|-|要比较的另一个LengthUnit枚举。|
 
 **返回值：**
 
@@ -5711,7 +5802,7 @@ public operator func ==(other: LengthUnit): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[LengthUnit](#enum-LengthUnit)|是|-|要比较的另一个LengthUnit枚举。|
+|other|[LengthUnit](#enum-lengthunit)|是|-|要比较的另一个LengthUnit枚举。|
 
 **返回值：**
 
@@ -5834,7 +5925,7 @@ public operator func ==(other: ModalTransition): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ModalTransition](#enum-ModalTransition)|是|-|要比较的另一个ModalTransition枚举。|
+|other|[ModalTransition](#enum-modaltransition)|是|-|要比较的另一个ModalTransition枚举。|
 
 **返回值：**
 
@@ -5854,7 +5945,7 @@ public operator func !=(other: ModalTransition): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ModalTransition](#enum-ModalTransition)|是|-|要比较的另一个ModalTransition枚举。|
+|other|[ModalTransition](#enum-modaltransition)|是|-|要比较的另一个ModalTransition枚举。|
 
 **返回值：**
 
@@ -5935,7 +6026,7 @@ public operator func ==(other: SheetSize): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[SheetSize](#enum-SheetSize)|是|-|要比较的另一个SheetSize枚举。|
+|other|[SheetSize](#enum-sheetsize)|是|-|要比较的另一个SheetSize枚举。|
 
 **返回值：**
 
@@ -5959,7 +6050,7 @@ public operator func !=(other: SheetSize): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[SheetSize](#enum-SheetSize)|是|-|要比较的另一个SheetSize枚举。|
+|other|[SheetSize](#enum-sheetsize)|是|-|要比较的另一个SheetSize枚举。|
 
 **返回值：**
 
@@ -6040,7 +6131,7 @@ public operator func ==(other: SheetType): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[SheetType](#enum-SheetType)|是|-|要比较的另一个SheetType枚举。|
+|other|[SheetType](#enum-sheettype)|是|-|要比较的另一个SheetType枚举。|
 
 **返回值：**
 
@@ -6064,7 +6155,7 @@ public operator func !=(other: SheetType): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[SheetType](#enum-SheetType)|是|-|要比较的另一个SheetType枚举。|
+|other|[SheetType](#enum-sheettype)|是|-|要比较的另一个SheetType枚举。|
 
 **返回值：**
 
@@ -6132,7 +6223,7 @@ public operator func ==(other: SheetMode): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[SheetMode](#enum-SheetMode)|是|-|要比较的另一个SheetMode枚举。|
+|other|[SheetMode](#enum-sheetmode)|是|-|要比较的另一个SheetMode枚举。|
 
 **返回值：**
 
@@ -6156,7 +6247,7 @@ public operator func !=(other: SheetMode): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[SheetMode](#enum-SheetMode)|是|-|要比较的另一个SheetMode枚举。|
+|other|[SheetMode](#enum-sheetmode)|是|-|要比较的另一个SheetMode枚举。|
 
 **返回值：**
 
@@ -19843,7 +19934,7 @@ public type VoidCallback = () -> Unit
 public type Callback<T, V> = (T) -> V
 ```
 
-**功能：** [Callback](#type-callback)是[(T) -> V](#type-callback)类型的别名。
+**功能：** Callback\<T, V>是(T) -> V类型的别名。
 
 **类型：** (T) -> V
 
@@ -19853,7 +19944,7 @@ public type Callback<T, V> = (T) -> V
 public type CustomBuilder = () -> Unit
 ```
 
-**功能：** [CustomBuilder](#type-custombuilder)是() -> Unit类型的别名。
+**功能：** CustomBuilder是() -> Unit类型的别名。
 
 **类型：** () -> Unit
 

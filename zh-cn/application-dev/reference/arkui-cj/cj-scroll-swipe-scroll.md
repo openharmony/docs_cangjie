@@ -1180,7 +1180,7 @@ public operator func !=(other: ScrollAlign): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ScrollAlign](#enum-ScrollAlign)|是|-|待比较的另一个枚举值。|
+|other|[ScrollAlign](#enum-scrollalign)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -1204,7 +1204,7 @@ public operator func ==(other: ScrollAlign): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ScrollAlign](#enum-ScrollAlign)|是|-|待比较的另一个枚举值。|
+|other|[ScrollAlign](#enum-scrollalign)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -1285,7 +1285,7 @@ public operator func !=(other: ContentClipMode): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ContentClipMode](#enum-ContentClipMode)|是|-|待比较的另一个枚举值。|
+|other|[ContentClipMode](#enum-contentclipmode)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -1309,7 +1309,7 @@ public operator func ==(other: ContentClipMode): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ContentClipMode](#enum-ContentClipMode)|是|-|待比较的另一个枚举值。|
+|other|[ContentClipMode](#enum-contentclipmode)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 

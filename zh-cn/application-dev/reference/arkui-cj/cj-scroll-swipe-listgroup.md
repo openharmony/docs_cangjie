@@ -233,7 +233,7 @@ public operator func !=(other: ListItemGroupStyle): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ListItemGroupStyle](#enum-ListItemGroupStyle)|是|-|待比较的另一个枚举值。|
+|other|[ListItemGroupStyle](#enum-listitemgroupstyle)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -253,7 +253,7 @@ public operator func ==(other: ListItemGroupStyle): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ListItemGroupStyle](#enum-ListItemGroupStyle)|是|-|待比较的另一个枚举值。|
+|other|[ListItemGroupStyle](#enum-listitemgroupstyle)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
