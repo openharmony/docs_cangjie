@@ -1,4 +1,4 @@
-# Application Development (Beta Feature)
+# OpenHarmony Documentation (Cangjie)
 
 - Getting Started
     - [Application Development Guide](cj-start/start/cj-start-application-development-overview.md)
