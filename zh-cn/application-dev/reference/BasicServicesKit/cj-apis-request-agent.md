@@ -974,9 +974,9 @@ public var mimeType:?String
 public var path:String
 ```
 
-**功能：** 文件的的路=。
+**功能：** 文件的的路径。
 
-**类型：** ?String
+**类型：** String
 
 **读写能力：** 可读写
 
@@ -986,7 +986,6 @@ public var path:String
 
 ```
 
-```
 
 ## enum Network
 
@@ -998,6 +997,7 @@ public enum Network <: Equatable<Network> & ToString {
     | ...
 }
 ```
+
 **功能：** 定义网络选项。网络不满足设置条件时，未执行的任务会等待执行，执行中的任务将失败或暂停。
 
 **系统能力：** SystemCapability.Request.FileTransferAgent
