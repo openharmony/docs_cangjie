@@ -110,96 +110,6 @@ public func bind<T1, T2, T3>(builder: (CustomView, ObservedProperty<T1>, Observe
 |builder|([CustomView](#class-customview),[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T1>,[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T2>,[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T3>)->[ViewBuilder](#class-viewbuilder)|是|-|@Builder修饰的函数类型。|
 |thisView|[CustomView](#class-customview)|是|-|当前自定义组件对象（一般为this）。|
 
-## interface CollectionEx\<T>
-
-```cangjie
-public interface CollectionEx<T> {
-    prop size: Int64
-    operator func [](idx: Int64, value!: T): Unit
-    operator func [](idx: Int64): T
-}
-```
-
-**功能：** 集合扩展接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### extend\<T> Array\<T> <: CollectionEx\<T>
-
-```cangjie
-extend<T> Array<T> <: CollectionEx<T> {}
-```
-
-**功能：** 扩展泛型Array为CollectionEx子类型。
-
-### extend\<T> ArrayList\<T> <: CollectionEx\<T>
-
-```cangjie
-extend<T> ArrayList<T> <: CollectionEx<T> {}
-```
-**功能：** 扩展泛型ArrayList为CollectionEx子类型。
-
-### prop size
-
-```cangjie
-prop size: Int64
-```
-
-**功能：** 集合大小。
-
-**类型：** Int64
-
-**读写能力：** 只读
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### operator func [](Int64, T)
-
-```cangjie
-public operator func [](idx: Int64, value!: T): Unit
-```
-
-**功能：** 设置指定索引位置的元素值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|idx|Int64|是|-|元素索引。|
-|value|T|是|-|**命名参数。** 元素值。|
-
-### operator func [](Int64)
-
-```cangjie
-public operator func [](idx: Int64): T
-```
-
-**功能：** 获取指定索引位置的元素值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|idx|Int64|是|-|元素索引。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|T|指定索引位置的元素值。|
-
 ## interface Observer
 
 ```cangjie
@@ -733,7 +643,7 @@ public func forEachUpdateFunction<T>(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |elmtId|Int64|是|-|元素ID。|
-|arr|[CollectionEx](#interface-collectionext)\<T>|是|-|集合数据。|
+|arr|[CollectionEx](./cj-common-types.md#interface-collectionext)\<T>|是|-|集合数据。|
 |itemGenFunc|(T,Int64)->Unit|是|-|**命名参数。** 项目生成函数。|
 |keyGeneratorFunc|(T,Int64)->String|否|{ realData: T, idx: Int64 => match(realData) {<br>case realDataStr: ToString => idx.toString() + "_" + realDataStr.toString()<br>case \_ => idx.toString()<br>} }|**命名参数。** 键生成函数。|
 
