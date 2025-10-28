@@ -2755,8 +2755,7 @@ StringItem(String)
 public enum Mode <: Equatable<Mode> & ToString{
     | Background
     | Foreground
-    
-    public func toString(): String
+    | ...
 }
 ```
 
@@ -2837,21 +2836,6 @@ public operator func ==(other: Mode): Bool
 | 类型 | 说明                                    |
 | :--- | :-------------------------------------- |
 | Bool | 两个枚举值相等返回true，否则返回false。 |
-
-### func toString()
-
-```cangjie
-public func toString(): String
-```
-
-**功能：** 获取当前枚举的字符串表示。
-
-**返回值：**
-
-
-| 类型   | 说明                       |
-| :----- | :------------------------- |
-| String | 获取当前枚举的字符串表示。 |
 
 ## enum Network
 
