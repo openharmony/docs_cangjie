@@ -1628,7 +1628,7 @@ public func createImageData(sw: ?Float64, sh: ?Float64): ImageData
 public func createImageData(imageData: ?ImageData): ImageData
 ```
 
-**功能：** 根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象（不会复制图像数据），请参考[ImageData]()，该接口存在内存拷贝行为，高耗时，应避免频繁使用。createImageData示例同[putImageData]()。
+**功能：** 根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象（不会复制图像数据），请参考[ImageData](./cj-canvas-drawing-imagedata.md)，该接口存在内存拷贝行为，高耗时，应避免频繁使用。createImageData示例同[putImageData](#func-putimagedataimagedata-length-length)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1678,7 +1678,7 @@ public func getImageData(sx: ?Float64, sy: ?Float64, sw: ?Float64, sh: ?Float64)
 public func putImageData(imageData: ImageData, dx: Length, dy: Length): Unit
 ```
 
-**功能：** 使用[ImageData]()数据填充新的矩形区域。
+**功能：** 使用[ImageData](./cj-canvas-drawing-imagedata.md#class-imagedata)数据填充新的矩形区域。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1688,9 +1688,9 @@ public func putImageData(imageData: ImageData, dx: Length, dy: Length): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|imageData|[ImageData]()|是|-| 包含像素值的ImageData对象。|
-|dx|[Length]()|是|-|填充区域在x轴方向的偏移量。<br>默认单位：vp。|
-|dy|[Length]()|是|-|填充区域在y轴方向的偏移量。<br>默认单位：vp。|
+|imageData|[ImageData](./cj-canvas-drawing-imagedata.md#class-imagedata)|是|-| 包含像素值的ImageData对象。|
+|dx|[Length](./cj-common-types.md#interface-length)|是|-|填充区域在x轴方向的偏移量。<br>默认单位：vp。|
+|dy|[Length](./cj-common-types.md#interface-length)|是|-|填充区域在y轴方向的偏移量。<br>默认单位：vp。|
 
 ### func putImageData(ImageData, ?Length, ?Length, ?Length, ?Length, ?Length, ?Length)
 
@@ -1706,7 +1706,7 @@ public func putImageData(
 ): Unit
 ```
 
-**功能：** 使用[ImageData]()数据填充新的矩形区域。
+**功能：** 使用[ImageData](./cj-canvas-drawing-imagedata.md#class-imagedata)数据填充新的矩形区域。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1716,7 +1716,7 @@ public func putImageData(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|imageData|[ImageData]()|是|-| 包含像素值的ImageData对象。|
+|imageData|[ImageData](./cj-canvas-drawing-imagedata.md#class-imagedata)|是|-| 包含像素值的ImageData对象。|
 |dx|?Float64|是|-|填充区域在x轴方向的偏移量。<br>默认单位：vp。|
 |dy|?Float64|是|-|填充区域在y轴方向的偏移量。<br>默认单位：vp。|
 |dirtyX|?Float64|是|-|源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。<br>默认单位：vp。|

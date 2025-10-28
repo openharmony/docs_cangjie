@@ -526,7 +526,7 @@ public class DividerStyle {
 
 > **说明：**
 >
-> 针对侧边栏内容区设置[通用属性宽高]()时，宽高都不生效，默认占满SideBarContainer的剩余空间。
+> 针对侧边栏内容区设置[通用属性宽高](./cj-universal-attribute-size.md)时，宽高都不生效，默认占满SideBarContainer的剩余空间。
 > 当showSideBar属性未设置时，依据组件大小进行自动显示：
 >
 > - 小于minSideBarWidth + minContentWidth：默认不显示侧边栏。
