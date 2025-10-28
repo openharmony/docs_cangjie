@@ -172,7 +172,7 @@ public class ObservedArrayList<T> <: ObservedComplexAbstract & CollectionEx<T> {
 **父类型：**
 
 - [ObservedComplexAbstract](./cj-ui-framework.md#class-observedcomplexabstract)
-- [CollectionEx](./cj-ui-framework.md#interface-collectionext)\<T>
+- [CollectionEx](./cj-common-types.md#interface-collectionext)\<T>
 
 #### prop size
 
