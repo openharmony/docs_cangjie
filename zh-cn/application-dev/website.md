@@ -1,4 +1,4 @@
-# 应用开发（Beta特性）
+# OpenHarmony开发者文档（仓颉）
 
 - 入门
     - [应用开发导读](cj-start/start/cj-start-application-development-overview.md)
@@ -604,6 +604,7 @@
                     - [Swiper](reference/arkui-cj/cj-scroll-swipe-swiper.md)
                     - [ScrollBar](reference/arkui-cj/cj-scroll-swipe-scrollbar.md)
                     - [Refresh](reference/arkui-cj/cj-scroll-swipe-refresh.md)
+                    - [滚动组件通用API](reference/arkui-cj/cj-scroll-swipe-common.md)
                 - 导航与切换
                     - [Navigation](reference/arkui-cj/cj-navigation-switching-navigation.md)
                     - [NavDestination](reference/arkui-cj/cj-navigation-switching-navdestination.md)

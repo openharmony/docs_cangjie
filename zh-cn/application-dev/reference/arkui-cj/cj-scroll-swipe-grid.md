@@ -42,14 +42,14 @@ public init(scroller!: ?Scroller = Option.None, child!: () -> Unit = {=>})
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|scroller|?Scroller|否|Option.None| **命名参数。** 可滚动组件的控制器，与可滚动组件绑定。<br> **说明：** <br>不允许和其他滚动类组件，如：[List](cj-scroll-swipe-list.md)、[Grid](cj-scroll-swipe-grid.md)、[Scroll](cj-scroll-swipe-scroll.md)等绑定同一个滚动控制对象。|
+|scroller|?[Scroller](./cj-scroll-swipe-scroll.md#class-scroller)|否|Option.None| **命名参数。** 可滚动组件的控制器，与可滚动组件绑定。<br> **说明：** <br>不允许和其他滚动类组件，如：[List](cj-scroll-swipe-list.md)、[Grid](cj-scroll-swipe-grid.md)、[Scroll](cj-scroll-swipe-scroll.md)等绑定同一个滚动控制对象。|
 |child|() -> Unit|否|{=>}| **命名参数。** 网格容器的子组件。|
 
 ## 通用属性/通用事件
 
-通用属性：全部支持。
+通用属性：除了支持通用属性外，还支持[滚动组件通用属性](./cj-scroll-swipe-common.md#组件属性)。
 
-通用事件：全部支持。
+通用事件：除了支持通用事件外，还支持[滚动组件通用事件](./cj-scroll-swipe-common.md#组件事件)。
 
 ## 组件属性
 
@@ -112,7 +112,7 @@ public func columnsGap(value: ?Length): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?Length|是|-|列与列的间距。初始值:  0.vp|
+|value|?[Length](./cj-common-types.md#interface-length)|是|-|列与列的间距。初始值:  0.vp|
 
 ### func columnsTemplate(?String)
 
@@ -163,7 +163,7 @@ public func rowsGap(value: ?Length): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?Length|是|-|用于设置行与行的间距。初始值:  0.vp|
+|value|?[Length](./cj-common-types.md#interface-length)|是|-|用于设置行与行的间距。初始值:  0.vp|
 
 ### func rowsTemplate(?String)
 
