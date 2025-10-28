@@ -63,7 +63,7 @@ public init(code: Int32, msg: String, data!: ?Any = None)
 
 **参数：**
 
-|参数名|类型|必填|说明|
+| 参数 | 类型 | 必填 | 说明   |
 |:---|:---|:---|:---|
 | code | Int32 | 是 | 错误码。 |
 | msg | String | 是 | 错误信息。|
