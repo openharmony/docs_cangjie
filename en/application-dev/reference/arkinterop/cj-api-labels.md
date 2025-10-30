@@ -249,14 +249,16 @@ public const init(since!: String, atomicservice!: Bool = false, crossplatform!: 
 
 |Parameter|Type|Required|Default| Description                 |
 |:---|:---|:---|:---|:-------------------|
-|level_val|UInt8|Yes|-| API level.         |
+|since|String|Yes|-| Named parameter - API level.         |
 |atomicservice|Bool|No|false| Named parameter - whether atomic service is supported.     |
 |crossplatform|Bool|No|false| Named parameter - whether cross-platform is supported.      |
-|deprecated|UInt8|No|0| Named parameter - deprecated version.         |
+|deprecated|?String|No|0| Named parameter - deprecated version.         |
 |form|Bool|No|false| Named parameter - whether forms are supported.    |
 |permission|?[PermissionValue](#interface-permissionvalue)|No|None| Named parameter - required permissions.      |
-|stagemodelonly|Bool|No|true| Named parameter - whether only Stage model is supported. |
 |syscap|String|No|""| Named parameter - required system capabilities.      |
+|throwexception|Bool|No|""| Named parameter -  whether the current API throws exceptions  |
+|workerthread|Bool|No|""| Named parameter -   whether the current API is recommended for concurrent execution.   |
+|systemapi|Bool|No|""| Named parameter - whether the current API is for system applications only.     |
 
 ## class PermissionAnd
 

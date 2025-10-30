@@ -139,7 +139,7 @@ public let deprecated: ?String
 
 **功能：** 当前 API 的已弃用版本，默认值为 None，表示未弃用。
 
-**类型：** String
+**类型：** ?String
 
 **读写：** 只读
 
@@ -259,17 +259,16 @@ public const init(since!: String, atomicservice!: Bool = false, crossplatform!: 
 
 |参数|类型|必填|默认值| 描述                 |
 |:---|:---|:---|:---|:-------------------|
-|since|[LevelValue](#interface-levelvalue)|是|-| API level。         |
+|since|String|是|-| 命名参数 API level。         |
 |atomicservice|Bool|否|false| 命名参数 是否支持原子服务。     |
 |crossplatform|Bool|否|false| 命名参数 是否支持跨平台。      |
-|deprecated|[LevelValue](#interface-levelvalue)|否|0| 命名参数 弃用版本。         |
+|deprecated|?String|否|None| 命名参数 弃用版本。         |
 |form|Bool|否|false| 命名参数 是否支持forms。    |
 |permission|?[PermissionValue](#interface-permissionvalue)|否|None| 命名参数 是否支持所需权限。      |
-|stagemodelonly|Bool|否|true| 命名参数 是否只支持Stage模型。 |
-|syscap|String|否|""| 命名参数 是否支持 系统能力。      |
-|throwexception|Bool|否|""| 命名参数 是否支持 异常能力。      |
-|workerthread|Bool|否|""| 命名参数 是否支持 异步接口力。      |
-|systemapi|Bool|否|""| 命名参数 是否支持  系统api。      |
+|syscap|String|否|""| 命名参数 系统能力。      |
+|throwexception|Bool|否|""| 命名参数 是否抛出异常。      |
+|workerthread|Bool|否|""| 命名参数 是否建议并发执行。      |
+|systemapi|Bool|否|""| 命名参数 是否为系统api。      |
 
 ## class PermissionAnd
 
