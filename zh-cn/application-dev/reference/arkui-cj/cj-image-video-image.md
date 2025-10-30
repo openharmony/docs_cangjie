@@ -5,7 +5,7 @@ Image为图片组件，常用于在应用中显示图片。支持png、jpg、jpe
 > 说明：
 >
 > - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](./cj-universal-attribute-focus.md#func-focusontouchbool)。Image组件默认不获焦，需将[focusable](cj-apis-window.md#var-focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](./cj-universal-attribute-focus.md#func-focusontouchbool)  属性设置为true，即可实现点击获焦。
-> - 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](../apis/ImageKit/cj-apis-image.md#svg标签说明)。
+> - 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](../ImageKit/cj-apis-image.md#svg标签说明)。
 > - 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./cj-ui-framework.md#func-onvisibleareachangearrayfloat64-boolfloat64---unit)事件触发的，当可见阈值raitos大于0时，表明Image处于可见状态。
 
 ## 导入模块
@@ -52,7 +52,7 @@ public init(src: ?ResourceStr)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|src|?ResourceStr|是|-|图片的数据源。<br>初始值：""|
+|src|?[ResourceStr](./cj-common-types.md#interface-resourcestr)|是|-|图片的数据源。<br>初始值：""|
 
 ### init(?PixelMap)
 
@@ -76,7 +76,7 @@ public init(src: ?PixelMap)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|src|?PixelMap|是|-|图片的数据源。<br/>PixelMap格式为像素图，常用于图片编辑的场景。|
+|src|?[PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap)|是|-|图片的数据源。<br/>PixelMap格式为像素图，常用于图片编辑的场景。|
 
 ## 通用属性/通用事件
 
@@ -106,7 +106,7 @@ public func alt(src: ?ResourceStr): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|src|?ResourceStr|是|-|加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），不支持网络图片。<br>初始值：""。|
+|src|?[ResourceStr](./cj-common-types.md#interface-resourcestr)|是|-|加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），不支持网络图片。<br>初始值：""。|
 
 ### func autoResize(?Bool)
 
@@ -150,7 +150,7 @@ public func fillColor(value: ?ResourceColor): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?ResourceColor|是|-|设置填充颜色。|
+|value|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|是|-|设置填充颜色。|
 
 ### func fitOriginalSize(?Bool)
 
@@ -191,7 +191,7 @@ public func interpolation(value: ?ImageInterpolation): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?ImageInterpolation|是|-|图片的插值效果。<br>初始值：ImageInterpolation.Low。|
+|value|?[ImageInterpolation](./cj-common-types.md#enum-imageinterpolation)|是|-|图片的插值效果。<br>初始值：ImageInterpolation.Low。|
 
 ### func matchTextDirection(?Bool)
 
@@ -227,7 +227,7 @@ public func objectFit(value: ?ImageFit): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?ImageFit|是|-|图片的填充效果。<br>初始值：ImageFit.Cover。|
+|value|?[ImageFit](./cj-common-types.md#enum-imagefit)|是|-|图片的填充效果。<br>初始值：ImageFit.Cover。|
 
 ### func objectRepeat(?ImageRepeat)
 
@@ -250,7 +250,7 @@ public func objectRepeat(value: ?ImageRepeat): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?ImageRepeat|是|-|图片的重复样式。<br>初始值：ImageRepeat.NoRepeat。|
+|value|?[ImageRepeat](./cj-common-types.md#enum-imagerepeat)|是|-|图片的重复样式。<br>初始值：ImageRepeat.NoRepeat。|
 
 ### func renderMode(?ImageRenderMode)
 
@@ -273,7 +273,7 @@ public func renderMode(value: ?ImageRenderMode): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?ImageRenderMode|是|-|设置图片的渲染模式。SVG类型图源不支持该属性。<br>初始值：ImageRenderMode.Original。|
+|value|?[ImageRenderMode](./cj-common-types.md#enum-imagerendermode)|是|-|设置图片的渲染模式。SVG类型图源不支持该属性。<br>初始值：ImageRenderMode.Original。|
 
 ### func sourceSize(?Length, ?Length)
 
@@ -291,8 +291,8 @@ public func sourceSize(width: ?Length, height: ?Length): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|width|?Length|是|-|图片解码后的宽度。<br>初始值：0.0.px。|
-|height|?Length|是|-|图片解码后的高度。<br>初始值：0.0.px。|
+|width|?[Length](./cj-common-types.md#interface-length)|是|-|图片解码后的宽度。<br>初始值：0.0.px。|
+|height|?[Length](./cj-common-types.md#interface-length)|是|-|图片解码后的高度。<br>初始值：0.0.px。|
 
 ### func syncLoad(?Bool)
 
@@ -334,7 +334,7 @@ public func onComplete(callback: ?ImageCompleteCallback): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?ImageCompleteCallback|是|-|回调函数，图片成功加载时触发。<br>初始值：{ _ => }。|
+|callback|?[ImageCompleteCallback](#type-imagecompletecallback)|是|-|回调函数，图片成功加载时触发。<br>初始值：{ _ => }。|
 
 ### func onError(?ImageErrorCallback)
 
@@ -352,7 +352,7 @@ public func onError(callback: ?ImageErrorCallback): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?ImageErrorCallback|是|-|回调函数，图片加载出现异常时触发。<br>初始值：{ _ => }。|
+|callback|?[ImageErrorCallback](#type-imageerrorcallback)|是|-|回调函数，图片加载出现异常时触发。<br>初始值：{ _ => }。|
 
 ### func onFinish(?() -> Unit)
 
@@ -388,8 +388,6 @@ public class ColorFilter {
 
 **起始版本：** 22
 
-**父类型：** 无
-
 #### init(?Array\<Float32>)
 
 ```cangjie
@@ -423,8 +421,6 @@ public class ImageError {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：** 无
 
 #### var componentHeight
 
@@ -495,8 +491,6 @@ public class ImageLoadResult {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：** 无
 
 #### var componentHeight
 

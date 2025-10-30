@@ -1,4 +1,4 @@
-# Application Development (Beta Feature)
+# OpenHarmony Documentation (Cangjie)
 
 - Getting Started
     - [Application Development Guide](cj-start/start/cj-start-application-development-overview.md)
@@ -219,7 +219,7 @@
                 - [User Files Overview](file-management/cj-user-file-overview.md)
         - IPC Kit (Inter-Process Communication Service)
             - [IPC Kit Introduction](ipc/cj-ipc-rpc-overview.md)
-            - [IPC and RPC Communication Development Guide](source_zh_cn/ipc/cj-ipc-rpc-guidelines.md)
+            - [IPC and RPC Communication Development Guide](ipc/cj-ipc-rpc-guidelines.md)
         - Localization Kit
             - [Localization Kit Introduction](internationalization/cj-i18n-l10n.md)
             - Application Internationalization

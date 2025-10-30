@@ -48,10 +48,10 @@ public const MAX_VALUE_LENGTH: UInt32 = 16 * 1024 * 1024
 
 **起始版本：** 22
 
-## class Options
+## class PreferencesOptions
 
 ```cangjie
-public class Options {
+public class PreferencesOptions {
     public var name: String
     public var dataGroupId: String
     public var storageType: StorageType
@@ -121,7 +121,7 @@ public init(name: String, dataGroupId!: String = String.empty,
     storageType!: StorageType = StorageType.Xml)
 ```
 
-**功能：** 用于创建Options实例的构造函数。默认在本应用沙箱目录下创建Preferences实例。
+**功能：** 用于创建PreferencesOptions实例的构造函数。默认在本应用沙箱目录下创建Preferences实例。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -198,10 +198,10 @@ try {
 }
 ```
 
-### static func deletePreferences(UIAbilityContext, Options)
+### static func deletePreferences(UIAbilityContext, PreferencesOptions)
 
 ```cangjie
-public static func deletePreferences(context: UIAbilityContext, options: Options): Unit
+public static func deletePreferences(context: UIAbilityContext, options: PreferencesOptions): Unit
 ```
 
 **功能：** 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
@@ -217,7 +217,7 @@ public static func deletePreferences(context: UIAbilityContext, options: Options
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext)|是|-|应用上下文。|
-|options|[Options](#class-options)|是|-|与Preferences实例相关的配置选项。|
+|options|[PreferencesOptions](#class-preferencesoptions)|是|-|与Preferences实例相关的配置选项。|
 
 **异常：**
 
@@ -321,10 +321,10 @@ try {
 }
 ```
 
-### static func getPreferences(UIAbilityContext, Options)
+### static func getPreferences(UIAbilityContext, PreferencesOptions)
 
 ```cangjie
-public static func getPreferences(context: UIAbilityContext, options: Options): Preferences
+public static func getPreferences(context: UIAbilityContext, options: PreferencesOptions): Preferences
 ```
 
 **功能：** 从缓存中移出指定的Preferences实例。
@@ -342,7 +342,7 @@ public static func getPreferences(context: UIAbilityContext, options: Options): 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext)|是|-|应用上下文。|
-|options|[Options](#class-options)|是|-|Preferences实例的名称。|
+|options|[PreferencesOptions](#class-preferencesoptions)|是|-|Preferences实例的名称。|
 
 **返回值：**
 
@@ -437,10 +437,10 @@ try {
 }
 ```
 
-### static func removePreferencesFromCache(UIAbilityContext, Options)
+### static func removePreferencesFromCache(UIAbilityContext, PreferencesOptions)
 
 ```cangjie
-public static func removePreferencesFromCache(context: UIAbilityContext, options: Options): Unit
+public static func removePreferencesFromCache(context: UIAbilityContext, options: PreferencesOptions): Unit
 ```
 
 **功能：** 从缓存中移出指定的Preferences实例。
@@ -458,7 +458,7 @@ public static func removePreferencesFromCache(context: UIAbilityContext, options
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext)|是|-|应用上下文。|
-|options|[Options](#class-options)|是|-|Preferences实例的名称。|
+|options|[PreferencesOptions](#class-preferencesoptions)|是|-|Preferences实例的名称。|
 
 **异常：**
 
@@ -611,10 +611,10 @@ preferences.put("myKey", PreferencesValueType.StringData("myValue"))
 preferences.flush()
 ```
 
-### func get(String, ValueType)
+### func get(String, PreferencesValueType)
 
 ```cangjie
-public func get(key: String, defValue: ValueType): ValueType
+public func get(key: String, defValue: PreferencesValueType): PreferencesValueType
 ```
 
 **功能：** 从缓存的Preferences实例中获取键对应的值，如果该键不存在，返回默认数据defValue。
@@ -628,13 +628,13 @@ public func get(key: String, defValue: ValueType): ValueType
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|String|是|-|要获取的存储Key名称。|
-|defValue|[ValueType](#enum-valuetype)|是|-|默认返回值。支持Int64、Float64、String、Bool、 Array\<Bool>、Array\<Float64>、Array\<String>。|
+|defValue|[PreferencesValueType](#enum-preferencesvaluetype)|是|-|默认返回值。支持Int64、Float64、String、Bool、 Array\<Bool>、Array\<Float64>、Array\<String>。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[ValueType](#enum-valuetype)|返回键对应的值。|
+|[PreferencesValueType](#enum-preferencesvaluetype)|返回键对应的值。|
 
 **异常：**
 
@@ -669,7 +669,7 @@ match (value) {
 ### func getAll()
 
 ```cangjie
-public func getAll(): HashMap<String, ValueType>
+public func getAll(): HashMap<String, PreferencesValueType>
 ```
 
 **功能：** 从缓存的Preferences实例中获取所有键值数据。
@@ -682,7 +682,7 @@ public func getAll(): HashMap<String, ValueType>
 
 |类型|说明|
 |:----|:----|
-|HashMap\<String,[ValueType](#enum-valuetype)>|HashMap对象，返回含有所有键值数据。|
+|HashMap\<String,[PreferencesValueType](#enum-preferencesvaluetype)>|HashMap对象，返回含有所有键值数据。|
 
 **异常：**
 
@@ -877,10 +877,10 @@ a.put("kkk1", PreferencesValueType.StringData("vvv1"))
 a.flush()
 ```
 
-### func put(String, ValueType)
+### func put(String, PreferencesValueType)
 
 ```cangjie
-public func put(key: String, value: ValueType): Unit
+public func put(key: String, value: PreferencesValueType): Unit
 ```
 
 **功能：** 将数据写入缓存的Preferences实例中，可通过[flush](#func-flush)将Preferences实例持久化。
@@ -894,7 +894,7 @@ public func put(key: String, value: ValueType): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|String|是|-|要修改的存储的Key，不能为空。|
-|value|[ValueType](#enum-valuetype)|是|-|存储的新值。支持Int64、Float64、String、Bool、 Array\<Bool>、Array\<Float64>、Array\<String>。|
+|value|[PreferencesValueType](#enum-preferencesvaluetype)|是|-|存储的新值。支持Int64、Float64、String、Bool、 Array\<Bool>、Array\<Float64>、Array\<String>。|
 
 **异常：**
 
@@ -1001,10 +1001,10 @@ Xml
 
 **起始版本：** 22
 
-## enum ValueType
+## enum PreferencesValueType
 
 ```cangjie
-public enum ValueType {
+public enum PreferencesValueType {
     | Integer(Int64)
     | Double(Float64)
     | StringData(String)

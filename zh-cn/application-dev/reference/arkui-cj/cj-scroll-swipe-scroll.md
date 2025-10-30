@@ -66,18 +66,18 @@ public init(scroller: ?Scroller, child: () -> Unit)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|scroller|?Scroller|是|-|滚动条控制器。初始值：Scroller()。|
+|scroller|?[Scroller](./cj-scroll-swipe-scroll.md#class-scroller)|是|-|滚动条控制器。初始值：Scroller()。|
 |child|() -> Unit|是|-|声明容器内的子组件。|
 
 ## 通用属性/通用事件
 
-通用属性：支持通用属性和[滚动组件通用属性](./cj-scroll-swipe-common.md)。
+通用属性：除了支持通用属性外，还支持[滚动组件通用属性](./cj-scroll-swipe-common.md#组件属性)。
 
-通用事件：支持通用事件和[滚动组件通用事件](./cj-scroll-swipe-common.md)。
+通用事件：除了支持通用事件外，还支持[滚动组件通用事件](./cj-scroll-swipe-common.md#组件事件)。
 
 > **说明：**
 >
-> 不支持滚动组件通用事件中的[onWillScroll](./cj-scroll-swipe-common.md#func-onwillscrollfloat64scrollstatescrollsource---float64)、[onDidScroll](./cj-scroll-swipe-common.md#func-ondidscrollfloat64-scrollstate---unit)事件。
+> 不支持滚动组件通用事件中的[onWillScroll](./cj-scroll-swipe-common.md#func-onwillscrolloptionfloat64scrollstatescrollsource---unit)、[onDidScroll](./cj-scroll-swipe-common.md#func-ondidscrollonscrollcallback)事件。
 
 ## 组件属性
 
@@ -97,7 +97,7 @@ public func scrollable(scrollDirection: ?ScrollDirection): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|scrollDirection|?ScrollDirection|是|-|滚动方向。初始值：ScrollDirection.Vertical。|
+|scrollDirection|?[ScrollDirection](./cj-common-types.md#enum-scrolldirection)|是|-|滚动方向。初始值：ScrollDirection.Vertical。|
 
 ## 组件事件
 
@@ -127,7 +127,7 @@ public func onWillScroll(handler: ?(Float64, Float64, ScrollState, ScrollSource)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|handler|?(Float64, Float64, ScrollState, ScrollSource) -> OffsetResult|是|-|回调函数，Scroll滚动前触发。参数一：每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。参数二：每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。参数三：当前滚动状态。参数四：当前滚动操作的来源。返回值：滑动偏移量对象。返回OffsetResult时按照开发者指定的偏移量滚动。初始值：{ _, _, _, _ => OffsetResult(0.0, 0.0)}。|
+|handler|?(Float64, Float64, [ScrollState](./cj-common-types.md#enum-scrollstate), [ScrollSource](./cj-common-types.md#enum-scrollsource)) -> [OffsetResult](#class-offsetresult)|是|-|回调函数，Scroll滚动前触发。参数一：每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。参数二：每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。参数三：当前滚动状态。参数四：当前滚动操作的来源。返回值：滑动偏移量对象。返回OffsetResult时按照开发者指定的偏移量滚动。初始值：{ _, _, _, _ => OffsetResult(0.0, 0.0)}。|
 
 ### func onWillScroll(?(Float64, Float64, ScrollState, ScrollSource) -> Unit)
 
@@ -155,7 +155,7 @@ public func onWillScroll(handler: ?(Float64, Float64, ScrollState, ScrollSource)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|handler|?(Float64, Float64, ScrollState, ScrollSource) -> Unit|是|-|回调函数，Scroll滚动前触发。参数一：每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。参数二：每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。参数三：当前滚动状态。参数四：当前滚动操作的来源。初始值：{ _, _, _, _ => }。|
+|handler|?(Float64, Float64, [ScrollState](./cj-common-types.md#enum-scrollstate), [ScrollSource](./cj-common-types.md#enum-scrollsource)) -> Unit|是|-|回调函数，Scroll滚动前触发。参数一：每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。参数二：每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。参数三：当前滚动状态。参数四：当前滚动操作的来源。初始值：{ _, _, _, _ => }。|
 
 ### func onDidScroll(?ScrollOnScrollCallback)
 
@@ -183,7 +183,7 @@ public func onDidScroll(callback: ?ScrollOnScrollCallback): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?ScrollOnScrollCallback|是|-|回调函数，Scroll滚动时触发。参数一：每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。参数二：每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。参数三：当前滚动状态。初始值：{ _, _, _ => }。|
+|callback|?[ScrollOnScrollCallback](#type-scrollonscrollcallback)|是|-|回调函数，Scroll滚动时触发。参数一：每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。单位vp。参数二：每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。参数三：当前滚动状态。初始值：{ _, _, _ => }。|
 
 ### func onScrollFrameBegin(?OnScrollFrameBeginCallback)
 
@@ -215,7 +215,7 @@ public func onScrollFrameBegin(event: ?OnScrollFrameBeginCallback): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|event|?OnScrollFrameBeginCallback|是|-|回调函数，每帧开始滚动时触发。参数一：即将发生的滑动量，单位vp。参数二：当前滑动状态。初始值：{ _, _ => 0.0 }。|
+|event|?[OnScrollFrameBeginCallback](#type-onscrollframebegincallback)|是|-|回调函数，每帧开始滚动时触发。参数一：即将发生的滑动量，单位vp。参数二：当前滑动状态。初始值：{ _, _ => 0.0 }。|
 
 ### func onScrollEdge(?OnScrollEdgeCallback)
 
@@ -241,748 +241,9 @@ public func onScrollEdge(event: ?OnScrollEdgeCallback): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|event|?OnScrollEdgeCallback|是|-|回调函数，滚动到边缘时触发。参数：滚动到的边缘位置。初始值：{ _ => 0.0 }。|
+|event|?[OnScrollEdgeCallback](#type-onscrolledgecallback)|是|-|回调函数，滚动到边缘时触发。参数：滚动到的边缘位置。初始值：{ _ => 0.0 }。|
 
 ## 基础类型定义
-
-### interface ScrollableCommonMethod
-
-```cangjie
-public interface ScrollableCommonMethod<T> <: CommonMethod<T> {
-  func scrollBar(barState: ?BarState): T
-  func scrollBarColor(color: ?ResourceColor): T
-  func scrollBarWidth(value: ?Length): T
-  func nestedScroll(value: ?NestedScrollOptions): T
-  func enableScrollInteraction(value: ?Bool): T
-  func friction(value: ?Float64): T
-  func friction(value: ?AppResource): T
-  func onReachStart(event: ?() -> Unit): T
-  func onReachEnd(event: ?() -> Unit): T
-  func onScrollStart(event: ?() -> Unit): T
-  func onScrollStop(event: ?() -> Unit): T
-  func flingSpeedLimit(speedLimit: ?Float64): T
-  func fadingEdge(enabled: Option<Bool>): T
-  func fadingEdge(enabled: Option<Bool>, options: ?FadingEdgeOptions): T
-  func clipContent(clip: ?ContentClipMode): T
-  func clipContent(clip: ?RectShape): T
-  func onWillScroll(handler: Option<(Float64, ScrollState, ScrollSource) -> ScrollResult>): T
-  func onWillScroll(handler: Option<(Float64, ScrollState, ScrollSource) -> Unit>): T
-  func onDidScroll(handler: ?OnScrollCallBack): T
-}
-```
-
-**功能：** 可滚动组件通用方法接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**父类型：**
-
-- CommonMethod\<T>
-
-#### func scrollBar(?BarState)
-
-```cangjie
-func scrollBar(barState: ?BarState): T
-```
-
-**功能：** 设置滚动条状态。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|barState|?BarState|是|-|滚动条状态。|
-
-#### func scrollBarColor(?ResourceColor)
-
-```cangjie
-func scrollBarColor(color: ?ResourceColor): T
-```
-
-**功能：** 设置滚动条颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|color|?ResourceColor|是|-|滚动条颜色。|
-
-#### func scrollBarWidth(?Length)
-
-```cangjie
-func scrollBarWidth(value: ?Length): T
-```
-
-**功能：** 设置滚动条宽度。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?Length|是|-|滚动条宽度。|
-
-#### func nestedScroll(?NestedScrollOptions)
-
-```cangjie
-func nestedScroll(value: ?NestedScrollOptions): T
-```
-
-**功能：** 设置嵌套滚动选项。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?NestedScrollOptions|是|-|嵌套滚动选项。|
-
-#### func enableScrollInteraction(?Bool)
-
-```cangjie
-func enableScrollInteraction(value: ?Bool): T
-```
-
-**功能：** 设置是否支持滚动交互。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?Bool|是|-|是否支持滚动交互。|
-
-#### func friction(?Float64)
-
-```cangjie
-func friction(value: ?Float64): T
-```
-
-**功能：** 设置摩擦系数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?Float64|是|-|摩擦系数。|
-
-#### func friction(?AppResource)
-
-```cangjie
-func friction(value: ?AppResource): T
-```
-
-**功能：** 设置摩擦系数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?AppResource|是|-|摩擦系数。|
-
-#### func onReachStart(?(...) -> Unit)
-
-```cangjie
-func onReachStart(event: ?() -> Unit): T
-```
-
-**功能：** 滚动到达起始位置时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动到达起始位置时的回调函数。初始值：{ => }。|
-
-#### func onReachEnd(?(...) -> Unit)
-
-```cangjie
-func onReachEnd(event: ?() -> Unit): T
-```
-
-**功能：** 滚动到达末尾位置时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动到达末尾位置时的回调函数。初始值：{ => }。|
-
-#### func onScrollStart(?(...) -> Unit)
-
-```cangjie
-func onScrollStart(event: ?() -> Unit): T
-```
-
-**功能：** 滚动开始时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动开始时的回调函数。初始值：{ => }。|
-
-#### func onScrollStop(?(...) -> Unit)
-
-```cangjie
-func onScrollStop(event: ?() -> Unit): T
-```
-
-**功能：** 滚动停止时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动停止时的回调函数。初始值：{ => }。|
-
-#### func flingSpeedLimit(?Float64)
-
-```cangjie
-func flingSpeedLimit(speedLimit: ?Float64): T
-```
-
-**功能：** 设置惯性滚动速度限制。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|speedLimit|?Float64|是|-|惯性滚动速度限制。初始值：0.0。|
-
-
-#### func fadingEdge(Option\<Bool>)
-
-```cangjie
-func fadingEdge(enabled: Option<Bool>): T
-```
-
-**功能：** 设置边缘淡出效果。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|enabled|Option\<Bool>|是|-|是否启用边缘淡出效果。|
-
-#### func fadingEdge(Option\<Bool>, ?FadingEdgeOptions)
-
-```cangjie
-func fadingEdge(enabled: Option<Bool>, options: ?FadingEdgeOptions): T
-```
-
-**功能：** 设置边缘淡出效果。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|enabled|Option\<Bool>|是|-|是否启用边缘淡出效果。|
-|options|?FadingEdgeOptions|是|-|边缘淡出选项。初始值：FadingEdgeOptions()。|
-
-#### func clipContent(?ContentClipMode)
-
-```cangjie
-func clipContent(clip: ?ContentClipMode): T
-```
-
-**功能：** 设置内容裁剪模式。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|clip|?ContentClipMode|是|-|内容裁剪模式。|
-
-#### func clipContent(?RectShape)
-
-```cangjie
-func clipContent(clip: ?RectShape): T
-```
-
-**功能：** 设置内容裁剪形状。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|clip|?RectShape|是|-|内容裁剪形状。|
-
-#### func onWillScroll(Option\<(Float64, ScrollState, ScrollSource) -> ScrollResult>)
-
-```cangjie
-func onWillScroll(handler: Option<(Float64, ScrollState, ScrollSource) -> ScrollResult>): T
-```
-
-**功能：** 滚动前触发的回调函数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|handler|Option\<(Float64, ScrollState, ScrollSource) -> ScrollResult>|是|-|滚动前触发的回调函数。|
-
-#### func onWillScroll(Option\<(Float64, ScrollState, ScrollSource) -> Unit>)
-
-```cangjie
-func onWillScroll(handler: Option<(Float64, ScrollState, ScrollSource) -> Unit>): T
-```
-
-**功能：** 滚动前触发的回调函数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|handler|Option\<(Float64, ScrollState, ScrollSource) -> Unit>|是|-|滚动前触发的回调函数。|
-
-#### func onDidScroll(?OnScrollCallBack)
-
-```cangjie
-func onDidScroll(handler: ?OnScrollCallBack): T
-```
-
-**功能：** 滚动时触发的回调函数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|handler|?OnScrollCallBack|是|-|滚动时触发的回调函数。初始值：{ _, _ => }。|
-
-### class ScrollableCommonMethodComponent
-
-```cangjie
-public abstract class ScrollableCommonMethodComponent<T> <: CommonMethodComponent<T> {}
-```
-
-**功能：** 可滚动组件通用方法组件基类。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**父类型：**
-
-- CommonMethodComponent\<T>
-
-#### public func scrollBar(?BarState)
-
-```cangjie
-public func scrollBar(barState: ?BarState): T
-```
-
-**功能：** 设置滚动条状态。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|barState|?BarState|是|-|滚动条状态。初始值：BarState.Auto。|
-
-#### public func scrollBarColor(?ResourceColor)
-
-```cangjie
-public func scrollBarColor(color: ?ResourceColor): T
-```
-
-**功能：** 设置滚动条颜色。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|color|?ResourceColor|是|-|滚动条颜色。|
-
-#### public func scrollBarWidth(?Length)
-
-```cangjie
-public func scrollBarWidth(value: ?Length): T
-```
-
-**功能：** 设置滚动条宽度。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?Length|是|-|滚动条宽度。初始值：4.vp。|
-
-#### public func nestedScroll(?NestedScrollOptions)
-
-```cangjie
-public func nestedScroll(value: ?NestedScrollOptions): T
-```
-
-**功能：** 设置嵌套滚动选项。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?NestedScrollOptions|是|-|嵌套滚动选项。|
-
-#### public func enableScrollInteraction(?Bool)
-
-```cangjie
-public func enableScrollInteraction(value: ?Bool): T
-```
-
-**功能：** 设置是否支持滚动交互。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?Bool|是|-|是否支持滚动交互。|
-
-#### public func friction(?Float64)
-
-```cangjie
-public func friction(value: ?Float64): T
-```
-
-**功能：** 设置摩擦系数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?Float64|是|-|摩擦系数。|
-
-#### public func friction(?AppResource)
-
-```cangjie
-public func friction(value: ?AppResource): T
-```
-
-**功能：** 设置摩擦系数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|value|?AppResource|是|-|摩擦系数。|
-
-#### public func onReachStart(?(...) -> Unit)
-
-```cangjie
-public func onReachStart(event: ?() -> Unit): T
-```
-
-**功能：** 滚动到达起始位置时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动到达起始位置时的回调函数。初始值：{ => }。|
-
-#### public func onReachEnd(?(...) -> Unit)
-
-```cangjie
-public func onReachEnd(event: ?() -> Unit): T
-```
-
-**功能：** 滚动到达末尾位置时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动到达末尾位置时的回调函数。初始值：{ => }。|
-
-#### public func onScrollStart(?(...) -> Unit)
-
-```cangjie
-public func onScrollStart(event: ?() -> Unit): T
-```
-
-**功能：** 滚动开始时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动开始时的回调函数。初始值：{ => }。|
-
-#### public func onScrollStop(?(...) -> Unit)
-
-```cangjie
-public func onScrollStop(event: ?() -> Unit): T
-```
-
-**功能：** 滚动停止时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|event|?() -> Unit|是|-|滚动停止时的回调函数。初始值：{ => }。|
-
-#### public func flingSpeedLimit(?Float64)
-
-```cangjie
-public func flingSpeedLimit(speedLimit: ?Float64): T
-```
-
-**功能：** 设置惯性滚动速度限制。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|speedLimit|?Float64|是|-|惯性滚动速度限制。初始值：0.0。|
-
-#### public func fadingEdge(Option\<Bool>)
-
-```cangjie
-public func fadingEdge(enabled: Option<Bool>): T
-```
-
-**功能：** 设置边缘淡出效果。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|enabled|Option\<Bool>|是|-|是否启用边缘淡出效果。|
-
-#### public func fadingEdge(Option\<Bool>, ?FadingEdgeOptions)
-
-```cangjie
-public func fadingEdge(enabled: Option<Bool>, options: ?FadingEdgeOptions): T
-```
-
-**功能：** 设置边缘淡出效果。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|enabled|Option\<Bool>|是|-|是否启用边缘淡出效果。|
-|options|?FadingEdgeOptions|是|-|边缘淡出选项。初始值：FadingEdgeOptions()。|
-
-#### public func clipContent(?ContentClipMode)
-
-```cangjie
-public func clipContent(clip: ?ContentClipMode): T
-```
-
-**功能：** 设置内容裁剪模式。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|clip|?ContentClipMode|是|-|内容裁剪模式。|
-
-#### public func clipContent(?RectShape)
-
-```cangjie
-public func clipContent(clip: ?RectShape): T
-```
-
-**功能：** 设置内容裁剪形状。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|clip|?RectShape|是|-|内容裁剪形状。|
-
-#### public func onWillScroll(Option\<(Float64, ScrollState, ScrollSource) -> ScrollResult>)
-
-```cangjie
-public func onWillScroll(handler: Option<(Float64, ScrollState, ScrollSource) -> ScrollResult>): T
-```
-
-**功能：** 滚动前触发的回调函数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|handler|Option\<(Float64, ScrollState, ScrollSource) -> ScrollResult>|是|-|滚动前触发的回调函数。|
-
-#### public func onWillScroll(Option\<(Float64, ScrollState, ScrollSource) -> Unit>)
-
-```cangjie
-public func onWillScroll(handler: Option<(Float64, ScrollState, ScrollSource) -> Unit>): T
-```
-
-**功能：** 滚动前触发的回调函数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|handler|Option\<(Float64, ScrollState, ScrollSource) -> Unit>|是|-|滚动前触发的回调函数。|
-
-#### public func onDidScroll(?OnScrollCallBack)
-
-```cangjie
-public func onDidScroll(handler: ?OnScrollCallBack): T
-```
-
-**功能：** 滚动时触发的回调函数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|handler|?OnScrollCallBack|是|-|滚动时触发的回调函数。初始值：{ _, _ => }。|
 
 ### class ScrollResult
 
@@ -998,10 +259,6 @@ public class ScrollResult {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-无
 
 #### var offsetRemain
 
@@ -1052,10 +309,6 @@ public class OffsetResult {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-无
 
 #### var xOffset
 
@@ -1130,10 +383,6 @@ public class RectResult {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-无
 
 #### var x
 
@@ -1246,10 +495,6 @@ public class ScrollAnimationOptions {
 
 **起始版本：** 22
 
-**父类型：**
-
-无
-
 #### var duration
 
 ```cangjie
@@ -1274,7 +519,7 @@ public var curve: ?Curve
 
 **功能：** 滚动曲线。
 
-**类型：** ?Curve
+**类型：** ?[Curve](./cj-common-types.md#enum-curve)
 
 **读写能力：** 可读写
 
@@ -1319,7 +564,7 @@ public init(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |duration|?Float64|否|None|**命名参数。** 滚动持续时间。初始值：1000.0。|
-|curve|?Curve|否|None|**命名参数。** 滚动曲线。初始值：Curve.Ease。|
+|curve|?[Curve](./cj-common-types.md#enum-curve)|否|None|**命名参数。** 滚动曲线。初始值：Curve.Ease。|
 |canOverScroll|?Bool|否|None|**命名参数。** 是否启用越界滚动。初始值：false。|
 
 ### class NestedScrollOptions
@@ -1338,10 +583,6 @@ public class NestedScrollOptions {
 
 **起始版本：** 22
 
-**父类型：**
-
-无
-
 #### var scrollForward
 
 ```cangjie
@@ -1350,7 +591,7 @@ public var scrollForward: ?NestedScrollMode
 
 **功能：** 自定义滚动嵌套中的向前方向。
 
-**类型：** ?NestedScrollMode
+**类型：** ?[NestedScrollMode](./cj-common-types.md#enum-nestedscrollmode)
 
 **读写能力：** 可读写
 
@@ -1366,7 +607,7 @@ public var scrollBackward: ?NestedScrollMode
 
 **功能：** 自定义滚动嵌套中的向后方向。
 
-**类型：** ?NestedScrollMode
+**类型：** ?[NestedScrollMode](./cj-common-types.md#enum-nestedscrollmode)
 
 **读写能力：** 可读写
 
@@ -1390,8 +631,8 @@ public init(scrollForward: ?NestedScrollMode, scrollBackward: ?NestedScrollMode)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|scrollForward|?NestedScrollMode|是|-|自定义滚动嵌套中的向前方向。初始值：NestedScrollMode.SelfOnly。|
-|scrollBackward|?NestedScrollMode|是|-|自定义滚动嵌套中的向后方向。初始值：NestedScrollMode.SelfOnly。|
+|scrollForward|?[NestedScrollMode](./cj-common-types.md#enum-nestedscrollmode)|是|-|自定义滚动嵌套中的向前方向。初始值：NestedScrollMode.SelfOnly。|
+|scrollBackward|?[NestedScrollMode](./cj-common-types.md#enum-nestedscrollmode)|是|-|自定义滚动嵌套中的向后方向。初始值：NestedScrollMode.SelfOnly。|
 
 ### class FadingEdgeOptions
 
@@ -1408,10 +649,6 @@ public class FadingEdgeOptions {
 
 **起始版本：** 22
 
-**父类型：**
-
-无
-
 #### var fadingEdgeLength
 
 ```cangjie
@@ -1420,7 +657,7 @@ public var fadingEdgeLength: ?Length
 
 **功能：** 自定义淡出边缘中的长度。
 
-**类型：** ?Length
+**类型：** ?[Length](./cj-common-types.md#interface-length)
 
 **读写能力：** 可读写
 
@@ -1444,7 +681,7 @@ public init(fadingEdgeLength!: ?Length = None)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|fadingEdgeLength|?Length|否|None|**命名参数。** 自定义淡出边缘中的长度。初始值：32.vp。|
+|fadingEdgeLength|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 自定义淡出边缘中的长度。初始值：32.vp。|
 
 ### class ScrollEdgeOptions
 
@@ -1460,10 +697,6 @@ public class ScrollEdgeOptions {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-无
 
 #### var velocity
 
@@ -1514,10 +747,6 @@ public class ScrollToIndexOptions {
 
 **起始版本：** 22
 
-**父类型：**
-
-无
-
 #### var extraOffset
 
 ```cangjie
@@ -1526,7 +755,7 @@ public var extraOffset: ?Length
 
 **功能：** 滚动到索引选项中的额外偏移量。
 
-**类型：** ?Length
+**类型：** ?[Length](./cj-common-types.md#interface-length)
 
 **读写能力：** 可读写
 
@@ -1550,7 +779,7 @@ public init(extraOffset!: ?Length = None)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|extraOffset|?Length|否|None|**命名参数。** 滚动到索引选项中的额外偏移量。初始值：0.vp。|
+|extraOffset|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 滚动到索引选项中的额外偏移量。初始值：0.vp。|
 
 ### class Scroller
 
@@ -1565,10 +794,6 @@ public class Scroller {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-无
 
 #### init()
 
@@ -1598,8 +823,8 @@ public func scrollTo(xOffset!: Length, yOffset!: Length): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|xOffset|Length|是|-|**命名参数。** 水平滚动偏移。|
-|yOffset|Length|是|-|**命名参数。** 垂直滚动偏移。|
+|xOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 水平滚动偏移。|
+|yOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 垂直滚动偏移。|
 
 #### func scrollTo(Length, Length, ?ScrollAnimationOptions)
 
@@ -1617,8 +842,8 @@ public func scrollTo(xOffset!: Length, yOffset!: Length, animation!: ?ScrollAnim
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|xOffset|Length|是|-|**命名参数。** 水平滚动偏移。|
-|yOffset|Length|是|-|**命名参数。** 垂直滚动偏移。|
+|xOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 水平滚动偏移。|
+|yOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 垂直滚动偏移。|
 |animation|?ScrollAnimationOptions|是|-|**命名参数。** 滚动动画选项。初始值：ScrollAnimationOptions()。|
 
 #### func scrollTo(Length, Length, ?Bool)
@@ -1637,8 +862,8 @@ public func scrollTo(xOffset!: Length, yOffset!: Length, animation!: ?Bool): Uni
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|xOffset|Length|是|-|**命名参数。** 水平滚动偏移。|
-|yOffset|Length|是|-|**命名参数。** 垂直滚动偏移。|
+|xOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 水平滚动偏移。|
+|yOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 垂直滚动偏移。|
 |animation|?Bool|是|-|**命名参数。** 是否启用动画。初始值：false。|
 
 #### func scrollBy(Length, Length)
@@ -1657,8 +882,8 @@ public func scrollBy(xOffset!: Length, yOffset!: Length): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|xOffset|Length|是|-|**命名参数。** 水平滚动偏移。|
-|yOffset|Length|是|-|**命名参数。** 垂直滚动偏移。|
+|xOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 水平滚动偏移。|
+|yOffset|[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 垂直滚动偏移。|
 
 #### func scrollEdge(Edge)
 
@@ -1676,7 +901,7 @@ public func scrollEdge(value: Edge): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|Edge|是|-|滚动到的边缘位置。|
+|value|[Edge](./cj-common-types.md#enum-edge)|是|-|滚动到的边缘位置。|
 
 #### func scrollEdge(Edge, ?ScrollEdgeOptions)
 
@@ -1694,8 +919,8 @@ public func scrollEdge(value: Edge, options: ?ScrollEdgeOptions): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|Edge|是|-|滚动到的边缘位置。|
-|options|?ScrollEdgeOptions|是|-|滚动边缘选项。初始值：ScrollEdgeOptions()。|
+|value|[Edge](./cj-common-types.md#enum-edge)|是|-|滚动到的边缘位置。|
+|options|?[ScrollEdgeOptions](#class-scrolledgeoptions)|是|-|滚动边缘选项。初始值：ScrollEdgeOptions()。|
 
 #### func fling(Float64)
 
@@ -1768,7 +993,7 @@ public func currentOffset(): Option<OffsetResult>
 
 |类型|说明|
 |:---|:---|
-|Option\<OffsetResult>|返回当前的滚动偏移量。|
+|Option\<[OffsetResult](#class-offsetresult)>|返回当前的滚动偏移量。|
 
 #### func scrollToIndex(Int32, ?Bool, ?ScrollAlign, ?ScrollToIndexOptions)
 
@@ -1793,8 +1018,8 @@ public func scrollToIndex(
 |:---|:---|:---|:---|:---|
 |index|Int32|是|-|索引值。|
 |smooth|?Bool|否|None|**命名参数。** 是否平滑滚动。初始值：false。|
-|align|?ScrollAlign|否|None|**命名参数。** 对齐方式。初始值：ScrollAlign.Start。|
-|options|?ScrollToIndexOptions|否|None|**命名参数。** 滚动到索引选项。初始值：ScrollToIndexOptions()。|
+|align|?[ScrollAlign](#enum-scrollalign)|否|None|**命名参数。** 对齐方式。初始值：ScrollAlign.Start。|
+|options|?[ScrollToIndexOptions](#class-scrolltoindexoptions)|否|None|**命名参数。** 滚动到索引选项。初始值：ScrollToIndexOptions()。|
 
 **返回值：**
 
@@ -1842,7 +1067,7 @@ public func getItemRect(index: ?Int32): RectResult
 
 |类型|说明|
 |:---|:---|
-|RectResult|子组件的大小和位置。|
+|[RectResult](#class-rectresult)|子组件的大小和位置。|
 
 #### func getItemIndex(Float64, Float64)
 
@@ -1889,7 +1114,7 @@ public enum ScrollAlign <: Equatable<ScrollAlign> {
 
 **父类型：**
 
-- Equatable\<ScrollAlign>
+- Equatable\<[ScrollAlign](#enum-scrollalign)>
 
 #### Start
 
@@ -1955,7 +1180,7 @@ public operator func !=(other: ScrollAlign): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ScrollAlign](#enum-ScrollAlign)|是|-|待比较的另一个枚举值。|
+|other|[ScrollAlign](#enum-scrollalign)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -1979,7 +1204,7 @@ public operator func ==(other: ScrollAlign): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ScrollAlign](#enum-ScrollAlign)|是|-|待比较的另一个枚举值。|
+|other|[ScrollAlign](#enum-scrollalign)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -2006,7 +1231,7 @@ public enum ContentClipMode <: Equatable<ContentClipMode> {
 
 **父类型：**
 
-- Equatable\<ContentClipMode>
+- Equatable\<[ContentClipMode](#enum-contentclipmode)>
 
 #### ContentOnly
 
@@ -2060,7 +1285,7 @@ public operator func !=(other: ContentClipMode): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ContentClipMode](#enum-ContentClipMode)|是|-|待比较的另一个枚举值。|
+|other|[ContentClipMode](#enum-contentclipmode)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -2084,7 +1309,7 @@ public operator func ==(other: ContentClipMode): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|other|[ContentClipMode](#enum-ContentClipMode)|是|-|待比较的另一个枚举值。|
+|other|[ContentClipMode](#enum-contentclipmode)|是|-|待比较的另一个枚举值。|
 
 **返回值：**
 
@@ -2104,7 +1329,7 @@ public type OnWillScrollCallBack = (Float64, ScrollState, ScrollSource) -> Scrol
 
 **起始版本：** 22
 
-**类型：** (Float64, ScrollState, ScrollSource) -> ScrollResult
+**类型：** (Float64, [ScrollState](./cj-common-types.md#enum-scrollstate), [ScrollSource](./cj-common-types.md#enum-scrollsource)) -> [ScrollResult](#class-scrollresult)
 
 ### type OnScrollCallBack
 
@@ -2118,7 +1343,7 @@ public type OnScrollCallBack = (scrollOffset: Float64, scrollState: ScrollState)
 
 **起始版本：** 22
 
-**类型：** (Float64, ScrollState) -> Unit
+**类型：** (Float64, [ScrollState](./cj-common-types.md#enum-scrollstate)) -> Unit
 
 ### type ScrollOnScrollCallback
 
@@ -2132,7 +1357,7 @@ public type ScrollOnScrollCallback = (Float64, Float64, ScrollState) -> Unit
 
 **起始版本：** 22
 
-**类型：** (Float64, Float64, ScrollState) -> Unit
+**类型：** (Float64, Float64, [ScrollState](./cj-common-types.md#enum-scrollstate)) -> Unit
 
 ### type OnScrollFrameBeginCallback
 
@@ -2146,7 +1371,7 @@ public type OnScrollFrameBeginCallback = (Float64, ScrollState) -> Float64
 
 **起始版本：** 22
 
-**类型：** (Float64, ScrollState) -> Float64
+**类型：** (Float64, [ScrollState](./cj-common-types.md#enum-scrollstate)) -> Float64
 
 ### type OnScrollEdgeCallback
 
@@ -2160,7 +1385,7 @@ public type OnScrollEdgeCallback = (Edge) -> Unit
 
 **起始版本：** 22
 
-**类型：** (Edge) -> Unit
+**类型：** ([Edge](./cj-common-types.md#enum-edge)) -> Unit
 
 ## 示例代码
 

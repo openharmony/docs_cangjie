@@ -19,7 +19,7 @@ UI 相关逻辑代码必须运行在拥有独立 OS 线程的 UI 线程中，UI 
 import kit.ArkUI.*
 ```
 
-## var UIThread
+## let UIThread
 
 ```cangjie
 public let UIThread: MainThreadContext = MainThreadContext.instance_

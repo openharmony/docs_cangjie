@@ -112,7 +112,7 @@ public func off(eventType: WifiCallbackType, callback!: ?CallbackObject = None):
 
 **功能：** 取消注册WLAN状态改变事件。
 
-**需要权限：** ohos.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -168,7 +168,7 @@ public func on(eventType: WifiCallbackType, callback: Callback1Argument<Int32>):
 
 **功能：** 注册WLAN状态改变事件。
 
-**需要权限：** ohos.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 

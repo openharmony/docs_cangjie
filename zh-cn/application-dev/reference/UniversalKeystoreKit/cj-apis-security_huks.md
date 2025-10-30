@@ -2782,7 +2782,7 @@ public static const HUKS_TAG_ASSOCIATED_DATA: UInt32 = HuksTagType.HUKS_TAG_TYPE
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -2796,7 +2796,7 @@ public static const HUKS_TAG_ATTESTATION_CHALLENGE: UInt32 = HuksTagType.HUKS_TA
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -2810,7 +2810,7 @@ public static const HUKS_TAG_AUTH_TIMEOUT: UInt32 = HuksTagType.HUKS_TAG_TYPE_UI
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -2838,7 +2838,7 @@ public static const HUKS_TAG_BLOCK_MODE: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -2852,7 +2852,7 @@ public static const HUKS_TAG_CHALLENGE_POS: UInt32 = HuksTagType.HUKS_TAG_TYPE_U
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -3020,7 +3020,7 @@ public static const HUKS_TAG_KEY_ALIAS: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYTES
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -3034,7 +3034,7 @@ public static const HUKS_TAG_KEY_AUTH_ACCESS_TYPE: UInt32 = HuksTagType.HUKS_TAG
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -3048,7 +3048,7 @@ public static const HUKS_TAG_KEY_AUTH_ID: UInt32 = HuksTagType.HUKS_TAG_TYPE_BYT
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -3090,7 +3090,7 @@ public static const HUKS_TAG_KEY_GENERATE_TYPE: UInt32 = HuksTagType.HUKS_TAG_TY
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -3258,7 +3258,7 @@ public static const HUKS_TAG_UNWRAP_ALGORITHM_SUITE: UInt32 = HuksTagType.HUKS_T
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
@@ -3286,7 +3286,7 @@ public static const HUKS_TAG_USER_ID: UInt32 = HuksTagType.HUKS_TAG_TYPE_UINT | 
 
 **类型：** UInt32
 
-**系统能力：** SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **起始版本：** 22
 
