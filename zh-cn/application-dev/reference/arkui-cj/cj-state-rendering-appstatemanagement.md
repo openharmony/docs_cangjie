@@ -306,18 +306,6 @@ public class Environment {}
 
 **起始版本：** 22
 
-### static func aboutToBeDeleted()
-
-```cangjie
-public static func aboutToBeDeleted(): Unit
-```
-
-**功能：** 删除Environment对象时触发的事件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
 ### static func envProp\<T>(String, T)
 
 ```cangjie
@@ -682,7 +670,7 @@ public func size(): Int64
 ## class PersistentStorage
 
 ```cangjie
-public class PersistentStorage <: Observer {}
+public class PersistentStorage {}
 ```
 
 **功能：** PersistentStorage是持久化存储UI状态，通常和AppStorage配合使用，选择AppStorage中的属性持久化到文件中。
@@ -690,10 +678,6 @@ public class PersistentStorage <: Observer {}
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-- [Observer](./cj-ui-framework.md#interface-observer)
 
 ### static func deleteProp(String)
 
@@ -767,73 +751,6 @@ public static func persistProps<T>(props: Array<(String, T)>): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |props|Array\<(String, T)>|是|-|要持久化的属性键值对数组。|
-
-### func onStateUpdate(String, ArrayList<Int64>)
-
-```cangjie
-public func onStateUpdate(_: String, _: ArrayList<Int64>): Unit
-```
-
-**功能：** 状态改变时触发事件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|_|String|是|-|属性名。|
-|_|ArrayList\<Int64>|是|-|订阅者ID列表。|
-
-### func notifyRead(String)
-
-```cangjie
-public func notifyRead(_: String): Unit
-```
-
-**功能：** 通知属性被读取。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|_|String|是|-|属性名。|
-
-### func id()
-
-```cangjie
-public func id(): Int64
-```
-
-**功能：** 返回存储id。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Int64|返回id。|
-
-### func aboutToBeDeleted()
-
-```cangjie
-public func aboutToBeDeleted(): Unit
-```
-
-**功能：** 删除PersistentStorage对象时触发的事件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
 
 ## enum ColorMode
 

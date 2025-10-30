@@ -38,21 +38,9 @@
 
    ```cangjie
       package ohos_app_cangjie_entry
-      internal import ohos.base.LengthProp
-      internal import ohos.arkui.component.Column
-      internal import ohos.arkui.component.Row
-      internal import ohos.arkui.component.Text
-      internal import ohos.arkui.component.CustomView
-      internal import ohos.arkui.component.CJEntry
-      internal import ohos.arkui.component.loadNativeView
-      internal import ohos.arkui.component.FontWeight
-      internal import ohos.arkui.state_management.SubscriberManager
-      internal import ohos.arkui.state_management.ObservedProperty
-      internal import ohos.arkui.state_management.LocalStorage
-      import ohos.arkui.state_macro_manage.Entry
-      import ohos.arkui.state_macro_manage.Component
-      import ohos.arkui.state_macro_manage.State
-      import ohos.arkui.state_macro_manage.r
+      import kit.ArkUI.*
+      import ohos.arkui.state_macro_manage.*
+
       foreign {
           func sum(a: Int32, b: Int32): Int32
           func sub(a: Int32, b: Int32): Int32

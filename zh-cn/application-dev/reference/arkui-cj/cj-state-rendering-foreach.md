@@ -11,10 +11,9 @@ import kit.ArkUI.*
 ## class ForEach
 
 ```cangjie
-public class ForEach<T> <: UINodeBase {
+public class ForEach<T> {
     public init(arr: CollectionEx<T>, itemGenerator!: ItemGeneratorFunc<T>,
         keyGenerator!: ?KeyGeneratorFunc<T> = None) {}
-    public init(subcomponent: () -> Unit)
 }
 ```
 
@@ -23,10 +22,6 @@ public class ForEach<T> <: UINodeBase {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-- [UINodeBase](./cj-ui-framework.md#class-uinodebase)
 
 ### init(CollectionEx\<T>, ItemGeneratorFunc\<T>, ?KeyGeneratorFunc\<T>)
 
@@ -47,24 +42,6 @@ public init(arr: CollectionEx<T>, itemGenerator!: ItemGeneratorFunc<T>, keyGener
 |arr|[CollectionEx](./cj-common-types.md#interface-collectionext)\<T>|是|-|用于UI中的数组集合。|
 |itemGenerator|[ItemGeneratorFunc](./cj-common-types.md#type-itemgeneratorfunc)\<T>|否|-|项目生成函数。|
 |keyGenerator|?[KeyGeneratorFunc](./cj-common-types.md#type-keygeneratorfunc)\<T>|否|None|键生成函数。|
-
-### init(() -> Unit)
-
-```cangjie
-public init(subcomponent: () -> Unit)
-```
-
-**功能：** 创建ForEach组件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|subcomponent|() -> Unit|是|-|子组件构建函数。|
 
 ### func pop()
 
