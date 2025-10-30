@@ -110,223 +110,6 @@ public func bind<T1, T2, T3>(builder: (CustomView, ObservedProperty<T1>, Observe
 |builder|([CustomView](#class-customview),[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T1>,[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T2>,[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T3>)->[ViewBuilder](#class-viewbuilder)|是|-|@Builder修饰的函数类型。|
 |thisView|[CustomView](#class-customview)|是|-|当前自定义组件对象（一般为this）。|
 
-## interface CollectionEx\<T>
-
-```cangjie
-public interface CollectionEx<T> {
-    prop size: Int64
-    operator func [](idx: Int64, value!: T): Unit
-    operator func [](idx: Int64): T
-}
-```
-
-**功能：** 集合扩展接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### extend\<T> Array\<T> <: CollectionEx\<T>
-
-```cangjie
-extend<T> Array<T> <: CollectionEx<T> {}
-```
-
-**功能：** 扩展泛型Array为CollectionEx子类型。
-
-### extend\<T> ArrayList\<T> <: CollectionEx\<T>
-
-```cangjie
-extend<T> ArrayList<T> <: CollectionEx<T> {}
-```
-**功能：** 扩展泛型ArrayList为CollectionEx子类型。
-
-### prop size
-
-```cangjie
-prop size: Int64
-```
-
-**功能：** 集合大小。
-
-**类型：** Int64
-
-**读写能力：** 只读
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### operator func [](Int64, T)
-
-```cangjie
-public operator func [](idx: Int64, value!: T): Unit
-```
-
-**功能：** 设置指定索引位置的元素值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|idx|Int64|是|-|元素索引。|
-|value|T|是|-|**命名参数。** 元素值。|
-
-### operator func [](Int64)
-
-```cangjie
-public operator func [](idx: Int64): T
-```
-
-**功能：** 获取指定索引位置的元素值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|idx|Int64|是|-|元素索引。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|T|指定索引位置的元素值。|
-
-## interface CommonMethod\<T>
-
-```cangjie
-public interface CommonMethod<T> {
-    func onClick(event: ?(ClickEvent) -> Unit): T
-    func onAppear(event: ?() -> Unit): T
-    func onDisAppear(event: ?() -> Unit): T
-    func onTouch(event: ?(TouchEvent) -> Unit): T
-    func onHover(event: ?(Bool) -> Unit): T
-    func onAreaChange(event: ?(Area, Area) -> Unit): T
-    func onVisibleAreaChange(ratios: ?Array<Float64>, event: ?(Bool, Float64) -> Unit): T
-    func onMouse(event: ?(MouseEvent) -> Unit): T
-    func onKeyEvent(event: ?(KeyEvent) -> Unit): T
-    func onFocus(event: ?() -> Unit): T
-    func onBlur(event: ?() -> Unit): T
-    func onDragStart(event: ?(DragInfo) -> DragItemInfo): T
-    func onDragStart(event: ?(DragInfo) -> CustomBuilder): T
-    func onDragStart(event: ?(DragInfo) -> Unit): T
-    func onDragEnter(event: ?(DragInfo) -> Unit): T
-    func onDragMove(event: ?(DragInfo) -> Unit): T
-    func onDragLeave(event: ?(DragInfo) -> Unit): T
-    func onDrop(event: ?(DragInfo) -> Unit): T
-    func width(value: Option<Length>): T
-    func height(value: Option<Length>): T
-    func size(width!: ?Length, height!: ?Length): T
-    func padding(value: ?Length): T
-    func padding(top!: ?Length, right!: ?Length, bottom!: ?Length, left!: ?Length): T
-    func margin(value: ?Length): T
-    func margin(top!: ?Length, right!: ?Length, bottom!: ?Length, left!: ?Length): T
-    func layoutWeight(value: ?Int32): T
-    func constraintSize(minWidth!: ?Length, maxWidth!: ?Length, minHeight!: ?Length, maxHeight!: ?Length): T
-    func align(value: ?Alignment): T
-    func direction(value: ?Direction): T
-    func position(x!: ?Length, y!: ?Length): T
-    func markAnchor(x!: ?Length, y!: ?Length): T
-    func offset(x!: ?Length, y!: ?Length): T
-    func alignRules(value: ?AlignRuleOptions): T
-    func aspectRatio(value: Float64): T
-    func displayPriority(value: ?Int32): T
-    func flexBasis(value: ?Length): T
-    func flexGrow(value: ?Float64): T
-    func flexGrow(value: ?Int64): T
-    func flexShrink(value: ?Float64): T
-    func flexShrink(value: ?Int64): T
-    func alignSelf(value: ?ItemAlign): T
-    func responseRegion(value: ?Rectangle): T
-    func responseRegion(value: ?Array<Rectangle>): T
-    func border(width!: ?Length, color!: ?ResourceColor, radius!: ?Length, style!: ?BorderStyle): T
-    func borderWidth(value: ?Length): T
-    func borderWidth(value: ?EdgeWidths): T
-    func borderColor(value: ?ResourceColor): T
-    func borderRadius(topLeft!: ?Length, topRight!: ?Length, bottomLeft!: ?Length, bottomRight!: ?Length): T
-    func borderRadius(value: ?Length): T
-    func borderStyle(value: ?BorderStyle): T
-    func foregroundBlurStyle(value: ?BlurStyle): T
-    func foregroundBlurStyle(value: ?BlurStyle, options: ?ForegroundBlurStyleOptions): T
-    func foregroundColor(value: ?ColoringStrategy): T
-    func foregroundColor(value: ?ResourceColor): T
-    func backgroundColor(value: ?ResourceColor): T
-    func backgroundImage(src: ?ResourceStr): T
-    func backgroundImage(src: ?ResourceStr, repeat: ?ImageRepeat): T
-    func backgroundImageSize(value: ?ImageSize): T
-    func backgroundImageSize(width!: ?Length, height!: ?Length): T
-    func backgroundImagePosition(value: ?Alignment): T
-    func backgroundImagePosition(x!: ?Length, y!: ?Length): T
-    func scale(x!: ?Float32, y!: ?Float32, z!: ?Float32, centerX!: ?Length, centerY!: ?Length): T
-    func opacity(value: ?Float64): T
-    func rotate(x!: ?Float32, y!: ?Float32, z!: ?Float32, angle!: ?Float32, centerX!: ?Length, centerY!: ?Length): T
-    func translate(x!: ?Length, y!: ?Length, z!: ?Length): T
-    func enabled(value: ?Bool): T
-    func sharedTransition(id: String, options!: ?SharedTransitionOptions): T
-    func geometryTransition(id: ?String, followWithoutTransition!: ?Bool): T
-    func blur(value: ?Float64): T
-    func colorBlend(value: ?ResourceColor): T
-    func backdropBlur(value: ?Float64): T
-    func shadow(radius!: ?Float64, color!: ?ResourceColor, offsetX!: ?Float64, offsetY!: ?Float64): T
-    func grayscale(value: ?Float64): T
-    func brightness(value: ?Float64): T
-    func saturate(value: ?Float64): T
-    func contrast(value: ?Float64): T
-    func invert(value: ?Float64): T
-    func invert(low!: ?Float64, high!: ?Float64, threshold!: ?Float64, thresholdRange!: ?Float64): T
-    func sepia(value: ?Float64): T
-    func hueRotate(value: ?Float32): T
-    func zIndex(value: ?Int32): T
-    func visibility(value: ?Visibility): T
-    func clip(value: ?Bool): T
-    func clipShape(value: ?BaseShape): T
-    func maskShape(value: BaseShape): T
-    func overlay(value!: ?String, align!: ?Alignment, offset!: ?OverlayOffset): T
-    func bindPopup(show: ?Bool, popup: ?PopupOptions): T
-    func bindPopup(show: ?Bool, popup: ?CustomPopupOptions): T
-    func bindMenu(content: ?Array<MenuElement>): T
-    func bindMenu(builder!: ?CustomBuilder): T
-    func bindContextMenu(builder!: ?CustomBuilder, responseType!: ?ResponseType, options!: ?ContextMenuOptions): T
-    func linearGradient(angle!: ?Float64, direction!: ?GradientDirection, colors!: ?Array<(ResourceColor, Float64)>, repeating!: ?Bool): T
-    func sweepGradient(center: ?(Length, Length), start!: ?Float64, end!: ?Float64, rotation!: ?Float64, colors!: ?Array<(ResourceColor, Float64)>, repeating!: ?Bool): T
-    func radialGradient(center: ?(Length, Length), radius: ?Length, colors: ?Array<(ResourceColor, Float64)>, repeating!: ?Bool): T
-    func keyboardShortcut(value: ?FunctionKey, keys: ?Array<ModifierKey>): T
-    func keyboardShortcut(value: ?String, keys: ?Array<ModifierKey>): T
-    func keyboardShortcut(value: ?FunctionKey, keys: ?Array<ModifierKey>, action: ?() -> Unit): T
-    func keyboardShortcut(value: ?String, keys: ?Array<ModifierKey>, action: ?() -> Unit): T
-    func key(value: ?String): T
-    func renderFit(fitMode: ?RenderFit): T
-    func id(value: ?String): T
-    func expandSafeArea(types!: ?Array<SafeAreaType>, edges!: ?Array<SafeAreaEdge>): T
-    func bindContentCover(isShow: ?Bool, builder: ?CustomBuilder, options!: ?ContentCoverOptions): T
-    func animationStart(value: ?AnimateParam): T
-    func animationEnd(): T
-    func transition(value: ?TransitionEffect): T
-    func transition(value: ?TransitionEffect, onFinish: ?TransitionFinishCallback): T
-    func focusable(value: ?Bool): T
-    func tabIndex(index: ?Int32): T
-    func defaultFocus(value: ?Bool): T
-    func groupDefaultFocus(value: ?Bool): T
-    func focusOnTouch(value: ?Bool): T
-    func bindSheet(isShow: ?Bool, builder: CustomBuilder, options!: ?SheetOptions): T
-    func dragPreview(value: String): T
-}
-```
-
-**功能：** 组件通用方法接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
 ## interface Observer
 
 ```cangjie
@@ -860,7 +643,7 @@ public func forEachUpdateFunction<T>(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |elmtId|Int64|是|-|元素ID。|
-|arr|[CollectionEx](#interface-collectionext)\<T>|是|-|集合数据。|
+|arr|[CollectionEx](./cj-common-types.md#interface-collectionext)\<T>|是|-|集合数据。|
 |itemGenFunc|(T,Int64)->Unit|是|-|**命名参数。** 项目生成函数。|
 |keyGeneratorFunc|(T,Int64)->String|否|{ realData: T, idx: Int64 => match(realData) {<br>case realDataStr: ToString => idx.toString() + "_" + realDataStr.toString()<br>case \_ => idx.toString()<br>} }|**命名参数。** 键生成函数。|
 
@@ -1443,7 +1226,7 @@ public static func getBranchId(): Int32
 ## class EmptyComponent
 
 ```cangjie
-public class EmptyComponent <: CommonMethodComponent<EmptyComponent> & EmptyComponentAttribute {
+public class EmptyComponent {
     public init()
 }
 ```
@@ -1453,11 +1236,6 @@ public class EmptyComponent <: CommonMethodComponent<EmptyComponent> & EmptyComp
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-- CommonMethodComponent\<[EmptyComponent](#class-emptycomponent)>
-- EmptyComponentAttribute
 
 ### init()
 
@@ -1486,7 +1264,7 @@ public open class Observable {}
 ## class \_\_Recycle\_\_
 
 ```cangjie
-public class __Recycle__ <: CommonMethodComponent<__Recycle__> & RecycleAttribute {
+public class __Recycle__ {
     public init()
     public init(child: () -> Unit)
 }
@@ -1497,11 +1275,6 @@ public class __Recycle__ <: CommonMethodComponent<__Recycle__> & RecycleAttribut
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-- CommonMethodComponent\<[\_\_Recycle\_\_](#class-__recycle__)>
-- RecycleAttribute
 
 ### init()
 

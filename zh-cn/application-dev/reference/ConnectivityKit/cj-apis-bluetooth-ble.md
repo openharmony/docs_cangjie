@@ -682,12 +682,12 @@ try {
 
 ```cangjie
 public class AdvertiseData {
-    public var serviceUuids: Array<String>
+    public var serviceUUIDs: Array<String>
     public var manufactureData: Array<ManufactureData>
     public var serviceData: Array<ServiceData>
     public var includeDeviceName: Bool
     public init(
-        serviceUuids: Array<String>,
+        serviceUUIDs: Array<String>,
         manufactureData: Array<ManufactureData>,
         serviceData: Array<ServiceData>,
         includeDeviceName!: Bool = false,
@@ -750,10 +750,10 @@ public var serviceData: Array<ServiceData>
 
 **起始版本：** 22
 
-### var serviceUuids
+### var serviceUUIDs
 
 ```cangjie
-public var serviceUuids: Array<String>
+public var serviceUUIDs: Array<String>
 ```
 
 **功能：** 表示要广播的服务列表。
@@ -770,7 +770,7 @@ public var serviceUuids: Array<String>
 
 ```cangjie
 public init(
-    serviceUuids: Array<String>,
+    serviceUUIDs: Array<String>,
     manufactureData: Array<ManufactureData>,
     serviceData: Array<ServiceData>,
     includeDeviceName!: Bool = false,
@@ -788,7 +788,7 @@ public init(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|serviceUuids|Array\<String>|是|-|表示要广播的服务 UUID 列表。|
+|serviceUUIDs|Array\<String>|是|-|表示要广播的服务 UUID 列表。|
 |manufactureData|Array\<[ManufactureData](#class-manufacturedata)>|是|-|表示要广播的广播的制造商信息列表。|
 |serviceData|Array\<[ServiceData](#class-servicedata)>|是|-|表示要广播的服务数据列表。|
 |includeDeviceName|Bool|否|false| **命名参数。**  表示是否携带设备名，可选参数。true表示携带，false或未设置此参数表示不携带。注意带上设备名时广播包长度不能超出31个字节。|
@@ -4620,10 +4620,10 @@ public var serviceDataMask: Array<Byte>
 
 **起始版本：** 22
 
-### var serviceSolicitationUuid
+### var serviceSolicitationUUID
 
 ```cangjie
-public var serviceSolicitationUuid: String
+public var serviceSolicitationUUID: String
 ```
 
 **功能：** 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。
@@ -4636,10 +4636,10 @@ public var serviceSolicitationUuid: String
 
 **起始版本：** 22
 
-### var serviceSolicitationUuidMask
+### var serviceSolicitationUUIDMask
 
 ```cangjie
-public var serviceSolicitationUuidMask: String
+public var serviceSolicitationUUIDMask: String
 ```
 
 **功能：** 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。
@@ -4668,10 +4668,10 @@ public var serviceUUID: String
 
 **起始版本：** 22
 
-### var serviceUuidMask
+### var serviceUUIDMask
 
 ```cangjie
-public var serviceUuidMask: String
+public var serviceUUIDMask: String
 ```
 
 **功能：** 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。
@@ -5402,7 +5402,7 @@ public enum BluetoothBleGattClientDeviceCallbackType <: Equatable<BluetoothBleGa
 
 **功能：** 客户端 on/off 事件的类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5422,7 +5422,7 @@ BleCharacteristicChange
 
 **功能：** 表示特征值变化事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5436,7 +5436,7 @@ BleConnectionStateChange
 
 **功能：** 表示连接状态变化事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5450,7 +5450,7 @@ ClientBleMtuChange
 
 **功能：** 表示MTU状态变化事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5540,7 +5540,7 @@ public enum BluetoothBleGattServerCallbackType <: Equatable<BluetoothBleGattServ
 
 **功能：** 服务端 on/off 事件的类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5560,7 +5560,7 @@ CharacteristicRead
 
 **功能：** 表示特征值读请求事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5574,7 +5574,7 @@ CharacteristicWrite
 
 **功能：** 表示特征值写请求事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5588,7 +5588,7 @@ ConnectionStateChange
 
 **功能：** 表示BLE连接状态变化事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5602,7 +5602,7 @@ DescriptorRead
 
 **功能：** 表示描述符读请求事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5616,7 +5616,7 @@ DescriptorWrite
 
 **功能：** 表示描述符写请求事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -5630,7 +5630,7 @@ ServerBleMtuChange
 
 **功能：** 表示MTU状态变化事件类型。
 
-**需要权限：** ohos.ACCESS_BLUETOOTH
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 

@@ -10,7 +10,7 @@ import kit.ArkUI.*
 
 ## 子组件
 
-可以包含[Span](./cj-text-input-span.md#span)、[ImageSpan](./cj-text-input-imagespan.md#imagespan)、[SymbolSpan](./cj-text-input-symbolspan.md#symbolspan)子组件。
+可以包含[Span](./cj-text-input-span.md#span)、[ImageSpan](./cj-text-input-imagespan.md#imagespan)子组件。
 
 ## 创建组件
 
@@ -95,7 +95,7 @@ public func baselineOffset(value: ?Length): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|?Length|是|-|文本基线的偏移量。<br>初始值：0.0.px。|
+|value|?[Length](./cj-common-types.md#interface-length)|是|-|文本基线的偏移量。<br>初始值：0.0.px。|
 
 ### func decoration(?TextDecorationType, ?ResourceColor, ?TextDecorationStyle)
 

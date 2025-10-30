@@ -49,10 +49,10 @@ public init()
 
 **起始版本：** 22
 
-### func inValues(String, Array\<ValueType>)
+### func inValues(String, Array\<VBValueType>)
 
 ```cangjie
-public func inValues(field: String, value: Array<ValueType>): DataSharePredicates
+public func inValues(field: String, value: Array<VBValueType>): DataSharePredicates
 ```
 
 **功能：** 用于配置谓词以匹配值在指范围内的字段。目前仅RDB及KVDB(schema)支持该谓词。
@@ -66,7 +66,7 @@ public func inValues(field: String, value: Array<ValueType>): DataSharePredicate
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |field|String|是|-|数据库表中的列名。|
-|value|Array\<[ValueType](./cj-apis-values_bucket.md#enum-vbvaluetype)>|是|-|以ValueType数组形式指定的要匹配的值。|
+|value|Array\<[VBValueType](cj-apis-values_bucket.md#enum-vbvaluetype)>|是|-|以VBValueType数组形式指定的要匹配的值。|
 
 **返回值：**
 
