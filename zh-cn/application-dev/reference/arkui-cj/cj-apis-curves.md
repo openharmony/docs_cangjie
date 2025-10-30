@@ -298,7 +298,7 @@ class EntryView {
                         this.heightSize = Float64(curve.interpolate(0.5)) * this.heightSize
                     }
                 )
-                .animationStart(animateOpt1)
+                .animation(animateOpt1)
         }
     }
 }

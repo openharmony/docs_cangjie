@@ -214,7 +214,7 @@ public func onClick(event: ?(ClickEvent) -> Unit): This
 ### class BaseSpan
 
 ```cangjie
-public abstract class BaseSpan <: UINodeBase {}
+public abstract class BaseSpan {}
 ```
 
 **功能：** Span组件的基类。
@@ -222,11 +222,6 @@ public abstract class BaseSpan <: UINodeBase {}
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-- [UINodeBase](./cj-ui-framework.md#class-uinodebase)
-
 
 ## 示例代码
 

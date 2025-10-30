@@ -15,13 +15,7 @@ import kit.ArkUI.*
 ### class ObservedProperty
 
 ```cangjie
-public open class ObservedProperty<T> <: ObservedPropertyAbstract {
-    public init(String, T)
-    public func createProp(String): ObservedProperty<T>
-    public func get(): T
-    public func set(T): Unit
-    public func subscribeEx(Observer): Unit
-    public func unsubscribeEx(Observer): Unit
+public open class ObservedProperty<T> {
 }
 ```
 
@@ -31,125 +25,6 @@ public open class ObservedProperty<T> <: ObservedPropertyAbstract {
 
 **起始版本：** 22
 
-**父类型：**
-
-- [ObservedPropertyAbstract](./cj-ui-framework.md#class-observedpropertyabstract)
-
-#### init(String, T)
-
-```cangjie
-public init(info: String, initValue: T)
-```
-
-**功能：** 定义一个ObservedProperty类型的属性。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|info|String|是|-|属性信息。|
-|initValue|T|是|-|状态管理属性类型的初始化值。|
-
-#### func get()
-
-```cangjie
-public func get(): T
-```
-
-**功能：** 获取状态管理的属性值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|T|获取的状态管理属性值。|
-
-#### func set(T)
-
-```cangjie
-public open func set(newValue: T): Unit
-```
-
-**功能：** 设置状态管理属性类型的新值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|newValue|T|是|-|状态管理属性被设置的新值。|
-
-#### func createProp(String)
-
-```cangjie
-public func createProp(info: String): ObservedProperty<T>
-```
-
-**功能：** 创建一个同步属性。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|info|String|是|-|属性信息。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[ObservedProperty](#class-observedproperty)\<T>|创建的同步属性。|
-
-#### func subscribeEx(Observer)
-
-```cangjie
-public func subscribeEx(observer: Observer): Unit
-```
-
-**功能：** 对状态管理数组的每一项进行递归的观察绑定。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|observer|[Observer](./cj-ui-framework.md#interface-observer)|是|-|绑定的观察类。|
-
-#### func unsubscribeEx(Observer)
-
-```cangjie
-public func unsubscribeEx(observer: Observer): Unit
-```
-
-**功能：** 对状态管理数组的每一项进行递归的解绑。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|observer|[Observer](./cj-ui-framework.md#interface-observer)|是|-|解绑的观察类。|
-
 ## ObservedArrayList
 
 用于进行状态管理的数组列表类型。
@@ -157,7 +32,7 @@ public func unsubscribeEx(observer: Observer): Unit
 ### class ObservedArrayList
 
 ```cangjie
-public class ObservedArrayList<T> <: ObservedComplexAbstract & CollectionEx<T> {
+public class ObservedArrayList<T> <:  CollectionEx<T> {
     public init(ArrayList<T>)
     public init(Array<T>)
 }
@@ -171,7 +46,6 @@ public class ObservedArrayList<T> <: ObservedComplexAbstract & CollectionEx<T> {
 
 **父类型：**
 
-- [ObservedComplexAbstract](./cj-ui-framework.md#class-observedcomplexabstract)
 - [CollectionEx](./cj-common-types.md#interface-collectionext)\<T>
 
 #### prop size
@@ -223,78 +97,6 @@ public init(initValue: Array<T>)
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |initValue|Array\<T>|是|-|状态管理数组列表类型的初始化值。|
-
-#### func get()
-
-```cangjie
-public func get(): ArrayList<T>
-```
-
-**功能：** 获取状态管理的数组列表元素集合。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|ArrayList\<T>|获取的状态管理数组列表集合。|
-
-#### func set(ArrayList\<T>)
-
-```cangjie
-public func set(newValue: ArrayList<T>): Unit
-```
-
-**功能：** 设置状态管理数组列表类型的新数组列表值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|newValue|ArrayList\<T>|是|-|状态管理数组列表被设置的新数组列表值。|
-
-#### func set(Array\<T>)
-
-```cangjie
-public func set(newValue: Array<T>): Unit
-```
-
-**功能：** 设置状态管理数组列表类型的新数组值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|newValue|Array\<T>|是|-|状态管理数组列表被设置的新数组值。|
-
-#### func set(ObservedComplexAbstract)
-
-```cangjie
-public func set(newValue: ObservedComplexAbstract): Unit
-```
-
-**功能：** 设置状态管理数组列表类型的新值。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|newValue|[ObservedComplexAbstract](./cj-ui-framework.md#class-observedcomplexabstract)|是|-|状态管理数组列表被设置的新值。|
 
 #### operator func [](Int64)
 
