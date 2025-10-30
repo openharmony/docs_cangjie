@@ -244,13 +244,16 @@ class Child{
 ### 框架行为
 
 1. 初始渲染：
-   a. \@Provide 装饰的变量会在组件的构造函数中调用 addProvideVar，将状态变量的key和value存待一个map中，为子组件中的 \@Consume 状态变量的获取做准备，并为该状态变量进行注册，保存所在的自定义组件。
-   b. 子组件中如果使用 \@Consume 变量，会在组件的构造函数中调用 initializeConsume，从map中取出状态变量，如果无法找到，则会抛出运行时错误。在获取到同名的 \@Provide 变量后，会为该状态变量注册，保存所在的自定义组件。
+   a. \@Provide装饰的变量会以Map的形式，传递给当前\@Provide所属组件的所有子组件。
+   b. 子组件中如果使用\@Consume 变量，则会在Map中查找是否有该变量名对应的@Provide的变量。如果无法找到，则会抛出运行时错误。
+   c. 在初始化\@Consume变量时，如果在Map中有该变量名/alias（别名）对应的\@Provide的变量，则和\@State/\@Link的流程类似，\@Consume变量会在Map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
-2. 当 \@Provide / \@Consume 装饰的数据变化时：
-   a. 当状态变量被使用时，将触发 prop 中的 get函数，这将调用 ObservedProperty类中的 get函数，从而调用 recordDependentUpdate函数，记录下与该状态变量相关的组件id，为后续状态变量改变后修改组件做准备。
-   b. 当状态变量被改变时，将触发 prop 中的 set函数，从而调用到 ObservedProperty类中的set函数。set函数将触发该状态变量的 notifyChanges 函数，该函数会调用这个状态变量绑定的组件的 onStateUpdate函数，将需要更新的组件id赋值给 dirtDescendantElementIds，并调用 markNeedUpdate函数来更新UI，UI更新会调用 CustomView 的 rerender函数，然后再调用 updateDirtyElements函数，并根据组件id获取组件的更新函数并执行。
-   c. 在渲染完成后，状态变量会继续执行 set函数，更新 subProps_ 中每一项与其绑定的状态变量，通过调用它们的 set函数，重复第二步进行其他组件的渲染，完成最小化渲染。
+2. 当\@Provide装饰的数据变化时：
+   a. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
+   b. 通知\@Consume更新后，子组件所有依赖\@Consume的系统组件（elementId）都会被通知更新。以此实现\@Provide对\@Consume状态数据同步。
+
+3. 当\@Consume装饰的数据变化时：
+   通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
 
 ## 限制条件
 

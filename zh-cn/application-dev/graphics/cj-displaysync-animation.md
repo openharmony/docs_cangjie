@@ -30,11 +30,11 @@ class EntryView {
         Row {
             Column {
                 Text(this.message)
-                    .animationStart(animateOpt1)
                     .fontSize(50)
                     .fontWeight(FontWeight.Bold)
                     .onClick { evt => this.message = "Hello Cangjie"
                     }
+                    .animation(animateOpt1)
             }.width(100.percent)
         }.height(100.percent)
     }
@@ -150,7 +150,7 @@ class EntryView {
                     .width(80)
                     .height(80)
                     .translate(x: translateX3)
-                    .animationStart(animateOpt1)
+                    .animation(animateOpt1)
             }.height(20.percent)
             Row() {
                 Button('Start')

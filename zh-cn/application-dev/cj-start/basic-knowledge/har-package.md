@@ -60,25 +60,9 @@ HAR需要导出的接口等，可以使用`public`修饰。
 // library/src/main/cangjie/mainPage.cj
 package ohos_app_cangjie_library
 
-import ohos.base.*
-import ohos.arkui.component.Text
-import ohos.arkui.component.Column
-import ohos.arkui.component.CustomView
-import ohos.arkui.state_management.LocalStorage
-import ohos.arkui.state_management.ObservedProperty
-import ohos.arkui.state_management.SubscriberManager
-import ohos.arkui.state_management.ViewStackProcessor
-import ohos.arkui.state_macro_manage.State
-import ohos.arkui.state_macro_manage.Component
-import ohos.arkui.state_macro_manage.r
-import ohos.arkui.component.Flex
-import ohos.arkui.component.Row
-import ohos.arkui.component.FlexParams
-import ohos.arkui.component.FontWeight
-import ohos.arkui.component.ItemAlign
-import ohos.arkui.component.FlexAlign
-import ohos.arkui.component.Image
-import ohos.resource_manager.__GenerateResource__
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
+import kit.LocalizationKit.*
 
 @Component
 public class MainPage {
@@ -168,23 +152,8 @@ HAR的依赖配置成功后，可以引用HAR的仓颉组件。通过`import`引
 // entry/src/main/cangjie/index.cj
 package ohos_app_cangjie_entry
 
-import ohos.base.LengthProp
-import ohos.arkui.component.Column
-import ohos.arkui.component.Row
-import ohos.arkui.component.CustomView
-import ohos.arkui.component.CJEntry
-import ohos.arkui.component.loadNativeView
-import ohos.arkui.state_management.ObservedProperty
-import ohos.arkui.state_management.LocalStorage
-import ohos.arkui.state_macro_manage.Entry
-import ohos.arkui.state_macro_manage.Component
-import ohos.arkui.state_management.ViewStackProcessor
-import ohos.arkui.state_management.SubscriberManager
-import ohos.arkui.component.LegalCallCheck
-import ohos.arkui.component.ReuseParams
-import ohos.arkui.component.ViewBuilder
-import ohos.arkui.component.__Recycle__
-import ohos.arkui.component.FakeComponent
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
 import ohos_app_cangjie_library.MainPage
 
 @Entry
@@ -209,20 +178,8 @@ class EntryView {
 // entry/src/main/cangjie/index2.cj
 package ohos_app_cangjie_entry
 
-import ohos.base.LengthProp
-import ohos.arkui.component.Column
-import ohos.arkui.component.Row
-import ohos.arkui.component.Text
-import ohos.arkui.component.CustomView
-import ohos.arkui.component.CJEntry
-import ohos.arkui.component.loadNativeView
-import ohos.arkui.component.FontWeight
-import ohos.arkui.state_management.SubscriberManager
-import ohos.arkui.state_management.ObservedProperty
-import ohos.arkui.state_management.LocalStorage
-import ohos.arkui.state_macro_manage.Entry
-import ohos.arkui.state_macro_manage.Component
-import ohos.arkui.state_macro_manage.State
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
 import ohos_app_cangjie_library.Log
 import ohos_app_cangjie_library.harFunc
 
@@ -260,26 +217,9 @@ class EntryView2 {
 // entry/src/main/cangjie/index3.cj
 package ohos_app_cangjie_entry
 
-import ohos.base.LengthProp
-import ohos.arkui.component.Column
-import ohos.arkui.component.Row
-import ohos.arkui.component.Text
-import ohos.arkui.component.CustomView
-import ohos.arkui.component.CJEntry
-import ohos.arkui.component.loadNativeView
-import ohos.arkui.component.FontWeight
-import ohos.arkui.state_management.SubscriberManager
-import ohos.arkui.state_management.ObservedProperty
-import ohos.arkui.state_management.LocalStorage
-import ohos.arkui.state_macro_manage.Entry
-import ohos.arkui.state_macro_manage.Component
-import ohos.arkui.state_macro_manage.State
-import ohos.arkui.state_macro_manage.r
-import ohos.resource_manager.__GenerateResource__
-import ohos.arkui.component.Image
-import ohos.arkui.component.List
-import ohos.arkui.component.ListItem
-import ohos.arkui.component.ListItemAlign
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
+import kit.LocalizationKit.*
 
 @Entry
 @Component

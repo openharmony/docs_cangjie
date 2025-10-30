@@ -93,7 +93,7 @@ class EntryView {
 
 ## 使用animation产生属性动画
 
-相比于animateTo接口需要把要执行动画的属性的修改放在闭包中，[animationStart](../../../zh-cn/application-dev/reference/arkui-cj/cj-animation-animation.md#func-animationstart)和[animationEnd](../../../zh-cn/application-dev/reference/arkui-cj/cj-animation-animation.md#func-animationend)接口无需使用闭包，把animationStart接口加在组件的第一个属性，animationEnd接口加在组件的最后一个属性即可。animationStart和animationEnd只要检测到其绑定的可动画属性发生变化，就会自动添加属性动画，animateTo则必须在动画闭包内改变可动画属性的值从而生成动画。
+相比于animateTo接口需要把要执行动画的属性的修改放在闭包中，[animation](../reference/arkui-cj/cj-animation-animation.md#func-animationanimateparam)接口无需使用闭包，把animation接口加在要做属性动画的可动画属性后即可。animation只要检测到其绑定的可动画属性发生变化，就会自动添加属性动画，animateTo则必须在动画闭包内改变可动画属性的值从而生成动画。
 
  <!-- run -->
 
@@ -117,7 +117,6 @@ class EntryView {
             //组件一
             Column {
             }
-            .animationStart(AnimateParam(curve: Curve.Smooth))
             .opacity(Float64(this.opacityValue))
             .rotate(angle:this.rotateValue)
             .backgroundColor(0x317AF7)
@@ -143,12 +142,11 @@ class EntryView {
                         this.translateX = 0.0
                     }
             })
-            .animationEnd()
+            .animation(AnimateParam(curve: Curve.Smooth))
 
             //组件二
             Column {
             }
-            .animationStart(AnimateParam(curve: Curve.Smooth))
             .justifyContent(FlexAlign.Center)
             .width(100.vp)
             .height(100.vp)
@@ -156,7 +154,7 @@ class EntryView {
             .borderRadius(30.vp)
             .opacity(Float64(this.opacityValue))
             .translate(x: Float64(this.translateX))
-            .animationEnd()
+            .animation(AnimateParam(curve: Curve.Smooth))
         }.width(100.percent).height(100.percent).justifyContent(FlexAlign.Center)
     }
 }

@@ -754,9 +754,8 @@ List() {
                 .fillColor(@r(sys.color.ohos_id_color_fourth))
                 .height(30)
                 .width(30)
-                .animationStart(AnimateParam(curve: Curve.EaseInOut, duration: 500))
                 .rotate(x: this.expandedItems[itemGroup.index])
-                .animationEnd()
+                .animation(AnimateParam(curve: Curve.EaseInOut, duration: 500))
         }
         .width(100.percent)
         .padding(10)
