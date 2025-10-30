@@ -82,9 +82,8 @@ class EntryView {
                         }
                         .width(20)
                         .height(300)
-                        .animationStart(AnimateParam(duration: 2000, curve: item.curve, delay: 100, iterations: -1))
                         .rotate(x: this.dRotate)
-                        .animationEnd()
+                        .animation(AnimateParam(duration: 2000, curve: item.curve, delay: 100, iterations: -1))
                     }
                 )
             }

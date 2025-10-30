@@ -201,10 +201,9 @@ public func onDataReloaded(): Unit
 ## class LazyForEach\<T>
 
 ```cangjie
-public class LazyForEach<T> <: UINodeBase {
+public class LazyForEach<T> {
     public init(dataSource: IDataSource<T>, itemGenerator!: ItemGeneratorFunc<T>,
         keyGenerator!: ?KeyGeneratorFunc<T> = None)
-    public init()
 }
 ```
 
@@ -213,10 +212,6 @@ public class LazyForEach<T> <: UINodeBase {
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**父类型：**
-
-- [UINodeBase](./cj-ui-framework.md#class-uinodebase)
 
 ### init(IDataSource\<T>, ItemGeneratorFunc\<T>, ?KeyGeneratorFunc\<T>)
 
@@ -237,52 +232,6 @@ public init(dataSource: IDataSource<T>, itemGenerator!: ItemGeneratorFunc<T>, ke
 |dataSource|[IDataSource](#interface-idatasourcet)\<T>|是|-|LazyForEach数据源，需要开发者实现相关接口。|
 |itemGenerator|[ItemGeneratorFunc](./cj-common-types.md#type-itemgeneratorfunc)\<T>|否|-|子组件生成函数，为数组中的每一个数据项创建一个子组件。lambda函数的第一个泛型参数为数据类型；第二个参数为当前列表项的索引值。|
 |keyGenerator|?[KeyGeneratorFunc](./cj-common-types.md#type-keygeneratorfunc)\<T>|否|None|匿名函数，用于键值生成，为给定数组项生成唯一且稳定的键值。|
-
-### init()
-
-```cangjie
-public init()
-```
-
-**功能：** 创建LazyForEach组件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### func create\<T>(Int64, CustomView, IDataSource\<T>, ItemGeneratorFunc\<T>, KeyGeneratorFunc\<T>)
-
-```cangjie
-public func create<T>(viewID: Int64, parentView: CustomView, dataSource: IDataSource<T>,
-    itemGeneratorFunc!: ItemGeneratorFunc<T>,
-    keyGeneratorFunc!: KeyGeneratorFunc<T> = {
-        _: T, idx: Int64 =>
-        uniqueKey++
-        return "${viewID} - ${idx} - ${uniqueKey}"
-    }): LazyForEach<T>
-```
-
-**功能：** 构建一个LazyForEach对象，LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|viewID|Int64|是|-|观察ID|
-|parentView|CustomView|是|-|父观察者|
-|dataSource|[IDataSource](#interface-idatasourcet)\<T>|是|-|LazyForEach数据源，需要开发者实现相关接口。|
-|itemGeneratorFunc|[ItemGeneratorFunc](./cj-common-types.md#type-itemgeneratorfunc)\<T>|是|-|子组件生成函数，为数组中的每一个数据项创建一个子组件。lambda函数的第一个泛型参数为数据类型；第二个参数为当前列表项的索引值。|
-|keyGeneratorFunc|[KeyGeneratorFunc](./cj-common-types.md#type-keygeneratorfunc)\<T>|否|{ _: T, idx: Int64 => }|匿名函数，用于键值生成，为给定数组项生成唯一且稳定的键值。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[LazyForEach](#class-lazyforeacht)\<T>|LazyForEach实例对象，用于后续进一步操作。|
 
 ## 示例代码
 
