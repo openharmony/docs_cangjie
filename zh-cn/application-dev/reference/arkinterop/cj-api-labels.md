@@ -83,20 +83,19 @@ public interface LevelValue {}
 
 ```cangjie
 public class APILevel {
-    public let since: LevelValue
+    public let since: String
     public let atomicservice: Bool
     public let crossplatform: Bool
-    public let deprecated: LevelValue
+    public let deprecated: ?String
     public let form: Bool
-    public let permission:?PermissionValue
-    public let stagemodelonly: Bool
+    public let permission: ?PermissionValue
     public let syscap: String
     public let throwexception: Bool
     public let workerthread: Bool
     public let systemapi: Bool
-    public const init(since: LevelValue, atomicservice!: Bool = false, crossplatform!: Bool = false,
-        deprecated!: LevelValue = 0, form!: Bool = false, permission!: ?PermissionValue = None, stagemodelonly!: Bool = true,
-        syscap!: String = "", throwexception!: Bool = false, workerthread!: Bool = false, systemapi!: Bool = false) 
+    public const init(since!: String, atomicservice!: Bool = false, crossplatform!: Bool = false,
+        deprecated!: ?String = None, form!: Bool = false, permission!: ?PermissionValue = None,
+        syscap!: String = "", throwexception!: Bool = false, workerthread!: Bool = false, systemapi!: Bool = false)
 }
 ```
 
@@ -135,12 +134,12 @@ public let crossplatform: Bool
 ### let deprecated
 
 ```cangjie
-public let deprecated: LevelValue
+public let deprecated: ?String
 ```
 
-**功能：** 当前 API 的已弃用版本，默认值为 0，表示未弃用。
+**功能：** 当前 API 的已弃用版本，默认值为 None，表示未弃用。
 
-**类型：** [LevelValue](#interface-levelvalue)
+**类型：** ?String
 
 **读写：** 只读
 
@@ -160,20 +159,6 @@ public let form: Bool
 
 **起始版本：** 22
 
-### let since
-
-```cangjie
-public let since: LevelValue
-```
-
-**功能：** API 起始 level。
-
-**类型：** [LevelValue](#interface-levelvalue)
-
-**读写：** 只读
-
-**起始版本：** 22
-
 ### let permission
 
 ```cangjie
@@ -188,15 +173,15 @@ public let permission:?PermissionValue
 
 **起始版本：** 22
 
-### let stagemodelonly
+### let since
 
 ```cangjie
-public let stagemodelonly: Bool
+public let since: String
 ```
 
-**功能：** 当前API是否只支持在Stage模型使用。
+**功能：** API 起始版本。
 
-**类型：** Bool
+**类型：** String
 
 **读写：** 只读
 
@@ -216,13 +201,27 @@ public let syscap: String
 
 **起始版本：** 22
 
+### let systemapi
+
+```cangjie
+public let systemapi: Bool
+```
+
+**功能：** 当前API是否仅供系统应用使用。
+
+**类型：** Bool
+
+**读写：** 只读
+
+**起始版本：** 22
+
 ### let throwexception
 
 ```cangjie
 public let throwexception: Bool
 ```
 
-**功能：** 当前API是否有抛出异常能力。
+**功能：** 当前API是否抛出异常。
 
 **类型：** Bool
 
@@ -233,10 +232,10 @@ public let throwexception: Bool
 ### let workerthread
 
 ```cangjie
-public let throwexception: Bool
+public let workerthread: Bool
 ```
 
-**功能：** 当前API是否提供异步接口能力。
+**功能：** 当前API是否建议并发执行。
 
 **类型：** Bool
 
@@ -244,27 +243,12 @@ public let throwexception: Bool
 
 **起始版本：** 22
 
-### let workerthread
+### init(String, Bool, Bool, ?String, Bool, ?PermissionValue, String, Bool, Bool, Bool)
 
 ```cangjie
-public let systemapi: Bool
-```
-
-**功能：** 当前API是否是系统api。
-
-**类型：** Bool
-
-**读写：** 只读
-
-**起始版本：** 22
-
-
-### init(LevelValue, Bool, Bool, LevelValue, Bool, ?PermissionValue, Bool, String，Bool，Bool，Bool)
-
-```cangjie
-public const init(since: LevelValue, atomicservice!: Bool = false, crossplatform!: Bool = false,
-        deprecated!: LevelValue = 0, form!: Bool = false, permission!: ?PermissionValue = None, stagemodelonly!: Bool = true,
-        syscap!: String = "", throwexception!: Bool = false, workerthread!: Bool = false, systemapi!: Bool = false)
+public const init(since!: String, atomicservice!: Bool = false, crossplatform!: Bool = false,
+    deprecated!: ?String = None, form!: Bool = false, permission!: ?PermissionValue = None,
+    syscap!: String = "", throwexception!: Bool = false, workerthread!: Bool = false, systemapi!: Bool = false)
 ```
 
 **功能：** APILevel 构造函数。
@@ -275,17 +259,16 @@ public const init(since: LevelValue, atomicservice!: Bool = false, crossplatform
 
 |参数|类型|必填|默认值| 描述                 |
 |:---|:---|:---|:---|:-------------------|
-|since|[LevelValue](#interface-levelvalue)|是|-| API level。         |
+|since|String|是|-| 命名参数 API level。         |
 |atomicservice|Bool|否|false| 命名参数 是否支持原子服务。     |
 |crossplatform|Bool|否|false| 命名参数 是否支持跨平台。      |
-|deprecated|[LevelValue](#interface-levelvalue)|否|0| 命名参数 弃用版本。         |
+|deprecated|?String|否|None| 命名参数 弃用版本。         |
 |form|Bool|否|false| 命名参数 是否支持forms。    |
 |permission|?[PermissionValue](#interface-permissionvalue)|否|None| 命名参数 是否支持所需权限。      |
-|stagemodelonly|Bool|否|true| 命名参数 是否只支持Stage模型。 |
-|syscap|String|否|""| 命名参数 是否支持 系统能力。      |
-|throwexception|Bool|否|""| 命名参数 是否支持 异常能力。      |
-|workerthread|Bool|否|""| 命名参数 是否支持 异步接口力。      |
-|systemapi|Bool|否|""| 命名参数 是否支持  系统api。      |
+|syscap|String|否|""| 命名参数 系统能力。      |
+|throwexception|Bool|否|""| 命名参数 是否抛出异常。      |
+|workerthread|Bool|否|""| 命名参数 是否建议并发执行。      |
+|systemapi|Bool|否|""| 命名参数 是否为系统api。      |
 
 ## class PermissionAnd
 
