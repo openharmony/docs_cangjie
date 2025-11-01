@@ -1487,6 +1487,7 @@ Hilog.info(0, "AppLogCj", session.canAddOutput(cameraOutput).toString())
 func commitConfig(): Unit
 ```
 
+
 **功能：** 提交配置信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
