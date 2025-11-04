@@ -168,12 +168,6 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
   | 2900004 | Profile not supported. |
   | 2900099 | Operation failed. |
 
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | 入参错误。 | 修改入参。 |
-
 **示例：**
 
 <!-- compile only -->
@@ -223,12 +217,6 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
   | :---- | :--- |
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | 入参错误。 | 修改入参。 |
 
 **示例：**
 
@@ -289,12 +277,6 @@ public func off(eventType: ProfileCallbackType): Unit
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
 
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | 入参错误。 | 修改入参。 |
-
 **示例：**
 
 <!-- compile -->
@@ -354,12 +336,6 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
   | :---- | :--- |
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | 入参错误。 | 修改入参。 |
 
 **示例：**
 

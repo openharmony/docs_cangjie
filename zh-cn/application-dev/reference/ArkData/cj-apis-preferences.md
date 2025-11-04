@@ -172,10 +172,10 @@ public static func deletePreferences(context: UIAbilityContext, name: String): U
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
-| 15500010 | Failed to delete the user preferences persistence file. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
+  | 15500010 | Failed to delete the user preferences persistence file. |
 
 **示例：**
 
@@ -223,19 +223,13 @@ public static func deletePreferences(context: UIAbilityContext, options: Prefere
 
 - BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 801 | Capability not supported. |
-| 15500000 | Inner error. |
-| 15500010 | Failed to delete the user preferences persistence file. |
-| 15501001 | The operations is supported in stage mode only. |
-| 15501002 | Invalid dataGroupId. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-| :---- | :--- | :--- |
-| The context is invalid. | todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. |
+  | 15500000 | Inner error. |
+  | 15500010 | Failed to delete the user preferences persistence file. |
+  | 15501001 | The operations is supported in stage mode only. |
+  | 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -291,15 +285,9 @@ public static func getPreferences(context: UIAbilityContext, name: String): Pref
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-| :---- | :--- | :--- |
-| The context is invalid. | todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -355,18 +343,12 @@ public static func getPreferences(context: UIAbilityContext, options: Preference
 
 - BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[事件错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 801 | Capability not supported. |
-| 15500000 | Inner error. |
-| 15501001 | The operations is supported in stage mode only. |
-| 15501002 | Invalid dataGroupId. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-| :---- | :--- | :--- |
-| The context is invalid. | todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. |
+  | 15500000 | Inner error. |
+  | 15501001 | The operations is supported in stage mode only. |
+  | 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -416,9 +398,9 @@ public static func removePreferencesFromCache(context: UIAbilityContext, name: S
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -468,18 +450,12 @@ public static func removePreferencesFromCache(context: UIAbilityContext, options
 
 - BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[事件错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 801 | Capability not supported. |
-| 15500000 | Inner error. |
-| 15501001 | The operations is supported in stage mode only. |
-| 15501002 | Invalid dataGroupId. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-| :---- | :--- | :--- |
-| The context is invalid. | todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. |
+  | 15500000 | Inner error. |
+  | 15501001 | The operations is supported in stage mode only. |
+  | 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -518,9 +494,9 @@ public func clear(): Unit
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -565,9 +541,9 @@ public func delete(key: String): Unit
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -605,9 +581,9 @@ public func flush(): Unit
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -659,9 +635,9 @@ public func get(key: String, defValue: PreferencesValueType): PreferencesValueTy
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -709,9 +685,9 @@ public func getAll(): HashMap<String, PreferencesValueType>
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -769,9 +745,9 @@ public func has(key: String): Bool
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -801,7 +777,7 @@ try {
 ### func off(PreferencesEvent, ?Callback1Argument\<String>)
 
 ```cangjie
-public func off(event :PreferencesEvent, callback!: ?Callback1Argument<String> = None): Unit
+public func off(event: PreferencesEvent, callback!: ?Callback1Argument<String> = None): Unit
 ```
 
 **功能：** 取消订阅数据变更。
@@ -821,9 +797,9 @@ public func off(event :PreferencesEvent, callback!: ?Callback1Argument<String> =
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 
@@ -862,7 +838,7 @@ try {
 ### func on(PreferencesEvent, Callback1Argument\<String>)
 
 ```cangjie
-public func on(event :PreferencesEvent, callback: Callback1Argument<String>): Unit
+public func on(event: PreferencesEvent, callback: Callback1Argument<String>): Unit
 ```
 
 **功能：** 订阅数据变更。
@@ -882,10 +858,10 @@ public func on(event :PreferencesEvent, callback: Callback1Argument<String>): Un
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
-| 15500019 | Failed to obtain the subscription service. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
+  | 15500019 | Failed to obtain the subscription service. |
 
 **示例：**
 
@@ -942,9 +918,9 @@ public func put(key: String, value: PreferencesValueType): Unit
 
 - BusinessException：对应错误码如下表，详见[用户首选项错误码](./cj-errorcode-preferences.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 15500000 | Inner error. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 15500000 | Inner error. |
 
 **示例：**
 

@@ -45,11 +45,11 @@ public func getSensorList(): Array<Sensor>
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)和[通用错误码](../cj-errorcode-universal.md)。
-  
-  | 错误码ID    | 错误信息                                                                                                                                   |
-  |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------- |
-  | 14500101 | Service exception. Possible causes: 1. Sensor hdf service exception; 2. Sensor service ipc exception;3. Sensor data channel exception. |
+- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 14500101 | Service exception. Possible causes: 1. Sensor hdf service exception; 2. Sensor service ipc exception; 3. Sensor data channel exception. |
 
 **示例：**
 
@@ -98,12 +98,12 @@ public func getSingleSensor(sensorType: SensorId): Sensor
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)和[通用错误码](../cj-errorcode-universal.md)。
-  
-  | 错误码ID    | 错误信息                                                                                                                                   |
-  |:-------- |:-------------------------------------------------------------------------------------------------------------------------------------- |
-  | 14500101 | Service exception. Possible causes: 1. Sensor hdf service exception; 2. Sensor service ipc exception;3. Sensor data channel exception. |
-  | 14500102 | The sensor is not supported by the device.                                                                                             |
+- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 14500101 | Service exception. Possible causes: 1. Sensor hdf service exception; 2. Sensor service ipc exception; 3. Sensor data channel exception. |
+  | 14500102 | The sensor is not supported by the device. |
 
 **示例：**
 
@@ -142,6 +142,14 @@ public func off(sensorType: SensorId, callback!: ?CallbackObject = None): Unit
 |:---------- |:---------------------------------------------------------------------------------- |:--- |:---- |:------------------------------------------- |
 | sensorType | [SensorId](#enum-sensorid)                                                         | 是   | -    | 传感器类型。                                      |
 | callback   | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | 否   | None | **命名参数。** 回调函数，异步上报的传感器数据，每种传感器类型对应的数据类型不同。 |
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission verification failed. The application does not have permission to call the API. |
 
 **示例：**
 
@@ -196,6 +204,15 @@ public func on<T>(sensorType: SensorId, callback: Callback1Argument<T>, option!:
 | callback   | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<T> | 是   | -    | 回调函数。                               |
 | option     | ?[Options](#class-options)                                                                  | 否   | None | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission verification failed. The application does not have permission to call the API. |
+  | 14500101 | Service exception. Possible causes: 1. Sensor hdf service exception; 2. Sensor service ipc exception;3. Sensor data channel exception. |
+
 **示例：**
 
 <!-- compile -->
@@ -242,6 +259,15 @@ public func once<T>(sensorType: SensorId, callback: Callback1Argument<T>): Unit 
 |:---------- |:------------------------------------------------------------------------------------------- |:--- |:--- |:--------------------------------- |
 | sensorType | [SensorId](#enum-sensorid)                                                                  | 是   | -   | 传感器类型。                            |
 | callback   | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<T> | 是   | -   | 回调函数，异步上报的传感器数据，每种传感器类型对应的数据类型不同。 |
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[传感器错误码](./cj-errorcode-sensor.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission verification failed. The application does not have permission to call the API. |
+  | 14500101 | Service exception. |
 
 **示例：**
 

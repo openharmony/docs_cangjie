@@ -53,6 +53,14 @@ public static func createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Co
 |:----|:----|
 |[CommonEventSubscriber](./cj-apis-common_event_subscriber.md#class-commoneventsubscriber)|订阅者对象。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[事件错误码](./cj-errorcode-common_event_service.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 1500008 | Common Event Service does not complete initialization. |
+
 **示例：**
 
 <!-- compile -->
@@ -152,13 +160,13 @@ public static func subscribe(subscriber: CommonEventSubscriber, callback: AsyncC
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[事件错误码](./cj-errorcode-common_event_service.md)。
+- BusinessException：对应错误码如下表，详见[事件错误码](./cj-errorcode-common_event_service.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | capability not supported |
-  | 1500007 | If error sending message to Common Event Service. |
-  | 1500008 | If Common Event Service does not complete initialization. |
+  | 801 | Capability not supported. |
+  | 1500007 | Failed to send the message to the common event service. |
+  | 1500008 | Failed to initialize the common event service. |
   | 1500010 | The count of subscriber exceed system specification. |
 
 **示例：**
@@ -208,13 +216,13 @@ public static func unsubscribe(subscriber: CommonEventSubscriber): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[事件错误码](./cj-errorcode-common_event_service.md)。
+- BusinessException：对应错误码如下表，详见[事件错误码](./cj-errorcode-common_event_service.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | capability not supported |
-  | 1500007 | If error sending message to Common Event Service. |
-  | 1500008 | If Common Event Service does not complete initialization. |
+  | 801 | Capability not supported. |
+  | 1500007 | Failed to send the message to the common event service. |
+  | 1500008 | Failed to initialize the common event service. |
 
 **示例：**
 

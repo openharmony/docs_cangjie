@@ -228,13 +228,7 @@ public func addResource(path: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001010 | Invalid overlay path.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001010 | Invalid overlay path. |
 
 **示例：**
 
@@ -280,13 +274,7 @@ public func closeRawFd(path: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001005 |The resource not found by path.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001005 | Invalid relative path. |
 
 **示例：**
 
@@ -337,15 +325,9 @@ public func getBoolean(resId: UInt32): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -402,12 +384,6 @@ public func getBoolean(resource: AppResource): Bool
   | 9001002 | No matching resource is found based on the resource ID.|
   | 9001006 | The resource is referenced cyclically.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -460,15 +436,9 @@ public func getBooleanByName(resName: String): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -519,15 +489,9 @@ public func getColor(resource: AppResource): UInt32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -585,12 +549,6 @@ public func getColor(resId: UInt32): UInt32
   | 9001002 | No matching resource is found based on the resource ID.|
   | 9001006 | The resource is referenced cyclically.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -642,15 +600,9 @@ public func getColorByName(resName: String): UInt32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -688,14 +640,6 @@ public func getConfiguration(): Configuration
 |类型|说明|
 |:----|:----|
 |[Configuration](#class-configuration)|设备的配置信息。|
-
-**异常：**
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid. | todo | todo |
 
 **示例：**
 
@@ -735,14 +679,6 @@ public func getDeviceCapability(): DeviceCapability
 |类型|说明|
 |:----|:----|
 |[DeviceCapability](#class-devicecapability)|设备能力。|
-
-**异常：**
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid. | todo | todo |
 
 **示例：**
 
@@ -787,20 +723,6 @@ public func getLocales(includeSystem!: Bool = false): Array<String>
 |类型|说明|
 |:----|:----|
 |Array\<String>|返回获取的语言列表，列表中的字符串由语言、脚本（可选）、地区（可选），按照顺序使用中划线"-"连接组成。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[资源管理错误码](./cj-errorcode-resource-manager.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
 
 **示例：**
 
@@ -852,20 +774,8 @@ public func getMediaBase64ByName(resName: String, density!: ?ScreenDensity = Non
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
-- IllegalMemoryException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Out of memory.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
 
 **示例：**
 
@@ -917,14 +827,8 @@ public func getMediaByName(resName: String, density!: ?ScreenDensity = None): Ar
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
 
 **示例：**
 
@@ -976,14 +880,8 @@ public func getMediaContent(resId: UInt32, density!: ?ScreenDensity = None): Arr
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
 
 **示例：**
 
@@ -1040,12 +938,6 @@ public func getMediaContent(resource: AppResource, density!: ?ScreenDensity = No
   | 9001001 | Invalid resource ID.|
   | 9001002 | No matching resource is found based on the resource ID.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -1099,20 +991,8 @@ public func getMediaContentBase64(resId: UInt32, density!: ?ScreenDensity = None
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
-- IllegalMemoryException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Out of memory.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
 
 **示例：**
 
@@ -1169,18 +1049,6 @@ public func getMediaContentBase64(resource: AppResource, density!: ?ScreenDensit
   | 9001001 | Invalid resource ID.|
   | 9001002 | No matching resource is found based on the resource ID.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
-- IllegalMemoryException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Out of memory.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -1233,15 +1101,9 @@ public func getNumber(resId: UInt32): NumberValueType
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -1304,12 +1166,6 @@ public func getNumber(resource: AppResource): NumberValueType
   | 9001002 | No matching resource is found based on the resource ID.|
   | 9001006 | The resource is referenced cyclically.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -1368,15 +1224,9 @@ public func getNumberByName(resName: String): NumberValueType
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -1435,21 +1285,9 @@ public func getPluralStringByName(resName: String, num: Int64): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
-- IllegalMemoryException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Out of memory.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -1501,21 +1339,9 @@ public func getPluralStringValue(resId: UInt32, num: Int64): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
-- IllegalMemoryException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Out of memory.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -1573,18 +1399,6 @@ public func getPluralStringValue(resource: AppResource, num: Int64): String
   | 9001002 | No matching resource is found based on the resource ID.|
   | 9001006 | The resource is referenced cyclically.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
-- IllegalMemoryException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | Out of memory.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -1637,13 +1451,7 @@ public func getRawFd(path: String): RawFileDescriptor
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001005 | Invalid relative path.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001005 | Invalid relative path. |
 
 **示例：**
 
@@ -1696,13 +1504,7 @@ public func getRawFileContent(path: String): Array<UInt8>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001005 | Invalid relative path.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001005 | Invalid relative path. |
 
 **示例：**
 
@@ -1753,13 +1555,7 @@ public func getRawFileList(path: String): Array<String>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001005 | Invalid relative path.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001005 | Invalid relative path. |
 
 **示例：**
 
@@ -1809,18 +1605,12 @@ public func getString(resId: UInt32, args: Array<ArgsValueType>): String
 
 - BusinessException：对应错误码如下表，详见[资源管理错误码](./cj-errorcode-resource-manager.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 9001001 | Invalid resource ID.|
-| 9001002 | No matching resource is found based on the resource ID.|
-| 9001006 | The resource is referenced cyclically.|
-| 9001007 | Failed to format the resource obtained based on the resource ID.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
+  | 9001007 | Failed to format the resource obtained based on the resource ID. |
 
 **示例：**
 
@@ -1879,12 +1669,6 @@ public func getString(resource: AppResource, args: Array<ArgsValueType>): String
   | 9001006 | The resource is referenced cyclically.|
   | 9001007 | Failed to format the resource obtained based on the resource ID.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -1940,12 +1724,6 @@ public func getStringArrayByName(resName: String): Array<String>
   | 9001004 | No matching resource is found based on the resource name. |
   | 9001006 | The resource is referenced cyclically. |
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid. | todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -1995,15 +1773,9 @@ public func getStringArrayValue(resId: UInt32): Array<String>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001001 | Invalid resource ID.|
-  | 9001002 | No matching resource is found based on the resource ID.|
-  | 9001006 | The resource is referenced cyclically.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
 
 **示例：**
 
@@ -2060,12 +1832,6 @@ public func getStringArrayValue(resource: AppResource): Array<String>
   | 9001002 | No matching resource is found based on the resource ID.|
   | 9001006 | The resource is referenced cyclically.|
 
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
-
 **示例：**
 
 <!-- compile -->
@@ -2119,16 +1885,10 @@ public func getStringByName(resName: String, args: Array<ArgsValueType>): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001003 | Invalid resource name.|
-  | 9001004 | No matching resource is found based on the resource name.|
-  | 9001006 | The resource is referenced cyclically.|
-  | 9001008 | Failed to format the resource obtained based on the resource Name.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
+  | 9001006 | The resource is referenced cyclically. |
+  | 9001008 | Failed to format the resource obtained based on the resource Name. |
 
 **示例：**
 
@@ -2173,13 +1933,7 @@ public func removeResource(path: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 9001010 | Invalid overlay path.|
-
-- IllegalStateException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | If the instance id invallid.| todo | todo |
+  | 9001010 | Invalid overlay path. |
 
 **示例：**
 

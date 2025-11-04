@@ -90,6 +90,14 @@ public func add(field: String, amount: Int32): Unit
 |field|String|是|-|指定进行操作的日历字段，目前支持的field值有year, month, week_of_year, week_of_month, date, day_of_year, day_of_week, day_of_week_in_month, hour, hour_of_day, minute, second, millisecond。|
 |amount|Int32|是|-|进行加减操作的具体数值。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[i18n错误码](./cj-errorcode-i18n.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
 **示例：**
 
 <!-- compile -->

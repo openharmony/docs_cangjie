@@ -108,7 +108,7 @@ public func getAddressesByName(host: String): Array<NetAddress>
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -157,7 +157,7 @@ public func getAllNets(): Array<NetHandle>
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -203,7 +203,7 @@ public func getAppNet(): NetHandle
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -259,7 +259,7 @@ public func getConnectionProperties(netHandle: NetHandle): ConnectionProperties
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -306,7 +306,7 @@ public func getDefaultHttpProxy(): HttpProxy
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -356,7 +356,7 @@ public func getDefaultNet(): NetHandle
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -412,7 +412,7 @@ public func getNetCapabilities(netHandle: NetHandle): NetCapabilities
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -462,7 +462,7 @@ public func hasDefaultNet(): Bool
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -511,7 +511,7 @@ public func isDefaultNetMetered(): Bool
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -561,7 +561,7 @@ public func reportNetConnected(netHandle: NetHandle): Unit
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -612,7 +612,7 @@ public func reportNetDisconnected(netHandle: NetHandle): Unit
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -663,7 +663,7 @@ public func setAppNet(netHandle: NetHandle): Unit
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -1308,11 +1308,11 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetHandle>
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[网络连接管理错误码](./cj-errorcode-net-connection.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The parameter check failed. | 传入的event类型错误 | 请检查event参数，确保传入的是NetAvailable或NetLost枚举值 |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 2100001 | Invalid parameter value. |
 
 ### func on(NetConnectionEvent, Callback1Argument\<NetBlockStatusInfo>)
 
@@ -1337,11 +1337,11 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetBlockSt
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[网络连接管理错误码](./cj-errorcode-net-connection.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The parameter check failed. | 传入的event类型错误 | 请检查event参数，确保传入的是NetBlockStatusChange枚举值 |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 2100001 | Invalid parameter value. |
 
 ### func on(NetConnectionEvent, Callback1Argument\<NetCapabilityInfo>)
 
@@ -1366,11 +1366,11 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetCapabil
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[网络连接管理错误码](./cj-errorcode-net-connection.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The parameter check failed. | 传入的event类型错误 | 请检查event参数，确保传入的是NetCapabilitiesChange枚举值 |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 2100001 | Invalid parameter value. |
 
 ### func on(NetConnectionEvent, Callback1Argument\<NetConnectionPropertyInfo>)
 
@@ -1395,11 +1395,13 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetConnect
 
 **异常：**
 
-- IllegalArgumentException：
+**异常：**
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The parameter check failed. | 传入的event类型错误 | 请检查event参数，确保传入的是NetConnectionPropertiesChange枚举值 |
+- BusinessException：对应错误码如下表，详见[网络连接管理错误码](./cj-errorcode-net-connection.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 2100001 | Invalid parameter value. |
 
 ### func on(NetConnectionEvent, Callback0Argument)
 
@@ -1424,11 +1426,11 @@ public func on(event: NetConnectionEvent, callback: Callback0Argument): Unit
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[网络连接管理错误码](./cj-errorcode-net-connection.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The parameter check failed. | 传入的event类型错误 | 请检查event参数，确保传入的是NetUnavailable枚举值 |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 2100001 | Invalid parameter value. |
 
 ### func register()
 
@@ -1630,7 +1632,7 @@ public func getAddressByName(host: String): NetAddress
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**
@@ -1688,7 +1690,7 @@ public func getAddressesByName(host: String): Array<NetAddress>
   | :---- | :--- |
   | 201 | Permission denied. |
   | 2100001 | Invalid parameter value. |
-  | 2100002 | Operation failed. Cannot connect to service. |
+  | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
 
 **示例：**

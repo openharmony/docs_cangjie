@@ -180,6 +180,18 @@ public static func getCurrentLocation(): Location
 |:----|:----|
 |[Location](#class-location)|返回当前位置信息。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission verification failed. The application does not have the permission required to call the API. |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301100 | The location switch is off. |
+  | 3301200 | Failed to obtain the geographical location. |
+
 **示例：**
 
 <!-- compile -->
@@ -223,6 +235,18 @@ public static func getCurrentLocation(request: CurrentLocationRequest): Location
 |类型|说明|
 |:----|:----|
 |[Location](#class-location)|返回当前位置信息。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission verification failed. The application does not have the permission required to call the API. |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301100 | The location switch is off. |
+  | 3301200 | Failed to obtain the geographical location. |
 
 **示例：**
 
@@ -268,6 +292,18 @@ public static func getCurrentLocation(request: SingleLocationRequest): Location
 |:----|:----|
 |[Location](#class-location)|返回当前位置信息。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission verification failed. The application does not have the permission required to call the API. |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301100 | The location switch is off. |
+  | 3301200 | Failed to obtain the geographical location. |
+
 **示例：**
 
 <!-- compile -->
@@ -303,6 +339,15 @@ public static func isLocationEnabled(): Bool
 |类型|说明|
 |:----|:----|
 |Bool|true：位置信息开关已开启；<br/>false：位置信息开关已关闭。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
 
 **示例：**
 
