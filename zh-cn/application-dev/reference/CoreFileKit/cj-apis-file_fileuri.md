@@ -17,10 +17,10 @@ API示例代码使用说明：
 
 上述示例工程及配置模板详见[仓颉示例代码说明](../cj-development-intro.md#仓颉示例代码说明)。
 
-## static func getUriFromPath(String)
+## func getUriFromPath(String)
 
 ```cangjie
-public static func getUriFromPath(path: String): String
+public func getUriFromPath(path: String): String
 ```
 
 **功能：** 通过传入的路径path生成应用自己的uri(不支持媒体类型uri的获取)。将path转uri时，路径中的中文及非数字字母的特殊字符将会被编译成对应的ASCII码，拼接在uri中。
@@ -47,7 +47,7 @@ public static func getUriFromPath(path: String): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | The input parameter is invalid.|
+  | 13900020 | Invalid argument. |
 
 **示例：**
 
@@ -100,6 +100,15 @@ public prop name: String
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[文件管理错误码](./cj-errorcode-filemanagement.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13900005 | I/O error |
+  | 13900042 | Unknown error |
 
 ### prop path
 
@@ -200,14 +209,6 @@ public override prop path: String
 
 **起始版本：** 22
 
-**异常：**
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The prop is not supported. | 直接使用。 | 使用子类的函数。 |
-
 ### func toString()
 
 ```cangjie
@@ -225,11 +226,3 @@ public open func toString(): String
 |类型|说明|
 |:----|:----|
 |String|返回字符串类型URI。|
-
-**异常：**
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The function is not supported. | 直接使用。 | 使用子类的函数。 |

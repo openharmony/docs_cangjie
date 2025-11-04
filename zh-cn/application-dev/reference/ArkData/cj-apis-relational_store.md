@@ -54,17 +54,11 @@ public func deleteRdbStore(context: UIAbilityContext, name: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported.|
-  | 14800000 | Inner error.|
-  | 14800010 | Failed to open or delete the database by an invalid database path.|
-  | 14801001 | The operation is supported in the stage model only.|
-  | 14801002 | Invalid data group ID.|
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context is invalid.| todo | todo |
+  | 801 | Capability not supported. |
+  | 14800000 | Inner error. |
+  | 14800010 | Failed to open or delete the database by an invalid database path. |
+  | 14801001 | The operation is supported in the stage model only. |
+  | 14801002 | Invalid data group ID. |
 
 **示例：**
 
@@ -110,17 +104,11 @@ public func deleteRdbStore(context: UIAbilityContext, config: StoreConfig): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported.|
-  | 14800000 | Inner error.|
-  | 14800010 | Failed to open or delete the database by an invalid database path.|
-  | 14801001 | The operation is supported in the stage model only.|
-  | 14801002 | Invalid data group ID.|
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context is invalid.| todo | todo |
+  | 801 | Capability not supported. |
+  | 14800000 | Inner error. |
+  | 14800010 | Failed to open or delete the database by an invalid database path. |
+  | 14801001 | The operation is supported in the stage model only. |
+  | 14801002 | Invalid data group ID. |
 
 **示例：**
 
@@ -172,26 +160,20 @@ public func getRdbStore(context: UIAbilityContext, config: StoreConfig): RdbStor
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800010 | Failed to open or delete the database by an invalid database path.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14801001 | The operation is supported in the stage model only.|
-  | 14801002 | Invalid data group ID.|
-  | 14800017 | StoreConfig is changed.|
-  | 14800020 | The secret key is corrupted or lost.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context is invalid.| todo | todo |
+  | 14800000 | Inner error. |
+  | 14800010 | Failed to open or delete the database by an invalid database path. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14801001 | The operation is supported in the stage model only. |
+  | 14801002 | Invalid data group ID. |
+  | 14800017 | StoreConfig is changed. |
+  | 14800020 | The secret key is corrupted or lost. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
 
 **示例：**
 
@@ -568,14 +550,6 @@ public func inValues(field: String, value: Array<RelationalStoreValueType>): Rdb
 |field|String|是|-|数据库表中的列名。|
 |value|Array\<[RelationalStoreValueType](#enum-relationalstorevaluetype)>|是|-|以RelationalStoreValueType数组形式指定的要匹配的值。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **返回值：**
 
 |类型|说明|
@@ -711,14 +685,6 @@ public func beginsWith(field: String, value: String): RdbPredicates
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -765,14 +731,6 @@ public func between(field: String, low: RelationalStoreValueType, high: Relation
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -817,14 +775,6 @@ public func contains(field: String, value: String): RdbPredicates
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -953,14 +903,6 @@ public func endsWith(field: String, value: String): RdbPredicates
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1005,14 +947,6 @@ public func equalTo(field: String, value: RelationalStoreValueType): RdbPredicat
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1059,14 +993,6 @@ public func glob(field: String, value: String): RdbPredicates
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1111,14 +1037,6 @@ public func greaterThan(field: String, value: RelationalStoreValueType): RdbPred
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 
 **示例：**
@@ -1166,14 +1084,6 @@ public func greaterThanOrEqualTo(field: String, value: RelationalStoreValueType)
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 
 **示例：**
 
@@ -1218,14 +1128,6 @@ public func groupBy(fields: Array<String>): RdbPredicates
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回分组查询列的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1307,14 +1209,6 @@ public func isNotNull(field: String): RdbPredicates
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|<返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1357,14 +1251,6 @@ public func isNull(field: String): RdbPredicates
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1409,14 +1295,6 @@ public func lessThan(field: String, value: RelationalStoreValueType): RdbPredica
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1463,14 +1341,6 @@ public func lessThanOrEqualTo(field: String, value: RelationalStoreValueType): R
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1516,14 +1386,6 @@ public func like(field: String, value: String): RdbPredicates
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1567,14 +1429,6 @@ public func limitAs(value: Int32): RdbPredicates
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回可用于设置最大数据记录数的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1623,14 +1477,6 @@ public func notBetween(field: String, low: RelationalStoreValueType, high: Relat
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1675,14 +1521,6 @@ public func notEqualTo(field: String, value: RelationalStoreValueType): RdbPredi
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1729,14 +1567,6 @@ public func notInValues(field: String, value: Array<RelationalStoreValueType>): 
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1780,14 +1610,6 @@ public func offsetAs(rowOffset: Int32): RdbPredicates
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回具有指定返回结果起始位置的谓词。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1875,14 +1697,6 @@ public func orderByAsc(field: String): RdbPredicates
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|返回与指定字段匹配的谓词。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-
 **示例：**
 
 <!-- compile -->
@@ -1925,14 +1739,6 @@ public func orderByDesc(field: String): RdbPredicates
 |类型|说明|
 |:----|:----|
 |[RdbPredicates](#class-rdbpredicates)|数据库表中的列名。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 
 **示例：**
 
@@ -1989,24 +1795,24 @@ public func backup(destName: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -2058,25 +1864,25 @@ public func batchInsert(table: String, values: Array<ValuesBucket>): Int64
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
-  | 14800047 | The WAL file size exceeds the default limit.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
+  | 14800047 | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2132,25 +1938,25 @@ public func beginTransaction(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
-  | 14800047 | The WAL file size exceeds the default limit.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
+  | 14800047 | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2195,24 +2001,24 @@ public func commit(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -2270,25 +2076,25 @@ public func delete(predicates: RdbPredicates): Int64
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
-  | 14800047 | The WAL file size exceeds the default limit.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
+  | 14800047 | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2332,14 +2138,14 @@ public func emit(event: String): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
+- BusinessException：对应错误码如下表，详见[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported.|
-  | 14800000 | Inner error.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800050 | Failed to obtain the subscription service.|
+  | 801 | Capability not supported. |
+  | 14800000 | Inner error. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800050 | Failed to obtain the subscription service. |
 
 **示例：**
 
@@ -2393,30 +2199,30 @@ public func executeSql(sql: String, bindArgs!: Array<RelationalStoreValueType> =
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
+- BusinessException：对应错误码如下表，详见[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported the sql(attach,begin,commit,rollback etc.).|
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
-  | 14800047 | The WAL file size exceeds the default limit.|
+  | 801 | Capability not supported the sql(attach,begin,commit,rollback etc.). |
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
+  | 14800047 | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2470,25 +2276,25 @@ public func insert(table: String, values: ValuesBucket,
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
-  | 14800047 | The WAL file size exceeds the default limit.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
+  | 14800047 | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2542,14 +2348,14 @@ public func off(event: String, interProcess: Bool, observer!: ?Callback0Argument
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
+- BusinessException：对应错误码如下表，详见[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported.|
-  | 14800000 | Inner error.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800050 | Failed to obtain the subscription service.|
+  | 801 | Capability not supported. |
+  | 14800000 | Inner error. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800050 | Failed to obtain the subscription service. |
 
 **示例：**
 
@@ -2604,14 +2410,14 @@ public func on(event: String, interProcess: Bool, observer: Callback0Argument): 
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
+- BusinessException：对应错误码如下表，详见[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported.|
-  | 14800000 | Inner error.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800050 | Failed to obtain the subscription service.|
+  | 801 | Capability not supported. |
+  | 14800000 | Inner error. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800050 | Failed to obtain the subscription service. |
 
 **示例：**
 
@@ -2671,13 +2477,13 @@ public func query(predicates: RdbPredicates, columns!: Array<String> = []): Resu
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
+- BusinessException：对应错误码如下表，详见[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
+  | 14800000 | Inner error. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
 
 **示例：**
 
@@ -2738,9 +2544,9 @@ public func querySql(sql: String, bindArgs!: Array<RelationalStoreValueType> = [
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
+  | 14800000 | Inner error. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
 
 **示例：**
 
@@ -2791,24 +2597,24 @@ public func restore(srcName: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -2848,24 +2654,24 @@ public func rollBack(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -2934,25 +2740,25 @@ public func update(values: ValuesBucket, predicates: RdbPredicates,
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800015 | The database does not respond.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
-  | 14800047 | The WAL file size exceeds the default limit.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800015 | The database does not respond. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
+  | 14800047 | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -3155,8 +2961,8 @@ public func close(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
+  | 14800000 | Inner error. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
 
 **示例：**
 
@@ -3209,25 +3015,25 @@ public func getAsset(columnIndex: Int32): Asset
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3280,25 +3086,25 @@ public func getAssets(columnIndex: Int32): Assets
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3351,25 +3157,25 @@ public func getBlob(columnIndex: Int32): Array<UInt8>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3422,25 +3228,25 @@ public func getColumnIndex(columnName: String): Int32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3496,25 +3302,25 @@ public func getColumnName(columnIndex: Int32): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3569,25 +3375,25 @@ public func getDouble(columnIndex: Int32): Float64
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3640,25 +3446,25 @@ public func getLong(columnIndex: Int32): Int64
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3705,25 +3511,25 @@ public func getRow(): ValuesBucket
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3776,25 +3582,25 @@ public func getString(columnIndex: Int32): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3847,25 +3653,25 @@ public func goTo(offset: Int32): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3912,25 +3718,25 @@ public func goToFirstRow(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -3977,25 +3783,25 @@ public func goToLastRow(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -4042,25 +3848,25 @@ public func goToNextRow(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -4107,25 +3913,25 @@ public func goToPreviousRow(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -4178,25 +3984,25 @@ public func goToRow(position: Int32): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800019 | The SQL must be a query statement.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800019 | The SQL must be a query statement. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 
@@ -4249,25 +4055,25 @@ public func isColumnNull(columnIndex: Int32): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 14800000 | Inner error.|
-  | 14800011 | Failed to open the database because it is corrupted.|
-  | 14800012 | ResultSet is empty or pointer index is out of bounds.|
-  | 14800013 | Resultset is empty or column index is out of bounds.|
-  | 14800014 | The RdbStore or ResultSet is already closed.|
-  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.|
-  | 14800022 | SQLite: Callback routine requested an abort.|
-  | 14800023 | SQLite: Access permission denied.|
-  | 14800024 | SQLite: The database file is locked.|
-  | 14800025 | SQLite: A table in the database is locked.|
-  | 14800026 | SQLite: The database is out of memory.|
-  | 14800027 | SQLite: Attempt to write a readonly database.|
-  | 14800028 | SQLite: Some kind of disk I/O error occurred.|
-  | 14800029 | SQLite: The database is full.|
-  | 14800030 | SQLite: Unable to open the database file.|
-  | 14800031 | SQLite: TEXT or BLOB exceeds size limit.|
-  | 14800032 | SQLite: Abort due to constraint violation.|
-  | 14800033 | SQLite: Data type mismatch.|
-  | 14800034 | SQLite: Library used incorrectly.|
+  | 14800000 | Inner error. |
+  | 14800011 | Failed to open the database because it is corrupted. |
+  | 14800012 | ResultSet is empty or pointer index is out of bounds. |
+  | 14800013 | Resultset is empty or column index is out of bounds. |
+  | 14800014 | The RdbStore or ResultSet is already closed. |
+  | 14800021 | SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist. |
+  | 14800022 | SQLite: Callback routine requested an abort. |
+  | 14800023 | SQLite: Access permission denied. |
+  | 14800024 | SQLite: The database file is locked. |
+  | 14800025 | SQLite: A table in the database is locked. |
+  | 14800026 | SQLite: The database is out of memory. |
+  | 14800027 | SQLite: Attempt to write a readonly database. |
+  | 14800028 | SQLite: Some kind of disk I/O error occurred. |
+  | 14800029 | SQLite: The database is full. |
+  | 14800030 | SQLite: Unable to open the database file. |
+  | 14800031 | SQLite: TEXT or BLOB exceeds size limit. |
+  | 14800032 | SQLite: Abort due to constraint violation. |
+  | 14800033 | SQLite: Data type mismatch. |
+  | 14800034 | SQLite: Library used incorrectly. |
 
 **示例：**
 

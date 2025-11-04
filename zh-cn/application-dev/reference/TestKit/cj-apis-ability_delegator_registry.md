@@ -52,8 +52,8 @@ public func addAbilityMonitor(monitor: AbilityMonitor): Unit
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | AddAbilityMonitor failed. |
+  | :---- | :--- |
+  | 16000100 | Calling AddAbilityMonitor failed. |
 
 **示例：**
 
@@ -96,8 +96,8 @@ public func addAbilityStageMonitor(monitor: AbilityStageMonitor): Unit
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | AddAbilityStageMonitor failed. |
+  | :---- | :--- |
+  | 16000100 | Calling AddAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -137,8 +137,8 @@ public func doAbilityBackground(ability: UIAbility): Unit
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | DoAbilityBackground failed. |
+  | :---- | :--- |
+  | 16000100 | Calling DoAbilityBackground failed. |
 
 **示例：**
 
@@ -178,8 +178,8 @@ public func doAbilityForeground(ability: UIAbility): Unit
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | DoAbilityForeground failed. |
+  | :---- | :--- |
+  | 16000100 | Calling DoAbilityForeground failed. |
 
 **示例：**
 
@@ -294,14 +294,6 @@ public func getAbilityState(ability: UIAbility): AbilityLifecycleState
 |:----|:----|
 |[AbilityLifecycleState](#enum-abilitylifecyclestate)|指定ability的生命周期状态。|
 
-**异常：**
-
-以下错误码详细介绍请参见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息|
-  | :--- | :--- |
-  | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-
 **示例：**
 
 <!-- compile -->
@@ -372,8 +364,9 @@ public func getCurrentTopAbility(): UIAbility
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | GetCurrentTopAbility failed. |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
+  | 16000100 | Calling GetCurrentTopAbility failed. |
 
 **示例：**
 
@@ -407,14 +400,6 @@ public func print(msg: String): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |msg|String|是|-|日志字符串。|
-
-**异常：**
-
-以下错误码详细介绍请参见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -454,8 +439,8 @@ public func removeAbilityMonitor(monitor: AbilityMonitor): Unit
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | RemoveAbilityMonitor failed. |
+  | :---- | :--- |
+  | 16000100 | Calling RemoveAbilityMonitor failed. |
 
 **示例：**
 
@@ -498,8 +483,8 @@ public func removeAbilityStageMonitor(monitor: AbilityStageMonitor): Unit
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | RemoveAbilityStageMonitor failed. |
+  | :---- | :--- |
+  | 16000100 | Calling RemoveAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -533,6 +518,28 @@ public func startAbility(want: Want): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |want|[Want](../AbilityKit/cj-apis-app-ability-want.md#class-want)|是|-|启动[UIAbility](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)参数。|
+
+**异常：**
+
+以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000001 | The specified ability does not exist. |
+  | 16000002 | Incorrect ability type. |
+  | 16000004 | Cannot start an invisible component. |
+  | 16000005 | The specified process does not have the permission. |
+  | 16000006 | Cross-user operations are not allowed. |
+  | 16000008 | The crowdtesting application expires. |
+  | 16000009 | An ability cannot be started or stopped in Wukong mode. |
+  | 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
+  | 16000011 | The context does not exist. |
+  | 16000012 | The application is controlled. |
+  | 16000013 | The application is controlled by EDM. |
+  | 16000050 | Internal error. |
+  | 16000053 | The ability is not on the top of the UI. |
+  | 16000055 | Installation-free timed out. |
+  | 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -579,8 +586,9 @@ public func waitAbilityMonitor(monitor: AbilityMonitor, timeout!: Int64 = 5000):
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | WaitAbilityMonitor failed. |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
+  | 16000100 | Calling WaitAbilityMonitor failed. |
 
 **示例：**
 
@@ -631,8 +639,9 @@ public func waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout!: Int6
 以下错误码详细介绍请参见[元能力子系统错误码](../AbilityKit/cj-errorcode-ability.md)。
 
   | 错误码ID | 错误信息 |
-  | :--- | :--- |
-  | 16000100 | WaitAbilityStageMonitor failed. |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
+  | 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **示例：**
 

@@ -165,7 +165,7 @@ public func getColorSpaceName(): ColorSpace
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[色彩管理错误码](./cj-errorcode-colorspace-manager.md)。
+- BusinessException：对应错误码如下表，详见[色彩管理错误码](./cj-errorcode-colorspace-manager.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
@@ -210,7 +210,7 @@ public func getGamma(): Float32
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[色彩管理错误码](./cj-errorcode-colorspace-manager.md)。
+- BusinessException：对应错误码如下表，详见[色彩管理错误码](./cj-errorcode-colorspace-manager.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
@@ -255,7 +255,7 @@ public func getWhitePoint(): Array<Float32>
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[色彩管理错误码](./cj-errorcode-colorspace-manager.md)。
+- BusinessException：对应错误码如下表，详见[色彩管理错误码](./cj-errorcode-colorspace-manager.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |

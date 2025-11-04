@@ -261,6 +261,14 @@ public init(
 |parameters|HashMap\<String,[WantValueType](#enum-wantvaluetype)>|否|HashMap<String, WantValueType>()|参数。|
 |fds|HashMap\<String,Int32>|否|HashMap<String, Int32>()|文件描述符。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[元能力子系统错误码](./cj-errorcode-ability.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
+
 ## enum WantValueType
 
 ```cangjie

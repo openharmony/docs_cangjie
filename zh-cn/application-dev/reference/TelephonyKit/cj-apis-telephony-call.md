@@ -61,11 +61,10 @@ public static func formatPhoneNumber(
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[电话子系统错误码](./cj-errorcode-telephony.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
   | 8300001 | Invalid parameter value. |
   | 8300002 | Operation failed. Cannot connect to service. |
   | 8300003 | System internal error. |
@@ -118,11 +117,10 @@ public static func formatPhoneNumberToE164(phoneNumber: String, countryCode: Str
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[电话子系统错误码](./cj-errorcode-telephony.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
   | 8300001 | Invalid parameter value. |
   | 8300002 | Operation failed. Cannot connect to service. |
   | 8300003 | System internal error. |
@@ -163,6 +161,14 @@ public static func getCallState(): CallState
 |类型|说明|
 |:----|:----|
 |[CallState](#enum-callstate)|返回获取到的通话状态。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[电话子系统错误码](./cj-errorcode-telephony.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 8300001 | Parameter error. |
 
 **示例：**
 
@@ -281,11 +287,10 @@ public static func isEmergencyPhoneNumber(phoneNumber: String, options!: Emergen
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[电话子系统错误码](./cj-errorcode-telephony.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
   | 8300001 | Invalid parameter value. |
   | 8300002 | Operation failed. Cannot connect to service. |
   | 8300003 | System internal error. |
@@ -329,11 +334,10 @@ public static func makeCall(phoneNumber: String): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[电话子系统错误码](./cj-errorcode-telephony.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
   | 8300001 | Invalid parameter value. |
   | 8300002 | Operation failed. Cannot connect to service. |
   | 8300003 | System internal error. |
@@ -382,7 +386,6 @@ public static func makeCall(context: UIAbilityContext, phoneNumber: String): Uni
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
   | 8300001 | Invalid parameter value. |
   | 8300002 | Operation failed. Cannot connect to service. |
   | 8300003 | System internal error. |

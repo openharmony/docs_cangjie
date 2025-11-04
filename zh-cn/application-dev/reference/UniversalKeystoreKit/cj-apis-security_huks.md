@@ -45,12 +45,11 @@ public func abortSession(handle: HuksHandleId, options: HuksOptions): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
   | 12000006 | error occured in crypto engine |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000014 | memory is insufficient |
 
 **示例：**
@@ -121,16 +120,13 @@ public func anonAttestKeyItem(keyAlias: String, options: HuksOptions): Array<Str
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | check permission failed |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
-  | 12000002 | algorithm param is missing |
-  | 12000003 | algorithm param is invalid |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
-  | 12000006 | error occured in crypto engine |
+  | 12000006 | error occurred in crypto engine |
   | 12000011 | queried entity does not exist |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000014 | memory is insufficient |
 
 **示例：**
@@ -202,12 +198,11 @@ public func deleteKeyItem(keyAlias: String, options: HuksOptions): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
   | 12000011 | queried entity does not exist |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000014 | memory is insufficient |
 
 **示例：**
@@ -281,16 +276,13 @@ public func exportKeyItem(keyAlias: String, _: HuksOptions): Bytes
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
-  | 12000002 | algorithm param is missing |
-  | 12000003 | algorithm param is invalid |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
-  | 12000006 | error occured in crypto engine |
+  | 12000006 | error occurred in crypto engine |
   | 12000011 | queried entity does not exist |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000014 | memory is insufficient |
 
 **示例：**
@@ -361,7 +353,6 @@ public func finishSession(handle: HuksHandleId, options: HuksOptions, token!: By
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
   | 12000002 | algorithm param is missing |
@@ -436,7 +427,6 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
   | 12000002 | algorithm param is missing |
@@ -444,10 +434,10 @@ public func generateKeyItem(keyAlias: String, options: HuksOptions): Unit
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
   | 12000006 | error occured in crypto engine |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000013 | queried credential does not exist |
   | 12000014 | memory is insufficient |
-  | 12000015 | call service failed |
+  | 12000015 | Failed to obtain the security information via UserIAM |
   | 12000017 | The key with same alias is already exist |
 
 **示例：**
@@ -511,17 +501,14 @@ public func getKeyItemProperties(keyAlias: String, _: HuksOptions): Array<HuksPa
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid|
-  | 801 | api is not supported|
-  | 12000001 | algorithm mode is not supported|
-  | 12000002 | algorithm param is missing|
-  | 12000003 | algorithm param is invalid|
-  | 12000004 | operating file failed|
-  | 12000005 | IPC communication failed|
-  | 12000006 | error occured in crypto engine|
-  | 12000011 | queried entity does not exist|
-  | 12000012 | external error|
-  | 12000014 | memory is insufficient|
+  | 801 | api is not supported |
+  | 12000001 | algorithm mode is not supported |
+  | 12000004 | operating file failed |
+  | 12000005 | IPC communication failed |
+  | 12000006 | error occurred in crypto engine |
+  | 12000011 | queried entity does not exist |
+  | 12000012 | Device environment or input parameter abnormal |
+  | 12000014 | memory is insufficient |
 
 **示例：**
 
@@ -578,7 +565,6 @@ public func importKeyItem(keyAlias: String, options: HuksOptions): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
   | 12000002 | algorithm param is missing |
@@ -587,10 +573,11 @@ public func importKeyItem(keyAlias: String, options: HuksOptions): Unit
   | 12000005 | IPC communication failed |
   | 12000006 | error occured in crypto engine |
   | 12000011 | queried entity does not exist |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000013 | queried credential does not exist |
   | 12000014 | memory is insufficient |
-  | 12000015 | call service failed |
+  | 12000015 | Failed to obtain the security information via UserIAM |
+  | 12000017 | The key with same alias is already exist |
 
 **示例：**
 
@@ -656,19 +643,18 @@ public func importWrappedKeyItem(keyAlias: String, wrappingKeyAlias: String, opt
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | check permission failed |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
   | 12000002 | algorithm param is missing |
   | 12000003 | algorithm param is invalid |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
-  | 12000006 | error occured in crypto engine |
+  | 12000006 | error occurred in crypto engine |
   | 12000011 | queried entity does not exist |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000013 | queried credential does not exist |
   | 12000014 | memory is insufficient |
-  | 12000015 | call service failed |
+  | 12000015 | Failed to obtain the security information via UserIAM |
   | 12000017 | The key with same alias is already exist |
 
 ## func initSession(String, HuksOptions)
@@ -703,17 +689,16 @@ public func initSession(keyAlias: String, options: HuksOptions): HuksSessionHand
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
   | 12000002 | algorithm param is missing |
   | 12000003 | algorithm param is invalid |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
-  | 12000006 | error occured in crypto engine |
+  | 12000006 | error occurred in crypto engine |
   | 12000010 | the number of sessions has reached limit |
   | 12000011 | queried entity does not exist |
-  | 12000012 | external error |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000014 | memory is insufficient |
   | 12000018 | the input parameter is invalid |
 
@@ -782,14 +767,12 @@ public func isKeyItemExist(keyAlias: String, options: HuksOptions): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | argument is invalid |
   | 801 | api is not supported |
-  | 12000002 | algorithm param is missing |
-  | 12000003 | algorithm param is invalid |
   | 12000004 | operating file failed |
   | 12000005 | IPC communication failed |
-  | 12000006 | error occured in crypto engine |
-  | 12000012 | external error |
+  | 12000006 | error occurred in crypto engine |
+  | 12000011 | queried entity does not exist |
+  | 12000012 | Device environment or input parameter abnormal |
   | 12000014 | memory is insufficient |
 
 **示例：**
@@ -857,11 +840,10 @@ public func updateSession(handle: HuksHandleId, options: HuksOptions, token!: By
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[HUKS错误码](./cj-errorcode-huks.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[HUKS错误码](./cj-errorcode-huks.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
   | 801 | api is not supported |
   | 12000001 | algorithm mode is not supported |
   | 12000002 | algorithm param is missing |
