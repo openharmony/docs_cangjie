@@ -388,11 +388,10 @@ public static func configCookie(url: String, value: String, incognito!: Bool = f
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[Webview错误码](./cj-errorcode-webview.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100002 | Invalid url. |
   | 17100005 | Invalid cookie value. |
 
@@ -487,11 +486,10 @@ public static func fetchCookie(url: String, incognito!: Bool = false): String
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[Webview错误码](./cj-errorcode-webview.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100002 | Invalid url. |
 
 **示例：**
@@ -827,11 +825,10 @@ public func accessBackward(): Bool
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. |
 
 **示例：**
@@ -898,11 +895,10 @@ public func accessStep(step: Int32): Bool
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -966,11 +962,10 @@ public func backOrForward(step: Int32): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1024,11 +1019,10 @@ public func backward(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1082,11 +1076,10 @@ public func clearHistory(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1146,11 +1139,10 @@ public func enableSafeBrowsing(enable: Bool): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1204,11 +1196,10 @@ public func forward(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1268,11 +1259,10 @@ public func getBackForwardEntries(): BackForwardList
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1334,11 +1324,10 @@ public func getCustomUserAgent(): String
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1400,11 +1389,10 @@ public func getHitTest(): WebHitTestType
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1469,11 +1457,10 @@ public func getHitTestValue(): HitTestValue
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1539,11 +1526,10 @@ public func getOriginalUrl(): String
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1604,11 +1590,10 @@ public func getPageHeight(): Int32
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1660,11 +1645,10 @@ public func getSecurityLevel(): SecurityLevel
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1730,11 +1714,10 @@ public func getTitle(): String
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1795,11 +1778,10 @@ public func getUrl(): String
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1859,11 +1841,10 @@ public func getUserAgent(): String
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1924,11 +1905,10 @@ public func isIncognitoMode(): Bool
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -1990,11 +1970,10 @@ public func isSafeBrowsingEnabled(): Bool
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2054,11 +2033,10 @@ public func pageDown(bottom: Bool): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component.relation pageDown(bottom: boolean): void |
 
 **示例：**
@@ -2118,11 +2096,10 @@ public func pageUp(top: Bool): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component.relation pageUp(top: boolean): void |
 
 **示例：**
@@ -2176,11 +2153,10 @@ public func refresh(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2393,7 +2369,6 @@ public func loadUrl<T>(url: T, headers!: Array<WebHeader> = Array<WebHeader>()):
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
   | 17100002 | Invalid url. |
   | 17100003 | Invalid resource path or file type. |
@@ -2459,7 +2434,6 @@ public func setCustomUserAgent(userAgent: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -2579,7 +2553,6 @@ public func storeWebArchive(baseName: String, autoName: Bool, callback: AsyncCal
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
   | 17100003 | Invalid resource path or file type. |
 
@@ -2653,7 +2626,6 @@ public func zoom(factor: Float32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
   | 17100004 | Function not enable. |
 
@@ -2829,7 +2801,6 @@ public func runJavaScript(script: String, callback: AsyncCallback<String>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -3010,7 +2981,6 @@ public func scrollTo(x: Float32, y: Float32, duration!: ?Int32 = None): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **示例：**

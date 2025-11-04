@@ -157,7 +157,6 @@ public class DeviceKVStore <: SingleKVStore {}
 ### func get(String)
 
 ```cangjie
-
 public func get(key: String): KVValueType
 ```
 
@@ -185,7 +184,6 @@ public func get(key: String): KVValueType
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types;3.Parameter verification failed.|
   | 15100003 | Database corrupted.|
   | 15100004 | Not found.|
   | 15100005 | Database or result set already closed.|
@@ -208,7 +206,6 @@ store.get("key")
 ### func getEntries(String)
 
 ```cangjie
-
 public func getEntries(keyPrefix: String): Array<Entry>
 ```
 
@@ -236,7 +233,6 @@ public func getEntries(keyPrefix: String): Array<Entry>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
 
@@ -258,7 +254,6 @@ store.getEntries("key")
 ### func getEntries(Query)
 
 ```cangjie
-
 public func getEntries(query: Query): Array<Entry>
 ```
 
@@ -286,7 +281,6 @@ public func getEntries(query: Query): Array<Entry>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
 
@@ -308,7 +302,6 @@ store.getEntries(Query())
 ### func getResultSet(String)
 
 ```cangjie
-
 public func getResultSet(keyPrefix: String): KVStoreResultSet
 ```
 
@@ -336,7 +329,6 @@ public func getResultSet(keyPrefix: String): KVStoreResultSet
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
   | 15100001 | Over max limits.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
@@ -359,7 +351,6 @@ store.getResultSet("key")
 ### func getResultSet(Query)
 
 ```cangjie
-
 public func getResultSet(query: Query): KVStoreResultSet
 ```
 
@@ -387,7 +378,6 @@ public func getResultSet(query: Query): KVStoreResultSet
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
   | 15100001 | Over max limits.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
@@ -410,7 +400,6 @@ store.getResultSet(Query())
 ### func getResultSize(Query)
 
 ```cangjie
-
 public func getResultSize(query: Query): Int32
 ```
 
@@ -438,7 +427,6 @@ public func getResultSize(query: Query): Int32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
 
@@ -472,7 +460,6 @@ public class DistributedKVStore {}
 ### static func createKVManager(KVManagerConfig)
 
 ```cangjie
-
 public static func createKVManager(config: KVManagerConfig): KVManager
 ```
 
@@ -493,14 +480,6 @@ public static func createKVManager(config: KVManagerConfig): KVManager
 |类型|说明|
 |:----|:----|
 |[KVManager](#class-kvmanager)|返回创建的KVManager对象实例。|
-
-**异常：**
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context type is not supported. Only support UIAbilityContext.| todo | todo |
 
 **示例：**
 
@@ -566,7 +545,6 @@ public var value: KVValueType
 ### init(String, KVValueType)
 
 ```cangjie
-
 public init(key: String, value: KVValueType)
 ```
 
@@ -652,7 +630,6 @@ public var nullable: Bool
 ### init(String, Bool, String, Int32)
 
 ```cangjie
-
 public init(name: String, nullable: Bool, default: String, nodeType: Int32)
 ```
 
@@ -686,7 +663,6 @@ public class KVManager {}
 ### func closeKVStore(String, String)
 
 ```cangjie
-
 public func closeKVStore(appId: String, storeId: String): Unit
 ```
 
@@ -727,7 +703,6 @@ kvManager.closeKVStore("com.example.myapplication", "myStore")
 ### func deleteKVStore(String, String)
 
 ```cangjie
-
 public func deleteKVStore(appId: String, storeId: String): Unit
 ```
 
@@ -746,11 +721,10 @@ public func deleteKVStore(appId: String, storeId: String): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.|
   | 15100004 | Not found.|
 
 **示例：**
@@ -769,7 +743,6 @@ kvManager.deleteKVStore("com.example.myapplication", "myStore")
 ### func getAllKVStoreId(String)
 
 ```cangjie
-
 public func getAllKVStoreId(appId: String): Array<String>
 ```
 
@@ -815,7 +788,6 @@ kvManager.getAllKVStoreId("com.example.myapplication")
 ### func getKVStore\<T>(String, KVOptions) where T \<: SingleKVStore
 
 ```cangjie
-
 public func getKVStore<T>(storeId: String, options: KVOptions): T where T <: SingleKVStore
 ```
 
@@ -840,11 +812,10 @@ public func getKVStore<T>(storeId: String, options: KVOptions): T where T <: Sin
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types;3.Parameter verification failed.|
   | 15100002 | Open existed database with changed options.|
   | 15100003 | Database corrupted.|
 
@@ -925,7 +896,6 @@ public var context: BaseContext
 ### init(BaseContext, String)
 
 ```cangjie
-
 public init(context: BaseContext, bundleName: String)
 ```
 
@@ -957,7 +927,6 @@ public class KVStoreResultSet {}
 ### func getCount()
 
 ```cangjie
-
 public func getCount(): Int32
 ```
 
@@ -1110,7 +1079,6 @@ public var securityLevel: KVSecurityLevel
 ### init(KVSecurityLevel, Bool, Bool, Bool, Bool, ?Schema)
 
 ```cangjie
-
 public init(securityLevel: KVSecurityLevel, createIfMissing!: Bool = true, encrypt!: Bool = false,
     backup!: Bool = true, autoSync!: Bool = false, schema!: ?Schema = None)
 ```
@@ -1150,7 +1118,6 @@ public class Query {
 ### init()
 
 ```cangjie
-
 public init()
 ```
 
@@ -1246,7 +1213,6 @@ public var skip: Int32
 ### init(FieldNode, Array\<String>, Int32, Int32)
 
 ```cangjie
-
 public init(root: FieldNode, indexes: Array<String>, mode: Int32, skip: Int32)
 ```
 
@@ -1280,7 +1246,6 @@ public open class SingleKVStore {}
 ### func backup(String)
 
 ```cangjie
-
 public open func backup(file: String): Unit
 ```
 
@@ -1298,11 +1263,10 @@ public open func backup(file: String): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.|
   | 15100005 | Database or result set already closed.|
 
 **示例：**
@@ -1329,7 +1293,6 @@ singleKVStore.backup("myBackupfile")
 ### func commit()
 
 ```cangjie
-
 public open func commit(): Unit
 ```
 
@@ -1371,7 +1334,6 @@ singleKVStore.commit()
 ### func delete(String)
 
 ```cangjie
-
 public open func delete(key: String): Unit
 ```
 
@@ -1389,11 +1351,10 @@ public open func delete(key: String): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types;3.Parameter verification failed.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
   | 14800047 | The WAL file size exceeds the default limit.|
@@ -1422,7 +1383,6 @@ singleKVStore.delete("myKey")
 ### func deleteBatch(Array\<String>)
 
 ```cangjie
-
 public open func deleteBatch(keys: Array<String>): Unit
 ```
 
@@ -1444,7 +1404,6 @@ public open func deleteBatch(keys: Array<String>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types;3.Parameter verification failed.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
   | 14800047 | The WAL file size exceeds the default limit.|
@@ -1473,7 +1432,6 @@ deviceKVStore.deleteBatch(["myBackupfile", "BK002"])
 ### func enableSync(Bool)
 
 ```cangjie
-
 public open func enableSync(enabled: Bool): Unit
 ```
 
@@ -1522,7 +1480,6 @@ singleKVStore.enableSync(true)
 ### func get(String)
 
 ```cangjie
-
 public open func get(key: String): KVValueType
 ```
 
@@ -1546,11 +1503,10 @@ public open func get(key: String): KVValueType
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types;3.Parameter verification failed.|
   | 15100003 | Database corrupted.|
   | 15100004 | Not found.|
   | 15100005 | Database or result set already closed.|
@@ -1584,7 +1540,6 @@ try {
 ### func put(String, KVValueType)
 
 ```cangjie
-
 public open func put(key: String, value: KVValueType): Unit
 ```
 
@@ -1603,11 +1558,10 @@ public open func put(key: String, value: KVValueType): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types;3.Parameter verification failed.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
   | 14800047 | The WAL file size exceeds the default limit.|
@@ -1636,7 +1590,6 @@ try {
 ### func putBatch(Array\<Entry>)
 
 ```cangjie
-
 public open func putBatch(entries: Array<Entry>): Unit
 ```
 
@@ -1654,11 +1607,10 @@ public open func putBatch(entries: Array<Entry>): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)和[关系型数据库错误码](./cj-errorcode-data-rdb.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
   | 15100003 | Database corrupted.|
   | 15100005 | Database or result set already closed.|
   | 14800047 | The WAL file size exceeds the default limit.|
@@ -1694,7 +1646,6 @@ singleKVStore.putBatch(entries.toArray())
 ### func restore(String)
 
 ```cangjie
-
 public open func restore(file: String): Unit
 ```
 
@@ -1712,11 +1663,10 @@ public open func restore(file: String): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)和[通用错误码](../cj-errorcode-universal.md)。
+- BusinessException：对应错误码如下表，详见[分布式键值数据库错误码](./cj-errorcode-distributed_kv_store.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Parameter verification failed.|
   | 15100005 | Database or result set already closed.|
 
 **示例：**
@@ -1744,7 +1694,6 @@ singleKVStore.restore("myBackupfile")
 ### func rollback()
 
 ```cangjie
-
 public open func rollback(): Unit
 ```
 
@@ -1787,7 +1736,6 @@ singleKVStore.rollback()
 ### func setSyncParam(UInt32)
 
 ```cangjie
-
 public open func setSyncParam(defaultAllowedDelayMs: UInt32): Unit
 ```
 
@@ -1836,7 +1784,6 @@ singleKVStore.setSyncParam(500)
 ### func startTransaction()
 
 ```cangjie
-
 public open func startTransaction(): Unit
 ```
 
