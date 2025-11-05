@@ -132,6 +132,14 @@ public func createImageSource(uri: String): ImageSource
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile -->
@@ -176,6 +184,14 @@ public func createImageSource(uri: String, options: SourceOptions): ImageSource
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile -->
@@ -218,6 +234,14 @@ public func createImageSource(fd: Int32): ImageSource
 |类型|说明|
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -262,6 +286,14 @@ public func createImageSource(fd: Int32, options: SourceOptions): ImageSource
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile -->
@@ -304,6 +336,14 @@ public func createImageSource(buf: Array<UInt8>): ImageSource
 |类型|说明|
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -349,6 +389,14 @@ public func createImageSource(buf: Array<UInt8>, options: SourceOptions): ImageS
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile -->
@@ -393,6 +441,14 @@ public func createImageSource(rawfile: RawFileDescriptor, options!: SourceOption
 |类型|说明|
 |:----|:----|
 |[ImageSource](#class-imagesource)|返回ImageSource类实例。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -447,6 +503,7 @@ public func createPixelMap(colors: Array<UInt8>, options: InitializationOptions)
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 62980104 | Failed to initialize the internal object. |
+  | 62980115 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -796,6 +853,14 @@ public prop clipRect: Region
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### prop format
 
 ```cangjie
@@ -812,6 +877,14 @@ public prop format: Int32
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### prop size
 
 ```cangjie
@@ -827,6 +900,14 @@ public prop size: Size
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 ### func getComponent(ComponentType)
 
@@ -851,6 +932,14 @@ public func getComponent(componentType: ComponentType): Component
 |类型|说明|
 |:----|:----|
 |[Component](#class-component)|返回组件缓冲区。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -1066,6 +1155,15 @@ public prop supportedFormats: Array<String>
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980098 | Failed to malloc memory. |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### func packToData(ImageSource, PackingOption)
 
 ```cangjie
@@ -1097,10 +1195,12 @@ public func packToData(source: ImageSource, options: PackingOption): Array<UInt8
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format. The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980115 | If the parameter is invalid. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
   | 62980172 | Failed to encode icc. |
@@ -1164,8 +1264,10 @@ public func packToData(source: PixelMap, options: PackingOption): Array<UInt8>
   | :---- | :--- |
   | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
   | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980115 | If the parameter is invalid. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
   | 62980172 | Failed to encode icc. |
@@ -1221,10 +1323,11 @@ public func packToFile(source: ImageSource, fd: Int32, options: PackingOption): 
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format. The image data provided is not in a recognized or supported format, or it may be occorrupted. |
   | 62980115 | Invalid input parameter. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
@@ -1287,6 +1390,7 @@ public func packToFile(source: PixelMap, fd: Int32, options: PackingOption): Uni
   | :---- | :--- |
   | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
   | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
   | 62980115 | Invalid input parameter. |
@@ -1453,6 +1557,14 @@ public prop capacity: Int32
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### prop format
 
 ```cangjie
@@ -1469,6 +1581,14 @@ public prop format: ImageFormat
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### prop size
 
 ```cangjie
@@ -1484,6 +1604,14 @@ public prop size: Size
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 ### func getReceivingSurfaceId()
 
@@ -1502,6 +1630,14 @@ public func getReceivingSurfaceId(): String
 |类型|说明|
 |:----|:----|
 |String|返回surface id。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -1572,6 +1708,14 @@ public func readLatestImage(): Image
 |:----|:----|
 |[Image](#class-image)|返回Image实例|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### func readNextImage()
 
 ```cangjie
@@ -1589,6 +1733,14 @@ public func readNextImage(): Image
 |类型|说明|
 |:----|:----|
 |[Image](#class-image)|返回Image实例|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 ### func on(ReceiveType, Callback0Argument)
 
@@ -1655,6 +1807,15 @@ public prop supportedFormats: Array<String>
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980102 | Failed to malloc memory. |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### func createPixelMap(DecodingOptions)
 
 ```cangjie
@@ -1678,6 +1839,14 @@ public func createPixelMap(options!: DecodingOptions = DecodingOptions()): Pixel
 |类型|说明|
 |:----|:----|
 |[PixelMap](#class-pixelmap)|返回pixelMap实例|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -1741,10 +1910,12 @@ public func createPixelMapList(options!: DecodingOptions = DecodingOptions()): A
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
   | 62980099 | The shared memory data is abnormal. |
   | 62980101 | The image data is abnormal. |
+  | 62980102 | Failed to malloc memory. |
   | 62980103 | The image data is not supported. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
   | 62980109 | Failed to crop the image. |
   | 62980111 | The image source data is incomplete. |
@@ -1811,7 +1982,9 @@ public func getDelayTimeList(): Array<Int32>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
+  | 62980102 | Failed to malloc memory. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980110 | The image source data is incorrect. |
   | 62980111 | The image source data is incomplete. |
   | 62980115 | Invalid image parameter. |
@@ -1866,10 +2039,11 @@ public func getFrameCount(): UInt32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980111 | The image source data is incomplete. |
   | 62980112 | The image format does not match. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format. The image data provided is not in a recognized or supported format, or it may be occorrupted. |
   | 62980115 | Invalid image parameter. |
   | 62980116 | Failed to decode the image. |
   | 62980118 | Failed to create the image plugin. |
@@ -1921,6 +2095,14 @@ public func getImageInfo(index!: UInt32 = 0): ImageInfo
 |类型|说明|
 |:----|:----|
 |[ImageInfo](#class-imageinfo)|返回获取到的图片信息。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -1975,12 +2157,13 @@ public func getImageProperty(key: PropertyKey, options!: ImagePropertyOptions = 
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
   | 62980103 | The image data is not supported. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980110 | The image source data is incorrect. |
   | 62980111 | The image source data is incomplete. |
   | 62980112 | The image format does not match. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format. The image data provided is not in a recognized or supported format, or it may be occorrupted. |
   | 62980115 | Invalid image parameter. |
   | 62980118 | Failed to create the image plugin. |
   | 62980122 | Failed to decode the image header. |
@@ -2034,6 +2217,8 @@ public func modifyImageProperty(key: PropertyKey, value: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+  | 62980115 | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
   | 62980123 | The image does not support EXIF decoding. |
   | 62980133 | The EXIF data is out of range. |
   | 62980135 | The EXIF value is invalid. |
@@ -2072,6 +2257,14 @@ public func release(): Unit
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2114,6 +2307,14 @@ public func updateData(buf: Array<UInt8>, isFinished: Bool, offset: UInt32, leng
 |isFinished|Bool|是|-|是否更新完。|
 |offset|UInt32|是|-|偏移量。|
 |length|UInt32|是|-|数组长。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2444,6 +2645,14 @@ public prop isEditable: Bool
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 ### prop isStrideAlignment
 
 ```cangjie
@@ -2459,6 +2668,14 @@ public prop isStrideAlignment: Bool
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 ### func applyColorSpace(ColorSpaceManager)
 
@@ -2480,7 +2697,7 @@ public func applyColorSpace(targetColorSpace: ColorSpaceManager): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，[Image错误码](./cj-errorcode-image.md)。
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
@@ -2531,6 +2748,14 @@ public func createAlphaPixelmap(): PixelMap
 |:----|:----|
 |[PixelMap](#class-pixelmap)|返回pixelmap实例。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -2571,6 +2796,14 @@ public func crop(region: Region): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |region|[Region](#class-region)|是|-|裁剪的尺寸。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2615,6 +2848,14 @@ public func flip(horizontal: Bool, vertical: Bool): Unit
 |horizontal|Bool|是|-|水平翻转。|
 |vertical|Bool|是|-|垂直翻转。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -2657,6 +2898,14 @@ public func getBytesNumberPerRow(): UInt32
 |类型|说明|
 |:----|:----|
 |UInt32|图像像素的行字节数。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2707,6 +2956,7 @@ public func getColorSpace(): ColorSpaceManager
   | :---- | :--- |
   | 62980101 | If the image data abnormal. |
   | 62980103 | If the image data unsupport. |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980115 | If the image parameter invalid. |
 
 **示例：**
@@ -2751,6 +3001,14 @@ public func getDensity(): Int32
 |:----|:----|
 |Int32|图像像素的密度。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -2791,6 +3049,14 @@ public func getImageInfo(): ImageInfo
 |类型|说明|
 |:----|:----|
 |[ImageInfo](#class-imageinfo)|用于获取图像像素信息，失败时返回错误信息。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2833,6 +3099,14 @@ public func getPixelBytesNumber(): UInt32
 |:----|:----|
 |UInt32|图像像素的总字节数。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -2873,6 +3147,14 @@ public func opacity(rate: Float32): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |rate|Float32|是|-|透明比率的值。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2915,6 +3197,14 @@ public func readPixels(area: PositionArea): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |area|[PositionArea](#class-positionarea)|是|-|区域大小，根据区域读取。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -2963,6 +3253,14 @@ public func readPixelsToBuffer(dst: Array<UInt8>): Unit
 |:---|:---|:---|:---|:---|
 |dst|Array\<UInt8>|是|-|缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#func-getpixelbytesnumber)接口获取。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -2998,6 +3296,14 @@ public func release(): Unit
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -3039,6 +3345,14 @@ public func rotate(angle: Float32): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |angle|Float32|是|-|图片旋转的角度。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -3083,6 +3397,14 @@ public func scale(x: Float32, y: Float32): Unit
 |x|Float32|是|-|宽度的缩放倍数。|
 |y|Float32|是|-|高度的缩放倍数。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -3126,10 +3448,11 @@ public func setColorSpace(colorSpace: ColorSpaceManager): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[Image错误码](./cj-errorcode-image.md)。
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
   | 62980111 | The image source data is incomplete. |
   | 62980115 | If the image parameter invalid. |
 
@@ -3177,6 +3500,14 @@ public func translate(x: Float32, y: Float32): Unit
 |x|Float32|是|-|区域横坐标。|
 |y|Float32|是|-|区域纵坐标。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -3220,6 +3551,14 @@ public func writeBufferToPixels(src: Array<UInt8>): Unit
 |:---|:---|:---|:---|:---|
 |src|Array\<UInt8>|是|-|图像像素数据。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
+
 **示例：**
 
 <!-- compile only -->
@@ -3261,6 +3600,14 @@ public func writePixels(area: PositionArea): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |area|[PositionArea](#class-positionarea)|是|-|区域，根据区域写入。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Image错误码](./cj-errorcode-image.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 62980104 | Failed to initialize the internal object. |
 
 **示例：**
 
@@ -5163,14 +5510,6 @@ public func toString(): String
 |类型|说明|
 |:----|:----|
 |String|枚举的说明。|
-
-**异常：**
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The type is not supported yet. |枚举值错误，不支持该枚举值。|请检查传入的枚举值是否正确。|
 
 ## enum ReceiveType
 

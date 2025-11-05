@@ -320,7 +320,9 @@ public func startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, 
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
+  | 2900010 | The numeber of advertising resources reaches the upper limit. |
   | 2900099 | Operation failed. |
+  | 2902054 | The length of the advertising data exceeds the upper limit. |
 
 **示例：**
 
@@ -396,8 +398,8 @@ public func startAdvertising(advertisingParams: AdvertisingParams): UInt32
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
-  | 2900099 | Operation failed. |
   | 2900010 | The numeber of advertising resources reaches the upper limit. |
+  | 2900099 | Operation failed. |
   | 2902054 | The length of the advertising data exceeds the upper limit. |
 
 **示例：**
@@ -536,6 +538,7 @@ public func stopAdvertising(): Unit
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
   | 2900099 | Operation failed. |
+  | 2902055 | Invalid advertising id. |
 
 **示例：**
 
@@ -2102,8 +2105,8 @@ public func getRssiValue(callback: AsyncCallback<Int32>): Unit
   | :---- | :--- |
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
-  | 2900099 | Operation failed. |
   | 2900011 | The operation is busy. The last operation is not completed. |
+  | 2900099 | Operation failed. |
   | 2901003 | The connection is not established. |
 
 **示例：**
@@ -2472,8 +2475,8 @@ public func readCharacteristicValue(
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900011 | The operation is busy. The last operation is not completed. |
-  | 2901000 | Read forbidden. |
   | 2900099 | Operation failed. |
+  | 2901000 | Read forbidden. |
   | 2901003 | The connection is not established. |
   | 2901004 | The connection is congested. |
   | 2901005 | The connection is not encrypted. |
@@ -2862,8 +2865,8 @@ public func writeCharacteristicValue(characteristic: BLECharacteristic, writeTyp
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900011 | The operation is busy. The last operation is not completed. |
-  | 2901001 | Write forbidden. |
   | 2900099 | Operation failed. |
+  | 2901001 | Write forbidden. |
   | 2901003 | The connection is not established. |
   | 2901004 | The connection is congested. |
   | 2901005 | The connection is not encrypted. |
@@ -2939,7 +2942,6 @@ public func writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallb
 |callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Unit>|是|-|回调函数。|
 
 **异常：**
-**异常：**
 
 - BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[蓝牙服务子系统错误码](./cj-errorcode-bluetooth_manager.md)。
 
@@ -2948,9 +2950,9 @@ public func writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallb
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
-  | 2900011 | The operation is busy. The last operation is not completed. |
-  | 2901001 | Write forbidden. |
+  | 2900011 | The operation is busy. The last operation is not complete. |
   | 2900099 | Operation failed. |
+  | 2901001 | Write forbidden. |
   | 2901003 | The connection is not established. |
   | 2901004 | The connection is congested. |
   | 2901005 | The connection is not encrypted. |

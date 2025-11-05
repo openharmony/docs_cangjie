@@ -177,11 +177,11 @@ public func getValue(): UInt32
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[元能力子系统错误码](./cj-errorcode-ability.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The type is not supported. | todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 ### func toString()
 
@@ -379,11 +379,11 @@ public func getValue(): String
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[元能力子系统错误码](./cj-errorcode-ability.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The type is not supported. | todo | todo |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 ### func toString()
 

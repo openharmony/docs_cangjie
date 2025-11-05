@@ -54,18 +54,14 @@ public func create(context: UIAbilityContext, config: Config): Task
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)与[通用错误码说明文档](../cj-errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                                                                                                                          |
-  | :------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-  | 201      | Permission denied.                                                                                                                |
-  | 13400001 | Invalid file or file system error.                                                                                                |
-  | 13400003 | Task service ability error.                                                                                                       |
-  | 21900004 | the application task queue is full.                                                                                               |
-  | 21900005 | Operation with wrong task mode.                                                                                                   |
-- IllegalArgumentException：
-
-  | 错误信息                | 可能原因 | 处理步骤 |
-  | :---------------------- | :------- | :------- |
-  | The context is invalid. | todo     | todo     |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission denied. |
+  | 13400001 | Invalid file or file system error. |
+  | 13400003 | Task service ability error. |
+  | 13499999 | Other error. |
+  | 21900004 | the application task queue is full. |
+  | 21900005 | Operation with wrong task mode. |
 
 **示例：**
 
@@ -124,11 +120,11 @@ public func getTask(context: UIAbilityContext, id: String, token!: ?String = Non
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                                                                                                                          |
-  | :------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-  | 13499999 | Other error.                                                                                                                      |
-  | 13400003 | Task service ability error.                                                                                                       |
-  | 21900006 | Task removed or not found.                                                                                                        |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
+  | 13499999 | Other error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -151,12 +147,6 @@ try {
     Hilog.info(0, "test", "${e.message}")
 }
 ```
-
-- IllegalArgumentException：
-
-  | 错误信息                | 可能原因 | 处理步骤 |
-  | :---------------------- | :------- | :------- |
-  | The context is invalid. | todo     | todo     |
 
 ## func remove(String)
 
@@ -181,10 +171,10 @@ public func remove(id: String): Unit
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                                                                                        |
-  | :------- | :---------------------------------------------------------------------------------------------- |
-  | 13400003 | Task service ability error.                                                                     |
-  | 21900006 | Task removed or not found.                                                                      |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -237,9 +227,9 @@ public func search(filter!: Filter = Filter()): Array<String>
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                                                                                        |
-  | :------- | :---------------------------------------------------------------------------------------------- |
-  | 13400003 | Task service ability error.                                                                     |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
 
 **示例：**
 
@@ -295,10 +285,10 @@ public func show(id: String): TaskInfo
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                                                                                        |
-  | :------- | :---------------------------------------------------------------------------------------------- |
-  | 13400003 | Task service ability error.                                                                     |
-  | 21900006 | Task removed or not found.                                                                      |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -352,10 +342,10 @@ public func touch(id: String, token: String): TaskInfo
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                                                                                        |
-  | :------- | :---------------------------------------------------------------------------------------------- |
-  | 13400003 | Task service ability error.                                                                     |
-  | 21900006 | Task removed or not found.                                                                      |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
+  | 21900006 | Task removed or not found. |
 
 **示例：**
 
@@ -1666,14 +1656,6 @@ public func on(event: EventCallbackType, callback: Callback1Argument<HttpRespons
 | event    | [EventCallbackType](#enum-eventcallbacktype)                                                           | 是   | -      | 订阅的事件类型。<br>- 取值为'response'，表示任务响应。     |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<HttpResponse> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务响应头的数据结构。 |
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)
-
-  | 错误码ID | 错误信息                       |
-  | :------- | :----------------------------- |
-  | 401      | Parameter verification failed. |
-
 ### func on(EventCallbackType, Callback1Argument\<Progress>)
 
 ```cangjie
@@ -1689,18 +1671,10 @@ public func on(event: EventCallbackType, callback: Callback1Argument<Progress>):
 **参数：**
 
 
-| 参数名   | 类型                                                                                                                  | 必填 | 默认值 | 说明                                                                                                                                                                                                                                         |
-| :------- | :-------------------------------------------------------------------------------------------------------------------- | :--- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 参数名   | 类型 | 必填 | 默认值 | 说明 |
+| :------- | :---  | :--- | :----- | :----  |
 | event    | [EventCallbackType](#enum-eventcallbacktype)                                                                          | 是   | -      | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度。<br>- 取值为'completed'，表示任务完成。<br>- 取值为'failed'，表示任务失败。<br>- 取值为'pause'，表示任务暂停。<br>- 取值为'resume'，表示任务恢复。<br>- 取值为'remove'，表示任务删除。 |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[Progress](#class-progress)> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务信息的数据结构。                                                                                                                                                                                     |
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
-
-  | 错误码ID | 错误信息                       |
-  | :------- | :----------------------------- |
-  | 401      | Parameter verification failed. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[Progress](#class-progress)> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务信息的数据结构。 |
 
 ### func pause()
 
@@ -1718,10 +1692,9 @@ public func pause(): Unit
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                         |
-  | :------- | :------------------------------- |
-  | 13400003 | Task service ability error.      |
-  | 21900005 | Operation with wrong task mode.  |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
   | 21900007 | Operation with wrong task state. |
 
 ### func resume()
@@ -1742,11 +1715,10 @@ public func resume(): Unit
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                         |
-  | :------- | :------------------------------- |
-  | 201      | Permission denied.               |
-  | 13400003 | Task service ability error.      |
-  | 21900005 | Operation with wrong task mode.  |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission denied. |
+  | 13400003 | Task service ability error. |
   | 21900007 | Operation with wrong task state. |
 
 ### func start()
@@ -1765,12 +1737,12 @@ public func start(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
+- BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)与[通用错误码说明文档](../cj-errorcode-universal.md)。
 
-  | 错误码ID | 错误信息                         |
-  | :------- | :------------------------------- |
-  | 201      | Permission denied.               |
-  | 13400003 | Task service ability error.      |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 201 | Permission denied. |
+  | 13400003 | Task service ability error. |
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
@@ -1816,9 +1788,9 @@ public func stop(): Unit
 
 - BusinessException：对应错误码如下表，详见[上传下载错误码](./cj-errorcode-request.md)。
 
-  | 错误码ID | 错误信息                         |
-  | :------- | :------------------------------- |
-  | 13400003 | Task service ability error.      |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 13400003 | Task service ability error. |
   | 21900007 | Operation with wrong task state. |
 
 **示例：**

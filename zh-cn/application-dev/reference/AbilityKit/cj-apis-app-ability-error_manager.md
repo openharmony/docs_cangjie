@@ -63,6 +63,7 @@ public static func off(eventType: ErrorManagerEvent, observerId: Int32): Unit
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 16000003 | The specified ID does not exist. |
+  | 16000050 | Internal error. |
 
 **示例：**
 
@@ -114,6 +115,7 @@ public static func on(eventType: ErrorManagerEvent, observer: ErrorObserver): In
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 16000003 | The specified ID does not exist. |
+  | 16000050 | Internal error. |
 
 **示例：**
 

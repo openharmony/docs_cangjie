@@ -195,6 +195,15 @@ public mut prop fdSrc: AVFileDescriptor
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Media错误码](./cj-errorcode-multimedia-media.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 5400101 | No memory. |
+  | 5400102 | Operation not allowed. |
+
 ### func fetchFrameByTime(Int64, AVImageQueryOptions, PixelMapParams)
 
 ```cangjie
@@ -227,7 +236,9 @@ public func fetchFrameByTime(timeUs: Int64, options: AVImageQueryOptions, param:
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 5400101 | No memory. Create AVImageGenerator failed. |
+  | 5400101 | No memory. |
+  | 5400102 | Operation not allowed. |
+  | 5400106 | Unsupported format. |
 
 **示例：**
 
@@ -275,7 +286,7 @@ public func release(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 5400102 | Operation not allowed. |
+  | 5400101 | No memory. |
 
 **示例：**
 

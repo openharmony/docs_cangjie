@@ -182,14 +182,6 @@ public static func create(name: String, size: Int32): Ashmem
 |:----|:----|
 |[Ashmem](#class-ashmem)|返回创建的Ashmem对象。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 |Parameter error. Possible causes:<br>1.The number of parameters is incorrect;<br>2.The passed parameter is not an Ahmem object;<br>3.3.The ashmem instance for obtaining packaging is empty.|
-
 **示例：**
 
 <!-- compile -->
@@ -231,14 +223,6 @@ public static func create(ashmem: Ashmem): Ashmem
 |类型|说明|
 |:----|:----|
 |[Ashmem](#class-ashmem)|返回创建的Ashmem对象。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 |Parameter error. Possible causes:<br>1.The number of parameters is incorrect;<br>2.The passed parameter is not an Ahmem object;<br>3.3.The ashmem instance for obtaining packaging is empty.|
 
 **示例：**
 
@@ -343,9 +327,9 @@ public func mapReadWriteAshmem(): Unit
 
 - BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
-  |错误码ID|错误信息|
-  |:---|:---|
-  |1900001|Failed to call mmap.|
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 1900001 | Failed to call mmap. |
 
 **示例：**
 
@@ -380,11 +364,11 @@ public func mapReadonlyAshmem(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900001 | Failed to call mmap.|
+  | 1900001 | Failed to call mmap. |
 
 **示例：**
 
@@ -425,11 +409,11 @@ public func mapTypedAshmem(mapType: UInt32): Unit
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
-  |错误码ID|错误信息|
-  |:---|:---|
-  |1900001|Failed to call mmap.|
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 1900001 | Failed to call mmap. |
 
 **示例：**
 
@@ -477,11 +461,11 @@ public func readDataFromAshmem(size: Int64, offset: Int64): Array<Byte>
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900004 | Failed to read data from the shared memory.|
+  | 1900004 | Failed to read data from the shared memory. |
 
 **示例：**
 
@@ -522,11 +506,11 @@ public func setProtectionType(protectionType: UInt32): Unit
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900002 | Failed to call ioctl.|
+  | 1900002 | Failed to call ioctl. |
 
 **示例：**
 
@@ -600,11 +584,11 @@ public func writeDataToAshmem(buf: Array<Byte>, size: Int64, offset: Int64): Uni
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900003 | Failed to write data to the shared memory.|
+  | 1900003 | Failed to write data to the shared memory. |
 
 **示例：**
 
@@ -655,14 +639,6 @@ public static func closeFileDescriptor(fd: Int32): Unit
 |:---|:---|:---|:---|:---|
 |fd|Int32|是|-|要关闭的文件描述符。|
 
-**异常：**
-
-- BusinessException：对应错误码的详细介绍请参见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.The number of parameters is incorrect; 2.The parameter type does not match.|
-
 **示例：**
 
 <!-- compile -->
@@ -701,14 +677,6 @@ public static func create(): MessageSequence
 |类型|说明|
 |:----|:----|
 |[MessageSequence](#class-messagesequence)|返回创建的MessageSequence对象。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 |Parameter error. Possible causes:<br>1.The number of parameters is incorrect;<br>2.The passed parameter is not an Ahmem object;<br>3.3.The ashmem instance for obtaining packaging is empty.|
 
 **示例：**
 
@@ -754,11 +722,11 @@ public static func dupFileDescriptor(fd: Int32): Int32
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900013 | Failed to call dup.|
+  | 1900013 | Failed to call dup. |
 
 **示例：**
 
@@ -1097,11 +1065,11 @@ public func readAshmem(): Ashmem
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900004 | Failed to read data from the shared memory.|
+  | 1900004 | Failed to read data from the shared memory. |
 
 **示例：**
 
@@ -1142,11 +1110,11 @@ public func readBoolean(): Bool
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1187,11 +1155,11 @@ public func readBooleanArray(): Array<Bool>
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
-  |错误码ID|错误信息|
-  |:---|:---|
-  |1900010|Failed to read data from the message sequence.|
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1232,11 +1200,11 @@ public func readByte(): Int8
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1277,11 +1245,11 @@ public func readByteArray(): Array<Int8>
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
-  |错误码ID|错误信息|
-  |:---|:---|
-  |1900010|Failed to read data from the message sequence.|
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1322,11 +1290,11 @@ public func readChar(): UInt8
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1371,7 +1339,7 @@ public func readCharArray(): Array<UInt8>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1416,7 +1384,7 @@ public func readDouble(): Float64
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1461,7 +1429,7 @@ public func readDoubleArray(): Array<Float64>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1497,11 +1465,11 @@ public func readException(): Unit
 
 **异常：**
 
-- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1546,7 +1514,7 @@ public func readFileDescriptor(): Int32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1591,7 +1559,7 @@ public func readFloat(): Float32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1636,7 +1604,7 @@ public func readFloatArray(): Array<Float32>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1681,7 +1649,7 @@ public func readInt(): Int32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1722,11 +1690,11 @@ public func readIntArray(): Array<Int32>
 
 **异常：**
 
-- BusinessException：对应错误码的详细介绍请参见[RPC错误码](./cj-errorcode-rpc.md)。
+- BusinessException：对应错误码如下表，详见[RPC错误码](./cj-errorcode-rpc.md)。
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1771,7 +1739,7 @@ public func readInterfaceToken(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1816,7 +1784,7 @@ public func readLong(): Int64
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1861,7 +1829,7 @@ public func readLongArray(): Array<Int64>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1906,8 +1874,8 @@ public func readParcelable<T>(dataIn: T): Unit where T <: Parcelable
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
-  | 1900012 | Failed to call the JS callback function.|
+  | 1900010 | Failed to read data from the message sequence. |
+  | 1900012 | Failed to call the JS callback function. |
 
 **示例：**
 
@@ -1978,8 +1946,8 @@ public func readParcelableArray<T>(parcelableArray: Array<T>): Unit where T <: P
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
-  | 1900012 | Failed to call the JS callback function.|
+  | 1900010 | Failed to read data from the message sequence. |
+  | 1900012 | Failed to call the JS callback function. |
 
 **示例：**
 
@@ -2058,7 +2026,7 @@ public func readRawDataBuffer(size: Int64): Array<Byte>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2103,7 +2071,7 @@ public func readShort(): Int16
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2148,7 +2116,7 @@ public func readShortArray(): Array<Int16>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2193,7 +2161,7 @@ public func readString(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2238,7 +2206,7 @@ public func readStringArray(): Array<String>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2283,7 +2251,7 @@ public func readUInt16Array(): Array<UInt16>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2328,7 +2296,7 @@ public func readUInt32Array(): Array<UInt32>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2373,7 +2341,7 @@ public func readUInt64Array(): Array<UInt64>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2418,7 +2386,7 @@ public func readUInt8Array(): Array<UInt8>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2494,7 +2462,7 @@ public func rewindRead(pos: UInt32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence.|
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2539,7 +2507,7 @@ public func rewindWrite(pos: UInt32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2584,8 +2552,8 @@ public func setCapacity(size: UInt32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900011 | Memory allocation failed.|
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
+  | 1900011 | Memory allocation failed. |
 
 **示例：**
 
@@ -2630,7 +2598,7 @@ public func setSize(size: UInt32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2675,7 +2643,7 @@ public func writeAshmem(ashmem: Ashmem): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900003 | Failed to write data to the shared memory.|
+  | 1900003 | Failed to write data to the shared memory. |
 
 **示例：**
 
@@ -2721,7 +2689,7 @@ public func writeBoolean(val: Bool): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2766,7 +2734,7 @@ public func writeBooleanArray(booleanArray: Array<Bool>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2811,7 +2779,7 @@ public func writeByte(val: Int8): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2856,7 +2824,7 @@ public func writeByteArray(byteArray: Array<Int8>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2901,7 +2869,7 @@ public func writeChar(val: UInt8): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2946,7 +2914,7 @@ public func writeCharArray(charArray: Array<UInt8>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2991,7 +2959,7 @@ public func writeDouble(val: Float64): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3036,7 +3004,7 @@ public func writeDoubleArray(doubleArray: Array<Float64>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3081,7 +3049,7 @@ public func writeFileDescriptor(fd: Int32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3129,7 +3097,7 @@ public func writeFloat(val: Float32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3174,7 +3142,7 @@ public func writeFloatArray(floatArray: Array<Float32>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3219,7 +3187,7 @@ public func writeInt(val: Int32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3264,7 +3232,7 @@ public func writeIntArray(intArray: Array<Int32>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3309,7 +3277,7 @@ public func writeInterfaceToken(token: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3354,7 +3322,7 @@ public func writeLong(val: Int64): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3399,7 +3367,7 @@ public func writeLongArray(longArray: Array<Int64>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3438,7 +3406,7 @@ public func writeNoException(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3483,7 +3451,7 @@ public func writeParcelable<T>(val: T): Unit where T <: Parcelable
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3554,7 +3522,7 @@ public func writeParcelableArray<T>(parcelableArray: Array<T>): Unit where T <: 
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3628,7 +3596,7 @@ public func writeRawDataBuffer(rawData: Array<Byte>, size: Int64): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3673,7 +3641,7 @@ public func writeShort(val: Int16): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3718,7 +3686,7 @@ public func writeShortArray(shortArray: Array<Int16>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3763,7 +3731,7 @@ public func writeString(val: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3808,7 +3776,7 @@ public func writeStringArray(stringArray: Array<String>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3853,7 +3821,7 @@ public func writeUInt16Array(buf: Array<UInt16>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3898,7 +3866,7 @@ public func writeUInt32Array(buf: Array<UInt32>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3943,7 +3911,7 @@ public func writeUInt64Array(buf: Array<UInt64>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3988,7 +3956,7 @@ public func writeUInt8Array(buf: Array<UInt8>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence.|
+  | 1900009 | Failed to write data to the message sequence. |
 
 **示例：**
 
