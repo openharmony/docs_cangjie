@@ -95,14 +95,6 @@ public func getItemAtIndex(index: Int32): HistoryItem
 |:----|:----|
 |[HistoryItem](#class-historyitem)|历史记录项。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[Webview错误码](./cj-errorcode-webview.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Invalid input parameter. |
-
 **示例：**
 
 <!-- compile -->
@@ -392,8 +384,8 @@ public static func configCookie(url: String, value: String, incognito!: Bool = f
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100002 | Invalid url. |
-  | 17100005 | Invalid cookie value. |
+  | 17100002 | URL error. No valid cookie found for the specified URL. |
+  | 17100005 | The provided cookie value is invalid. It must follow the format specified |
 
 **示例：**
 
@@ -490,7 +482,7 @@ public static func fetchCookie(url: String, incognito!: Bool = false): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100002 | Invalid url. |
+  | 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -759,14 +751,6 @@ public static func setWebDebuggingAccess(webDebuggingAccess: Bool): Unit
 |:---|:---|:---|:---|:---|
 |webDebuggingAccess|Bool|是|-|设置是否启用网页调试功能。|
 
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 401 | Invalid input parameter. |
-
 **示例：**
 
 <!-- compile -->
@@ -829,7 +813,7 @@ public func accessBackward(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -899,7 +883,7 @@ public func accessStep(step: Int32): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -966,7 +950,7 @@ public func backOrForward(step: Int32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1023,7 +1007,7 @@ public func backward(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1080,7 +1064,7 @@ public func clearHistory(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1143,7 +1127,7 @@ public func enableSafeBrowsing(enable: Bool): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1200,7 +1184,7 @@ public func forward(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1263,7 +1247,7 @@ public func getBackForwardEntries(): BackForwardList
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1328,7 +1312,7 @@ public func getCustomUserAgent(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1393,7 +1377,7 @@ public func getHitTest(): WebHitTestType
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1461,7 +1445,7 @@ public func getHitTestValue(): HitTestValue
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1530,7 +1514,7 @@ public func getOriginalUrl(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1594,7 +1578,7 @@ public func getPageHeight(): Int32
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1649,7 +1633,7 @@ public func getSecurityLevel(): SecurityLevel
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1718,7 +1702,7 @@ public func getTitle(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1782,7 +1766,7 @@ public func getUrl(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1845,7 +1829,7 @@ public func getUserAgent(): String
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1909,7 +1893,7 @@ public func isIncognitoMode(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1974,7 +1958,7 @@ public func isSafeBrowsingEnabled(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2037,7 +2021,7 @@ public func pageDown(bottom: Bool): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component.relation pageDown(bottom: boolean): void |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. relation pageDown(bottom: boolean): void |
 
 **示例：**
 
@@ -2100,7 +2084,7 @@ public func pageUp(top: Bool): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component.relation pageUp(top: boolean): void |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. relation pageUp(top: boolean): void |
 
 **示例：**
 
@@ -2157,7 +2141,7 @@ public func refresh(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2216,6 +2200,15 @@ public func registerJavaScriptProxy(funcs: Array<(String) -> String>, name: Stri
 |funcs|Array\<(String)->String>|是|-|参与注册的应用侧仓颉方法数组。注册的仓颉方法的入参和返回值都是String类型。|
 |name|String|是|-|注册仓颉方法数组的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧仓颉方法。|
 |methodList|Array\<String>|是|-|参与注册的应用侧仓颉方法名，此数组的长度需要与funcs数组一致。注册完成后，后续funcs的判等会通过methodList来判断。因此后续如果想注册新的、或更改funcs，需要传入新的methodList。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[Webview错误码](./cj-errorcode-webview.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+  | 17100015 | New failed, out of memeory. |
 
 **示例：**
 
@@ -2369,8 +2362,8 @@ public func loadUrl<T>(url: T, headers!: Array<WebHeader> = Array<WebHeader>()):
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
-  | 17100002 | Invalid url. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+  | 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
   | 17100003 | Invalid resource path or file type. |
 
 **示例：**
@@ -2434,7 +2427,7 @@ public func setCustomUserAgent(userAgent: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2490,7 +2483,7 @@ public func stop(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2553,7 +2546,7 @@ public func storeWebArchive(baseName: String, autoName: Bool, callback: AsyncCal
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
   | 17100003 | Invalid resource path or file type. |
 
 **示例：**
@@ -2626,7 +2619,7 @@ public func zoom(factor: Float32): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
   | 17100004 | Function not enable. |
 
 **示例：**
@@ -2682,7 +2675,7 @@ public func zoomIn(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
   | 17100004 | Function not enable. |
 
 **示例：**
@@ -2738,7 +2731,7 @@ public func zoomOut(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
   | 17100004 | Function not enable. |
 
 **示例：**
@@ -2801,7 +2794,7 @@ public func runJavaScript(script: String, callback: AsyncCallback<String>): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2894,7 +2887,7 @@ public func scrollBy(deltaX: Float32, deltaY: Float32, duration!: ?Int32 = None)
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2981,7 +2974,7 @@ public func scrollTo(x: Float32, y: Float32, duration!: ?Int32 = None): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3066,7 +3059,7 @@ public func removeCache(clearRom: Bool): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 

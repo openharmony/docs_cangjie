@@ -43,11 +43,11 @@ public func getValue<T>(context: UIAbilityContext, name: T, defValue: String): S
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[设置数据项错误码](./cj-errorcode-settings.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context is invalid. | context初始化失败 | 重启应用 |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 14800000 | Parameter error. |
 
 **示例：**
 
@@ -69,7 +69,7 @@ try {
 }
 ```
 
-## func getValue\<T, P>(UIAbilityContext, T, String, P) where T \<: ToStringP \<: ToString
+## func getValue\<T, P>(UIAbilityContext, T, String, P) where T \<: ToString, P \<: ToString
 
 ```cangjie
 public func getValue<T, P>(context: UIAbilityContext, name: T, defValue: String, domainName: P): String where T <: ToString,
@@ -99,11 +99,11 @@ public func getValue<T, P>(context: UIAbilityContext, name: T, defValue: String,
 
 **异常：**
 
-- IllegalArgumentException：
+- BusinessException：对应错误码如下表，详见[设置数据项错误码](./cj-errorcode-settings.md)。
 
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context is invalid. | context初始化失败 | 重启应用 |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 14800000 | Parameter error. |
 
 **示例：**
 

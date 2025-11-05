@@ -371,6 +371,14 @@ public init(watcherName: String)
 |:---|:---|:---|:---|:---|
 |watcherName|String|是|-|已通过addWatcher添加的事件观察者名称。若未通过addWatcher添加，则默认无数据。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[应用事件打点错误码](./cj-errorcode-hiappevent.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 11105001 | Parameter error. |
+
 ### func setSize(Int32)
 
 ```cangjie
@@ -834,11 +842,11 @@ public static func addWatcher(watcher: Watcher): Option<AppEventPackageHolder>
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 11102001 | Invalid watcher name. |
-  | 11102002 | Invalid filtering event domain. |
-  | 11102003 | Invalid row value. |
-  | 11102004 | Invalid size value. |
-  | 11102005 | Invalid timeout value. |
+  | 11102001 | Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+  | 11102002 | Invalid filtering event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+  | 11102003 | Invalid row value. Possible caused by the row value is less than zero. |
+  | 11102004 | Invalid size value. Possible caused by the size value is less than zero. |
+  | 11102005 | Invalid timeout value. Possible caused by the timeout value is less than zero. |
 
 **示例：**
 
@@ -978,6 +986,14 @@ public static func configure(config: ConfigOption): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |config|[ConfigOption](#class-configoption)|是|-|应用事件打点配置项对象。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[应用事件打点错误码](./cj-errorcode-hiappevent.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 11103001 | Invalid max storage quota value. Possible caused by incorrectly formatted. |
 
 **示例：**
 
@@ -1146,7 +1162,7 @@ public static func removeWatcher(watcher: Watcher): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 11102001 | Invalid watcher name. |
+  | 11102001 | Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 
 **示例：**
 
@@ -1225,6 +1241,20 @@ public static func write(info: AppEventInfo): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |info|[AppEventInfo](#class-appeventinfo)|是|-|应用事件对象。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[应用事件打点错误码](./cj-errorcode-hiappevent.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 11100001 | Function is disabled. Possible caused by the param disable in ConfigOption is true. |
+  | 11101001 | Invalid event domain.Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+  | 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+  | 11101003 | Invalid number of event parameters. Possible caused by the number of parameters is over 32. |
+  | 11101004 | Invalid string length of the event parameter. |
+  | 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+  | 11101006 | Invalid array length of a event parameter. |
 
 ## class Param
 
@@ -1821,6 +1851,14 @@ public func getValue(): UInt32
 |:----|:----|
 |UInt32|获取枚举的值。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[应用事件打点错误码](./cj-errorcode-hiappevent.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 11105001 | Parameter error. |
+
 ## enum EventValueType
 
 ```cangjie
@@ -1986,3 +2024,11 @@ public func toString(): String
 |类型|说明|
 |:----|:----|
 |String|数据的字符串表示。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[应用事件打点错误码](./cj-errorcode-hiappevent.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 11105001 | Parameter error. |

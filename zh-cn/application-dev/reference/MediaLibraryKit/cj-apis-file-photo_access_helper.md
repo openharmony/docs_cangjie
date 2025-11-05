@@ -424,7 +424,7 @@ public func getFirstObject(): Album
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 13900020 | Invalid argument |
-  | 14000011 | System inner fail |\
+  | 14000011 | System inner fail |
 
 **示例：**
 
@@ -1016,6 +1016,14 @@ public init(album: Album)
 |:---|:---|:---|:---|:---|
 |album|[Album](./cj-apis-file-photo_access_helper.md#class-album)|是|-|需要变更的相册。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[文件管理错误码](../CoreFileKit/cj-errorcode-filemanagement.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 14000011 | System inner fail |
+
 **示例：**
 
 <!-- compile -->
@@ -1541,6 +1549,7 @@ public static func deleteAssets(context: UIAbilityContext, assets: Array<PhotoAs
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission denied |
+  | 14000002 | The uri format is incorrect or does not exist. |
   | 14000011 | System inner fail |
 
 **示例：**
@@ -1649,7 +1658,6 @@ public func addResource(resourceType: ResourceType, fileUri: String): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 13900002 | The file corresponding to the URI is not in the app sandbox. |
   | 14000011 | System inner fail |
   | 14000016 | Operation Not Support |
 

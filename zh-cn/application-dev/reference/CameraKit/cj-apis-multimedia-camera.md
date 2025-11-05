@@ -2711,7 +2711,6 @@ public func open(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 7400102 | Operation not allowed. |
   | 7400107 | Can not use camera cause of conflict. |
   | 7400108 | Camera disabled cause of security reason. |
   | 7400201 | Camera service fatal error. |
@@ -3135,7 +3134,7 @@ public func createSession(mode: SceneMode): Session
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 7400101 | Parameter error. Possible causes:1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;3. Parameter verification failed. |
+  | 7400101 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 7400201 | Camera service fatal error. |
 
 **示例：**
@@ -4614,6 +4613,7 @@ public func capture(): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
+  | 7400101 | Parameter missing or parameter type incorrect. |
   | 7400104 | Session not running. |
   | 7400201 | Camera service fatal error. |
 
@@ -7588,7 +7588,6 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  
   | 7400201 | Camera service fatal error. |
 
 **示例：**

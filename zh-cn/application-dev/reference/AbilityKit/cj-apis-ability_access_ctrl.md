@@ -108,7 +108,7 @@ public func checkAccessToken(tokenID: UInt32, permissionName: Permissions): Gran
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 12100001 | The parameter is invalid. The tokenID is 0,or the string size of permissionName is larger than 256. |
+  | 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
 
 **示例：**
 
@@ -159,13 +159,7 @@ public func requestPermissionsFromUser(context: UIAbilityContext, permissionList
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 12100001 | The parameter is invalid. The context is invalid when it does notbelong to the application itself. |
-
-- IllegalArgumentException：
-
-  | 错误信息 | 可能原因 | 处理步骤 |
-  | :---- | :--- | :--- |
-  | The context is invalid. | todo | todo |
+  | 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
 

@@ -76,11 +76,11 @@ public func inValues(field: String, value: Array<VBValueType>): DataSharePredica
 
 **异常：**
 
-- BusinessException：对应错误码如下表。
+- BusinessException：对应错误码如下表，详见[错误码](./cj-errorcode.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 1 | Instance invalid. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 **示例：**
 
@@ -121,11 +121,11 @@ public func and(): DataSharePredicates
 
 **异常：**
 
-- BusinessException：对应错误码如下表。
+- BusinessException：对应错误码如下表，详见[错误码](./cj-errorcode.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 1 | Instance invalid. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 **示例：**
 
@@ -175,11 +175,11 @@ public func equalTo(field: String, value: VBValueType): DataSharePredicates
 
 **异常：**
 
-- BusinessException：对应错误码如下表。
+- BusinessException：对应错误码如下表，详见[错误码](./cj-errorcode.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 1 | Instance invalid. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 **示例：**
 
@@ -227,11 +227,11 @@ public func limit(total: Int32, offset: Int32): DataSharePredicates
 
 **异常：**
 
-- BusinessException：对应错误码如下表。
+- BusinessException：对应错误码如下表，详见[错误码](./cj-errorcode.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 1 | Instance invalid. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 **示例：**
 
@@ -278,11 +278,11 @@ public func orderByAsc(field: String): DataSharePredicates
 
 **异常：**
 
-- BusinessException：对应错误码如下表。
+- BusinessException：对应错误码如下表，详见[错误码](./cj-errorcode.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 1 | Instance invalid. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 **示例：**
 
@@ -329,11 +329,11 @@ public func orderByDesc(field: String): DataSharePredicates
 
 **异常：**
 
-- BusinessException：对应错误码如下表。
+- BusinessException：对应错误码如下表，详见[错误码](./cj-errorcode.md)。
 
-| 错误码ID | 错误信息 |
-| :---- | :--- |
-| 1 | Instance invalid. |
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 16000050 | Internal error. |
 
 **示例：**
 

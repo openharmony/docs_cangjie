@@ -1557,7 +1557,6 @@ public static func getProfileByAbility(moduleName: String, abilityName: String, 
   | 17700002 | The specified moduleName is not existed. |
   | 17700003 | The specified abilityName is not existed. |
   | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-  | 17700026 | The specified bundle is disabled. |
   | 17700029 | The specified ability is disabled. |
 
 **示例：**
@@ -1626,7 +1625,6 @@ public static func getProfileByExtensionAbility(moduleName: String, extensionAbi
   | 17700002 | The specified moduleName is not existed. |
   | 17700003 | The specified extensionAbilityName not existed. |
   | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-  | 17700026 | The specified bundle is disabled. |
 
 **示例：**
 
@@ -3188,6 +3186,14 @@ public func getValue(): String
 |类型|说明|
 |:----|:----|
 |String|枚举的值。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[包管理子系统通用错误码](./cj-errorcode-bundle.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 17700101 | Bundle manager service exception. |
 
 ## enum BundleType
 
