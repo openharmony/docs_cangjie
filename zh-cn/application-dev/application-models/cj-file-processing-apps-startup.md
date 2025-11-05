@@ -20,7 +20,7 @@
 | parameters | String      | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参见表2。                                                                                                                                                                                       |
 | flags | UInt32 | 否 | 表示处理方式，文件打开场景请参见表3。                                                                                                                                                                                       |
 
-**表2** [parameters](../reference/AbilityKit/cj-apis-app-ability.md#enum-params)相关参数说明
+**表2** [parameters](../reference/AbilityKit/cj-apis-app-ability.md#class-params)相关参数说明
 
 | 参数名称                              | 类型    | 说明                                                                                                                                                                |
 |---------------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -28,12 +28,12 @@
 | ohos.ability.params.showDefaultPicker | Bool | 表示是否强制展示文件打开方式的选择弹框，缺省为false。<br/>- false：表示由系统策略或默认应用设置决定直接拉起文件打开应用还是展示弹框。<br/>- true：表示始终展示弹框。                                                                            |
 | showCaller                            | Bool | 表示调用方本身是否作为目标方应用之一参与匹配，缺省为false。<br/>- false：不参与匹配。<br/>- true：参与匹配。                                                                            |
 
-**表3** [flags](../reference/AbilityKit/cj-apis-app-ability.md#enum-flags)相关参数说明
+**表3** [flags](../reference/AbilityKit/cj-apis-app-ability.md#class-flags)相关参数说明
 
 | 参数名称                       | 值         | 说明                       |
 |--------------------------------|------------|----------------------------|
-| FlagAuthReadUriPermission  | 0x00000001 | 指对URI执行读取操作的授权。 |
-| FlagAuthWriteUriPermission | 0x00000002 | 指对URI执行写入操作的授权。 |
+| Flags.FLAG_AUTH_READ_URI_PERMISSION  | 0x00000001 | 指对URI执行读取操作的授权。 |
+| Flags.FLAG_AUTH_WRITE_URI_PERMISSION | 0x00000002 | 指对URI执行写入操作的授权。 |
 
 ## 接入步骤
 
@@ -95,7 +95,7 @@
                 abilityName: "",
                 moduleName: "",
                 // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
-                flags: Flags.FlagAuthWriteUriPermission.getValue() | Flags.FlagAuthReadUriPermission.getValue(),
+                flags: Flags.FLAG_AUTH_WRITE_URI_PERMISSION | Flags.FLAG_AUTH_READ_URI_PERMISSION,
                 uri: uri,
                 action: "ohos.want.action.viewData", // 表示查看数据的操作，文件打开场景固定为此值
                 entities: [],
@@ -131,7 +131,7 @@
                 abilityName: "",
                 moduleName: "",
                 // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
-                flags: Flags.FlagAuthWriteUriPermission.getValue() | Flags.FlagAuthReadUriPermission.getValue(),
+                flags: Flags.FLAG_AUTH_WRITE_URI_PERMISSION | Flags.FLAG_AUTH_READ_URI_PERMISSION,
                 uri: uri,
                 action: "ohos.want.action.viewData", // 表示查看数据的操作，文件打开场景固定为此值
                 entities: [],
