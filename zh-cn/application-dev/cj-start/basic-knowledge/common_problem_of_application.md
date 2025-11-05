@@ -12,7 +12,7 @@
     import ohos.base.*
     import kit.AbilityKit.*
 
-    let bundleFlags =  GET_BUNDLE_INFO_WITH_APPLICATION.getValue() | GET_BUNDLE_INFO_WITH_SIGNATURE.getValue()
+    let bundleFlags =  BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let fingerprint = res.signatureInfo.fingerprint
@@ -56,7 +56,7 @@ appIdentifier是<!--RP1-->[Profile签名文件](https://gitcode.com/openharmony/
     import ohos.base.*
     import kit.AbilityKit.*
 
-    let bundleFlags =  GET_BUNDLE_INFO_WITH_APPLICATION.getValue() | GET_BUNDLE_INFO_WITH_SIGNATURE.getValue()
+    let bundleFlags =  BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let appIdentifier = res.signatureInfo.appIdentifier
