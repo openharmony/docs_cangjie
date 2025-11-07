@@ -1,6 +1,6 @@
 # Text Display (Text/Span)
 
-Text is a text component typically used to display user views, such as the textual content of articles. It supports binding custom text selection menus, allowing users to choose different functions as needed. Additionally, it can extend custom menus to enrich available options and further enhance the user experience. Span is used to render inline text. For specific usage, please refer to the documentation for the [Text](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md) and [Span](../../../en/application-dev/reference/arkui-cj/cj-text-input-span.md) components.
+Text is a text component typically used to display user views, such as presenting article content. It supports binding custom text selection menus, allowing users to choose different functions as needed. Additionally, it can extend custom menus to enrich available options, further enhancing the user experience. Span is used to render inline text. For specific usage, refer to the documentation of the [Text](../reference/arkui-cj/cj-text-input-text.md) and [Span](../reference/arkui-cj/cj-text-input-span.md) components.
 
 ## Creating Text
 
@@ -16,7 +16,7 @@ Text can be created in the following two ways:
 
 - Referencing AppResource resources.
 
-  Resource references can create AppResource-type objects via `@r`. The file location is `/resources/base/element/string.json`, with the following content:
+  Resource references can create AppResource objects via `@r`. The file location is `/resources/base/element/string.json`, with the following content:
 
   ```cangjie
   {
@@ -42,7 +42,7 @@ Text can be created in the following two ways:
 
 ## Adding Child Components
 
-[Span](../../../en/application-dev/reference/arkui-cj/cj-text-input-span.md) can only be displayed as a child component of [Text](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md) and [RichEditor](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md) components to render text content. Multiple Spans can be added within a single Text to display a segment of information, such as product manuals or agreements.
+[Span](../reference/arkui-cj/cj-text-input-span.md) can only be displayed as a child component of [Text](../reference/arkui-cj/cj-text-input-text.md) and [RichEditor](../reference/arkui-cj/cj-text-input-richeditor.md) components to present text content. Multiple Spans can be added within a single Text to display information such as product manuals or agreements.
 
 - Creating Span.
 
@@ -75,7 +75,7 @@ Text can be created in the following two ways:
 
 - Setting text decoration line and color.
 
-  Use [decoration](../../../en/application-dev/reference/arkui-cj/cj-text-input-span.md#func-decorationtextdecorationtype-resourcecolor) to set the text decoration line and color.
+  Use [decoration](../reference/arkui-cj/cj-text-input-span.md#func-decorationtextdecorationtype-resourcecolor) to set the text decoration line and color.
 
      <!-- run -->
 
@@ -96,7 +96,7 @@ Text can be created in the following two ways:
                       Span('I am Span2').fontColor(Color.Blue).fontSize(16)
                         .fontStyle(FontStyle.Italic)
                         .decoration(decorationType: TextDecorationType.Underline, color: Color.Black)
-                      Span(',I am Span3').fontSize(16). fontColor(Color.Gray)
+                      Span(', I am Span3').fontSize(16). fontColor(Color.Gray)
                         .decoration(decorationType: TextDecorationType.Overline, color: Color.Green)
                   }
                   .borderWidth(1)
@@ -111,7 +111,7 @@ Text can be created in the following two ways:
 
   ![Textdisply3](figures/Textdisply3.png)
 
-- Use [textCase](../../../en/application-dev/reference/arkui-cj/cj-text-input-span.md#func-textcasetextcase) to set text to always remain uppercase or lowercase.
+- Use [textCase](../reference/arkui-cj/cj-text-input-span.md#func-textcasetextcase) to maintain text in uppercase or lowercase.
 
      <!-- run -->
 
@@ -144,7 +144,7 @@ Text can be created in the following two ways:
 
 - Adding events.
 
-  Since the Span component has no size information, it only supports adding click events [onClick](../../../en/application-dev/reference/arkui-cj/cj-universal-event-click.md#func-onclickclickevent---unit).
+  Since the Span component lacks dimension information, it only supports adding click events via [onClick](../reference/arkui-cj/cj-universal-event-click.md#func-onclickclickevent---unit).
 
      <!-- run -->
 
@@ -164,9 +164,9 @@ Text can be created in the following two ways:
                     Text() {
                         Span('I am Upper-span').fontSize(12)
                             .textCase(TextCase.UpperCase)
-                            .onClick{evt =>
-                                Hilog.info(1，'1', 'test', 'I am Span——onClick')
-                            }
+                            .onClick({evt =>
+                                Hilog.info(1, '1', 'test', 'Span——onClick')
+                            })
                     }
               }
           }.height(100.percent).width(100.percent)
@@ -176,7 +176,7 @@ Text can be created in the following two ways:
 
 ## Customizing Text Styles
 
-- Use the [textAlign](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#textaligntextalign) property to set text alignment.
+- Use [textAlign](../reference/arkui-cj/cj-text-input-text.md#textaligntextalign) to set text alignment.
 
      <!-- run -->
 
@@ -216,7 +216,7 @@ Text can be created in the following two ways:
 
   ![Textdisply5](figures/Textdisply5.png)
 
-- Use the [textOverflow](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#textoverflowtextoverflow) property to handle text overflow. `textOverflow` must be used with [maxLines](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#maxlinesint32) (by default, text wraps automatically).
+- Use [textOverflow](../reference/arkui-cj/cj-text-input-text.md#textoverflowtextoverflow) to handle text overflow. `textOverflow` must be used with [maxLines](../reference/arkui-cj/cj-text-input-text.md#maxlinesint32) (text wraps automatically by default).
 
      <!-- run -->
 
@@ -238,7 +238,7 @@ Text can be created in the following two ways:
                       .fontSize(12)
                       .border(width: 1)
                       .padding(10)
-                  Text('I am an extra-long text, with ellipses displayed for any excess. I am an extra long text, with ellipses displayed for any excess.')
+                  Text('I am an overflow text, with ellipses displayed for excess content. I am an extra long text, with ellipses displayed for any excess.')
                       .width(250)
                       .textOverflow(TextOverflow.Ellipsis)
                       .maxLines(1)
@@ -255,7 +255,7 @@ Text can be created in the following two ways:
 
   ![Textdisply6](figures/Textdisply6.gif)
 
-- Use the [lineHeight](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#func-lineheightlength) property to set text line height.
+- Use [lineHeight](../reference/arkui-cj/cj-text-input-text.md#func-lineheightlength) to set text line height.
 
      <!-- run -->
 
@@ -285,7 +285,7 @@ Text can be created in the following two ways:
 
   ![Textdisply7](figures/Textdisply7.png)
 
-- Use the [decoration](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#decorationtextdecorationtype-color-textdecorationstyle) property to set text decoration line style and color.
+- Use [decoration](../reference/arkui-cj/cj-text-input-text.md#decorationtextdecorationtype-color-textdecorationstyle) to set text decoration line style and color.
 
      <!-- run -->
 
@@ -328,7 +328,7 @@ Text can be created in the following two ways:
 
   ![Textdisply8](figures/Textdisply8.png)
 
-- Use the [baselineOffset](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#baselineoffsetlength) property to set the baseline offset of text.
+- Use [baselineOffset](../reference/arkui-cj/cj-text-input-text.md#baselineoffsetlength) to set the baseline offset of text.
 
      <!-- run -->
 
@@ -374,9 +374,9 @@ Text can be created in the following two ways:
 
   ![Textdisply9](figures/Textdisply9.png)
 
-- Use [minFontSize](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#minfontsizelength) and [maxFontSize](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#maxfontsizelength) for adaptive font sizing.
+- Use [minFontSize](../reference/arkui-cj/cj-text-input-text.md#minfontsizelength) and [maxFontSize](../reference/arkui-cj/cj-text-input-text.md#maxfontsizelength) for adaptive font sizing.
 
-  `minFontSize` sets the minimum display font size for text, while `maxFontSize` sets the maximum display font size. Both properties must be set simultaneously to take effect and must be used with the [maxLines](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#maxlinesint32) property or layout size constraints. Setting either property alone will not produce any effect.
+  `minFontSize` sets the minimum display font size, while `maxFontSize` sets the maximum display font size. Both properties must be set together to take effect and must be used with the [maxLines](../reference/arkui-cj/cj-text-input-text.md#maxlinesint32) property or layout size constraints. Setting either property alone will not produce any effect.
 
      <!-- run -->
 
@@ -391,7 +391,7 @@ Text can be created in the following two ways:
       func build() {
           Scroll {
               Column {
-                  Text('My maximum font size is 30, minimum font size is 5, width is 250, maxLines is 1')
+                  Text('My max font size is 30, min font size is 5, width is 250, maxLines is 1')
                       .width(250)
                       .maxLines(1)
                       .maxFontSize(30)
@@ -399,7 +399,7 @@ Text can be created in the following two ways:
                       .border(width: 1)
                       .padding(10)
                       .margin(5)
-                  Text('My maximum font size is 30, minimum font size is 5, width is 250, maxLines is 2')
+                  Text('My max font size is 30, min font size is 5, width is 250, maxLines is 2')
                       .width(250)
                       .maxLines(2)
                       .maxFontSize(30)
@@ -407,7 +407,7 @@ Text can be created in the following two ways:
                       .border(width: 1)
                       .padding(10)
                       .margin(5)
-                  Text('My maximum font size is 30, minimum font size is 15, width is 250, height is 50')
+                  Text('My max font size is 30, min font size is 15, width is 250, height is 50')
                       .width(250)
                       .height(50)
                       .maxFontSize(30)
@@ -415,7 +415,7 @@ Text can be created in the following two ways:
                       .border(width: 1)
                       .padding(10)
                       .margin(5)
-                  Text('My maximum font size is 30, minimum font size is 15, width is 250, height is 100')
+                  Text('My max font size is 30, min font size is 15, width is 250, height is 100')
                       .width(250)
                       .height(100)
                       .maxFontSize(30)
@@ -433,7 +433,7 @@ Text can be created in the following two ways:
 
   ![Textdisply11](figures/Textdisply11.png)
 
-- Use the [textCase](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#textcasetextcase) property to set text case.
+- Use [textCase](../reference/arkui-cj/cj-text-input-text.md#textcasetextcase) to set text case.
 
      <!-- run -->
 
@@ -454,13 +454,13 @@ Text can be created in the following two ways:
                       .border(width: 1)
                       .padding(10)
                       .margin(5)
-                    // Text displayed in all lowercase
+                    // Display text in lowercase
                   Text('This is the text content with textCase set to LowerCase.')
                       .textCase(TextCase.LowerCase)
                       .border(width: 1)
                       .padding(10)
                       .margin(5)
-                    // Text displayed in all uppercase
+                    // Display text in uppercase
                   Text('This is the text content with textCase set to UpperCase.')
                       .textCase(TextCase.UpperCase)
                       .border(width: 1)
@@ -476,9 +476,9 @@ Text can be created in the following two ways:
 
   ![Textdisply12](figures/Textdisply12.png)## Adding Events
 
-The Text component can add universal events, and can bind events such as [onClick](../../../en/application-dev/reference/arkui-cj/cj-universal-event-click.md#func-onclickclickevent---unit) and [onTouch](../../../en/application-dev/reference/arkui-cj/cj-universal-event-touch.md#func-ontouchtouchevent-unit) to respond to operations.
+The Text component can handle common events. You can bind events like [onClick](../reference/arkui-cj/cj-universal-event-click.md#func-onclickclickevent---unit) and [onTouch](../reference/arkui-cj/cj-universal-event-touch.md#func-ontouchtouchevent-unit) to respond to user interactions.
 
- <!-- run -->
+<!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -493,9 +493,9 @@ class EntryView {
         Scroll {
             Column {
                 Text('Click Me')
-                    .onClick{ evt =>
-                        Hilog.info(1，'1', 'test', 'This is the click response event of Text')
-                    }
+                    .onClick({ evt =>
+                        Hilog.info(1, '1', 'test', 'Text click event triggered')
+                    })
             }
             .height(100.percent)
             .width(100.percent)
@@ -504,11 +504,11 @@ class EntryView {
 }
 ```
 
-## Scenario Example
+## Usage Example
 
-This example demonstrates the effect of a trending search list using the maxLines, textOverflow, textAlign, and constraintSize properties.
+This example demonstrates a trending topics list effect using the maxLines, textOverflow, textAlign, and constraintSize properties.
 
- <!-- run -->
+<!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -522,13 +522,13 @@ class EntryView {
         Column() {
             Row() {
                 Text("1").fontSize(14).fontColor(Color.Red).margin(left: 10, right: 10)
-                Text("I am trending search term 1")
+                Text("Trending Topic 1")
                     .fontSize(12)
                     .fontColor(Color.Blue)
                     .maxLines(1)
                     .textOverflow(TextOverflow.Ellipsis)
                     .fontWeight(W300)
-                Text("Hot")
+                Text("HOT")
                     .margin(left: 6)
                     .textAlign(TextAlign.Center)
                     .fontSize(10)
@@ -542,14 +542,14 @@ class EntryView {
 
             Row() {
                 Text("2").fontSize(14).fontColor(Color.Red).margin(left: 10, right: 10)
-                Text("I am trending search term 2 I am trending search term 2 I am trending search term 2 I am trending search term 2 I am trending search term 2")
+                Text("Trending Topic 2 Trending Topic 2 Trending Topic 2 Trending Topic 2 Trending Topic 2")
                     .fontSize(12)
                     .fontColor(Color.Blue)
                     .fontWeight(W300)
                     .constraintSize(maxWidth: 200)
                     .maxLines(1)
                     .textOverflow(TextOverflow.Ellipsis)
-                Text("Trending")
+                Text("POP")
                     .margin(left: 6)
                     .textAlign(TextAlign.Center)
                     .fontSize(10)
@@ -563,14 +563,14 @@ class EntryView {
 
             Row() {
                 Text("3").fontSize(14).fontColor(Color(0xFFA500)).margin(left: 10, right: 10)
-                Text("I am trending search term 3")
+                Text("Trending Topic 3")
                     .fontSize(12)
                     .fontColor(Color.Blue)
                     .fontWeight(W300)
                     .maxLines(1)
                     .constraintSize(maxWidth: 200)
                     .textOverflow(TextOverflow.Ellipsis)
-                Text("Trending")
+                Text("POP")
                     .margin(left: 6)
                     .textAlign(TextAlign.Center)
                     .fontSize(10)
@@ -584,7 +584,7 @@ class EntryView {
 
             Row() {
                 Text("4").fontSize(14).fontColor(Color.Gray).margin(left: 10, right: 10)
-                Text("I am trending search term 4 I am trending search term 4 I am trending search term 4 I am trending search term 4 I am trending search term 4")
+                Text("Trending Topic 4 Trending Topic 4 Trending Topic 4 Trending Topic 4 Trending Topic 4")
                     .fontSize(12)
                     .fontColor(Color.Blue)
                     .fontWeight(W300)

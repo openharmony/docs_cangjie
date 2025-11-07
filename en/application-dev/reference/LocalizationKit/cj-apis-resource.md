@@ -15,7 +15,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the above sample project and configuration template, see [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class AppResource
 
@@ -40,7 +40,7 @@ public class AppResource <: Length & ResourceColor & ResourceStr {
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parent Types:**
 
@@ -60,7 +60,7 @@ public var bundleName: String
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var id
 
@@ -74,7 +74,7 @@ public var id: UInt32
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var moduleName
 
@@ -88,7 +88,7 @@ public var moduleName: String
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var params
 
@@ -102,7 +102,7 @@ public var params:?Array<Any>
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var resType
 
@@ -110,13 +110,13 @@ public var params:?Array<Any>
 public var resType:?Int32
 ```
 
-**Function:** The type of resource (optional).
+**Function:** The type of the resource (optional).
 
 **Type:** ?Int32
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 ### init(String, String, UInt32, ?Array\<Any>, ?Int32)
 
@@ -134,7 +134,7 @@ public init(
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -144,4 +144,4 @@ public init(
 | moduleName | String | Yes | - | The module name of the application. |
 | id | UInt32 | Yes | - | Resource ID. |
 | params | ?Array\<Any> | No | None | **Named parameter.** Additional resource parameters. |
-| resType | ?Int32 | No | None | **Named parameter.** The type of resource. |
+| resType | ?Int32 | No | None | **Named parameter.** The type of the resource. |

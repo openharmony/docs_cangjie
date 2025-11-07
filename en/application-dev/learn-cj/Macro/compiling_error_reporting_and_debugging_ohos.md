@@ -2,11 +2,11 @@
 
 ## Macro Compilation and Usage
 
-The current compiler enforces that macro definitions and macro calls cannot reside in the same package. The macro package must be compiled first, followed by the package that calls the macros. In the package that calls macros, macro definitions are not allowed. Since macros need to be exported from one package to another, the compiler requires macro definitions to be marked with the `public` modifier.
+The current compiler enforces that macro definitions and macro calls cannot reside in the same package. The macro package must be compiled first, followed by the package that calls the macros. Within the macro-calling package, macro definitions are not permitted. Since macros need to be exported from one package to another, the compiler requires macro definitions to be marked with the `public` modifier.
 
 Below is a simple example.
 
-Source directory structure:
+Source code directory structure:
 
 ```text
 // Directory layout.
@@ -33,7 +33,6 @@ public macro Inner(input: Tokens) {
 public macro Outer(input: Tokens) {
     return input
 }
-
 ```
 
 Macro calls are placed in the _src_ subdirectory:
@@ -53,10 +52,10 @@ main() {
 }
 ```
 
-When the compiled output of the macro definition file and the file using macros are not in the same directory, the `--import-path` compilation option must be used to specify the path to the compiled output of the macro definition file. Below are the compilation commands for Linux (specific compilation options may evolve with cjc updates; refer to the latest cjc documentation):
+When the compiled output of the macro definition file and the file using macros are in different directories, the `--import-path` compilation option must be used to specify the path to the compiled output of the macro definition file. Below are the compilation commands for Linux (specific compilation options may evolve with cjc updates; refer to the latest cjc documentation):
 
 ```shell
-# First compile the macro definition file to generate the default dynamic library in the specified directory (the path can be specified, but not the library name)
+# First compile the macro definition file to generate the default dynamic library in the specified directory (path can be specified, but not the library name)
 cjc macros/m.cj --compile-macro --output-dir ./target
 
 # Compile the file using macros, perform macro substitution, and generate the executable
@@ -66,25 +65,25 @@ cjc src/demo.cj -o demo --import-path ./target --output-dir ./target
 ./target/demo
 ```
 
-On Linux, this will generate the package management file `macro_define.cjo` and the actual dynamic library file.
+On Linux, this will generate `macro_define.cjo` for package management and the actual dynamic library file.
 
 For Windows:
 
 ```shell
 # Current directory: src
 
-# First compile the macro definition file to generate the default dynamic library in the specified directory (the path can be specified, but not the library name)
+# First compile the macro definition file to generate the default dynamic library in the specified directory (path can be specified, but not the library name)
 cjc macros/m.cj --compile-macro --output-dir ./target
 
 # Compile the file using macros, perform macro substitution, and generate the executable
 cjc src/demo.cj -o demo.exe --import-path ./target --output-dir ./target
 ```
 
-If the macro package depends on other dynamic libraries, ensure that these dependencies can be found during runtime (macro expansion depends on the execution of methods within the macro package). On Linux, this can be achieved by setting the `LD_LIBRARY_PATH` environment variable (on Windows, set `PATH`) to include the paths of the dependent libraries.
+If the macro package depends on other dynamic libraries, ensure these dependencies are available during runtime (macro expansion depends on executing methods within the macro package). On Linux, set the `LD_LIBRARY_PATH` environment variable (on Windows, set `PATH`) to include the paths of these dependencies.
 
 ## Parallel Macro Expansion
 
-The `--parallel-macro-expansion` option can be added when compiling the macro-calling file to enable parallel macro expansion. The compiler will automatically analyze dependencies between macro calls. Macro calls without dependencies can be executed in parallel, such as the two `@Inner` calls in the example above, which can be expanded in parallel to reduce overall compilation time.
+The `--parallel-macro-expansion` option can be added when compiling the macro-calling file to enable parallel macro expansion. The compiler automatically analyzes dependencies between macro calls, allowing independent macro calls to execute in parallel. For example, the two `@Inner` calls in the above example can be expanded in parallel, reducing overall compilation time.
 
 > **Note:**
 >
@@ -116,17 +115,17 @@ public macro B(input: Tokens) {
 }
 ```
 
-In the above code, if `@Inner` macro calls appear in multiple places and parallel macro expansion is enabled, accessing the global variable `Counts` may lead to conflicts, resulting in incorrect final results.
+In the above code, if `@Inner` macro calls appear in multiple places and parallel macro expansion is enabled, accessing the global variable `Counts` may lead to conflicts, resulting in incorrect final counts.
 
-It is recommended to avoid using global variables in macro functions. If they must be used, either disable parallel macro expansion or protect the global variables with thread locks.
+Avoid using global variables in macro functions. If necessary, either disable parallel macro expansion or protect global variables with thread locks.
 
 ## diagReport Error Reporting Mechanism
 
-The Cangjie standard library `std.ast` package provides the `diagReport` interface for custom error reporting. This allows macro authors to report custom errors when parsing input Tokens for invalid content.
+The Cangjie standard library `std.ast` package provides a custom error reporting interface `diagReport`. This allows macro authors to report custom errors when parsing input Tokens with incorrect content.
 
 The custom error reporting interface provides the same output format as native compiler errors, allowing users to report both warning and error messages.
 
-The prototype of `diagReport` is as follows:
+The function prototype of `diagReport` is:
 
 ```cangjie
 public func diagReport(level: DiagReportLevel, tokens: Tokens, message: String, hint: String): Unit
@@ -178,7 +177,7 @@ main(): Int64 {
 }
 ```
 
-During compilation of the macro-calling file, the following error messages will appear:
+When compiling the macro-calling file, the following error messages will appear:
 
 ```text
 error: This expression is not allowed to contain identifier
@@ -200,7 +199,7 @@ error: This expression is not allowed to contain identifier
 
 ## Using --debug-macro to Output Macro Expansion Results
 
-When using macros for compile-time code generation, errors can be particularly challenging to debug. This is a common issue for developers, as the source code written by developers is transformed by macros into different code fragments. The compiler's error messages are based on the final generated code, which does not appear in the developer's original source.
+When using macros for compile-time code generation, errors can be particularly challenging to debug. This is because the source code written by developers is transformed by macros into different code segments. Compiler error messages are based on the final generated code, which may not correspond directly to the original source.
 
 To address this, Cangjie macros provide a debug mode. In this mode, developers can view the complete macro-expanded code in debug files generated by the compiler, as shown below.
 
@@ -255,10 +254,9 @@ main(): Int64 {
     println("${d.getCnt()}")
     return 0
 }
-
 ```
 
-When compiling the file that uses macros, add the `--debug-macro` option to enable debug mode.
+When compiling the file that uses macros, add the `--debug-macro` option to enable debug mode:
 
 ```shell
 cjc --debug-macro demo.cj --import-path ./target
@@ -266,13 +264,13 @@ cjc --debug-macro demo.cj --import-path ./target
 
 > **Note:**
 >
-> If using the Cangjie `CJPM` package manager for compilation, the `--debug-macro` option can be added to the `cjpm.toml` configuration file to enable macro debug mode.
+> If using the Cangjie `CJPM` package manager for compilation, add the `--debug-macro` compilation option in the configuration file `cjpm.toml` to enable macro debug mode.
 >
 > ```text
 > compile-option = "--debug-macro"
 > ```
 
-In debug mode, a temporary file `demo.cj.macrocall` will be generated, showing the macro-expanded code:
+In debug mode, a temporary file `demo.cj.macrocall` will be generated, containing the macro-expanded code:
 
 ```cangjie
 // demo.cj.macrocall
@@ -288,7 +286,7 @@ In debug mode, a temporary file `demo.cj.macrocall` will be generated, showing t
 /* ===== End of the Emit ===== */
 ```
 
-If the expanded code contains semantic errors, the compiler's error messages will trace back to the specific line and column numbers in the expanded code. Notes on Cangjie macro debug mode:
+If the macro-expanded code contains semantic errors, the compiler's error messages will trace back to specific line numbers in the expanded code. Notes about Cangjie macro debug mode:
 
 - Debug mode reorders source code line numbers and is not suitable for certain special line-breaking scenarios. For example:
 
@@ -305,7 +303,7 @@ If the expanded code contains semantic errors, the compiler's error messages wil
 
   Cases where line breaks alter semantics should not use debug mode.
 
-- Debugging macro calls within macro definitions is not supported and will result in compilation errors.
+- Debugging macro calls within macro definitions is not supported and will cause compilation errors.
 
   <!-- compile.error -->
 

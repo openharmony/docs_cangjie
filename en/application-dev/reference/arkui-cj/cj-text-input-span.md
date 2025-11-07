@@ -1,6 +1,6 @@
 # Span
 
-A subcomponent of the [Text](./cj-text-input-text.md#text) component, used to display inline text.
+A child component of the [Text](cj-text-input-text.md) component, used to display inline text.
 
 ## Import Module
 
@@ -8,29 +8,29 @@ A subcomponent of the [Text](./cj-text-input-text.md#text) component, used to di
 import kit.ArkUI.*
 ```
 
-## Subcomponents
+## Child Components
 
 None
 
 ## Creating the Component
 
-### init(ResourceStr)
+### init(?ResourceStr)
 
 ```cangjie
-public init(value: ResourceStr)
+public init(value: ?ResourceStr)
 ```
 
 **Function:** Creates a Span component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | ResourceStr | Yes | - | Text content. |
+| value | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | Text content.<br>Initial value: "". |
 
 ## Common Attributes/Common Events
 
@@ -38,158 +38,196 @@ Common Attributes: All supported.
 
 Common Events: All supported.
 
+> **Note:**
+>
+> Since the Span component has no size information, the target property of the ClickEvent object returned by click events is invalid.
+
 ## Component Attributes
 
-### func decoration(TextDecorationType, ResourceColor)
+### func decoration(?TextDecorationType, ?ResourceColor)
 
 ```cangjie
-public func decoration(decorationType!: TextDecorationType, color!: ResourceColor = Color.Black): This
+public func decoration(decorationType!: ?TextDecorationType, color!: ?ResourceColor = None): This
 ```
 
 **Function:** Sets the text decoration line style and its color.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| decorationType | [TextDecorationType](./cj-common-types.md#enum-textdecorationtype) | Yes | - | **Named parameter.** Text decoration line style.<br>Initial value: TextDecorationType.None. |
-| color | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | No | Color.Black | **Named parameter.** Text decoration line color. |
+| decorationType | ?[TextDecorationType](./cj-common-types.md#enum-textdecorationtype) | Yes | - | **Named parameter.** Text decoration line style.<br>Initial value: TextDecorationType.None. |
+| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** Text decoration line color.<br>Initial value: Color.Black. |
 
-### func fontColor(ResourceColor)
+### func fontColor(?ResourceColor)
 
 ```cangjie
-public func fontColor(value: ResourceColor): This
+public func fontColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the font color.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Font color. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Font color. |
 
-### func fontFamily(ResourceStr)
+### func fontFamily(?ResourceStr)
 
 ```cangjie
-public func fontFamily(value: ResourceStr): This
+public func fontFamily(value: ?ResourceStr): This
 ```
 
 **Function:** Sets the font list.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | Font list. |
+| value | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | Font list.<br>Initial value: "HarmonyOS Sans". |
 
-### func fontSize(Length)
+### func fontSize(?Length)
 
 ```cangjie
-public func fontSize(value: Length): This
+public func fontSize(value: ?Length): This
 ```
 
 **Function:** Sets the font size.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Font size. When Length is of type Int64 or Float64, the fp unit is used. Percentage strings are not supported. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Font size. |
 
-### func fontStyle(FontStyle)
+### func fontStyle(?FontStyle)
 
 ```cangjie
-public func fontStyle(value: FontStyle): This
+public func fontStyle(value: ?FontStyle): This
 ```
 
 **Function:** Sets the font style.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [FontStyle](./cj-common-types.md#enum-fontstyle) | Yes | - | Font style.<br>Initial value: FontStyle.Normal. |
+| value | ?[FontStyle](./cj-common-types.md#enum-fontstyle) | Yes | - | Font style.<br>Initial value: FontStyle.Normal. |
 
-### func fontWeight(FontWeight)
+### func fontWeight(?FontWeight)
 
 ```cangjie
-public func fontWeight(value: FontWeight): This
+public func fontWeight(value: ?FontWeight): This
 ```
 
 **Function:** Sets the font weight of the text. Setting too large a value may result in truncation in different fonts.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [FontWeight](./cj-common-types.md#enum-fontweight) | Yes | - | Font weight of the text. Setting too large a value may result in truncation in different fonts.<br>Initial value: FontWeight.Normal. |
+| value | ?[FontWeight](./cj-common-types.md#enum-fontweight) | Yes | - | Font weight of the text. Setting too large a value may result in truncation in different fonts.<br>Initial value: FontWeight.Normal. |
 
-### func letterSpacing(Length)
+### func letterSpacing(?Length)
 
 ```cangjie
-public func letterSpacing(value: Length): This
+public func letterSpacing(value: ?Length): This
 ```
 
-**Function:** Sets the character spacing of the text.
+**Function:** Sets the text character spacing.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Character spacing of the text. Unit: fp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Character spacing.<br>Initial value: 0.0.px. |
 
-### func textCase(TextCase)
+### func textCase(?TextCase)
 
 ```cangjie
-public func textCase(value: TextCase): This
+public func textCase(value: ?TextCase): This
 ```
 
 **Function:** Sets the text case.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [TextCase](./cj-common-types.md#enum-textcase) | Yes | - | Text case.<br>Initial value: TextCase.Normal. |
+| value | ?[TextCase](./cj-common-types.md#enum-textcase) | Yes | - | Text case.<br>Initial value: TextCase.Normal. |
+
+## Component Events
+
+### func onClick(?(ClickEvent) -> Unit)
+
+```cangjie
+public func onClick(event: ?(ClickEvent) -> Unit): This
+```
+
+**Function:** Click event callback function.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| event | ?([ClickEvent](./cj-common-types.md#class-clickevent)) -> Unit | Yes | - | Click event callback function, triggered on click.<br>Initial value: { _ => }. |
+
+## Basic Type Definitions
+
+### class BaseSpan
+
+```cangjie
+public abstract class BaseSpan {}
+```
+
+**Function:** Base class for Span components.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 ## Example Code
 
 ### Example 1
 
-Example usage of the decoration, textCase, and letterSpacing attribute interfaces.
+Example usage of decoration, textCase, and letterSpacing attribute interfaces.
 
 <!--run-->
 
@@ -217,25 +255,25 @@ class EntryView {
                 //Inline text has no decoration
                 .decoration(decorationType: TextDecorationType.None, color: Color.Red)
             }
-            //Text decoration line addition
+            //Add text underline
             Text("Text Decoration")
             .fontSize(9)
             .fontColor(0xCCCCCC)
             Text() {
                 Span("I am Underline-span")
-                //Inline text is decorated with a red underline
+                //Inline text decorated with red underline
                 .decoration(decorationType: TextDecorationType.Underline, color: Color.Red)
                 .fontSize(12)
             }
             Text() {
                 Span("I am LineThrough-span")
-                //Inline text is decorated with a red line through the middle
+                //Inline text decorated with red strikethrough
                 .decoration(decorationType: TextDecorationType.LineThrough, color: Color.Red)
                 .fontSize(12)
             }
             Text() {
                 Span("I am Overline-span")
-                //Inline text is decorated with a red overline
+                //Inline text decorated with red overline
                 .decoration(decorationType: TextDecorationType.Overline, color: Color.Red)
                 .fontSize(12)
             }
@@ -243,14 +281,14 @@ class EntryView {
             Text("Text Case").fontSize(9).fontColor(0xCCCCCC)
             Text() {
                 Span("I am Lower-span")
-                //Set text case to all lowercase
+                //Set text case to lowercase
                 .textCase(TextCase.LowerCase)
                 .fontSize(12)
                 .decoration(decorationType: TextDecorationType.None, color: Color.Red)
             }
             Text() {
                 Span("I am Upper-span")
-                //Set text case to all uppercase
+                //Set text case to uppercase
                 .textCase(TextCase.UpperCase)
                 .fontSize(12)
                 .decoration(decorationType: TextDecorationType.None, color: Color.Red)

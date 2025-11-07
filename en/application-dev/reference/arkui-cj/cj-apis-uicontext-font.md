@@ -1,6 +1,10 @@
-# ohos.font (Custom Font)
+# Font
 
-This module provides the capability to register custom fonts.
+Registration information for custom fonts.
+
+> **Note:**
+>
+> The following APIs require first obtaining a Font instance using the [getFont()](./cj-apis-uicontext-uicontext.md#func-getfont) method from [UIContext](./cj-apis-uicontext-uicontext.md#class-uicontext), then calling corresponding methods through this instance.
 
 ## Import Module
 
@@ -14,11 +18,11 @@ import kit.ArkUI.*
 public class Font {}
 ```
 
-**Description:** This class provides global methods for registering and retrieving custom fonts.
+**Functionality:** Font class, providing font registration, system font list retrieval, and font information retrieval by name.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### func getFontByName(String)
 
@@ -26,23 +30,30 @@ public class Font {}
 public func getFontByName(fontName: String): ?FontInfo
 ```
 
-**Description:** Retrieves detailed information about a system font based on the specified font name.
+**Functionality:** Retrieves detailed font information by font name.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type   | Required | Default | Description          |
-|:----------|:-------|:---------|:--------|:---------------------|
-| fontName  | String | Yes      | -       | The name of the system font. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| fontName | String | Yes | - | Font name. |
 
 **Return Value:**
 
-| Type                  | Description               |
-|:----------------------|:--------------------------|
-| ?[FontInfo](#class-fontinfo) | Detailed font information. |
+| Type | Description |
+|:----|:----|
+| ?[FontInfo](#class-fontinfo) | Returns font information, or None if the font is not found. |
+
+**Example:**
+
+```cangjie
+let font = Font()
+let fontInfo = font.getFontByName("Arial")
+```
 
 ### func getSystemFontList()
 
@@ -50,17 +61,24 @@ public func getFontByName(fontName: String): ?FontInfo
 public func getSystemFontList(): Array<String>
 ```
 
-**Description:** Retrieves the list of system fonts.
+**Functionality:** Retrieves the list of fonts supported by the system.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type           | Description            |
-|:---------------|:-----------------------|
-| Array\<String> | List of system fonts.  |
+| Type | Description |
+|:----|:----|
+| Array\<String> | List of system font names. |
+
+**Example:**
+
+```cangjie
+let font = Font()
+let fontList = font.getSystemFontList()
+```
 
 ### func registerFont(ResourceStr, ResourceStr)
 
@@ -68,41 +86,57 @@ public func getSystemFontList(): Array<String>
 public func registerFont(familyName!: ResourceStr, familySrc!: ResourceStr): Unit
 ```
 
-**Description:** Registers a custom font in the font management system.
+**Functionality:** Registers a custom font in font management.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter  | Type                                                                 | Required | Default | Description                                                                 |
-|:-----------|:---------------------------------------------------------------------|:---------|:--------|:----------------------------------------------------------------------------|
-| familyName | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes      | -       | **Named parameter.** The name of the font to be registered.                 |
-| familySrc  | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes      | -       | **Named parameter.** The file path of the font to be registered.           |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| familyName | [ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | **Named parameter.** Font name. |
+| familySrc | [ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | **Named parameter.** Font resource path. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as shown below, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+
+  | Error Code | Description |
+  |:----|:----|
+  | 401 | Invalid input parameter |
+  | 100001 | Internal error. |
+
+**Example:**
+
+```cangjie
+let font = Font()
+font.registerFont(familyName: "MyFont", familySrc: "/font/MyFont.ttf")
+```
 
 ## class FontInfo
 
 ```cangjie
 public class FontInfo {
-    public var path: String
-    public var postScriptName: String
-    public var fullName: String
     public var family: String
-    public var subfamily: String
-    public var weight: UInt32
-    public var width: UInt32
+    public var fullName: String
     public var italic: Bool
     public var monoSpace: Bool
+    public var path: String
+    public var postScriptName: String
+    public var subfamily: String
     public var symbolic: Bool
+    public var weight: UInt32
+    public var width: UInt32
 }
 ```
 
-**Description:** Represents font information.
+**Functionality:** Detailed information about a font.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var family
 
@@ -110,7 +144,7 @@ public class FontInfo {
 public var family: String
 ```
 
-**Description:** Describes the font family of the system font.
+**Functionality:** Font family.
 
 **Type:** String
 
@@ -118,7 +152,7 @@ public var family: String
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var fullName
 
@@ -126,7 +160,7 @@ public var family: String
 public var fullName: String
 ```
 
-**Description:** Represents the full name of the system font.
+**Functionality:** Full font name.
 
 **Type:** String
 
@@ -134,7 +168,7 @@ public var fullName: String
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var italic
 
@@ -142,7 +176,7 @@ public var fullName: String
 public var italic: Bool
 ```
 
-**Description:** Indicates whether the system font is italic.
+**Functionality:** Whether the font is italic.
 
 **Type:** Bool
 
@@ -150,7 +184,7 @@ public var italic: Bool
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var monoSpace
 
@@ -158,7 +192,7 @@ public var italic: Bool
 public var monoSpace: Bool
 ```
 
-**Description:** Indicates whether the system font is monospaced.
+**Functionality:** Whether the font is monospace.
 
 **Type:** Bool
 
@@ -166,7 +200,7 @@ public var monoSpace: Bool
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var path
 
@@ -174,7 +208,7 @@ public var monoSpace: Bool
 public var path: String
 ```
 
-**Description:** Describes the file path of the system font.
+**Functionality:** Font file path.
 
 **Type:** String
 
@@ -182,7 +216,7 @@ public var path: String
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var postScriptName
 
@@ -190,7 +224,7 @@ public var path: String
 public var postScriptName: String
 ```
 
-**Description:** Represents the PostScript name of the system font.
+**Functionality:** PostScript name.
 
 **Type:** String
 
@@ -198,7 +232,7 @@ public var postScriptName: String
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var subfamily
 
@@ -206,7 +240,7 @@ public var postScriptName: String
 public var subfamily: String
 ```
 
-**Description:** Represents the subfamily of the system font.
+**Functionality:** Font subfamily name.
 
 **Type:** String
 
@@ -214,7 +248,7 @@ public var subfamily: String
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var symbolic
 
@@ -222,7 +256,7 @@ public var subfamily: String
 public var symbolic: Bool
 ```
 
-**Description:** Indicates whether the system font supports symbolic characters.
+**Functionality:** Whether the font supports symbolic characters.
 
 **Type:** Bool
 
@@ -230,7 +264,7 @@ public var symbolic: Bool
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var weight
 
@@ -238,7 +272,7 @@ public var symbolic: Bool
 public var weight: UInt32
 ```
 
-**Description:** When weight > 0, it indicates that this font set only contains fonts with the specified weight. When weight = 0, it indicates that this font set contains all fonts.
+**Functionality:** Font weight.
 
 **Type:** UInt32
 
@@ -246,7 +280,7 @@ public var weight: UInt32
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var width
 
@@ -254,7 +288,7 @@ public var weight: UInt32
 public var width: UInt32
 ```
 
-**Description:** Represents the width of the system font in pixels (px).
+**Functionality:** Font width.
 
 **Type:** UInt32
 
@@ -262,7 +296,7 @@ public var width: UInt32
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ## Example Code
 
@@ -275,7 +309,8 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component
@@ -309,7 +344,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 
 @Entry
 @Component
@@ -318,15 +353,17 @@ class EntryView {
         Row {
             Column {
                 Button("HelloWorld")
-                .onClick {evt =>
+                .onClick({evt =>
                     let list = getUIContext().getFont().getSystemFontList()
                     Hilog.info(0, "AppLogCj", "${list.size}")
-                }
+                })
             }.width(100.percent)
         }.height(100.percent)
     }
 }
 ```
+
+![font2](figures/uicontextFont.PNG)
 
 ### Example 3 (Get Font Details)
 
@@ -337,7 +374,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 
 @Entry
 @Component
@@ -346,7 +383,7 @@ class EntryView {
         Row {
             Column {
                 Button("HelloWorld")
-                .onClick {evt =>
+                .onClick({evt =>
                     let info = getUIContext().getFont().getFontByName("HarmonyOS Sans Italic")
                     match (info) {
                         case Some(v) =>
@@ -362,9 +399,12 @@ class EntryView {
                             Hilog.info(0, "AppLogCj", "${v.symbolic}")
                         case None => Hilog.error(0, "AppLogCj", "None")
                     }
-                }
+``````
+                })
             }.width(100.percent)
         }.height(100.percent)
     }
 }
 ```
+
+![font2](./figures/uicontextFont2.PNG)

@@ -1,6 +1,6 @@
 # Rect
 
-A component for drawing rectangles.
+A rectangular drawing component.
 
 ## Import Module
 
@@ -14,134 +14,122 @@ None
 
 ## Creating the Component
 
-### init(Length, Length)
+### init(?Length, ?Length)
 
 ```cangjie
-public init(width!: Length = 0.vp, height!: Length = 0.vp)
+public init(width!: ?Length = None, height!: ?Length = None)
 ```
 
-**Function:** Draws a rectangle with specified width and height. Invalid values will be treated as initial values.
+**Function:** Draws a rectangle with specified width and height. Invalid values will be processed as initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| width | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Width of the rectangle, value range ≥0. |
-| height | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Height of the rectangle, value range ≥0. |
+| width | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Width of the rectangle, value range ≥0. Initial value: 0. Default unit: vp. |
+| height | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Height of the rectangle, value range ≥0. Initial value: 0. Default unit: vp. |
 
-## Common Attributes/Events
+## Common Attributes/Common Events
 
-Common Attributes: Supports all common attributes.
+Common Attributes: In addition to supporting common attributes, it also supports [Graphic Drawing Common Attributes](./cj-graphic-drawing-common.md#component-attributes).
 
 Common Events: Fully supported.
 
 ## Component Attributes
 
-### func initial()
+### func radiusWidth(?Length)
 
 ```cangjie
-public override func initial()
+public func radiusWidth(value: ?Length): This
 ```
 
-**Function:** Overrides the parent class's initial method for initialization logic.
+**Function:** Sets the width of rounded corners. When only width is set, height will match the width. Invalid values will be processed as initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### func radius(Length)
-
-```cangjie
-public func radius(value: Length): This
-```
-
-**Function:** Sets the corner radius size, value range ≥0. Invalid values will be treated as initial values.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Corner radius size.<br>Initial value: 0.<br>Default unit: vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Width of rounded corners. Initial value: 0.vp |
 
-### func radius(Array\<Length>)
+### func radiusHeight(?Length)
 
 ```cangjie
-public func radius(value: Array<Length>): This
+public func radiusHeight(value: ?Length): This
 ```
 
-**Function:** Sets the corner radius sizes, value range ≥0. Invalid values will be treated as initial values.
+**Function:** Sets the height of rounded corners. When only height is set, width will match the height. Invalid values will be processed as initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Array\<[Length](../BasicServicesKit/cj-apis-base.md#interface-length)> | Yes | - | Top-left, top-right, bottom-right, and bottom-left corner radius sizes.<br>Initial value: 0.<br>Default unit: vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Height of rounded corners. Initial value: 0.vp. |
 
-### func radius(Array\<(Length,Length)>)
+### func radius(?Length)
 
 ```cangjie
-public func radius(radiusArray: Array<(Length, Length)>): This
+public func radius(value: ?Length): This
 ```
 
-**Function:** Sets the corner radius sizes, value range ≥0. Invalid values will be treated as initial values.
+**Function:** Sets the radius of rounded corners, value range ≥0. Invalid values will be processed as initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| radiusArray | Array\<([Length](../BasicServicesKit/cj-apis-base.md#interface-length),[Length](../BasicServicesKit/cj-apis-base.md#interface-length))> | Yes | - | Width and height of top-left, top-right, bottom-right, and bottom-left corners.<br>Initial value: 0.<br>Default unit: vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Radius of rounded corners. Initial value: 0.vp. |
 
-### func radiusHeight(Length)
+### func radius(?Array\<Length>)
 
 ```cangjie
-public func radiusHeight(value: Length): This
+public func radius(value: ?Array<Length>): This
 ```
 
-**Function:** Sets the height of the corner radius. If only height is set, width and height will be equal. Invalid values will be treated as initial values.
+**Function:** Sets the radius of rounded corners, value range ≥0. Invalid values will be processed as initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Height of the corner radius.<br>Initial value: 0.<br>Default unit: vp. |
+| value | ?Array\<[Length](./cj-common-types.md#interface-length)> | Yes | - | Radius of top-left, top-right, bottom-right, and bottom-left rounded corners.<br>Initial value: 0.vp. |
 
-### func radiusWidth(Length)
+### func radius(?Array\<(Length, Length)>)
 
 ```cangjie
-public func radiusWidth(value: Length): This
+public func radius(radiusArray: ?Array<(Length, Length)>): This
 ```
 
-**Function:** Sets the width of the corner radius. If only width is set, width and height will be equal. Invalid values will be treated as initial values.
+**Function:** Sets the radius of rounded corners, value range ≥0. Invalid values will be processed as initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Width of the corner radius.<br>Initial value: 0.<br>Default unit: vp. |
+| radiusArray | ?Array\<([Length](./cj-common-types.md#interface-length), [Length](./cj-common-types.md#interface-length))> | Yes | - | Width and height of top-left, top-right, bottom-right, and bottom-left rounded corners.<br>Initial value: 0.<br>Default unit: vp. |
 
 ## Example Code
 
@@ -165,7 +153,7 @@ class EntryView {
                 Text("normal").fontSize(9).fontColor(0xCCCCCC).width(90.percent)
                 // Draw a 90% * 50 rectangle
                 Rect().width(90.percent).height(50).fill(Color.Green)
-                // Draw a 90% * 50 rectangle frame
+                // Draw a 90% * 50 rectangular frame
                 Rect()
                 .width(90.percent)
                 .height(50)
@@ -174,14 +162,14 @@ class EntryView {
                 .strokeWidth(3)
 
                 Text("with rounded corners").fontSize(11).fontColor(0xCCCCCC).width(90.percent)
-                // Draw a 90% * 80 rectangle with corner width 40 and height 20
+                // Draw a 90% * 80 rectangle with rounded corners (width: 40, height: 20)
                 Rect()
                 .width(90.percent)
                 .height(50)
                 .radiusHeight(20)
                 .radiusWidth(40)
                 .fill(Color.Green)
-                // Draw a 90% * 80 rectangle with corner radius 20
+                // Draw a 90% * 80 rectangle with rounded corners (radius: 20)
                 Rect()
                 .width(90.percent)
                 .height(80)
@@ -189,7 +177,7 @@ class EntryView {
                 .fill(Color.Green)
                 .stroke(Color.Transparent)
             }.width(100.percent).margin(top: 10)
-            // Draw a 90% * 50 rectangle with top-left corner (40,40), top-right (20,20), bottom-right (40,40), bottom-left (20,20)
+            // Draw a 90% * 50 rectangle with rounded corners (top-left: 40x40, top-right: 20x20, bottom-right: 40x40, bottom-left: 20x20)
             Rect()
             .width(90.percent)
             .height(80)

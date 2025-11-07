@@ -1,6 +1,6 @@
 # Cangjie Side Calling ArkTS Module
 
-Taking the ArkTS-side module "@ohos.file.photoAccessHelper" as an example, the code sample and analysis for using this module are as follows:
+Taking the example of calling the ArkTS-side module "@ohos.file.photoAccessHelper", the code example and analysis for using this module are as follows:
 
 ```cangjie
 // Import interoperation library
@@ -19,4 +19,4 @@ func tryLoadArkTSSo() {
 }
 ```
 
-For methods to operate ArkTS data, please refer to [Cangjie Operating ArkTS Data](./operating_ArkTS_data.md).
+For methods to operate ArkTS data, please refer to [Cangjie Using ArkTS Data](./operating_ArkTS_data.md).

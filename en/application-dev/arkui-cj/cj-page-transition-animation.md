@@ -2,9 +2,9 @@
 
 For better transition effects, it is recommended to use [Modal Transition](./cj-modal-transition.md).
 
-When navigating between two pages where one disappears and another appears, you can configure custom page transition effects by setting page transition parameters for each page. [Page transition](../../../en/application-dev/reference/arkui-cj/cj-animation-pagetransition.md) effects are defined in the pageTransition function, using [PageTransitionEnter](../../../en/application-dev/reference/arkui-cj/cj-animation-pagetransition.md#class-pagetransitionenter) and [PageTransitionExit](../../../en/application-dev/reference/arkui-cj/cj-animation-pagetransition.md#class-pagetransitionexit) to specify animation effects for page entry and exit.
+When navigating between two pages where one page disappears and another appears, custom page transition effects can be configured by setting page transition parameters for each page. [Page transition](../reference/arkui-cj/cj-animation-pagetransition.md) effects are defined in the `pageTransition` function, using [PageTransitionEnter](../reference/arkui-cj/cj-animation-pagetransition.md#class-pagetransitionenter) and [PageTransitionExit](../reference/arkui-cj/cj-animation-pagetransition.md#class-pagetransitionexit) to specify the animation effects for page entry and exit.
 
-The pageTransition function is:
+The `pageTransition` function is:
 
 ```cangjie
 protected func pageTransition(): Unit {
@@ -13,37 +13,33 @@ protected func pageTransition(): Unit {
 }
 ```
 
-The PageTransitionEnter interface is:
+The interface for `PageTransitionEnter` is:
 
 ```cangjie
 PageTransitionEnter(routeType: RouteType.None, duration: 1000)
 ```
 
-The PageTransitionExit interface is:
+The interface for `PageTransitionExit` is:
 
 ```cangjie
 PageTransitionExit(routeType: RouteType.None, duration: 1000)
 ```
 
-These interfaces define PageTransitionEnter and PageTransitionExit components, which can specify different page transition effects through slide, translate, scale, and opacity properties. For PageTransitionEnter, these effects represent the starting values during entry; for PageTransitionExit, they represent the ending values during exit, similar to component transition configurations. Additionally, PageTransitionEnter provides the onEnter callback for custom page entry animations, and PageTransitionExit provides the onExit callback for custom page exit animations.
+The above interfaces define the `PageTransitionEnter` and `PageTransitionExit` components, which can specify different page transition effects using properties like `slide`, `translate`, `scale`, and `opacity`. For `PageTransitionEnter`, these effects represent the starting values for entry animations, while for `PageTransitionExit`, they represent the ending values for exit animations, similar to the configuration method for component transitions. Additionally, `PageTransitionEnter` provides the `onEnter` callback for custom entry animations, and `PageTransitionExit` provides the `onExit` callback for custom exit animations.
 
-The type parameter in these interfaces indicates the route type that triggers the effect, which can be confusing for developers. In page transitions, one page always exits while another enters. For example:
-- When navigating from Page A to Page B via router.pushUrl, Page A exits (exit animation) and Page B enters (entry animation).
-- When returning from Page B to Page A via router.back, Page B exits (exit animation) and Page A enters (entry animation).
+The `type` parameter in these interfaces indicates the route type for which the transition takes effect, which can be confusing for developers. In a page transition, one page exits while another enters. For example, when navigating from Page A to Page B via `router.pushUrl`, Page A exits with an exit animation, and Page B enters with an entry animation. Conversely, when returning from Page B to Page A via `router.back`, Page B exits with an exit animation, and Page A enters with an entry animation. Thus, `PageTransitionEnter` can apply to either a new page entering due to a push operation or an existing page re-entering due to a pop operation. The `type` parameter distinguishes between these scenarios, allowing developers to fully customize all types of page transitions.
 
-Thus, PageTransitionEnter can be triggered either by adding a new page (push, stack operation) or by returning to an existing page (back/pop, unstack operation). The type parameter helps distinguish between these scenarios, allowing developers to fully customize all types of page transition effects.
+## Type Configured as RouteType.None
 
-## type Configured as RouteType.None
-
-When type is RouteType.None, the effect applies to both push and pop operations (default value).
+Setting `type` to `RouteType.None` means the transition applies to both push and pop operations. The default value for `type` is `RouteType.None`.
 
 ```cangjie
 // page A
 protected func pageTransition(): Unit {
-    // Defines page entry effect: slides in from left (1200ms), applies to both push and pop
+    // Define the entry effect: slide in from the left with a duration of 1200ms, applicable to both push and pop operations
     PageTransitionEnter(routeType: RouteType.None, duration: 1200)
         .slide(SlideEffect.Left)
-    // Defines page exit effect: slides out to left (1000ms), applies to both push and pop
+    // Define the exit effect: slide out to the left with a duration of 1000ms, applicable to both push and pop operations
     PageTransitionExit(routeType: RouteType.None, duration: 1000)
         .slide(SlideEffect.Left)
 }
@@ -52,43 +48,43 @@ protected func pageTransition(): Unit {
 ```cangjie
 // page B
 protected func pageTransition(): Unit {
-    // Defines page entry effect: slides in from right (1000ms), applies to both push and pop
+    // Define the entry effect: slide in from the right with a duration of 1000ms, applicable to both push and pop operations
     PageTransitionEnter(routeType: RouteType.None, duration: 1000)
         .slide(SlideEffect.Right)
-    // Defines page exit effect: slides out to right (1200ms), applies to both push and pop
+    // Define the exit effect: slide out to the right with a duration of 1200ms, applicable to both push and pop operations
     PageTransitionExit(routeType: RouteType.None, duration: 1200)
         .slide(SlideEffect.Right)
 }
 ```
 
-Assuming multi-instance page navigation (allowing duplicate pages in the stack), the four possible scenarios are:
+Assuming the page navigation is configured for multi-instance mode (allowing duplicate pages in the stack), the four possible scenarios and their corresponding transition effects are shown below.
 
-| Routing Operation | Page A Transition | Page B Transition |
+| Routing Operation | Page A Transition Effect | Page B Transition Effect |
 |:---|:---|:---|
-| router.pushUrl (A → B) | Page A exits (slides left) | Page B enters (slides right) |
-| router.back (B → A) | Page A enters (slides left) | Page B exits (slides right) |
-| router.pushUrl (B → A) | Page A enters (slides left) | Page B exits (slides right) |
-| router.back (A → B) | Page A exits (slides left) | Page B enters (slides right) |
+| `router.pushUrl` from Page A to a new Page B | Page exits: `PageTransitionExit` takes effect, sliding out to the left | Page enters: `PageTransitionEnter` takes effect, sliding in from the right |
+| `router.back` from Page B to Page A | Page enters: `PageTransitionEnter` takes effect, sliding in from the left | Page exits: `PageTransitionExit` takes effect, sliding out to the right |
+| `router.pushUrl` from Page B to a new Page A | Page enters: `PageTransitionEnter` takes effect, sliding in from the left | Page exits: `PageTransitionExit` takes effect, sliding out to the right |
+| `router.back` from Page A to Page B | Page exits: `PageTransitionExit` takes effect, sliding out to the left | Page enters: `PageTransitionEnter` takes effect, sliding in from the right |
 
-If you want pages to always slide in from the right during pushUrl and slide out to the right during back, scenarios 3 and 4 won't meet requirements. This requires defining all four transition effects explicitly.
+If the desired behavior is for pages to always slide in from the right during `pushUrl` and slide out to the right during `back`, the third and fourth scenarios above do not meet this requirement. In such cases, all four transition effects must be explicitly defined.
 
-## type Configured as RouteType.Push or RouteType.Pop
+## Type Configured as RouteType.Push or RouteType.Pop
 
-RouteType.Push applies only to push operations, while RouteType.Pop applies only to pop operations.
+Setting `type` to `RouteType.Push` means the transition applies only to push operations, while `RouteType.Pop` means it applies only to pop operations.
 
 ```cangjie
 // page A
 protected func pageTransition(): Unit {
-    // Entry effect for push: slides in from right (1200ms)
+    // Define the entry effect: slide in from the right with a duration of 1200ms, applicable only to push operations
     PageTransitionEnter(routeType: RouteType.Push, duration: 1200)
         .slide(SlideEffect.Right)
-    // Entry effect for pop: slides in from left (1200ms)
+    // Define the entry effect: slide in from the left with a duration of 1200ms, applicable only to pop operations
     PageTransitionEnter(routeType: RouteType.Pop, duration: 1200)
         .slide(SlideEffect.Left)
-    // Exit effect for push: slides out to left (1000ms)
+    // Define the exit effect: slide out to the left with a duration of 1000ms, applicable only to push operations
     PageTransitionExit(routeType: RouteType.Push, duration: 1000)
         .slide(SlideEffect.Left)
-    // Exit effect for pop: slides out to right (1000ms)
+    // Define the exit effect: slide out to the right with a duration of 1000ms, applicable only to pop operations
     PageTransitionExit(routeType: RouteType.Pop, duration: 1000)
         .slide(SlideEffect.Right)
 }
@@ -97,38 +93,38 @@ protected func pageTransition(): Unit {
 ```cangjie
 // page B
 protected func pageTransition(): Unit {
-    // Entry effect for push: slides in from right (1000ms)
+    // Define the entry effect: slide in from the right with a duration of 1000ms, applicable only to push operations
     PageTransitionEnter(routeType: RouteType.Push, duration: 1000)
         .slide(SlideEffect.Right)
-    // Entry effect for pop: slides in from left (1000ms)
+    // Define the entry effect: slide in from the left with a duration of 1000ms, applicable only to pop operations
     PageTransitionEnter(routeType: RouteType.Pop, duration: 1000)
         .slide(SlideEffect.Left)
-    // Exit effect for push: slides out to left (1200ms)
+    // Define the exit effect: slide out to the left with a duration of 1200ms, applicable only to push operations
     PageTransitionExit(routeType: RouteType.Push, duration: 1200)
         .slide(SlideEffect.Left)
-    // Exit effect for pop: slides out to right (1200ms)
+    // Define the exit effect: slide out to the right with a duration of 1200ms, applicable only to pop operations
     PageTransitionExit(routeType: RouteType.Pop, duration: 1200)
         .slide(SlideEffect.Right)
 }
 ```
 
-This code fully defines all possible page transition scenarios. The four possible cases are:
+The above code explicitly defines all possible page transition styles. Assuming multi-instance mode is enabled, the four scenarios and their effects are as follows.
 
-| Routing Operation | Page A Transition | Page B Transition |
+| Routing Operation | Page A Transition Effect | Page B Transition Effect |
 |:---|:---|:---|
-| router.pushUrl (A → B) | Page A exits (push exit: slides left) | Page B enters (push entry: slides right) |
-| router.back (B → A) | Page A enters (pop entry: slides left) | Page B exits (pop exit: slides right) |
-| router.pushUrl (B → A) | Page A enters (push entry: slides right) | Page B exits (push exit: slides left) |
-| router.back (A → B) | Page A exits (pop exit: slides right) | Page B enters (pop entry: slides left) |
+| `router.pushUrl` from Page A to a new Page B | Page exits: `PageTransitionExit` with `RouteType.Push` takes effect, sliding out to the left | Page enters: `PageTransitionEnter` with `RouteType.Push` takes effect, sliding in from the right |
+| `router.back` from Page B to Page A | Page enters: `PageTransitionEnter` with `RouteType.Pop` takes effect, sliding in from the left | Page exits: `PageTransitionExit` with `RouteType.Pop` takes effect, sliding out to the right |
+| `router.pushUrl` from Page B to a new Page A | Page enters: `PageTransitionEnter` with `RouteType.Push` takes effect, sliding in from the right | Page exits: `PageTransitionExit` with `RouteType.Push` takes effect, sliding out to the left |
+| `router.back` from Page A to Page B | Page exits: `PageTransitionExit` with `RouteType.Pop` takes effect, sliding out to the right | Page enters: `PageTransitionEnter` with `RouteType.Pop` takes effect, sliding in from the left |
 
-> **Notes:**
+> **Note:**
 >
-> - Since each page's transition can be independently configured, developers should ensure smooth transitions between pages (e.g., matching durations).
-> - If no matching transition is defined, the system default transition is used.
+> - Since each page's transition style can be independently configured, and transitions involve two pages, developers should ensure the transition effects between pages are cohesive, such as maintaining consistent durations.
+> - If no matching transition style is defined, the system default transition style will be used.
 
-## Disabling Page Transition for a Page
+## Disabling Page Transition for a Specific Page
 
-Set duration to 0 to disable page transition animations.
+Setting the transition duration to 0 disables the transition animation for that page.
 
 ```cangjie
 protected func pageTransition(): Unit {
@@ -137,9 +133,9 @@ protected func pageTransition(): Unit {
 }
 ```
 
-## Example Scenarios
+## Example Scenario
 
-Below are examples demonstrating all four transition types using [router.pushUrl](../../../en/application-dev/reference/arkui-cj/cj-apis-router.md#static-func-pushurlstring-string-optionint32---unit).
+The following example demonstrates page transition animations using all four transition styles with the [router.pushUrl](../reference/arkui-cj/cj-apis-uicontext-router.md#func-pushurlstringstring) navigation capability.
 
  <!-- run -->
 
@@ -158,18 +154,20 @@ class EntryView {
             Image(@r(app.media.background))
                 .width(90.percent).height(80.percent)
                 .objectFit(ImageFit.Fill)
-                .syncLoad(true) // Sync image loading for immediate display
+                .syncLoad(true) // Synchronously load the image so it's ready when the page appears
                 .margin(30)
 
              Row(space: 10){
                 Button("pushUrl")
-                  .onClick { evt =>
+                  .onClick ({ evt =>
+                    // Navigate to the next page (push operation)
                     getUIContext().getRouter().pushUrl(url: "Page1")
-                  }
+                  })
                 Button("back")
-                    .onClick { evt =>
+                    .onClick ({ evt =>
+                    // Return to the previous page (pop operation)
                     getUIContext().getRouter().back()
-                  }
+                  })
             }.justifyContent(FlexAlign.Center)
         }
         .width(100.percent).height(100.percent)
@@ -177,16 +175,16 @@ class EntryView {
     }
 
     protected func pageTransition(): Unit {
-        // Push entry: slides right (1000ms)
+        // Define the entry effect: slide in from the right with a duration of 1000ms, applicable only to push operations
         PageTransitionEnter(routeType: RouteType.Push, duration: 1000)
             .slide(SlideEffect.Right)
-        // Pop entry: slides left (1000ms)
+        // Define the entry effect: slide in from the left with a duration of 1000ms, applicable only to pop operations
         PageTransitionEnter(routeType: RouteType.Pop, duration: 1000)
             .slide(SlideEffect.Left)
-        // Push exit: slides left (1000ms)
+        // Define the exit effect: slide out to the left with a duration of 1000ms, applicable only to push operations
         PageTransitionExit(routeType: RouteType.Push, duration: 1000)
             .slide(SlideEffect.Left)
-        // Pop exit: slides right (1000ms)
+        // Define the exit effect: slide out to the right with a duration of 1000ms, applicable only to pop operations
         PageTransitionExit(routeType: RouteType.Pop, duration: 1000)
             .slide(SlideEffect.Right)
     }
@@ -197,6 +195,7 @@ class EntryView {
 
 ```cangjie
 package ohos_app_cangjie_entry
+
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
 import kit.LocalizationKit.*
@@ -210,18 +209,20 @@ class Page1 {
             Image(@r(app.media.foreground))
                 .width(90.percent).height(80.percent)
                 .objectFit(ImageFit.Fill)
-                .syncLoad(true) // Sync image loading for immediate display
+                .syncLoad(true) // Synchronously load the image so it's ready when the page appears
                 .margin(30)
 
              Row(space: 10){
                 Button("pushUrl")
-                  .onClick { evt =>
+                  .onClick ({ evt =>
+                    // Navigate to the next page (push operation)
                     getUIContext().getRouter().pushUrl(url: "EntryView")
-                  }
+                  })
                 Button("back")
-                    .onClick { evt =>
+                    .onClick( { evt =>
+                    // Return to the previous page (pop operation)
                     getUIContext().getRouter().back()
-                  }
+                  })
             }.justifyContent(FlexAlign.Center)
         }
         .width(100.percent).height(100.percent)
@@ -229,16 +230,16 @@ class Page1 {
     }
 
     protected func pageTransition(): Unit {
-        // Push entry: slides right (1000ms)
+        // Define the entry effect: slide in from the right with a duration of 1000ms, applicable only to push operations
         PageTransitionEnter(routeType: RouteType.Push, duration: 1000)
             .slide(SlideEffect.Right)
-        // Pop entry: slides left (1000ms)
+        // Define the entry effect: slide in from the left with a duration of 1000ms, applicable only to pop operations
         PageTransitionEnter(routeType: RouteType.Pop, duration: 1000)
             .slide(SlideEffect.Left)
-        // Push exit: slides left (1000ms)
+        // Define the exit effect: slide out to the left with a duration of 1000ms, applicable only to push operations
         PageTransitionExit(routeType: RouteType.Push, duration: 1000)
             .slide(SlideEffect.Left)
-        // Pop exit: slides right (1000ms)
+        // Define the exit effect: slide out to the right with a duration of 1000ms, applicable only to pop operations
         PageTransitionExit(routeType: RouteType.Pop, duration: 1000)
             .slide(SlideEffect.Right)
     }
@@ -247,7 +248,7 @@ class Page1 {
 
 ![transiton-animation](figures/transition-animation1.gif)
 
-Below is an example using RouteType.None transitions.
+The following example demonstrates page transition animations using `type` set to `None`.
 
  <!-- run -->
 
@@ -266,18 +267,20 @@ class EntryView {
             Image(@r(app.media.background))
                 .width(90.percent).height(80.percent)
                 .objectFit(ImageFit.Fill)
-                .syncLoad(true) // Sync image loading for immediate display
+                .syncLoad(true) // Synchronously load the image so it's ready when the page appears
                 .margin(30)
 
              Row(space: 10){
                 Button("pushUrl")
-                  .onClick { evt =>
+                  .onClick ({ evt =>
+                    // Navigate to the next page (push operation)
                     getUIContext().getRouter().pushUrl(url: "Page1")
-                  }
+                  })
                 Button("back")
-                    .onClick { evt =>
+                    .onClick({ evt =>
+                    // Return to the previous page (pop operation)
                     getUIContext().getRouter().back()
-                  }
+                  })
             }.justifyContent(FlexAlign.Center)
         }
         .width(100.percent).height(100.percent)
@@ -285,10 +288,10 @@ class EntryView {
     }
 
     protected func pageTransition(): Unit {
-        // Entry: slides left (1000ms), applies to both push and pop
+        // Define the entry effect: slide in from the left with a duration of 1000ms, applicable to both push and pop operations
         PageTransitionEnter(duration: 1000)
             .slide(SlideEffect.Left)
-        // Exit: translates by (100vp, 100vp) with opacity 0 (1200ms), applies to both
+        // Define the exit effect: translate 100vp in x and y directions with opacity reduced to 0, duration 1200ms, applicable to both push and pop operations
         PageTransitionExit(duration: 1200)
             .translate(x: 100.0, y: 100.0)
             .opacity(0.0)
@@ -313,18 +316,20 @@ class Page1 {
             Image(@r(app.media.foreground))
                 .width(90.percent).height(80.percent)
                 .objectFit(ImageFit.Fill)
-                .syncLoad(true) // Sync image loading for immediate display
+                .syncLoad(true) // Synchronously load the image so it's ready when the page appears
                 .margin(30)
 
              Row(space: 10){
                 Button("pushUrl")
-                  .onClick { evt =>
+                  .onClick ({ evt =>
+                    // Navigate to the next page (push operation)
                     getUIContext().getRouter().pushUrl(url: "EntryView")
-                  }
+                  })
                 Button("back")
-                    .onClick { evt =>
+                    .onClick ({ evt =>
+                    // Return to the previous page (pop operation)
                     getUIContext().getRouter().back()
-                  }
+                  })
             }.justifyContent(FlexAlign.Center)
         }
         .width(100.percent).height(100.percent)
@@ -332,10 +337,10 @@ class Page1 {
     }
 
     protected func pageTransition(): Unit {
-        // Entry: slides left (1200ms), applies to both push and pop
+        // Define the entry effect: slide in from the left with a duration of 1200ms, applicable to both push and pop operations
         PageTransitionEnter(duration: 1200)
             .slide(SlideEffect.Left)
-        // Exit: translates by (100vp, 100vp) with opacity 0 (1000ms), applies to both
+        // Define the exit effect: translate 100vp in x and y directions with opacity reduced to 0, duration 1000ms, applicable to both push and pop operations
         PageTransitionExit(duration: 1000)
             .translate(x: 100.0, y: 100.0)
             .opacity(0.0)

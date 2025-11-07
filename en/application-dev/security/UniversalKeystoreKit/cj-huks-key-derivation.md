@@ -8,23 +8,23 @@ Taking HKDF256 key as an example, complete key derivation. For specific scenario
 
 1. Specify a key alias.
 
-2. Initialize the key property set. You can optionally specify the parameter HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG to indicate whether keys derived from this key are managed by HUKS.
+2. Initialize the key property set. You can optionally specify the parameter `HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG` to indicate whether keys derived from this key are managed by HUKS.
 
-    - When the TAG is set to HUKS_STORAGE_ONLY_USED_IN_HUKS, it means that keys derived from this key are managed by HUKS, ensuring the derived keys remain within the secure environment throughout their lifecycle.
+    - When the TAG is set to `HUKS_STORAGE_ONLY_USED_IN_HUKS`, it means that keys derived from this key are managed by HUKS, ensuring the derived keys remain within the secure environment throughout their lifecycle.
 
-    - When the TAG is set to HUKS_STORAGE_KEY_EXPORT_ALLOWED, it means that keys derived from this key are returned to the caller for management, and the business is responsible for ensuring key security.
+    - When the TAG is set to `HUKS_STORAGE_KEY_EXPORT_ALLOWED`, it means that keys derived from this key are returned to the caller for management, and the application is responsible for ensuring key security.
 
-    - If the business does not set a specific value for TAG, it means that keys derived from this key can either be managed by HUKS or returned to the caller for management. The business can later choose how to protect the keys during subsequent derivations.
+    - If the application does not specify a value for TAG, it means that keys derived from this key can either be managed by HUKS or returned to the caller. The application can later choose how to protect the derived keys.
 
-3. Call [generateKeyItem](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-generatekeyitemstring-huksoptions) to generate the key. For details, see [Key Generation](./cj-huks-key-generation-overview.md).
+3. Call [generateKeyItem](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-generatekeyitemstring-huksoptions) to generate the key. For details, see [Key Generation](./cj-huks-key-generation-overview.md).
 
-In addition, developers can also refer to [Key Import](./cj-huks-key-import-overview.md) to import existing keys.
+Additionally, developers can refer to [Key Import](./cj-huks-key-import-overview.md) to import existing keys.
 
 ### Key Derivation
 
-1. Obtain the key alias and specify the corresponding property parameters in HuksOptions.
+1. Obtain the key alias and specify the corresponding attribute parameters in `HuksOptions`.
 
-    You can optionally specify the parameter HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG to indicate whether the derived key is managed by HUKS.
+    You can optionally specify the parameter `HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG` to indicate whether the derived key is managed by HUKS.
 
     | Generation | Derivation | Specification |
     | :-------- | :-------- | :-------- |
@@ -36,127 +36,136 @@ In addition, developers can also refer to [Key Import](./cj-huks-key-import-over
 
     The TAG value specified during derivation must not conflict with the TAG value specified during generation. The table only lists valid specification methods.
 
-2. Call [initSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-initsessionstring-huksoptions) to initialize the key session and obtain the session handle.
+2. Call [initSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-initsessionstring-huksoptions) to initialize the key session and obtain the session handle.
 
-3. Call [updateSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-updatesessionhukshandle-huksoptions) to update the key session.
+3. Call [updateSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-updatesessionhukshandleid-huksoptions-bytes) to update the key session.
 
-4. Call [finishSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-finishsessionhukshandle-huksoptions) to end the key session and complete the derivation.
+4. Call [finishSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-finishsessionhukshandleid-huksoptions-bytes) to end the key session and complete the derivation.
 
 ### Delete Key
 
-When a key is no longer needed, call [deleteKeyItem](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-deletekeyitemstring-huksoptions) to delete it. For details, see [Key Deletion](./cj-huks-delete-key.md).
+When a key is no longer needed, call [deleteKeyItem](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-deletekeyitemstring-huksoptions) to delete it. For details, see [Key Deletion](./cj-huks-delete-key.md).
 
-## Development Example
+## Development Examples
 
 ### HKDF
 
-<!--compile-->
+<!-- compile -->
+
 ```cangjie
 /*
  * The following demonstrates the operation and usage of HKDF keys
  */
+import kit.PerformanceAnalysisKit.Hilog
+import kit.BasicServicesKit.*
+import kit.CoreFileKit.*
+import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 
+func loggerInfo(str: String) {
+    Hilog.info(0, "CangjieTest", str)
+}
+
 /*
- * Determine the key alias and encapsulate the key property parameter set
+ * Determine the key alias and encapsulate the key attribute parameter set
  */
 let srcKeyAlias = "hkdf_Key"
 let deriveHkdfInData = "deriveHkdfTestIndata"
-var handle: ?HuksHandle = None
+var handle: ?HuksHandleId = None
 var finishOutData: ?Array<UInt8> = None
 let HuksKeyDeriveKeySize: UInt32 = 32
 /* Integrate key generation parameter set */
 let properties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_AES,
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
+        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_SHA256,
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_SIZE,
-        HuksKeySize.HUKS_AES_KEY_SIZE_128,
+        HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
-        HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+        HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
     )
 ]
 let huksOptions: HuksOptions = HuksOptions(
-    properties,
-    []
+    properties: properties,
+    inData: Bytes()
 )
 /* Integrate init key parameter set */
 let initProperties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_HKDF,
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_HKDF),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
+        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_SHA256,
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
-        uint32(HuksKeyDeriveKeySize),
+        HuksParamValue.Uint32Value(HuksKeyDeriveKeySize),
     )
 ]
 var initOptions: HuksOptions = HuksOptions(
-    initProperties,
-    None
+    properties: initProperties,
+    inData: Bytes()
 )
 /* Integrate finish key parameter set */
 let finishProperties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
-        HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+        HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_IS_KEY_ALIAS,
-        boolean(true),
+        HuksParamValue.BooleanValue(true),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_AES,
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_SIZE,
-        HuksKeySize.HUKS_AES_KEY_SIZE_256,
+        HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+        HuksParamValue.Uint32Value(1 | 2),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_NONE,
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_ALIAS,
-        bytes(StringToUint8Array(srcKeyAlias)),
+        HuksParamValue.BytesValue(srcKeyAlias.toArray()),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PADDING,
-        HuksKeyPadding.HUKS_PADDING_NONE,
+        HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_BLOCK_MODE,
-        HuksCipherMode.HUKS_MODE_ECB,
+        HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB),
     )
 ]
 let finishOptions: HuksOptions = HuksOptions(
-    finishProperties,
-    []
+    properties: finishProperties,
+    inData: Bytes()
 )
 
 func StringToUint8Array(str: String) {
@@ -181,12 +190,12 @@ func generateKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: th
 }
 
 func publicGenKeyFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter generateKeyItem")
+    loggerInfo("enter generateKeyItem")
     let throwObject: throwObject = throwObject(false)
     try {
         generateKeyItem(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("generateKeyItem input arg invalid, ${e}")
+        loggerInfo("generateKeyItem input arg invalid, ${e}")
     }
 }
 
@@ -200,16 +209,16 @@ func initSession(keyAlias: String, huksOptions: HuksOptions, throwObject: throwO
 }
 
 func publicInitFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter doInit")
+    loggerInfo("enter doInit")
     let throwObject: throwObject = throwObject(false)
     try {
         handle = initSession(keyAlias, huksOptions, throwObject).handle
     } catch (e: Exception) {
-        AppLog.error("doInit input arg invalid, ${e}")
+        loggerInfo("doInit input arg invalid, ${e}")
     }
 }
 
-func updateSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: throwObject) {
+func updateSession(handle: HuksHandleId, huksOptions: HuksOptions, throwObject: throwObject) {
     return try {
         updateSession(handle, huksOptions)
     } catch (e: Exception) {
@@ -218,17 +227,17 @@ func updateSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: th
     }
 }
 
-func publicUpdateFunc(handle: HuksHandle, huksOptions: HuksOptions) {
-    AppLog.info("enter doUpdate")
+func publicUpdateFunc(handle: HuksHandleId, huksOptions: HuksOptions) {
+    loggerInfo("enter doUpdate")
     let throwObject: throwObject = throwObject(false)
     try {
         updateSession(handle, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("doUpdate input arg invalid, ${e}")
+        loggerInfo("doUpdate input arg invalid, ${e}")
     }
 }
 
-func finishSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: throwObject) {
+func finishSession(handle: HuksHandleId, huksOptions: HuksOptions, throwObject: throwObject) {
     return try {
         finishSession(handle, huksOptions)
     } catch (e: Exception) {
@@ -237,13 +246,13 @@ func finishSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: th
     }
 }
 
-func publicFinishFunc(handle: HuksHandle, huksOptions: HuksOptions) {
-    AppLog.info("enter doFinish")
+func publicFinishFunc(handle: HuksHandleId, huksOptions: HuksOptions) {
+    loggerInfo("enter doFinish")
     let throwObject: throwObject = throwObject(false)
     try {
         finishSession(handle, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("doFinish input arg invalid, ${e}")
+        loggerInfo("doFinish input arg invalid, ${e}")
     }
 }
 
@@ -257,12 +266,12 @@ func deleteKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: thro
 }
 
 func publicDeleteKeyFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter deleteKeyItem")
+    loggerInfo("enter deleteKeyItem")
     let throwObject: throwObject = throwObject(false)
     try {
         deleteKeyItem(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("deleteKeyItem input arg invalid, ${e}")
+        loggerInfo("deleteKeyItem input arg invalid, ${e}")
     }
 }
 
@@ -280,125 +289,134 @@ func testDerive() {
 
 ### PBKDF2
 
-<!--compile-->
+<!-- compile -->
+
 ```cangjie
 /*
  * The following demonstrates the operation and usage of PBKDF2 keys
  */
+import kit.PerformanceAnalysisKit.Hilog
+import kit.BasicServicesKit.*
+import kit.CoreFileKit.*
+import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 
+func loggerInfo(str: String) {
+    Hilog.info(0, "CangjieTest", str)
+}
+
 /*
- * Determine the key alias and encapsulate the key property parameter set
+ * Determine the key alias and encapsulate the key attribute parameter set
  */
 let srcKeyAlias = "pbkdf2_Key"
 let salt = "mySalt"
 let iterationCount: UInt32 = 10000
 let derivedKeySize: UInt32 = 32
-var handle: ?HuksHandle = None
+var handle: ?HuksHandleId = None
 var finishOutData: ?Array<UInt8> = None
 
 /* Integrate key generation parameter set */
 let properties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_AES,
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
+        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_SHA256,
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_SIZE,
-        HuksKeySize.HUKS_AES_KEY_SIZE_128,
+        HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
-        HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+        HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
     )
 ]
 let huksOptions: HuksOptions = HuksOptions(
-    properties,
-    None
+    properties: properties,
+    inData: Bytes()
 )
 
-/* Key parameter set for init integration */
+/* Integrate init key parameter set */
 let initProperties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_PBKDF2,
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_PBKDF2),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
+        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_SHA256,
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
-        uint32(derivedKeySize),
+        HuksParamValue.Uint32Value(derivedKeySize),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_ITERATION,
-        uint32(iterationCount),
+        HuksParamValue.Uint32Value(iterationCount),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_SALT,
-        bytes(StringToUint8Array(salt)),
+        HuksParamValue.BytesValue(salt.toArray()),
     )
 ]
 let initOptions: HuksOptions = HuksOptions(
-    initProperties,
-    None
+    properties: initProperties,
+    inData: Bytes()
 )
 
-/* Key parameter set for finish integration */
+/* Integrate finish key parameter set */
 let finishProperties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
-        HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+        HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_IS_KEY_ALIAS,
-        boolean(true),
+        HuksParamValue.BooleanValue(true),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_AES,
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_SIZE,
-        HuksKeySize.HUKS_AES_KEY_SIZE_256,
+        HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+        HuksParamValue.Uint32Value(1 | 2),
     ),
     HuksParam(
-        HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_NONE,
+        HuksTag.HUKS_TAG_DIGEST,```markdown
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_ALIAS,
-        bytes(StringToUint8Array(srcKeyAlias)),
+        HuksParamValue.BytesValue(srcKeyAlias.toArray()),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PADDING,
-        HuksKeyPadding.HUKS_PADDING_NONE,
+        HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE),
     ),
     HuksParam(
         HuksTag.HUKS_TAG_BLOCK_MODE,
-        HuksCipherMode.HUKS_MODE_ECB,
+        HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB),
     )
 ]
 let finishOptions: HuksOptions = HuksOptions(
-    finishProperties,
-    None
+    properties: finishProperties,
+    inData: Bytes()
 )
 
 func StringToUint8Array(str: String) {
@@ -423,12 +441,12 @@ func generateKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: th
 }
 
 func publicGenKeyFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter generateKeyItem")
+    loggerInfo("enter generateKeyItem")
     let throwObject: throwObject = throwObject(false)
     try {
         generateKeyItem(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("generateKeyItem input arg invalid, ${e}")
+        loggerInfo("generateKeyItem input arg invalid, ${e}")
     }
 }
 
@@ -437,22 +455,22 @@ func initSession(keyAlias: String, huksOptions: HuksOptions, throwObject: throwO
         initSession(keyAlias, huksOptions).handle
     } catch (e: Exception) {
         throwObject.isThrow = true
-        AppLog.error("init session failed")
+        loggerInfo("initSession failed")
         throw e
     }
 }
 
 func publicInitFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter doInit")
+    loggerInfo("enter doInit")
     let throwObject: throwObject = throwObject(false)
     try {
         handle = initSession(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("doInit input arg invalid, ${e}")
+        loggerInfo("doInit input arg invalid, ${e}")
     }
 }
 
-func updateSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: throwObject) {
+func updateSession(handle: HuksHandleId, huksOptions: HuksOptions, throwObject: throwObject) {
     return try {
         updateSession(handle, huksOptions)
     } catch (e: Exception) {
@@ -461,17 +479,17 @@ func updateSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: th
     }
 }
 
-func publicUpdateFunc(handle: HuksHandle, huksOptions: HuksOptions) {
-    AppLog.info("enter doUpdate")
+func publicUpdateFunc(handle: HuksHandleId, huksOptions: HuksOptions) {
+    loggerInfo("enter doUpdate")
     let throwObject: throwObject = throwObject(false)
     try {
         updateSession(handle, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("doUpdate input arg invalid, ${e}")
+        loggerInfo("doUpdate input arg invalid, ${e}")
     }
 }
 
-func finishSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: throwObject) {
+func finishSession(handle: HuksHandleId, huksOptions: HuksOptions, throwObject: throwObject) {
     return try {
         finishSession(handle, huksOptions)
     } catch (e: Exception) {
@@ -480,13 +498,13 @@ func finishSession(handle: HuksHandle, huksOptions: HuksOptions, throwObject: th
     }
 }
 
-func publicFinishFunc(handle: HuksHandle, huksOptions: HuksOptions) {
-    AppLog.info("enter doFinish")
+func publicFinishFunc(handle: HuksHandleId, huksOptions: HuksOptions) {
+    loggerInfo("enter doFinish")
     let throwObject: throwObject = throwObject(false)
     try {
         finishOutData = finishSession(handle, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("doFinish input arg invalid, ${e}")
+        loggerInfo("doFinish input arg invalid, ${e}")
     }
 }
 
@@ -500,12 +518,12 @@ func deleteKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: thro
 }
 
 func publicDeleteKeyFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter deleteKeyItem")
+    loggerInfo("enter deleteKeyItem")
     let throwObject: throwObject = throwObject(false)
     try {
         deleteKeyItem(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("deleteKeyItem input arg invalid, ${e}")
+        loggerInfo("deleteKeyItem input arg invalid, ${e}")
     }
 }
 
@@ -518,4 +536,5 @@ func testDerive() {
     publicFinishFunc(handle.getOrThrow(), finishOptions)
     publicDeleteKeyFunc(srcKeyAlias, huksOptions)
 }
+
 ```

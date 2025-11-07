@@ -4,7 +4,13 @@ A relative layout component used for aligning elements in complex scenarios.
 
 > **Note:**
 >
-> The margin of child components within a relative layout container differs from the general [margin](cj-universal-attribute-size.md#func-marginlength) attribute. Here, it represents the distance to the anchor point in that direction. If there is no anchor point in that direction, the margin in that direction will not take effect.
+> The `margin` property of child components within a relative layout container differs from the general [margin](cj-universal-attribute-size.md#func-marginlength) attribute. Here, it represents the distance to the anchor point in that direction. If no anchor point exists in a given direction, the margin in that direction will not take effect.
+
+## Import Module
+
+```cangjie
+import kit.ArkUI.*
+```
 
 ## Child Components
 
@@ -22,57 +28,57 @@ public init(child!: () -> Unit = {=>})
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| child | () -> Unit | No | { => } | Declares the child components of the container. |
+| child | () -> Unit | No | {=>} | **Named parameter.** Declares the container's child components. |
 
 ## Universal Attributes/Events
 
-Universal Attributes: All supported.
+Universal attributes: All supported.
 
-Universal Events: All supported.
+Universal events: All supported.
 
 ## Component Attributes
 
-### func barrier(Array\<BarrierStyle>)
+### func barrier(?Array\<BarrierStyle>)
 
 ```cangjie
-public func barrier(value: Array<BarrierStyle>): This
+public func barrier(value: ?Array<BarrierStyle>): This
 ```
 
-**Function:** Sets barriers within the RelativeContainer. Each item in the Array represents a barrier.
+**Function:** Sets barriers within the RelativeContainer. Each item in the Array represents a single barrier.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Array\<[BarrierStyle](#class-barrierstyle)> | Yes | - | Barriers within the RelativeContainer. |
+| value | ?Array\<[BarrierStyle](#class-barrierstyle)> | Yes | - | Barriers within the RelativeContainer. Initial value: []. |
 
-### func guideLine(Array\<GuideLineStyle>)
+### func guideLine(?Array\<GuideLineStyle>)
 
 ```cangjie
-public func guideLine(value: Array<GuideLineStyle>): This
+public func guideLine(value: ?Array<GuideLineStyle>): This
 ```
 
-**Function:** Sets guidelines within the RelativeContainer. Each item in the Array represents a guideline.
+**Function:** Sets guidelines within the RelativeContainer. Each item in the Array represents a single guideline.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Array\<[GuideLineStyle](#class-guidelinestyle)> | Yes | - | Guidelines within the RelativeContainer. |
+| value | ?Array\<[GuideLineStyle](#class-guidelinestyle)> | Yes | - | Guidelines within the RelativeContainer. Initial value: []. |
 
 ## Basic Type Definitions
 
@@ -80,136 +86,134 @@ public func guideLine(value: Array<GuideLineStyle>): This
 
 ```cangjie
 public class BarrierStyle {
-    public var id: String
-    public var direction: BarrierDirection
-    public var referencedId: Array<String>
-
-    public init(id: String, direction: BarrierDirection, referencedId: Array<String>)
+    public var id: ?String
+    public var direction: ?BarrierDirection
+    public var referencedId: ?Array<String>
+    public init(id: ?String, direction: ?BarrierDirection, referencedId: ?Array<String>)
 }
 ```
 
-**Function:** Barrier parameters, used to define the ID, direction, and dependent components of a barrier.
+**Function:** Barrier parameter, used to define a barrier's ID, direction, and the components it depends on.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-#### var direction
-
-```cangjie
-public var direction: BarrierDirection
-```
-
-**Function:** Specifies the direction of the barrier. Vertical barriers (TOP, BOTTOM) can only serve as horizontal anchor points for components, with a value of 0 when used as vertical anchor points. Horizontal barriers (LEFT, RIGHT) can only serve as vertical anchor points for components, with a value of 0 when used as horizontal anchor points.
-
-**Type:** [BarrierDirection](cj-common-types.md#enum-barrierdirection)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 #### var id
 
 ```cangjie
-public var id: String
+public var id: ?String
 ```
 
-**Function:** The ID of the barrier, which must be unique and cannot duplicate any component names within the container.
+**Function:** The barrier's ID, which must be unique and cannot duplicate any component names within the container.
 
-**Type:** String
+**Type:** ?String
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+#### var direction
+
+```cangjie
+public var direction: ?BarrierDirection
+```
+
+**Function:** Specifies the barrier's direction. Vertical barriers (Top, Bottom) can only serve as horizontal anchor points for components (value is 0 when used as vertical anchor points). Horizontal barriers (Left, Right) can only serve as vertical anchor points for components (value is 0 when used as horizontal anchor points).
+
+**Type:** ?[BarrierDirection](./cj-common-types.md#enum-barrierdirection)
+
+**Read/Write:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 #### var referencedId
 
 ```cangjie
-public var referencedId: Array<String>
+public var referencedId: ?Array<String>
 ```
 
-**Function:** Specifies the components on which the barrier depends.
+**Function:** Specifies the components the barrier depends on.
 
-**Type:** Array\<String>
+**Type:** ?Array\<String>
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(String, BarrierDirection, Array\<String>)
+#### init(?String, ?BarrierDirection, ?Array\<String>)
 
 ```cangjie
-public init(id: String, direction: BarrierDirection, referencedId: Array<String>)
+public init(id: ?String, direction: ?BarrierDirection, referencedId: ?Array<String>)
 ```
 
-**Function:** Creates an object of type BarrierStyle.
+**Function:** Creates a BarrierStyle object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| id | String | Yes | - | The ID of the barrier, which must be unique and cannot duplicate any component names within the container. |
-| direction | [BarrierDirection](./cj-common-types.md#enum-barrierdirection) | Yes | - | Specifies the direction of the barrier.<br>Vertical barriers (TOP, BOTTOM) can only serve as horizontal anchor points for components, with a value of 0 when used as vertical anchor points. Horizontal barriers (LEFT, RIGHT) can only serve as vertical anchor points for components, with a value of 0 when used as horizontal anchor points.<br>Default: BarrierDirection.LEFT |
-| referencedId | Array\<String> | Yes | - | Specifies the components on which the barrier depends. |
+| id | ?String | Yes | - | The barrier's ID, which must be unique and cannot duplicate any component names within the container. Initial value: "". |
+| direction | ?[BarrierDirection](./cj-common-types.md#enum-barrierdirection) | Yes | - | Specifies the barrier's direction. Vertical barriers (TOP, BOTTOM) can only serve as horizontal anchor points (value is 0 when used as vertical anchor points). Horizontal barriers (LEFT, RIGHT) can only serve as vertical anchor points (value is 0 when used as horizontal anchor points). Initial value: BarrierDirection.LEFT. |
+| referencedId | ?Array\<String> | Yes | - | Specifies the components the barrier depends on. Initial value: []. |
 
 ### class GuideLinePosition
 
 ```cangjie
 public class GuideLinePosition {
-    public var start:?Length = None
-    public var end:?Length = None
-
+    public var start: ?Length
+    public var end: ?Length
     public init(start!: ?Length = None, end!: ?Length = None)
 }
 ```
 
-**Function:** Guideline position parameters, used to define the position of a guideline.
+**Function:** Guideline position parameter, used to define a guideline's position.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-#### var end
-
-```cangjie
-public var end:?Length = None
-```
-
-**Function:** The distance from the guideline to the right or bottom of the container.
-
-**Type:** ?[Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 #### var start
 
 ```cangjie
-public var start:?Length = None
+public var start: ?Length
 ```
 
-**Function:** The distance from the guideline to the left or top of the container.
+**Function:** The distance from the guideline to the container's left or top edge.
 
-**Type:** ?[Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+#### var end
+
+```cangjie
+public var end: ?Length
+```
+
+**Function:** The distance from the guideline to the container's right or bottom edge.
+
+**Type:** ?[Length](./cj-common-types.md#interface-length)
+
+**Read/Write:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 #### init(?Length, ?Length)
 
@@ -217,110 +221,109 @@ public var start:?Length = None
 public init(start!: ?Length = None, end!: ?Length = None)
 ```
 
-**Function:** Creates an object of type GuideLinePosition.
+**Function:** Creates a GuideLinePosition object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| start | ?[Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | None | **Named parameter.** The distance from the guideline to the left or top of the container. |
-| end | ?[Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | None | **Named parameter.** The distance from the guideline to the right or bottom of the container. |
+| start | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The distance from the guideline to the container's left or top edge. |
+| end | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The distance from the guideline to the container's right or bottom edge. |
 
 ### class GuideLineStyle
 
 ```cangjie
 public class GuideLineStyle {
-    public var id: String
-    public var direction: Axis
-    public var position: GuideLinePosition
-
-    public init(id: String, direction: Axis, position: GuideLinePosition)
+    public var id: ?String
+    public var direction: ?Axis
+    public var position: ?GuideLinePosition
+    public init(id: ?String, direction: ?Axis, position: ?GuideLinePosition)
 }
 ```
 
-**Function:** Guideline parameters, used to define the ID, direction, and position of a guideline.
+**Function:** Guideline parameter, used to define a guideline's ID, direction, and position.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-#### var direction
-
-```cangjie
-public var direction: Axis
-```
-
-**Function:** Specifies the direction of the guideline. Vertical guidelines can only serve as horizontal anchor points for components, with a value of 0 when used as vertical anchor points. Horizontal guidelines can only serve as vertical anchor points for components, with a value of 0 when used as horizontal anchor points.
-
-**Type:** [Axis](cj-common-types.md#enum-axis)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 #### var id
 
 ```cangjie
-public var id: String
+public var id: ?String
 ```
 
-**Function:** The ID of the guideline, which must be unique and cannot duplicate any component names within the container.
+**Function:** The guideline's ID, which must be unique and cannot duplicate any component names within the container.
 
-**Type:** String
+**Type:** ?String
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+#### var direction
+
+```cangjie
+public var direction: ?Axis
+```
+
+**Function:** Specifies the guideline's direction. Vertical guidelines can only serve as horizontal anchor points for components (value is 0 when used as vertical anchor points). Horizontal guidelines can only serve as vertical anchor points for components (value is 0 when used as horizontal anchor points).
+
+**Type:** ?[Axis](./cj-common-types.md#enum-axis)
+
+**Read/Write:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 #### var position
 
 ```cangjie
-public var position: GuideLinePosition
+public var position: ?GuideLinePosition
 ```
 
-**Function:** Specifies the position of the guideline. If undeclared or declared with an invalid value (e.g., undefined), the guideline's position defaults to start: 0. Either start or end declaration can be used. If both are declared, only start takes effect. If the container's size in a direction is declared as "auto", the guideline's position in that direction can only be declared using start (percentage is not allowed).
+**Function:** Specifies the guideline's position. If undeclared or declared with an invalid value (e.g., undefined), the guideline's position defaults to start: 0. Either `start` or `end` declaration can be used. If both are declared, only `start` takes effect. If the container's size in a direction is declared as "auto", guidelines in that direction can only use `start` declaration (percentage values are not allowed).
 
-**Type:** [GuideLinePosition](#class-guidelineposition)
+**Type:** ?[GuideLinePosition](./cj-common-types.md#enum-guidelineposition)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(String, Axis, GuideLinePosition)
+#### init(?String, ?Axis, ?GuideLinePosition)
 
 ```cangjie
-public init(id: String, direction: Axis, position: GuideLinePosition)
+public init(id: ?String, direction: ?Axis, position: ?GuideLinePosition)
 ```
 
-**Function:** Creates an object of type GuideLineStyle.
+**Function:** Creates a GuideLineStyle object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| id | String | Yes | - | The ID of the guideline, which must be unique and cannot duplicate any component names within the container. |
-| direction | [Axis](./cj-common-types.md#enum-axis) | Yes | - | Specifies the direction of the guideline.<br>Vertical guidelines can only serve as horizontal anchor points for components, with a value of 0 when used as vertical anchor points. Horizontal guidelines can only serve as vertical anchor points for components, with a value of 0 when used as horizontal anchor points.<br>Default: Axis.Vertical |
-| position | [GuideLinePosition](#class-guidelineposition) | Yes | - | Specifies the position of the guideline. If undeclared or declared with an invalid value, the guideline's position defaults to start: 0. Either start or end declaration can be used. If both are declared, only start takes effect.<br>Default: {start: 0} |
+| id | ?String | Yes | - | The guideline's ID, which must be unique and cannot duplicate any component names within the container. Initial value: "". |
+| direction | ?[Axis](cj-common-types.md#enum-axis) | Yes | - | Specifies the guideline's direction. Vertical guidelines can only serve as horizontal anchor points (value is 0 when used as vertical anchor points). Horizontal guidelines can only serve as vertical anchor points (value is 0 when used as horizontal anchor points). Initial value: Axis.Vertical. |
+| position | ?[GuideLinePosition](#class-guidelineposition) | Yes | - | Specifies the guideline's position. If undeclared or declared with an invalid value, the initial position is start: 0. Either `start` or `end` declaration can be used. If both are declared, only `start` takes effect. Initial value: {start: 0}. |
 
 ## Example Code
 
 ### Example 1 (Layout Using Container and Child Components as Anchor Points)
 
-This example demonstrates layout functionality using the container and its child components as anchor points via the `alignRules` interface.
+This example demonstrates layout functionality using the `alignRules` interface with the container and its child components as anchor points.
 
 <!-- run -->
 
@@ -339,46 +342,46 @@ class EntryView {
                 Row().width(100).height(100)
                 .backgroundColor(0xff3333)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("__container__", VerticalAlign.Top),
-                        left: HorizontalAlignment("__container__", HorizontalAlign.Start)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("__container__", VerticalAlign.Top),
+                        left: HorizontalAlignParam("__container__", HorizontalAlign.Start)
                     )
                 ).id("row1")
                 Row().width(100).height(100)
                 .backgroundColor(0xFFCC00)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("__container__", VerticalAlign.Top),
-                        right: HorizontalAlignment("__container__", HorizontalAlign.End)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("__container__", VerticalAlign.Top),
+                        right: HorizontalAlignParam("__container__", HorizontalAlign.End)
                     )
                 ).id("row2")
                 Row().height(100)
                 .backgroundColor(0xFF6633)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row1", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("row1", HorizontalAlign.End),
-                        right: HorizontalAlignment("row2", HorizontalAlign.Start)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row1", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("row1", HorizontalAlign.End),
+                        right: HorizontalAlignParam("row2", HorizontalAlign.Start)
                     )
                 ).id("row3")
                 Row()
                 .backgroundColor(0xFF9966)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row3", VerticalAlign.Bottom),
-                        bottom: VerticalAlignment("__container__", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("__container__", HorizontalAlign.Start),
-                        right: HorizontalAlignment("row1",  HorizontalAlign.End)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row3", VerticalAlign.Bottom),
+                        bottom: VerticalAlignParam("__container__", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("__container__", HorizontalAlign.Start),
+                        right: HorizontalAlignParam("row1",  HorizontalAlign.End)
                     )
                 ).id("row4")
                 Row()
                 .backgroundColor(0xff3333)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row3", VerticalAlign.Bottom),
-                        bottom: VerticalAlignment("__container__", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("row2", HorizontalAlign.Start),
-                        right: HorizontalAlignment("__container__",  HorizontalAlign.End)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row3", VerticalAlign.Bottom),
+                        bottom: VerticalAlignParam("__container__", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("row2", HorizontalAlign.Start),
+                        right: HorizontalAlignParam("__container__",  HorizontalAlign.End)
                     )
                 ).id("row5")
             }
@@ -390,9 +393,11 @@ class EntryView {
 }
 ```
 
-![relativecontainer1](figures/relativecontainer1.jpg)### Example 2 (Setting Margins for Child Components)
+![relativecontainer1](figures/relativecontainer1.png)
 
-This example demonstrates the usage of setting margins for child components within a container.
+### Example 2 (Setting Margins for Child Components)
+
+This example demonstrates how to set margins for child components within the container.
 
 <!-- run -->
 
@@ -411,34 +416,34 @@ class EntryView {
                 Row().width(100).height(100)
                 .backgroundColor(0xff3333)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("__container__", VerticalAlign.Top),
-                        left: HorizontalAlignment("__container__", HorizontalAlign.Start)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("__container__", VerticalAlign.Top),
+                        left: HorizontalAlignParam("__container__", HorizontalAlign.Start)
                     )
                 ).id("row1")
                 .margin(10)
                 Row().width(100).height(100)
                 .backgroundColor(0xFFCC00)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row1", VerticalAlign.Top),
-                        left: HorizontalAlignment("row1", HorizontalAlign.End)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row1", VerticalAlign.Top),
+                        left: HorizontalAlignParam("row1", HorizontalAlign.End)
                     )
                 ).id("row2")
                 Row().height(100).width(100)
                 .backgroundColor(0xFF6633)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row1", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("row1", HorizontalAlign.Start)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row1", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("row1", HorizontalAlign.Start)
                     )
                 ).id("row3")
                 Row().width(100).height(100)
                 .backgroundColor(0xFF9966)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row2", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("row3", HorizontalAlign.End),
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row2", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("row3", HorizontalAlign.End),
                     )
                 ).id("row4")
                 .margin(10)
@@ -451,11 +456,9 @@ class EntryView {
 }
 ```
 
-![relativecontainer2](figures/relativecontainer2.jpg)
+![relativecontainer2](figures/relativecontainer2.png)### Example 3 (Setting Offset)
 
-### Example 3 (Setting Offset)
-
-This example achieves the effect of offsetting a child component's position between two vertical anchors using [bias](cj-universal-attribute-location.md#class-bias).
+This example demonstrates how to achieve vertical offset between two anchor points for child components using [bias](cj-universal-attribute-location.md#class-bias).
 
 <!-- run -->
 
@@ -472,11 +475,11 @@ class EntryView {
         Row() {
             RelativeContainer() {
                 Row().width(100).height(100).backgroundColor(0xff3333).alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("__container__", VerticalAlign.Top),
-                        bottom: VerticalAlignment("__container__", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("__container__", HorizontalAlign.Start),
-                        right: HorizontalAlignment("__container__", HorizontalAlign.End),
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("__container__", VerticalAlign.Top),
+                        bottom: VerticalAlignParam("__container__", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("__container__", HorizontalAlign.Start),
+                        right: HorizontalAlignParam("__container__", HorizontalAlign.End),
                         bias: Bias(vertical: 0.3)
                     )
                 ).id("row1")
@@ -489,11 +492,11 @@ class EntryView {
 }
 ```
 
-![relativecontainer4](figures/relativecontainer3.jpg)
+![relativecontainer4](./figures/relativecontainer3.PNG)
 
 ### Example 4 (Setting Guidelines)
 
-This example demonstrates the functionality of setting guidelines in a relative layout component using the [guideLine](#func-guidelinearrayguidelinestyle) interface, where child components use the guidelines as anchors.
+This example demonstrates how the relative layout component uses the [guideLine](#func-guidelinearrayguidelinestyle) interface to set guidelines, allowing child components to use them as anchor points.
 
 <!-- run -->
 
@@ -510,9 +513,9 @@ class EntryView {
         Row() {
             RelativeContainer() {
                 Row().width(100).height(100).backgroundColor(0xff3333).alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("guideline2", VerticalAlign.Top),
-                        left: HorizontalAlignment("guideline1", HorizontalAlign.End),
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("guideline2", VerticalAlign.Top),
+                        left: HorizontalAlignParam("guideline1", HorizontalAlign.End),
                     )
                 ).id("row1")
             }.width(300).height(300).margin(left: 50.vp).border(width: 2.vp, color: Color(0x6699ff))
@@ -524,11 +527,11 @@ class EntryView {
 }
 ```
 
-![relativecontainer5](figures/relativecontainer4.jpg)
+![relativecontainer5](./figures/relativecontainer4.PNG)
 
 ### Example 5 (Setting Barriers)
 
-This example demonstrates the usage of setting barriers in a relative layout component using the [barrier](#func-barrierarraybarrierstyle) interface, where child components use the barriers as anchors.
+This example demonstrates how the relative layout component uses the [barrier](#func-barrierarraybarrierstyle) interface to set barriers, allowing child components to use them as anchor points.
 
 <!-- run -->
 
@@ -551,27 +554,27 @@ class EntryView {
                 Row().width(100).height(100)
                 .backgroundColor(0xFFCC00)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row1", VerticalAlign.Bottom),
-                        middle: HorizontalAlignment("row1", HorizontalAlign.End)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row1", VerticalAlign.Bottom),
+                        middle: HorizontalAlignParam("row1", HorizontalAlign.End)
                     )
                 ).id("row2")
 
                 Row().height(100).width(100)
                 .backgroundColor(0xFF6633)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("row1", VerticalAlign.Top),
-                        left: HorizontalAlignment("barrier1", HorizontalAlign.End)
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("row1", VerticalAlign.Top),
+                        left: HorizontalAlignParam("barrier1", HorizontalAlign.End)
                     )
                 ).id("row3")
 
                 Row().width(50).height(50)
                 .backgroundColor(0xFF9966)
                 .alignRules(
-                    AlignRuleOption(
-                        top: VerticalAlignment("barrier2", VerticalAlign.Bottom),
-                        left: HorizontalAlignment("row1", HorizontalAlign.Start),
+                    AlignRuleOptions(
+                        top: VerticalAlignParam("barrier2", VerticalAlign.Bottom),
+                        left: HorizontalAlignParam("row1", HorizontalAlign.Start),
                     )
                 ).id("row4")
             }.width(300).height(300)
@@ -585,4 +588,4 @@ class EntryView {
 }
 ```
 
-![relativecontainer6](figures/relativecontainer5.jpg)
+![relativecontainer6](./figures/relativecontainer5.PNG)

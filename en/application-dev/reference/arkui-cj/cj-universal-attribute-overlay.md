@@ -1,6 +1,6 @@
 # Overlay
 
-Sets the mask text for a component.
+Sets the overlay text for a component.
 
 ## Import Module
 
@@ -8,27 +8,83 @@ Sets the mask text for a component.
 import kit.ArkUI.*
 ```
 
-## func overlay(String, Alignment, OverlayOffset)
+## func overlay(?String, ?Alignment, ?OverlayOffset)
 
 ```cangjie
-public func overlay(value!: String, align!: Alignment = Alignment.Center,
-    offset!: OverlayOffset = OverlayOffset(x: 0.0, y: 0.0)): This
+public func overlay(value!: ?String, align!: ?Alignment = None,
+    offset!: ?OverlayOffset = None): T
 ```
 
-**Functionality:** Adds mask text as an overlay on top of the current component.
+**Functionality:** Adds overlay text as a floating layer above the current component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | String | Yes | - | **Named parameter.** Content of the mask text. |
-| align | [Alignment](./cj-common-types.md#enum-alignment) | No | Alignment.Center | **Named parameter.** Position of the overlay relative to the component. |
-| offset | [OverlayOffset](./cj-common-types.md#class-overlayoffset) | No | OverlayOffset(x: 0.0, y: 0.0) | **Named parameter.** Offset of the overlay based on its own top-left corner. The overlay is positioned at the top-left corner of the component by default. |
+| value | ?String | Yes | - | **Named parameter.** The content of the overlay text. |
+| align | ?[Alignment](./cj-common-types.md#enum-alignment) | No | None | **Named parameter.** The position of the overlay relative to the component. Initial value: Alignment.Center |
+| offset | ?[OverlayOffset](./cj-common-types.md#class-overlayoffset) | No | None | **Named parameter.** The offset of the overlay based on its own top-left corner. The overlay is positioned at the component's top-left corner by default. Initial value: OverlayOffset(x: 0.0, y: 0.0) |
 
 > **Note:**
 >
-> When both align and offset are set, their effects will overlap. The overlay will first be positioned relative to the component based on the alignment, and then offset from the current position's top-left corner.
+> When both align and offset are set, the effects overlap. The overlay is first positioned relative to the component and then offset based on the current position's top-left corner.
+
+**Return Value:**
+
+| Type | Description |
+|:---|:---|
+| T | Returns the component instance itself that called this interface. |
+
+## Example Code
+
+### Example 1 (Overlay Effect)
+
+This example demonstrates how to use the overlay method to add overlay text to a component.
+
+<!-- run -->
+
+```cangjie
+package ohos_app_cangjie_entry
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
+
+@Entry
+@Component
+class EntryView {
+    func build() {
+        Column() {
+            Text("Default Centered Overlay")
+                .width(200)
+                .height(100)
+                .backgroundColor(Color.Blue)
+                .overlay(value: "Overlay Text")
+            
+            Text("Top-Left Overlay")
+                .width(200)
+                .height(100)
+                .backgroundColor(Color.Green)
+                .overlay(value: "Top Left", align: Alignment.TopStart)
+            
+            Text("Overlay with Offset")
+                .width(200)
+                .height(100)
+                .backgroundColor(Color.Red)
+                .overlay(
+                    value: "Offset Text", 
+                    align: Alignment.BottomEnd,
+                    offset: OverlayOffset(x: -20.0, y: -20.0)
+                )
+        }
+        .width(100.percent)
+        .height(100.percent)
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
+    }
+}
+```
+
+![overlay](./figures/overlay.PNG)

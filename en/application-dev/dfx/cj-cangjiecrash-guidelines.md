@@ -8,7 +8,7 @@ The following describes the meaning of each field in the `Crash` log.
 
 ```text
 Device info:XXXXXX                        // Device information  
-Build info:XXX-XXXX X.X.X.XX(XXXXXXXX)    // Build information
+Build info:XXX-XXXX X.X.X.XX(XXXXXXXX)    // Build information  
 Module name:com.example.myapplication     // Module name  
 Version:1.0.0                             // Version number  
 Pid:45570                                 // Process ID  
@@ -24,31 +24,31 @@ Stacktrace:                               // Exception call stack
 
 In Cangjie, exception classes include `Error` and `Exception`:  
 
-- The `Error` class describes internal system errors and resource exhaustion errors during Cangjie runtime. Applications should not throw this type of error. If an internal error occurs, the application should notify the user and terminate safely.  
+- The `Error` class describes internal system errors and resource exhaustion errors during Cangjie runtime. Applications should not throw this type of error. If an internal error occurs, the user should be notified, and the program should terminate safely.  
 
-- The `Exception` class describes logical errors or IO errors during program execution, such as array out-of-bounds or attempting to open a non-existent file. These exceptions need to be caught and handled in the program. For common exceptions, refer to [Common Runtime Exceptions](https://developer.huawei.com/consumer/cn/doc/cangjie-guides-V5/common_runtime_exceptions-V5).  
+- The `Exception` class describes logical errors or I/O errors during program execution, such as array out-of-bounds or attempting to open a non-existent file. These exceptions need to be caught and handled in the program. For common exception types, refer to <!--RP02-->[Common Runtime Exceptions](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/error_handle/common_runtime_exceptions.md)<!--RP02End-->.  
 
-## Troubleshooting Approach  
+## Problem Diagnosis Approach  
 
 ### Obtaining Logs  
 
 Process crash logs are a type of fault log managed by the `FaultLogger` module, along with application non-response logs and crashes. They can be obtained through the following methods:  
 
-1. Obtaining logs via `DevEco Studio`  
+1. **Via DevEco Studio**  
 
     `DevEco Studio` collects process crash logs from the device path `/data/log/faultlog/faultlogger/` and archives them under `FaultLog`. Cangjie process crash logs are archived under the `cjerror` type in `FaultLog`. For details on obtaining logs, refer to [FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log).  
 
-2. Subscribing via the `hiAppEvent` interface  
+2. **Via the `hiAppEvent` Interface Subscription**  
 
-    `hiAppEvent` provides fault subscription interfaces for various fault events. For details, refer to [`HiAppEvent` Introduction](./cj-hiappevent-intro.md).  
+    `hiAppEvent` provides fault subscription interfaces to subscribe to various fault events. For details, see [`HiAppEvent` Introduction](./cj-hiappevent-intro.md).  
 
 ### Root Cause Analysis  
 
-Cangjie `Crash` issues can be analyzed using the exception information and call stack in the fault log to locate the source code and derive preliminary conclusions.  
+Cangjie `Crash` issues can be analyzed by examining the exception information and call stack in the fault log to locate the source code and derive preliminary conclusions.  
 
-For `Error` class exceptions, the call stack has limited reference value, and root cause identification is complex. It requires analyzing code logic, memory usage, parameter configuration, etc., with the help of analysis tools provided in `DevEco Studio`.  
+- For `Error` class exceptions, the call stack has limited reference value, and root cause identification is complex. It requires analysis combining code logic, memory usage, parameter configuration, and tools provided in `DevEco Studio`.  
 
-For `Exception` class exceptions, most cases are caused by logical errors in the code. The call stack can directly locate the problematic code, and reviewing the code logic is usually sufficient.  
+- For `Exception` class exceptions, most cases are caused by logical errors in the code. The call stack can directly locate the problematic code, and reviewing the code logic is usually sufficient.  
 
 ## Case Studies  
 
@@ -59,17 +59,15 @@ For `Exception` class exceptions, most cases are caused by logical errors in the
 Common exceptions encountered by developers include:  
 
 1. `OutOfMemoryError`: Thrown by the runtime when memory is insufficient.  
-
 2. `StackOverflowError`: Thrown by the runtime when the Cangjie thread stack overflows.  
 
 #### Case 1: Out of Memory Exception  
 
-Source code for the case:  
+Source code of the case:  
 
 <!-- compile -->  
 
 ```cangjie  
-
 var bigArray = Array<Rune>(1024 * 1024 * 60, repeat: r'a')  
 func foo(): Unit {  
     var smallArray = Array<Rune>(1024 * 1024 * 5, repeat: r'a')  
@@ -83,17 +81,17 @@ class EntryView {
     func build() {  
         Row {  
             Column {  
-                Button(message).onClick {  
-                    evt => AppLog.info("Hello Cangjie")  
+                Button(message).onClick ({  
+                    evt => Hilog.info(1, "info", "Hello Cangjie")  
                     foo()  
-                }.fontSize(40).height(80)  
+                }).fontSize(40).height(80)  
             }.width(100.percent)  
         }.height(100.percent)  
     }  
 }  
 ```  
 
-1. Obtain the `Crash` log and confirm the direct cause of the crash based on the crash reason and exception information.  
+1. Obtain the `Crash` log and confirm the direct cause of the crash based on the reason and exception information.  
 
     Key content of the `Crash` log:  
 
@@ -111,19 +109,17 @@ class EntryView {
         at ohos.ffi.ohosFFICJCallbackInvoker(Int64, Int32, CPointer<...>, CPointer<...>)(ffi_callback.cj:172)  
     ```  
 
-    The crash reason and exception information indicate that the direct cause is an out-of-memory exception.  
+    The direct cause of the crash is an out-of-memory exception.  
 
 2. Analyze the root cause.  
 
-    For `OutOfMemoryError`, the call stack has limited reference value because memory exhaustion can occur anywhere, and the exception throw point may simply be where the remaining available memory was exhausted.  
+    For `OutOfMemoryError`, the call stack has limited reference value because memory exhaustion can occur anywhere, and the exception point may simply be where the remaining memory was exhausted.  
 
-    To identify the root cause of `OutOfMemoryError`, consider the following aspects:  
+    To analyze the root cause of `OutOfMemoryError`, consider the following aspects:  
 
-    - Memory usage: Use the `Profiler` tool in `DevEco Studio` to analyze memory consumption.  
-
-    - Code logic: Review the business code in conjunction with the call stack and heap usage to verify correctness. If the logic is correct, consider optimizing the code based on heap usage.  
-
-    - Parameter configuration: Verify whether the `cjHeapSize` configuration matches the current business scenario.  
+    - **Memory usage**: Use the `Profiler` tool in `DevEco Studio` to analyze memory consumption.  
+    - **Code logic**: Review the business code in combination with the call stack and heap usage to verify correctness. If the logic is correct, consider optimizing the code based on heap usage.  
+    - **Parameter configuration**: Verify whether the `cjHeapSize` configuration matches the current business scenario.  
 
 ### Exception Class Case Analysis  
 
@@ -132,12 +128,11 @@ class EntryView {
 These issues currently fall into two scenarios:  
 
 1. If the application encounters an unresolvable fault that requires terminating the current business, consider throwing a Cangjie exception to terminate the business and generate a fault log.  
+2. When using interfaces from Cangjie standard library modules that may throw exceptions, use the `try-catch` mechanism or add protective checks to avoid terminating the current business.  
 
-2. When using interfaces from Cangjie standard library modules that may throw exceptions, use `try-catch` to handle them or add protective checks in advance. Otherwise, the current business will terminate.  
+#### Case 1: Developer Throws a Custom Cangjie Exception to Terminate the Program  
 
-#### Case 1: Developer Manually Throws a Custom Cangjie Exception to Terminate the Program  
-
-Developers can manually throw Cangjie exceptions using the following code:  
+Developers can throw Cangjie exceptions using the following code:  
 
 <!-- compile -->  
 
@@ -145,9 +140,9 @@ Developers can manually throw Cangjie exceptions using the following code:
 throw Exception("throwing exception")  
 ```  
 
-Alternatively, inherit from the built-in `Exception` or its subclasses to define and throw custom exceptions. For custom exception implementations, refer to [Defining Exceptions](https://developer.huawei.com/consumer/cn/doc/cangjie-guides-V5/exception_overview-V5).  
+Alternatively, inherit from the built-in `Exception` or its subclasses to define custom exceptions. For custom exception implementation, refer to <!--RP02-->[Defining Exceptions](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/error_handle/exception_overview.md)<!--RP02End-->.  
 
-For such cases, the throw point at the top of the call stack in the fault log can directly locate the specific code line.  
+For such issues, the fault log's call stack can directly locate the specific code line.  
 
 ![image-20250425104944](./figures/cangjiecrash_image_001.png)  
 
@@ -155,9 +150,9 @@ Further review the context to analyze the issue.
 
 #### Case 2: Crash Due to Unhandled Exception Thrown by Cangjie Standard Library  
 
-This section uses `NoneValueException` as an example to demonstrate the process of analyzing a Cangjie `Crash` issue.  
+This section uses `NoneValueException` as an example to demonstrate the process of analyzing Cangjie `Crash` issues.  
 
-Source code for the case:  
+Source code of the case:  
 
 <!-- compile -->  
 
@@ -176,17 +171,17 @@ class EntryView {
     func build() {  
         Row {  
             Column {  
-                Button(message).onClick {  
-                    evt => AppLog.info("Hello Cangjie")  
+                Button(message).onClick ({  
+                    evt => Hilog.info(1, "info","Hello Cangjie")  
                     foo()  
-                }.fontSize(40).height(80)  
+                }).fontSize(40).height(80)  
             }.width(100.percent)  
         }.height(100.percent)  
     }  
 }  
 ```  
 
-1. Obtain the `Crash` log and confirm the direct cause of the crash based on the crash reason and exception information.  
+1. Obtain the `Crash` log and confirm the direct cause of the crash.  
 
     Key content of the `Crash` log:  
 
@@ -207,13 +202,13 @@ class EntryView {
         at ohos.ffi.ohosFFICJCallbackInvoker(Int64, Int32, CPointer<...>, CPointer<...>)(ffi_callback.cj:172)  
     ```  
 
-    The crash reason and exception information indicate that the direct cause is an uncaught `NoneValueException`.  
+    The direct cause of the crash is an uncaught `NoneValueException`.  
 
 2. Locate the source code based on the call stack in the `Crash` log.  
 
-    Review the call stack from top to bottom. The first two frames show the standard library (`std` module) throwing the exception. The frame above the `std` module points to the specific source code location.  
+    Review the call stack from top to bottom. The first two frames show the standard library (`std` module) throwing the exception, and the frame above `std` points to the source code location.  
 
-    The analysis shows the exception was thrown at line 22 in the `foo` function, and the error is related to `HashMap` subscript access.  
+    The analysis reveals the exception occurs at line 22 in the `foo` function, related to `HashMap` subscript access.  
 
     The problematic code:  
 
@@ -228,13 +223,13 @@ class EntryView {
 
 3. Analyze the exception code to determine the root cause.  
 
-    Reviewing the context reveals that the exception occurred because the `key` "d" does not exist in `map`.  
+    The context shows the exception occurs because the `key` `d` does not exist in `map`.  
 
-    For this simple case, if the code logic is complex, use debugging tools in `DevEco Studio` to debug the program.  
+    For complex code, use debugging tools in `DevEco Studio` to analyze the program.  
 
 4. Solution.  
 
-    Based on the analysis, modify the source code. Add a protective check for the existence of the `key` before accessing the `HashMap`.  
+    Based on the analysis, modify the source code. Add a protective check for the `key` existence before accessing `HashMap`.  
 
     Modified `foo` function:  
 

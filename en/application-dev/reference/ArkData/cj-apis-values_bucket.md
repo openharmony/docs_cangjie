@@ -8,10 +8,10 @@ A ValuesBucket is a collection of data that developers insert into a database, t
 import kit.ArkData.*
 ```
 
-## enum ValueType
+## enum VBValueType
 
 ```cangjie
-public enum ValueType {
+public enum VBValueType {
     | Integer(Int64)
     | Double(Float64)
     | StringValue(String)
@@ -23,7 +23,7 @@ public enum ValueType {
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Boolean(Bool)
 
@@ -35,7 +35,7 @@ Boolean(Bool)
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Double(Float64)
 
@@ -47,7 +47,7 @@ Double(Float64)
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Integer(Int64)
 
@@ -59,7 +59,7 @@ Integer(Int64)
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StringValue(String)
 
@@ -71,4 +71,4 @@ StringValue(String)
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22

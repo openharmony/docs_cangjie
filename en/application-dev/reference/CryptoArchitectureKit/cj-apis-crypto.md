@@ -1,6 +1,6 @@
 # ohos.security.crypto_framework (Cryptographic Algorithm Library Framework)
 
-Provides a unified cryptographic algorithm library interface to shield underlying hardware and algorithm libraries.
+Provides a unified cryptographic algorithm library interface for encryption and decryption operations, shielding the underlying hardware and algorithm libraries.
 
 ## Import Module
 
@@ -8,14 +8,14 @@ Provides a unified cryptographic algorithm library interface to shield underlyin
 import kit.CryptoArchitectureKit.*
 ```
 
-## Usage Guidelines
+## Usage Instructions
 
-API sample code usage guidelines:
+API example code usage instructions:
 
-- If the sample code has a "// index.cj" comment on the first line, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of example code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the above sample project and configuration template, see [Cangjie Sample Code Description](../cj-development-intro.md#Cangjie-Sample-Code-Description).
+For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie-Example-Code-Instructions).
 
 ## func createCipher(String)
 
@@ -23,36 +23,35 @@ For details about the above sample project and configuration template, see [Cang
 public func createCipher(transformation: String): Cipher
 ```
 
-**Description:** Obtains the corresponding [Cipher](#class-cipher) instance by specifying the algorithm name.
+**Description:** Obtains a corresponding [Cipher](#class-cipher) instance by specifying the algorithm name.
 
 <!-- For supported specifications, see [Symmetric Key Encryption/Decryption Algorithm Specifications](../cj-development-intro.md#Symmetric-Key-Encryption/Decryption-Algorithm-Specifications) and [Asymmetric Key Encryption/Decryption Algorithm Specifications](../cj-development-intro.md#Asymmetric-Key-Encryption/Decryption-Algorithm-Specifications). -->
-For supported specifications, see [Symmetric Key Encryption/Decryption Algorithm Specifications](../../../en/application-dev/security/CryptoArchitectureKit/cj-crypto-sym-encrypt-decrypt-spec.md#Symmetric-Key-Encryption/Decryption-Algorithm-Specifications) and [Asymmetric Key Encryption/Decryption Algorithm Specifications](../../../en/application-dev/security/CryptoArchitectureKit/cj-crypto-asym-encrypt-decrypt-spec.md#Asymmetric-Key-Encryption/Decryption-Algorithm-Specifications).
+For supported specifications, see [Symmetric Key Encryption/Decryption Algorithm Specifications](../security/CryptoArchitectureKit/cj-crypto-sym-encrypt-decrypt-spec.md#Symmetric-Key-Encryption/Decryption-Algorithm-Specifications) and [Asymmetric Key Encryption/Decryption Algorithm Specifications](../security/CryptoArchitectureKit/cj-crypto-asym-encrypt-decrypt-spec.md#Asymmetric-Key-Encryption/Decryption-Algorithm-Specifications).
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name          | Type   | Mandatory | Default | Description                                                                 |
-| :------------ | :----- | :-------- | :------ | :-------------------------------------------------------------------------- |
-| transformation | String | Yes       | -       | Combination of the algorithm name (including key length), encryption mode, and padding method for the Cipher to be generated. |
+| Parameter Name | Type | Mandatory | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| transformation | String | Yes | - | Combination of the algorithm name (including key length), encryption mode, and padding method for the Cipher to be generated. |
 
 **Return Value:**
 
-| Type             | Description                          |
-| :--------------- | :----------------------------------- |
-| [Cipher](#class-cipher) | Returns the cipher generator object. |
+| Type | Description |
+| :---- | :---- |
+| [Cipher](#class-cipher) | Returns the encryption/decryption generator object. |
 
 **Exceptions:**
 
-- BusinessException: The error codes are listed in the following table. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: For corresponding error codes, see [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
 
-  | Error Code ID | Error Message               |
-  | :----------- | :-------------------------- |
-  | 401          | invalid parameters.         |
-  | 801          | this operation is not supported. |
-  | 17620001     | memory error.               |
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 801 | This operation is not supported. |
+  | 17620001 | Memory error. |
 
 **Example:**
 
@@ -62,9 +61,15 @@ For supported specifications, see [Symmetric Key Encryption/Decryption Algorithm
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let cipherAlgName = "3DES192|ECB|PKCS7"
-let cipher = createCipher(cipherAlgName)
+try {
+    let cipherAlgName = "3DES192|ECB|PKCS7"
+    let cipher = createCipher(cipherAlgName)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func createMac(String)
@@ -77,28 +82,28 @@ public func createMac(algName: String): Mac
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Mac
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name    | Type   | Mandatory | Default | Description                |
-| :------ | :----- | :-------- | :------ | :------------------------- |
-| algName | String | Yes       | -       | Specifies the digest algorithm. |
+| Parameter Name | Type | Mandatory | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| algName | String | Yes | - | Specifies the digest algorithm. |
 
 **Return Value:**
 
-| Type       | Description                                      |
-| :--------- | :----------------------------------------------- |
+| Type | Description |
+| :---- | :---- |
 | [Mac](#class-mac) | Returns the Mac object generated by the specified input algorithm. |
 
 **Exceptions:**
 
-- BusinessException: For details about the error codes, see [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: For detailed error codes, see [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
 
-  | Error Code ID | Error Message       |
-  | :----------- | :------------------ |
-  | 401          | invalid parameters. |
-  | 17620001     | memory error.       |
+  | Error Code ID | Error Message |
+  | :--- | :--- |
+  | 401 | Invalid parameters. |
+  | 17620001 | Memory error. |
 
 **Example:**
 
@@ -106,9 +111,16 @@ public func createMac(algName: String): Mac
 
 ```cangjie
 // index.cj
-import kit.CryptoArchitectureKit.*
 
-var mac = createMac("SHA256")
+import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    var mac = createMac("SHA256")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func createMd(String)
@@ -121,28 +133,27 @@ public func createMd(algName: String): Md
 
 **System Capability:** SystemCapability.Security.CryptoFramework.MessageDigest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name    | Type   | Mandatory | Default | Description                |
-| :------ | :----- | :-------- | :------ | :------------------------- |
-| algName | String | Yes       | -       | Specifies the digest algorithm. |
+| Parameter Name | Type | Mandatory | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| algName | String | Yes | - | Specifies the digest algorithm. |
 
 **Return Value:**
 
-| Type     | Description                                      |
-| :------- | :----------------------------------------------- |
+| Type | Description |
+| :---- | :---- |
 | [Md](#class-md) | Returns the [Md](#class-md) object generated by the specified input algorithm. |
 
 **Exceptions:**
 
-- BusinessException: The error codes are listed in the following table. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: For corresponding error codes, see [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
 
-  | Error Code ID | Error Message               |
-  | :----------- | :-------------------------- |
-  | 401          | invalid parameters.         |
-  | 17620001     | memory error.               |
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 17620001 | Memory error. |
 
 **Example:**
 
@@ -150,9 +161,16 @@ public func createMd(algName: String): Md
 
 ```cangjie
 // index.cj
-import kit.CryptoArchitectureKit.*
 
-let md = createMd("SHA256")
+import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let md = createMd("SHA256")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func createRandom()
@@ -165,21 +183,21 @@ public func createRandom(): Random
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Rand
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type           | Description                                      |
-| :------------- | :----------------------------------------------- |
+| Type | Description |
+| :---- | :---- |
 | [Random](#class-random) | Returns the [Random](#class-random) object generated by the specified input algorithm. |
 
 **Exceptions:**
 
-- BusinessException: The error codes are listed in the following table. For details, see [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: For corresponding error codes, see [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
 
   | Error Code ID | Error Message |
-  | :----------- | :------------ |
-  | 17620001     | memory error. |
+  | :---- | :--- |
+  | 17620001 | Memory error. |
 
 **Example:**
 
@@ -187,9 +205,16 @@ public func createRandom(): Random
 
 ```cangjie
 // index.cj
-import kit.CryptoArchitectureKit.*
 
-let rand = createRandom()
+import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let rand = createRandom()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func createSymKeyGenerator(String)
@@ -198,34 +223,33 @@ let rand = createRandom()
 public func createSymKeyGenerator(algName: String): SymKeyGenerator
 ```
 
-**Description:** Obtains the corresponding symmetric key generator instance by specifying the algorithm name string.
+**Description:** Obtains a symmetric key generator instance by specifying the algorithm name string.
 
-For supported specifications, see [Symmetric Key Generation and Conversion Specifications](../../../en/application-dev/security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md).
+For supported specifications, see [Symmetric Key Generation and Conversion Specifications](../security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md).
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name    | Type   | Mandatory | Default | Description                                                                 |
-| :------ | :----- | :-------- | :------ | :-------------------------------------------------------------------------- |
-| algName | String | Yes       | -       | Algorithm name of the symmetric key generator to be generated. For details about the value, see the "String Parameters" section in [Symmetric Key Generation and Conversion Specifications](../../../en/application-dev/security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md). |
+| Parameter Name | Type | Mandatory | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| algName | String | Yes | - | Algorithm name of the symmetric key generator to be generated. For specific values, see the "String Parameters" section in [Symmetric Key Generation and Conversion Specifications](../security/CryptoArchitectureKit/cj-crypto-sym-key-generation-conversion-spec.md). |
 
 **Return Value:**
 
-| Type                     | Description                          |
-| :----------------------- | :----------------------------------- |
+| Type | Description |
+| :---- | :---- |
 | [SymKeyGenerator](#class-symkeygenerator) | Returns the symmetric key generator object. |
 
 **Exceptions:**
 
-- BusinessException: The error codes are listed in the following table. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: For corresponding error codes, see [Universal Error Codes](../cj-errorcode-universal.md).
 
-  | Error Code ID | Error Message               |
-  | :----------- | :-------------------------- |
-  | 401          | invalid parameters.         |
-  | 801          | this operation is not supported. |
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 801 | This operation is not supported. |
 
 **Example:**
 
@@ -235,8 +259,14 @@ For supported specifications, see [Symmetric Key Generation and Conversion Speci
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let symKeyGenerator = createSymKeyGenerator("3DES192")
+try {
+    let symKeyGenerator = createSymKeyGenerator("3DES192")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface Key
@@ -249,13 +279,13 @@ public interface Key {
 }
 ```
 
-**Description:** Key (interface). Its subclass objects need to be generated in advance and passed into the [createCipher(String)](#func-createcipherstring) method of the [Cipher](#class-cipher) instance when running cryptographic algorithms (such as encryption and decryption).
+**Description:** Key (interface). Its subclass objects need to be generated in advance when running cryptographic algorithms (such as encryption/decryption) and passed into the [createCipher(String)](#func-createcipherstring) method of the [Cipher](#class-cipher) instance.
 
 Keys can be generated by key generators.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key
 
-**Since:** 21
+**Since:** 22
 
 ### prop algName
 
@@ -267,11 +297,11 @@ prop algName: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Attribute:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key
 
-**Since:** 21
+**Since:** 22
 
 ### prop format
 
@@ -283,11 +313,11 @@ prop format: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Attribute:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key
 
-**Since:** 21
+**Since:** 22
 
 ### func getEncoded()
 
@@ -295,20 +325,20 @@ prop format: String
 func getEncoded(): DataBlob
 ```
 
-**Description:** Synchronous method to obtain the byte stream of key data. The key can be a symmetric key, public key, or private key. The public key format complies with ASN.1 syntax, X.509 specifications, and DER encoding format. The private key format complies with ASN.1 syntax, PKCS#8 specifications, and DER encoding mode.
+**Description:** Synchronous method to obtain the byte stream of key data. The key can be a symmetric key, public key, or private key. The public key format complies with ASN.1 syntax, X.509 specification, and DER encoding format. The private key format complies with ASN.1 syntax, PKCS#8 specification, and DER encoding method.
 
 > **Note:**
 >
-> When generating a private key using key parameters in the RSA algorithm, the private key object does not support getEncoded.
+> When generating a private key using key parameters in RSA algorithm, the private key object does not support getEncoded.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type             | Description                          |
-| :--------------- | :----------------------------------- |
+| Type | Description |
+| :---- | :---- |
 | [DataBlob](#struct-datablob) | Used to view the specific content of the key. |
 
 **Example:**
@@ -319,10 +349,16 @@ func getEncoded(): DataBlob
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let generator = createSymKeyGenerator("3DES192") // The key is generated by a key generator. The generation process is omitted here.
-let key = generator.generateSymKey()
-let encodedKey = key.getEncoded()
+try {
+    let generator = createSymKeyGenerator("3DES192") // The key is generated by a key generator. The generation process is omitted here.
+    let key = generator.generateSymKey()
+    let encodedKey = key.getEncoded()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## class ParamsSpec
@@ -334,17 +370,17 @@ public class ParamsSpec {
 }
 ```
 
-**Description:** Encryption and decryption parameters. Its subclass objects need to be constructed and passed into the [createCipher(String)](#func-createcipherstring) method during symmetric encryption and decryption.
+**Description:** Encryption/decryption parameters. Its subclass objects need to be constructed during symmetric encryption/decryption and passed into the [createCipher(String)](#func-createcipherstring) method.
 
-Applies to symmetric encryption and decryption modes that require parameters such as iv (for modes without parameters such as iv, such as ECB mode, no construction is required, and None can be passed in [createCipher(String)](#func-createcipherstring)).
+Applies to symmetric encryption/decryption modes that require parameters such as iv (for modes without parameters such as iv, like ECB mode, no construction is needed; pass None in [createCipher(String)](#func-createcipherstring)).
 
 > **Note:**
 >
-> Since the params parameter of [createCipher(String)](#func-createcipherstring) is of the ParamsSpec type (parent class), but the actual input is a specific subclass object (such as IvParamsSpec), the algName parameter of the parent class ParamsSpec should be set when constructing the subclass object, so that the algorithm library knows which subclass object is passed in during init().
+> Since the params parameter of [createCipher(String)](#func-createcipherstring) is of type ParamsSpec (parent class), but the actual requirement is to pass a specific subclass object (such as IvParamsSpec), the algName parameter of the parent class ParamsSpec should be set when constructing the subclass object, so that the algorithm library knows which subclass object is passed during init().
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### var algName
 
@@ -352,32 +388,30 @@ Applies to symmetric encryption and decryption modes that require parameters suc
 mut var algName: String
 ```
 
-**Description:** Specifies the algorithm mode of symmetric encryption and decryption parameters. The options are as follows:<br/> - IvParamsSpec: Applies to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applies to GCM mode.<br/> - CcmParamsSpec: Applies to CCM mode.
+**Description:** Indicates the algorithm mode of symmetric encryption/decryption parameters. Optional values are as follows:<br/> - IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB mode.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode.
 
 **Type:** String
 
-**Access:** Read-write
+**Read/Write Attribute:** Read/Write
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
-
-## class Cipher
+**Since:** 22## class Cipher
 
 ```cangjie
 public class Cipher {}
 ```
 
-**Description:** Provides encryption and decryption algorithm operations. By calling the [createCipher(String)](#func-createcipherstring), [update()](#func-updatedatablob), and [doFinal()](#func-dofinaldatablob) methods in sequence, symmetric encryption/symmetric decryption/asymmetric encryption/asymmetric decryption can be implemented.
+**Function:** Provides cryptographic algorithm operations. By sequentially calling the [createCipher(String)](#func-createcipherstring), [update()](#func-updatedatablob), and [doFinal()](#func-dofinaldatablob) methods in this class, symmetric encryption/decryption and asymmetric encryption/decryption can be achieved.
 
-A complete encryption/decryption process differs slightly between symmetric encryption and asymmetric encryption:
+A complete encryption/decryption process differs slightly between symmetric and asymmetric encryption:
 
-- Symmetric encryption and decryption: init is mandatory, update is optional (and allows multiple updates for large data encryption/decryption), and doFinal is mandatory. After doFinal is complete, a new encryption/decryption process can be started by re-initializing init.
-- RSA and SM2 asymmetric encryption and decryption: init is mandatory, update is not supported, and doFinal is mandatory (allowing multiple doFinal calls for large data encryption/decryption). RSA does not support repeated init. To switch encryption/decryption modes or padding methods, a new Cipher object needs to be created.
+- **Symmetric Encryption/Decryption:** `init` is mandatory, `update` is optional (and allows multiple updates for large data encryption/decryption), and `doFinal` is mandatory. After `doFinal` completes, a new encryption/decryption process can be initiated by calling `init` again.
+- **RSA/SM2 Asymmetric Encryption/Decryption:** `init` is mandatory, `update` is not supported, and `doFinal` is mandatory (allowing multiple consecutive `doFinal` calls for large data encryption/decryption). RSA does not support repeated `init` calls; switching encryption/decryption modes or padding schemes requires recreating a `Cipher` object.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since Version:** 22
 
 ### prop algName
 
@@ -385,15 +419,15 @@ A complete encryption/decryption process differs slightly between symmetric encr
 public prop algName: String
 ```
 
-**Description:** Algorithm name specified by the cipher generator.
+**Function:** The algorithm name specified by the cryptographic generator.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since Version:** 22
 
 ### func initialize(CryptoMode, Key, ?ParamsSpec)
 
@@ -401,32 +435,31 @@ public prop algName: String
 public func initialize(opMode: CryptoMode, key: Key, params: ?ParamsSpec): Unit
 ```
 
-**Description:** Initializes the [cipher](#class-cipher) object for encryption and decryption, and obtains the result by registering a callback function.
+**Function:** Initializes the [cipher](#class-cipher) object for encryption/decryption, obtaining results via registered callback functions.
 
-This function can be used only after creating a [Cipher](#class-cipher) instance using [createCipher](#func-createcipherstring).
+This function can only be used after creating a [Cipher](#class-cipher) instance with [createCipher](#func-createcipherstring).
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
-| Name    | Type                 | Mandatory | Default | Description                                                                 |
-| :------ | :------------------- | :-------- | :------ | :-------------------------------------------------------------------------- |
-| opMode  | [CryptoMode](#enum-cryptomode) | Yes       | -       | Encryption or decryption mode.                                              |
-| key     | [Key](#interface-key)          | Yes       | -       | Specifies the key for encryption or decryption.                             |
-| params  | ?[ParamsSpec](#class-paramsspec) | Yes       | -       | Specifies the parameters for encryption or decryption. For algorithm modes without parameters such as ECB, None can be passed in. |
+| Parameter | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| opMode | [CryptoMode](#enum-cryptomode) | Yes | - | Encryption or decryption mode. |
+| key | [Key](#interface-key) | Yes | - | Specifies the key for encryption/decryption. |
+| params | ?[ParamsSpec](#class-paramsspec) | Yes | - | Specifies parameters for encryption/decryption. For algorithm modes like ECB that do not require parameters, `None` can be passed. |
 
 **Exceptions:**
 
-- BusinessException: The error codes are listed in the following table. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: Corresponding error codes are listed below. Refer to [crypto framework error codes](./cj-errorcode-crypto.md).
 
-  | Error Code ID | Error Message               |
-  | :----------- | :-------------------------- |
-  | 401          | invalid parameters.         |
-  | 17620001     | memory error.               |
-  | 17620002     | runtime error.              |
-  | 17630001     | crypto operation error.     |
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 17620001 | Memory error. |
+  | 17620002 | Runtime error. |
+  | 17630001 | Cryptographic operation error. |
 
 **Example:**
 
@@ -436,18 +469,24 @@ This function can be used only after creating a [Cipher](#class-cipher) instance
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let skg = createSymKeyGenerator("AES128")
-let sk = skg.convertKey(DataBlob([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]))
-let encoder = createCipher("AES128|CBC|PKCS7")
-let ivBlob = DataBlob([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-var ivParamsSpec = IvParamsSpec("IvParamsSpec", ivBlob)
-ivParamsSpec.algName = "IvParamsSpec"
-ivParamsSpec.iv = ivBlob
-encoder.initialize(CryptoMode.EncryptMode, sk, ivParamsSpec)
-let message = "This is a test"
-let blob = DataBlob(message.toArray())
-let encryptText = encoder.doFinal(blob)
+try {
+    let skg = createSymKeyGenerator("AES128")
+    let sk = skg.convertKey(DataBlob([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]))
+    let encoder = createCipher("AES128|CBC|PKCS7")
+    let ivBlob = DataBlob([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    var ivParamsSpec = IvParamsSpec("IvParamsSpec", ivBlob)
+    ivParamsSpec.algName = "IvParamsSpec"
+    ivParamsSpec.iv = ivBlob
+    encoder.initialize(CryptoMode.EncryptMode, sk, ivParamsSpec)
+    let message = "This is a test"
+    let blob = DataBlob(message.toArray())
+    let encryptText = encoder.doFinal(blob)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func doFinal(?DataBlob)
@@ -456,186 +495,338 @@ let encryptText = encoder.doFinal(blob)
 public func doFinal(data: ?DataBlob): DataBlob
 ```
 
-**Description:** (1) In symmetric encryption and decryption, doFinal encrypts/decrypts the remaining data (generated by the block mode) and the data passed in this time, and finally completes the encryption or decryption data operation to obtain the encrypted or decrypted data.
+**Function:**  
+(1) In symmetric encryption/decryption, `doFinal` encrypts/decrypts the remaining data (generated by block modes) and the data passed in this call, finalizing the operation and returning the result.  
 
-If the data volume is small, the data can be passed in doFinal at one time without using update. If data has been passed in using update in this encryption/decryption process, None can be passed in the data parameter of doFinal.
+If the data volume is small, data can be passed in one go via `doFinal` without using `update`. If `update` has already been used in the current process, `None` can be passed for the `data` parameter in `doFinal`.  
 
-Depending on the symmetric encryption/decryption mode, the output of doFinal differs as follows:
+The output of `doFinal` varies by symmetric encryption/decryption mode:  
+- For GCM and CCM symmetric encryption: The concatenated results of all `update` and `doFinal` calls yield "ciphertext + authTag," where the last 16 bytes (GCM) or 12 bytes (CCM) are the authTag, and the rest is ciphertext. (If `data` is `None`, `doFinal` returns only the authTag.) The authTag must be provided in [GcmParamsSpec](#struct-gcmparamsspec) or [CcmParamsSpec](#struct-ccmparamsspec) during decryption.  
+- For other symmetric modes and GCM/CCM decryption: The concatenated results of all `update` and `doFinal` calls yield the complete plaintext/ciphertext.  
 
-- For symmetric encryption in GCM and CCM modes: In one encryption process, if the results of each update and doFinal are concatenated, "ciphertext + authTag" is obtained. That is, the last 16 bytes (GCM mode) or 12 bytes (CCM mode) are authTag, and the rest are ciphertext. (In other words, if None is passed in the data parameter of doFinal, the result of doFinal is authTag.) authTag needs to be filled in the [GcmParamsSpec](#struct-gcmparamsspec) or [CcmParamsSpec](#struct-ccmparamsspec) during decryption. The ciphertext is used as the input data during decryption.
-- For other modes of symmetric encryption/decryption and symmetric decryption in GCM and CCM modes: In one encryption/decryption process, the results of each update and doFinal are concatenated to obtain the complete plaintext/ciphertext.
+(2) For RSA/SM2 asymmetric encryption/decryption, `doFinal` encrypts/decrypts the passed data. For large data, multiple `doFinal` calls can be made, with results concatenated to form the complete plaintext/ciphertext.  
 
-## class Mac
+> **Note:**  
+> - In symmetric operations, calling `doFinal` marks the end of a process, clearing the [Cipher](#class-cipher) instance's state. To start a new process, `init()` must be called again with full parameters (e.g., even for the same `Cipher` instance and key, `params` must be provided for decryption if it was used in encryption).  
+> - If decryption fails, verify that the data and `init` parameters match, including whether the authTag from GCM encryption is correctly provided in `GcmParamsSpec`.  
+> - `doFinal` may return an empty result. Check `.data` for non-null values before accessing to avoid exceptions.  
 
-```cangjie
-public class Mac {}
-```
+**System Capability:** SystemCapability.Security.CryptoFramework.Cipher  
 
-**Function:** The Mac class, which can be used to perform MAC (Message Authentication Code) encryption calculations by invoking Mac methods. Before invocation, a Mac instance must be constructed via [createMac](#func-createmacstring).
+**Since Version:** 22  
 
-**System Capability:** SystemCapability.Security.CryptoFramework.Mac
+**Parameters:**  
 
-**Since:** 21
+| Parameter | Type | Required | Default Value | Description |  
+| :--- | :--- | :--- | :--- | :--- |  
+| data | ?[DataBlob](#struct-datablob) | Yes | - | Data to encrypt/decrypt. `None` is allowed, but `{data: Array<UInt8>()}` is not. |  
 
-### prop algName
+**Return Value:**  
 
-```cangjie
-public prop algName: String
-```
+| Type | Description |  
+| :---- | :---- |  
+| [DataBlob](#struct-datablob) | Returns the encrypted/decrypted result as `DataBlob`. |  
 
-**Function:** Represents the specified digest algorithm name.
+**Exceptions:**  
 
-**Type:** String
+- BusinessException: Refer to [crypto framework error codes](./cj-errorcode-crypto.md).  
 
-**Read-Write Attribute:** Read-only
+  | Error Code ID | Error Message |  
+  | :---- | :--- |  
+  | 17620001 | Memory error. |  
+  | 17620002 | Runtime error. |  
+  | 17630001 | Cryptographic operation error. |  
 
-**System Capability:** SystemCapability.Security.CryptoFramework.Mac
+**Example:**  
 
-**Since:** 21
+<!-- compile -->  
 
-### func initialize(SymKey)
+```cangjie  
+// index.cj  
 
-```cangjie
-public func initialize(key: SymKey): Unit
-```
+import kit.CryptoArchitectureKit.*  
+import ohos.business_exception.BusinessException  
+import kit.PerformanceAnalysisKit.Hilog  
 
-**Function:** Initializes [Mac](#class-mac) calculation using a symmetric key, with results obtained via registered callback functions.
+try {  
+    let skg = createSymKeyGenerator("AES128")  
+    let sk = skg.convertKey(DataBlob([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]))  
+    let encoder = createCipher("AES128|CBC|PKCS7")  
+    let ivBlob = DataBlob([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  
+    var ivParamsSpec = IvParamsSpec("IvParamsSpec", ivBlob)  
+    ivParamsSpec.algName = "IvParamsSpec"  
+    ivParamsSpec.iv = ivBlob  
+    encoder.initialize(CryptoMode.EncryptMode, sk, ivParamsSpec)  
+    let message = "This is a test"  
+    let blob = DataBlob(message.toArray())  
+    let encryptText = encoder.doFinal(blob)  
+} catch (e: BusinessException) {  
+    Hilog.info(0, "test", "${e.message}")  
+}  
+```  
 
-**System Capability:** SystemCapability.Security.CryptoFramework.Mac
+### func update(DataBlob)  
 
-**Since:** 21
+```cangjie  
+public func update(data: DataBlob): DataBlob  
+```  
 
-**Parameters:**
+**Function:** Incrementally updates encryption/decryption operations, returning intermediate results.  
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| key | [SymKey](#class-symkey) | Yes | - | Shared symmetric key. |
+This function can only be used after initializing a [Cipher](#class-cipher) instance with [createCipher(String)](#func-createcipherstring).  
 
-**Example:**
+> **Note:**  
+> - For symmetric operations, if unfamiliar with block modes, check if `update` and `doFinal` results are non-empty and concatenate them to form complete ciphertext/plaintext. Block modes and specifications affect outputs.  
+>   - ECB/CBC: Outputs are block-aligned. Unprocessed data is buffered until the next `update`/`doFinal`. `doFinal` pads remaining data per the padding scheme.  
+>   - Stream-like modes may produce ciphertexts of the same length as plaintexts.  
+> - `update` is optional (direct `doFinal` is possible) or can be called multiple times. No size limits are imposed, but large data should use multiple `update` calls.  
+> - RSA/SM2 asymmetric operations do not support `update`.  
 
-<!-- compile -->
+**System Capability:** SystemCapability.Security.CryptoFramework.Cipher  
 
-```cangjie
-// index.cj
+**Since Version:** 22  
 
-import kit.CryptoArchitectureKit.*
+**Parameters:**  
 
-let skg = createSymKeyGenerator("AES128")
-let sk = skg.generateSymKey()
-let mac = createMac("SHA256")
-mac.initialize(sk)
-```
+| Parameter | Type | Required | Default Value | Description |  
+| :--- | :--- | :--- | :--- | :--- |  
+| data | [DataBlob](#struct-datablob) | Yes | - | Data to encrypt/decrypt. `{data: Array<UInt8>()}` is invalid. |  
 
-### func doFinal()
+**Return Value:**  
 
-```cangjie
-public func doFinal(): DataBlob
-```
+| Type | Description |  
+| :---- | :---- |  
+| [DataBlob](#struct-datablob) | Returns the incremental result as `DataBlob`. |  
 
-**Function:** Returns the calculation result of the Mac.
+**Exceptions:**  
 
-**System Capability:** SystemCapability.Security.CryptoFramework.Mac
+- BusinessException: Refer to [crypto framework error codes](./cj-errorcode-crypto.md).  
 
-**Since:** 21
+  | Error Code ID | Error Message |  
+  | :---- | :--- |  
+  | 17620001 | Memory error. |  
+  | 17620002 | Runtime error. |  
+  | 17630001 | Cryptographic operation error. |  
 
-**Return Value:**
+**Example:**  
 
-| Type | Description |
-|:----|:----|
-| [DataBlob](#struct-datablob) | Returns the calculated result as a DataBlob. |
+<!-- compile -->  
 
-**Example:**
+```cangjie  
+// index.cj  
 
-<!-- compile -->
+import kit.CryptoArchitectureKit.*  
+import ohos.business_exception.BusinessException  
+import kit.PerformanceAnalysisKit.Hilog  
 
-```cangjie
-// index.cj
+try {  
+    let skg = createSymKeyGenerator("AES128")  
+    let sk = skg.convertKey(DataBlob([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]))  
+    let cipher = createCipher("AES128|CBC|PKCS7")  
+    let ivBlob = DataBlob([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  
+    var ivParamsSpec = IvParamsSpec("IvParamsSpec", ivBlob)  
+    ivParamsSpec.algName = "IvParamsSpec"  
+    ivParamsSpec.iv = ivBlob  
+    cipher.initialize(CryptoMode.EncryptMode, sk, ivParamsSpec)  
+    let plainText: DataBlob = DataBlob("this is test".toArray())  
+    cipher.update(plainText)  
+} catch (e: BusinessException) {  
+    Hilog.info(0, "test", "${e.message}")  
+}  
+```  
 
-import kit.CryptoArchitectureKit.*
+## class Mac  
 
-let mac = createMac("SHA256")
+```cangjie  
+public class Mac {}  
+```  
 
-let skg = createSymKeyGenerator("AES128")
-let sk = skg.generateSymKey()
-mac.initialize(sk)
-let blob = DataBlob("this is test!".toArray())
-mac.update(blob)
-mac.doFinal()
-```
+**Function:** The `Mac` class performs MAC (Message Authentication Code) computations. Instantiate via [createMac](#func-createmacstring).  
 
-### func getMacLength()
+**System Capability:** SystemCapability.Security.CryptoFramework.Mac  
 
-```cangjie
-public func getMacLength(): UInt32
-```
+**Since Version:** 22  
 
-**Function:** Gets the length (in bytes) of the MAC message authentication code.
+### prop algName  
 
-**System Capability:** SystemCapability.Security.CryptoFramework.Mac
+```cangjie  
+public prop algName: String  
+```  
 
-**Since:** 21
+**Function:** The digest algorithm name.  
 
-**Return Value:**
+**Type:** String  
 
-| Type | Description |
-|:----|:----|
-| UInt32 | Returns the byte length of the MAC calculation result. |
+**Read-Write Capability:** Read-only  
 
-**Example:**
+**System Capability:** SystemCapability.Security.CryptoFramework.Mac  
 
-<!-- compile -->
+**Since Version:** 22  
 
-```cangjie
-// index.cj
+### func initialize(SymKey)  
 
-import kit.CryptoArchitectureKit.*
+```cangjie  
+public func initialize(key: SymKey): Unit  
+```  
 
-let mac = createMac("SHA256")
-let skg = createSymKeyGenerator("AES128")
-let sk = skg.generateSymKey()
-mac.initialize(sk)
-let blob = DataBlob("this is test!".toArray())
-mac.update(blob)
-mac.doFinal()
-var macLen = mac.getMacLength()
-```
+**Function:** Initializes [Mac](#class-mac) computation with a symmetric key, obtaining results via callbacks.  
 
-### func update(DataBlob)
+**System Capability:** SystemCapability.Security.CryptoFramework.Mac  
 
-```cangjie
-public func update(input: DataBlob): Unit
-```
+**Since Version:** 22  
 
-**Function:** Updates the Mac calculation with the input message.
+**Parameters:**  
 
-**System Capability:** SystemCapability.Security.CryptoFramework.Mac
+| Parameter | Type | Required | Default Value | Description |  
+| :--- | :--- | :--- | :--- | :--- |  
+| key | [SymKey](#class-symkey) | Yes | - | Shared symmetric key. |  
 
-**Since:** 21
+**Example:**  
 
-**Parameters:**
+<!-- compile -->  
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| input | [DataBlob](#struct-datablob) | Yes | - | Input message. |
+```cangjie  
+// index.cj  
 
-**Example:**
+import kit.CryptoArchitectureKit.*  
+import ohos.business_exception.BusinessException  
+import kit.PerformanceAnalysisKit.Hilog  
 
-<!-- compile -->
+try {  
+    let skg = createSymKeyGenerator("AES128")  
+    let sk = skg.generateSymKey()  
+    let mac = createMac("SHA256")  
+    mac.initialize(sk)  
+} catch (e: BusinessException) {  
+    Hilog.info(0, "test", "${e.message}")  
+}  
+```  
 
-```cangjie
-// index.cj
+### func doFinal()  
 
-import kit.CryptoArchitectureKit.*
+```cangjie  
+public func doFinal(): DataBlob  
+```  
 
-let mac = createMac("SHA256")
-let skg = createSymKeyGenerator("AES128")
-let sk = skg.generateSymKey()
-mac.initialize(sk)
-let blob = DataBlob("this is test!".toArray())
-mac.update(blob)
-```
+**Function:** Returns the MAC computation result.  
 
-## class Md
+**System Capability:** SystemCapability.Security.CryptoFramework.Mac  
+
+**Since Version:** 22  
+
+**Return Value:**  
+
+| Type | Description |  
+| :---- | :---- |  
+| [DataBlob](#struct-datablob) | The computed MAC as `DataBlob`. |  
+
+**Example:**  
+
+<!-- compile -->  
+
+```cangjie  
+// index.cj  
+
+import kit.CryptoArchitectureKit.*  
+import ohos.business_exception.BusinessException  
+import kit.PerformanceAnalysisKit.Hilog  
+
+try {  
+    let mac = createMac("SHA256")  
+    let skg = createSymKeyGenerator("AES128")  
+    let sk = skg.generateSymKey()  
+    mac.initialize(sk)  
+    let blob = DataBlob("this is test!".toArray())  
+    mac.update(blob)  
+    mac.doFinal()  
+} catch (e: BusinessException) {  
+    Hilog.info(0, "test", "${e.message}")  
+}  
+```  
+
+### func getMacLength()  
+
+```cangjie  
+public func getMacLength(): UInt32  
+```  
+
+**Function:** Returns the MAC length in bytes.  
+
+**System Capability:** SystemCapability.Security.CryptoFramework.Mac  
+
+**Since Version:** 22  
+
+**Return Value:**  
+
+| Type | Description |  
+| :---- | :---- |  
+| UInt32 | The byte length of the MAC result. |  
+
+**Example:**  
+
+<!-- compile -->  
+
+```cangjie  
+// index.cj  
+
+import kit.CryptoArchitectureKit.*  
+import ohos.business_exception.BusinessException  
+import kit.PerformanceAnalysisKit.Hilog  
+
+try {  
+    let mac = createMac("SHA256")  
+    let skg = createSymKeyGenerator("AES128")  
+    let sk = skg.generateSymKey()  
+    mac.initialize(sk)  
+    let blob = DataBlob("this is test!".toArray())  
+    mac.update(blob)  
+    mac.doFinal()  
+    var macLen = mac.getMacLength()  
+} catch (e: BusinessException) {  
+    Hilog.info(0, "test", "${e.message}")  
+}  
+```  
+
+### func update(DataBlob)  
+
+```cangjie  
+public func update(input: DataBlob): Unit  
+```  
+
+**Function:** Updates the MAC computation with input data.  
+
+**System Capability:** SystemCapability.Security.CryptoFramework.Mac  
+
+**Since Version:** 22  
+
+**Parameters:**  
+
+| Parameter | Type | Required | Default Value | Description |  
+| :--- | :--- | :--- | :--- | :--- |  
+| input | [DataBlob](#struct-datablob) | Yes | - | Input message. |  
+
+**Example:**  
+
+<!-- compile -->  
+
+```cangjie  
+// index.cj  
+
+import kit.CryptoArchitectureKit.*  
+import ohos.business_exception.BusinessException  
+import kit.PerformanceAnalysisKit.Hilog  
+
+try {  
+    let mac = createMac("SHA256")  
+    let skg = createSymKeyGenerator("AES128")  
+    let sk = skg.generateSymKey()  
+    mac.initialize(sk)  
+    let blob = DataBlob("this is test!".toArray())  
+    mac.update(blob)  
+} catch (e: BusinessException) {  
+    Hilog.info(0, "test", "${e.message}")  
+}  
+```## class Md
 
 ```cangjie
 public class Md {}
@@ -645,7 +836,7 @@ public class Md {}
 
 **System Capability:** SystemCapability.Security.CryptoFramework.MessageDigest
 
-**Since:** 21
+**Since:** 22
 
 ### prop algName
 
@@ -657,11 +848,11 @@ public prop algName: String
 
 **Type:** String
 
-**Read-Write Attribute:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.MessageDigest
 
-**Since:** 21
+**Since:** 22
 
 ### func digest()
 
@@ -669,16 +860,16 @@ public prop algName: String
 public func digest(): DataBlob
 ```
 
-**Function:** Returns the calculation result of the Md.
+**Function:** Returns the calculation result of Md.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.MessageDigest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | [DataBlob](#struct-datablob) | Returns the calculated result as a DataBlob. |
 
 **Exceptions:**
@@ -698,11 +889,17 @@ public func digest(): DataBlob
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let md = createMd("SHA256")
-let blob: DataBlob = DataBlob("test".toArray())
-md.update(blob)
-let res = md.digest()
+try {
+    let md = createMd("SHA256")
+    let blob: DataBlob = DataBlob("test".toArray())
+    md.update(blob)
+    let res = md.digest()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getMdLength()
@@ -711,16 +908,16 @@ let res = md.digest()
 public func getMdLength(): UInt32
 ```
 
-**Function:** Gets the length (in bytes) of the Md message digest.
+**Function:** Gets the length of the Md message digest (in bytes).
 
 **System Capability:** SystemCapability.Security.CryptoFramework.MessageDigest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | UInt32 | Returns the byte length of the Md calculation result. |
 
 **Exceptions:**
@@ -739,9 +936,15 @@ public func getMdLength(): UInt32
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let md = createMd("SHA256")
-let mdLen = md.getMdLength()
+try {
+    let md = createMd("SHA256")
+    let mdLen = md.getMdLength()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func update(DataBlob)
@@ -754,21 +957,21 @@ public func update(input: DataBlob): Unit
 
 **System Capability:** SystemCapability.Security.CryptoFramework.MessageDigest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| input | [DataBlob](#struct-datablob) | Yes | - | Input message. |
+| :--- | :--- | :--- | :--- | :--- |
+| input | [DataBlob](#struct-datablob) | Yes | - | The input message. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [universal error codes](../cj-errorcode-universal.md) and [crypto framework error codes](./cj-errorcode-crypto.md).
+- BusinessException: Corresponding error codes are listed below. Refer to [crypto framework error codes](./cj-errorcode-crypto.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid parameters. |
+  | 17620001 | Memory operation failed. |
   | 17630001 | Crypto operation error. |
 
 **Example:**
@@ -779,10 +982,16 @@ public func update(input: DataBlob): Unit
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let md = createMd("SHA256")
-let blob: DataBlob = DataBlob("test".toArray())
-md.update(blob)
+try {
+    let md = createMd("SHA256")
+    let blob: DataBlob = DataBlob("test".toArray())
+    md.update(blob)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## class Random
@@ -791,11 +1000,11 @@ md.update(blob)
 public class Random {}
 ```
 
-**Function:** The Random class, which can be used to generate random numbers by invoking Random methods. Before invocation, a Random instance must be constructed via [createRandom](#func-createrandom).
+**Function:** The Random class, which can be used to perform random number calculations by invoking Random methods. Before invocation, a Random instance must be constructed via [createRandom](#func-createrandom).
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Rand
 
-**Since:** 21
+**Since:** 22
 
 ### prop algName
 
@@ -803,15 +1012,15 @@ public class Random {}
 public prop algName: String
 ```
 
-**Function:** Represents the currently used random number generation algorithm, currently only supporting "CTR_DRBG".
+**Function:** Represents the currently used random number generation algorithm. Currently, only "CTR_DRBG" is supported.
 
 **Type:** String
 
-**Read-Write Attribute:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Rand
 
-**Since:** 21
+**Since:** 22
 
 ### func generateRandom(Int32)
 
@@ -823,27 +1032,26 @@ public func generateRandom(len: Int32): DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Rand
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| len | Int32 | Yes | - | Specifies the length of the random number to generate, in bytes, ranging from [1, INT32_MAX]. |
+| :--- | :--- | :--- | :--- | :--- |
+| len | Int32 | Yes | - | The length of the random number to generate, in bytes. The range is [1, INT32_MAX]. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [DataBlob](#struct-datablob) | DataBlob object. |
+| :---- | :---- |
+| [DataBlob](#struct-datablob) | A DataBlob object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [universal error codes](../cj-errorcode-universal.md) and [crypto framework error codes](./cj-errorcode-crypto.md).
+- BusinessException: Corresponding error codes are listed below. Refer to [crypto framework error codes](./cj-errorcode-crypto.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid parameters. |
   | 17620001 | Memory error. |
   | 17630001 | Crypto operation error. |
 
@@ -855,9 +1063,15 @@ public func generateRandom(len: Int32): DataBlob
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let rand = createRandom()
-let promiseGenerateRand = rand.generateRandom(12)
+try {
+    let rand = createRandom()
+    let promiseGenerateRand = rand.generateRandom(12)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setSeed(DataBlob)
@@ -870,12 +1084,12 @@ public func setSeed(seed: DataBlob): Unit
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Rand
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | seed | [DataBlob](#struct-datablob) | Yes | - | The seed to set. |
 
 **Exceptions:**
@@ -894,22 +1108,30 @@ public func setSeed(seed: DataBlob): Unit
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let rand = createRandom()
-rand.setSeed(DataBlob("test".toArray()))
-```## class SymKey
-
-```cangjie
-public class SymKey <: Key {}
+try {
+    let rand = createRandom()
+    rand.setSeed(DataBlob("test".toArray()))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
-**Function:** Symmetric key, a subclass of [Key](#interface-key), which needs to be passed into the [createCipher(String)](#func-createcipherstring) method of a [Cipher](#class-cipher) instance during symmetric encryption/decryption.
+## class SymKey
 
-Symmetric keys can be generated using the symmetric key generator [SymKeyGenerator](#class-symkeygenerator).
+```cangjie
+public class SymKey <:  Key {}
+```
+
+**Function:** A symmetric key, which is a subclass of [Key](#interface-key). It must be passed into the [createCipher(String)](#func-createcipherstring) method of a [Cipher](#class-cipher) instance for symmetric encryption and decryption.
+
+Symmetric keys can be generated via the symmetric key generator [SymKeyGenerator](#class-symkeygenerator).
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -925,11 +1147,11 @@ public prop algName: String
 
 **Type:** String
 
-**Read-Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 ### prop format
 
@@ -941,11 +1163,11 @@ public prop format: String
 
 **Type:** String
 
-**Read-Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 ### func clearMem()
 
@@ -953,11 +1175,11 @@ public prop format: String
 public func clearMem(): Unit
 ```
 
-**Function:** Synchronous method to zeroize the key content in the underlying system memory. It is recommended to call this function when the symmetric key instance is no longer needed to avoid prolonged retention of key data in memory.
+**Function:** A synchronous method that clears the key content in the underlying system memory. It is recommended to call this function when the symmetric key instance is no longer needed to avoid prolonged retention of key data in memory.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -967,14 +1189,21 @@ public func clearMem(): Unit
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let generator = createSymKeyGenerator("3DES192")
-let key = generator.generateSymKey()
-var encodedKey = key.getEncoded()
-Hilog.info(0, "AppLogCj", "key blob: ${encodedKey.data}") // Display key content.
-key.clearMem()
-encodedKey = key.getEncoded()
-Hilog.info(0, "AppLogCj", "key blob: ${encodedKey.data}") // Display all 0s.
+try {
+    let generator = createSymKeyGenerator("3DES192")
+    let key = generator.generateSymKey()
+    var encodedKey = key.getEncoded()
+    Hilog.info(0, "AppLogCj", "key blob: ${encodedKey.data}") // Display key content.
+    key.clearMem()
+    encodedKey = key.getEncoded()
+    Hilog.info(0, "AppLogCj", "key blob: ${encodedKey.data}") // Display all 0s.
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getEncoded()
@@ -983,11 +1212,11 @@ Hilog.info(0, "AppLogCj", "key blob: ${encodedKey.data}") // Display all 0s.
 public func getEncoded(): DataBlob
 ```
 
-**Function:** Synchronous method to obtain the byte stream of key data. The key can be a symmetric key, public key, or private key. The public key format complies with ASN.1 syntax, X.509 specification, and DER encoding format; the private key format complies with ASN.1 syntax, PKCS#8 specification, and DER encoding method.
+**Function:** A synchronous method that retrieves the byte stream of the key data. The key can be a symmetric key, public key, or private key. The public key format complies with ASN.1 syntax, X.509 specification, and DER encoding format. The private key format complies with ASN.1 syntax, PKCS#8 specification, and DER encoding method.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -997,7 +1226,7 @@ public func getEncoded(): DataBlob
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: Corresponding error codes are listed below. Refer to [universal error codes](../cj-errorcode-universal.md) and [crypto framework error codes](./cj-errorcode-crypto.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1005,7 +1234,27 @@ public func getEncoded(): DataBlob
   | 17620001 | Memory error. |
   | 17630001 | Crypto operation error. |
 
-## class SymKeyGenerator
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.CryptoArchitectureKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let generator = createSymKeyGenerator("3DES192")
+    let key = generator.generateSymKey()
+    var encodedKey = key.getEncoded()
+    Hilog.info(0, "AppLogCj", "key blob: ${encodedKey.data}") // Display key content.
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class SymKeyGenerator
 
 ```cangjie
 public class SymKeyGenerator {}
@@ -1013,11 +1262,11 @@ public class SymKeyGenerator {}
 
 **Function:** Symmetric key generator.
 
-Before using the methods of this class, you need to construct a symKeyGenerator instance using the [createSymKeyGenerator](#func-createsymkeygeneratorstring) method.
+Before using the methods of this class, you need to first construct a symKeyGenerator instance using the [createSymKeyGenerator](#func-createsymkeygeneratorstring) method.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 ### prop algName
 
@@ -1033,7 +1282,7 @@ public prop algName: String
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 ### func convertKey(DataBlob)
 
@@ -1043,36 +1292,35 @@ public func convertKey(key: DataBlob): SymKey
 
 **Function:** Generates a symmetric key based on the specified data.
 
-This function can only be used after creating a symmetric key generator using [createSymKeyGenerator](#func-createsymkeygeneratorstring).
+This function can only be used after creating a symmetric key generator with [createSymKeyGenerator](#func-createsymkeygeneratorstring).
 
 > **Note:**
 >
-> For symmetric keys of the HMAC algorithm, if a specific hash algorithm has been specified when creating the symmetric key generator (e.g., "HMAC|SHA256"), binary key data matching the hash length must be passed in (e.g., 256-bit key data for SHA256).
-> If no specific hash algorithm is specified when creating the symmetric key generator (e.g., only "HMAC" is specified), any binary key data with a length in the range [1,4096] (in bytes) can be passed in.
+> For symmetric keys of the HMAC algorithm, if a specific hash algorithm (e.g., "HMAC|SHA256") was specified when creating the symmetric key generator, binary key data consistent with the hash length must be passed (e.g., 256-bit key data for SHA256).
+> If no specific hash algorithm was specified when creating the symmetric key generator (e.g., only "HMAC" was specified), any binary key data with a length in the range [1,4096] (in bytes) can be passed.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
 | key | [DataBlob](#struct-datablob) | Yes | - | Specified key material data. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | [SymKey](#class-symkey) | Returns the symmetric key SymKey. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: Corresponding error codes are listed below. Refer to [crypto framework error codes](./cj-errorcode-crypto.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid parameters. |
   | 17620001 | Memory error. |
 
 **Example:**
@@ -1083,12 +1331,18 @@ This function can only be used after creating a symmetric key generator using [c
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let arr: Array<UInt8> = [0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56, 0xad, 0x47, 0xfc, 0x5a,
-    0x46, 0x39, 0xee, 0x7c, 0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72] // keyLen = 192 (24 bytes)
-let symAlgName = "3DES192"
-let symKeyGenerator = createSymKeyGenerator(symAlgName)
-symKeyGenerator.convertKey(DataBlob(arr))
+try {
+    let arr: Array<UInt8> = [0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56, 0xad, 0x47, 0xfc, 0x5a,
+        0x46, 0x39, 0xee, 0x7c, 0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72] // keyLen = 192 (24 bytes)
+    let symAlgName = "3DES192"
+    let symKeyGenerator = createSymKeyGenerator(symAlgName)
+    symKeyGenerator.convertKey(DataBlob(arr))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func generateSymKey()
@@ -1099,23 +1353,23 @@ public func generateSymKey(): SymKey
 
 **Function:** Obtains a randomly generated key from this symmetric key generator.
 
-This function can only be used after creating a symmetric key generator using [createSymKeyGenerator](#func-createsymkeygeneratorstring).
+This function can only be used after creating a symmetric key generator with [createSymKeyGenerator](#func-createsymkeygeneratorstring).
 
-Currently, OpenSSL's RAND_priv_bytes() is used as the underlying capability to generate random keys.
+Currently, OpenSSL's RAND_priv_bytes() is supported as the underlying capability for generating random keys.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | [SymKey](#class-symkey) | Symmetric key SymKey. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Crypto Framework Error Codes](./cj-errorcode-crypto.md).
+- BusinessException: Corresponding error codes are listed below. Refer to [crypto framework error codes](./cj-errorcode-crypto.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1129,10 +1383,16 @@ Currently, OpenSSL's RAND_priv_bytes() is used as the underlying capability to g
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let symAlgName = "AES128"
-let symKeyGenerator = createSymKeyGenerator(symAlgName)
-let symKey = symKeyGenerator.generateSymKey()
+try {
+    let symAlgName = "AES128"
+    let symKeyGenerator = createSymKeyGenerator(symAlgName)
+    let symKey = symKeyGenerator.generateSymKey()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## struct CcmParamsSpec
@@ -1149,11 +1409,11 @@ Applicable to CCM mode.
 
 > **Note:**
 >
-> The algName attribute (inherited from the parent class [ParamsSpec](#class-paramsspec)) must be specified before passing it into the [createCipher(String)](#func-createcipherstring) method.
+> Its algName property (inherited from the parent class [ParamsSpec](#class-paramsspec)) must be specified before being passed to the [createCipher(String)](#func-createcipherstring) method.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1173,7 +1433,7 @@ public mut prop aad: DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### prop authTag
 
@@ -1181,7 +1441,7 @@ public mut prop aad: DataBlob
 public mut prop authTag: DataBlob
 ```
 
-**Function:** Specifies the encryption/decryption parameter authTag, with a length of 12 bytes.<br/>When using CCM mode for encryption, the [DataBlob](#struct-datablob) output by [doFinal()](#func-dofinaldatablob) needs to be obtained, and the last 12 bytes should be taken as the authTag in the [CcmParamsSpec](#struct-ccmparamsspec) parameter for the [createCipher(String)](#func-createcipherstring) method during decryption.
+**Function:** Specifies the encryption/decryption parameter authTag, with a length of 12 bytes.<br/>When encrypting in CCM mode, you need to obtain the [DataBlob](#struct-datablob) output by [doFinal()](#func-dofinaldatablob) and extract its last 12 bytes as the authTag in the [CcmParamsSpec](#struct-ccmparamsspec) parameter for the [createCipher(String)](#func-createcipherstring) method during decryption.
 
 **Type:** [DataBlob](#struct-datablob)
 
@@ -1189,7 +1449,7 @@ public mut prop authTag: DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### prop iv
 
@@ -1205,7 +1465,7 @@ public mut prop iv: DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, DataBlob, DataBlob, DataBlob)
 
@@ -1217,16 +1477,16 @@ public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob)
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| algName | String | Yes | - | Specifies the algorithm mode for symmetric encryption/decryption parameters. Possible values:<br/> - IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| algName | String | Yes | - | Specifies the algorithm mode for symmetric encryption/decryption parameters. Options are:<br/> - IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode. |
 | iv | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter iv, with a length of 7 bytes. |
 | aad | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter aad, with a length of 8 bytes. |
-| authTag | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter authTag, with a length of 12 bytes. When using CCM mode for encryption, the DataBlob output by doFinal() or doFinalSync() needs to be obtained, and the last 12 bytes should be taken as the authTag in the CcmParamsSpec parameter for the init() or initSync() method during decryption. |
+| authTag | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter authTag, with a length of 12 bytes. When encrypting in CCM mode, you need to obtain the DataBlob output by doFinal() or doFinalSync() and extract its last 12 bytes as the authTag in the CcmParamsSpec parameter for the init() or initSync() method during decryption. |
 
 **Example:**
 
@@ -1236,8 +1496,14 @@ public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob)
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ccm = GcmParamsSpec("CcmParamsSpec", DataBlob(Array<UInt8>(7, repeat: 1)), DataBlob(Array<UInt8>(8, repeat: 1)), DataBlob(Array<UInt8>(12, repeat: 1)))
+try {
+    let ccm = GcmParamsSpec("CcmParamsSpec", DataBlob(Array<UInt8>(7, repeat: 1)), DataBlob(Array<UInt8>(8, repeat: 1)), DataBlob(Array<UInt8>(12, repeat: 1)))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## struct DataBlob
@@ -1250,11 +1516,11 @@ public struct DataBlob {
 }
 ```
 
-**Function:** Data type for storing arrays.
+**Function:** A data type for storing arrays.
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 ### let data
 
@@ -1270,7 +1536,7 @@ public let data: Array<UInt8>
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 ### init(Array\<UInt8>)
 
@@ -1282,12 +1548,12 @@ public init(data: Array<UInt8>)
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
 | data | Array\<UInt8> | Yes | - | The array to store. |
 
 ## struct GcmParamsSpec
@@ -1304,11 +1570,11 @@ Applicable to GCM mode.
 
 > **Note:**
 >
-> The algName attribute (inherited from the parent class [ParamsSpec](#class-paramsspec)) must be specified before passing it into the [createCipher(String)](#func-createcipherstring) method.
+> Its algName property (inherited from the parent class [ParamsSpec](#class-paramsspec)) must be specified before being passed to the [createCipher(String)](#func-createcipherstring) method.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1328,7 +1594,7 @@ public mut prop aad: DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### prop authTag
 
@@ -1336,7 +1602,7 @@ public mut prop aad: DataBlob
 public mut prop authTag: DataBlob
 ```
 
-**Function:** Specifies the encryption/decryption parameter authTag, with a length of 16 bytes.<br/>When using GCM mode for encryption, the [DataBlob](#struct-datablob) output by [doFinal()](#func-dofinaldatablob) needs to be obtained, and the last 16 bytes should be taken as the authTag in the [GcmParamsSpec](#struct-gcmparamsspec) parameter for the [createCipher(String)](#func-createcipherstring) method during decryption.
+**Function:** Specifies the encryption/decryption parameter authTag, with a length of 16 bytes.<br/>When encrypting in GCM mode, you need to obtain the [DataBlob](#struct-datablob) output by [doFinal()](#func-dofinaldatablob) and extract its last 16 bytes as the authTag in the [GcmParamsSpec](#struct-gcmparamsspec) parameter for the [createCipher(String)](#func-createcipherstring) method during decryption.
 
 **Type:** [DataBlob](#struct-datablob)
 
@@ -1344,7 +1610,7 @@ public mut prop authTag: DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### prop iv
 
@@ -1360,7 +1626,7 @@ public mut prop iv: DataBlob
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, DataBlob, DataBlob, DataBlob)
 
@@ -1372,16 +1638,16 @@ public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob)
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| algName | String | Yes | - | Specifies the algorithm mode for symmetric encryption/decryption parameters. Possible values:<br/>- IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| algName | String | Yes | - | Specifies the algorithm mode for symmetric encryption/decryption parameters. Options are:<br/>- IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode. |
 | iv | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter iv, with a length of 12 bytes. |
 | aad | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter aad, with a length of 8 bytes. |
-| authTag | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter authTag, with a length of 16 bytes.<br/>When using GCM mode for encryption, the DataBlob output by doFinal() needs to be obtained, and the last 16 bytes should be taken as the authTag in the GcmParamsSpec parameter for the createCipher(String) method during decryption. |
+| authTag | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter authTag, with a length of 16 bytes.<br/>When encrypting in GCM mode, you need to obtain the [DataBlob](#struct-datablob) output by [doFinal()](#func-dofinaldatablob) and extract its last 16 bytes as the authTag in the [GcmParamsSpec](#struct-gcmparamsspec) parameter for the [createCipher(String)](#func-createcipherstring) method during decryption. |
 
 **Example:**
 
@@ -1391,8 +1657,14 @@ public init(algName: String, iv: DataBlob, aad: DataBlob, authTag: DataBlob)
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let gcm = GcmParamsSpec("GcmParamsSpec", DataBlob(Array<UInt8>(12, repeat: 1)), DataBlob(Array<UInt8>(8, repeat: 1)), DataBlob(Array<UInt8>(16, repeat: 1)))
+try {
+    let gcm = GcmParamsSpec("GcmParamsSpec", DataBlob(Array<UInt8>(12, repeat: 1)), DataBlob(Array<UInt8>(8, repeat: 1)), DataBlob(Array<UInt8>(16, repeat: 1)))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```## struct IvParamsSpec
 
 ```cangjie
@@ -1411,7 +1683,7 @@ Applicable to encryption/decryption modes that only use iv as a parameter, such 
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1423,15 +1695,15 @@ Applicable to encryption/decryption modes that only use iv as a parameter, such 
 public mut prop iv: DataBlob
 ```
 
-**Function:** Specifies the encryption/decryption parameter iv. Common values are as follows:<br/>- AES CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes<br/>- 3DES CBCMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 8 bytes<br/>- SM4 CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes.
+**Function:** Specifies the encryption/decryption parameter iv. Common values are as follows:<br/>- For AES in CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes<br/>- For 3DES in CBCMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 8 bytes<br/>- For SM4 in CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes.
 
 **Type:** [DataBlob](#struct-datablob)
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, DataBlob)
 
@@ -1439,18 +1711,18 @@ public mut prop iv: DataBlob
 public init(algName: String, iv: DataBlob)
 ```
 
-**Function:** Creates an IvParamsSpec instance.
+**Function:** Creates an instance of IvParamsSpec.
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| algName | String | Yes | - | Specifies the algorithm mode for symmetric encryption/decryption parameters. Options include:<br/> - IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode. |
-| iv | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter iv. Common values are as follows:<br/>- AES CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes<br/>- 3DES CBCMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 8 bytes<br/>- SM4 CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes. |
+| algName | String | Yes | - | Specifies the algorithm mode for symmetric encryption/decryption parameters. Possible values:<br/> - IvParamsSpec: Applicable to CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes.<br/> - GcmParamsSpec: Applicable to GCM mode.<br/> - CcmParamsSpec: Applicable to CCM mode. |
+| iv | [DataBlob](#struct-datablob) | Yes | - | Specifies the encryption/decryption parameter iv. Common values:<br/>- For AES in CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes<br/>- For 3DES in CBCMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 8 bytes<br/>- For SM4 in CBCMagIc_StrINgCTRMagIc_StrINgOFBMagIc_StrINgCFB modes: iv length is 16 bytes. |
 
 **Example:**
 
@@ -1460,8 +1732,14 @@ public init(algName: String, iv: DataBlob)
 // index.cj
 
 import kit.CryptoArchitectureKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let iv = IvParamsSpec("IvParamsSpec", DataBlob(Array<UInt8>(8, repeat: 1)))
+try {
+    let iv = IvParamsSpec("IvParamsSpec", DataBlob(Array<UInt8>(8, repeat: 1)))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## enum CryptoMode
@@ -1478,7 +1756,7 @@ public enum CryptoMode <: Equatable<CryptoMode> & ToString {
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1495,7 +1773,7 @@ DecryptMode
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### EncryptMode
 
@@ -1507,7 +1785,7 @@ EncryptMode
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CryptoMode)
 
@@ -1519,7 +1797,7 @@ public operator func !=(other: CryptoMode): Bool
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1531,7 +1809,7 @@ public operator func !=(other: CryptoMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+| Bool | Returns true if the two enum values are not equal, otherwise false. |
 
 ### func ==(CryptoMode)
 
@@ -1543,7 +1821,7 @@ public operator func ==(other: CryptoMode): Bool
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1555,7 +1833,7 @@ public operator func ==(other: CryptoMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+| Bool | Returns true if the two enum values are equal, otherwise false. |
 
 ### func toString()
 
@@ -1567,7 +1845,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1591,7 +1869,7 @@ public enum CipherSpecItem <: Equatable<CipherSpecItem> & ToString {
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1608,7 +1886,7 @@ OaepMdNameStr
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### OaepMgfNameStr
 
@@ -1620,7 +1898,7 @@ OaepMgfNameStr
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### OaepMgf1MdStr
 
@@ -1632,7 +1910,7 @@ OaepMgf1MdStr
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### OaepMgf1PsrcUint8Arr
 
@@ -1644,7 +1922,7 @@ OaepMgf1PsrcUint8Arr
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CipherSpecItem)
 
@@ -1656,7 +1934,7 @@ public operator func !=(other: CipherSpecItem): Bool
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1668,7 +1946,7 @@ public operator func !=(other: CipherSpecItem): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+| Bool | Returns true if the two enum values are not equal, otherwise false. |
 
 ### func ==(CipherSpecItem)
 
@@ -1680,7 +1958,7 @@ public operator func ==(other: CipherSpecItem): Bool
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1692,7 +1970,7 @@ public operator func ==(other: CipherSpecItem): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+| Bool | Returns true if the two enum values are equal, otherwise false. |
 
 ### func toString()
 
@@ -1704,14 +1982,13 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Security.CryptoFramework.Cipher
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
 | String | The description of the enum. |
-
 
 ## enum Result
 
@@ -1730,7 +2007,7 @@ public enum Result <: ToString {
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1746,7 +2023,7 @@ ErrCryptoOperation
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 ### ErrOutOfMemory
 
@@ -1758,7 +2035,7 @@ ErrOutOfMemory
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 ### ErrRuntimeError
 
@@ -1770,7 +2047,7 @@ ErrRuntimeError
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 ### InvalidParams
 
@@ -1778,11 +2055,11 @@ ErrRuntimeError
 InvalidParams
 ```
 
-**Function:** Illegal input parameters.
+**Function:** Invalid input parameters.
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 ### NotSupport
 
@@ -1794,7 +2071,7 @@ NotSupport
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21### func getValue()
+**Since:** 22### func getValue()
 
 ```cangjie
 public func getValue(): Int32
@@ -1804,7 +2081,7 @@ public func getValue(): Int32
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1822,7 +2099,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Security.CryptoFramework
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 

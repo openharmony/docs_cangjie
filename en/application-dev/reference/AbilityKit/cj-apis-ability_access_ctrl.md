@@ -12,7 +12,7 @@ import kit.AbilityKit.*
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment in its first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
 For the above sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
@@ -23,11 +23,11 @@ For the above sample project and configuration template, please refer to [Cangji
 public class AbilityAccessCtrl {}
 ```
 
-**Description:** This class is used to create instances for managing the access control module.
+**Description:** This class is used to create and manage instances of the access control module.
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 ### static func createAtManager()
 
@@ -39,12 +39,12 @@ public static func createAtManager(): AtManager
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | [AtManager](#class-atmanager) | Instance of the access control module. |
 
 **Example:**
@@ -55,8 +55,14 @@ public static func createAtManager(): AtManager
 // index.cj
 
 import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let atManager: AtManager = AbilityAccessCtrl.createAtManager()
+try {
+    let atManager: AtManager = AbilityAccessCtrl.createAtManager()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## class AtManager
@@ -69,7 +75,7 @@ public class AtManager {}
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 ### func checkAccessToken(UInt32, Permissions)
 
@@ -77,23 +83,23 @@ public class AtManager {}
 public func checkAccessToken(tokenID: UInt32, permissionName: Permissions): GrantStatus
 ```
 
-**Description:** Verifies whether the application has been granted a permission.
+**Description:** Verifies whether an application has been granted a permission.
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| tokenID | UInt32 | Yes | - | Identity of the target application to be verified. Can be obtained through the application's [ApplicationInfo](cj-apis-bundle_manager.md#class-applicationinfo). |
-| permissionName | [Permissions](#type-permissions) | Yes | - | Name of the permission to be verified. Valid permission names can be queried in the [Application Permission List](../../../en/application-dev/security/AccessToken/cj-app-permissions.md#Application-Permission-List). |
+| :--- | :--- | :--- | :--- | :--- |
+| tokenID | UInt32 | Yes | - | Identity identifier of the target application to be verified. Can be obtained through the application's [ApplicationInfo](cj-apis-bundle_manager.md#class-applicationinfo). |
+| permissionName | [Permissions](#type-permissions) | Yes | - | Name of the permission to be verified. Valid permission names can be queried in the [Application Permission List](../security/AccessToken/cj-app-permissions.md#Application-Permission-List). |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | [GrantStatus](#enum-grantstatus) | Returns the authorization status result. |
 
 **Exceptions:**
@@ -102,7 +108,6 @@ public func checkAccessToken(tokenID: UInt32, permissionName: Permissions): Gran
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example:**
@@ -113,10 +118,16 @@ public func checkAccessToken(tokenID: UInt32, permissionName: Permissions): Gran
 // index.cj
 
 import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let atManager = AbilityAccessCtrl.createAtManager()
-let tokenID : UInt32 = 1 // tokenID can be obtained by system applications through bundleManager.getApplicationInfo, and by regular applications through bundleManager.getBundleInfoForSelf
-let status = atManager.checkAccessToken(tokenID, "ohos.permission.READ_CONTACTS")
+try {
+    let atManager = AbilityAccessCtrl.createAtManager()
+    let tokenID : UInt32 = 1 // tokenID can be obtained by system applications through bundleManager.getApplicationInfo, and by regular applications through bundleManager.getBundleInfoForSelf
+    let status = atManager.checkAccessToken(tokenID, "ohos.permission.READ_CONTACTS")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func requestPermissionsFromUser(UIAbilityContext, Array\<Permissions>, AsyncCallback\<PermissionRequestResult>)
@@ -126,20 +137,20 @@ public func requestPermissionsFromUser(context: UIAbilityContext, permissionList
     requestCallback: AsyncCallback<PermissionRequestResult>): Unit
 ```
 
-**Description:** Used to display a dialog box requesting user authorization.
+**Description:** Used to display a dialog requesting user authorization.
 
-If the user denies the authorization, the dialog box cannot be displayed again. The user must manually grant the permission in the "Settings" interface of the system application.
+If the user denies authorization, the dialog cannot be displayed again. The user must manually grant the permission in the "Settings" interface of the system application.
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Context of the <!--RP1-->UIAbility<!--RP1End--> requesting the permission. |
-| permissionList | Array\<[Permissions](#type-permissions)> | Yes | - | Names of the permissions to be verified. Valid permission names can be queried in the [Application Permission List](../../../en/application-dev/security/AccessToken/cj-app-permissions.md#Application-Permission-List). |
+| permissionList | Array\<[Permissions](#type-permissions)> | Yes | - | Names of the permissions to be verified. Valid permission names can be queried in the [Application Permission List](../security/AccessToken/cj-app-permissions.md#Application-Permission-List). |
 | requestCallback | AsyncCallback\<[PermissionRequestResult](cj-apis-sercurity-permission_request_result.md#class-permissionrequestresultarraystring-arrayint32-arraybool)> | Yes | - | Callback function that returns whether the interface call was successful. |
 
 **Exceptions:**
@@ -148,7 +159,6 @@ If the user denies the authorization, the dialog box cannot be displayed again. 
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
 
 - IllegalArgumentException:
@@ -167,26 +177,31 @@ If the user denies the authorization, the dialog box cannot be displayed again. 
 import kit.AbilityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
 
-// This code can be added to the dependency definitions
-var resultCallback = {
-    errorCode: Option<BusinessException>, data: Option<PermissionRequestResult> => match (errorCode) {
-        case Some(e) => Hilog.error(0, "AppLogCj", "permissionResultCallBack request error: errcode is ${e.code}")
-        case _ =>
-            match (data) {
-                case Some(value) =>
-                    for (i in (0..value.permissions.size)) {
-                        Hilog.info(0, "AppLogCj", "CallBack: ${value.permissions[i]} - ${value.authResults[i]}")
-                    }
-                case _ => Hilog.error(0, "AppLogCj", "permissionResultCallBack request error: data is null")
-            }
+try {
+    // The following code can be added to the dependency definitions
+    var resultCallback = {
+        errorCode: Option<BusinessException>, data: Option<PermissionRequestResult> => match (errorCode) {
+            case Some(e) => Hilog.error(0, "AppLogCj", "permissionResultCallBack request error: errcode is ${e.code}")
+            case _ =>
+                match (data) {
+                    case Some(value) =>
+                        for (i in (0..value.permissions.size)) {
+                            Hilog.info(0, "AppLogCj", "CallBack: ${value.permissions[i]} - ${value.authResults[i]}")
+                        }
+                    case _ => Hilog.error(0, "AppLogCj", "permissionResultCallBack request error: data is null")
+                }
+        }
     }
-}
 
-let ctx = Global.abilityContext // The Context application context needs to be obtained. See the Usage Instructions for details.
-let atManager = AbilityAccessCtrl.createAtManager()
-let permissionList = ["ohos.permission.READ_CONTACTS", "ohos.permission.CAMERA"]
-atManager.requestPermissionsFromUser(ctx, permissionList, resultCallback)
+    let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the Usage Instructions in this document.
+    let atManager = AbilityAccessCtrl.createAtManager()
+    let permissionList = ["ohos.permission.READ_CONTACTS", "ohos.permission.CAMERA"]
+    atManager.requestPermissionsFromUser(ctx.getOrThrow(), permissionList, resultCallback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## enum GrantStatus
@@ -203,7 +218,7 @@ public enum GrantStatus <: Equatable<GrantStatus> & ToString {
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -220,7 +235,7 @@ PermissionDenied
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 ### PermissionGranted
 
@@ -232,7 +247,7 @@ PermissionGranted
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(GrantStatus)
 
@@ -244,18 +259,18 @@ public operator func !=(other: GrantStatus): Bool
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | other | [GrantStatus](#enum-grantstatus) | Yes | - | Authorization status. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | Bool | Returns true if the authorization statuses are different, otherwise returns false. |
 
 ### func ==(GrantStatus)
@@ -268,18 +283,18 @@ public operator func ==(other: GrantStatus): Bool
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | other | [GrantStatus](#enum-grantstatus) | Yes | - | Authorization status. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | Bool | Returns true if the authorization statuses are the same, otherwise returns false. |
 
 ### func toString()
@@ -292,12 +307,12 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | String | String representation of the authorization status. |
 
 ## type Permissions

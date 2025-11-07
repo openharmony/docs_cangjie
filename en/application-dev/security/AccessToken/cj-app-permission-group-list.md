@@ -1,17 +1,17 @@
 # Application Permission Group List
 
-## Usage Instructions
+## Usage Notes
 
-- Before applying for target permissions, developers are advised to first read the [Application Permission Management Overview - Permission Groups and Sub-permissions](./cj-app-permission-mgmt-overview.md#permission-groups-and-sub-permissions) to understand related concepts, then reasonably apply for corresponding permission groups.
-- When an application requests permissions, permissions within the same permission group will be requested together in a single pop-up window. After user authorization is granted, all permissions within the group will be authorized simultaneously. Exceptions include location, contacts, call logs, phone, messaging, and calendar permission groups.
+- Before applying for target permissions, developers are advised to first read [Application Permission Management Overview - Permission Groups and Sub-permissions](./cj-app-permission-mgmt-overview.md#权限组和子权限) to understand related concepts, then apply for the corresponding permission groups appropriately.
+- When an application requests permissions, permissions within the same permission group will be requested together in a single pop-up window. Once user authorization is granted, all permissions within the group will be authorized collectively. Exceptions include location, contacts, call logs, phone, messaging, and calendar permission groups.
 
-  Examples using location information and camera permission groups:
+  Examples using location and camera permission groups:
 
-    - When an application only requests the permission `ohos.permission.APPROXIMATELY_LOCATION` (belonging to the location information permission group), the user will receive a single pop-up requesting location information, containing the application for that single permission.
-    - When an application requests both `ohos.permission.APPROXIMATELY_LOCATION` and `ohos.permission.LOCATION` (both belonging to the location information permission group), the user will receive a single pop-up requesting location information, containing the application for both permissions.
-    - When an application requests both `ohos.permission.APPROXIMATELY_LOCATION` (belonging to the location information permission group) and `ohos.permission.CAMERA` (belonging to the camera permission group), the user will receive two separate pop-ups: one requesting location information and another requesting camera access.
+    - When an application only requests the permission `ohos.permission.APPROXIMATELY_LOCATION` (belonging to the location permission group), users will receive a single pop-up requesting location information, containing the application for this single permission.
+    - When an application requests both `ohos.permission.APPROXIMATELY_LOCATION` and `ohos.permission.LOCATION` (both belonging to the location permission group), users will receive a single pop-up requesting location information, containing the application for both permissions.
+    - When an application requests both `ohos.permission.APPROXIMATELY_LOCATION` (location permission group) and `ohos.permission.CAMERA` (camera permission group), users will receive two separate pop-ups: one requesting location information and another requesting camera access.
 
-- The permission groups currently supported by the system are listed below. For details on each sub-permission, please refer to the [Application Permission List](./cj-permissions-for-all-user.md).
+- The permission groups currently supported by the system are listed below. For detailed descriptions of each sub-permission, please refer to [Application Permission List](./cj-permissions-for-all-user.md).
 
 ## Location<!--Del--> Information<!--DelEnd-->
 
@@ -69,7 +69,7 @@
 <!--RP2End-->
 
 <!--Del-->
-## Installed Applications List
+## Read Installed Applications List
 
 - [ohos.permission.GET_INSTALLED_BUNDLE_LIST](./cj-permissions-for-system-apps-user.md#ohospermissionget_installed_bundle_list)
 
@@ -120,7 +120,7 @@
 
 - [ohos.permission.CUSTOM_SCREEN_CAPTURE](./cj-permissions-for-all-user.md#ohospermissioncustom_screen_capture)
 
-## Folders
+## Directories
 
 > **Note:**
 >
@@ -130,7 +130,7 @@
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](./cj-restricted-permissions.md#ohospermissionread_write_desktop_directory)
 - [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](./cj-permissions-for-all-user.md#ohospermissionread_write_documents_directory)
 
-## Folders
+## Directories
 
 > **Note:**
 >

@@ -2,11 +2,11 @@
 
 The Webview.WebviewController in ArkWeb provides the `scrollTo` and `scrollBy` interfaces.
 
-When the displayed content size of a Web page is significantly larger than the component size, users can scroll the displayed content using `scrollTo` and `scrollBy` to reveal hidden portions, with support for animated scrolling effects. Currently, the animation cannot be interrupted by gestures, but can be forcibly stopped by executing another animation with a duration of approximately 0.
+When the displayed content size in Web is significantly larger than the component size, users can scroll the displayed content in the Web page using `scrollTo` and `scrollBy` to reveal hidden portions, with the capability to generate animated scrolling effects. Currently, the animation effect does not support gesture interruption, but it can be forcibly interrupted by executing another animation with a duration of approximately 0.
 
 > **Note:**
 >
-> Scrolling is supported when: The length or width of the Web page exceeds that of the display area.
+> Conditions for supporting scrolling: The length or width of the Web page must be greater than that of the display area.
 
 <!-- compile -->
 
@@ -14,8 +14,8 @@ When the displayed content size of a Web page is significantly larger than the c
 // index.cj
 import ohos.arkui.state_macro_manage.*
 import kit.ArkWeb.WebviewController
-import kit.ArkUI.{Web, BusinessException}
-import kit.LocalizationKit.{__GenerateResource__}
+import kit.ArkUI.Web
+import ohos.business_exception.*
 
 @Entry
 @Component
@@ -24,30 +24,30 @@ class EntryView {
 
     func build() {
         Column {
-            Button("scrollTo").onClick { evt =>
+            Button("scrollTo").onClick ({ evt =>
                 try {
                     webController.scrollTo(50.0, 50.0, duration: 500)
-                    AppLog.info("scrollTo success")
+                    Hilog.info(1, "info", "scrollTo success")
                 } catch (e: BusinessException) {
-                    AppLog.error("scrollTo ErrorCode: ${e.code},  Message: ${e.message}")
+                    Hilog.error(1, "info", "scrollTo ErrorCode: ${e.code},  Message: ${e.message}")
                 }
-            }.margin(10)
-            Button("scrollBy").onClick { evt =>
+            }).margin(10)
+            Button("scrollBy").onClick ({ evt =>
                 try {
                     webController.scrollBy(50.0, 50.0, duration: 500)
-                    AppLog.info("scrollBy success")
+                    Hilog.info(1, "info", "scrollBy success")
                 } catch (e: BusinessException) {
-                    AppLog.error("scrollBy ErrorCode: ${e.code},  Message: ${e.message}")
+                    Hilog.error(1, "info", "scrollBy ErrorCode: ${e.code},  Message: ${e.message}")
                 }
-            }.margin(10)
-            Button("scrollStop").onClick { evt =>
+            }).margin(10)
+            Button("scrollStop").onClick ({ evt =>
                 try {
                     webController.scrollBy(0.0, 0.0, duration: 1)
-                    AppLog.info("scrollStop success")
+                    Hilog.info(1, "info", "scrollStop success")
                 } catch (e: BusinessException) {
-                    AppLog.error("scrollStop ErrorCode: ${e.code},  Message: ${e.message}")
+                    Hilog.error(1, "info", "scrollStop ErrorCode: ${e.code},  Message: ${e.message}")
                 }
-            }.margin(10)
+            }}.margin(10)
             Web(src: @rawfile("index.html"), controller: webController)
         }
     }

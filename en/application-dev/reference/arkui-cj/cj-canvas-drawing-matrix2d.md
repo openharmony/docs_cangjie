@@ -12,129 +12,129 @@ import kit.ArkUI.*
 
 ```cangjie
 public class Matrix2D {
-    public init(unit!: LengthMetricsUnit = LengthMetricsUnit.DEFAULT)
+    public init(?LengthMetricsUnit)
 }
 ```
 
-**Description:** Matrix object type.
+**Description:** A 2D transformation matrix supporting rotation, translation, and scaling on both X and Y axes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### prop rotateX
+### init(?LengthMetricsUnit)
 
 ```cangjie
-public mut prop rotateX: Float64
+public init(unit!: ?LengthMetricsUnit = None)
 ```
 
-**Description:** Horizontal skew coefficient.
+**Description:** Creates a Matrix2D object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Type:** Float64
+**Since:** 22
 
-**Access:** Read-Write
+**Parameters:**
 
-**Since:** 21
-
-### prop rotateY
-
-```cangjie
-public mut prop rotateY: Float64
-```
-
-**Description:** Vertical skew coefficient.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Type:** Float64
-
-**Access:** Read-Write
-
-**Since:** 21
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| unit | ?[LengthMetricsUnit](./cj-common-types.md#enum-lengthmetricsunit) | No | None | **Named parameter.** Configures the unit mode of the Matrix2D object. Once configured, it cannot be dynamically changed. Configuration method is the same as [CanvasRenderingContext2D](./cj-canvas-drawing-canvasrenderingcontext2d.md#class-canvasrenderingcontext2d). |
 
 ### prop scaleX
 
 ```cangjie
-public mut prop scaleX: Float64
+public mut prop scaleX: ?Float64
 ```
 
-**Description:** Horizontal scaling coefficient.
+**Description:** Horizontal scaling factor.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Type:** Float64
+**Type:** ?Float64
 
 **Access:** Read-Write
 
-**Since:** 21
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 ### prop scaleY
 
 ```cangjie
-public mut prop scaleY: Float64
+public mut prop scaleY: ?Float64
 ```
 
-**Description:** Vertical scaling coefficient.
+**Description:** Vertical scaling factor.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Type:** Float64
+**Type:** ?Float64
 
 **Access:** Read-Write
 
-**Since:** 21
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### prop rotateX
+
+```cangjie
+public mut prop rotateX: ?Float64
+```
+
+**Description:** Horizontal skew factor.
+
+**Type:** ?Float64
+
+**Access:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### prop rotateY
+
+```cangjie
+public mut prop rotateY: ?Float64
+```
+
+**Description:** Vertical skew factor.
+
+**Type:** ?Float64
+
+**Access:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 ### prop translateX
 
 ```cangjie
-public mut prop translateX: Float64
+public mut prop translateX: ?Float64
 ```
 
-**Description:** Horizontal translation distance. Default unit: vp.
+**Description:** Horizontal translation distance.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Type:** Float64
+**Type:** ?Float64
 
 **Access:** Read-Write
 
-**Since:** 21
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 ### prop translateY
 
 ```cangjie
-public mut prop translateY: Float64
+public mut prop translateY: ?Float64
 ```
 
 **Description:** Vertical translation distance. Default unit: vp.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Type:** Float64
+**Type:** ?Float64
 
 **Access:** Read-Write
 
-**Since:** 21
-
-### init(LengthMetricsUnit)
-
-```cangjie
-public init(unit!: LengthMetricsUnit = LengthMetricsUnit.Default)
-```
-
-**Description:** Creates a Matrix2D type matrix object.
-
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| unit | [LengthMetricsUnit](./cj-common-types.md#enum-lengthmetricsunit) | No | LengthMetricsUnit.Default | **Named parameter.** Configures the unit mode of the Matrix2D object. Once configured, it cannot be dynamically changed. Configuration method is the same as [CanvasRenderingContext2D](./cj-canvas-drawing-canvasrenderingcontext2d.md#class-canvasrenderingcontext2d). |
+**Since:** 22
 
 ### func identity()
 
@@ -146,7 +146,7 @@ public func identity(): This
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### func invert()
 
@@ -154,69 +154,69 @@ public func identity(): This
 public func invert(): This
 ```
 
-**Description:** Obtains the inverse matrix of the current matrix.
+**Description:** Returns the inverse matrix of the current matrix.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### func rotate(Float64, Float64, Float64)
+### func rotate(?Float64, ?Float64, ?Float64)
 
 ```cangjie
-public func rotate(degree: Float64, rx!: Float64 = 0.0, ry!: Float64 = 0.0): This
+public func rotate(degree: ?Float64, rx!: ?Float64 = None, ry!: ?Float64 = None): This
 ```
 
 **Description:** Performs right-multiplication rotation operation on the current matrix centered at the rotation point.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| degree | Float64 | Yes | - | Rotation angle in degrees. Positive values indicate clockwise direction. Convert degrees to radians via degree * Math.PI / 180. Default unit: radians. |
-| rx | Float64 | No | 0.0 | **Named parameter.** Horizontal coordinate of the rotation point. Default unit: vp. |
-| ry | Float64 | No | 0.0 | **Named parameter.** Vertical coordinate of the rotation point. Default unit: vp. |
+| degree | ?Float64 | No | - | Rotation angle in degrees. Positive values indicate clockwise rotation. Convert degrees to radians using degree * Math.PI / 180. Default unit: radians. |
+| rx | ?Float64 | No | None | **Named parameter.** X-coordinate of the rotation point. Default unit: vp. |
+| ry | ?Float64 | No | None | **Named parameter.** Y-coordinate of the rotation point. Default unit: vp. |
 
-### func scale(Float64, Float64)
+### func translate(?Float64, ?Float64)
 
 ```cangjie
-public func scale(sx!: Float64 = 1.0, sy!: Float64 = 1.0): This
-```
-
-**Description:** Performs right-multiplication scaling operation on the current matrix.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| sx | Float64 | No | 1.0 | **Named parameter.** Horizontal scaling factor. |
-| sy | Float64 | No | 1.0 | **Named parameter.** Vertical scaling factor. |
-
-### func translate(Float64, Float64)
-
-```cangjie
-public func translate(tx!: Float64 = 0.0, ty!: Float64 = 0.0): This
+public func translate(tx!: ?Float64 = None, ty!: ?Float64 = None): This
 ```
 
 **Description:** Performs left-multiplication translation operation on the current matrix.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| tx | Float64 | No | 0.0 | **Named parameter.** Horizontal translation distance. Default unit: vp. |
-| ty | Float64 | No | 0.0 | **Named parameter.** Vertical translation distance. Default unit: vp. |
+| tx | ?Float64 | No | None | **Named parameter.** Horizontal translation distance. Default unit: vp. |
+| ty | ?Float64 | No | None | **Named parameter.** Vertical translation distance. Default unit: vp. |
+
+### func scale(?Float64, ?Float64)
+
+```cangjie
+public func scale(sx!: ?Float64 = None, sy!: ?Float64 = None): This
+```
+
+**Description:** Performs right-multiplication scaling operation on the current matrix.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| sx | ?Float64 | No | None | **Named parameter.** Horizontal scaling factor. |
+| sy | ?Float64 | No | None | **Named parameter.** Vertical scaling factor. |
 
 ## Example Code
 
@@ -260,5 +260,4 @@ class EntryView {
     }
 }
 ```
-
 ![matrix2D_1](./figures/matrix2D_1.png)

@@ -1,10 +1,10 @@
-# Rich Text Editor (RichEditor)
+# RichEditor
 
-RichEditor is a component that supports mixed text-image layout and interactive text editing, typically used for responding to user input operations involving mixed content, such as comment sections that allow both text and images. For specific usage, please refer to [RichEditor](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md).
+RichEditor is a component that supports mixed text-image layout and interactive text editing, typically used for responding to user input operations involving mixed content, such as comment sections that allow both text and images. For specific usage, refer to [RichEditor](../reference/arkui-cj/cj-text-input-richeditor.md).
 
 ## Creating a RichEditor Component Without Attribute String Construction
 
-Creating a RichEditor component without attribute string construction is generally used for displaying simple text-image information, such as contact details, or in scenarios requiring uniform content formatting, such as certain code editors.
+Creating a RichEditor component without attribute string construction is generally used to display simple mixed text-image information, such as contact details, or in scenarios requiring uniform content formatting, such as certain code editors.
 
 <!-- run -->
 
@@ -25,7 +25,7 @@ class EntryView {
             Column() {
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"Creating a RichEditor component without attribute string construction")
+                        this.controller.addTextSpan(content:"Create a RichEditor component without attribute string construction")
                     })
             }.width(200)
         }.height(200)
@@ -39,11 +39,11 @@ class EntryView {
 
 ### Configuring Custom Selection Menu
 
-Use [bindSelectionMenu](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-bindselectionmenuricheditorspantype-custombuilder-responsetype-selectionmenuoptions) to set a custom selection menu.
+Use [bindSelectionMenu](../reference/arkui-cj/cj-text-input-richeditor.md#func-bindselectionmenuricheditorspantype-custombuilder-responsetype-selectionmenuoptions) to set a custom selection menu.
 
-The component comes with a default text selection menu that includes copy, cut, and select-all functions. Users can employ this property to define custom menus, such as translating English text, bolding fonts, and other rich menu functionalities.
+The component comes with a default text selection menu that includes copy, cut, and select-all functions. Users can use this property to define custom menus, such as translating English text, bolding fonts, and other rich menu functionalities.
 
-When custom menus are excessively long, it is recommended to nest a Scroll component internally to avoid keyboard obstruction.
+When custom menus are excessively long, it is recommended to nest a Scroll component internally to prevent keyboard obstruction.
 
 <!-- run -->
 
@@ -80,10 +80,10 @@ class EntryView {
                 RichEditor(RichEditorController())
                     .bindSelectionMenu(spantype: RichEditorSpanType.Text, content: {=>}, responseType: ResponseType.LongPress,
                         options: SelectionMenuOptions( onDisappear: {
-                            => Hilog.info(0, " ", "Triggered when the custom selection menu closes")
+                            => Hilog.info(0, " ", "Trigger this callback when the custom selection menu closes")
                         },
                         onAppear: {
-                            => Hilog.info(0, " ", "Triggered when the custom selection menu appears"))
+                            => Hilog.info(0, " ", "Callback triggered when the custom selection menu appears"))
             }
         }
     }
@@ -96,9 +96,9 @@ class EntryView {
 
 ### Adding a Callback Triggered After Component Initialization
 
-Use [onReady](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-onreadyvoidcallback) to add a callback triggered after component initialization.
+Use [onReady](../reference/arkui-cj/cj-text-input-richeditor.md#func-onreadyvoidcallback) to add a callback triggered after component initialization.
 
-This callback can effectively display rich content, including text, images, and emojis, after component initialization. For example, when using the RichEditor component to display news, this callback can trigger fetching text-image data from a server. The retrieved data can then be populated into the component, ensuring the complete news content is quickly rendered on the page after initialization.
+This callback can effectively display rich content, including text, images, and emojis, after the component initializes. For example, when using the RichEditor component to display news, this callback can trigger fetching mixed text-image data from a server. The retrieved data can then be populated into the component, ensuring the complete news content is quickly rendered on the page after initialization.
 
 <!-- run -->
 
@@ -119,7 +119,7 @@ class EntryView {
             Column() {
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"The onReady callback content is pre-set text within the component")
+                        this.controller.addTextSpan(content:"The onReady callback content is preset text within the component")
                 })
             }.width(200)
         }.height(200)
@@ -129,11 +129,11 @@ class EntryView {
 
 ![chushihua](figures/chushihua.jpg)
 
-### Adding a Callback Triggered When Component Content is Selected
+### Adding a Callback Triggered When Component Content Is Selected
 
-Use [onSelect](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-onselectcallbackricheditorselectionunit) to add a callback triggered when component content is selected.
+Use [onSelect](../reference/arkui-cj/cj-text-input-richeditor.md#func-onselectcallbackricheditorselectionunit) to add a callback triggered when component content is selected.
 
-This callback can enhance operational experience after text selection. For example, after selecting text, the callback can trigger a pop-up menu for modifying text styles or analyze and process the selected text to provide input suggestions, thereby improving text editing efficiency and convenience.
+This callback can enhance operational experience after text selection. For example, after selecting text, the callback can trigger a pop-up menu for users to modify text styles. Alternatively, it can analyze and process the selected text to provide input suggestions, improving text editing efficiency and convenience.
 
 The callback can be triggered in two ways: 
 1. Via left mouse button selection—pressing the left button to select and releasing it to trigger the callback.
@@ -159,10 +159,10 @@ class EntryView {
             Column() {
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"Select this text to trigger the onselect callback.")
+                        this.controller.addTextSpan(content:"Select this text to trigger the onselect callback.")
                     })
                     .onSelect({value1: RichEditorSelection=>
-                        this.controller.addTextSpan(value:"1234")
+                        this.controller.addTextSpan(content:"1234")
                     }).width(200).height(200)
                 Text("View callback content:").fontSize(10).fontColor(Color.Gray).width(200)
                 RichEditor(this.controller1)
@@ -178,7 +178,7 @@ class EntryView {
 
 ### Adding Callbacks Triggered Before and After Text-Image Changes
 
-Use [onDidChange](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-ondidchangeondidchangecallback) to add a callback triggered after text-image changes. This callback is suitable for content saving and synchronization. For example, after a user completes content editing, this callback can automatically save the latest content locally or synchronize it to a server. It is also useful for content state updates and rendering. For instance, in a to-do list application, after a user edits a to-do description in rich text format, this callback can update the display style of the to-do item in the list.
+Use [onDidChange](../reference/arkui-cj/cj-text-input-richeditor.md#func-ondidchangeondidchangecallback) to add a callback triggered after text-image changes. This callback is suitable for content saving and synchronization. For example, after a user finishes editing content, this callback can automatically save the latest content locally or synchronize it to a server. It is also useful for content state updates and rendering. For instance, in a to-do list application, after a user edits a to-do description in RichEditor format, this callback can update the display style of the to-do item in the list.
 
 <!-- run -->
 
@@ -201,10 +201,10 @@ class EntryView {
             Column() {
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"Before text-image changes, trigger callback.\nAfter text-image changes, trigger callback.")
+                        this.controller.addTextSpan(content:"Before text-image changes, trigger callback.\nAfter text-image changes, trigger callback.")
                     })
                     .onDidChange({ rangeBefore: TextRange, rangeAfter: TextRange=>
-                        this.controller1.addTextSpan(value:"\nAfter text-image changes, trigger callback:\nrangeBefore:" + "1234" +
+                        this.controller1.addTextSpan(content:"\nAfter text-image changes, trigger callback:\nrangeBefore:" + "1234" +
                             "\nrangeAfter：" + "2345")
                         }).width(180)
                 Text("View callback content:").fontSize(10).fontColor(Color.Gray).width(70)
@@ -217,11 +217,13 @@ class EntryView {
 
 ![richeditor-change](figures/richeditor-change.gif)
 
-### Adding Callbacks Triggered Before and After Input Method Content Entry
+### Adding Callbacks Triggered Before and After Input Method Input
 
-Before input method content entry, use [aboutToImeInput](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-abouttoimeinputcallbackricheditorinsertvaluebool) to trigger a callback. After input method content entry is completed, use [onImeInputComplete](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-onimeinputcompletecallbackricheditortextspanresultunit) to trigger a callback.
+Before input method input begins, use [aboutToImeInput](../reference/arkui-cj/cj-text-input-richeditor.md#func-abouttoimeinputcallbackricheditorinsertvaluebool) to trigger a callback. After input method input completes, use [onImeInputComplete](../reference/arkui-cj/cj-text-input-richeditor.md#func-onimeinputcompletecallbackricheditortextspanresultunit) to trigger a callback.
 
-These callback mechanisms are suitable for intelligent input assistance. For example, before a user starts entering text, the callback can provide word suggestions. After the user completes input, the callback can perform automated error correction or format conversion.
+These callback mechanisms are suitable for intelligent input assistance. For example: 
+- Before a user starts typing, use the callback to provide word suggestions.
+- After a user completes input, use the callback to perform automated error correction or format conversion.
 
 <!-- run -->
 
@@ -242,14 +244,14 @@ class EntryView {
             Column() {
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"Before input method content entry, trigger callback.\nAfter input method content entry is completed, trigger callback.")
+                        this.controller.addTextSpan(content:"Before input method input, trigger callback.\nAfter input method input completes, trigger callback.")
                     })
                     .aboutToImeInput({value:   RichEditorInsertValue=>
-                        this.controller1.addTextSpan(value:"Before input method content entry, trigger callback:\n123")
+                        this.controller1.addTextSpan(content:"Before input method input, trigger callback:\n123")
                         return true;
                     })
                     .onImeInputComplete({value: RichEditorTextSpanResult=>
-                        this.controller1.addTextSpan(value:"After input method content entry is completed, trigger callback:\n456")
+                        this.controller1.addTextSpan(content:"After input method input completes, trigger callback:\n456")
                     }).width(200).height(200)
 
                 Text("View callback content:").fontSize(10).fontColor(Color.Gray).width(200)
@@ -262,13 +264,13 @@ class EntryView {
 
 ![shurufa](figures/shurufa.jpg)
 
-### Adding a Callback Triggered Before Pasting is Completed
+### Adding a Callback Triggered Before Pasting Completes
 
-Use [onPaste](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-onpastepasteeventcallback) to add a callback triggered before pasting is completed.
+Use [onPaste](../reference/arkui-cj/cj-text-input-richeditor.md#func-onpastepasteeventcallback) to add a callback triggered before pasting completes.
 
 This callback is suitable for content format processing. For example, when a user copies text containing HTML tags, the callback can include code to convert it into a format supported by the RichEditor component, stripping unnecessary tags or retaining only plain text.
 
-Since the component's default paste behavior is limited to plain text and cannot handle image pasting, developers can use this method to implement mixed text-image paste functionality, replacing the component's original paste behavior.
+Since the component's default paste behavior is limited to plain text and cannot handle image pasting, developers can use this method to implement mixed text-image paste functionality, replacing the component's default paste behavior.
 
 <!-- run -->
 
@@ -288,10 +290,10 @@ class EntryView {
             Column() {
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"Copy and paste operations on this text will trigger corresponding callbacks.")
+                        this.controller.addTextSpan(content:"Copy and paste operations on this text will trigger corresponding callbacks.")
                     })
                     .onPaste({value1:PasteEvent=>
-                        this.controller1.addTextSpan(value:"Trigger onPaste callback\n")
+                        this.controller1.addTextSpan(content:"Trigger onPaste callback\n")
                     }).width(300).height(70)
                 Text("View callback content:").fontSize(10).fontColor(Color.Gray).width(300)
                 RichEditor(this.controller1)
@@ -306,11 +308,11 @@ class EntryView {
 
 ## Adding Text Content
 
-In addition to directly entering content within the component, you can also use [addTextSpan](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-addtextspanresourcestr-richeditortextspanoptions) to add text content.
+In addition to directly inputting content within the component, you can also use [addTextSpan](../reference/arkui-cj/cj-text-input-richeditor.md#func-addtextspanresourcestr-richeditortextspanoptions) to add text content.
 
 This interface enables diverse text styling, such as creating mixed-style text.
 
-If the component is in focus with a blinking cursor, the cursor position will update after adding text content via addTextSpan, blinking to the right of the newly added text.
+If the component is in focus with a blinking cursor, after adding text content via addTextSpan, the cursor position updates and blinks to the right of the newly added text.
 
 <!-- run -->
 
@@ -332,9 +334,9 @@ class EntryView {
                 .width(200)
                 .height(300)
                 .fontSize(13)
-                .onClick{ evt =>
-                    this.controller.addTextSpan(value:"Add a new paragraph of text.")
-                }
+                .onClick({ evt =>
+                    this.controller.addTextSpan(content:"Add a new paragraph of text.")
+                })
             RichEditor(this.controller)
                 .width(200)
                 .height(200)
@@ -347,11 +349,11 @@ class EntryView {
 
 ## Adding Image Content
 
-Use [addImageSpan](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md#func-addimagespanstring-richeditorimagespanoptions) to add image content.
+Use [addImageSpan](../reference/arkui-cj/cj-text-input-richeditor.md#func-addimagespanstring-richeditorimagespanoptions) to add image content.
 
-This interface can enrich content and enhance visual presentation, such as adding images to news articles or data visualization graphics to documents.
+This interface can be used for content enrichment and visual presentation, such as adding images to news articles or data visualization graphics to documents.
 
-If the component is in focus with a blinking cursor, the cursor position will update after adding image content via addImageSpan, blinking to the right of the newly added image.
+If the component is in focus with a blinking cursor, after adding image content via addImageSpan, the cursor position updates and blinks to the right of the newly added image.
 
 <!-- run -->
 
@@ -373,17 +375,17 @@ class EntryView {
                     .width(200)
                     .height(300)
                     .fontSize(13)
-                    .onClick{ evt =>
+                    .onClick({ evt =>
                         this.controller.addImageSpan(value: @r(app.media.startIcon),
                         options: RichEditorImageSpanOptions(
                             imageStyle: RichEditorImageSpanStyle(
                                 size: (24.vp, 24.vp)
                             )
                         ))
-                    }
+                    })
                 RichEditor(this.controller)
                     .onReady({=>
-                        this.controller.addTextSpan(value:"Copy and paste operations on this text will trigger corresponding callbacks.")}).width(200).height(200)
+                        this.controller.addTextSpan(content:"Copy and paste operations on this text will trigger corresponding callbacks.")}).width(200).height(200)
             }.width(200).height(300)
         }
     }

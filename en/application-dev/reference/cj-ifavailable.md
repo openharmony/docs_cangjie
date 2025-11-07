@@ -1,10 +1,10 @@
-# API Tagging Control
+# API Labeling Control
 
 ## Overview
 
-Typically, developers need to tag certain APIs to restrict their usage in different locations of the source code based on these tags. Global tags are obtained from the Cangjie project created by Deveco Studio. For example, if the created project is version 5.1.0, its global API level will be 18. Tagged APIs must comply with the global tag configuration to be legally used.
+Typically, developers need to label certain APIs to restrict their usage in different locations within the source code. Global labels are obtained from the Cangjie project created by Deveco Studio. For example, if the created project is version 5.1.0, its global API level will be 18. Labeled APIs must comply with the global label configuration to be legally used.
 
-To achieve API tagging control, the Cangjie language introduces the `@IfAvailable` macro expression. It provides finer-grained control over the usage of tagged APIs based on global tag settings. `@IfAvailable` needs to be used in conjunction with the custom annotation `APILevel`. This chapter will introduce the functionality and usage of `@IfAvailable`.
+To achieve API labeling control, the Cangjie language introduces the `@IfAvailable` macro expression. Based on global label settings, it provides finer-grained control over the usage of labeled APIs. `@IfAvailable` must be used in conjunction with the custom annotation `APILevel`. This chapter will introduce the functionality and usage of `@IfAvailable`.
 
 ## Syntax of `@IfAvailable`
 
@@ -18,29 +18,29 @@ Where:
 
 - `<label>` is the parameter name of the custom annotation `APILevel`;
 - `<value>` is the parameter of the annotation type, supporting only literal expressions;
-- `<label>: <value>` constitutes the condition of `@IfAvailable`;
+- `<label>: <value>` constitutes the condition for `@IfAvailable`;
 - `<lambda1>` and `<lambda2>` must comply with Lambda expression syntax and are restricted to parameterless forms. The return types of `<lambda1>` and `<lambda2>` are inferred by the compiler as `Unit`.
 
 ## Semantics of `@IfAvailable`
 
-If the condition of `@IfAvailable` holds at runtime, the function body of `<lambda1>` will be executed; otherwise, the function body of `<lambda2>` will be executed. All symbols called in `<lambda1>` will be marked as weak symbols, meaning they are not required to be found during compilation and linking.
+If the condition of `@IfAvailable` is satisfied at runtime, the function body of `<lambda1>` will be executed; otherwise, the function body of `<lambda2>` will be executed. All symbols called in `<lambda1>` will be marked as weak symbols, meaning they are not required to be found during compilation and linking.
 
 In a Cangjie project, using the `@IfAvailable` expression implicitly imports the dependency packages `ohos.device_info` and `ohos.base` by default, without requiring manual import.
 
 ### `level` Check
 
-When `<label>` is specified as `level` in the `@IfAvailable` macro expression, this check takes effect.
+In the `@IfAvailable` macro expression, when `<label>` is specified as `level`, this check takes effect.
 
 In any scope, calling APIs with a higher Level than the current scope is prohibited. That is, `<lambda1>` must not call APIs higher than the value specified by `<value>` in `level: <value>`, and `<lambda2>` must not call APIs higher than the Level of the current project.
 
 ### `syscap` Check
 
-When `<label>` is specified as `syscap` in the `@IfAvailable` macro expression, this check takes effect.
+In the `@IfAvailable` macro expression, when `<label>` is specified as `syscap`, this check takes effect.
 
 > **Note:**
 >
-> - **Intersection**: The set of capabilities shared by all devices;
-> - **Union**: The set of capabilities possessed by at least one device.
+> - **Intersection**: The set of capabilities supported by all devices simultaneously;
+> - **Union**: The set of capabilities supported by at least one device.
 
 **Check Rules:**
 
@@ -50,11 +50,11 @@ When `<label>` is specified as `syscap` in the `@IfAvailable` macro expression, 
 
 In any scope, calling APIs not supported by any device is prohibited, while calling APIs with syscap in the **intersection** or **union** is allowed. `@IfAvailable` can add capabilities to the **intersection** and **union**, meaning `<lambda1>` can call APIs with the syscap specified by `<value>` in `syscap: <value>`, while `<lambda2>` cannot.
 
-## Examples of `@IfAvailable` Usage
+## Usage Examples of `@IfAvailable`
 
 ### Using `IfAvailable` to Control `APILevel`
 
-Prerequisite dependencies, providing APIs with different tags:
+Prerequisite: Provide APIs with different labels:
 
 <!-- compile -pkg0 -->
 
@@ -90,13 +90,13 @@ import ohos.sample.*
 
 func demo() {
     @IfAvaliable(level: 19, { =>
-        // Compile-time: This scope allows calling APIs with level 19 or lower. That is, this branch can use f17, f18, f19, while calling higher-level interfaces will result in a compilation error.
+        // Compile-time: This scope allows calling APIs with level 19 or lower. That is, this branch can use f17, f18, f19, but calling higher-level interfaces will result in a compilation error.
         // Runtime: If the execution device supports level 19, this branch will be executed.
         f17();
         f18();
         f19();
     }, { =>
-        // Compile-time: This scope uses the capabilities provided by the project, allowing calls to APIs with level 18 or lower. That is, this branch can use f17, f18, while calling higher-level interfaces will result in a compilation error (e.g., f19).
+        // Compile-time: This scope uses the capabilities provided by the project, allowing calls to APIs with level 18 or lower. That is, this branch can use f17, f18, but calling higher-level interfaces will result in a compilation error (e.g., f19).
         // Runtime: If the execution device supports level 18, this branch will be executed.
         f17();
         f18();
@@ -107,7 +107,7 @@ func demo() {
 
 ### Using `IfAvailable` to Control `syscap`
 
-Prerequisite dependencies, providing APIs with different `syscap` tags:
+Prerequisite: Provide APIs with different `syscap` labels:
 
 <!-- compile -pkg1 -->
 
@@ -135,7 +135,7 @@ public func f4() {
 }
 ```
 
-Deveco Studio reads the SystemCapability supported by all devices by default to check whether the scope allows the use of tagged APIs.
+Deveco Studio reads the SystemCapability supported by all devices by default to check whether labeled APIs are allowed in the scope.
 
 Assuming `ohos.sample` is the SDK, Device 1's syscap is `["SystemCapability.A", "SystemCapability.B"]`, and Device 2's syscap is `["SystemCapability.B", "SystemCapability.C"]`.
 
@@ -151,7 +151,7 @@ func demo() {
         // This scope allows the highest usage of ["SystemCapability.A", "SystemCapability.B", "SystemCapability.C", "SystemCapability.D"], where:
         // ["SystemCapability.B", "SystemCapability.D"] will not trigger warnings;
         // ["SystemCapability.A", "SystemCapability.C"] will trigger warnings;
-        // Anything not in ["SystemCapability.A", "SystemCapability.B", "SystemCapability.C", "SystemCapability.D"] will trigger errors.
+        // Anything outside ["SystemCapability.A", "SystemCapability.B", "SystemCapability.C", "SystemCapability.D"] will result in an error.
         f1();  // warning
         f2();  // ok
         f3();  // warning
@@ -160,7 +160,7 @@ func demo() {
         // This scope allows the highest usage of ["A", "B", "C"], where:
         // ["B"] will not trigger warnings;
         // ["A", "C"] will trigger warnings;
-        // Anything not in ["A", "B", "C"] will trigger errors.
+        // Anything outside ["A", "B", "C"] will result in an error.
         f1();  // warning
         f2();  // ok
         f3();  // warning

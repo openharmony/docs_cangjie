@@ -16,7 +16,7 @@ Invalid parameter value.
 
 **Possible Causes**
 
-The input parameter value is out of range.
+The input parameter value is out of the valid range.
 
 **Solution**
 
@@ -52,12 +52,12 @@ System internal error.
 
 **Possible Causes**
 
-1. Memory exception.  
+1. Memory exception.
 2. Null pointer.
 
 **Solution**
 
-1. Check whether the memory space is sufficient. Free up memory and try again.  
+1. Check whether the memory space is sufficient, clean up the memory, and try again.
 2. System exception. Please try again later or restart the device.
 
 ## 2101007 Duplicate Callback Exists
@@ -76,7 +76,7 @@ When activating & monitoring a specified network property and registering a call
 
 **Solution**
 
-1. Ensure that the callback object to be registered has not been registered before.  
+1. Ensure that the callback object to be registered has not been registered before.
 2. If the callback object has already been registered, use the existing registration.
 
 ## 2101008 Callback Does Not Exist
@@ -95,7 +95,7 @@ The request to activate & monitor a specified network property and register a ca
 
 **Solution**
 
-Check the callback object to ensure that the deregistration function is called only after the registration function has been executed.
+Check the callback object to ensure that the registration function has been executed before unregistering the callback object.
 
 ## 2101022 Maximum Number of Requests Exceeded
 

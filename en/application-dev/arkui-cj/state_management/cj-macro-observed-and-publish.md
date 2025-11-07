@@ -1,8 +1,8 @@
-# \@Observed Macro and \@Publish Macro: Nested Class Property Changes
+# \@Observed Macro and \@Publish Macro: Nested Class Object Property Changes
 
-The macros mentioned above (including [\@State](./cj-macro-state.md), [\@Prop](./cj-macro-prop.md), [\@Link](./cj-macro-link.md), [\@Provide and \@Consume](./cj-macro-provide-and-consume.md)) can only observe changes in simple types. However, in actual application development, applications may use arrays or encapsulate their own data models based on development needs. For such cases, like arrays, custom class types, or arrays of custom class types, changes in their member variables' properties cannot be observed. This leads to the introduction of the \@Observed macro and \@Publish macro.
+The macros mentioned above (including [\@State](./cj-macro-state.md), [\@Prop](./cj-macro-prop.md), [\@Link](./cj-macro-link.md), [\@Provide and \@Consume](./cj-macro-provide-and-consume.md) macros) can only observe changes in simple types. However, in actual application development, applications may use arrays or encapsulate their own data models based on development needs. For such cases, such as arrays, custom class types, or arrays of custom class types, changes in their member variables' properties cannot be observed. This leads to the introduction of the \@Observed macro and \@Publish macro.
 
-The combination of \@Observed and \@Publish is used to observe property changes in class types, primarily to compensate for the limitation of other macros that can only observe one level. Developers are advised to first read the basic usage of [\@State](./cj-macro-state.md) to understand the fundamental observation capabilities of macros before comparing and reading this document.
+The combination of \@Observed and \@Publish is used to observe property changes in class types, primarily to compensate for the limitation of other macros that can only observe one level deep. Developers are advised to first read the basic usage of [\@State](./cj-macro-state.md) to understand the fundamental observation capabilities of macros before comparing and reading this document.
 
 ## Overview
 
@@ -17,25 +17,25 @@ The \@Observed macro and \@Publish class property macro are used for two-way dat
 | \@Observed  | Description                                |
 | :-------------- | :--------------------------------- |
 | Macro Parameters          | None.                                 |
-| Class Macro           | The class decorated with \@Observed must comply with the following specifications:<br>1. Can only decorate Cangjie class types and must be placed before the class definition.<br>2. The decorated Cangjie class type is prohibited from inheriting other class extensions and interfaces during class definition. It supports but does not recommend using extension methods to make the decorated class type implement interfaces.<br>3. Prohibited from decorating open classes; otherwise, a compilation error will occur.<br>4. Custom constructors for the class decorated with \@Observed are prohibited. |
+| Class Macro           | The class decorated with \@Observed must meet the following specifications:<br>1. Can only decorate Cangjie class types and must be placed before the class definition.<br>2. The decorated Cangjie class type is prohibited from inheriting other class extensions and interfaces during class definition. It supports but does not recommend using extension methods to make the decorated class type implement interfaces.<br>3. Decorating open classes is prohibited, otherwise a compilation error will occur.<br>4. Custom constructors for the class decorated with \@Observed are prohibited. |
 
 | \@Publish | Description                                       |
 | :----------------- | :---------------------------------------- |
 | Macro Parameters             | None.                                       |
-| Allowed Variable Types         | Can only decorate member variables of Cangjie custom types, including simple types, arrays, and class types. It is recommended to use member variables of a class decorated with \@Observed. The type and initial value must be specified, but for String, Int64, Float64, and Bool types, the type can be omitted if the variable's initial value is a literal of the above types.<br> Prohibited from decorating static types (modified by the static modifier). See [Observing Changes](#observing-changes) for examples.|
+| Allowed Variable Types         | Can only decorate member variables of Cangjie custom types, including simple types, arrays, and class types. It is recommended to use member variables of a class decorated with \@Observed, and the type and initial value must be specified. However, for String, Int64, Float64, and Bool types, if the variable's initial value is a literal of the above types, the type can be omitted.<br> Decorating static types (modified by the static modifier) is prohibited. See [Observing Changes](#observing-changes) for examples.|
 | Initial Value of Decorated Variable         | No initial value; must be initialized from the parent component.                                     |
 
 ## Variable Passing/Access Rules
 
 | \@Publish Passing/Access | Description                                       |
 | :----------------- | :---------------------------------------- |
-| Property Initialization           | Must be initialized from the parent component. If the class definition does not have default values, the constructor must be called when declaring the variable to initialize each uninitialized member variable.<br/>Initializing a variable decorated with \@Publish must satisfy the following scenarios:<br/>- The type must be a member variable of a Cangjie custom type, preferably a member variable of a class type decorated with \@Observed.<br/>- Variables decorated with \@Publish can only be declared with var, making them readable and writable.<br/>- Variables decorated with \@Publish must specify the type and initial value. For String, Int64, Float64, and Bool types, the type can be omitted if the initial value is a literal of the above types. |
+| Property Initialization           | Must be initialized from the parent component. If the class definition does not have a default value, the constructor must be called when declaring the variable to initialize each member variable that has no initial value.<br/>Initializing a variable decorated with \@Publish must satisfy the following scenarios:<br/>- The type must be a member variable of a Cangjie custom type, preferably a member variable of a class type decorated with \@Observed.<br/>- Variables decorated with \@Publish can only be declared with var, making them readable and writable.<br/>- Variables decorated with \@Publish must specify the type and initial value. For String, Int64, Float64, and Bool types, if the variable's initial value is a literal of the above types, the type can be omitted. |
 
 ## Observing Changes and Behavior
 
 ### Observing Changes
 
-For a class decorated with \@Observed, if its members are non-simple types (e.g., class or array), the class type needs to be decorated with \@Observed, and the array type is recommended to use ObservedArray or ObservedArrayList; otherwise, property changes will not be observed.
+For a class decorated with \@Observed, if its members are non-simple types, such as class or array, the class type needs to be decorated with \@Observed, and the array type is recommended to use ObservedArrayList; otherwise, changes in its properties will not be observed.
 
 ```cangjie
 class Child{
@@ -59,7 +59,7 @@ class Parent{
 
 In the above example, Parent is decorated with \@Observed, and changes in the assignment of its member variables decorated with \@Publish can be observed.
 
-For child, since its type Child is not decorated with \@Observed and its properties are not decorated with the \@Publish attribute, changes in its properties cannot be observed. For the array arr, as a complex type, it is recommended to use the ObservedArray type instead.
+For child, since its type Child is not decorated with \@Observed and its properties are not decorated with the \@Publish attribute, changes in its properties cannot be observed. For the array arr, as a complex type, it is recommended to use the ObservedArrayList type instead.
 
 ```cangjie
 var parent: Parent = (child: Child(1), count: 1);
@@ -72,9 +72,9 @@ this.parent.count = 5;
 this.parent.child.num = 5;
 ```
 
-When \@Publish decorates a member variable of a class decorated with \@Observed, it is recommended to design separate custom components to render each array or object. In this case, object arrays or nested objects (objects whose properties are objects are called nested objects) require two custom components: one to present the external array/object and another to present the class objects nested within the array/object. The following can be observed:
+Decorating member variables of a class decorated with \@Observed with \@Publish can recommend designing separate custom components to render each array or object. In this case, object arrays or nested objects (objects whose properties are objects are called nested objects) require two custom components: one to present the external array/object and another to present the class objects nested within the array/object. The following can be observed:
 
-When the decorated object is DateTime, the overall assignment of DateTime can be observed, and the properties of DateTime can be updated by calling DateTime's functions addDays(Int64), addHours(Int64), addMinutes(Int64), addMonths(Int64), addNanoseconds(Int64), addSeconds(Int64), addWeeks(Int64), addYears(Int64).
+When the decorated object is DateTime, the overall assignment of DateTime can be observed, and DateTime's properties can be updated by calling DateTime's functions addDays(Int64), addHours(Int64), addMinutes(Int64), addMonths(Int64), addNanoseconds(Int64), addSeconds(Int64), addWeeks(Int64), addYears(Int64).
 
  <!-- run -->
 
@@ -102,22 +102,22 @@ class EntryView{
         Flex(justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center){
             Column(){
                 Text("Time: ${Time.time.format("HH:mm:ss")}").margin(10)
-                Button("time update").onClick{
+                Button("time update").onClick({
                     evt =>
                         Time.time = DateTime.now()
-                }
-                Button("time addHours by 2").onClick{
+                })
+                Button("time addHours by 2").onClick({
                     evt =>
                         Time.time = Time.time.addHours(2)
-                }
-                Button("time addMinutes by 31").onClick{
+                })
+                Button("time addMinutes by 31").onClick({
                     evt =>
                         Time.time = Time.time.addMinutes(31)
-                }
-                Button("add 31 seconds").onClick{
+                })
+                Button("add 31 seconds").onClick({
                     evt =>
                         Time.time = Time.time.addSeconds(31)
-                }
+                })
             }
         }
     }
@@ -130,23 +130,23 @@ class EntryView{
 
 1. Initial Rendering:
 
-   a. A class decorated with \@Observed automatically inherits ObservedObject, generates a constructor automatically, and creates setter and getter functions bound to trigger events on the class.
+   a. A class decorated with \@Observed automatically inherits ObservedObject, generates a constructor, and creates setter and getter functions bound to trigger events on the class.
 
-   b. In child components, variables decorated with \@Publish are initialized from the parent component, receiving an instance of the class decorated with \@Observed. The wrapper class of \@Publish registers itself with the \@Observed class.
+   b. The variable decorated with \@Publish in the child component is initialized from the parent component, receiving an instance of the class decorated with \@Observed. The wrapper class of \@Publish registers itself with the \@Observed class.
 
-2. When properties decorated with \@Publish in a class decorated with \@Observed change:
-   a. When the state variable is used, the get function in ObservedProperty is triggered, recording the component ID related to the state variable to prepare for subsequent component modifications when the state variable changes.
-   b. When the state variable is changed, the set function in ObservedProperty is triggered, then traverses the dependent component UI to notify data updates and re-renders the UI based on the array of component IDs that need updating.
+2. When a property decorated with \@Publish in a class decorated with \@Observed changes:
+   a. When the state variable is used, the get function in ObservedProperty is triggered, recording the component ID related to the state variable, preparing for subsequent component modifications when the state variable changes.
+   b. When the state variable is changed, the set function in ObservedProperty is triggered, then traverses the dependent component UI, notifies data updates, and re-renders the UI based on the array of component IDs that need updating.
 
 ## Constraints
 
-1. A class decorated with \@Observed cannot inherit other class extensions and interfaces during class definition, nor can it decorate an open class as the parent class of other classes; otherwise, a compilation error will occur.
+1. A class decorated with \@Observed cannot inherit other class extensions and interfaces during class definition, nor can it decorate an open class as the parent class of other classes, otherwise a compilation error will occur.
 
 2. A class decorated with \@Observed cannot define constructors. The class decorated with \@Observed automatically generates a constructor with named parameters.
 
-3. The variable type decorated with \@Publish must be a member variable owned by a custom type. If it is not a member variable of a class decorated with \@Observed, its content updates will not trigger UI updates.
+3. The variable type decorated with \@Publish must be a member variable owned by a custom type, and if it is not a member variable of a class decorated with \@Observed, its content updates will not trigger UI updates.
 
-4. \@Publish can only decorate member variables of Cangjie custom types declared with var and cannot decorate let variables or static variables.
+4. \@Publish can only decorate member variables of Cangjie custom types declared with var, not let variables or static variables.
 
 5. In a class decorated with \@Observed, member variables decorated with \@Publish must be initialized.
 
@@ -183,22 +183,22 @@ class EntryView{
     func build(){
         Column{
             Text("Index: ${this.bag.book.name}")
-            Button("change book.name").onClick{
+            Button("change book.name").onClick({
                 evt =>
                     this.bag.book.name = "ArkUI"
-            }
+            })
         }
     }
 }
 ```
 
-In this example, after changes in nested class properties at multiple levels, UI update triggers can be observed. If a property in a class is also of a class type and needs to be monitored, that class must also be decorated with \@Observed.
+In this example, after changes in the properties of multi-level nested classes, UI update triggers can be observed. If a property in a class is also a class type and needs to be monitored, that class must also be decorated with \@Observed.
 
 ## Common Issues
 
 ### \@Observed Decorated Class Cannot Define Constructors
 
-When defining a class decorated with \@Observed, custom constructors cannot be present; otherwise, a compilation error will occur. \@Observed will generate a constructor for the class, instantiating it through the class name and passing named parameters.
+When defining a class decorated with \@Observed, custom constructors cannot be defined, otherwise a compilation error will occur. \@Observed generates a constructor for the class, instantiating it through the class name and passing named parameters.
 
 【Anti-pattern】
 
@@ -226,7 +226,7 @@ class Info2{
 
 @Component
 class Test{
-    // When creating an instance of this class to set member variable values, named parameters must be specified.
+    // When creating this class to set member variable values, named parameters must be specified.
     var info: Info2 = Info2(count: 5)
 
     func build(){
@@ -239,7 +239,7 @@ class Test{
 
 ### \@Publish Decorated Member Variable Does Not Trigger UI Updates
 
-If changes in member variables of custom types need to be observed to trigger UI re-rendering, the variable decorated with \@Publish must be a member variable of a custom type, and that custom type must be decorated with \@Observed. Otherwise, if any condition is missing, content updates will not trigger UI updates.
+If changes in member variables of custom types need to be observed to trigger UI re-rendering, the variable decorated with \@Publish must be a member variable of a custom type, and that custom type must be decorated with \@Observed. Otherwise, missing any condition will prevent content updates from triggering UI updates.
 
 ```cangjie
 @Observed
@@ -267,7 +267,7 @@ class Page{
 }
 ```
 
-### Custom Type as Member Variable Changes Fail
+### Custom Type as Member Variable Change Fails
 
 【Anti-pattern】
 
@@ -299,28 +299,28 @@ class EntryView{
     func build(){
         Column(space: 10){
             Text("parentId: ${parent1.parentId}")
-            Button("change parentId by 1").onClick{
+            Button("change parentId by 1").onClick({
                 evt =>
                     parent1.parentId += 1
-            }
+            })
 
             Text("childId: ${parent1.child.childId}")
-            Button("change childId by 1").onClick{
+            Button("change childId by 1").onClick({
                 evt =>
                     parent1.child.childId += 1
-            }
+            })
         }
     }
 }
 ```
 
-For Text("parentId: ${parent1.parentId}") and the corresponding Button's onClick event, executing parent1.parentId += 1 increases the value of parentId, causing the UI to refresh and observe changes in the member variables.
+For Text("parentId: ${parent1.parentId}") and the corresponding Button's onClick event, executing parent1.parentId += 1 increases the value of parentId, causing the UI to refresh and observe changes in member variables.
 
 In Text("parentId: ${parent1.parentId}") and the corresponding Button's onClick, calling parent1.child.childId += 1 increases the value of parentId.child.childId, but since the custom type Child is not decorated with \@Observed, changes in member variables cannot be observed, and the UI will not refresh.
 
 【Correct Pattern】
 
-To directly observe changes in member variables so that parent1.child.childId += 1 effectively refreshes the UI, the Child class can be decorated with \@Observed, and its member variables can be decorated with \@Publish, indicating that changes in the member variables of this custom type will trigger UI refreshes.
+For the above issue, to directly observe changes in member variables so that parent1.child.childId += 1 effectively refreshes the UI, the Child class can be decorated with \@Observed, and its member variables can be decorated with \@Publish, indicating that changes in the member variables of the custom type will trigger UI refreshes.
 
  <!-- run -->
 
@@ -352,16 +352,16 @@ class EntryView{
     func build(){
         Column(space: 10){
             Text("parentId: ${parent1.parentId}")
-            Button("change parentId by 1").onClick{
+            Button("change parentId by 1").onClick({
                 evt =>
                     parent1.parentId += 1
-            }
+            })
 
             Text("childId: ${parent1.child.childId}")
-            Button("change childId by 1").onClick{
+            Button("change childId by 1").onClick({
                 evt =>
                     parent1.child.childId += 1
-            }
+            })
         }
     }
 }

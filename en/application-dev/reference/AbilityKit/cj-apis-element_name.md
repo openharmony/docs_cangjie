@@ -24,7 +24,7 @@ public class ElementName {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var abilityName
 
@@ -40,7 +40,7 @@ public var abilityName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var bundleName
 
@@ -48,7 +48,7 @@ public var abilityName: String
 public var bundleName: String
 ```
 
-**Description:** Application Bundle name.
+**Description:** Application bundle name.
 
 **Type:** String
 
@@ -56,7 +56,7 @@ public var bundleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -72,7 +72,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var moduleName
 
@@ -88,7 +88,7 @@ public var moduleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, String, String)
 
@@ -96,17 +96,32 @@ public var moduleName: String
 public init(bundleName: String, abilityName: String, deviceId!: String = "", moduleName!: String = "")
 ```
 
-**Description:** Constructs an ElementName by specifying the device ID, application Bundle name, Ability name, and module name.
+**Description:** Constructs an ElementName by specifying the device ID, application bundle name, Ability name, and module name.
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Name | Type | Mandatory | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| bundleName | String | Yes | - | Application Bundle name. |
+| bundleName | String | Yes | - | Application bundle name. |
 | abilityName | String | Yes | - | Ability name. |
 | deviceId | String | No | "" | Device ID. |
 | moduleName | String | No | "" | Module name of the HAP to which the Ability belongs. |
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let elementName = ElementName("com.ohos.example", "com.ohos.example.MainAbility");
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```

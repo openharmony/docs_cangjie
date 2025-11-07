@@ -1,8 +1,8 @@
 # Touch Events
 
-Touch events refer to callback events triggered when a finger/stylus presses, slides, or lifts on a component. These include [Click Events](#click-events), [Drag Events](./../../../en/application-dev/reference/arkui-cj/cj-universal-event-drag.md), and [Touch Events](#touch-events). The principle of touch events is illustrated below:
+Touch events refer to callback events triggered when a finger/stylus presses, slides, or lifts on a component. These include [Click Events](#click-events), [Drag Events](./../reference/arkui-cj/cj-universal-event-drag.md), and [Touch Events](#touch-events). The principle of touch events is illustrated below:
 
-**Figure 1** Touch Event Principle  
+**Figure 1** Touch Event Principle
 
 ![touchEvent](./figures/touchEvent.png)
 
@@ -14,11 +14,11 @@ A click event occurs when a finger or stylus completes a full press-and-lift act
 func onClick(callback: (ClickEvent)->Unit): This
 ```
 
-The `event` parameter provides the coordinate position of the click event relative to the window or component, as well as the event source of the click.
+The event parameter provides the coordinate position of the click event relative to the window or component, as well as the event source that triggered the click.
 
 For example, using a button's click event to control the display and hiding of an image.
 
-<!-- run -->
+ <!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -44,7 +44,7 @@ class EntryView {
                     } else {
                         this.btnMsg = 'show'
                     }
-                    // Clicking the Button controls the Image's display and disappearance
+                    // Clicking the Button controls the Image's display/hide
                     this.flag = !this.flag
                 })
             if (this.flag) {
@@ -59,7 +59,7 @@ class EntryView {
 }
 ```
 
-**Figure 2** Controlling Image Display/Hiding via Button Click Event  
+**Figure 2** Controlling Image Display/Hide via Button Click Event
 
 ![ClickEventControl.gif](./figures/ClickEventControl.gif)
 
@@ -71,14 +71,14 @@ When a finger or stylus touches a component, different actions trigger correspon
 public func onTouch(callback: (TouchEvent)->Unit): This
 ```
 
-- `event.type` as `TouchType.Down`: Indicates a finger press.
-- `event.type` as `TouchType.Up`: Indicates a finger lift.
-- `event.type` as `TouchType.Move`: Indicates a finger holding and moving.
-- `event.type` as `TouchType.Cancel`: Indicates interruption/cancellation of the current finger operation.
+- event.type as TouchType.Down: Indicates a finger press.
+- event.type as TouchType.Up: Indicates a finger lift.
+- event.type as TouchType.Move: Indicates finger movement while pressed.
+- event.type as TouchType.Cancel: Indicates interruption/cancellation of current finger operation.
 
-Touch events can be triggered simultaneously by multiple fingers. The `event` parameter provides information such as the triggering finger's position, unique identifier, currently changed finger, and input device source.
+Touch events can be triggered simultaneously by multiple fingers. The event parameter provides information such as triggering finger position, unique finger identifier, currently changed finger, and input device source.
 
-<!-- run -->
+ <!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -107,9 +107,9 @@ class EntryView {
                     }
                     this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
                         + event.touches[0].x.toString() + '\n' + 'y: ' + event.touches[0].y.toString()
-                        + '\nComponent globalPos:(' + event.target.area.globalPosition.x.value.toString()
-                        + ',' + event.target.area.globalPosition.y.value.toString() + ')\nwidth:'
-                        + event.target.area.width.value.toString() + '\nheight:' + event.target.area.height.value.toString()
+                        + '\nComponent globalPos:(' + event.target.getOrThrow().area.globalPosition.x.getOrThrow().value.toString()
+                        + ',' + event.target.getOrThrow().area.globalPosition.y.getOrThrow().value.toString() + ')\nwidth:'
+                        + event.target.getOrThrow().area.width.value.toString() + '\nheight:' + event.target.getOrThrow().area.height.value.toString()
                 })
             Button('Touch')
                 .height(50)
@@ -126,9 +126,9 @@ class EntryView {
                     }
                     this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
                         + event.touches[0].x.toString() + '\n' + 'y: ' + event.touches[0].y.toString()
-                        + '\nComponent globalPos:(' + event.target.area.globalPosition.x.value.toString()
-                        + ',' + event.target.area.globalPosition.y.value.toString() + ')\nwidth:'
-                        + event.target.area.width.value.toString() + '\nheight:' + event.target.area.height.value.toString()
+                        + '\nComponent globalPos:(' + event.target.getOrThrow().area.globalPosition.x.getOrThrow().value.toString()
+                        + ',' + event.target.getOrThrow().area.globalPosition.y.getOrThrow().value.toString() + ')\nwidth:'
+                        + event.target.getOrThrow().area.width.value.toString() + '\nheight:' + event.target.getOrThrow().area.height.value.toString()
                 })
             Text(this.text)
         }

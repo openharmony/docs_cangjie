@@ -23,13 +23,13 @@ public func arktsValueToNapiValue(env: napi_env, ark_value: JSValue): napi_value
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | env | [napi_env](cj-apis-ark_interop.md#type-napi_env) | Yes | - | Environment context. |
-| ark_value | [JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Yes | - | Value to be converted. |
+| ark_value | [JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Yes | - | The value to be converted. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [napi_value](cj-apis-ark_interop.md#type-napi_value) | Converted napi_value. |
+| [napi_value](cj-apis-ark_interop.md#type-napi_value) | The converted napi_value. |
 
 ## func isStageMode(napi_env, napi_value)
 
@@ -64,7 +64,7 @@ public func mapFromJSValue<T>(
 ): ?HashMap<String, T>
 ```
 
-**Description:** Converts JSValue format data to HashMap.
+**Description:** Converts JSValue formatted data into HashMap.
 
 **Since:** 22
 
@@ -73,14 +73,14 @@ public func mapFromJSValue<T>(
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](cj-apis-ark_interop.md#class-jscontext) | Yes | - | Interoperation context. |
-| value | [JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Yes | - | JSValue data to be converted. |
-| convert | ([JSContext](cj-apis-ark_interop.md#class-jscontext), [JSValue](cj-apis-ark_interop.md#struct-jsvalue))->T | Yes | - | Converts the value corresponding to the HashMap key to type T after treating JSValue as a HashMap. |
+| value | [JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Yes | - | The JSValue data to be converted. |
+| convert | ([JSContext](cj-apis-ark_interop.md#class-jscontext), [JSValue](cj-apis-ark_interop.md#struct-jsvalue))->T | Yes | - | Converts the value corresponding to the HashMap's key into type T after treating JSValue as a HashMap. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| ?HashMap\<String, T> | Converted HashMap data. |
+| ?HashMap\<String, T> | The converted HashMap data. |
 
 ## func mapToJSValue\<T>(JSContext, ?HashMap\<String,T>, (JSContext,T) -> JSValue)
 
@@ -92,7 +92,7 @@ public func mapToJSValue<T>(
 ): JSValue
 ```
 
-**Description:** Converts HashMap format data to JSValue.
+**Description:** Converts HashMap formatted data into JSValue.
 
 **Since:** 22
 
@@ -101,11 +101,11 @@ public func mapToJSValue<T>(
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](cj-apis-ark_interop.md#class-jscontext) | Yes | - | Interoperation context. |
-| parameter | ?HashMap\<String, T> | Yes | - | HashMap data to be converted. |
-| convert | ([JSContext](cj-apis-ark_interop.md#class-jscontext), T)->[JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Yes | - | Converts HashMap's T to JSValue. |
+| parameter | ?HashMap\<String, T> | Yes | - | The HashMap data to be converted. |
+| convert | ([JSContext](cj-apis-ark_interop.md#class-jscontext), T)->[JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Yes | - | Converts the HashMap's T type into JSValue. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [JSValue](cj-apis-ark_interop.md#struct-jsvalue) | Converted JSValue data. |
+| [JSValue](cj-apis-ark_interop.md#struct-jsvalue) | The converted JSValue data. |

@@ -1,14 +1,14 @@
 # Restrictions on Access Modifiers for Custom Component Member Properties
 
-In state management, when component developers encapsulate custom components, the absence of clear input/output identifiers makes it impossible for callers to uniformly determine which variables should be passed as component parameters. In state management, qualifiers cannot be used to modify state variables.
+In state management, when component developers encapsulate custom components, the absence of clear input/output identifiers makes it difficult for callers to uniformly determine which variables should be passed as component parameters. In state management, qualifiers cannot be used to modify state variables.
 
-Cangjie validates the access modifiers (private/public/protected) used for member variables in custom components. When these access modifiers are not used according to specifications, corresponding log messages will be generated.
+Cangjie validates the access modifiers (private/public/protected) used for member variables in custom components. When these modifiers are not used according to specifications, corresponding log messages will be generated.
 
-Before reading this document, it is recommended to first read: [State Management Overview](../state_management/cj-state-management-overview.md).
+Before reading this document, it is recommended to first review: [State Management Overview](../state_management/cj-state-management-overview.md).
 
 ## Usage Restrictions
 
-- Initialization rules for [@State](../state_management/cj-macro-state.md)/[@Prop](../state_management/cj-macro-prop.md)/[@Provide](../state_management/cj-macro-provide-and-consume.md)/[@BuilderParam](./cj-macro-builderparam.md)/regular member variables (ordinary variables not involved in updates) allow external initialization.
+- Initialization rules for [@State](../state_management/cj-macro-state.md)/[@Prop](../state_management/cj-macro-prop.md)/[@Provide](../state_management/cj-macro-provide-and-consume.md)/[@BuilderParam](./cj-macro-builderparam.md)/regular member variables (non-updating ordinary variables) allow external initialization.
 
 - Initialization rules for [@StorageLink](../state_management/cj-appstorage.md#storagelink)/[@StorageProp](../state_management/cj-appstorage.md#storageprop)/[@LocalStorageLink](../state_management/cj-localstorage.md#localstoragelink)/[@LocalStorageProp](../state_management/cj-localstorage.md#localstorageprop)/[@Consume](../state_management/cj-macro-provide-and-consume.md) variables prohibit external initialization.
 
@@ -18,7 +18,7 @@ Before reading this document, it is recommended to first read: [State Management
 
 1. When a member variable is modified with both the private access modifier and @State/@Prop/@Provide/@BuilderParam macros, Cangjie will validate and generate an error.
 
-    **Counter Example**
+    **Counterexample**
 
     ```cangjie
     package ohos_app_cangjie_entry
@@ -51,7 +51,7 @@ Before reading this document, it is recommended to first read: [State Management
         // Using private modifier here will cause an error
         @BuilderParam
         private var builder_value: () -> Unit = buildTest
-        // This usage is correct
+        // Correct usage here
         private var regular_value: String = "Hello"
 
         func build() {
@@ -119,7 +119,7 @@ Before reading this document, it is recommended to first read: [State Management
 
 2. When a member variable is modified with both the public access modifier and @StorageLink/@StorageProp/@LocalStorageLink/@LocalStorageProp/@Consume macros, Cangjie will validate and generate an error.
 
-    **Counter Example**
+    **Counterexample**
 
     ```cangjie
     package ohos_app_cangjie_entry
@@ -153,7 +153,7 @@ Before reading this document, it is recommended to first read: [State Management
         // Using public modifier here will cause an error
         @StorageLink["sessionLink"] public var storage_link_value: String = "Hello"
         // Using public modifier here will cause an error
-        @Consume public var consume_value: String
+        @Consume public var consume_value: String = "Hello"
 
         func build() {
             Column {
@@ -196,7 +196,7 @@ Before reading this document, it is recommended to first read: [State Management
         @LocalStorageLink["sessionLocalLink"] var local_link_value: String = "Hello"
         @StorageProp["sessionProp"] let storage_prop_value: String = "Hello"
         @StorageLink["sessionLink"] var storage_link_value: String = "Hello"
-        @Consume var consume_value: String
+        @Consume var consume_value: String = "Hello"
 
         func build() {
             Column {
@@ -210,7 +210,7 @@ Before reading this document, it is recommended to first read: [State Management
 
 3. When a member variable is modified with both the private access modifier and @Link macro, Cangjie will validate and generate an error.
 
-    **Counter Example**
+    **Counterexample**
 
     ```cangjie
     package ohos_app_cangjie_entry

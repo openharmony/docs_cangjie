@@ -1,4 +1,4 @@
-# General Error Codes
+# Common Error Codes
 
 ## 201 Permission Verification Failed
 
@@ -23,10 +23,10 @@ Permission verification failed. A non-system application calls a system API.
 Permission verification failed. A non-system application attempted to use a system API.
 
 **Possible Causes**  
-A non-system application invoked a system API. Please verify whether system APIs are being used.
+A non-system application invoked a system API. Please check if system APIs are being used.
 
 **Resolution Steps**  
-Check if system APIs are being called and remove such calls if present.
+Check for any calls to system APIs and remove them.
 
 ## 401 Parameter Check Failed
 
@@ -47,10 +47,10 @@ Parameter error. Possible causes:
 3. Incorrect parameter count (Argument Count Error).  
 4. Null parameter error (Null Argument Error).  
 5. Parameter format error (Format Error).  
-6. Parameter value range error (Value Range Error).
+6. Parameter value out of range (Value Range Error).
 
 **Resolution Steps**  
-Verify whether all required parameters are provided and whether the parameter types are correct. For parameter validation failures, review the parameter specifications and troubleshoot based on the possible causes listed.
+Verify that all required parameters are provided and their types are correct. For parameter validation failures, review the parameter specifications and troubleshoot based on the possible causes listed.
 
 ## 801 API Not Supported by This Device
 
@@ -58,10 +58,10 @@ Verify whether all required parameters are provided and whether the parameter ty
 Capability not supported. Failed to call the API due to limited device capabilities.
 
 **Error Description**  
-This device does not support the API. Typically used when a device supports the SysCap but has limited support for specific APIs.
+This API is not supported by the device. Typically used when the device supports the SysCap but has limited support for specific APIs.
 
 **Possible Causes**  
-The API is not supported by this device.
+The device does not support this API.
 
 **Resolution Steps**  
 Check whether the device supports the API being used.

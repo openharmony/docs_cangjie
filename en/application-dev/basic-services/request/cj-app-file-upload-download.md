@@ -1,18 +1,18 @@
 # Application File Upload and Download
 
-Applications can upload files to a web server or download network resource files to the local application file directory.
+Applications can upload files to web servers or download network resource files to local application directories.
 
 ## Uploading Application Files
 
-Developers can use the upload interface of the upload-download module ([ohos.request](../../../../en/application-dev/reference/BasicServicesKit/cj-apis-request-agent.md)) to upload local files. The file upload process is completed using a system service proxy, which supports custom proxy address configuration.
+Developers can use the upload interface of the Upload and Download module ([ohos.request](../../reference/BasicServicesKit/cj-apis-request-agent.md)) to upload local files. The file upload process is completed through system service proxy, supporting custom proxy address configuration.
 
 > **Note:**
 >
-> Currently, the file upload functionality only supports uploading files from the application cache directory (cacheDir).
+> The current file upload functionality only supports uploading files from the application cache directory (cacheDir).
 >
-> To use the upload-download module, refer to [Permission Declaration](../../security/AccessToken/cj-declare-permissions.md): ohos.permission.INTERNET.
+> To use the Upload and Download module, please declare the following permission: [ohos.permission.INTERNET](../../security/AccessToken/cj-declare-permissions.md).
 
-The following example demonstrates how to upload a file from the application cache directory to a web server:
+The following example demonstrates how to upload files from the application cache directory to a web server:
 
 <!-- compile -->
 
@@ -88,21 +88,21 @@ public class ProgressCallback <: Callback1Argument<RProgress> {
 
 ## Downloading Network Resource Files to Application Directory
 
-Developers can use the download interface of the upload-download module ([ohos.request](../../../../en/application-dev/reference/BasicServicesKit/cj-apis-request-agent.md)) to download network resource files to the application directory. For downloaded files, developers can access them using basic file I/O interfaces ([ohos.file_fs](../../../../en/application-dev/reference/CoreFileKit/cj-apis-file_fs.md)), following the same approach as [Application File Access](../../file-management/cj-app-file-access.md). The download process uses a system service proxy, supporting custom proxy address configuration.
+Developers can use the download interface of the Upload and Download module ([ohos.request](../../reference/BasicServicesKit/cj-apis-request-agent.md)) to download network resource files to the application directory. For downloaded files, developers can access them using basic file I/O interfaces ([ohos.file_fs](../../reference/CoreFileKit/cj-apis-file_fs.md)), with usage consistent with [Application File Access](../../file-management/cj-app-file-access.md). The download process is completed through system service proxy, supporting custom proxy address configuration.
 
 > **Note:**
 >
 > Currently, network resource files can only be downloaded to the application directory.
 >
-> To use the upload-download module, refer to [Permission Declaration](../../security/AccessToken/cj-declare-permissions.md): ohos.permission.INTERNET.
+> To use the Upload and Download module, please declare the following permission: [ohos.permission.INTERNET](../../security/AccessToken/cj-declare-permissions.md).
 
-The following example demonstrates how to download a network resource file to the application directory:
+The following example demonstrates how to download network resource files to the application directory:
 
 <!-- compile -->
 
 ```cangjie
 // pages/xxx.cj
-// Download network resource file to application directory
+// Download network resource files to application directory
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.BasicServicesKit.*
@@ -152,7 +152,7 @@ func Download(): Unit {
         // Delete file
         FileIo.unlink(filePath)
     }
-    // End task
+    // Terminate task
     rRemove(task.tid)
 }
 

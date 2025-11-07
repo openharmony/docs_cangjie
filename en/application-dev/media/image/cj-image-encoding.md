@@ -1,10 +1,10 @@
 # Using ImagePacker for Image Encoding
 
-Image encoding refers to the process of encoding a PixelMap into archived images of different formats. Currently supported formats include JPEG, WebP, PNG, and HEIF (support varies across different hardware devices), which can be used for subsequent processing such as storage and transmission.
+Image encoding refers to the process of converting a PixelMap into archived images of different formats. Currently supported formats include JPEG, WebP, PNG, and HEIF (availability may vary across different hardware devices), which can be used for subsequent processing such as storage or transmission.
 
 ## Development Procedure
 
-For detailed information about image encoding APIs, refer to: [Image Encoding Interface Documentation](../../../../en/application-dev/reference/ImageKit/cj-apis-image.md#class-imagepacker).
+For detailed information about image encoding APIs, please refer to: [Image Encoding Interface Documentation](../../reference/ImageKit/cj-apis-image.md#class-imagepacker).
 
 ### Encoding Images into File Streams
 
@@ -25,7 +25,7 @@ For detailed information about image encoding APIs, refer to: [Image Encoding In
 
         > **Note:**
         >
-        > According to MIME standards, the standard encoding format is image/jpeg. When using image encoding, set PackingOption.format to image/jpeg. The file extension for encoded images can be .jpg or .jpeg, which can be used on platforms supporting image/jpeg decoding.
+        > According to MIME standards, the standard encoding format is image/jpeg. When using image encoding, set PackingOption.format to image/jpeg. The file extension for encoded images can be .jpg or .jpeg, and can be used on platforms that support image/jpeg decoding.
 
         <!-- compile -->
 
@@ -38,36 +38,38 @@ For detailed information about image encoding APIs, refer to: [Image Encoding In
         <!-- compile -->
 
         ```cangjie
-        packOpts.desiredDynamicRange = image.PackingDynamicRange.Auto;
+        packOpts.desiredDynamicRange = PackingDynamicRange.Auto
         ```
 
 3. [Create a PixelMap object or create an ImageSource object](./cj-image-decoding.md).
 
 4. Perform image encoding and save the encoded image.
 
-    Method 1: Encode via PixelMap.
+    Method 1: Encoding via PixelMap.
 
     <!-- compile -->
 
     ```cangjie
-    // data is the file stream obtained from packing. Writing it to a file will save the image.
-    let data = imagePackerApi.packToData(pixelMap, packOpts)
+    // data is the file stream obtained from packing, which can be written to a file to save as an image.
+    let imagePacker = createImagePacker()
+    let data = imagePacker.packToData(pixelMap, packOpts)
     ```
 
-    Method 2: Encode via ImageSource.
+    Method 2: Encoding via ImageSource.
 
     <!-- compile -->
 
     ```cangjie
-    // data is the file stream obtained from packing. Writing it to a file will save the image.
-    let data = imagePackerApi.packToData(imageSource, packOpts)
+    // data is the file stream obtained from packing, which can be written to a file to save as an image.
+    let imagePacker = createImagePacker()
+    let data = imagePacker.packToData(imageSource, packOpts)
     ```
 
 ### Encoding Images into Files
 
 During encoding, developers can specify a file path, and the encoded memory data will be directly written to the file.
 
-Method 1: Encode PixelMap into a file.
+Method 1: Encoding PixelMap into a file.
 
 <!-- compile -->
 
@@ -83,13 +85,14 @@ let imageSource = createImageSource(img)
 let cacheDir = "/data/storage/el2/base/haps/entry/cache"
 let filePath = cacheDir + '/test.jpg'
 
-let file = FileIo.open(path, mode: OpenMode.CREATE | OpenMode.READ_WRITE)
-// Directly encode into the file.
-imagePackerApi.packToFile(pixelMap, Int32(file.fd), packOpts)
-FileFs.close(file.fd)
+let file = FileIo.open(filePath, mode: OpenMode.CREATE | OpenMode.READ_WRITE)
+// Directly pack into the file.
+let imagePacker = createImagePacker()
+imagePacker.packToFile(imageSource, Int32(file.fd), PackingOption("image/jpeg", 100))
+FileIo.close(file.fd)
 ```
 
-Method 2: Encode ImageSource into a file.
+Method 2: Encoding ImageSource into a file.
 
 <!-- compile -->
 
@@ -106,7 +109,8 @@ let cacheDir = "/data/storage/el2/base/haps/entry/cache"
 let filePath = cacheDir + '/test.jpg'
 
 let file = FileIo.open(path, mode: OpenMode.CREATE | OpenMode.READ_WRITE)
-// Directly encode into the file.
-imagePackerApi.packToFile(imageSource, Int32(file.fd), packOpts)
-FileFs.close(file.fd)
+// Directly pack into the file.
+let imagePacker = createImagePacker()
+imagePacker.packToFile(imageSource, Int32(file.fd), PackingOption("image/jpeg", 100))
+FileIo.close(file.fd)
 ```

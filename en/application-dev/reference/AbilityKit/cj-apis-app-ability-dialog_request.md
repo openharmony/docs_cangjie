@@ -23,7 +23,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the aforementioned sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class RequestResult
 
@@ -38,7 +38,7 @@ public class RequestResult {
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var result
 
@@ -50,11 +50,11 @@ public var result: ResultCode
 
 **Type:** [ResultCode](#enum-resultcode)
 
-**Access:** Read/Write
+**Access:** Readable and Writable
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var want
 
@@ -66,11 +66,11 @@ public var want: Want
 
 **Type:** [Want](./cj-apis-app-ability-want.md#class-want)
 
-**Access:** Read/Write
+**Access:** Readable and Writable
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum ResultCode
 
@@ -86,7 +86,7 @@ public enum ResultCode {
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ResultCancel
 
@@ -98,7 +98,7 @@ ResultCancel
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ResultOk
 
@@ -110,4 +110,4 @@ ResultOk
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22

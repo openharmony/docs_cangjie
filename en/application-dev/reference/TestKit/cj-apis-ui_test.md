@@ -6,8 +6,8 @@ This module offers the following functionalities:
 
 - [On](#class-on): Provides control feature description capabilities for control filtering and matching.
 - [Component](#class-component): Represents a specified control on the UI interface, offering capabilities such as control property retrieval, control clicking, swiping to find, text injection, etc.
-- [Driver](#class-driver): The entry class, providing capabilities such as control matching, searching, key injection, coordinate clicking or swiping, screenshotting, etc.
-- [UiWindow](#class-uiwindow): The entry class, providing capabilities such as window property retrieval, window dragging, window resizing, etc.
+- [Driver](#class-driver): Entry class providing capabilities such as control matching, finding, key injection, coordinate clicking or swiping, screenshots, etc.
+- [UiWindow](#class-uiwindow): Entry class providing capabilities such as window property retrieval, window dragging, window resizing, etc.
 
 ## Importing the Module
 
@@ -22,7 +22,7 @@ API example code usage instructions:
 - If the first line of the example code has a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details on the example project and configuration template mentioned above, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#cangjie-example-code-instructions).
+For details on the example project and configuration template mentioned above, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie-Example-Code-Instructions).
 
 ## Running Tests
 
@@ -51,7 +51,7 @@ public class Component {}
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func clearText()
 
@@ -63,7 +63,7 @@ public func clearText(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -83,7 +83,7 @@ public func click(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func doubleClick()
 
@@ -95,7 +95,7 @@ public func doubleClick(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func dragTo(Component)
 
@@ -107,13 +107,13 @@ public func dragTo(target: Component): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| target | [Component](#class-component) | Yes | - | The target control. |
+| target | [Component](#class-component) | Yes | - | Target control. |
 
 **Exceptions:**
 
@@ -134,13 +134,13 @@ public func getBounds(): Rect
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| [Rect](#class-rect) | The border information of the control object. |
+| [Rect](#class-rect) | Border information of the control object. |
 
 **Exceptions:**
 
@@ -160,13 +160,13 @@ public func getBoundsCenter(): Point
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| [Point](#class-point) | The center point information of the area occupied by the control object. |
+| [Point](#class-point) | Center point information of the area occupied by the control object. |
 
 **Exceptions:**
 
@@ -186,13 +186,13 @@ public func getDescription(): String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| String | The description information of the control. |
+| String | Description information of the control. |
 
 **Exceptions:**
 
@@ -212,13 +212,13 @@ public func getId(): String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| String | The ID value of the control. |
+| String | ID value of the control. |
 
 ### func getText()
 
@@ -230,13 +230,13 @@ public func getText(): String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| String | The text information of the control. |
+| String | Text information of the control. |
 
 ### func getType()
 
@@ -248,13 +248,13 @@ public func getType(): String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| String | The type of the control. |
+| String | Type of the control. |
 
 ### func inputText(String)
 
@@ -266,13 +266,13 @@ public func inputText(text: String): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| text | String | Yes | - | The text information to input, currently supporting English and special characters. |
+| text | String | Yes | - | Text information to input, currently supporting English and special characters. |
 
 ### func isCheckable()
 
@@ -284,13 +284,13 @@ public func isCheckable(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | Whether the control object can be checked: true if checkable, false otherwise. |
+| Bool | Whether the control object can be checked, true: checkable, false: not checkable. |
 
 **Exceptions:**
 
@@ -310,13 +310,13 @@ public func isChecked(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | The checked state of the control object: true if checked, false otherwise. |
+| Bool | Checked state of the control object, true: checked, false: not checked. |
 
 **Exceptions:**
 
@@ -336,13 +336,13 @@ public func isClickable(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | Whether the control object is clickable: true if clickable, false otherwise. |
+| Bool | Whether the control object is clickable, true: clickable, false: not clickable. |
 
 ### func isEnabled()
 
@@ -354,13 +354,13 @@ public func isEnabled(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | The enabled state of the control: true if enabled, false otherwise. |
+| Bool | Enabled state of the control, true: enabled, false: disabled. |
 
 ### func isFocused()
 
@@ -372,13 +372,13 @@ public func isFocused(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | The focus state of the control object: true if focused, false otherwise. |
+| Bool | Focus state of the control object, true: focused, false: not focused. |
 
 ### func isLongClickable()
 
@@ -390,13 +390,13 @@ public func isLongClickable(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | Whether the control object can be long-clicked: true if long-clickable, false otherwise. |
+| Bool | Whether the control object can be long-clicked, true: long-clickable, false: not long-clickable. |
 
 **Exceptions:**
 
@@ -416,13 +416,13 @@ public func isScrollable(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | Whether the control object is scrollable: true if scrollable, false otherwise. |
+| Bool | Whether the control object is scrollable, true: scrollable, false: not scrollable. |
 
 ### func isSelected()
 
@@ -434,13 +434,13 @@ public func isSelected(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Bool | The selected state of the control object: true if selected, false otherwise. |
+| Bool | Selected state of the control object, true: selected, false: not selected. |
 
 ### func longClick()
 
@@ -452,7 +452,7 @@ public func longClick(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func pinchIn(Float32)
 
@@ -460,17 +460,17 @@ public func longClick(): Unit
 public func pinchIn(scale: Float32): Unit
 ```
 
-**Functionality:** Pinches the control to zoom out at the specified scale.
+**Functionality:** Pinches the control to reduce its size by the specified scale.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| scale | Float32 | Yes | - | The specified zoom-out scale. |
+| scale | Float32 | Yes | - | Specified reduction scale. |
 
 **Exceptions:**
 
@@ -487,17 +487,17 @@ public func pinchIn(scale: Float32): Unit
 public func pinchOut(scale: Float32): Unit
 ```
 
-**Functionality:** Pinches the control to zoom in at the specified scale.
+**Functionality:** Pinches the control to enlarge its size by the specified scale.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| scale | Float32 | Yes | - | The specified zoom-in scale. |
+| scale | Float32 | Yes | - | Specified enlargement scale. |
 
 **Exceptions:**
 
@@ -518,19 +518,19 @@ public func scrollSearch(on: On): ?Component
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| on | [On](#class-on) | Yes | - | The property requirements of the target control. |
+| on | [On](#class-on) | Yes | - | Property requirements of the target control. |
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| ?[Component](#class-component) | The found target control object. |
+| ?[Component](#class-component) | Found target control object. |
 
 **Exceptions:**
 
@@ -551,13 +551,13 @@ public func scrollToBottom(speed!: Int64 = 600): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| speed | Int64 | No | 600 | **Named parameter.** The swiping speed, range: 200-15000. If out of range, the default value is 600. Unit: pixels/second. |
+| speed | Int64 | No | 600 | **Named parameter.** Swipe speed, range: 200-15000, default value is 600 if out of range, unit: pixels/second. |
 
 **Exceptions:**
 
@@ -578,27 +578,32 @@ public func scrollToTop(speed!: Int64 = 600): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| speed | Int64 | No | 600 | **Named parameter.** The swiping speed, range: 200-15000. If out of range, the default value is 600. Unit: pixels/second. |
+| speed | Int64 | No | 600 | **Named parameter.** Swipe speed, range: 200-15000, default value is 600 if out of range, unit: pixels/second. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes## class Driver
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
+  | ## class Driver
 
 ```cangjie
 public class Driver {}
 ```
 
-**Description:** The [Driver](#class-driver) class serves as the main entry point for the uitest framework, providing capabilities such as component matching, searching, key injection, coordinate clicking or swiping, and screenshot capture.
+**Description:** The [Driver](#class-driver) class serves as the main entry point for the uitest framework, providing capabilities such as component matching, searching, key injection, coordinate-based clicking or swiping, and screenshot capturing.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### static func create()
 
@@ -610,17 +615,17 @@ public static func create(): Driver
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | [Driver](#class-driver) | Returns the constructed [Driver](#class-driver) object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -633,7 +638,6 @@ public static func create(): Driver
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -645,21 +649,21 @@ let driver: Driver = Driver.create()
 public func assertComponentExist(on: On): Unit
 ```
 
-**Description:** An assertion API used to verify whether a component matching the specified target attributes exists on the current interface.
+**Description:** An assertion API used to verify whether a component matching the specified target attributes exists on the current screen.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| on | [On](#class-on) | Yes | - | The attribute requirements of the target component. |
+|:---|:---|:---|:---|:---|
+| on | [On](#class-on) | Yes | - | Attribute requirements for the target component. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -673,7 +677,7 @@ public func assertComponentExist(on: On): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
+import kit.PerformanceAnalysisKit.*
 import kit.TestKit.*
 import ohos.business_exception.BusinessException
 
@@ -691,22 +695,22 @@ try {
 public func click(x: Int32, y: Int32): Unit
 ```
 
-**Description:** Executes a click operation at the specified coordinates for the [Driver](#class-driver) object.
+**Description:** Executes a click operation at the specified coordinates.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | x | Int32 | Yes | - | The x-coordinate of the target point, passed as an Int32. |
 | y | Int32 | Yes | - | The y-coordinate of the target point, passed as an Int32. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -719,7 +723,6 @@ public func click(x: Int32, y: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -736,12 +739,12 @@ public func createUIEventObserver(): UIEventObserver
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | [UIEventObserver](#class-uieventobserver) | Returns the created UI event observer object. |
 
 **Example:**
@@ -751,7 +754,6 @@ public func createUIEventObserver(): UIEventObserver
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -764,21 +766,21 @@ let observer: UIEventObserver = driver.createUIEventObserver()
 public func delayMs(duration: Int32): Unit
 ```
 
-**Description:** Delays the [Driver](#class-driver) object for the specified duration.
+**Description:** Delays execution for the specified duration.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| duration | Int32 | Yes | - | The specified duration in milliseconds. |
+|:---|:---|:---|:---|:---|
+| duration | Int32 | Yes | - | The duration to delay, in milliseconds. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -791,7 +793,6 @@ public func delayMs(duration: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -804,22 +805,22 @@ driver.delayMs(1000)
 public func doubleClick(x: Int32, y: Int32): Unit
 ```
 
-**Description:** Executes a double-click operation at the specified coordinates for the [Driver](#class-driver) object.
+**Description:** Executes a double-click operation at the specified coordinates.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | x | Int32 | Yes | - | The x-coordinate of the target point, passed as an Int32. |
 | y | Int32 | Yes | - | The y-coordinate of the target point, passed as an Int32. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -832,7 +833,6 @@ public func doubleClick(x: Int32, y: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -851,25 +851,25 @@ public func drag(
 ): Unit
 ```
 
-**Description:** Executes a drag operation from the start coordinates to the end coordinates for the [Driver](#class-driver) object.
+**Description:** Executes a drag operation from the start coordinates to the end coordinates.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | startx | Int32 | Yes | - | The x-coordinate of the start point, passed as an Int32. |
 | starty | Int32 | Yes | - | The y-coordinate of the start point, passed as an Int32. |
 | endx | Int32 | Yes | - | The x-coordinate of the end point, passed as an Int32. |
 | endy | Int32 | Yes | - | The y-coordinate of the end point, passed as an Int32. |
-| speed | Int32 | No | 600 | **Named parameter.** The swipe speed, range: 200-15000. If out of range, the default value is 600. Unit: pixels/second. |
+| speed | Int32 | No | 600 | **Named parameter.** The swipe speed, ranging from 200 to 15000. If out of range, the default value of 600 is used. Unit: pixels per second. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -882,7 +882,6 @@ public func drag(
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -895,22 +894,22 @@ driver.drag(100, 100, 200, 200, speed: 600)
 public func findComponent(on: On): ?Component
 ```
 
-**Description:** Searches for a target component based on the specified attribute requirements within the [Driver](#class-driver) object.
+**Description:** Searches for a target component based on the specified attribute requirements. If multiple components match the criteria, the first one found via depth-first search is returned.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| on | [On](#class-on) | Yes | - | The attribute requirements of the target component. |
+|:---|:---|:---|:---|:---|
+| on | [On](#class-on) | Yes | - | Attribute requirements for the target component. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | ?[Component](#class-component) | The found component object. |
 
 **Example:**
@@ -920,7 +919,6 @@ public func findComponent(on: On): ?Component
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -933,27 +931,27 @@ let button: Option<Component> = driver.findComponent(On().text("next page"))
 public func findComponents(on: On): ?Array<Component>
 ```
 
-**Description:** Searches for all components matching the specified attribute requirements within the [Driver](#class-driver) object and returns them as a list.
+**Description:** Searches for all components matching the specified attribute requirements and returns them as a list.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| on | [On](#class-on) | Yes | - | The attribute requirements of the target components. |
+|:---|:---|:---|:---|:---|
+| on | [On](#class-on) | Yes | - | Attribute requirements for the target components. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| ?Array\<[Component](#class-component)> | The attribute requirements of the target components. |
+|:----|:----|
+| ?Array\<[Component](#class-component)> | Attribute requirements for the target components. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -966,7 +964,6 @@ public func findComponents(on: On): ?Array<Component>
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -979,27 +976,27 @@ let buttonList: Option<Array<Component>> = driver.findComponents(On().text("next
 public func findWindow(filter: WindowFilter): ?UiWindow
 ```
 
-**Description:** Searches for a target window based on the specified window attributes.
+**Description:** Searches for a target window based on the specified window attributes. If multiple windows match the criteria, the topmost visible window is returned.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| filter | [WindowFilter](#class-windowfilter) | Yes | - | The attributes of the target window. |
+|:---|:---|:---|:---|:---|
+| filter | [WindowFilter](#class-windowfilter) | Yes | - | Attributes of the target window. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | ?[UiWindow](#class-uiwindow) | The found target window object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1012,7 +1009,6 @@ public func findWindow(filter: WindowFilter): ?UiWindow
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1023,28 +1019,28 @@ let window: Option<UiWindow> = driver.findWindow(WindowFilter(active: true))
 public func fling(from: Point, to: Point, stepLen: Int32, speed: Int32): Unit
 ```
 
-**Function:** Simulates a fling gesture (quick swipe followed by release) with specified direction and speed.
+**Function:** Simulates a fling gesture (rapid swipe followed by release) with specified direction and speed.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| from | [Point](#class-point) | Yes | - | Starting coordinates where the finger touches the screen. |
-| to | [Point](#class-point) | Yes | - | Ending coordinates where the finger leaves the screen. |
-| stepLen | Int32 | Yes | - | Step length, in pixels. |
-| speed | Int32 | Yes | - | Swipe speed, range: 200-40000. If out of range, defaults to 600. Unit: pixels/second. |
+| from | [Point](#class-point) | Yes | - | Starting coordinates where finger touches the screen. |
+| to | [Point](#class-point) | Yes | - | Ending coordinates where finger leaves the screen. |
+| stepLen | Int32 | Yes | - | Step interval distance in pixels. |
+| speed | Int32 | Yes | - | Swipe speed (range: 200-40000). Values outside this range default to 600. Unit: pixels/second. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1053,7 +1049,6 @@ public func fling(from: Point, to: Point, stepLen: Int32, speed: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1066,26 +1061,26 @@ driver.fling(UiDirection.Down, 10000)
 public func fling(direction: UiDirection, speed: Int32): Unit
 ```
 
-**Function:** Simulates a fling gesture (quick swipe followed by release) with specified direction and speed.
+**Function:** Simulates a fling gesture (rapid swipe followed by release) with specified direction and speed.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | direction | [UiDirection](#enum-uidirection) | Yes | - | Direction of the fling gesture. |
-| speed | Int32 | Yes | - | Swipe speed, range: 200-40000. If out of range, defaults to 600. Unit: pixels/second. |
+| speed | Int32 | Yes | - | Swipe speed (range: 200-40000). Values outside this range default to 600. Unit: pixels/second. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1094,7 +1089,6 @@ public func fling(direction: UiDirection, speed: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1111,7 +1105,7 @@ public func getDisplayDensity(): Point
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1126,7 +1120,6 @@ public func getDisplayDensity(): Point
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1143,7 +1136,7 @@ public func getDisplayRotation(): DisplayRotation
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1158,7 +1151,6 @@ public func getDisplayRotation(): DisplayRotation
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1175,7 +1167,7 @@ public func getDisplaySize(): Point
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1190,7 +1182,6 @@ public func getDisplaySize(): Point
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1203,32 +1194,32 @@ let size = driver.getDisplaySize()
 public func injectMultiPointerAction(pointers: PointerMatrix, speed!: Int32 = 600): Bool
 ```
 
-**Function:** Injects a multi-pointer gesture into the device.
+**Function:** Injects a multi-touch gesture into the device.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | pointers | [PointerMatrix](#class-pointermatrix) | Yes | - | Gesture trajectory, including the number of fingers and coordinate sequences. |
-| speed | Int32 | No | 600 | **Named parameter.** Swipe speed, range: 200-15000. If out of range, defaults to 600. Unit: pixels/second. |
+| speed | Int32 | No | 600 | **Named parameter.** Swipe speed (range: 200-15000). Values outside this range default to 600. Unit: pixels/second. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns whether the operation completed successfully. Returns `true` if successful, otherwise `false`. |
+| Bool | Returns whether the operation completed successfully. `true` indicates success; `false` otherwise. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1262,22 +1253,22 @@ public func inputText(p: Point, text: String): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| p | [Point](#class-point) | Yes | - | Coordinates where the text will be input. |
+| p | [Point](#class-point) | Yes | - | Coordinates where text will be input. |
 | text | String | Yes | - | Text to be input. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1286,8 +1277,8 @@ public func inputText(p: Point, text: String): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
+import kit.PerformanceAnalysisKit.*
 import ohos.business_exception.BusinessException
 
 let driver: Driver = Driver.create()
@@ -1306,26 +1297,26 @@ try {
 public func longClick(x: Int32, y: Int32): Unit
 ```
 
-**Function:** Performs a long-press operation at the target coordinates for the [Driver](#class-driver) object.
+**Function:** Performs a long-press operation at the specified coordinates for the [Driver](#class-driver) object.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | Int32 | Yes | - | X-coordinate of the target point, passed as Int32. |
-| y | Int32 | Yes | - | Y-coordinate of the target point, passed as Int32. |
+| x | Int32 | Yes | - | X-coordinate of the target point (Int32). |
+| y | Int32 | Yes | - | Y-coordinate of the target point (Int32). |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1334,7 +1325,6 @@ public func longClick(x: Int32, y: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1347,11 +1337,11 @@ driver.longClick(100, 100)
 public func mouseClick(p: Point, btnId: MouseButton, key1!: Int32 = 0, key2!: Int32 = 0): Unit
 ```
 
-**Function:** Injects a mouse click action at the specified coordinates, optionally with keyboard key combinations. For example, when the Key value is 2072, it simulates pressing CTRL while performing the mouse click.
+**Function:** Injects a mouse click action at the specified coordinates, optionally with keyboard key combinations. For example, when Key value is 2072, it simulates pressing CTRL while performing the mouse click.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1364,11 +1354,11 @@ public func mouseClick(p: Point, btnId: MouseButton, key1!: Int32 = 0, key2!: In
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1390,11 +1380,11 @@ driver.mouseClick(PT(248, 194), MouseButton.MouseButtonLeft, key1: 2072)
 public func mouseDoubleClick(p: Point, btnId: MouseButton, key1!: Int32 = 0, key2!: Int32 = 0): Unit
 ```
 
-**Function:** Injects a mouse double-click action at the specified coordinates, optionally with keyboard key combinations. For example, when the Key value is 2072, it simulates pressing CTRL while performing the mouse double-click.
+**Function:** Injects a mouse double-click action at the specified coordinates, optionally with keyboard key combinations. For example, when Key value is 2072, it simulates pressing CTRL while performing the mouse double-click.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1407,11 +1397,11 @@ public func mouseDoubleClick(p: Point, btnId: MouseButton, key1!: Int32 = 0, key
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1435,7 +1425,7 @@ public func mouseDrag(from: Point, to: Point, speed!: Int32 = 600): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1443,7 +1433,7 @@ public func mouseDrag(from: Point, to: Point, speed!: Int32 = 600): Unit
 |:---|:---|:---|:---|:---|
 | from | [Point](#class-point) | Yes | - | Coordinates of the starting point. |
 | to | [Point](#class-point) | Yes | - | Coordinates of the destination point. |
-| speed | Int32 | No | 600 | **Named parameter.** Drag speed, range: 200-15000. If out of range, defaults to 600. Unit: pixels/second. |
+| speed | Int32 | No | 600 | **Named parameter.** Drag speed, range: 200-15000. If out of range, the default value 600 is used. Unit: pixels/second. |
 
 **Exceptions:**
 
@@ -1451,7 +1441,7 @@ public func mouseDrag(from: Point, to: Point, speed!: Int32 = 600): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1477,16 +1467,16 @@ public func mouseLongClick(p: Point, btnId: MouseButton, key1!: Int32 = 0, key2!
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | p | [Point](#class-point) | Yes | - | Coordinates for the mouse long-press. |
-| btnId | [MouseButton](#enum-mousebutton) | Yes | - | Mouse button to press. |
-| key1 | Int32 | No | 0 | **Named parameter.** Specified first key value. |
-| key2 | Int32 | No | 0 | **Named parameter.** Specified second key value. |
+| btnId | [MouseButton](#enum-mousebutton) | Yes | - | The mouse button to press. |
+| key1 | Int32 | No | 0 | **Named parameter.** The first specified key value. |
+| key2 | Int32 | No | 0 | **Named parameter.** The second specified key value. |
 
 **Exceptions:**
 
@@ -1494,7 +1484,7 @@ public func mouseLongClick(p: Point, btnId: MouseButton, key1!: Int32 = 0, key2!
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1520,7 +1510,7 @@ public func mouseMoveTo(p: Point): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1534,7 +1524,7 @@ public func mouseMoveTo(p: Point): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1560,7 +1550,7 @@ public func mouseMoveWithTrack(from: Point, to: Point, speed!: Int32 = 600): Uni
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1568,7 +1558,7 @@ public func mouseMoveWithTrack(from: Point, to: Point, speed!: Int32 = 600): Uni
 |:---|:---|:---|:---|:---|
 | from | [Point](#class-point) | Yes | - | Coordinates of the starting point. |
 | to | [Point](#class-point) | Yes | - | Coordinates of the destination point. |
-| speed | Int32 | No | 600 | **Named parameter.** Movement speed, range: 200-15000. If out of range, defaults to 600. Unit: pixels/second. |
+| speed | Int32 | No | 600 | **Named parameter.** Movement speed, range: 200-15000. If out of range, the default value 600 is used. Unit: pixels/second. |
 
 **Exceptions:**
 
@@ -1576,7 +1566,7 @@ public func mouseMoveWithTrack(from: Point, to: Point, speed!: Int32 = 600): Uni
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1598,22 +1588,22 @@ driver.mouseMoveWithTrack(PT(100, 100), PT(200, 200))
 public func mouseScroll(p: Point, down: Bool, d: Int32, key1!: Int32 = 0, key2!: Int32 = 0, speed!: Int32 = 20): Unit
 ```
 
-**Function:** Injects a mouse wheel scroll action at the specified coordinates, supporting simultaneous pressing of corresponding keyboard key combinations and specifying scroll speed.
+**Function:** Injects a mouse wheel scrolling action at the specified coordinates, supporting simultaneous pressing of corresponding keyboard key combinations and specifying the scrolling speed.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| p | [Point](#class-point) | Yes | - | Coordinates for the mouse action. |
-| down | Bool | Yes | - | Whether the scroll direction is downward. true: scroll down; false: scroll up. |
-| d | Int32 | Yes | - | Number of notches for the mouse wheel scroll. Each notch corresponds to 120 pixels of displacement for the target point. |
-| key1 | Int32 | No | 0 | **Named parameter.** Specified first key value. |
-| key2 | Int32 | No | 0 | **Named parameter.** Specified second key value. |
-| speed | Int32 | No | 20 | **Named parameter.** Mouse wheel scroll speed, range: 1-500. If out of range, defaults to 20. Unit: notches/second. |
+| p | [Point](#class-point) | Yes | - | Coordinates for the mouse click. |
+| down | Bool | Yes | - | Whether the wheel scroll direction is downward. true: scroll down; false: scroll up. |
+| d | Int32 | Yes | - | Number of notches the mouse wheel scrolls. Each notch corresponds to a displacement of 120 pixels at the target point. |
+| key1 | Int32 | No | 0 | **Named parameter.** The first specified key value. |
+| key2 | Int32 | No | 0 | **Named parameter.** The second specified key value. |
+| speed | Int32 | No | 20 | **Named parameter.** Mouse wheel scrolling speed, range: 1-500. If out of range, the default value 20 is used. Unit: notches/second. |
 
 **Exceptions:**
 
@@ -1621,7 +1611,7 @@ public func mouseScroll(p: Point, down: Bool, d: Int32, key1!: Int32 = 0, key2!:
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1647,7 +1637,7 @@ public func pressBack(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -1656,7 +1646,6 @@ public func pressBack(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1673,7 +1662,7 @@ public func pressHome(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -1694,11 +1683,11 @@ driver.pressHome()
 public func screenCap(savePath: String): Bool
 ```
 
-**Function:** The [Driver](#class-driver) object captures the current screen and saves it as a PNG image to the path specified in the parameter.
+**Function:** The [Driver](#class-driver) object captures the current screen and saves it as a PNG image to the path specified by the parameter.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1710,7 +1699,7 @@ public func screenCap(savePath: String): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Whether the screenshot operation was successfully completed. true: success; false: failure. |
+| Bool | Whether the screenshot operation was successfully completed. true: successful; false: failed. |
 
 **Exceptions:**
 
@@ -1718,7 +1707,7 @@ public func screenCap(savePath: String): Bool
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1727,7 +1716,6 @@ public func screenCap(savePath: String): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1737,14 +1725,14 @@ driver.screenCap("/data/storage/el2/base/cache/1.png")
 ### func screenCapture(String, Rect)
 
 ```cangjie
-public func screenCapture(savePath: String, rect!: Rect = Rect(0,0,0,0))): Bool
+public func screenCapture(savePath: String, rect!: Rect = Rect(0,0,0,0)): Bool
 ```
 
-**Function:** Captures the current screen and saves it as a PNG image to the path specified in the parameter.
+**Function:** Captures the current screen and saves it as a PNG image to the path specified by the parameter.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1757,7 +1745,7 @@ public func screenCapture(savePath: String, rect!: Rect = Rect(0,0,0,0))): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Whether the screenshot operation was successfully completed. true: success; false: failure. |
+| Bool | Whether the screenshot operation was successfully completed. true: successful; false: failed. |
 
 **Exceptions:**
 
@@ -1765,7 +1753,7 @@ public func screenCapture(savePath: String, rect!: Rect = Rect(0,0,0,0))): Bool
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1774,7 +1762,6 @@ public func screenCapture(savePath: String, rect!: Rect = Rect(0,0,0,0))): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1791,13 +1778,13 @@ public func setDisplayRotation(rotation: DisplayRotation): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| rotation | [DisplayRotation](#enum-displayrotation) | Yes | - | Device display orientation. |
+| rotation | [DisplayRotation](#enum-displayrotation) | Yes | - | The device's display orientation. |
 
 **Exceptions:**
 
@@ -1805,7 +1792,7 @@ public func setDisplayRotation(rotation: DisplayRotation): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1814,7 +1801,6 @@ public func setDisplayRotation(rotation: DisplayRotation): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1831,13 +1817,13 @@ public func setDisplayRotationEnabled(enabled: Bool): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| enabled | Bool | Yes | - | Flag indicating whether screen rotation is allowed. true: allowed; false: not allowed. |
+| enabled | Bool | Yes | - | Flag indicating whether screen rotation is enabled. true: enabled; false: disabled. |
 
 **Exceptions:**
 
@@ -1845,7 +1831,7 @@ public func setDisplayRotationEnabled(enabled: Bool): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1854,7 +1840,6 @@ public func setDisplayRotationEnabled(enabled: Bool): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1877,17 +1862,17 @@ public func swipe(
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| startx | Int32 | Yes | - | X-coordinate of the starting point, passed as Int32. |
-| starty | Int32 | Yes | - | Y-coordinate of the starting point, passed as Int32. |
-| endx | Int32 | Yes | - | X-coordinate of the destination point, passed as Int32. |
-| endy | Int32 | Yes | - | Y-coordinate of the destination point, passed as Int32. |
-| speed | Int32 | No | 600 | **Named parameter.** Swipe speed, range: 200-15000. If out of range, defaults to 600. Unit: pixels/second. |
+| startx | Int32 | Yes | - | The x-coordinate of the starting point, passed as Int32. |
+| starty | Int32 | Yes | - | The y-coordinate of the starting point, passed as Int32. |
+| endx | Int32 | Yes | - | The x-coordinate of the destination point, passed as Int32. |
+| endy | Int32 | Yes | - | The y-coordinate of the destination point, passed as Int32. |
+| speed | Int32 | No | 600 | **Named parameter.** Swipe speed, range: 200-15000. If out of range, the default value 600 is used. Unit: pixels/second. |
 
 **Exceptions:**
 
@@ -1895,7 +1880,7 @@ public func swipe(
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1904,7 +1889,6 @@ public func swipe(
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1921,15 +1905,15 @@ public func triggerCombineKeys(key0: Int32, key1: Int32, key2!: Int32 = 0): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| key0 | Int32 | Yes | - | Specified first key value. |
-| key1 | Int32 | Yes | - | Specified second key value. |
-| key2 | Int32 | No | 0 | **Named parameter.** Specified third key value. |
+| key0 | Int32 | Yes | - | The first specified key value. |
+| key1 | Int32 | Yes | - | The second specified key value. |
+| key2 | Int32 | No | 0 | **Named parameter.** The third specified key value. |
 
 **Exceptions:**
 
@@ -1937,7 +1921,7 @@ public func triggerCombineKeys(key0: Int32, key1: Int32, key2!: Int32 = 0): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example:**
 
@@ -1946,7 +1930,6 @@ public func triggerCombineKeys(key0: Int32, key1: Int32, key2!: Int32 = 0): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -1959,19 +1942,24 @@ driver.triggerCombineKeys(2072, 2047, key2: 2035)
 public func triggerKey(keyCode: Int32): Unit
 ```
 
-**Function:** The [Driver](#class-driver) object simulates clicking the corresponding key by passing in a key value.
+**Function:** The [Driver](#class-driver) object simulates pressing the corresponding key by passing in a key value.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| keyCode | Int32 | Yes | - | Specified key value. |
+| keyCode | Int32 | Yes | - | The specified key value. |
 
-**Exceptions## class On
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+
+  | Error Code ID | Error Message |
+  | :## class On
 
 ```cangjie
 public class On {
@@ -1983,15 +1971,15 @@ public class On {
 
 The APIs provided by [On](#class-on) have the following characteristics:
 
-1. Supports single-attribute matching and multi-attribute combined matching, such as simultaneously specifying the target control's text and id.
+1. Supports single-attribute matching and multi-attribute combination matching, such as simultaneously specifying the target control's text and id.
 
 2. Control attributes support multiple matching patterns.
 
-3. Supports absolute positioning and relative positioning of controls. APIs like [isBefore](#func-isbeforeon) and [isAfter](#func-isafteron) can be used to limit adjacent control features for auxiliary positioning.
+3. Supports absolute positioning and relative positioning of controls. APIs like [isBefore](#func-isbeforeon) and [isAfter](#func-isafteron) can be used to define adjacent control features for auxiliary positioning.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### init()
 
@@ -2003,7 +1991,7 @@ public init()
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func checkable(Bool)
 
@@ -2015,7 +2003,7 @@ public func checkable(b!: Bool = true): On
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2069,7 +2057,7 @@ public func checked(b!: Bool = true): On
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2123,7 +2111,7 @@ public func clickable(b!: Bool = true): On
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2169,7 +2157,7 @@ public func description(val: String, pattern!: MatchPattern = MatchPattern.Equal
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2224,7 +2212,7 @@ public func enabled(b!: Bool = true): On
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2278,7 +2266,7 @@ public func focused(b!: Bool = true): On
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2332,7 +2320,7 @@ public func id(id: String): On
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2380,11 +2368,11 @@ class TestExample00 {
 public func inWindow(bundleName: String): On
 ```
 
-**Function:** Specifies that the target control is within the given application window, returning the [On](#class-on) object itself.
+**Function:** Specifies that the target control is within the given application window, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2400,7 +2388,7 @@ public func inWindow(bundleName: String): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2434,11 +2422,11 @@ class TestExample00 {
 public func isAfter(on: On): On
 ```
 
-**Function:** Specifies that the target control is located after the given characteristic attribute control, returning the [On](#class-on) object itself.
+**Function:** Specifies that the target control is located after the given characteristic attribute control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2454,7 +2442,7 @@ public func isAfter(on: On): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2489,11 +2477,11 @@ class TestExample00 {
 public func isBefore(on: On): On
 ```
 
-**Function:** Specifies that the target control is located before the given characteristic attribute control, returning the [On](#class-on) object itself.
+**Function:** Specifies that the target control is located before the given characteristic attribute control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2509,7 +2497,7 @@ public func isBefore(on: On): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2544,11 +2532,11 @@ class TestExample00 {
 public func longClickable(b!: Bool = true): On
 ```
 
-**Function:** Specifies the long-clickable state attribute of the target control, returning the [On](#class-on) object itself.
+**Function:** Specifies the long-clickable state attribute of the target control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2564,7 +2552,7 @@ public func longClickable(b!: Bool = true): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2598,11 +2586,11 @@ class TestExample00 {
 public func onType(tp: String): On
 ```
 
-**Function:** Specifies the control type attribute of the target control, returning the [On](#class-on) object itself.
+**Function:** Specifies the control type attribute of the target control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2618,7 +2606,7 @@ public func onType(tp: String): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2652,11 +2640,11 @@ class TestExample00 {
 public func scrollable(b!: Bool = true): On
 ```
 
-**Function:** Specifies the scrollable state attribute of the target control, returning the [On](#class-on) object itself.
+**Function:** Specifies the scrollable state attribute of the target control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2672,7 +2660,7 @@ public func scrollable(b!: Bool = true): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2706,11 +2694,11 @@ class TestExample00 {
 public func selected(b!: Bool = true): On
 ```
 
-**Function:** Specifies the selected state attribute of the target control, returning the [On](#class-on) object itself.
+**Function:** Specifies the selected state attribute of the target control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2726,7 +2714,7 @@ public func selected(b!: Bool = true): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2760,18 +2748,18 @@ class TestExample00 {
 public func text(txt: String, pattern!: MatchPattern = MatchPattern.Equals): On
 ```
 
-**Function:** Specifies the text attribute of the target control, supporting multiple matching patterns, returning the [On](#class-on) object itself.
+**Function:** Specifies the text attribute of the target control, supporting multiple matching patterns, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| txt | String | Yes | - | Specifies the control text used to match the target control text. |
-| pattern | [MatchPattern](#enum-matchpattern) | No | MatchPattern.Equals | **Named parameter.** Specifies the text matching pattern, default is EQUALS. |
+| txt | String | Yes | - | Specifies the control text for matching the target control text. |
+| pattern | [MatchPattern](#enum-matchpattern) | No | MatchPattern.Equals | **Named parameter.** Specifies the text matching pattern. Default is EQUALS. |
 
 **Return Value:**
 
@@ -2807,11 +2795,11 @@ class TestExample00 {
 public func within(on: On): On
 ```
 
-**Function:** Specifies that the target control is within the given characteristic attribute control, returning the [On](#class-on) object itself.
+**Function:** Specifies that the target control is within the given characteristic attribute control, and returns the [On](#class-on) object itself.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2827,7 +2815,7 @@ public func within(on: On): On
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2869,7 +2857,7 @@ public class Point {
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var displayId
 
@@ -2885,7 +2873,7 @@ public var displayId:?Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
@@ -2893,7 +2881,7 @@ public var displayId:?Int32
 public var x: Int32
 ```
 
-**Function:** The X-coordinate of the point.
+**Function:** The x-coordinate of the point.
 
 **Type:** Int32
 
@@ -2901,7 +2889,7 @@ public var x: Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
@@ -2909,7 +2897,7 @@ public var x: Int32
 public var y: Int32
 ```
 
-**Function:** The Y-coordinate of the point.
+**Function:** The y-coordinate of the point.
 
 **Type:** Int32
 
@@ -2917,7 +2905,7 @@ public var y: Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, Int32, ?Int32)
 
@@ -2929,14 +2917,14 @@ public init(x: Int32, y: Int32, displayId!: ?Int32 = None)
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|x|Int32|Yes|-|The X-coordinate of the point.|
-|y|Int32|Yes|-|The Y-coordinate of the point.|
+|x|Int32|Yes|-|The x-coordinate of the point.|
+|y|Int32|Yes|-|The y-coordinate of the point.|
 |displayId|?Int32|No|None| **Named parameter.** The screen ID to which the coordinate point belongs. Valid values: integers greater than or equal to 0.|
 
 ## class PointerMatrix
@@ -2945,11 +2933,11 @@ public init(x: Int32, y: Int32, displayId!: ?Int32 = None)
 public class PointerMatrix {}
 ```
 
-**Function:** Used for multi-touch operations, storing a 2D array of coordinate points for each finger and actions for each step.
+**Function:** Used for multi-touch operations, storing a two-dimensional array of coordinate points for each finger and actions for each step.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### static func create(Int32, Int32)
 
@@ -2957,18 +2945,18 @@ public class PointerMatrix {}
 public static func create(fingers: Int32, steps: Int32): PointerMatrix
 ```
 
-**Function:** Static method that constructs a [PointerMatrix](#class-pointermatrix) object and returns it.
+**Function:** A static method that constructs a [PointerMatrix](#class-pointermatrix) object and returns it.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|fingers|Int32|Yes|-|The number of fingers involved in the multi-touch operation. Valid range: [1,10].|
-|steps|Int32|Yes|-|The number of steps for each finger's operation. Valid range: [1,1000].|
+|fingers|Int32|Yes|-|The number of fingers to inject in the multi-touch operation. Valid range: [1,10].|
+|steps|Int32|Yes|-|The number of steps for each finger operation. Valid range: [1,1000].|
 
 **Return Value:**
 
@@ -2978,7 +2966,7 @@ public static func create(fingers: Int32, steps: Int32): PointerMatrix
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2991,7 +2979,6 @@ public static func create(fingers: Int32, steps: Int32): PointerMatrix
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let pointerMatrix: PointerMatrix = PointerMatrix.create(2, 3)
@@ -3007,19 +2994,19 @@ public func setPoint(finger: Int32, step: Int32, point: Point): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 |finger|Int32|Yes|-|The index of the finger.|
 |step|Int32|Yes|-|The index of the step.|
-|point|[Point](#class-point)|Yes|-|The coordinate point for the action.|
+|point|[Point](#class-point)|Yes|-|The coordinate point for this action.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3057,11 +3044,11 @@ public class Rect {
 }
 ```
 
-**Function:** Border information of a UI component.
+**Function:** Border information of a control.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var bottom
 
@@ -3069,7 +3056,7 @@ public class Rect {
 public var bottom: Int32
 ```
 
-**Function:** The Y-coordinate of the bottom-right corner of the component's border.
+**Function:** The Y-coordinate of the bottom-right corner of the control's border.
 
 **Type:** Int32
 
@@ -3077,7 +3064,7 @@ public var bottom: Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var displayId
 
@@ -3085,7 +3072,7 @@ public var bottom: Int32
 public var displayId:?Int32
 ```
 
-**Function:** The screen ID to which the component's border belongs.
+**Function:** The screen ID to which the control's border belongs.
 
 **Type:** ?Int32
 
@@ -3093,7 +3080,7 @@ public var displayId:?Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var left
 
@@ -3101,7 +3088,7 @@ public var displayId:?Int32
 public var left: Int32
 ```
 
-**Function:** The X-coordinate of the top-left corner of the component's border.
+**Function:** The X-coordinate of the top-left corner of the control's border.
 
 **Type:** Int32
 
@@ -3109,7 +3096,7 @@ public var left: Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var right
 
@@ -3117,7 +3104,7 @@ public var left: Int32
 public var right: Int32
 ```
 
-**Function:** The X-coordinate of the bottom-right corner of the component's border.
+**Function:** The X-coordinate of the bottom-right corner of the control's border.
 
 **Type:** Int32
 
@@ -3125,7 +3112,7 @@ public var right: Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var top
 
@@ -3133,7 +3120,7 @@ public var right: Int32
 public var top: Int32
 ```
 
-**Function:** The Y-coordinate of the top-left corner of the component's border.
+**Function:** The Y-coordinate of the top-left corner of the control's border.
 
 **Type:** Int32
 
@@ -3141,7 +3128,7 @@ public var top: Int32
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, Int32, Int32, Int32, ?Int32)
 
@@ -3153,17 +3140,17 @@ public init(left: Int32, top: Int32, right: Int32, bottom: Int32, displayId!: ?I
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|left|Int32|Yes|-|The X-coordinate of the top-left corner of the component's border.|
-|top|Int32|Yes|-|The Y-coordinate of the top-left corner of the component's border.|
-|right|Int32|Yes|-|The X-coordinate of the bottom-right corner of the component's border.|
-|bottom|Int32|Yes|-|The Y-coordinate of the bottom-right corner of the component's border.|
-|displayId|?Int32|No|None| **Named parameter.** The screen ID to which the component's border belongs. Valid values: integers greater than or equal to 0.|
+|left|Int32|Yes|-|The X-coordinate of the top-left corner of the control's border.|
+|top|Int32|Yes|-|The Y-coordinate of the top-left corner of the control's border.|
+|right|Int32|Yes|-|The X-coordinate of the bottom-right corner of the control's border.|
+|bottom|Int32|Yes|-|The Y-coordinate of the bottom-right corner of the control's border.|
+|displayId|?Int32|No|None| **Named parameter.** The screen ID to which the control's border belongs. Valid values: integers greater than or equal to 0.|
 
 ## class UIElementInfo
 
@@ -3179,7 +3166,7 @@ public class UIElementInfo {
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### let bundleName
 
@@ -3195,7 +3182,7 @@ public let bundleName: String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### let componentType
 
@@ -3203,7 +3190,7 @@ public let bundleName: String
 public let componentType: String
 ```
 
-**Function:** The type of the component or window.
+**Function:** The type of the control or window.
 
 **Type:** String
 
@@ -3211,7 +3198,7 @@ public let componentType: String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### let text
 
@@ -3219,7 +3206,7 @@ public let componentType: String
 public let text: String
 ```
 
-**Function:** The text information of the component or window.
+**Function:** The text information of the control or window.
 
 **Type:** String
 
@@ -3227,7 +3214,7 @@ public let text: String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ## class UIEventObserver
 
@@ -3239,7 +3226,7 @@ public class UIEventObserver {}
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func once(OnceType, Callback\<UIElementInfo>)
 
@@ -3247,22 +3234,22 @@ public class UIEventObserver {}
 public func once(onceType: OnceType, callback: Callback<UIElementInfo>): Unit
 ```
 
-**Function:** Listens for the appearance event of a specified component.
+**Function:** Listens for the event when a specified control appears.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|onceType|[OnceType](#enum-oncetype)|Yes|-|The type of component.|
-|callback|[Callback](./../BasicServicesKit/cj-apis-base.md#type-callback)\<[UIElementInfo](#class-uielementinfo)>|Yes|-|The callback function to be executed when the event occurs.|
+|onceType|[OnceType](#enum-oncetype)|Yes|-|The type of the control.|
+|callback|[Callback](./../arkui-cj/cj-common-types.md#type-callback)\<[UIElementInfo](#class-uielementinfo)>|Yes|-|The callback function to be executed when the event occurs.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3276,7 +3263,7 @@ public class UiWindow {}
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func close()
 
@@ -3288,11 +3275,11 @@ public func close(): Unit
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3307,7 +3294,6 @@ public func close(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3323,15 +3309,15 @@ public func focus(): Unit
 
 **Description:** Sets focus to the window.
 
-**Note:** This interface can be called normally on PC/2in1 and Tablet devices. On other devices, it returns error code 17000005.
+**Note:** This API can be called normally on PC/2-in-1 and Tablet devices. On other devices, it returns error code 17000005.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3344,7 +3330,6 @@ public func focus(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3362,7 +3347,7 @@ public func getBounds(): Rect
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -3372,7 +3357,7 @@ public func getBounds(): Rect
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3385,7 +3370,6 @@ public func getBounds(): Rect
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3403,7 +3387,7 @@ public func getBundleName(): String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -3413,7 +3397,7 @@ public func getBundleName(): String
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3426,7 +3410,6 @@ public func getBundleName(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3444,7 +3427,7 @@ public func getTitle(): String
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -3454,7 +3437,7 @@ public func getTitle(): String
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3467,7 +3450,6 @@ public func getTitle(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3485,7 +3467,7 @@ public func getWindowMode(): WindowMode
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -3495,7 +3477,7 @@ public func getWindowMode(): WindowMode
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3508,7 +3490,6 @@ public func getWindowMode(): WindowMode
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3526,7 +3507,7 @@ public func isActive(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -3536,7 +3517,7 @@ public func isActive(): Bool
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3549,7 +3530,6 @@ public func isActive(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3567,7 +3547,7 @@ public func isFocused(): Bool
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -3577,7 +3557,7 @@ public func isFocused(): Bool
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3590,7 +3570,6 @@ public func isFocused(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3604,17 +3583,17 @@ let focused = window?.isFocused()
 public func maximize(): Unit
 ```
 
-**Description:** Maximizes the window. Applicable to windows that support the maximize operation.
+**Description:** Maximizes the window. This applies to windows that support the maximize operation.
 
-**Note:** This interface can be called normally on PC/2in1 and Tablet devices. On other devices, it returns error code 17000005.
+**Note:** This API can be called normally on PC/2-in-1 and Tablet devices. On other devices, it returns error code 17000005.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3629,7 +3608,6 @@ public func maximize(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3643,17 +3621,17 @@ window?.maximize()
 public func minimize(): Unit
 ```
 
-**Description:** Minimizes the window. Applicable to windows that support the minimize operation.
+**Description:** Minimizes the window. This applies to windows that support the minimize operation.
 
-**Note:** This interface can be called normally on PC/2in1 and Tablet devices. On other devices, it returns error code 17000005.
+**Note:** This API can be called normally on PC/2-in-1 and Tablet devices. On other devices, it returns error code 17000005.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3668,7 +3646,6 @@ public func minimize(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3682,13 +3659,13 @@ window?.minimize()
 public func moveTo(x: Int32, y: Int32): Unit
 ```
 
-**Description:** Moves the window to the target point. Applicable to windows that support movement.
+**Description:** Moves the window to the target point. This applies to windows that support movement.
 
-**Note:** This interface can be called normally on PC/2in1 and Tablet devices. On other devices, it returns error code 17000005.
+**Note:** This API can be called normally on PC/2-in-1 and Tablet devices. On other devices, it returns error code 17000005.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -3699,7 +3676,7 @@ public func moveTo(x: Int32, y: Int32): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3714,7 +3691,6 @@ public func moveTo(x: Int32, y: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3728,11 +3704,11 @@ window?.moveTo(100, 100)
 public func resize(wide: Int32, height: Int32, direction: ResizeDirection): Unit
 ```
 
-**Description:** Resizes the window based on the specified width, height, and resize direction. Applicable to windows that support resizing.
+**Description:** Resizes the window based on the specified width, height, and resize direction. This applies to windows that support resizing.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -3740,11 +3716,11 @@ public func resize(wide: Int32, height: Int32, direction: ResizeDirection): Unit
 | :--- | :--- | :--- | :--- | :--- |
 | wide | Int32 | Yes | - | The width of the resized window in IntNative format. |
 | height | Int32 | Yes | - | The height of the resized window in IntNative format. |
-| direction | [ResizeDirection](#enum-resizedirection) | Yes | - | The direction in which the window is resized, in ResizeDirection format. |
+| direction | [ResizeDirection](#enum-resizedirection) | Yes | - | The resize direction of the window in ResizeDirection format. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3760,7 +3736,6 @@ public func resize(wide: Int32, height: Int32, direction: ResizeDirection): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3776,15 +3751,15 @@ public func resume(): Unit
 
 **Description:** Restores the window to its previous window mode.
 
-**Note:** This interface can be called normally on PC/2in1 and Tablet devices. On other devices, it returns error code 17000005.
+**Note:** This API can be called normally on PC/2-in-1 and Tablet devices. On other devices, it returns error code 17000005.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3799,7 +3774,6 @@ public func resume(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3813,17 +3787,17 @@ window?.resume()
 public func split(): Unit
 ```
 
-**Description:** Switches the window mode to split-screen mode. Applicable to windows that support switching to split-screen mode.
+**Description:** Switches the window to split-screen mode. This applies to windows that support switching to split-screen mode.
 
-**Note:** This interface can be called normally on PC/2in1 and Tablet devices. On other devices, it returns error code 17000005.
+**Note:** This API can be called normally on PC/2-in-1 and Tablet devices. On other devices, it returns error code 17000005.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [uitest error codes](./cj-errorcode-uitest.md) and [universal error codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [uitest Error Codes](./cj-errorcode-uitest.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3838,7 +3812,6 @@ public func split(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.TestKit.*
 
 let driver: Driver = Driver.create()
@@ -3857,11 +3830,11 @@ public class WindowFilter {
 }
 ```
 
-**Description:** Attribute information of a window.
+**Function:** Window attribute information.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var active
 
@@ -3869,15 +3842,15 @@ public class WindowFilter {
 public var active:?Bool
 ```
 
-**Description:** Whether the window is interacting with the user.
+**Function:** Whether the window is interacting with the user.
 
 **Type:** ?Bool
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var bundleName
 
@@ -3885,15 +3858,15 @@ public var active:?Bool
 public var bundleName:?String
 ```
 
-**Description:** Package name of the application to which the window belongs.
+**Function:** Package name of the application to which the window belongs.
 
 **Type:** ?String
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var displayId
 
@@ -3901,15 +3874,15 @@ public var bundleName:?String
 public var displayId:?Int32
 ```
 
-**Description:** Screen ID to which the control border belongs.
+**Function:** Screen ID to which the control border belongs.
 
 **Type:** ?Int32
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var focused
 
@@ -3917,15 +3890,15 @@ public var displayId:?Int32
 public var focused:?Bool
 ```
 
-**Description:** Whether the window is in focus state.
+**Function:** Whether the window is in focused state.
 
 **Type:** ?Bool
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### var title
 
@@ -3933,15 +3906,15 @@ public var focused:?Bool
 public var title:?String
 ```
 
-**Description:** Title information of the window.
+**Function:** Title information of the window.
 
 **Type:** ?String
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### init(?String, ?String, ?Bool, ?Bool, ?Int32)
 
@@ -3949,21 +3922,21 @@ public var title:?String
 public init(bundleName!: ?String = None, title!: ?String = None, focused!: ?Bool = None, active!: ?Bool = None, displayId!: ?Int32 = None)
 ```
 
-**Description:** Creates a [WindowFilter](#class-windowfilter) instance.
+**Function:** Creates a [WindowFilter](#class-windowfilter) instance.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name       | Type    | Required | Default | Description |
-|:-----------|:--------|:---------|:--------|:------------|
-| bundleName | ?String | No       | None    | **Named parameter.** Package name of the application to which the window belongs. |
-| title      | ?String | No       | None    | **Named parameter.** Title information of the window. |
-| focused    | ?Bool   | No       | None    | **Named parameter.** Whether the window is in focus state. |
-| active     | ?Bool   | No       | None    | **Named parameter.** Whether the window is interacting with the user. |
-| displayId  | ?Int32  | No       | None    | **Named parameter.** Screen ID to which the control border belongs, must be an integer greater than or equal to 0. |
+|Name|Type|Mandatory|Default|Description|
+|:---|:---|:---|:---|:---|
+|bundleName|?String|No|None| **Named parameter.** Package name of the application to which the window belongs.|
+|title|?String|No|None| **Named parameter.** Title information of the window.|
+|focused|?Bool|No|None| **Named parameter.** Whether the window is in focused state.|
+|active|?Bool|No|None| **Named parameter.** Whether the window is interacting with the user.|
+|displayId|?Int32|No|None| **Named parameter.** Screen ID to which the control border belongs, must be an integer greater than or equal to 0.|
 
 ## enum DisplayRotation
 
@@ -3977,11 +3950,11 @@ public enum DisplayRotation {
 }
 ```
 
-**Description:** Display orientation of the device screen.
+**Function:** Display orientation of the device screen.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation0
 
@@ -3989,11 +3962,11 @@ public enum DisplayRotation {
 Rotation0
 ```
 
-**Description:** The device screen is not rotated, initially displayed vertically.
+**Function:** The device screen is not rotated, initially displayed vertically.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation180
 
@@ -4001,11 +3974,11 @@ Rotation0
 Rotation180
 ```
 
-**Description:** The device screen is rotated 180° clockwise, displayed vertically in reverse.
+**Function:** The device screen is rotated 180° clockwise, displayed vertically in reverse.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation270
 
@@ -4013,11 +3986,11 @@ Rotation180
 Rotation270
 ```
 
-**Description:** The device screen is rotated 270° clockwise, displayed horizontally in reverse.
+**Function:** The device screen is rotated 270° clockwise, displayed horizontally in reverse.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation90
 
@@ -4025,11 +3998,11 @@ Rotation270
 Rotation90
 ```
 
-**Description:** The device screen is rotated 90° clockwise, displayed horizontally.
+**Function:** The device screen is rotated 90° clockwise, displayed horizontally.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ## enum MatchPattern
 
@@ -4043,11 +4016,11 @@ public enum MatchPattern {
 }
 ```
 
-**Description:** Supported matching patterns for control attributes.
+**Function:** Supported matching patterns for control properties.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Contains
 
@@ -4055,11 +4028,11 @@ public enum MatchPattern {
 Contains
 ```
 
-**Description:** Contains the given value.
+**Function:** Contains the given value.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### EndsWith
 
@@ -4067,11 +4040,11 @@ Contains
 EndsWith
 ```
 
-**Description:** Ends with the given value.
+**Function:** Ends with the given value.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Equals
 
@@ -4079,11 +4052,11 @@ EndsWith
 Equals
 ```
 
-**Description:** Equals the given value.
+**Function:** Equals the given value.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### StartsWith
 
@@ -4091,11 +4064,11 @@ Equals
 StartsWith
 ```
 
-**Description:** Starts with the given value.
+**Function:** Starts with the given value.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ## enum MouseButton
 
@@ -4108,11 +4081,11 @@ public enum MouseButton {
 }
 ```
 
-**Description:** Simulated mouse buttons for injection.
+**Function:** Simulated mouse button for injection.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### MouseButtonLeft
 
@@ -4120,11 +4093,11 @@ public enum MouseButton {
 MouseButtonLeft
 ```
 
-**Description:** Left mouse button.
+**Function:** Left mouse button.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### MouseButtonMiddle
 
@@ -4132,11 +4105,11 @@ MouseButtonLeft
 MouseButtonMiddle
 ```
 
-**Description:** Middle mouse button.
+**Function:** Middle mouse button.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### MouseButtonRight
 
@@ -4144,11 +4117,11 @@ MouseButtonMiddle
 MouseButtonRight
 ```
 
-**Description:** Right mouse button.
+**Function:** Right mouse button.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ## enum OnceType
 
@@ -4160,11 +4133,11 @@ public enum OnceType <: Equatable<OnceType> & ToString {
 }
 ```
 
-**Description:** Types of controls.
+**Function:** Type of the control.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -4177,11 +4150,11 @@ public enum OnceType <: Equatable<OnceType> & ToString {
 DialogShow
 ```
 
-**Description:** Dialog control type.
+**Function:** Dialog control type.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### ToastShow
 
@@ -4189,11 +4162,11 @@ DialogShow
 ToastShow
 ```
 
-**Description:** Toast control type.
+**Function:** Toast control type.
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(OnceType)
 
@@ -4201,19 +4174,19 @@ ToastShow
 public operator func !=(other: OnceType): Bool
 ```
 
-**Description:** Determines whether two enum values are not equal.
+**Function:** Determines whether two enum values are not equal.
 
 **Parameters:**
 
-| Name | Type                     | Required | Default | Description |
-|:-----|:-------------------------|:---------|:--------|:------------|
-| other | [OnceType](#enum-oncetype) | Yes      | -       | Another enum value. |
+|Name|Type|Mandatory|Default|Description|
+|:---|:---|:---|:---|:---|
+|other|[OnceType](#enum-oncetype)|Yes|-|Another enum value.|
 
-**Returns:**
+**Return Value:**
 
-| Type | Description |
-|:-----|:------------|
-| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
 
 ### func ==(OnceType)
 
@@ -4221,19 +4194,19 @@ public operator func !=(other: OnceType): Bool
 public operator func ==(other: OnceType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **Parameters:**
 
-| Name | Type                     | Required | Default | Description |
-|:-----|:-------------------------|:---------|:--------|:------------|
-| other | [OnceType](#enum-oncetype) | Yes      | -       | Another enum value. |
+|Name|Type|Mandatory|Default|Description|
+|:---|:---|:---|:---|:---|
+|other|[OnceType](#enum-oncetype)|Yes|-|Another enum value.|
 
-**Returns:**
+**Return Value:**
 
-| Type | Description |
-|:-----|:------------|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the two enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -4241,13 +4214,13 @@ public operator func ==(other: OnceType): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the value of the enum.
+**Function:** Gets the value of the enum.
 
-**Returns:**
+**Return Value:**
 
-| Type   | Description |
-|:-------|:------------|
-| String | Description of the enum. |## enum ResizeDirection
+|Type|Description|
+|:----|:----|
+|String|Description of the enum.|## enum ResizeDirection
 
 ```cangjie
 public enum ResizeDirection {
@@ -4267,7 +4240,7 @@ public enum ResizeDirection {
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Down
 
@@ -4279,7 +4252,7 @@ Down
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Left
 
@@ -4291,7 +4264,7 @@ Left
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### LeftDown
 
@@ -4303,7 +4276,7 @@ LeftDown
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### LeftUp
 
@@ -4315,7 +4288,7 @@ LeftUp
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Right
 
@@ -4327,7 +4300,7 @@ Right
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### RightDown
 
@@ -4339,7 +4312,7 @@ RightDown
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### RightUp
 
@@ -4351,7 +4324,7 @@ RightUp
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Up
 
@@ -4363,7 +4336,7 @@ Up
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ## enum UiDirection
 
@@ -4381,7 +4354,7 @@ public enum UiDirection {
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Down
 
@@ -4393,7 +4366,7 @@ Down
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Left
 
@@ -4405,7 +4378,7 @@ Left
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Right
 
@@ -4417,7 +4390,7 @@ Right
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Up
 
@@ -4429,7 +4402,7 @@ Up
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ## enum WindowMode
 
@@ -4447,7 +4420,7 @@ public enum WindowMode {
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Floating
 
@@ -4459,7 +4432,7 @@ Floating
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Fullscreen
 
@@ -4471,7 +4444,7 @@ Fullscreen
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Primary
 
@@ -4483,7 +4456,7 @@ Primary
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22
 
 ### Secondary
 
@@ -4495,4 +4468,4 @@ Secondary
 
 **System Capability:** SystemCapability.Test.UiTest
 
-**Since:** 21
+**Since:** 22

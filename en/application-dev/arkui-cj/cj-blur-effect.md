@@ -4,14 +4,14 @@ Animation effects can enrich interface details, enhancing the realism and qualit
 
 Blur can be used to convey depth in the interface space and distinguish hierarchical relationships between front and back elements.
 
-| API                                                          | Description                                         |
+| API                                                         | Description                                         |
 | :------------------------------------------------------------ | :-------------------------------------------- |
-| [backdropBlur](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-background.md#func-backdropblurfloat64) | Adds a background blur effect to the current component, with the input parameter as the blur radius. |
-| [blur](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-imageeffect.md#func-blurfloat64) | Adds a content blur effect to the current component, with the input parameter as the blur radius. |
+| [backdropBlur](../reference/arkui-cj/cj-universal-attribute-background.md#func-backdropblurfloat64) | Adds a background blur effect to the current component, with the input parameter being the blur radius. |
+| [blur](../reference/arkui-cj/cj-universal-attribute-imageeffect.md#func-blurfloat64) | Adds a content blur effect to the current component, with the input parameter being the blur radius. |
 
 > **Note:**
 >
-> The above APIs are real-time blur interfaces that render frame-by-frame, resulting in higher performance overhead.
+> The above APIs are real-time blur interfaces that render frame by frame, resulting in higher performance overhead.
 
 ## Using backdropBlur to Add Background Blur to a Component
 
@@ -35,8 +35,8 @@ class EntryView {
                 .fontSize(20)
                 .fontColor(Color.White)
                 .textAlign(TextAlign.Center)
-                .backdropBlur(Float(10))
-                .backgroundImage(src: @r(app.media.share))
+                .backdropBlur(Float64(10))
+                .backgroundImage(@r(app.media.background))
                 .backgroundImageSize(width: 400, height: 300)
         }
         .width(100.percent)
@@ -67,7 +67,7 @@ class EntryView {
     @State var y: String = 'Finger not on screen'
 
     protected override func aboutToAppear() {
-        this.text = "Hold and slide up/down on the screen\n" + "Current finger Y-axis position: " + this.y +
+        this.text = "Hold and slide up/down on the screen\n" + "Current finger position on the y-axis: " + this.y +
             "\n" + "Current image blur level: " + this.radius.toString();
     }
 
@@ -79,7 +79,7 @@ class EntryView {
                 .fontWeight(FontWeight.Bold)
                 .fontFamily("cursive")
                 .fontStyle(FontStyle.Italic)
-            Image(@r(app.media.share))
+            Image(@r(app.media.background))
                 .blur(this.radius)
                 .height(100.percent)
                 .width(100.percent)
@@ -96,7 +96,7 @@ class EntryView {
                     this.radius = 0.0
                     this.y = 'Finger lifted from screen'
                 }
-                this.text = "Hold and slide up/down on the screen\n" + "Current finger Y-axis position: " + this.y +
+                this.text = "Hold and slide up/down on the screen\n" + "Current finger position on the y-axis: " + this.y +
                     "\n" + "Current image blur level: " + this.radius.toString();
             })
     }

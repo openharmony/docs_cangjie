@@ -1,6 +1,6 @@
 # Implicit Shared Element Transition Within Components (geometryTransition)
 
-Provides smooth contextual inheritance transitions during view switching. While the generic transition mechanism offers effects like opacity and scale, geometryTransition establishes spatial connections between originally independent transition animations by coordinating the frames and positions of the bound in/out components (where "in" refers to the new view and "out" refers to the old view), thereby guiding the visual focus from the old view's position to the new view's position.
+Provides smooth contextual inheritance transitions during view switching. The general transition mechanism offers effects like opacity and scale. geometryTransition establishes spatial connections between originally independent transition animations by coordinating the frame and position of the bound in/out components (where "in" refers to the new view and "out" refers to the old view), guiding the visual focus from the old view's position to the new view's position.
 
 ## Import Module
 
@@ -8,24 +8,34 @@ Provides smooth contextual inheritance transitions during view switching. While 
 import kit.ArkUI.*
 ```
 
-## func geometryTransition(String, Bool)
+## func geometryTransition(?String, ?Bool)
 
 ```cangjie
-public func geometryTransition(id: String, followWithoutTransition!: Bool = false): This
+public func geometryTransition(id: ?String, followWithoutTransition!: ?Bool = None): T
 ```
 
-**Function:** Configures geometric transition animations.
+**Function:** Implicit shared element transition within components
+
+> **Note:**
+>
+> geometryTransition must be used with [animateTo](./cj-apis-uicontext-uicontext.md#func-animatetoanimateparam-voidcallback) to achieve animation effects. The animation duration and curve follow the configuration in [animateTo](./cj-apis-uicontext-uicontext.md#func-animatetoanimateparam-voidcallback) and do not support [animation](./cj-animation-animation.md) implicit animations.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| id | String | Yes | - | Sets the binding relationship. Setting id to an empty string clears the binding to avoid participation in shared behavior. The id can be changed to re-establish binding relationships. Only two components can be bound to the same id, and they must play different in/out roles. Multiple components cannot share the same id. |
-| followWithoutTransition | Bool | No | false | Whether to follow without transition animation. |
+| id | ?String | Yes | - | Used to establish binding relationships. Setting id to an empty string clears the binding to avoid participation in sharing behavior. The id can be changed to re-establish binding relationships. Only two components can be bound to the same id, and they must be of different in/out roles. Multiple components cannot share the same id.<br>Initial value: "". |
+| followWithoutTransition | ?Bool | No | None | **Named parameter.** Used only in if paradigms to mark whether components always present in the component tree should follow the shared animation. Initial value: false |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| T | Returns the component instance. |
 
 ## Example Code
 
@@ -35,7 +45,8 @@ public func geometryTransition(id: String, followWithoutTransition!: Bool = fals
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component

@@ -15,7 +15,7 @@ API sample code usage instructions:
 - If the sample code's first line contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the aforementioned sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class BatteryInfo
 
@@ -27,7 +27,7 @@ public class BatteryInfo {}
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop batteryCapacityLevel
 
@@ -35,15 +35,15 @@ public class BatteryInfo {}
 public static prop batteryCapacityLevel: BatteryCapacityLevel
 ```
 
-**Function:** Indicates the current battery charge level of the device.
+**Function:** Indicates the current device's battery charge level.
 
 **Type:** [BatteryCapacityLevel](#enum-batterycapacitylevel)
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop batterySOC
 
@@ -51,15 +51,15 @@ public static prop batteryCapacityLevel: BatteryCapacityLevel
 public static prop batterySOC: Int32
 ```
 
-**Function:** Indicates the current remaining battery percentage of the device.
+**Function:** Indicates the current device's remaining battery percentage.
 
 **Type:** Int32
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop batteryTemperature
 
@@ -67,15 +67,15 @@ public static prop batterySOC: Int32
 public static prop batteryTemperature: Int32
 ```
 
-**Function:** Indicates the current battery temperature of the device.
+**Function:** Indicates the current device's battery temperature.
 
 **Type:** Int32
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop chargingStatus
 
@@ -83,15 +83,15 @@ public static prop batteryTemperature: Int32
 public static prop chargingStatus: BatteryChargeState
 ```
 
-**Function:** Indicates the current charging state of the device's battery.
+**Function:** Indicates the current device's battery charging status.
 
 **Type:** [BatteryChargeState](#enum-batterychargestate)
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop healthStatus
 
@@ -99,15 +99,15 @@ public static prop chargingStatus: BatteryChargeState
 public static prop healthStatus: BatteryHealthState
 ```
 
-**Function:** Indicates the current health status of the device's battery.
+**Function:** Indicates the current device's battery health status.
 
 **Type:** [BatteryHealthState](#enum-batteryhealthstate)
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop isBatteryPresent
 
@@ -115,15 +115,15 @@ public static prop healthStatus: BatteryHealthState
 public static prop isBatteryPresent: Bool
 ```
 
-**Function:** Indicates whether the device supports a battery or if the battery is present.
+**Function:** Indicates whether the current device supports a battery or if the battery is present.
 
 **Type:** Bool
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop nowCurrent
 
@@ -131,15 +131,15 @@ public static prop isBatteryPresent: Bool
 public static prop nowCurrent: Int32
 ```
 
-**Function:** Indicates the current battery current of the device.
+**Function:** Indicates the current device's battery current.
 
 **Type:** Int32
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop pluggedType
 
@@ -151,11 +151,11 @@ public static prop pluggedType: BatteryPluggedType
 
 **Type:** [BatteryPluggedType](#enum-batterypluggedtype)
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop technology
 
@@ -163,15 +163,15 @@ public static prop pluggedType: BatteryPluggedType
 public static prop technology: String
 ```
 
-**Function:** Indicates the current battery technology model of the device.
+**Function:** Indicates the current device's battery technology model.
 
 **Type:** String
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### static prop voltage
 
@@ -179,15 +179,15 @@ public static prop technology: String
 public static prop voltage: Int32
 ```
 
-**Function:** Indicates the current battery voltage of the device.
+**Function:** Indicates the current device's battery voltage.
 
 **Type:** Int32
 
-**Read/Write Capability:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ## enum BatteryCapacityLevel
 
@@ -208,7 +208,7 @@ public enum BatteryCapacityLevel <: Equatable<BatteryCapacityLevel> & ToString {
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -225,7 +225,7 @@ LevelCritical
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### LevelFull
 
@@ -237,7 +237,7 @@ LevelFull
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### LevelHigh
 
@@ -249,7 +249,7 @@ LevelHigh
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### LevelLow
 
@@ -261,7 +261,7 @@ LevelLow
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### LevelNormal
 
@@ -273,7 +273,7 @@ LevelNormal
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### LevelShutdown
 
@@ -285,7 +285,7 @@ LevelShutdown
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### LevelWarning
 
@@ -297,7 +297,7 @@ LevelWarning
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### func !=(BatteryCapacityLevel)
 
@@ -369,7 +369,7 @@ public enum BatteryChargeState <: Equatable<BatteryChargeState> & ToString {
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -386,7 +386,7 @@ Disabled
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### Enabled
 
@@ -398,7 +398,7 @@ Enabled
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### Full
 
@@ -406,11 +406,11 @@ Enabled
 Full
 ```
 
-**Function:** Indicates the battery is fully charged.
+**Function:** Indicates the battery charging state is fully charged.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### UnknownChargeState
 
@@ -422,7 +422,7 @@ UnknownChargeState
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### func !=(BatteryChargeState)
 
@@ -490,11 +490,11 @@ public enum BatteryHealthState <: Equatable<BatteryHealthState> & ToString {
 }
 ```
 
-**Description:** Represents battery health status.
+**Function:** Represents battery health status.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -507,11 +507,11 @@ public enum BatteryHealthState <: Equatable<BatteryHealthState> & ToString {
 Cold
 ```
 
-**Description:** Indicates the battery health status is in cold condition.
+**Function:** Indicates the battery health status is cold.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Dead
 
@@ -519,11 +519,11 @@ Cold
 Dead
 ```
 
-**Description:** Indicates the battery health status is dead.
+**Function:** Indicates the battery health status is dead.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Good
 
@@ -531,11 +531,11 @@ Dead
 Good
 ```
 
-**Description:** Indicates the battery health status is normal.
+**Function:** Indicates the battery health status is normal.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Overheat
 
@@ -543,11 +543,11 @@ Good
 Overheat
 ```
 
-**Description:** Indicates the battery health status is overheating.
+**Function:** Indicates the battery health status is overheating.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Overvoltage
 
@@ -555,11 +555,11 @@ Overheat
 Overvoltage
 ```
 
-**Description:** Indicates the battery health status is in overvoltage condition.
+**Function:** Indicates the battery health status is overvoltage.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### UnknownHealthState
 
@@ -567,11 +567,11 @@ Overvoltage
 UnknownHealthState
 ```
 
-**Description:** Indicates the battery health status is unknown.
+**Function:** Indicates the battery health status is unknown.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(BatteryHealthState)
 
@@ -579,19 +579,19 @@ UnknownHealthState
 public operator func !=(other: BatteryHealthState): Bool
 ```
 
-**Description:** Compares battery health states for inequality.
+**Function:** Compares battery health states for inequality.
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[BatteryHealthState](#enum-batteryhealthstate)|Yes|-|Battery health status.|
+| other | [BatteryHealthState](#enum-batteryhealthstate) | Yes | - | Battery health state. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool| Returns true if battery health states differ, otherwise returns false. |
+| Bool | Returns true if battery health states differ, otherwise false. |
 
 ### func ==(BatteryHealthState)
 
@@ -599,19 +599,19 @@ public operator func !=(other: BatteryHealthState): Bool
 public operator func ==(other: BatteryHealthState): Bool
 ```
 
-**Description:** Compares battery health states for equality.
+**Function:** Compares battery health states for equality.
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[BatteryHealthState](#enum-batteryhealthstate)|Yes|-|Battery health status.|
+| other | [BatteryHealthState](#enum-batteryhealthstate) | Yes | - | Battery health state. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool| Returns true if battery health states are identical, otherwise returns false. |
+| Bool | Returns true if battery health states are identical, otherwise false. |
 
 ### func toString()
 
@@ -619,13 +619,13 @@ public operator func ==(other: BatteryHealthState): Bool
 public func toString(): String
 ```
 
-**Description:** Returns the string representation of battery health status.
+**Function:** Returns the string representation of battery health state.
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String| String corresponding to the battery health status value. |
+| String | String corresponding to the battery health state value. |
 
 ## enum BatteryPluggedType
 
@@ -639,11 +639,11 @@ public enum BatteryPluggedType <: Equatable<BatteryPluggedType> & ToString {
 }
 ```
 
-**Description:** Represents connected charger types.
+**Function:** Represents the type of connected charger.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -656,11 +656,11 @@ public enum BatteryPluggedType <: Equatable<BatteryPluggedType> & ToString {
 Ac
 ```
 
-**Description:** Indicates the connected charger type is AC charger.
+**Function:** Indicates the connected charger type is AC charger.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### UnknownType
 
@@ -668,11 +668,11 @@ Ac
 UnknownType
 ```
 
-**Description:** Indicates the connected charger type is not obtained.
+**Function:** Indicates the connected charger type is not obtained.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Usb
 
@@ -680,11 +680,11 @@ UnknownType
 Usb
 ```
 
-**Description:** Indicates the connected charger type is USB.
+**Function:** Indicates the connected charger type is USB.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Wireless
 
@@ -692,11 +692,11 @@ Usb
 Wireless
 ```
 
-**Description:** Indicates the connected charger type is wireless charger.
+**Function:** Indicates the connected charger type is wireless charger.
 
 **System Capability:** SystemCapability.PowerManager.BatteryManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(BatteryPluggedType)
 
@@ -704,19 +704,19 @@ Wireless
 public operator func !=(other: BatteryPluggedType): Bool
 ```
 
-**Description:** Compares charger types for inequality.
+**Function:** Compares charger types for inequality.
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[BatteryPluggedType](#enum-batterypluggedtype)|Yes|-|Charger type.|
+| other | [BatteryPluggedType](#enum-batterypluggedtype) | Yes | - | Charger type. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool| Returns true if charger types differ, otherwise returns false. |
+| Bool | Returns true if charger types differ, otherwise false. |
 
 ### func ==(BatteryPluggedType)
 
@@ -724,19 +724,19 @@ public operator func !=(other: BatteryPluggedType): Bool
 public operator func ==(other: BatteryPluggedType): Bool
 ```
 
-**Description:** Compares charger types for equality.
+**Function:** Compares charger types for equality.
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[BatteryPluggedType](#enum-batterypluggedtype)|Yes|-|Charger type.|
+| other | [BatteryPluggedType](#enum-batterypluggedtype) | Yes | - | Charger type. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool| Returns true if charger types are identical, otherwise returns false. |
+| Bool | Returns true if charger types are identical, otherwise false. |
 
 ### func toString()
 
@@ -744,10 +744,10 @@ public operator func ==(other: BatteryPluggedType): Bool
 public func toString(): String
 ```
 
-**Description:** Returns the string representation of charger type information.
+**Function:** Returns the string representation of charger type information.
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String| String corresponding to the charger type value. |
+| String | String corresponding to the charger type value. |

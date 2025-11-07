@@ -19,9 +19,9 @@ ohos.permission.SET_WIFI_INFO
 API sample code usage instructions:
 
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration must be done in the "main_ability.cj" file of the Cangjie template project.
+- If the sample requires obtaining [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration is needed in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template, refer to [Cangjie Sample Code Description](../cj-development-intro.md).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md).
 
 ## func getScanInfoList()
 
@@ -35,13 +35,13 @@ public func getScanInfoList(): Array<WifiScanInfo>
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<[WifiScanInfo](#class-wifiscaninfo)> | Returns the list of scanned hotspots. If the application has requested the ohos.permission.GET_WIFI_PEERS_MAC permission (only system applications can request), the bssid in the returned results will be the real device address; otherwise, it will be a randomized device address. |
+|:----|:----|
+| Array\<[WifiScanInfo](#class-wifiscaninfo)> | Returns the list of scanned hotspots. If the application has requested the ohos.permission.GET_WIFI_PEERS_MAC permission (only system applications can request this), the bssid in the returned results will be the actual device address; otherwise, it will be a randomized device address. |
 
 **Exceptions:**
 
@@ -53,6 +53,24 @@ public func getScanInfoList(): Array<WifiScanInfo>
   | 801 | Capability not supported. |
   | 2501000 | Operation failed. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let scanInfoList = getScanInfoList()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ## func isWifiActive()
 
 ```cangjie
@@ -63,12 +81,12 @@ public func isWifiActive(): Bool
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Bool | true: enabled, false: disabled. |
 
 **Exceptions:**
@@ -80,6 +98,24 @@ public func isWifiActive(): Bool
   | 801 | Capability not supported. |
   | 2501000 | Operation failed. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let isWifiActive = isWifiActive()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ## func off(WifiCallbackType, ?CallbackObject)
 
 ```cangjie
@@ -88,16 +124,16 @@ public func off(eventType: WifiCallbackType, callback!: ?CallbackObject = None):
 
 **Description:** Unregisters WLAN state change events.
 
-**Required Permission:** ohos.GET_WIFI_INFO
+**Required Permission:** ohos.permission.GET_WIFI_INFO
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | eventType | [WifiCallbackType](#enum-wificallbacktype) | Yes | - | Callback event. |
 | callback | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No | None | **Named parameter.** State change callback function. If no callback parameter is provided, all callback functions associated with the event will be unregistered. |
 
@@ -111,6 +147,36 @@ public func off(eventType: WifiCallbackType, callback!: ?CallbackObject = None):
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import ohos.callback_invoke.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    class WifiCallback <: Callback1Argument<Int32> {
+        public func invoke(err: ?BusinessException, arg: Int32) {
+            Hilog.info(0, "test", "invoke success", "")
+        }
+    }
+
+    let callback = WifiCallback()
+    // Register event
+    on(WifiScanStateChange, callback)
+    // Unregister event
+    off(WifiScanStateChange, callback: callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ## func on(WifiCallbackType, Callback1Argument\<Int32>)
 
 ```cangjie
@@ -119,16 +185,16 @@ public func on(eventType: WifiCallbackType, callback: Callback1Argument<Int32>):
 
 **Description:** Registers WLAN state change events.
 
-**Required Permission:** ohos.GET_WIFI_INFO
+**Required Permission:** ohos.permission.GET_WIFI_INFO
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | eventType | [WifiCallbackType](#enum-wificallbacktype) | Yes | - | Callback event. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32> | Yes | - | State change callback function. |
 
@@ -142,19 +208,49 @@ public func on(eventType: WifiCallbackType, callback: Callback1Argument<Int32>):
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import ohos.callback_invoke.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    class WifiCallback <: Callback1Argument<Int32> {
+        public func invoke(err: ?BusinessException, arg: Int32) {
+            Hilog.info(0, "test", "invoke success", "")
+        }
+    }
+
+    let callback = WifiCallback()
+    // Register event
+    on(WifiScanStateChange, callback)
+    // Unregister event
+    off(WifiScanStateChange, callback: callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ## func p2pCancelConnect()
 
 ```cangjie
 public func p2pCancelConnect(): Unit
 ```
 
-**Description:** Cancels P2P connection during the connection process.
+**Description:** Cancels a P2P connection during the connection process.
 
 **Required Permission:** ohos.permission.GET_WIFI_INFO
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -166,6 +262,24 @@ public func p2pCancelConnect(): Unit
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
   | 2801001 | Wi-Fi STA disabled. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    p2pCancelConnect()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func p2pConnect(WifiP2PConfig)
 
@@ -173,19 +287,19 @@ public func p2pCancelConnect(): Unit
 public func p2pConnect(config: WifiP2PConfig): Unit
 ```
 
-**Description:** Executes P2P connection.
+**Description:** Initiates a P2P connection.
 
 **Required Permission:** ohos.permission.GET_WIFI_INFO
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| config | [WifiP2PConfig](#class-wifip2pconfig) | Yes | - | Connection configuration information. If DeviceAddressType is not specified, it defaults to random device address type. |
+|:---|:---|:---|:---|:---|
+| config | [WifiP2PConfig](#class-wifip2pconfig) | Yes | - | Connection configuration information. If DeviceAddressType is not specified, it defaults to the randomized device address type. |
 
 **Exceptions:**
 
@@ -197,6 +311,25 @@ public func p2pConnect(config: WifiP2PConfig): Unit
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
   | 2801001 | Wi-Fi STA disabled. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let config = WifiP2PConfig("xx:xx:xx:xx", -2, "", "", GroupOwnerBand.GoBandAuto)
+    p2pConnect(config)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func startDiscoverDevices()
 
@@ -210,7 +343,7 @@ public func startDiscoverDevices(): Unit
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -222,6 +355,24 @@ public func startDiscoverDevices(): Unit
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
   | 2801001 | Wi-Fi STA disabled. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    startDiscoverDevices()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func stopDiscoverDevices()
 
@@ -235,7 +386,7 @@ public func stopDiscoverDevices(): Unit
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -248,7 +399,23 @@ public func stopDiscoverDevices(): Unit
   | 2801000 | Operation failed. |
   | 2801001 | Wi-Fi STA disabled. |
 
-## class WifiInfoElem
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    stopDiscoverDevices()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class WifiInfoElem
 
 ```cangjie
 public class WifiInfoElem {
@@ -257,11 +424,11 @@ public class WifiInfoElem {
 }
 ```
 
-**Description:** WLAN hotspot information.
+**Functionality:** WLAN hotspot information.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var content
 
@@ -269,13 +436,13 @@ public class WifiInfoElem {
 public var content: Array<UInt8>
 ```
 
-**Description:** Element content.
+**Functionality:** Element content.
 
 **Type:** Array\<UInt8>
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var eid
 
@@ -283,13 +450,13 @@ public var content: Array<UInt8>
 public var eid: UInt32
 ```
 
-**Description:** Element ID.
+**Functionality:** Element ID.
 
 **Type:** UInt32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ## class WifiP2PConfig
 
@@ -312,11 +479,11 @@ public class WifiP2PConfig {
 }
 ```
 
-**Description:** Represents P2P configuration information.
+**Functionality:** Represents P2P configuration information.
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var deviceAddress
 
@@ -324,13 +491,13 @@ public class WifiP2PConfig {
 public var deviceAddress: String
 ```
 
-**Description:** Device address.
+**Functionality:** Device address.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var deviceAddressType
 
@@ -338,13 +505,13 @@ public var deviceAddress: String
 public var deviceAddressType: DeviceAddressType
 ```
 
-**Description:** Device address type.
+**Functionality:** Device address type.
 
 **Type:** [DeviceAddressType](#enum-deviceaddresstype)
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var goBand
 
@@ -352,13 +519,13 @@ public var deviceAddressType: DeviceAddressType
 public var goBand: GroupOwnerBand
 ```
 
-**Description:** Group bandwidth.
+**Functionality:** Group bandwidth.
 
 **Type:** [GroupOwnerBand](#enum-groupownerband)
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var groupName
 
@@ -366,13 +533,13 @@ public var goBand: GroupOwnerBand
 public var groupName: String
 ```
 
-**Description:** Group name.
+**Functionality:** Group name.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var netId
 
@@ -380,13 +547,13 @@ public var groupName: String
 public var netId: Int32
 ```
 
-**Description:** Network ID. When creating a group, -1 indicates creating a temporary group, and -2 indicates creating a persistent group.
+**Functionality:** Network ID. When creating a group, -1 indicates creating a temporary group, and -2 indicates creating a permanent group.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var passphrase
 
@@ -394,13 +561,13 @@ public var netId: Int32
 public var passphrase: String
 ```
 
-**Description:** Group passphrase.
+**Functionality:** Group passphrase.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 ### init(String, Int32, String, String, GroupOwnerBand, DeviceAddressType)
 
@@ -415,22 +582,24 @@ public init(
 )
 ```
 
-**Description:** Constructs a WifiP2PConfig instance.
+**Functionality:** Constructs a WifiP2PConfig instance.
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
 | deviceAddress | String | Yes | - | Device address. |
-| netId | Int32 | Yes | - | Network ID. When creating a group, -1 indicates creating a temporary group, and -2 indicates creating a persistent group. |
+| netId | Int32 | Yes | - | Network ID. When creating a group, -1 indicates creating a temporary group, and -2 indicates creating a permanent group. |
 | passphrase | String | Yes | - | Group passphrase. |
 | groupName | String | Yes | - | Group name. |
 | goBand | [GroupOwnerBand](#enum-groupownerband) | Yes | - | Group bandwidth. |
-| deviceAddressType | [DeviceAddressType](#enum-deviceaddresstype) | No | RandomDeviceAddress | **Named parameter.** Device address type. |## class WifiScanInfo
+| deviceAddressType | [DeviceAddressType](#enum-deviceaddresstype) | No | RandomDeviceAddress | **Named parameter.** Device address type. > |
+
+## class WifiScanInfo
 
 ```cangjie
 public class WifiScanInfo {
@@ -452,11 +621,11 @@ public class WifiScanInfo {
 }
 ```
 
-**Description:** WLAN hotspot information.
+**Functionality:** WLAN hotspot information.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var band
 
@@ -464,13 +633,13 @@ public class WifiScanInfo {
 public var band: Int32
 ```
 
-**Description:** Frequency band of the WLAN access point, where 1: 2.4GHz; 2: 5GHz.
+**Functionality:** The frequency band of the WLAN access point, where 1: 2.4GHz; 2: 5GHz.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var bssid
 
@@ -478,13 +647,13 @@ public var band: Int32
 public var bssid: String
 ```
 
-**Description:** BSSID of the hotspot, e.g., 00:11:22:33:44:55.
+**Functionality:** The BSSID of the hotspot, e.g., 00:11:22:33:44:55.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var bssidType
 
@@ -492,13 +661,13 @@ public var bssid: String
 public var bssidType: DeviceAddressType
 ```
 
-**Description:** BSSID type of the hotspot.
+**Functionality:** The BSSID type of the hotspot.
 
 **Type:** [DeviceAddressType](#enum-deviceaddresstype)
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var capabilities
 
@@ -506,13 +675,13 @@ public var bssidType: DeviceAddressType
 public var capabilities: String
 ```
 
-**Description:** Hotspot capabilities.
+**Functionality:** Hotspot capabilities.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var centerFrequency0
 
@@ -520,13 +689,13 @@ public var capabilities: String
 public var centerFrequency0: Int32
 ```
 
-**Description:** Center frequency of the hotspot.
+**Functionality:** The center frequency of the hotspot.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var centerFrequency1
 
@@ -534,13 +703,13 @@ public var centerFrequency0: Int32
 public var centerFrequency1: Int32
 ```
 
-**Description:** Center frequency of the hotspot. If the hotspot uses two non-overlapping WLAN channels, two center frequencies are returned, represented by centerFrequency0 and centerFrequency1 respectively.
+**Functionality:** The center frequency of the hotspot. If the hotspot uses two non-overlapping WLAN channels, two center frequencies are returned, represented by centerFrequency0 and centerFrequency1 respectively.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var channelWidth
 
@@ -548,13 +717,13 @@ public var centerFrequency1: Int32
 public var channelWidth: Int32
 ```
 
-**Description:** Bandwidth of the WLAN access point.
+**Functionality:** The bandwidth of the WLAN access point.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var frequency
 
@@ -562,13 +731,13 @@ public var channelWidth: Int32
 public var frequency: Int32
 ```
 
-**Description:** Frequency of the WLAN access point.
+**Functionality:** The frequency of the WLAN access point.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var infoElems
 
@@ -576,13 +745,13 @@ public var frequency: Int32
 public var infoElems: Array<WifiInfoElem>
 ```
 
-**Description:** Information elements.
+**Functionality:** Information elements.
 
 **Type:** Array\<[WifiInfoElem](#class-wifiinfoelem)>
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var isHiLinkNetwork
 
@@ -590,13 +759,13 @@ public var infoElems: Array<WifiInfoElem>
 public var isHiLinkNetwork: Bool
 ```
 
-**Description:** Whether the hotspot supports HiLink, where true: supported, &nbsp;false: not supported.
+**Functionality:** Whether the hotspot supports HiLink, true: supported, &nbsp;false: not supported.
 
 **Type:** Bool
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var rssi
 
@@ -604,13 +773,13 @@ public var isHiLinkNetwork: Bool
 public var rssi: Int32
 ```
 
-**Description:** Signal strength of the hotspot (dBm).
+**Functionality:** The signal strength (dBm) of the hotspot.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var securityType
 
@@ -618,13 +787,13 @@ public var rssi: Int32
 public var securityType: WifiSecurityType
 ```
 
-**Description:** WLAN encryption type.
+**Functionality:** WLAN encryption type.
 
 **Type:** [WifiSecurityType](#enum-wifisecuritytype)
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var ssid
 
@@ -632,13 +801,13 @@ public var securityType: WifiSecurityType
 public var ssid: String
 ```
 
-**Description:** SSID of the hotspot, with a maximum length of 32 bytes, encoded in UTF-8.
+**Functionality:** The SSID of the hotspot, with a maximum length of 32 bytes, encoded in UTF-8.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var supportedWifiCategory
 
@@ -646,13 +815,13 @@ public var ssid: String
 public var supportedWifiCategory: WifiCategory
 ```
 
-**Description:** Highest WiFi category supported by the hotspot.
+**Functionality:** The highest WiFi category supported by the hotspot.
 
 **Type:** [WifiCategory](#enum-wificategory)
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var timestamp
 
@@ -660,15 +829,13 @@ public var supportedWifiCategory: WifiCategory
 public var timestamp: Int64
 ```
 
-**Description:** Timestamp.
+**Functionality:** Timestamp.
 
 **Type:** Int64
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
-
-## enum DeviceAddressType
+**Initial Version:** 22## enum DeviceAddressType
 
 ```cangjie
 public enum DeviceAddressType <: Equatable<DeviceAddressType> & ToString {
@@ -682,7 +849,7 @@ public enum DeviceAddressType <: Equatable<DeviceAddressType> & ToString {
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -699,7 +866,7 @@ RandomDeviceAddress
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### RealDeviceAddress
 
@@ -711,7 +878,7 @@ RealDeviceAddress
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(DeviceAddressType)
 
@@ -719,23 +886,23 @@ RealDeviceAddress
 public operator func !=(other: DeviceAddressType): Bool
 ```
 
-**Description:** Determines whether two enum values are not equal.
+**Description:** Determines whether two enum values are unequal.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[DeviceAddressType](#enum-deviceaddresstype)|Yes|-|Another enum value.|
+| other | [DeviceAddressType](#enum-deviceaddresstype) | Yes | - | Another enum value. |
 
-**Returns:**
+**Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are unequal, otherwise returns `false`. |
 
 ### func ==(DeviceAddressType)
 
@@ -747,15 +914,15 @@ public operator func ==(other: DeviceAddressType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[DeviceAddressType](#enum-deviceaddresstype)|Yes|-|Another enum value.|
+| other | [DeviceAddressType](#enum-deviceaddresstype) | Yes | - | Another enum value. |
 
-**Returns:**
+**Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
 
 ### func toString()
 
@@ -765,11 +932,11 @@ public func toString(): String
 
 **Description:** Gets the value of the enum.
 
-**Returns:**
+**Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|Description of the enum.|
+| String | The description of the enum. |
 
 ## enum GroupOwnerBand
 
@@ -786,7 +953,7 @@ public enum GroupOwnerBand <: Equatable<GroupOwnerBand> & ToString {
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -803,7 +970,7 @@ GoBand2GHz
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 ### GoBand5GHz
 
@@ -815,7 +982,7 @@ GoBand5GHz
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 ### GoBandAuto
 
@@ -827,7 +994,7 @@ GoBandAuto
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(GroupOwnerBand)
 
@@ -835,23 +1002,23 @@ GoBandAuto
 public operator func !=(other: GroupOwnerBand): Bool
 ```
 
-**Description:** Determines whether two enum values are not equal.
+**Description:** Determines whether two enum values are unequal.
 
 **System Capability:** SystemCapability.Communication.WiFi.P2P
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[GroupOwnerBand](#enum-groupownerband)|Yes|-|Another enum value.|
+| other | [GroupOwnerBand](#enum-groupownerband) | Yes | - | Another enum value. |
 
-**Returns:**
+**Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are unequal, otherwise returns `false`. |
 
 ### func ==(GroupOwnerBand)
 
@@ -863,15 +1030,15 @@ public operator func ==(other: GroupOwnerBand): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[GroupOwnerBand](#enum-groupownerband)|Yes|-|Another enum value.|
+| other | [GroupOwnerBand](#enum-groupownerband) | Yes | - | Another enum value. |
 
-**Returns:**
+**Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
 
 ### func toString()
 
@@ -881,13 +1048,13 @@ public func toString(): String
 
 **Description:** Gets the value of the enum.
 
-**Returns:**
+**Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|Description of the enum.|
+| String | The description of the enum. |
 
-```## enum WifiCallbackType
+## enum WifiCallbackType
 
 ```cangjie
 public enum WifiCallbackType <: Equatable<WifiCallbackType> & Hashable & ToString {
@@ -896,11 +1063,11 @@ public enum WifiCallbackType <: Equatable<WifiCallbackType> & Hashable & ToStrin
 }
 ```
 
-**Description:** WLAN callback trigger event types.
+**Description:** WLAN callback trigger event type.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -918,7 +1085,7 @@ WifiScanStateChange
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(WifiCallbackType)
 
@@ -930,15 +1097,15 @@ public operator func !=(other: WifiCallbackType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[WifiCallbackType](#enum-wificallbacktype)|Yes|-|Another enum value.|
+| other | [WifiCallbackType](#enum-wificallbacktype) | Yes | - | Another enum value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are unequal, otherwise returns `false`. |
 
 ### func ==(WifiCallbackType)
 
@@ -950,15 +1117,15 @@ public operator func ==(other: WifiCallbackType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[WifiCallbackType](#enum-wificallbacktype)|Yes|-|Another enum value.|
+| other | [WifiCallbackType](#enum-wificallbacktype) | Yes | - | Another enum value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
 
 ### func hashCode()
 
@@ -966,13 +1133,13 @@ public operator func ==(other: WifiCallbackType): Bool
 public func hashCode(): Int64
 ```
 
-**Description:** Obtains the hash value of the input data.
+**Description:** Gets the hash value of the input data.
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Int64|The hash value of the data.|
+| Int64 | The hash value of the data. |
 
 ### func toString()
 
@@ -980,13 +1147,13 @@ public func hashCode(): Int64
 public func toString(): String
 ```
 
-**Description:** Obtains the value of the enum.
+**Description:** Gets the value of the enum.
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|The description of the enum.|
+| String | The description of the enum. |
 
 ## enum WifiCategory
 
@@ -999,11 +1166,11 @@ public enum WifiCategory <: Equatable<WifiCategory> & ToString {
 }
 ```
 
-**Description:** Indicates the highest WiFi category supported by the hotspot.
+**Description:** Represents the highest WiFi category supported by the hotspot.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1016,11 +1183,11 @@ public enum WifiCategory <: Equatable<WifiCategory> & ToString {
 Default
 ```
 
-**Description:** Default. WiFi categories below WiFi6.
+**Description:** Default. WiFi categories below WiFi 6.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 ### Wifi6
 
@@ -1028,11 +1195,11 @@ Default
 Wifi6
 ```
 
-**Description:** WiFi6.
+**Description:** WiFi 6.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 ### Wifi6Plus
 
@@ -1040,11 +1207,11 @@ Wifi6
 Wifi6Plus
 ```
 
-**Description:** WiFi6+.
+**Description:** WiFi 6+.
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(WifiCategory)
 
@@ -1056,19 +1223,19 @@ public operator func !=(other: WifiCategory): Bool
 
 **System Capability:** SystemCapability.Communication.WiFi.STA
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[WifiCategory](#enum-wificategory)|Yes|-|Another enum value.|
+| other | [WifiCategory](#enum-wificategory) | Yes | - | Another enum value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are unequal, otherwise returns `false`. |
 
 ### func ==(WifiCategory)
 
@@ -1080,15 +1247,15 @@ public operator func ==(other: WifiCategory): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[WifiCategory](#enum-wificategory)|Yes|-|Another enum value.|
+| other | [WifiCategory](#enum-wificategory) | Yes | - | Another enum value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
 
 ### func toString()
 
@@ -1096,15 +1263,13 @@ public operator func ==(other: WifiCategory): Bool
 public func toString(): String
 ```
 
-**Description:** Obtains the value of the enum.
+**Description:** Gets the value of the enum.
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|The description of the enum.|
-
-## enum WifiSecurityType
+| String | The description of the enum. |## enum WifiSecurityType
 
 ```cangjie
 public enum WifiSecurityType <: Equatable<WifiSecurityType> & ToString {
@@ -1122,11 +1287,11 @@ public enum WifiSecurityType <: Equatable<WifiSecurityType> & ToString {
 }
 ```
 
-**Description:** Indicates encryption types.
+**Function:** Represents encryption types.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1139,11 +1304,11 @@ public enum WifiSecurityType <: Equatable<WifiSecurityType> & ToString {
 WifiSecTypeEap
 ```
 
-**Description:** EAP encryption type.
+**Function:** EAP encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeEapSuiteB
 
@@ -1151,11 +1316,11 @@ WifiSecTypeEap
 WifiSecTypeEapSuiteB
 ```
 
-**Description:** Suite-B 192-bit encryption type.
+**Function:** Suite-B 192-bit encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeInvalid
 
@@ -1163,11 +1328,11 @@ WifiSecTypeEapSuiteB
 WifiSecTypeInvalid
 ```
 
-**Description:** Invalid encryption type.
+**Function:** Invalid encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeOpen
 
@@ -1175,11 +1340,11 @@ WifiSecTypeInvalid
 WifiSecTypeOpen
 ```
 
-**Description:** Open encryption type.
+**Function:** Open encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeOwe
 
@@ -1187,11 +1352,11 @@ WifiSecTypeOpen
 WifiSecTypeOwe
 ```
 
-**Description:** Opportunistic Wireless Encryption (OWE) type.
+**Function:** Opportunistic Wireless Encryption (OWE) type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypePsk
 
@@ -1199,11 +1364,11 @@ WifiSecTypeOwe
 WifiSecTypePsk
 ```
 
-**Description:** Pre-shared key (PSK) encryption type.
+**Function:** Pre-shared key (PSK) encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeSae
 
@@ -1211,11 +1376,11 @@ WifiSecTypePsk
 WifiSecTypeSae
 ```
 
-**Description:** Simultaneous Authentication of Equals (SAE) encryption type.
+**Function:** Simultaneous Authentication of Equals (SAE) encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeWapiCert
 
@@ -1223,11 +1388,11 @@ WifiSecTypeSae
 WifiSecTypeWapiCert
 ```
 
-**Description:** WAPI-Cert encryption type.
+**Function:** WAPI-Cert encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeWapiPsk
 
@@ -1235,11 +1400,11 @@ WifiSecTypeWapiCert
 WifiSecTypeWapiPsk
 ```
 
-**Description:** WAPI-PSK encryption type.
+**Function:** WAPI-PSK encryption type.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WifiSecTypeWep
 
@@ -1247,11 +1412,11 @@ WifiSecTypeWapiPsk
 WifiSecTypeWep
 ```
 
-**Description:** Wired Equivalent Privacy (WEP) encryption type. This encryption type is not supported by candidate network configurations.
+**Function:** Wired Equivalent Privacy (WEP) encryption type. This encryption type is not supported by candidate network configurations.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(WifiSecurityType)
 
@@ -1259,23 +1424,23 @@ WifiSecTypeWep
 public operator func !=(other: WifiSecurityType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enumeration values are unequal.
 
 **System Capability:** SystemCapability.Communication.WiFi.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 |Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WifiSecurityType](#enum-wifisecuritytype)|Yes|-|Another enum value.|
+|other|[WifiSecurityType](#enum-wifisecuritytype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are unequal, otherwise returns false.|
 
 ### func ==(WifiSecurityType)
 
@@ -1283,33 +1448,21 @@ public operator func !=(other: WifiSecurityType): Bool
 public operator func ==(other: WifiSecurityType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
 |Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WifiSecurityType](#enum-wifisecuritytype)|Yes|-|Another enum value.|
+|other|[WifiSecurityType](#enum-wifisecuritytype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
 
 ### func toString()
-
-```cangjie
-public func toString(): String
-```
-
-**Description:** Obtains the value of the enum.
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|String|The description of the enum.|### func toString()
 
 ```cangjie
 public func toString(): String
@@ -1321,4 +1474,4 @@ public func toString(): String
 
 |Type|Description|
 |:----|:----|
-|String|The description of the enumeration.|
+|String|Description of the enumeration.|

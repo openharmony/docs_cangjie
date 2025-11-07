@@ -4,7 +4,7 @@
 >
 > The following describes only the module-specific error codes. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
-## 501 Unable to Invoke Interface
+## 501 Interface Call Failed
 
 **Error Message**
 
@@ -12,11 +12,11 @@ Resource unavailable.
 
 **Possible Causes**
 
-The image was passed across threads, making the original object unable to invoke the interface.
+The image was passed across threads, making the original object unable to call the interface.
 
 **Resolution Steps**
 
-Check the image and re-decode it following the specified instructions.
+Check the image and re-decode it following the instructions.
 
 ## 62980096 Operation Failed
 
@@ -34,7 +34,7 @@ Transaction operation failed.
 
 **Resolution Steps**
 
-Check the image and re-decode it following the specified instructions.
+Check the image and re-decode it following the instructions.
 
 ## 62980097 Operation Failed
 
@@ -51,7 +51,7 @@ Rpc error.
 
 **Resolution Steps**
 
-Check the image and re-decode it following the specified instructions.
+Check the image and re-decode it following the instructions.
 
 ## 62980098 Shared Memory Space Error
 
@@ -77,7 +77,7 @@ Shared memory data abnormal.
 
 **Possible Causes**
 
-1. Synchronization operations were not performed correctly during shared memory read/write.
+1. Shared memory read/write operations were not properly synchronized.
 2. Out-of-bounds access to shared memory.
 3. Invalid pointer usage.
 
@@ -100,7 +100,7 @@ Image decoding abnormal.
 
 **Resolution Steps**
 
-Check the image and re-decode it following the specified instructions.
+Check the image and re-decode it following the instructions.
 
 ## 62980101 Image Input Data Error
 
@@ -116,7 +116,7 @@ The image data is abnormal.
 
 **Resolution Steps**
 
-Re-enter the correct image.
+Re-enter the correct image data.
 
 ## 62980102 Image Memory Allocation Error
 
@@ -140,7 +140,7 @@ Image types are not supported.
 
 **Possible Causes**
 
-The type of the uploaded image is currently unsupported.
+The provided image type is currently unsupported.
 
 **Resolution Steps**
 
@@ -160,7 +160,7 @@ Image initialization abnormal.
 
 **Resolution Steps**
 
-Re-enter the correct parameters or replace the image.
+Re-enter correct parameters or use a different image.
 
 ## 62980105 Image Data Retrieval Error
 
@@ -175,7 +175,7 @@ Image get data abnormal.
 
 **Resolution Steps**
 
-Input a new image or check the image data.
+Provide a new image or check the image data.
 
 ## 62980106 Image Data Too Large
 
@@ -189,7 +189,7 @@ The image size is too large.
 
 **Resolution Steps**
 
-Replace with a smaller image.
+Use a smaller image.
 
 ## 62980107 Image Conversion Error
 
@@ -200,11 +200,11 @@ Image conversion abnormal.
 **Possible Causes**
 
 1. Image conversion was abnormally terminated.
-2. Incorrect encoding parameters were set.
+2. Incorrect encoding parameters.
 
 **Resolution Steps**
 
-Replace the image or set supported encoding parameters.
+Use a different image or set supported encoding parameters.
 
 ## 62980108 Image Color Conversion Error
 
@@ -214,12 +214,12 @@ Image color conversion is abnormal.
 
 **Possible Causes**
 
-1. Color conversion for this image type is unsupported.
+1. Color conversion is unsupported for the image type.
 2. Device malfunction.
 
 **Resolution Steps**
 
-Retry or replace the image type.
+Retry or use a different image type.
 
 ## 62980109 Cropping Error
 
@@ -248,7 +248,7 @@ Image source data is missing or corrupted.
 
 **Resolution Steps**
 
-Check the operation steps or replace the image.
+Check the operation steps or use a different image.
 
 ## 62980111 Incomplete Image Source Data
 
@@ -262,7 +262,7 @@ Image source data is missing.
 
 **Resolution Steps**
 
-Check the operation steps or replace the image.
+Check the operation steps or use a different image.
 
 ## 62980112 Image Format Mismatch
 
@@ -276,7 +276,7 @@ The image format is incompatible.
 
 **Resolution Steps**
 
-Replace with a compatible image type.
+Use a compatible image type.
 
 ## 62980113 Unknown Image Format
 
@@ -290,7 +290,7 @@ The image format is unsupported.
 
 **Resolution Steps**
 
-Replace the image.
+Use a different image.
 
 ## 62980114 Image Source Not Parsed
 
@@ -318,7 +318,7 @@ Invalid input parameters.
 
 **Resolution Steps**
 
-Re-enter the correct parameters.
+Re-enter correct parameters.
 
 ## 62980116 Decoding Failed
 
@@ -334,7 +334,7 @@ Decoding failed.
 
 **Resolution Steps**
 
-Check if the image was read or replace the image.
+Check if the image was read or use a different image.
 
 ## 62980117 Plugin Registration Failed
 
@@ -344,12 +344,12 @@ Failed to register plugin.
 
 **Possible Causes**
 
-1. No matching decoding or encoding plugin for the format.
+1. No matching decoding/encoding plugin for the format.
 2. Incorrect input data.
 
 **Resolution Steps**
 
-Replace the image or check the input data.
+Use a different image or check the input data.
 
 ## 62980118 Plugin Creation Failed
 
@@ -359,12 +359,12 @@ Failed to create plugin.
 
 **Possible Causes**
 
-1. No matching decoding or encoding plugin for the format.
+1. No matching decoding/encoding plugin for the format.
 2. Incorrect input data.
 
 **Resolution Steps**
 
-Replace the image or check the input data.
+Use a different image or check the input data.
 
 ## 62980119 Image Encoding Failed
 
@@ -379,7 +379,7 @@ Image encoding failed.
 
 **Resolution Steps**
 
-Replace the image or check the input data.
+Use a different image or check the input data.
 
 ## 62980120 Image Pixel Mapping Addition Failed
 
@@ -394,9 +394,9 @@ Image addition pixel mapping failed.
 
 **Resolution Steps**
 
-Check the mapping steps or replace the image.
+Check the mapping steps or use a different image.
 
-## 62980121 Hardware Image Decoding Unsupported
+## 62980121 Image Hardware Decoding Unsupported
 
 **Error Message**
 
@@ -404,11 +404,12 @@ Image hardware decoding is not supported.
 
 **Possible Causes**
 
-Hardware image decoding was used.
+Hardware decoding was attempted.
 
 **Resolution Steps**
 
-Use alternative decoding methods.## 62980122 Decoding Image Header Exception
+Use alternative decoding methods.```markdown
+## 62980122 Decoding Image Header Exception
 
 **Error Message**
 
@@ -421,7 +422,7 @@ Decoding image header abnormal.
 
 **Resolution Steps**
 
-Replace the image or verify image data integrity.
+Replace the image or inspect image data.
 
 ## 62980123 Image Does Not Support EXIF Decoding
 
@@ -445,8 +446,8 @@ The image property does not exist.
 
 **Possible Causes**
 
-1. Missing image properties.
-2. Unauthorized modifications made to the image.
+1. Missing image property.
+2. Unauthorized modification of the image.
 
 **Resolution Steps**
 
@@ -460,11 +461,11 @@ The EXIF data is out of range.
 
 **Possible Causes**
 
-Image property value exceeds valid range.
+Image property assignment exceeds valid range.
 
 **Resolution Steps**
 
-Replace the image or verify the range of specified image property values.
+Replace the image or verify the range of assigned image property values.
 
 ## 62980135 Invalid Image Property Value
 
@@ -478,7 +479,7 @@ Missing image property value.
 
 **Resolution Steps**
 
-Replace the image or verify image property values.
+Replace the image or inspect image property values.
 
 ## 62980137 Invalid Image Operation
 
@@ -502,13 +503,13 @@ The EXIF data failed to be written to the file.
 
 **Possible Causes**
 
-Abnormal image property values.
+Abnormal image property value.
 
 **Resolution Steps**
 
 Replace the image.
 
-## 62980149 Invalid Image Parameters
+## 62980149 Invalid Image Parameter
 
 **Error Message**
 
@@ -530,11 +531,11 @@ Failed to encode icc.
 
 **Possible Causes**
 
-Issues with image ICC profile information.
+Issues with image ICC information.
 
 **Resolution Steps**
 
-Verify image data or replace the image.
+Inspect image data or replace the image.
 
 ## 62980173 DMA Memory Space Error
 
@@ -544,8 +545,8 @@ The DMA memory does not exist.
 
 **Possible Causes**
 
-1. Insufficient memory allocation.
-2. Memory access violation.
+1. Insufficient memory size.
+2. Memory access out of bounds.
 3. Invalid pointer usage.
 
 **Resolution Steps**
@@ -561,7 +562,7 @@ The DMA memory data is abnormal.
 **Possible Causes**
 
 1. Improper synchronization during shared memory read/write operations.
-2. Memory access violation.
+2. Memory access out of bounds.
 3. Invalid pointer usage.
 
 **Resolution Steps**
@@ -576,11 +577,11 @@ Abnormal API environment.
 
 **Possible Causes**
 
-Issues with API runtime environment.
+Issues with API usage environment.
 
 **Resolution Steps**
 
-Verify SDK version compatibility.
+Verify SDK version.
 
 ## 62980178 PixelMap Creation Failure
 
@@ -591,11 +592,11 @@ Failed to create the PixelMap.
 **Possible Causes**
 
 1. Parameter errors (e.g., region size exceeds limits, illegal input values) causing creation failure.
-2. Premature instance release leading to creation failure.
+2. Premature release leading to instance creation failure.
 
 **Resolution Steps**
 
-Verify function parameters or check for premature instance release.
+Check function input parameters or verify premature instance release.
 
 ## 62980179 Abnormal Buffer Size
 
@@ -609,7 +610,7 @@ Parameter errors (e.g., region size exceeds limits, illegal input values) causin
 
 **Resolution Steps**
 
-Verify function parameters.
+Check function input parameters.
 
 ## 62980180 File Descriptor Mapping Failure
 
@@ -619,11 +620,11 @@ FD mapping failed.
 
 **Possible Causes**
 
-Issues with provided file descriptor.
+Issues with the provided file descriptor.
 
 **Resolution Steps**
 
-Verify if correct file descriptor was passed.
+Verify if the correct file descriptor was provided.
 
 ## 62980246 Failed to Read Pixel Map
 
@@ -633,12 +634,12 @@ Failed to read pixel map.
 
 **Possible Causes**
 
-1. Corrupted pixel map data.
-2. Insufficient read permissions for pixel map.
+1. Pixel map data error.
+2. Lack of permissions to read the pixel map.
 
 **Resolution Steps**
 
-Recreate pixel map or modify read permissions.
+Recreate the pixel map or modify read permissions.
 
 ## 62980247 Failed to Write Pixel Mapping
 
@@ -648,12 +649,12 @@ Writing to pixel mapping failed.
 
 **Possible Causes**
 
-1. Corrupted pixel map data.
-2. Insufficient write permissions for pixel map.
+1. Pixel map data error.
+2. Lack of permissions to write to the pixel map.
 
 **Resolution Steps**
 
-Recreate pixel map or modify write permissions.
+Recreate the pixel map or modify write permissions.
 
 ## 62980248 PixelMap Modification Not Allowed
 
@@ -663,11 +664,11 @@ PixelMap does not allow modification.
 
 **Possible Causes**
 
-Unauthorized modifications made to PixelMap.
+Unauthorized modification of PixelMap.
 
 **Resolution Steps**
 
-Discontinue PixelMap modifications.
+Discontinue modifications to the PixelMap.
 
 ## 62980252 Surface Creation Failure
 
@@ -681,7 +682,7 @@ Memory allocation error during image encoding.
 
 **Resolution Steps**
 
-Retry operation or replace the image.
+Retry or replace the image.
 
 ## 62980259 Configuration Error
 
@@ -691,11 +692,11 @@ Configuration error.
 
 **Possible Causes**
 
-Incorrect configuration settings.
+Configuration error occurred.
 
 **Resolution Steps**
 
-Reconfigure with correct parameters.
+Reconfigure correctly.
 
 ## 62980274 Image Conversion Failure
 
@@ -710,9 +711,9 @@ The conversion failed.
 
 **Resolution Steps**
 
-Replace the image or configure supported encoding parameters.
+Replace the image or set supported encoding parameters.
 
-## 62980276 Unsupported Target Conversion Type
+## 62980276 Unsupported Image Conversion Target Type
 
 **Error Message**
 
@@ -720,11 +721,11 @@ The type to be converted is an unsupported target pixel format.
 
 **Possible Causes**
 
-Target conversion type is not supported.
+Conversion to the target type is not supported.
 
 **Resolution Steps**
 
-Replace the image or select alternative conversion type.
+Replace the image or change the conversion type.
 
 ## 62980286 PixelMap Memory Identifier Setting Failure
 
@@ -735,12 +736,12 @@ Memory format not supported.
 **Possible Causes**
 
 1. PixelMap memory type mismatch.
-2. Invalid PixelMap file descriptor.
+2. PixelMap file descriptor (fd) invalid.
 3. Unknown kernel error.
 
 **Resolution Steps**
 
-Verify PixelMap instance release status. Check memory type compatibility.
+Check if the PixelMap instance was released. Verify memory type compatibility.
 
 ## 62980302 Memory Copy Failure
 
@@ -751,12 +752,12 @@ Memory copy failed.
 **Possible Causes**
 
 1. Memory type mismatch.
-2. Invalid file descriptor.
+2. File descriptor (fd) invalid.
 3. Unknown kernel error.
 
 **Resolution Steps**
 
-Verify instance release status for copying. Check memory type compatibility.
+Check if the instance to be copied was released. Verify memory type compatibility.
 
 ## 7600201 Unsupported Operation
 
@@ -766,7 +767,7 @@ Unsupported operation.
 
 **Possible Causes**
 
-Operation is not supported.
+Unsupported operation.
 
 **Resolution Steps**
 
@@ -780,14 +781,11 @@ Unsupported metadata. Possible causes: Unsupported metadata type.
 
 **Possible Causes**
 
-Unsupported metadata operations, such as:
-- Unsupported EXIF fields
-- Mismatched auxiliary image types
-- Attempting to retrieve specific auxiliary image metadata (e.g., requesting GainmapMetadata from depth map)
+Unsupported metadata read/write, such as unsupported EXIF fields, mismatched auxiliary image types, or attempting to retrieve specific auxiliary image metadata (e.g., fetching GainmapMetadata for a depth map).
 
 **Resolution Steps**
 
-Verify auxiliary image type and metadata type compatibility before performing operations.
+Reconfirm auxiliary image type and metadata type compatibility before read/write operations.
 
 ## 7600301 Memory Allocation Failure
 
@@ -797,7 +795,7 @@ Memory alloc failed.
 
 **Possible Causes**
 
-Insufficient device memory or memory contention.
+Insufficient device memory or memory occupied.
 
 **Resolution Steps**
 
@@ -811,12 +809,12 @@ Memory copy failed.
 
 **Possible Causes**
 
-1. Target memory for copying does not exist.
-2. Insufficient device memory.
+Non-existent memory to copy or insufficient device memory.
 
 **Resolution Steps**
 
-Verify existence of target memory. Free up memory and retry.## 7600901 Unknown Error
+Verify if the memory to be copied exists, then free up memory and retry.
+```## 7600901 Unknown Error
 
 **Error Message**
 
@@ -830,7 +828,7 @@ Error caused by unknown reasons.
 
 Investigate the cause through logs.
 
-## 7700101 Invalid Image Source
+## 7700101 Image Source Issue
 
 **Error Message**
 
@@ -838,12 +836,12 @@ Bad source.
 
 **Possible Causes**
 
-1. The device does not support this image type.  
+1. The device does not support this image type.
 2. Image decoding was not performed as instructed.
 
 **Resolution Steps**
 
-Check image data or replace the image.
+Check the image data or replace the image.
 
 ## 7700102 Unsupported MIME Type
 
@@ -857,7 +855,7 @@ The device does not support this image type.
 
 **Resolution Steps**
 
-Check image data or replace the image.
+Check the image data or replace the image.
 
 ## 7700103 Image Too Large
 
@@ -871,9 +869,9 @@ The image size exceeds the limit.
 
 **Resolution Steps**
 
-Check image data or replace the image.
+Check the image data or replace the image.
 
-## 7700201 Unsupported Allocator Type
+## 7700201 Unsupported Memory Allocation Type
 
 **Error Message**
 
@@ -881,11 +879,11 @@ Unsupported allocator type, e.g., use share memory to decode a HDR image as only
 
 **Possible Causes**
 
-The memory allocator type was not specified or an incorrect type was specified. For example: Using shared memory to decode an HDR image will cause an error because only DMA supports HDR metadata.
+The memory allocation type was not specified or an incorrect type was specified. For example, using shared memory to decode an HDR image will fail because only DMA supports HDR metadata.
 
 **Resolution Steps**
 
-Use the correct memory allocator type.
+Use the correct memory allocation type.
 
 ## 7700203 Unsupported Options
 
@@ -895,11 +893,11 @@ Unsupported options, e.g, cannot convert image into desired pixel format.
 
 **Possible Causes**
 
-Some option parameters are incorrectly configured, and the operation required by the option is not supported.
+Some option parameters are incorrectly configured, and the operation requested by the option is not supported.
 
 **Resolution Steps**
 
-Check option parameter configurations.
+Check the option parameter configuration.
 
 ## 7700301 Decoding Failed
 
@@ -909,13 +907,13 @@ Decode failed.
 
 **Possible Causes**
 
-1. Insufficient device memory.  
-2. The device does not support this image type.  
+1. Insufficient device memory.
+2. The device does not support this image type.
 3. Image decoding was not performed as instructed.
 
 **Resolution Steps**
 
-Check image data or replace the image.
+Check the image data or replace the image.
 
 ## 7700302 Memory Allocation Failed
 
@@ -925,12 +923,12 @@ Memory allocation failed.
 
 **Possible Causes**
 
-1. Insufficient device memory.  
+1. Insufficient device memory.
 2. Image decoding was not performed as instructed.
 
 **Resolution Steps**
 
-Check device memory or verify input data.
+Check the device memory or inspect the input data.
 
 ## 7800201 Unsupported Options
 
@@ -940,11 +938,11 @@ Unsupported options.
 
 **Possible Causes**
 
-Some option parameters are incorrectly configured, and the operation required by the option is not supported.
+Some option parameters are incorrectly configured, and the operation requested by the option is not supported.
 
 **Resolution Steps**
 
-Check option parameter configurations.
+Check the option parameter configuration.
 
 ## 7800301 Encoding Failed
 
@@ -954,9 +952,9 @@ Encode failed.
 
 **Possible Causes**
 
-1. The specified encoding format is not supported.  
-2. Incorrect input data was provided.
+1. The configured encoding format is not supported.
+2. The input data is incorrect.
 
 **Resolution Steps**
 
-Replace the image or check input data.
+Replace the image or check the input data.

@@ -1,6 +1,6 @@
 # Custom Dialog (CustomDialog)
 
-Display custom dialogs using the CustomDialogController class. When using dialog components, custom dialogs should be prioritized for easier customization of dialog styles and content.
+Display custom dialogs through the CustomDialogController class. When using dialog components, custom dialogs should be prioritized for easier customization of dialog styles and content.
 
 ## Import Module
 
@@ -13,6 +13,11 @@ import kit.ArkUI.*
 ```cangjie
 public class CustomDialogController {
     public init(value: CustomDialogControllerOptions)
+    public func setBuilder(builder: () -> Unit): Unit
+    public func bindView(view: CustomView): Unit
+    public func openDialog(): Unit
+    public func closeDialog(): Unit
+    public func releaseSelf(): Unit
 }
 ```
 
@@ -20,7 +25,7 @@ public class CustomDialogController {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### init(CustomDialogControllerOptions)
 
@@ -32,7 +37,7 @@ public init(value: CustomDialogControllerOptions)
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -50,7 +55,7 @@ public func bindView(view: CustomView)
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -68,7 +73,7 @@ public func closeDialog()
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### func openDialog()
 
@@ -76,11 +81,11 @@ public func closeDialog()
 public func openDialog()
 ```
 
-**Function:** Displays the custom dialog content. Can be called multiple times, but if the dialog is in SubWindow mode, it cannot spawn another SubWindow dialog.
+**Function:** Displays the custom dialog content. Can be used multiple times, but if the dialog is in SubWindow mode, it cannot trigger another SubWindow dialog.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### func releaseSelf()
 
@@ -92,7 +97,7 @@ public func releaseSelf(): Unit
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### func setBuilder(() -> Unit)
 
@@ -100,67 +105,67 @@ public func releaseSelf(): Unit
 public func setBuilder(builder: () -> Unit)
 ```
 
-**Function:** Sets a builder function. Users do not need to call this explicitly; it is implicitly invoked after macro expansion.
+**Function:** Sets a builder. Users do not need to call this explicitly; it is implicitly invoked after macro expansion.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| builder | ()->Unit | Yes | - | The rendering function corresponding to the builder. |
+| builder | () -> Unit | Yes | - | The rendering function corresponding to the builder. |
 
 ## class CustomDialogControllerOptions
 
 ```cangjie
 public class CustomDialogControllerOptions {
-    public var cancel: VoidCallback
-    public var autoCancel: Bool
-    public var alignment: DialogAlignment
-    public var offset: Offset
-    public var customStyle: Bool
-    public var gridCount:?UInt32
-    public var maskColor: ResourceColor
-    public var maskRect: Rectangle
-    public var openAnimation:?AnimateParam
-    public var closeAnimation:?AnimateParam
-    public var showInSubWindow: Bool
-    public var backgroundColor: ResourceColor
-    public var cornerRadius: Length
-    public var isModal: Bool
-    public var onWillDismiss:?Callback<DismissDialogAction, Unit>
-    public var borderWidth: Length
-    public var borderColor: ResourceColor
-    public var borderStyle: EdgeStyles
-    public var width:?Length
-    public var height:?Length
-    public var shadow:?ShadowOptions
-    public var backgroundBlurStyle: BlurStyle
+    public var cancel: ?VoidCallback
+    public var autoCancel: ?Bool
+    public var alignment: ?DialogAlignment
+    public var offset: ?Offset
+    public var customStyle: ?Bool
+    public var gridCount: ?UInt32
+    public var maskColor: ?ResourceColor
+    public var maskRect: ?Rectangle
+    public var openAnimation: ?AnimateParam
+    public var closeAnimation: ?AnimateParam
+    public var showInSubWindow: ?Bool
+    public var backgroundColor: ?ResourceColor
+    public var cornerRadius: ?Length
+    public var isModal: ?Bool
+    public var onWillDismiss: ?Callback<DismissDialogAction, Unit>
+    public var borderWidth: ?Length
+    public var borderColor: ?ResourceColor
+    public var borderStyle: ?EdgeStyles
+    public var width: ?Length
+    public var height: ?Length
+    public var shadow: ?ShadowOptions
+    public var backgroundBlurStyle: ?BlurStyle
     public init(
-        cancel!: VoidCallback = {=>},
-        autoCancel!: Bool = true,
-        alignment!: DialogAlignment = DialogAlignment.Default,
-        offset!: Offset = Offset(0.vp, 0.vp),
-        customStyle!: Bool = false,
+        cancel!: ?VoidCallback = None,
+        autoCancel!: ?Bool = None,
+        alignment!: ?DialogAlignment = None,
+        offset!: ?Offset = None,
+        customStyle!: ?Bool = None,
         gridCount!: ?UInt32 = None,
-        maskColor!: ResourceColor = Color(0x33000000),
-        maskRect!: Rectangle = Rectangle(),
+        maskColor!: ?ResourceColor = None,
+        maskRect!: ?Rectangle = None,
         openAnimation!: ?AnimateParam = None,
         closeAnimation!: ?AnimateParam = None,
-        showInSubWindow!: Bool = false,
-        backgroundColor!: ResourceColor = Color.Transparent,
-        cornerRadius!: Length = 32.vp,
-        isModal!: Bool = true,
+        showInSubWindow!: ?Bool = None,
+        backgroundColor!: ?ResourceColor = None,
+        cornerRadius!: ?Length = None,
+        isModal!: ?Bool = None,
         onWillDismiss!: ?Callback<DismissDialogAction, Unit> = None,
-        borderWidth!: Length = 0.vp,
-        borderColor!: ResourceColor = Color.Black,
-        borderStyle!: EdgeStyles = EdgeStyles(),
+        borderWidth!: ?Length = None,
+        borderColor!: ?ResourceColor = None,
+        borderStyle!: ?EdgeStyles = None,
         width!: ?Length = None,
         height!: ?Length = None,
         shadow!: ?ShadowOptions = None,
-        backgroundBlurStyle!: BlurStyle = BlurStyle.ComponentUltraThick
+        backgroundBlurStyle!: ?BlurStyle = None
     )
 }
 ```
@@ -169,386 +174,416 @@ public class CustomDialogControllerOptions {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var alignment
 
 ```cangjie
-public var alignment: DialogAlignment
+public var alignment: ?DialogAlignment
 ```
 
-**Function:** The vertical alignment of the dialog.
+**Function:** The alignment of the dialog in the vertical direction.
 
-**Type:** [DialogAlignment](./cj-common-types.md#enum-dialogalignment)
+**Type:** ?[DialogAlignment](./cj-common-types.md#enum-dialogalignment)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** DialogAlignment.Default
 
 ### var autoCancel
 
 ```cangjie
-public var autoCancel: Bool
+public var autoCancel: ?Bool
 ```
 
-**Function:** Whether clicking the mask layer closes the dialog. `true` means the dialog will close, `false` means it will not.
+**Function:** Whether clicking the mask layer closes the dialog. true means the dialog will close, false means it will not.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** true
 
 ### var backgroundBlurStyle
 
 ```cangjie
-public var backgroundBlurStyle: BlurStyle
+public var backgroundBlurStyle: ?BlurStyle
 ```
 
-**Function:** The blur material for the dialog's background panel.
+**Function:** The blur material of the dialog backplate.
 
-**Type:** [BlurStyle](./cj-universal-attribute-background.md#enum-blurstyle)
+**Type:** ?[BlurStyle](./cj-common-types.md#enum-blurstyle)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** BlurStyle.ComponentUltraThick
 
 ### var backgroundColor
 
 ```cangjie
-public var backgroundColor: ResourceColor
+public var backgroundColor: ?ResourceColor
 ```
 
-**Function:** Sets the background fill color of the dialog.
+**Function:** Sets the fill color of the dialog backplate.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** Color.Transparent
 
 ### var borderColor
 
 ```cangjie
-public var borderColor: ResourceColor
+public var borderColor: ?ResourceColor
 ```
 
-**Function:** Sets the border color of the dialog's background panel.
+**Function:** Sets the border color of the dialog backplate.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** Color.Black
 
 ### var borderStyle
 
 ```cangjie
-public var borderStyle: EdgeStyles
+public var borderStyle: ?EdgeStyles
 ```
 
-**Function:** Sets the border style of the dialog's background panel.
+**Function:** Sets the border style of the dialog backplate.
 
-**Type:** [EdgeStyles](./cj-common-types.md#class-edgestyles)
+**Type:** ?[EdgeStyles](./cj-common-types.md#class-edgestyles)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** EdgeStyles()
 
 ### var borderWidth
 
 ```cangjie
-public var borderWidth: Length
+public var borderWidth: ?Length
 ```
 
-**Function:** Sets the border width of the dialog's background panel.
+**Function:** Sets the border width of the dialog backplate.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** 0.vp
 
 ### var cancel
 
 ```cangjie
-public var cancel: VoidCallback
+public var cancel: ?VoidCallback
 ```
 
-**Function:** Callback triggered when the dialog is closed via back button, ESC key, or mask layer click.
+**Function:** Callback when the dialog is closed via back button, ESC key, or clicking the mask layer.
 
-**Type:** [VoidCallback](../BasicServicesKit/cj-apis-base.md#type-VoidCallback)
+**Type:** ?[VoidCallback](./cj-common-types.md#type-voidcallback)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** { => }
 
 ### var closeAnimation
 
 ```cangjie
-public var closeAnimation:?AnimateParam
+public var closeAnimation: ?AnimateParam
 ```
 
-**Function:** Customizes the animation parameters for dialog closing.
+**Function:** Customizes the animation parameters for closing the dialog.
 
 **Type:** ?[AnimateParam](./cj-common-types.md#class-animateparam)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var cornerRadius
 
 ```cangjie
-public var cornerRadius: Length
+public var cornerRadius: ?Length
 ```
 
-**Function:** Sets the corner radius of the background panel.
+**Function:** Sets the corner radius of the backplate.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** 32.vp
 
 ### var customStyle
 
 ```cangjie
-public var customStyle: Bool
+public var customStyle: ?Bool
 ```
 
 **Function:** Whether the dialog container style is customized.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** false
 
 ### var gridCount
 
 ```cangjie
-public var gridCount:?UInt32
+public var gridCount: ?UInt32
 ```
 
-**Function:** The number of grid widths occupied by the dialog.
+**Function:** The number of grid widths occupied by the dialog width.
 
 **Type:** ?UInt32
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
 ```cangjie
-public var height:?Length
+public var height: ?Length
 ```
 
-**Function:** Sets the height of the dialog's background panel.
+**Function:** Sets the height of the dialog backplate.
 
-**Type:** ?[Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var isModal
 
 ```cangjie
-public var isModal: Bool
+public var isModal: ?Bool
 ```
 
 **Function:** Whether the dialog is a modal window. Modal windows have a mask layer; non-modal windows do not.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** true
 
 ### var maskColor
 
 ```cangjie
-public var maskColor: ResourceColor
+public var maskColor: ?ResourceColor
 ```
 
 **Function:** Customizes the mask layer color.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** Color(0x33000000)
 
 ### var maskRect
 
 ```cangjie
-public var maskRect: Rectangle
+public var maskRect: ?Rectangle
 ```
 
-**Function:** The mask layer area of the dialog. Events within this area are not passed through; events outside are passed through.
+**Function:** The mask layer area of the dialog. Events within this area are not transmitted; events outside are transmitted.
 
-**Type:** [Rectangle](./cj-common-types.md#class-rectangle)
+**Type:** ?[Rectangle](./cj-common-types.md#class-rectangle)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** Rectangle()
 
 ### var offset
 
 ```cangjie
-public var offset: Offset
+public var offset: ?Offset
 ```
 
-**Function:** The offset of the dialog relative to its alignment position.
+**Function:** The offset of the dialog relative to the alignment position.
 
-**Type:** [Offset](./cj-common-types.md#class-offset)
+**Type:** ?[Offset](./cj-common-types.md#class-offset)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** Offset(0.vp, 0.vp)
 
 ### var onWillDismiss
 
 ```cangjie
-public var onWillDismiss:?Callback<DismissDialogAction, Unit>
+public var onWillDismiss: ?Callback<DismissDialogAction, Unit>
 ```
 
 **Function:** Interactive close callback function.
 
-**Type:** ?[Callback](../BasicServicesKit/cj-apis-base.md#type-Callback)\<[DismissDialogAction](./cj-dialog-actionsheet.md#class-dismissdialogaction),Unit>
+**Type:** ?[Callback](./cj-common-types.md#type-callbackt-v)\<[DismissDialogAction](./cj-dialog-actionsheet.md#class-dismissdialogaction),Unit>
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var openAnimation
 
 ```cangjie
-public var openAnimation:?AnimateParam
+public var openAnimation: ?AnimateParam
 ```
 
-**Function:** Customizes the animation parameters for dialog opening.
+**Function:** Customizes the animation parameters for opening the dialog.
 
 **Type:** ?[AnimateParam](./cj-common-types.md#class-animateparam)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var shadow
 
 ```cangjie
-public var shadow:?ShadowOptions
+public var shadow: ?ShadowOptions
 ```
 
-**Function:** Sets the shadow of the dialog's background panel.
+**Function:** Sets the shadow of the dialog backplate.
 
-**Type:** ?[ShadowOptions](./cj-text-input-text.md#class-shadowoptions)
+**Type:** ?[ShadowOptions](./cj-common-types.md#class-shadowoptions)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var showInSubWindow
 
 ```cangjie
-public var showInSubWindow: Bool
+public var showInSubWindow: ?Bool
 ```
 
 **Function:** Whether to display the dialog in a sub-window when it needs to appear outside the main window.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Initial Value:** false
 
 ### var width
 
 ```cangjie
-public var width:?Length
+public var width: ?Length
 ```
 
-**Function:** Sets the width of the dialog's background panel.
+**Function:** Sets the width of the dialog backplate.
 
-**Type:** ?[Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(VoidCallback, Bool, DialogAlignment, Offset, Bool, ?UInt32, ResourceColor, Rectangle, ?AnimateParam, ?AnimateParam, Bool, ResourceColor, Length, Bool, ?Callback\<DismissDialogAction,Unit>, Length, ResourceColor, EdgeStyles, ?Length, ?Length, ?ShadowOptions, BlurStyle)
+### init(?VoidCallback, ?Bool, ?DialogAlignment, ?Offset, ?Bool, ?UInt32, ?ResourceColor, ?Rectangle, ?AnimateParam, ?AnimateParam, ?Bool, ?ResourceColor, ?Length, ?Bool, ?Callback\<DismissDialogAction,Unit>, ?Length, ?ResourceColor, ?EdgeStyles, ?Length, ?Length, ?ShadowOptions, ?BlurStyle)
 
 ```cangjie
 public init(
-    cancel!: VoidCallback = {=>},
-    autoCancel!: Bool = true,
-    alignment!: DialogAlignment = DialogAlignment.Default,
-    offset!: Offset = Offset(0.vp, 0.vp),
-    customStyle!: Bool = false,
+    cancel!: ?VoidCallback = None,
+    autoCancel!: ?Bool = None,
+    alignment!: ?DialogAlignment = None,
+    offset!: ?Offset = None,
+    customStyle!: ?Bool = None,
     gridCount!: ?UInt32 = None,
-    maskColor!: ResourceColor = Color(0x33000000),
-    maskRect!: Rectangle = Rectangle(),
+    maskColor!: ?ResourceColor = None,
+    maskRect!: ?Rectangle = None,
     openAnimation!: ?AnimateParam = None,
     closeAnimation!: ?AnimateParam = None,
-    showInSubWindow!: Bool = false,
-    backgroundColor!: ResourceColor = Color.Transparent,
-    cornerRadius!: Length = 32.vp,
-    isModal!: Bool = true,
+    showInSubWindow!: ?Bool = None,
+    backgroundColor!: ?ResourceColor = None,
+    cornerRadius!: ?Length = None,
+    isModal!: ?Bool = None,
     onWillDismiss!: ?Callback<DismissDialogAction, Unit> = None,
-    borderWidth!: Length = 0.vp,
-    borderColor!: ResourceColor = Color.Black,
-    borderStyle!: EdgeStyles = EdgeStyles(),
+    borderWidth!: ?Length = None,
+    borderColor!: ?ResourceColor = None,
+    borderStyle!: ?EdgeStyles = None,
     width!: ?Length = None,
     height!: ?Length = None,
     shadow!: ?ShadowOptions = None,
-    backgroundBlurStyle!: BlurStyle = BlurStyle.ComponentUltraThick
+    backgroundBlurStyle!: ?BlurStyle = None
 )
 ```
 
@@ -556,21 +591,20 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| cancel | [VoidCallback](../BasicServicesKit/cj-apis-base.md#type-VoidCallback) | No | { => } | **Named parameter.** Callback triggered when the dialog is closed via back button, ESC key, or mask layer click. |
-| autoCancel | Bool | No | true | **Named parameter.** Whether clicking the mask layer closes the dialog. `true` means the dialog will close. `false` means it will not. |
-| alignment | [DialogAlignment](./cj-common-types.md#enum-dialogalignment) | No | DialogAlignment.Default | **Named parameter.** The vertical alignment of the dialog. |
-| offset | [Offset](./cj-common-types.md#class-offset) | No | Offset(0.vp, 0.vp) | **Named parameter.** The offset of the dialog relative to its alignment position. |
-| customStyle | Bool | No | false | **Named parameter.** Whether the dialog container style is customized.<br>When set to `false` (default):<br/>1. Corner radius is 32.vp.<br/>2. If dialog width/height is not set: The dialog width adapts to the grid system, and the height adapts to the custom content node.<br/>3. If dialog width/height is set: The dialog width does not exceed the maximum width in default style (custom node sets 100% width), and the height does not exceed the maximum height in default style (custom node sets 100% height).<br/>When set to `true`:<br/>1. Corner radius is 0, and the background color is transparent.<br/>2. Dialog width, height, border width, border style, border color, and shadow width cannot be set. |
-| gridCount | ?UInt32 | No | None | **Named parameter.** The number of grid widths occupied by the dialog.<br>Defaults to adaptive based on window size. Invalid values are treated as defaults, with the maximum grid count being the system's maximum. |
-| maskColor | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | No | Color(0x33000000) | **Named parameter.** Customizes the mask layer color. |
-| maskRect | [Rectangle](./cj-common-types.md#class-rectangle) | No | Rectangle() | **Named parameter.** The mask layer area of the dialog. Events within this area are not passed through; events outside are passed through. <br/>**Note:**<br/>`maskRect` does not take effect when `showInSubWindow` is `true`. |
-| openAnimation | ?[AnimateParam](./cj-common-types.md#class-animateparam) | No | None | **Named parameter.** Customizes the animation parameters for dialog opening.<br>**Note:**<br>`tempo` defaults to 1## Sample Code
+| cancel | ?[VoidCallback](./cj-common-types.md#type-voidcallback) | No | None | **Named parameter.** Callback when the dialog is closed via back button, ESC key, or clicking the mask layer. Initial value: { => } |
+| autoCancel | ?Bool | No | None | **Named parameter.** Whether clicking the mask layer closes the dialog. true means the dialog will close, false means it will not. Initial value: true |
+| alignment | ?[DialogAlignment](./cj-common-types.md#enum-dialogalignment) | No | None | **Named parameter.** The alignment of the dialog in the vertical direction. Initial value: DialogAlignment.Default |
+| offset | ?[Offset](./cj-common-types.md#class-offset) | No | None | **Named parameter.** The offset of the dialog relative to the alignment position. Initial value: Offset(0.vp, 0.vp) |
+| customStyle | ?Bool | No | None | **Named parameter.** Whether the dialog container style is customized. Initial value: false<br>When set to false (default):<br/>1. Corner radius is 32.vp.<br/>2. If dialog width/height is not set: The dialog width adapts to the grid system, and the height adapts to the custom content node.<br/>3. If dialog width/height is set: The dialog width does not exceed the maximum width in default style (100% width for custom nodes), and the height does not exceed the maximum height in default style (100% height for custom nodes).<br>When set to true:<br/>1. Corner radius is 0, and the dialog background is transparent.<br/>2. Setting dialog width, height, border width, border style, border color, and shadow width is not supported. |
+| gridCount | ?UInt32 | No | None | **Named parameter.** The number of grid widths occupied by the dialog width.<br>Defaults to adaptive based on window size. Invalid values are treated as defaults, with the maximum grid count being the system's maximum. |
+| maskColor | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** Customizes the mask layer color. Initial value: Color(0x33000000) |
+| maskRect | ?[Rectangle](./cj-common-types.md#class-rectangle) | No | None | **Named parameter.** The mask layer## Sample Code
 
 <!-- run -->
 
@@ -586,13 +620,13 @@ class MyDialog {
     var controller: Option<CustomDialogController> = Option.None
     func build() {
         Row(space: 60) {
-            Button("cancel").onClick { evt =>
+            Button("cancel").onClick({ evt =>
                 controller?.releaseSelf()
-            }
+            })
 
-            Button("confirm").onClick { evt =>
+            Button("confirm").onClick({ evt =>
                 controller?.releaseSelf()
-            }
+            })
         }.height(500.px)
     }
 }
@@ -612,4 +646,4 @@ class EntryView {
 
 ```
 
-![custom_dialog](./figures/custom_dialog.png)
+![custom_dialog](./figures/custom_dialog.gif)

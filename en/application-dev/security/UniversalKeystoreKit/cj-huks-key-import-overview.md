@@ -1,12 +1,12 @@
 # Key Import Introduction and Algorithm Specifications  
 
-If a service generates keys outside of HUKS (e.g., through inter-application negotiation or server-side generation), the service can import these keys into HUKS for management. Once imported into HUKS, the plaintext of the key is only accessible within a secure environment during its lifecycle and will not be transmitted outside the secure environment, ensuring that no one can obtain the plaintext of the key.  
+If a service generates keys outside of HUKS (e.g., through inter-application negotiation or server-side generation), the service can import these keys into HUKS for management. Once a key is imported into HUKS, its plaintext is only accessible within a secure environment during its lifecycle and will never be transmitted outside the secure environment, ensuring that no one can obtain the plaintext of the key.  
 
 Key import methods include [Plaintext Import](#plaintext-import) and [Encrypted Import](#encrypted-import).  
 
 ## Plaintext Import  
 
-This method directly imports the key plaintext into HUKS. During the import process, the key plaintext is exposed in a non-secure environment. It is generally suitable for lightweight devices or low-security services.  
+This method directly imports the key plaintext into HUKS. During the import process, the key plaintext is exposed in a non-secure environment, making it generally suitable for lightweight devices or low-security services.  
 
 - **Recommended key types for this method**: Public keys of asymmetric keys.  
 - **Not recommended key types for this method**: Symmetric keys, asymmetric key pairs.  
@@ -17,11 +17,13 @@ This method directly imports the key plaintext into HUKS. During the import proc
 
 ## Encrypted Import  
 
-This method allows the service to establish an end-to-end encrypted transmission channel with HUKS, securely importing the key into HUKS and ensuring that the key is not leaked during the import process. It is suitable for high-security-sensitive services. Compared to plaintext import, encrypted import involves more steps and more complex key materials.  
+This method allows the service to establish an end-to-end encrypted transmission channel with HUKS, securely importing the key into HUKS and ensuring the key is not leaked during the import process. It is suitable for high-security-sensitive services. Compared to plaintext import, encrypted import involves more steps and more complex key materials.  
 
 **Recommended key types for this method**: Symmetric keys, asymmetric key pairs.  
 
 The following figure shows the development sequence diagram for encrypted key import.  
+
+![Encrypted Key Import Development Sequence Diagram](./figures/加密导入密钥开发顺序图.png)  
 
 According to the development process, the following HUKS capabilities need to be invoked sequentially during encrypted key import:  
 
@@ -31,11 +33,11 @@ According to the development process, the following HUKS capabilities need to be
 - Import the encrypted key.  
 - Delete the key.  
 
-The [public key plaintext material returned by the export key interface is encapsulated in **X.509** format](./cj-huks-concepts.md#public-key-material-format). The key material in the encrypted key import interface must adhere to the **Length<sub>Data</sub>-Data** encapsulation format, such as: [(Length<sub>part1</sub>Data<sub>part1</sub>)……(Length<sub>partn</sub>Data<sub>partn</sub>)].  
+The [public key plaintext material returned by the export key interface is encapsulated in **X.509** format](./cj-huks-concepts.md#公钥材料格式). The key material in the encrypted key import interface must adhere to the **Length<sub>Data</sub>-Data** encapsulation format, such as: [(Length<sub>part1</sub>Data<sub>part1</sub>)……(Length<sub>partn</sub>Data<sub>partn</sub>)].  
 
 > **Note:**  
 >  
-> For encrypted key import, the agreement algorithms supported are ECDH and X25519. The Shared_Key derived from the agreement is used to encrypt Caller_Kek using the AES-GCM algorithm. For the corresponding algorithm suite definitions, refer to [HuksUnwrapSuite](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksunwrapsuite).  
+> For encrypted key import, the agreement algorithms supported are ECDH and X25519. The Shared_Key derived from the agreement is used to encrypt Caller_Kek using the AES-GCM algorithm. For the corresponding algorithm suite definitions, see [HuksUnwrapSuite](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksunwrapsuite).  
 
 ### Encrypted Key Import Material Format  
 
@@ -67,7 +69,7 @@ The [public key plaintext material returned by the export key interface is encap
 The following are the specifications supported for key import.  
 
 <!--Del-->  
-For OpenHarmony, vendor adaptations for key management services are divided into mandatory and optional specifications. Mandatory specifications are supported by all vendors, while optional specifications are implemented based on vendor-specific circumstances. If optional specifications are needed, consult the vendor's documentation to ensure compatibility before use.  
+For OpenHarmony, vendor adaptation of key management services is divided into mandatory and optional specifications. Mandatory specifications are algorithm specifications supported by all vendors. For optional specifications, vendors decide whether to implement them based on actual circumstances. If needed, refer to the specific vendor's documentation to ensure support before use.  
 
 **Developers are advised to use mandatory specifications to ensure full platform compatibility.**  
 <!--DelEnd-->  
@@ -83,13 +85,13 @@ For OpenHarmony, vendor adaptations for key management services are divided into
 | AES | 128, 192, 256 | 15+ | Yes |  
 | <!--DelRow-->RSA | 512, 768, 1024 | 15+ | No |  
 | RSA | 2048, 3072, 4096 | 15+ | Yes |  
-| RSA | 1024–2048 (inclusive), must be a multiple of 8 | 15+ | Yes |  
-| HMAC | 8–1024 (inclusive), must be a multiple of 8 | 15+ | Yes |  
+| RSA | 1024-2048 (inclusive), must be multiples of 8 | 15+ | Yes |  
+| HMAC | 8-1024 (inclusive), must be multiples of 8 | 15+ | Yes |  
 | <!--DelRow-->ECC | 224 | 15+ | No |  
 | ECC | 256, 384, 521 | 15+ | Yes |  
 | ED25519 | 256 | 15+ | Yes |  
 | X25519 | 256 | 15+ | Yes |  
-| <!--DelRow-->DSA | 512–1024 (inclusive), multiples of 8 | 15+ | No |  
+| <!--DelRow-->DSA | 512-1024 (inclusive), multiples of 8 | 15+ | No |  
 | DH | 2048 | 15+ | Yes |  
 | <!--DelRow-->DH | 3072, 4096 | 15+ | No |  
 | SM2 | 256 | 15+ | Yes |  
@@ -100,7 +102,7 @@ For OpenHarmony, vendor adaptations for key management services are divided into
 ### Lightweight Device Specifications  
 
 <!--Del-->  
-For lightweight devices, OEM vendors will decide whether to implement the specifications based on their circumstances. If needed, consult the vendor's documentation to ensure compatibility before use.  
+For lightweight devices, OEM vendors decide whether to implement the listed specifications based on actual circumstances. If needed, refer to the specific vendor's documentation to ensure support before use.  
 <!--DelEnd-->  
 
 | Algorithm | Supported Key Lengths | API Level |  
@@ -108,17 +110,17 @@ For lightweight devices, OEM vendors will decide whether to implement the specif
 | AES | 128, 192, 256 | 15+ |  
 | DES | 64 | 15+ |  
 | 3DES | 128, 192 | 15+ |  
-| RSA | 1024–2048 (inclusive), must be a multiple of 8 | 15+ |  
-| HMAC | 8–1024 (inclusive), must be a multiple of 8 | 15+ |  
+| RSA | 1024-2048 (inclusive), must be multiples of 8 | 15+ |  
+| HMAC | 8-1024 (inclusive), must be multiples of 8 | 15+ |  
 | CMAC | 128 | 15+ |  
 
 ## Key Import Formats  
 
-HUKS supports various key types for import, and the corresponding key material formats differ. The table below summarizes the supported key types and their respective material formats for HUKS key import.  
+HUKS supports a wide range of key types for import, and the corresponding key material formats vary. The table below summarizes the key types supported by HUKS for import and their corresponding key material formats.  
 
 | Key Type | Algorithm | Import Format |  
 | :-------- | :-------- | :-------- |  
 | Symmetric Key | - | Key byte data |  
-| Asymmetric Key – Key Pair | - | [Key Pair Material Format](./cj-huks-concepts.md#key-pair-material-format) |  
-| Asymmetric Key – Public Key | ED25519, X25519 | Refer to [X25519 Public Key Import](./cj-huks-import-key-in-plaintext.md#importing-an-x25519-public-key) |  
-| Asymmetric Key – Public Key | RSA, ECC, ECDH, DSA, DH, SM2 | DER format compliant with X.509 |
+| Asymmetric Key - Key Pair | - | [Key Pair Material Format](./cj-huks-concepts.md#密钥对材料格式) |  
+| Asymmetric Key - Public Key | ED25519, X25519 | Refer to [X25519 Public Key Import](./cj-huks-import-key-in-plaintext.md#导入X25519密钥公钥) |  
+| Asymmetric Key - Public Key | RSA, ECC, ECDH, DSA, DH, SM2 | DER format compliant with X.509 specification |

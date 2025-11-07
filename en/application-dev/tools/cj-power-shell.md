@@ -1,6 +1,6 @@
 # Power-Shell Tool
 
-Power-Shell is a tool that implements functions such as device power state transitions, providing developers with basic device power state debugging capabilities, including screen off, wake-up, power mode settings, etc.
+Power-Shell is a tool designed to implement device power state transitions and related functionalities, providing developers with basic device power state debugging capabilities, such as screen off, wake-up, setting power modes, etc.
 
 ## Environment Requirements
 
@@ -8,13 +8,13 @@ Power-Shell is a tool that implements functions such as device power state trans
 Before using this tool, developers need to obtain the [hdc tool](../tools/cj-hdc.md) and execute `hdc shell`.
 <!--RP1End-->
 
-## Power-Shell Command List
+## Power-Shell Command Tool List
 
 | Command | Description |
 | -------- | -------- |
 | help | Help command, displays supported command information for power-shell. |
 | setmode | Power mode setting command, used to configure the current device's power mode. |
-| wakeup | Screen wake command, used to wake the system and turn on the screen. |
+| wakeup | Screen wake-up command, used to wake the system and turn on the screen. |
 | suspend | Screen off command, used to suspend the system and turn off the screen. |
 | timeout | Auto screen-off command, used to override or restore the auto screen-off time set in system settings. |
 
@@ -31,14 +31,14 @@ power-shell help
 power-shell setmode
 ```
 
-**Power Mode Command List:**
+**Power Mode Setting Command List:**
 
-| Command     | Description       |
+| Command     | Description       |
 | -------- | ------- |
-| power-shell setmode -h | Displays supported command information for setmode. |
+| power-shell setmode -h | Displays command information supported by setmode. |
 | power-shell setmode 600 | Normal mode. |
-| power-shell setmode 601 | Power-saving mode. |
-| power-shell setmode 602 | Performance mode. |
+| power-shell setmode 601 | Power-saving mode. |
+| power-shell setmode 602 | Performance mode. |
 | power-shell setmode 603 | Ultra power-saving mode. |
 
 Examples:
@@ -54,22 +54,22 @@ power-shell setmode 602
 power-shell setmode 603
 ```
 
-## Screen Wake Command
+## Screen Wake-Up Command
 
 ```bash
 power-shell wakeup
 ```
 
-**Screen Wake Command List:**
+**Screen Wake-Up Command List:**
 
-| Command  | Description   |
+| Command  | Description    |
 | ---------- | -------- |
 | power-shell wakeup | Turns on the screen. |
 
 Example:
 
 ```bash
-# Shell command to turn on the screen
+# Shell command to wake up the screen
 power-shell wakeup
 ```
 
@@ -81,7 +81,7 @@ power-shell suspend
 
 **Screen Off Command List:**
 
-| Command    | Description    |
+| Command    | Description    |
 | ---------- | --------- |
 | power-shell suspend  | Turns off the screen. |
 
@@ -98,19 +98,19 @@ power-shell suspend
 power-shell timeout
 ```
 
-**Auto Screen-Off Command Parameters:**
+**Auto Screen-Off Command Parameter List:**
 
-| Parameter       | Description   |
+| Parameter       | Description   |
 | ---------- | ----------- |
-| -o \<time> | Required parameter, sets auto screen-off time. [time] is in milliseconds. |
-| -r | Required parameter, restores the auto screen-off time set in current system settings. |
+| -o \<time> | Required parameter, sets the auto screen-off time. [time] is in milliseconds. |
+| -r | Required parameter, restores the auto screen-off time to the current system setting. |
 
 Examples:
 
 ```bash
-# Auto screen-off time in system settings is 30 seconds
+# Current system setting for auto screen-off is 30 seconds
 # Shell command to set auto screen-off time to 15000 milliseconds
 power-shell timeout -o 15000
-# Restore system auto screen-off settings (now 30 seconds)
+# Restore system auto screen-off setting, now the auto screen-off time is 30 seconds
 power-shell timeout -r
 ```

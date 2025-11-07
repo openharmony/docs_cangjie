@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> The following describes only error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> The following describes only the error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 100001 Internal Error
 

@@ -1,6 +1,6 @@
 # ohos.ark_interop
 
-The development languages for ArkTS applications include ArkTS, TypeScript, and JavaScript. The ArkTS interoperability library provides interoperability capabilities between the Cangjie language and ArkTS language.
+The development languages for ArkTS applications include ArkTS, TypeScript, and JavaScript. The ArkTS interoperation library provides interoperability capabilities between the Cangjie language and ArkTS language.
 
 ## Import Module
 
@@ -14,12 +14,12 @@ import ohos.ark_interop.*
 sealed interface JSInteropByte {}
 ```
 
-**Description:** This interface is used to implement generic constraints for Arrays that can be used in declarative interoperability macros. It is used in declarative interoperability macro framework scenarios, and developers do not need to use this API.
+**Description:** This interface is used to implement generic constraints for Arrays that can be used in declarative interoperation macros. It is used in declarative interoperation macro framework scenarios and developers do not need to use this API.
 
 The following types extend this interface:
 
-* Byte
-* 
+- Byte
+
 **Since:** 22
 
 ## interface JSInteropType
@@ -32,15 +32,31 @@ public interface JSInteropType<T> {
 }
 ```
 
-**Description:** This interface is used to implement extension methods for types that can be used in declarative interoperability macros. It is used in declarative interoperability macro framework scenarios, and developers do not need to use this API.
+**Description:** This interface is used to implement extension methods for types that can be used in declarative interoperation macros. It is used in declarative interoperation macro framework scenarios and developers do not need to use this API.
 
 The following types extend this interface:
 
-* User-defined classes annotated with @Interop[ArkTS]
+- User-defined classes annotated with @Interop[ArkTS]
 
-* User-defined interfaces annotated with @Interop[ArkTS]
+- User-defined interfaces annotated with @Interop[ArkTS]
 
 **Since:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+@Interop[ArkTS]
+class MyCustomClass {
+    public let name: String   // String implements JSInteropType<String>, so it can be used here.
+    public let age: Int64     // Int64 implements JSInteropType<Int64>, so it can be used here.
+    
+    public init(name: String, age: Int64) {
+        this.name = name
+        this.age = age
+    }
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -54,9 +70,9 @@ static func fromJSValue(context: JSContext, input: JSValue): T
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 | input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
@@ -93,9 +109,9 @@ func toJSValue(context: JSContext): JSValue
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 
 **Return Value:**
 
@@ -110,14 +126,36 @@ sealed interface JSKeyable <: ToString & ToJSValue {
 }
 ```
 
-**Description:** Interface that can be used as a key for JSObject. This interface implements extension methods for the String type. It is used in declarative interoperability macro framework scenarios, and developers do not need to use this API.
+**Description:** Interface that can be used as a key for JSObject. This interface implements extension methods for the String type. It is used in declarative interoperation macro framework scenarios and developers do not need to use this API.
 
 **Since:** 22
 
 **Parent Types:**
 
-* ToString
-* ToJSValue
+- ToString
+- ToJSValue
+  
+**Example:**
+
+<!--compile-->
+```cangjie
+func keyableUsage(context: JSContext): Unit {
+    // Create an array that can be used as JSObject keys
+    let keys: Array<JSKeyable> = [
+        1,                   // Int64
+        "2",                 // String
+        context.string("a"), // JSString
+        context.symbol()     // JSSymbol
+    ]
+    let object = context.object()
+    let value = context.boolean(true).toJSValue()
+    for (key in keys) {
+        object[key] = value
+    }
+    let isBool = object[keys[0]].isBoolean()
+    Hilog.info(0, "test", "isBool: ${isBool}")
+}
+```
 
 ## interface ToJSValue
 
@@ -143,9 +181,9 @@ func toJSValue(context: JSContext): JSValue
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 
 **Return Value:**
 
@@ -159,6 +197,18 @@ func toJSValue(context: JSContext): JSValue
 
 **Since:** 22
 
+**Example:**
+
+<!--compile-->
+```cangjie
+func int8Translate(context: JSContext): Unit {
+    let source: Int8 = 123
+    let value = source.toJSValue(context)
+    let result = Int8.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
+
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
@@ -171,9 +221,9 @@ static func fromJSValue(context: JSContext, input: JSValue): Int8
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 | input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:** Int8
@@ -181,6 +231,17 @@ static func fromJSValue(context: JSContext, input: JSValue): Int8
 | Type | Description |
 |:----|:----|
 | Int8 | Cangjie type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are as follows.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+| 5     | The ArkTS data types do not match. |
 
 ### static func toArktsType()
 
@@ -210,9 +271,9 @@ func toJSValue(context: JSContext): JSValue
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 
 **Return Value:**
 
@@ -220,11 +281,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are as follows.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
 ## extend Int16 <: JSInteropType<Int16>
 
 **Description:** This interface can be used to implement extension methods for the built-in type Int16.
 
 **Since:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func int16Translate(context: JSContext): Unit {
+    let source: Int16 = 123
+    let value = source.toJSValue(context)
+    let result = Int16.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -238,9 +320,9 @@ static func fromJSValue(context: JSContext, input: JSValue): Int16
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 | input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
@@ -248,6 +330,17 @@ static func fromJSValue(context: JSContext, input: JSValue): Int16
 | Type | Description |
 |:----|:----|
 | Int16 | Cangjie type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are as follows.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+| 5     | The ArkTS data types do not match. |
 
 ### static func toArktsType()
 
@@ -277,9 +370,9 @@ func toJSValue(context: JSContext): JSValue
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 
 **Return Value:**
 
@@ -287,11 +380,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are as follows.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
 ## extend Int32 <: JSInteropType<Int32>
 
 **Description:** This interface can be used to implement extension methods for the built-in type Int32.
 
 **Since:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func int32Translate(context: JSContext): Unit {
+    let source: Int32 = 123
+    let value = source.toJSValue(context)
+    let result = Int32.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -305,9 +419,9 @@ static func fromJSValue(context: JSContext, input: JSValue): Int32
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 | input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
@@ -315,6 +429,17 @@ static func fromJSValue(context: JSContext, input: JSValue): Int32
 | Type | Description |
 |:----|:----|
 | Int32 | Cangjie type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are as follows.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+| 5     | The ArkTS data types do not match. |
 
 ### static func toArktsType()
 
@@ -344,9 +469,9 @@ func toJSValue(context: JSContext): JSValue
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
 
 **Return Value:**
 
@@ -354,11 +479,30 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
-## extend Int64 <: JSInteropType<Int64>
+**Exceptions:**
 
-**Description:** This interface can be used to implement extension methods for the built-in type Int64.
+- BusinessException: Corresponding error codes are as follows.
 
-**Since:** 22
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |## extend Int64 <: JSInteropType<Int64>
+
+**Functionality:** This interface can be used to implement extension methods for the built-in type Int64.
+
+**Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func int64Translate(context: JSContext): Unit {
+    let source: Int64 = 123
+    let value = source.toJSValue(context)
+    let result = Int64.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -366,13 +510,13 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): Int64
 ```
 
-**Description:** Converts JSValue type data to the corresponding Int64 type.
+**Functionality:** Converts JSValue type data to corresponding Int64 type.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
 | input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
@@ -383,15 +527,26 @@ static func fromJSValue(context: JSContext, input: JSValue): Int64
 |:----|:----|
 | Int64 | Cangjie type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### static func toArktsType()
 
 ```cangjie
 static func toArktsType(): String
 ```
 
-**Description:** Gets the ArkTS type name corresponding to the Cangjie Int64 type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie Int64 type.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -405,13 +560,13 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Description:** Converts Cangjie Int64 type data to JSValue.
+**Functionality:** Converts Cangjie Int64 type data to JSValue.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
 
@@ -419,11 +574,35 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |## extend UInt8 <: JSInteropType<UInt8>
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
-**Function:** This interface can be used to implement extension methods for the built-in type UInt8.
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
+## extend UInt8 <: JSInteropType<UInt8>
+
+**Functionality:** This interface can be used to implement extension methods for the built-in type UInt8.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func uint8Translate(context: JSContext): Unit {
+    let source: UInt8 = 123
+    let value = source.toJSValue(context)
+    let result = UInt8.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -431,7 +610,7 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): UInt8
 ```
 
-**Function:** Converts JSValue type data to the corresponding UInt8 type.
+**Functionality:** Converts JSValue type data to corresponding UInt8 type.
 
 **Initial Version:** 22
 
@@ -448,13 +627,24 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt8
 |:----|:----|
 | UInt8 | Cangjie type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### static func toArktsType()
 
 ```cangjie
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie UInt8 type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt8 type.
 
 **Initial Version:** 22
 
@@ -470,7 +660,7 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie UInt8 type data to JSValue.
+**Functionality:** Converts Cangjie UInt8 type data to JSValue.
 
 **Initial Version:** 22
 
@@ -488,9 +678,21 @@ func toJSValue(context: JSContext): JSValue
 
 ## extend UInt16 <: JSInteropType<UInt16>
 
-**Function:** This interface can be used to implement extension methods for the built-in type UInt16.
+**Functionality:** This interface can be used to implement extension methods for the built-in type UInt16.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func uint16Translate(context: JSContext): Unit {
+    let source: UInt16 = 123
+    let value = source.toJSValue(context)
+    let result = UInt16.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -498,7 +700,7 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): UInt16
 ```
 
-**Function:** Converts JSValue type data to the corresponding UInt16 type.
+**Functionality:** Converts JSValue type data to corresponding UInt16 type.
 
 **Initial Version:** 22
 
@@ -515,13 +717,24 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt16
 |:----|:----|
 | UInt16 | Cangjie type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### static func toArktsType()
 
 ```cangjie
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie UInt16 type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt16 type.
 
 **Initial Version:** 22
 
@@ -537,7 +750,7 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie UInt16 type data to JSValue.
+**Functionality:** Converts Cangjie UInt16 type data to JSValue.
 
 **Initial Version:** 22
 
@@ -553,11 +766,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:---|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 ## extend UInt32 <: JSInteropType<UInt32>
 
-**Function:** This interface can be used to implement extension methods for the built-in type UInt32.
+**Functionality:** This interface can be used to implement extension methods for the built-in type UInt32.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func uint32Translate(context: JSContext): Unit {
+    let source: UInt32 = 123
+    let value = source.toJSValue(context)
+    let result = UInt32.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -565,7 +799,7 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): UInt32
 ```
 
-**Function:** Converts JSValue type data to the corresponding UInt32 type.
+**Functionality:** Converts JSValue type data to corresponding UInt32 type.
 
 **Initial Version:** 22
 
@@ -582,13 +816,24 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt32
 |:----|:----|
 | UInt32 | Cangjie type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### static func toArktsType()
 
 ```cangjie
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie UInt32 type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt32 type.
 
 **Initial Version:** 22
 
@@ -604,7 +849,7 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie UInt32 type data to JSValue.
+**Functionality:** Converts Cangjie UInt32 type data to JSValue.
 
 **Initial Version:** 22
 
@@ -620,11 +865,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:---|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 ## extend UInt64 <: JSInteropType<UInt64>
 
-**Function:** This interface can be used to implement extension methods for the built-in type UInt64.
+**Functionality:** This interface can be used to implement extension methods for the built-in type UInt64.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func uint64Translate(context: JSContext): Unit {
+    let source: UInt64 = 123
+    let value = source.toJSValue(context)
+    let result = UInt64.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -632,7 +898,7 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): UInt64
 ```
 
-**Function:** Converts JSValue type data to the corresponding UInt64 type.
+**Functionality:** Converts JSValue type data to corresponding UInt64 type.
 
 **Initial Version:** 22
 
@@ -649,13 +915,24 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt64
 |:----|:----|
 | UInt64 | Cangjie type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### static func toArktsType()
 
 ```cangjie
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie UInt64 type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt64 type.
 
 **Initial Version:** 22
 
@@ -671,7 +948,7 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie UInt64 type data to JSValue.
+**Functionality:** Converts Cangjie UInt64 type data to JSValue.
 
 **Initial Version:** 22
 
@@ -687,11 +964,31 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
-## extend Float16 <: JSInteropType<Float16>
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |## extend Float16 <: JSInteropType<Float16>
 
 **Function:** This interface can be used to implement extension methods for the built-in type Float16.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func float16Translate(context: JSContext): Unit {
+    let source: Float16 = 123.0
+    let value = source.toJSValue(context)
+    let result = Float16.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -715,6 +1012,17 @@ static func fromJSValue(context: JSContext, input: JSValue): Float16
 | Type | Description |
 |:----|:----|
 | Float16 | Cangjie type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
 
 ### static func toArktsType()
 
@@ -754,11 +1062,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 ## extend Float32 <: JSInteropType<Float32>
 
 **Function:** This interface can be used to implement extension methods for the built-in type Float32.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func float32Translate(context: JSContext): Unit {
+    let source: Float32 = 123.0
+    let value = source.toJSValue(context)
+    let result = Float32.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -782,6 +1111,17 @@ static func fromJSValue(context: JSContext, input: JSValue): Float32
 | Type | Description |
 |:----|:----|
 | Float32 | Cangjie type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
 
 ### static func toArktsType()
 
@@ -821,11 +1161,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 ## extend Float64 <: JSInteropType<Float64>
 
 **Function:** This interface can be used to implement extension methods for the built-in type Float64.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func float64Translate(context: JSContext): Unit {
+    let source: Float64 = 123.0
+    let value = source.toJSValue(context)
+    let result = Float64.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -849,6 +1210,16 @@ static func fromJSValue(context: JSContext, input: JSValue): Float64
 | Type | Description |
 |:----|:----|
 | Float64 | Cangjie type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
 
 ### static func toArktsType()
 
@@ -888,11 +1259,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 ## extend Bool <: JSInteropType<Bool>
 
 **Function:** This interface can be used to implement extension methods for the built-in type Bool.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func boolTranslate(context: JSContext): Unit {
+    let source: Bool = true
+    let value = source.toJSValue(context)
+    let result = Bool.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -933,6 +1325,16 @@ static func toArktsType(): String
 |:----|:----|
 | String | Converted ArkTS type name. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### func toJSValue(JSContext)
 
 ```cangjie
@@ -955,11 +1357,32 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 ## extend String <: JSInteropType<String>
 
 **Function:** This interface can be used to implement extension methods for the built-in type String.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func stringTranslate(context: JSContext): Unit {
+    let source: String = "123.0"
+    let value = source.toJSValue(context)
+    let result = String.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -984,6 +1407,16 @@ static func fromJSValue(_: JSContext, input: JSValue): String
 |:----|:----|
 | String | Cangjie type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+| 5 | The ArkTS data types do not match. |
+
 ### static func toArktsType()
 
 ```cangjie
@@ -998,13 +1431,23 @@ static func toArktsType(): String
 
 | Type | Description |
 |:----|:----|
-| String | Converted ArkTS type name. |
+| String | Converted ArkTS type name. |## extend String <: JSKeyable
 
-## extend String <: JSKeyable
-
-**Function:** This interface can be used to implement extension methods for the built-in type String.
+**Functionality:** This interface can be used to implement extension methods for the built-in String type.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func stringTranslate(context: JSContext): Unit {
+    let source: String = "123.0"
+    let value = source.toJSValue(context)
+    let result = String.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### func toJSValue(JSContext)
 
@@ -1012,27 +1455,48 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie String type data to JSValue.
+**Functionality:** Converts Cangjie String type data to JSValue.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ## extend Unit <: JSInteropType<Unit>
 
-**Function:** This interface can be used to implement extension methods for the built-in type Unit.
+**Functionality:** This interface can be used to implement extension methods for the built-in Unit type.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func unitTranslate(context: JSContext): Unit {
+    let source: Unit = ()
+    let value = source.toJSValue(context)
+    let result = Unit.fromJSValue(context, value)
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -1040,22 +1504,22 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): Unit
 ```
 
-**Function:** Converts JSValue type data to the corresponding Bool type.
+**Functionality:** Converts JSValue type data to corresponding Bool type.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
+|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Unit | Cangjie type. |
+|Unit|Cangjie type.|
 
 ### static func toArktsType()
 
@@ -1063,15 +1527,15 @@ static func fromJSValue(context: JSContext, input: JSValue): Unit
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie Unit type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie Unit type.
 
 **Initial Version:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | Converted ArkTS type name. |
+|String|Converted ArkTS type name.|
 
 ### func toJSValue(JSContext)
 
@@ -1079,27 +1543,50 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie Unit type data to JSValue.
+**Functionality:** Converts Cangjie Unit type data to JSValue.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
 
 ## extend<T> Option<T> <: JSInteropType<Option<T>> where T <: JSInteropType<T>
 
-**Function:** This interface can be used to implement extension methods for the type Option<T>.
+**Functionality:** This interface can be used to implement extension methods for the Option<T> type.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func optionTranslate(context: JSContext): Unit {
+    let sources: Array<?String> = ["abc", None, "123"]
+    for (v in sources) {
+        let value = v.toJSValue(context)
+        let result = Option<String>.fromJSValue(context, value)
+        Hilog.info(0, "test", "result: ${result}")
+    }
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -1107,22 +1594,31 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 ```
 
-**Function:** Converts JSValue type data to the corresponding Option<T> type.
+**Functionality:** Converts JSValue type data to corresponding Option<T> type.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
+|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Option<T> | Cangjie Option type. |
+|Option<T>|Cangjie Option type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
 
 ### static func toArktsType()
 
@@ -1130,15 +1626,15 @@ static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie Option<T> type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie Option<T> type.
 
 **Initial Version:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | Converted ArkTS type name. |
+|String|Converted ArkTS type name.|
 
 ### func toJSValue(JSContext)
 
@@ -1146,27 +1642,48 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie Option<T> type data to JSValue.
+**Functionality:** Converts Cangjie Option<T> type data to JSValue.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
 
 ## extend<T> Array<T> <: JSInteropType<Array<T>> where T <: JSInteropByte
 
-**Function:** This interface can be used to implement extension methods for the type Array<T>.
+**Functionality:** This interface can be used to implement extension methods for the Array<T> type.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func arrayTranslate(context: JSContext): Unit {
+    let sources: Array<Byte> = [1, 4, 5]
+    let value = sources.toJSValue(context)
+    let result = Array<Byte>.fromJSValue(context, value)
+    Hilog.info(0, "test", "result: ${result}")
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -1174,22 +1691,32 @@ func toJSValue(context: JSContext): JSValue
 static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 ```
 
-**Function:** Converts JSValue type data to the corresponding Array<T> type.
+**Functionality:** Converts JSValue type data to corresponding Array<T> type.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+|_|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
+|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Array<T> | Cangjie Option type. |
+|Array<T>|Cangjie Option type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+| 5     | The ArkTS data types do not match.|
 
 ### static func toArktsType()
 
@@ -1197,15 +1724,15 @@ static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie Array<T> type.
+**Functionality:** Gets the ArkTS type name corresponding to the Cangjie Array<T> type.
 
 **Initial Version:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | Converted ArkTS type name. |
+|String|Converted ArkTS type name.|
 
 ### func toJSValue(JSContext)
 
@@ -1213,34 +1740,44 @@ static func toArktsType(): String
 func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts Cangjie Array<T> type data to JSValue.
+**Functionality:** Converts Cangjie Array<T> type data to JSValue.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
-```## class JSArray
+|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+## class JSArray
 
 ```cangjie
 public class JSArray <: JSHeapObject {}
 ```
 
-**Description:** A safe reference to an ArkTS array. Supports length retrieval and element read/write operations.
+**Functionality:** A safe reference to an ArkTS array. Supports getting length and reading/writing elements.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### prop size
 
@@ -1248,13 +1785,22 @@ public class JSArray <: JSHeapObject {}
 public prop size: Int64
 ```
 
-**Description:** Gets the number of elements.
+**Functionality:** Gets the number of elements.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Type:** Int64
 
-**Access:** Read-only
+**Read/Write Capability:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
 
 ### func \[](Int64)
 
@@ -1262,9 +1808,9 @@ public prop size: Int64
 public operator func[](index: Int64): JSValue
 ```
 
-**Description:** Reads an element from an ArkTS array.
+**Functionality:** Writes an element to the ArkTS array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -1277,6 +1823,16 @@ public operator func[](index: Int64): JSValue
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                  |
+|:------|:--------------------------------------|
+| 1     | The accessing index is out of range.  |
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
 
 **Example:**
 
@@ -1295,9 +1851,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public operator func[](index: Int64, value!: JSValue): Unit
 ```
 
-**Description:** Writes an element to an ArkTS array.
+**Functionality:** Writes an element to the ArkTS array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -1305,6 +1861,16 @@ public operator func[](index: Int64, value!: JSValue): Unit
 |:---|:---|:---|:---|:---|
 |index|Int64|Yes|-|Write index.|
 |value|[JSValue](#struct-jsvalue)|Yes|-| **Named parameter.** Value to write.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                  |
+|:------|:--------------------------------------|
+| 1     | The accessing index is out of range.  |
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
 
 **Example:**
 
@@ -1324,9 +1890,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public operator func[](index: Int64, value!: JSHeapObject): Unit
 ```
 
-**Description:** Writes an element to an ArkTS array.
+**Functionality:** Writes an element to the ArkTS array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -1334,6 +1900,16 @@ public operator func[](index: Int64, value!: JSHeapObject): Unit
 |:---|:---|:---|:---|:---|
 |index|Int64|Yes|-|Write index.|
 |value|[JSHeapObject](#class-jsheapobject)|Yes|-| **Named parameter.** Value to write.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                  |
+|:------|:--------------------------------------|
+| 1     | The accessing index is out of range.  |
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
 
 **Example:**
 
@@ -1345,21 +1921,19 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     jsArr[0] = setValue
     return setValue.toJSValue()
 }
-```
-
-## class JSArrayBuffer
+```## class JSArrayBuffer
 
 ```cangjie
 public class JSArrayBuffer <: JSHeapObject {}
 ```
 
-**Description:** The JSArrayBuffer object represents a generic raw binary data buffer. By creating a JSArrayBuffer object, you can obtain its byte length and convert it to a Cangjie array.
+**Function:** The JSArrayBuffer object is used to represent a generic raw binary data buffer. By creating a JSArrayBuffer object, you can obtain its byte length and convert it to a Cangjie array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### prop byteLength
 
@@ -1367,13 +1941,34 @@ public class JSArrayBuffer <: JSHeapObject {}
 public prop byteLength: Int32
 ```
 
-**Description:** The byte length of the ArrayBuffer.
+**Function:** The byte length of the ArrayBuffer.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Capability:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                  |
+|:-------------|:---------------------------------------------|
+| 3            | Accessing reference is beyond reach.          |
+| 4            | Thread mismatch.                              |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getBufferLength(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let length = arrayBuffer.byteLength
+    Hilog.info(0, "test", "ArrayBuffer length: ${length}")
+    return context.number(Float64(length)).toJSValue()
+}
+```
 
 ### func readBytes()
 
@@ -1381,15 +1976,36 @@ public prop byteLength: Int32
 public func readBytes(): Array<Byte>
 ```
 
-**Description:** Reads binary data and converts it to a Cangjie array.
+**Function:** Reads binary data and converts it to a Cangjie array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Array\<Byte>|Cangjie array.|
+| Type          | Description       |
+|:-------------|:-----------------|
+| Array\<Byte> | Cangjie array.    |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                  |
+|:-------------|:---------------------------------------------|
+| 3            | Accessing reference is beyond reach.          |
+| 4            | Thread mismatch.                              |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func readBufferBytes(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let bytes = arrayBuffer.readBytes()
+    Hilog.info(0, "test","Read ${bytes.size} bytes from ArrayBuffer")
+    return context.number(Float64(bytes.size)).toJSValue()
+}
+```
 
 ### func toArrayBufferJSValue()
 
@@ -1397,15 +2013,37 @@ public func readBytes(): Array<Byte>
 public func toArrayBufferJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's ArrayBuffer.
+**Function:** Returns the JSValue of ArkTS's ArrayBuffer.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type          | Description               |
+|:-------------|:-------------------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getArrayBufferJSValue(context: JSContext): JSValue {
+    let data: Array<Byte> = [1, 2, 3, 4]
+    let arrayBuffer = context.arrayBuffer(data)
+    let jsValue = arrayBuffer.toArrayBufferJSValue()
+    return jsValue
+}
+```
 
 ### func toFloat32Array()
 
@@ -1413,15 +2051,37 @@ public func toArrayBufferJSValue(): JSValue
 public func toFloat32Array(): Array<Float32>
 ```
 
-**Description:** Converts to a Cangjie array Array\<Float32>.
+**Function:** Converts to a Cangjie array Array\<Float32>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Array\<Float32>|Cangjie array.|
+| Type          | Description       |
+|:-------------|:-----------------|
+| Array\<Float32> | Cangjie array.    |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createFloat32Array(context: JSContext): Unit {
+    let data: Array<Float32> = [1.0, 2.0, 3.0, 4.0]
+    let arrayBuffer = context.arrayBuffer(data)
+    let received = arrayBuffer.toFloat32Array()
+    Hilog.info(0, "test", "Converted to Float32Array ${received}")
+}
+```
 
 ### func toFloat32ArrayJSValue()
 
@@ -1429,15 +2089,37 @@ public func toFloat32Array(): Array<Float32>
 public func toFloat32ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Float32Array.
+**Function:** Returns the JSValue of ArkTS's Float32Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type          | Description               |
+|:-------------|:-------------------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToFloat32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let float32Array = arrayBuffer.toFloat32Array()
+    Hilog.info(0, "test","Converted to Float32Array with ${float32Array.size} elements")
+    return context.number(Float64(float32Array.size)).toJSValue()
+}
+```
 
 ### func toFloat64Array()
 
@@ -1445,15 +2127,37 @@ public func toFloat32ArrayJSValue(): JSValue
 public func toFloat64Array(): Array<Float64>
 ```
 
-**Description:** Converts to a Cangjie array Array\<Float64>.
+**Function:** Converts to a Cangjie array Array\<Float64>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Array\<Float64>|Cangjie array.|
+| Type          | Description       |
+|:-------------|:-----------------|
+| Array\<Float64> | Cangjie array.    |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToFloat64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let float64Array = arrayBuffer.toFloat64Array()
+    Hilog.info(0, "test","Converted to Float64Array with ${float64Array.size} elements")
+    return context.number(Float64(float64Array.size)).toJSValue()
+}
+```
 
 ### func toFloat64ArrayJSValue()
 
@@ -1461,15 +2165,36 @@ public func toFloat64Array(): Array<Float64>
 public func toFloat64ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Float64Array.
+**Function:** Returns the JSValue of ArkTS's Float64Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type          | Description               |
+|:-------------|:-------------------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getFloat64ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let float64ArrayJSValue = arrayBuffer.toFloat64ArrayJSValue()
+    return float64ArrayJSValue
+}
+```
 
 ### func toInt16Array()
 
@@ -1477,15 +2202,37 @@ public func toFloat64ArrayJSValue(): JSValue
 public func toInt16Array(): Array<Int16>
 ```
 
-**Description:** Converts to a Cangjie array Array\<Int16>.
+**Function:** Converts to a Cangjie array Array\<Int16>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Array\<Int16>|Cangjie array.|
+| Type          | Description       |
+|:-------------|:-----------------|
+| Array\<Int16> | Cangjie array.    |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToInt16Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int16Array = arrayBuffer.toInt16Array()
+    Hilog.info(0, "test","Converted to Int16Array with ${int16Array.size} elements")
+    return context.number(Float64(int16Array.size)).toJSValue()
+}
+```
 
 ### func toInt16ArrayJSValue()
 
@@ -1493,15 +2240,36 @@ public func toInt16Array(): Array<Int16>
 public func toInt16ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Int16Array.
+**Function:** Returns the JSValue of ArkTS's Int16Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type          | Description               |
+|:-------------|:-------------------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getInt16ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int16ArrayJSValue = arrayBuffer.toInt16ArrayJSValue()
+    return int16ArrayJSValue
+}
+```
 
 ### func toInt32Array()
 
@@ -1509,15 +2277,37 @@ public func toInt16ArrayJSValue(): JSValue
 public func toInt32Array(): Array<Int32>
 ```
 
-**Description:** Converts to a Cangjie array Array\<Int32>.
+**Function:** Converts to a Cangjie array Array\<Int32>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Array\<Int32>|Cangjie array.|
+| Type          | Description       |
+|:-------------|:-----------------|
+| Array\<Int32> | Cangjie array.    |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToInt32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int32Array = arrayBuffer.toInt32Array()
+    Hilog.info(0, "test", "Converted to Int32Array with ${int32Array.size} elements")
+    return context.number(Float64(int32Array.size)).toJSValue()
+}
+```
 
 ### func toInt32ArrayJSValue()
 
@@ -1525,25 +2315,44 @@ public func toInt32Array(): Array<Int32>
 public func toInt32ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Int32Array.
+**Function:** Returns the JSValue of ArkTS's Int32Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type          | Description               |
+|:-------------|:-------------------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
 
-### func toInt64Array()
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                     |
+|:-------------|:--------------------------------|
+| 2            | Outside error occurred.          |
+| 3            | Accessing reference is beyond reach. |
+| 4            | Thread mismatch.                 |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getInt32ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int32ArrayJSValue = arrayBuffer.toInt32ArrayJSValue()
+    return int32ArrayJSValue
+}
+```### func toInt64Array()
 
 ```cangjie
 public func toInt64Array(): Array<Int64>
 ```
 
-**Description:** Converts to a Cangjie array Array\<Int64>.
+**Function:** Converts to a Cangjie array Array\<Int64>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1551,21 +2360,64 @@ public func toInt64Array(): Array<Int64>
 |:----|:----|
 |Array\<Int64>|Cangjie array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                                  |
+|:------|:-----------------------------------------|
+| 2     | Outside error occurred.　             |
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToInt64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int64Array = arrayBuffer.toInt64Array()
+    Hilog.info(0, "test", "Converted to Int64Array with ${int64Array.size} elements")
+    return context.number(Float64(int64Array.size)).toJSValue()
+}
+```
+
 ### func toInt64ArrayJSValue()
 
 ```cangjie
 public func toInt64ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's BigInt64Array.
+**Function:** Returns the JSValue of ArkTS's BigInt64Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getInt64ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int64ArrayJSValue = arrayBuffer.toInt64ArrayJSValue()
+    return int64ArrayJSValue
+}
+```
 
 ### func toInt8Array()
 
@@ -1573,9 +2425,9 @@ public func toInt64ArrayJSValue(): JSValue
 public func toInt8Array(): Array<Int8>
 ```
 
-**Description:** Converts to a Cangjie array Array\<Int8>.
+**Function:** Converts to a Cangjie array Array\<Int8>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1583,21 +2435,63 @@ public func toInt8Array(): Array<Int8>
 |:----|:----|
 |Array\<Int8>|Cangjie array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                                  |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToInt8Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int8Array = arrayBuffer.toInt8Array()
+    Hilog.info(0, "test", "Converted to Int8Array with ${int8Array.size} elements")
+    return context.number(Float64(int8Array.size)).toJSValue()
+}
+```
+
 ### func toInt8ArrayJSValue()
 
 ```cangjie
 public func toInt8ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Int8Array.
+**Function:** Returns the JSValue of ArkTS's Int8Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getInt8ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let int8ArrayJSValue = arrayBuffer.toInt8ArrayJSValue()
+    return int8ArrayJSValue
+}
+```
 
 ### func toUInt16Array()
 
@@ -1605,9 +2499,9 @@ public func toInt8ArrayJSValue(): JSValue
 public func toUInt16Array(): Array<UInt16>
 ```
 
-**Description:** Converts to a Cangjie array Array\<UInt16>.
+**Function:** Converts to a Cangjie array Array\<UInt16>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1615,21 +2509,64 @@ public func toUInt16Array(): Array<UInt16>
 |:----|:----|
 |Array\<UInt16>|Cangjie array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.　             |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToUInt16Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint16Array = arrayBuffer.toUInt16Array()
+    Hilog.info(0, "test","Converted to UInt16Array with ${uint16Array.size} elements")
+    return context.number(Float64(uint16Array.size)).toJSValue()
+}
+```
+
 ### func toUInt16ArrayJSValue()
 
 ```cangjie
 public func toUInt16ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Uint16Array.
+**Function:** Returns the JSValue of ArkTS's Uint16Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getUInt16ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint16ArrayJSValue = arrayBuffer.toUInt16ArrayJSValue()
+    return uint16ArrayJSValue
+}
+```
 
 ### func toUInt32Array()
 
@@ -1637,9 +2574,9 @@ public func toUInt16ArrayJSValue(): JSValue
 public func toUInt32Array(): Array<UInt32>
 ```
 
-**Description:** Converts to a Cangjie array Array\<UInt32>.
+**Function:** Converts to a Cangjie array Array\<UInt32>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1647,21 +2584,64 @@ public func toUInt32Array(): Array<UInt32>
 |:----|:----|
 |Array\<UInt32>|Cangjie array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                                  |
+|:------|:-----------------------------------------|
+| 2     | Outside error occurred.　             |
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToUInt32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint32Array = arrayBuffer.toUInt32Array()
+    Hilog.info(0, "test", "Converted to UInt32Array with ${uint32Array.size} elements")
+    return context.number(Float64(uint32Array.size)).toJSValue()
+}
+```
+
 ### func toUInt32ArrayJSValue()
 
 ```cangjie
 public func toUInt32ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Uint32Array.
+**Function:** Returns the JSValue of ArkTS's Uint32Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getUInt32ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint32ArrayJSValue = arrayBuffer.toUInt32ArrayJSValue()
+    return uint32ArrayJSValue
+}
+```
 
 ### func toUInt64Array()
 
@@ -1669,9 +2649,9 @@ public func toUInt32ArrayJSValue(): JSValue
 public func toUInt64Array(): Array<UInt64>
 ```
 
-**Description:** Converts to a Cangjie array Array\<UInt64>.
+**Function:** Converts to a Cangjie array Array\<UInt64>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1679,21 +2659,64 @@ public func toUInt64Array(): Array<UInt64>
 |:----|:----|
 |Array\<UInt64>|Cangjie array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                                  |
+|:------|:-----------------------------------------|
+| 2     | Outside error occurred.　             |
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToUInt64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint64Array = arrayBuffer.toUInt64Array()
+    Hilog.info(0, "test", "Converted to UInt64Array with ${uint64Array.size} elements")
+    return context.number(Float64(uint64Array.size)).toJSValue()
+}
+```
+
 ### func toUInt64ArrayJSValue()
 
 ```cangjie
 public func toUInt64ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's BigUint64Array.
+**Function:** Returns the JSValue of ArkTS's BigUint64Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getUInt64ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint64ArrayJSValue = arrayBuffer.toUInt64ArrayJSValue()
+    return uint64ArrayJSValue
+}
+```
 
 ### func toUInt8Array()
 
@@ -1701,9 +2724,9 @@ public func toUInt64ArrayJSValue(): JSValue
 public func toUInt8Array(): Array<UInt8>
 ```
 
-**Description:** Converts to a Cangjie array Array\<UInt8>.
+**Function:** Converts to a Cangjie array Array\<UInt8>.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1711,15 +2734,36 @@ public func toUInt8Array(): Array<UInt8>
 |:----|:----|
 |Array\<UInt8>|Cangjie array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                                  |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToUInt8Array(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint8Array = arrayBuffer.toUInt8Array()
+    Hilog.info(0, "test", "Converted to UInt8Array with ${uint8Array.size} elements")
+    return context.number(Float64(uint8Array.size)).toJSValue()
+}
+```
+
 ### func toUInt8ArrayJSValue()
 
 ```cangjie
 public func toUInt8ArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Uint8Array.
+**Function:** Returns the JSValue of ArkTS's Uint8Array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1727,21 +2771,63 @@ public func toUInt8ArrayJSValue(): JSValue
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getUInt8ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint8ArrayJSValue = arrayBuffer.toUInt8ArrayJSValue()
+    return uint8ArrayJSValue
+}
+```
+
 ### func toUInt8ClampedArrayJSValue()
 
 ```cangjie
 public func toUInt8ClampedArrayJSValue(): JSValue
 ```
 
-**Description:** Returns the JSValue of ArkTS's Uint8ClampedArray.
+**Function:** Returns the JSValue of ArkTS's Uint8ClampedArray.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|## class JSArrayEx
+|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 2     | Outside error occurred. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getUInt8ClampedArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let arrayBuffer = callInfo[0].asArrayBuffer()
+    let uint8ClampedArrayJSValue = arrayBuffer.toUInt8ClampedArrayJSValue()
+    return uint8ClampedArrayJSValue
+}
+```## class JSArrayEx
 
 ```cangjie
 public class JSArrayEx<T> <: JSInteropType<JSArrayEx<T>> where T <: JSInteropType <T> {
@@ -1753,9 +2839,9 @@ public class JSArrayEx<T> <: JSInteropType<JSArrayEx<T>> where T <: JSInteropTyp
 
 **Initial Version:** 22
 
-**Parent Types:**
+**Parent Type:**
 
-* [JSInteropType\<JSArrayEx\<T>>](#interface-jsinteroptype)
+- [JSInteropType\<JSArrayEx\<T>>](#interface-jsinteroptype)
 
 ### prop size
 
@@ -1769,7 +2855,16 @@ public prop size: Int64
 
 **Type:** Int64
 
-**Read/Write Capability:** Read-only
+**Read-Write Capability:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------| :--- |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch. |
 
 ### init(Array\<T>)
 
@@ -1777,15 +2872,15 @@ public prop size: Int64
 public init(arr: Array<T>)
 ```
 
-**Function:** Constructs a corresponding JSArrayEx\<T> instance from a given Array\<T>.
+**Function:** Constructs a corresponding JSArrayEx\<T> instance given an Array\<T>.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|arr|Array\<T>|Yes|-|Created based on this Array instance.|
+| arr | Array\<T> | Yes | - | Created based on this Array instance. |
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -1793,22 +2888,32 @@ public init(arr: Array<T>)
 public static func fromJSValue(context: JSContext, input: JSValue): JSArrayEx<T>
 ```
 
-**Function:** Converts JSValue to JSArrayEx. Used in declarative interop macro framework scenarios; developers do not need to use this API.
+**Function:** Converts from JSValue to JSArrayEx. Used in declarative interop macro framework scenarios; developers do not need to use this API.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interop context.|
-|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interop context. |
+| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayEx](#class-jsarrayex)\<T>|Declarative interop macro type JSArrayEx.|
+| [JSArrayEx](#class-jsarrayex)\<T> | Declarative interop macro type JSArrayEx. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+| 5     | The ArkTS data types do not match.       |
 
 ### static func toArktsType()
 
@@ -1822,9 +2927,9 @@ public static func toArktsType(): String
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|Converted ArkTS type name.|
+| String | Converted ArkTS type name. |
 
 ### func clone()
 
@@ -1838,9 +2943,34 @@ public func clone(): JSArrayEx<T>
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayEx](#class-jsarrayex)\<T>|New JSArrayEx obtained from cloning.|
+| [JSArrayEx](#class-jsarrayex)\<T> | New JSArrayEx obtained from cloning. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func cloneArrayEx(context: JSContext): JSValue {
+    let originalArray: Array<Int64> = [1, 2, 3, 4, 5]
+    let jsArrayEx = JSArrayEx<Int64>(originalArray)
+    let clonedArrayEx = jsArrayEx.clone()
+
+    Hilog.info(0, "test", "Original size: ${jsArrayEx.size}")
+    Hilog.info(0, "test", "Cloned size: ${clonedArrayEx.size}")
+
+    return clonedArrayEx.toJSValue(context)
+}
+```
 
 ### func concat(JSArrayEx\<T>)
 
@@ -1848,21 +2978,48 @@ public func clone(): JSArrayEx<T>
 public func concat(other: JSArrayEx<T>): JSArrayEx<T>
 ```
 
-**Function:** Creates a new JSArrayEx by concatenating the current JSArrayEx with the JSArrayEx pointed to by `other`.
+**Function:** This function creates a new JSArrayEx by concatenating the current JSArrayEx with the JSArrayEx pointed to by `other`.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|other|[JSArrayEx](#class-jsarrayex)\<T>|Yes|-|JSArrayEx to concatenate at the end.|
+| other | [JSArrayEx](#class-jsarrayex)\<T> | Yes | - | JSArrayEx to concatenate at the end. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayEx](#class-jsarrayex)\<T>|New JSArrayEx obtained from concatenation.|
+| [JSArrayEx](#class-jsarrayex)\<T> | New JSArrayEx obtained from concatenation. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func concatArrayEx(context: JSContext): JSValue {
+    let array1: Array<Int64> = [1, 2, 3]
+    let array2: Array<Int64> = [4, 5, 6]
+
+    let jsArrayEx1 = JSArrayEx<Int64>(array1)
+    let jsArrayEx2 = JSArrayEx<Int64>(array2)
+
+    let concatenated = jsArrayEx1.concat(jsArrayEx2)
+    Hilog.info(0, "test", "Concatenated array size: ${concatenated.size}")
+
+    return concatenated.toJSValue(context)
+}
+```
 
 ### func get(Int64)
 
@@ -1870,21 +3027,47 @@ public func concat(other: JSArrayEx<T>): JSArrayEx<T>
 public func get(index: Int64): Option<T>
 ```
 
-**Function:** Gets the element at the specified index in the array.
+**Function:** Gets the element at the specified `index` in the array.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|index|Int64|Yes|-|Index of the value to retrieve.|
+| index | Int64 | Yes | - | Index of the value to retrieve. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Option\<T>|Value at the specified index in the current array.|
+| Option\<T> | Value at the specified `index` in the current array. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getElementFromArrayEx(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let array: Array<String> = ["apple", "banana", "cherry"]
+    let jsArrayEx = JSArrayEx<String>(array)
+
+    let element = jsArrayEx.get(1)  // Get element at index 1
+    if (element != None) {
+        Hilog.info(0, "test", "Element at index 1: ${element!}")
+    }
+
+    return jsArrayEx.toJSValue(context)
+}
+```
 
 ### func isEmpty()
 
@@ -1898,9 +3081,36 @@ public func isEmpty(): Bool
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the array is empty; otherwise, returns false.|
+| Bool | Returns `true` if the array is empty; otherwise, returns `false`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkArrayExEmpty(context: JSContext): JSValue {
+    let emptyArray: Array<Int64> = []
+    let nonEmptyArray: Array<Int64> = [1, 2, 3]
+
+    let emptyJSArrayEx = JSArrayEx<Int64>(emptyArray)
+    let nonEmptyJSArrayEx = JSArrayEx<Int64>(nonEmptyArray)
+
+    Hilog.info(0, "test", "Is empty array empty: ${emptyJSArrayEx.isEmpty()}")
+    Hilog.info(0, "test", "Is non-empty array empty: ${nonEmptyJSArrayEx.isEmpty()}")
+
+    return context.boolean(emptyJSArrayEx.isEmpty()).toJSValue()
+}
+```
 
 ### func set(Int64, T)
 
@@ -1908,16 +3118,42 @@ public func isEmpty(): Bool
 public func set(index: Int64, element: T): Unit
 ```
 
-**Function:** Modifies the value at the specified index in the array.
+**Function:** Modifies the value at the specified `index` in the array.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|index|Int64|Yes|-|Index of the value to modify, range [0..this.size].|
-|element|T|Yes|-|Target value to modify.|
+| index | Int64 | Yes | - | Index of the value to modify, range: [0..this.size]. |
+| element | T | Yes | - | Target value to set. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 1     | The accessing index is out of range.     |
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func setElementInArrayEx(context: JSContext): JSValue {
+    let array: Array<Int64> = [1, 2, 3, 4, 5]
+    let jsArrayEx = JSArrayEx<Int64>(array)
+
+    // Modify element at index 2 to 10
+    jsArrayEx.set(2, 10)
+    Hilog.info(0, "test", "Modified element at index 2 to 10")
+
+    return jsArrayEx.toJSValue(context)
+}
+```
 
 ### func toArray()
 
@@ -1931,9 +3167,33 @@ public func toArray(): Array<T>
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Array\<T>|Converted Cangjie array.|
+| Array\<T> | Converted Cangjie array. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-----------------------------------------|
+| 3     | Accessing reference is beyond reach.     |
+| 4     | Thread mismatch.                         |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertArrayExToArray(context: JSContext): JSValue {
+    let array: Array<String> = ["hello", "world", "cangjie"]
+    let jsArrayEx = JSArrayEx<String>(array)
+
+    let convertedArray = jsArrayEx.toArray()
+    Hilog.info(0, "test", "Converted array size: ${convertedArray.size}")
+
+    return jsArrayEx.toJSValue(context)
+}
+```
 
 ### func toJSValue(JSContext)
 
@@ -1947,15 +3207,25 @@ public func toJSValue(context: JSContext): JSValue
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interop context.|
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interop context. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func \[](Int64)
 
@@ -1963,21 +3233,46 @@ public func toJSValue(context: JSContext): JSValue
 public operator func[](index: Int64): T
 ```
 
-**Function:** Gets the value at the specified index in the array.
+**Function:** Gets the value at the specified `index` in the array.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|index|Int64|Yes|-|Index of the value to retrieve.|
+| index | Int64 | Yes | - | Index of the value to retrieve. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|T|Value at the specified index in the current array.|
+| T | Value at the specified `index` in the current array. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:--------------------------------------|
+| 1     | The accessing index is out of range.  |
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getIndexOperator(context: JSContext): JSValue {
+    let array: Array<Int64> = [10, 20, 30, 40]
+    let jsArrayEx = JSArrayEx<Int64>(array)
+
+    let value = jsArrayEx[2]  // Get element at index 2
+    Hilog.info(0, "test", "Value at index 2: ${value}")
+
+    return context.number(Float64(value)).toJSValue()
+}
+```
 
 ### func \[](Int64, T)
 
@@ -1985,18 +3280,42 @@ public operator func[](index: Int64): T
 public operator func[](index: Int64, value!: T)
 ```
 
-**Function:** Modifies the value at the specified index in the array.
+**Function:** Modifies the value at the specified `index` in the array.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|index|Int64|Yes|-|Index of the value to modify, range [0..this.size].|
-|value|T|Yes|-| **Named parameter.** Target value to modify.|
+| index | Int64 | Yes | - | Index of the value to modify, range: [0..this.size]. |
+| value | T | Yes | - | **Named parameter.** Target value to set. |
 
-## class JSBigInt
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message |
+|:------|:--------------------------------------|
+| 1     | The accessing index is out of range.  |
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func setIndexOperator(context: JSContext): JSValue {
+    let array: Array<Int64> = [1, 2, 3, 4]
+    let jsArrayEx = JSArrayEx<Int64>(array)
+
+    // Set element at index 1 to 100
+    jsArrayEx[1] = 100
+    Hilog.info(0, "test", "Set value at index 1 to 100")
+
+    return jsArrayEx.toJSValue(context)
+}
+```## class JSBigInt
 
 ```cangjie
 public class JSBigInt <: JSHeapObject {}
@@ -2004,11 +3323,11 @@ public class JSBigInt <: JSHeapObject {}
 
 **Initial Version:** 22
 
-**Function:** JSBigInt objects are used to represent safe references to JS bigint types. By creating JS bigint objects, they can be converted to Cangjie Int64 or Cangjie BigInt.
+**Description:** The JSBigInt object is used to represent a secure reference to the JS bigint type. By creating a JS bigint object, it can be converted to a Cangjie Int64 or Cangjie BigInt.
 
-**Parent Types:**
+**Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### func toBigInt()
 
@@ -2016,7 +3335,7 @@ public class JSBigInt <: JSHeapObject {}
 public func toBigInt(): BigInt
 ```
 
-**Function:** Converts to Cangjie BigInt.
+**Description:** Converts to a Cangjie BigInt.
 
 **Initial Version:** 22
 
@@ -2026,19 +3345,42 @@ public func toBigInt(): BigInt
 |:----|:----|
 |BigInt|Cangjie BigInt.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                |
+|:------|:--------------------------------------|
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToBigInt(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let jsBigInt = callInfo[0].asBigInt()
+    let bigIntValue = jsBigInt.toBigInt()
+
+    Hilog.info(0, "test", "Converted BigInt value: ${bigIntValue}")
+
+    return context.string(bigIntValue.toString()).toJSValue()
+}
+```
+
 ## class JSClass
 
 ```cangjie
 public class JSClass <: JSHeapObject {}
 ```
 
-**Function:** A safe reference to an ArkTS class (constructor). Methods and accessors can be added to this class, and instances of this class can be created.
+**Description:** A secure reference to an ArkTS class (constructor). Methods and accessors can be added to this class, and instances of this class can be created.
 
 **Initial Version:** 22
 
-**Parent Types:**
+**Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### prop prototype
 
@@ -2046,13 +3388,38 @@ public class JSClass <: JSHeapObject {}
 public prop prototype: JSObject
 ```
 
-**Function:** The prototype object of the class.
+**Description:** The prototype object of the class.
 
 **Initial Version:** 22
 
 **Type:** [JSObject](#class-jsobject)
 
-**Read/Write Capability:** Read-only
+**Read-Write Capability:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                           |
+|:------|:-------------------------------|
+| 2     | Outside error occurred.　             |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func accessClassPrototype(context: JSContext): JSValue {
+    let ctor: JSLambda = { _, callInfo =>
+        return callInfo.thisArg
+    }
+    let clazz = context.clazz(ctor)
+
+    let prototype = clazz.prototype
+    Hilog.info(0, "test", "Class prototype accessed")
+
+    return prototype.toJSValue()
+}
+```
 
 ### func addAccessor(JSKeyable, ?JSFunction, ?JSFunction)
 
@@ -2060,7 +3427,7 @@ public prop prototype: JSObject
 public func addAccessor(key: JSKeyable, getter!: ?JSFunction = None, setter!: ?JSFunction = None): Unit
 ```
 
-**Function:** Defines a pair of getter and setter for the current ArkTS class.
+**Description:** Defines a pair of getter and setter for the current ArkTS class.
 
 **Initial Version:** 22
 
@@ -2071,6 +3438,16 @@ public func addAccessor(key: JSKeyable, getter!: ?JSFunction = None, setter!: ?J
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
 |getter|?[JSFunction](#class-jsfunction)|No|None| **Named parameter.** Getter implementation.|
 |setter|?[JSFunction](#class-jsfunction)|No|None| **Named parameter.** Setter implementation.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2098,7 +3475,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func addAccessor(key: JSKeyable, getter!: ?JSLambda = None, setter!: ?JSLambda = None): Unit
 ```
 
-**Function:** Defines a pair of getter and setter for the current ArkTS class.
+**Description:** Defines a pair of getter and setter for the current ArkTS class.
 
 **Initial Version:** 22
 
@@ -2109,6 +3486,16 @@ public func addAccessor(key: JSKeyable, getter!: ?JSLambda = None, setter!: ?JSL
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
 |getter|?[JSLambda](#type-jslambda)|No|None| **Named parameter.** Getter implementation.|
 |setter|?[JSLambda](#type-jslambda)|No|None| **Named parameter.** Setter implementation.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2136,7 +3523,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func addMethod(key: JSKeyable, method: JSFunction): Unit
 ```
 
-**Function:** Defines a method for the current ArkTS class.
+**Description:** Defines a method for the current ArkTS class.
 
 **Initial Version:** 22
 
@@ -2146,6 +3533,16 @@ public func addMethod(key: JSKeyable, method: JSFunction): Unit
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
 |method|[JSFunction](#class-jsfunction)|Yes|-|Method implementation.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2173,7 +3570,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func addMethod(key: JSKeyable, method: JSLambda): Unit
 ```
 
-**Function:** Defines a method for the current ArkTS class.
+**Description:** Defines a method for the current ArkTS class.
 
 **Initial Version:** 22
 
@@ -2183,6 +3580,16 @@ public func addMethod(key: JSKeyable, method: JSLambda): Unit
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
 |method|[JSLambda](#type-jslambda)|Yes|-|Method implementation.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2210,7 +3617,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func addProperty(key: JSKeyable, value: JSValue): Unit
 ```
 
-**Function:** Adds a new data member to the target ArkTS class, typically used to define immutable properties.
+**Description:** Adds a data member to the target ArkTS class, typically used to define immutable properties.
 
 **Initial Version:** 22
 
@@ -2220,6 +3627,16 @@ public func addProperty(key: JSKeyable, value: JSValue): Unit
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
 |value|[JSValue](#struct-jsvalue)|Yes|-|Property value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2244,7 +3661,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func new(): JSValue
 ```
 
-**Function:** Instantiates a new object from the ArkTS class.
+**Description:** Instantiates a new object using the ArkTS class.
 
 **Initial Version:** 22
 
@@ -2252,7 +3669,17 @@ public func new(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Newly instantiated object.|
+|[JSValue](#struct-jsvalue)|The newly instantiated object.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2274,7 +3701,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func new(arg: JSValue): JSValue
 ```
 
-**Function:** Instantiates a new object from the ArkTS class.
+**Description:** Instantiates a new object using the ArkTS class.
 
 **Initial Version:** 22
 
@@ -2288,7 +3715,17 @@ public func new(arg: JSValue): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Newly instantiated object.|
+|[JSValue](#struct-jsvalue)|The newly instantiated object.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2314,7 +3751,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func new(args: Array<JSValue>): JSValue
 ```
 
-**Function:** Instantiates a new object from the ArkTS class.
+**Description:** Instantiates a new object using the ArkTS class.
 
 **Initial Version:** 22
 
@@ -2328,7 +3765,17 @@ public func new(args: Array<JSValue>): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Newly instantiated object.|
+|[JSValue](#struct-jsvalue)|The newly instantiated object.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message                                 |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2355,13 +3802,13 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public class JSContext {}
 ```
 
-**Function:** A single-threaded ArkTS interoperability context.
+**Description:** A single-threaded execution context for ArkTS interoperability.
 
 There is a one-to-one correspondence between JSContext and the ArkTS runtime. Its primary purpose is to create JSValue and safe references, and manage the lifecycle of Cangjie objects referenced on the ArkTS side.
 
 A JSContext holds a weak reference to an ArkTS runtime. This JSContext does not affect the lifecycle of the ArkTS runtime. When the ArkTS runtime becomes invalid, using this JSContext will throw a Cangjie exception.
 
-**Initial Version:** 22
+**Since:** 22
 
 ### prop env
 
@@ -2369,13 +3816,34 @@ A JSContext holds a weak reference to an ArkTS runtime. This JSContext does not 
 public prop env: JSEnv
 ```
 
-**Function:** ArkTS interoperability context.
+**Description:** ArkTS interoperability context.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Type:** JSEnv
 
-**Read/Write Capability:** Read-only
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func accessContextEnv(context: JSContext): JSValue {
+    let env = context.env
+    Hilog.info(0, "test", "Context env accessed")
+
+    return context.undefined().toJSValue()
+}
+```
 
 ### prop global
 
@@ -2383,13 +3851,36 @@ public prop env: JSEnv
 public prop global: JSObject
 ```
 
-**Function:** The JavaScript global environment variable `globalThis`.
+**Description:** The JavaScript global environment variable `globalThis`.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Type:** [JSObject](#class-jsobject)
 
-**Read/Write Capability:** Read-only
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func accessGlobalObject(context: JSContext): JSValue {
+    let globalObj = context.global
+    let globalKeys = globalObj.keys()
+
+    Hilog.info(0, "test", "Global object has ${globalKeys.size} keys")
+
+    return globalObj.toJSValue()
+}
+```
 
 ### func array(Array\<JSValue>)
 
@@ -2397,21 +3888,31 @@ public prop global: JSObject
 public func array(arr: Array<JSValue>): JSArray
 ```
 
-**Function:** Creates an ArkTS array.
+**Description:** Creates an ArkTS array.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|arr|Array\<[JSValue](#struct-jsvalue)>|Yes|-|Reference to an ArkTS array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| arr      | Array\<[JSValue](#struct-jsvalue)> | Yes | - | Reference to an ArkTS array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArray](#class-jsarray)|ArkTS array|
+| Type | Description |
+|:-----|:------------|
+| [JSArray](#class-jsarray) | ArkTS array |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 **Example:**
 
@@ -2429,21 +3930,32 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func arrayBuffer(length: Int32): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|length|Int32|Yes|-|Size of the memory block.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| length   | Int32 | Yes | - | Size of the memory block. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 1            | The arrayBuffer length is invalid.     |
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 **Example:**
 
@@ -2461,21 +3973,31 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func arrayBuffer(data: Array<Byte>): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|data|Array\<Byte>|Yes|-|Cangjie array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| data     | Array\<Byte> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 **Example:**
 
@@ -2494,21 +4016,45 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func arrayBuffer(data: Array<Int8>): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|data|Array\<Int8>|Yes|-|Cangjie array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| data     | Array\<Int8> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromInt8(context: JSContext): JSValue {
+    let int8Array: Array<Int8> = [1, 2, 3]
+    let arrayBuffer = context.arrayBuffer(int8Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from Int8 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<Int16>)
 
@@ -2516,21 +4062,45 @@ public func arrayBuffer(data: Array<Int8>): JSArrayBuffer
 public func arrayBuffer(data: Array<Int16>): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|data|Array\<Int16>|Yes|-|Cangjie array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| data     | Array\<Int16> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromInt16(context: JSContext): JSValue {
+    let int16Array: Array<Int16> = [1, 2, 3]
+    let arrayBuffer = context.arrayBuffer(int16Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from Int16 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<UInt16>)
 
@@ -2538,21 +4108,45 @@ public func arrayBuffer(data: Array<Int16>): JSArrayBuffer
 public func arrayBuffer(data: Array<UInt16>): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|data|Array\<UInt16>|Yes|-|Cangjie array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| data     | Array\<UInt16> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromUInt16(context: JSContext): JSValue {
+    let uint16Array: Array<UInt16> = [1, 2, 3]
+    let arrayBuffer = context.arrayBuffer(uint16Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from UInt16 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<UInt32>)
 
@@ -2560,21 +4154,45 @@ public func arrayBuffer(data: Array<UInt16>): JSArrayBuffer
 public func arrayBuffer(data: Array<UInt32>): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|data|Array\<UInt32>|Yes|-|Cangjie array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| data     | Array\<UInt32> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromUInt32(context: JSContext): JSValue {
+    let uint32Array: Array<UInt32> = [1, 2, 3]
+    let arrayBuffer = context.arrayBuffer(uint32Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from UInt32 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<Int32>)
 
@@ -2582,23 +4200,45 @@ public func arrayBuffer(data: Array<UInt32>): JSArrayBuffer
 public func arrayBuffer(data: Array<Int32>): JSArrayBuffer
 ```
 
-**Function:** Creates an ArkTS ArrayBuffer from a memory block.
+**Description:** Creates an ArkTS ArrayBuffer from a memory block.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|data|Array\<Int32>|Yes|-|Cangjie array.|
+| Parameter | Type | Required | Default | Description |
+|:---------|:-----|:--------|:--------|:------------|
+| data     | Array\<Int32> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| Type | Description |
+|:-----|:------------|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to an ArkTS ArrayBuffer object. |
 
-### func arrayBuffer(Array\<Float32>)
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are shown in the table below.
+
+| Error Code ID | Error Message                           |
+|:--------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromInt32(context: JSContext): JSValue {
+    let int32Array: Array<Int32> = [1, 2, 3]
+    let arrayBuffer = context.arrayBuffer(int32Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from Int32 array")
+
+    return arrayBuffer.toJSValue()
+}
+```### func arrayBuffer(Array\<Float32>)
 
 ```cangjie
 public func arrayBuffer(data: Array<Float32>): JSArrayBuffer
@@ -2610,15 +4250,39 @@ public func arrayBuffer(data: Array<Float32>): JSArrayBuffer
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|data|Array\<Float32>|Yes|-|Cangjie array.|
+| data | Array\<Float32> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to the ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromFloat32(context: JSContext): JSValue {
+    let float32Array: Array<Float32> = [1.0, 2.0, 3.0]
+    let arrayBuffer = context.arrayBuffer(float32Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from Float32 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<Int64>)
 
@@ -2632,15 +4296,39 @@ public func arrayBuffer(data: Array<Int64>): JSArrayBuffer
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|data|Array\<Int64>|Yes|-|Cangjie array.|
+| data | Array\<Int64> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to the ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromInt64(context: JSContext): JSValue {
+    let int64Array: Array<Int64> = [1, 2, 3]
+    let arrayBuffer = context.arrayBuffer(int64Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from Int64 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<UInt64>)
 
@@ -2654,15 +4342,39 @@ public func arrayBuffer(data: Array<UInt64>): JSArrayBuffer
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|data|Array\<UInt64>|Yes|-|Cangjie array.|
+| data | Array\<UInt64> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to the ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromUInt64(context: JSContext): JSValue {
+    let uint64Array: Array<UInt64> = [1.u64, 2.u64, 3.u64]
+    let arrayBuffer = context.arrayBuffer(uint64Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from UInt64 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(Array\<Float64>)
 
@@ -2676,15 +4388,39 @@ public func arrayBuffer(data: Array<Float64>): JSArrayBuffer
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|data|Array\<Float64>|Yes|-|Cangjie array.|
+| data | Array\<Float64> | Yes | - | Cangjie array. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to the ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createArrayBufferFromFloat64(context: JSContext): JSValue {
+    let float64Array: Array<Float64> = [1.0, 2.0, 3.0]
+    let arrayBuffer = context.arrayBuffer(float64Array)
+
+    Hilog.info(0, "test", "Created ArrayBuffer from Float64 array")
+
+    return arrayBuffer.toJSValue()
+}
+```
 
 ### func arrayBuffer(CPointer\<Byte>, Int32, JSBufferFinalizer)
 
@@ -2698,17 +4434,27 @@ public unsafe func arrayBuffer(rawData: CPointer<Byte>, length: Int32, finalizer
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|rawData|CPointer\<Byte>|Yes|-|Memory block address.|
-|length|Int32|Yes|-|Size of the memory block.|
-|finalizer|[JSBufferFinalizer](#type-jsbufferfinalizer)|Yes|-|Memory block cleanup function.|
+| rawData | CPointer\<Byte> | Yes | - | Memory block address. |
+| length | Int32 | Yes | - | Memory block size. |
+| finalizer | [JSBufferFinalizer](#type-jsbufferfinalizer) | Yes | - | Memory block cleanup function. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer object.|
+| [JSArrayBuffer](#class-jsarraybuffer) | Reference to the ArkTS ArrayBuffer object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2731,21 +4477,31 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func bigint(value: Int64): JSBigInt
 ```
 
-**Function:** Creates an ArkTS bigint with the same value as a Cangjie BigInt.
+**Function:** Creates an ArkTS bigint with the same value as the Cangjie BigInt.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|value|Int64|Yes|-|Cangjie BigInt.|
+| value | Int64 | Yes | - | Cangjie BigInt. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSBigInt](#class-jsbigint)|Reference to an ArkTS bigint object.|
+| [JSBigInt](#class-jsbigint) | Reference to the ArkTS bigint object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2755,19 +4511,21 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let result = context.bigint(100)
     return result.toJSValue()
 }
-```### func bigint(BigInt)
+```
+
+### func bigint(BigInt)
 
 ```cangjie
 public func bigint(value: BigInt): JSBigInt
 ```
 
-**Function:** Creates an ArkTS bigint equivalent to the Cangjie BigInt.
+**Function:** Creates an ArkTS bigint with the same value as the Cangjie BigInt.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | value | BigInt | Yes | - | Cangjie BigInt. |
 
@@ -2776,6 +4534,16 @@ public func bigint(value: BigInt): JSBigInt
 | Type | Description |
 |:----|:----|
 | [JSBigInt](#class-jsbigint) | Reference to the ArkTS bigint object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2801,7 +4569,7 @@ public func boolean(value: Bool): JSBoolean
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | value | Bool | Yes | - | Cangjie boolean value. |
 
@@ -2810,6 +4578,15 @@ public func boolean(value: Bool): JSBoolean
 | Type | Description |
 |:----|:----|
 | [JSBoolean](#struct-jsboolean) | ArkTS boolean value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2833,7 +4610,7 @@ public func clazz(ctor: JSLambda, superClass!: ?JSClass = None): JSClass
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | ctor | [JSLambda](#type-jslambda) | Yes | - | Cangjie function serving as the class constructor. |
 | superClass | ?[JSClass](#class-jsclass) | No | None | **Named parameter.** Parent class of the ArkTS class. |
@@ -2843,6 +4620,16 @@ public func clazz(ctor: JSLambda, superClass!: ?JSClass = None): JSClass
 | Type | Description |
 |:----|:----|
 | [JSClass](#class-jsclass) | Reference to the ArkTS class. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -2856,9 +4643,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let result = context.clazz(clsCtor)
     return result.toJSValue()
 }
-```
-
-### func external(SharedObject)
+```### func external(SharedObject)
 
 ```cangjie
 public func external(data: SharedObject): JSExternal
@@ -2879,6 +4664,16 @@ public func external(data: SharedObject): JSExternal
 | Type | Description |
 |:----|:----|
 | [JSExternal](#class-jsexternal) | ArkTS reference to the Cangjie object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -2915,6 +4710,16 @@ public func function(lambda: JSLambda): JSFunction
 |:----|:----|
 | [JSFunction](#class-jsfunction) | Reference to the ArkTS function. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 **Example:**
 
 <!--compile-->
@@ -2945,13 +4750,34 @@ public func getNapiEnv(): napi_env
 |:----|:----|
 | [napi_env](#type-napi_env) | Pointer to the global environment. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getNapiEnvironment(context: JSContext): JSValue {
+    let napiEnv = context.getNapiEnv()
+    Hilog.info(0, "test", "Got napi environment")
+
+    return context.undefined().toJSValue()
+}
+```
+
 ### func isInBindThread()
 
 ```cangjie
 public func isInBindThread(): Bool
 ```
 
-**Function:** Multithreading utility: Checks if the current thread can execute interoperation interfaces.
+**Function:** Multithreading utility: Checks whether the current thread can execute interoperation interfaces.
 
 **Initial Version:** 22
 
@@ -2959,7 +4785,7 @@ public func isInBindThread(): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the current thread can call interoperation interfaces. |
+| Bool | Returns `true` if the current thread can call interoperation interfaces. |
 
 **Example:**
 
@@ -2979,7 +4805,7 @@ func createObject(context: JSContext): JSObject {
 public func null(): JSNull
 ```
 
-**Function:** Creates an ArkTS null.
+**Function:** Creates an ArkTS `null`.
 
 **Initial Version:** 22
 
@@ -2987,7 +4813,16 @@ public func null(): JSNull
 
 | Type | Description |
 |:----|:----|
-| [JSNull](#struct-jsnull) | Returns ArkTS null. |
+| [JSNull](#struct-jsnull) | Returns ArkTS `null`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3021,6 +4856,15 @@ public func number(value: Float64): JSNumber
 |:----|:----|
 | [JSNumber](#struct-jsnumber) | ArkTS number. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 **Example:**
 
 <!--compile-->
@@ -3053,6 +4897,15 @@ public func number(value: Int32): JSNumber
 |:----|:----|
 | [JSNumber](#struct-jsnumber) | ArkTS number. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
 **Example:**
 
 <!--compile-->
@@ -3078,6 +4931,16 @@ public func object(): JSObject
 | Type | Description |
 |:----|:----|
 | [JSObject](#class-jsobject) | ArkTS object reference. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3134,7 +4997,17 @@ public func promiseCapability(): JSPromiseCapability
 
 | Type | Description |
 |:----|:----|
-| [JSPromiseCapability](#class-jspromisecapability) | Native reference to the ArkTS promise. |
+| [JSPromiseCapability](#class-jspromisecapability) | Native reference to the ArkTS Promise. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3152,7 +5025,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func requireSystemNativeModule(moduleName: String, prefix!: ?String = None): JSValue
 ```
 
-**Function:** Loads a system-built-in ArkTS napi module.
+**Function:** Loads a system-built ArkTS NAPI module.
 
 **Initial Version:** 22
 
@@ -3160,14 +5033,24 @@ public func requireSystemNativeModule(moduleName: String, prefix!: ?String = Non
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| moduleName | String | Yes | - | Registered name of the ArkTS napi module. |
-| prefix | ?String | No | None | **Named parameter.** Archive directory of the ArkTS napi module. Can be omitted if under /system/lib64/module; otherwise, specify the subdirectory name. |
+| moduleName | String | Yes | - | Registered name of the ArkTS NAPI module. |
+| prefix | ?String | No | None | **Named parameter.** Archive directory of the ArkTS NAPI module. Can be omitted if under `/system/lib64/module`; otherwise, specify the subdirectory name. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | Module return value, typically an object. Returns undefined if loading fails. |
+| [JSValue](#struct-jsvalue) | Module return value, typically an object. Returns `undefined` if loading fails. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3199,7 +5082,17 @@ public func string(value: String): JSString
 
 | Type | Description |
 |:----|:----|
-| [JSString](#class-jsstring) | Reference to the ArkTS string. |
+| [JSString](#class-jsstring) | ArkTS string reference. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3233,6 +5126,27 @@ public func string(value: Utf16String): JSString
 |:----|:----|
 | [JSString](#class-jsstring) | JSString created from the source object. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let utf16string = Utf16String("abc")
+    let result = context.string(utf16string)
+    return result.toJSValue()
+}
+```
+
 ### func symbol(String)
 
 ```cangjie
@@ -3253,7 +5167,17 @@ public func symbol(description!: String = ""): JSSymbol
 
 | Type | Description |
 |:----|:----|
-| [JSSymbol](#class-jssymbol) | Reference to the ArkTS symbol object. |
+| [JSSymbol](#class-jssymbol) | ArkTS symbol object reference. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3272,7 +5196,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func undefined(): JSUndefined
 ```
 
-**Function:** Creates an ArkTS undefined.
+**Function:** Creates an ArkTS `undefined`.
 
 **Initial Version:** 22
 
@@ -3280,7 +5204,16 @@ public func undefined(): JSUndefined
 
 | Type | Description |
 |:----|:----|
-| [JSUndefined](#struct-jsundefined) | Returns ArkTS undefined. |
+| [JSUndefined](#struct-jsundefined) | Returns ArkTS `undefined`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -3290,23 +5223,21 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let result = context.undefined()
     return result.toJSValue()
 }
-```
-
-## class JSExternal
+```## class JSExternal
 
 ```cangjie
 public class JSExternal <: JSHeapObject {}
 ```
 
-**Function:** A Cangjie object reference that can be passed to the ArkTS side. Allows access to the bound Cangjie object.
+**Function:** A Cangjie object reference that can be passed to the ArkTS side. Allows accessing the bound Cangjie object.
 
-JSExternal aims to pass a strong reference of a Cangjie object to the ArkTS runtime, enabling access to this Cangjie object when combined with other user-defined interoperability interfaces.
+JSExternal aims to pass a strong reference of a Cangjie object to the ArkTS runtime. Combined with other user-defined interoperability interfaces, it enables access to this Cangjie object.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### func cast\<T>() where T <: SharedObject
 
@@ -3314,15 +5245,25 @@ JSExternal aims to pass a strong reference of a Cangjie object to the ArkTS runt
 public func cast<T>(): Option<T> where T <: SharedObject
 ```
 
-**Function:** Retrieves the bound SharedObject and converts it to type T.
+**Function:** Gets the bound SharedObject and converts it to type T.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |Option\<T>|The bound Cangjie object.|
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -3349,15 +5290,25 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func getData(): SharedObject
 ```
 
-**Function:** Retrieves the bound SharedObject.
+**Function:** Gets the bound SharedObject.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[SharedObject](#class-sharedobject)|The bound Cangjie object.|
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -3387,11 +5338,11 @@ public class JSFunction <: JSHeapObject {}
 
 **Function:** A safe reference to an ArkTS function.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### func call(JSValue)
 
@@ -3401,19 +5352,29 @@ public func call(thisArg!: JSValue = context.undefined().toJSValue()): JSValue
 
 **Function:** Performs an ArkTS function call (multiple parameters).
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** The `this` pointer.|
+|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** this pointer.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|Function call return value.|
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -3433,20 +5394,30 @@ public func call(arg: JSValue, thisArg!: JSValue = context.undefined().toJSValue
 
 **Function:** Performs an ArkTS function call (multiple parameters).
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|arg|[JSValue](#struct-jsvalue)|Yes|-|ArkTS function call parameter.|
-|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** ArkTS function call `this` pointer.|
+|arg|[JSValue](#struct-jsvalue)|Yes|-|ArkTS function input parameter.|
+|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** ArkTS function this pointer.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|Function call return value.|
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -3467,20 +5438,30 @@ public func call(args: Array<JSValue>, thisArg!: JSValue = context.undefined().t
 
 **Function:** Performs an ArkTS function call (multiple parameters).
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |args|Array\<[JSValue](#struct-jsvalue)>|Yes|-|Parameter list.|
-|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** The `this` pointer.|
+|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** this pointer.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|Function call return value.|
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -3503,13 +5484,13 @@ public class JSHashMapEx<K, V> <: JSInteropType<JSHashMapEx<K,V>> where K <: JSK
 }
 ```
 
-**Function:** Used in declarative interoperability macros, corresponding to ArkTS's Map type.
+**Function:** Used in declarative interoperability macros, corresponding to ArkTS Map type.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parent Type:**
 
-* [JSInteropType\<JSHashMapEx\<K,V>>](#interface-jsinteroptype)
+- [JSInteropType\<JSHashMapEx\<K,V>>](#interface-jsinteroptype)
 
 ### prop size
 
@@ -3519,11 +5500,20 @@ public prop size: Int64
 
 **Function:** Returns the number of key-value pairs.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Type:** Int64
 
 **Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### init(HashMap\<K,V>)
 
@@ -3533,13 +5523,29 @@ public init(map: HashMap<K, V>)
 
 **Function:** Constructs an empty JSHashMapEx\<K, V> instance.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|map|HashMap\<K, V>|Yes|-|Creates based on this HashMap instance.|
+|map|HashMap\<K, V>|Yes|-|Creates from this HashMap instance.|
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createHashMapExFromHashMap(context: JSContext): JSValue {
+    let hashMap = HashMap<String, Int64>()
+    hashMap["key1"] = 1
+    hashMap["key2"] = 2
+
+    let jsHashMapEx = JSHashMapEx<String, Int64>(hashMap)
+    Hilog.info(0, "test", "Created JSHashMapEx from HashMap with ${jsHashMapEx.size} elements")
+
+    return jsHashMapEx.toJSValue(context)
+}
+```
 
 ### init()
 
@@ -3549,7 +5555,19 @@ public init()
 
 **Function:** Constructs an empty JSHashMapEx\<K, V> instance.
 
-**Since Version:** 22
+**Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createEmptyHashMapEx(context: JSContext): JSValue {
+    let jsHashMapEx = JSHashMapEx<String, Int64>()
+    Hilog.info(0, "test", "Created empty JSHashMapEx")
+
+    return jsHashMapEx.toJSValue(context)
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -3557,9 +5575,9 @@ public init()
 public static func fromJSValue(context: JSContext, input: JSValue): JSHashMapEx<K, V>
 ```
 
-**Function:** Converts from JSValue to JSHashMapEx. For declarative interoperability macro framework scenarios; developers don't need to use this API.
+**Function:** Converts from JSValue to JSHashMapEx. For declarative interoperability macro framework scenarios. Developers don't need to use this API.
 
-**Since Version:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -3574,15 +5592,51 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSHashMapEx<
 |:----|:----|
 |[JSHashMapEx](#class-jshashmapex)\<K, V>|Declarative interoperability macro type JSHashMapEx.|
 
-### static func toArktsType()
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertJSValueToStringHashMapEx(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // Create a JSHashMapEx<String, String>
+    let source = JSHashMapEx<String, String>()
+    // Add key-value pairs
+    source["key1"] = "value1"
+    // Convert to JSValue
+    let jsValue = source.toJSValue(context)
+    
+    // Convert from JSValue to JSHashMapEx<String, String>
+    let received = JSHashMapEx<String, String>.fromJSValue(context, jsValue)
+    
+    // Get all keys
+    let keys = received.keys()
+    
+    // Iterate all key-value pairs
+    for (key in keys) {
+        let value = jsHashMapEx[key]
+        Hilog.info(0, "test", "Key: ${key}, Value: ${value!}")
+    }
+    
+    return jsValue
+}
+```### static func toArktsType()
 
 ```cangjie
 public static func toArktsType(): String
 ```
 
-**Function:** Gets the ArkTS type name corresponding to the Cangjie type. For declarative interoperability macro framework scenarios; developers don't need to use this API.
+**Function:** Gets the corresponding ArkTS type name for the Cangjie type. Used in declarative interoperability macro framework scenarios; developers do not need to use this API.
 
-**Since Version:** 22
+**Since:** 22
 
 **Return Value:**
 
@@ -3598,7 +5652,16 @@ public func clear(): Unit
 
 **Function:** Removes all elements from this HashMapEx.
 
-**Since Version:** 22
+**Since:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func clone()
 
@@ -3606,15 +5669,24 @@ public func clear(): Unit
 public func clone(): JSHashMapEx<K, V>
 ```
 
-**Function:** Clones JSHashMapEx, performing a deep copy of JSHashMapEx data.
+**Function:** Clones the JSHashMapEx, performing a deep copy of the JSHashMapEx data.
 
-**Since Version:** 22
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSHashMapEx](#class-jshashmapex)\<K, V>|The newly cloned JSHashMapEx.|
+|[JSHashMapEx](#class-jshashmapex)\<K, V>|New JSHashMapEx obtained from cloning.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func containsAll(Collection\<K>)
 
@@ -3622,9 +5694,9 @@ public func clone(): JSHashMapEx<K, V>
 public func containsAll(keys: Collection<K>): Bool
 ```
 
-**Function:** Checks whether mappings for all keys in the specified collection are contained.
+**Function:** Determines whether mappings for all keys in the specified collection are contained.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3636,7 +5708,16 @@ public func containsAll(keys: Collection<K>): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if all are contained; otherwise, false.|
+|Bool|Returns true if all are contained; otherwise, returns false.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func delete(K)
 
@@ -3646,7 +5727,7 @@ public func delete(key: K): Bool
 
 **Function:** Removes the mapping for the specified key from this JSHashMapEx (if present).
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3658,7 +5739,16 @@ public func delete(key: K): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the key existed and was successfully deleted; otherwise, false.|
+|Bool|Returns true if the key existed and was successfully deleted; otherwise, returns false.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func deleteAll(Collection\<K>)
 
@@ -3666,9 +5756,9 @@ public func delete(key: K): Bool
 public func deleteAll(keys: Collection<K>): Unit
 ```
 
-**Function:** Removes mappings for keys in the specified collection from this JSHashMapEx (if present).
+**Function:** Removes mappings for all keys in the specified collection from this JSHashMapEx (if present).
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3676,23 +5766,43 @@ public func deleteAll(keys: Collection<K>): Unit
 |:---|:---|:---|:---|:---|
 |keys|Collection\<K>|Yes|-|Collection of keys to be deleted.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 ### func deleteIf((K,V) -> Bool)
 
 ```cangjie
 public func deleteIf(predicate: (K, V) -> Bool): Unit
 ```
 
-**Function:** Takes a lambda expression; if the condition is met, the corresponding key-value pair is deleted.
+**Function:** Takes a lambda expression and deletes key-value pairs that satisfy the condition.
 
 This function traverses the entire JSHashMapEx, deleting all key-value pairs where predicate(K, V) == true.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |predicate|(K, V)->Bool|Yes|-|Lambda expression for evaluation.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func get(K)
 
@@ -3702,7 +5812,7 @@ public func get(key: K): Option<V>
 
 **Function:** Returns the value to which the specified key is mapped, or Option\<V>.None if no mapping exists.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3714,7 +5824,16 @@ public func get(key: K): Option<V>
 
 |Type|Description|
 |:----|:----|
-|Option\<V>|Value corresponding to the key. Wrapped in Option.|
+|Option\<V>|Value corresponding to the key, wrapped in Option.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func has(K)
 
@@ -3722,9 +5841,9 @@ public func get(key: K): Option<V>
 public func has(key: K) : Bool
 ```
 
-**Function:** Checks whether a mapping exists for the specified key.
+**Function:** Determines whether a mapping exists for the specified key.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3736,7 +5855,16 @@ public func has(key: K) : Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if present; otherwise, false.|
+|Bool|Returns true if the mapping exists; otherwise, returns false.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func isEmpty()
 
@@ -3744,15 +5872,40 @@ public func has(key: K) : Bool
 public func isEmpty(): Bool
 ```
 
-**Function:** Checks whether JSHashMapEx is empty; returns true if empty, false otherwise.
+**Function:** Determines whether the JSHashMapEx is empty. Returns true if empty; otherwise, returns false.
 
-**Since Version:** 22
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Whether JSHashMapEx is empty.|
+|Bool|Whether the JSHashMapEx is empty.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkHashMapExEmpty(context: JSContext): JSValue {
+    let emptyMap = JSHashMapEx<String, Int64>()
+    let nonEmptyMap = JSHashMapEx<String, Int64>()
+    nonEmptyMap.set("key", 1)
+
+    Hilog.info(0, "test", "Is empty map empty: ${emptyMap.isEmpty()}")
+    Hilog.info(0, "test", "Is non-empty map empty: ${nonEmptyMap.isEmpty()}")
+
+    return context.boolean(emptyMap.isEmpty()).toJSValue()
+}
+```
 
 ### func keys()
 
@@ -3760,9 +5913,9 @@ public func isEmpty(): Bool
 public func keys(): EquatableCollection<K>
 ```
 
-**Function:** Returns all keys in JSHashMapEx, storing them in a Keys container.
+**Function:** Returns all keys in the JSHashMapEx, storing them in a Keys container.
 
-**Since Version:** 22
+**Since:** 22
 
 **Return Value:**
 
@@ -3770,15 +5923,41 @@ public func keys(): EquatableCollection<K>
 |:----|:----|
 |EquatableCollection\<K>|Container holding all returned keys.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getHashMapExKeys(context: JSContext): JSValue {
+    let jsHashMapEx = JSHashMapEx<String, Int64>()
+    jsHashMapEx.set("key1", 1)
+    jsHashMapEx.set("key2", 2)
+    jsHashMapEx.set("key3", 3)
+
+    let keys = jsHashMapEx.keys()
+    Hilog.info(0, "test", "HashMapEx has ${keys.size} keys")
+
+    return context.number(Float64(keys.size)).toJSValue()
+}
+```
+
 ### func set(K, V)
 
 ```cangjie
 public func set(key: K, value: V): Unit
 ```
 
-**Function:** Inserts a key-value pair into JSHashMapEx.
+**Function:** Inserts a key-value pair into the JSHashMapEx.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3787,21 +5966,68 @@ public func set(key: K, value: V): Unit
 |key|K|Yes|-|Key to be inserted.|
 |value|V|Yes|-|Value to be assigned.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func setHashMapExValue(context: JSContext): JSValue {
+    let jsHashMapEx = JSHashMapEx<String, Int64>()
+    jsHashMapEx.set("myKey", 42)
+
+    Hilog.info(0, "test", "Set value in HashMapEx")
+
+    return jsHashMapEx.toJSValue(context)
+}
+```
+
 ### func setAll(Collection\<(K,V)>)
 
 ```cangjie
 public func setAll(elements: Collection<(K, V)>): Unit
 ```
 
-**Function:** Inserts new key-value pairs into JSHashMapEx in the order of the elements' iterator.
+**Function:** Inserts a new collection of key-value pairs into the JSHashMapEx in the order of the elements' iterator.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|elements|Collection\<(K, V)>|Yes|-|Collection of key-value pairs to be added to JSHashMapEx.|
+|elements|Collection\<(K, V)>|Yes|-|Collection of key-value pairs to be added to the JSHashMapEx.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func setAllHashMapExValues(context: JSContext): JSValue {
+    let jsHashMapEx = JSHashMapEx<String, Int64>()
+    let elements: Array<(String, Int64)> = [("key1", 1), ("key2", 2), ("key3", 3)]
+
+    jsHashMapEx.setAll(elements)
+    Hilog.info(0, "test", "Set all values in HashMapEx")
+
+    return jsHashMapEx.toJSValue(context)
+}
+```
 
 ### func setIfAbsent(K, V)
 
@@ -3809,9 +6035,9 @@ public func setAll(elements: Collection<(K, V)>): Unit
 public func setIfAbsent(key: K, value: V): Bool
 ```
 
-**Function:** Inserts the key-value pair (key, value) into JSHashMapEx if the key does not already exist.
+**Function:** Inserts the key-value pair (key, value) into the JSHashMapEx if the key does not already exist.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3824,7 +6050,16 @@ public func setIfAbsent(key: K, value: V): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns false if the key existed before assignment; otherwise, true.|
+|Bool|Returns false if the key existed before assignment; otherwise, returns true.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func toHashMap()
 
@@ -3834,7 +6069,7 @@ public func toHashMap(): HashMap<K, V>
 
 **Function:** Converts to HashMap.
 
-**Since Version:** 22
+**Since:** 22
 
 **Return Value:**
 
@@ -3842,15 +6077,24 @@ public func toHashMap(): HashMap<K, V>
 |:----|:----|
 |HashMap\<K, V>|Converted HashMap.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 ### func toJSValue(JSContext)
 
 ```cangjie
 public func toJSValue(c: JSContext): JSValue
 ```
 
-**Function:** Converts to JSValue. For declarative interoperability macro framework scenarios; developers don't need to use this API.
+**Function:** Converts to JSValue. Used in declarative interoperability macro framework scenarios; developers do not need to use this API.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3864,15 +6108,24 @@ public func toJSValue(c: JSContext): JSValue
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 ### func values()
 
 ```cangjie
 public func values(): Collection<V>
 ```
 
-**Function:** Returns values contained in JSHashMapEx, storing all values in a Values container.
+**Function:** Returns all values in the JSHashMapEx, storing them in a Values container.
 
-**Since Version:** 22
+**Since:** 22
 
 **Return Value:**
 
@@ -3880,15 +6133,24 @@ public func values(): Collection<V>
 |:----|:----|
 |Collection\<V>|Container holding all returned values.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 ### func \[](K)
 
 ```cangjie
 public operator func [](key: K): V
 ```
 
-**Function:** Operator overload for set method. If the key exists, the new value overwrites the old; if not, the key-value pair is added.
+**Function:** Operator overload for the set method. If the key exists, the new value overwrites the old one; if the key does not exist, the key-value pair is added.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3902,15 +6164,40 @@ public operator func [](key: K): V
 |:----|:----|
 |V|Value corresponding to the key.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.              |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getIndexOperatorHashMapEx(context: JSContext): JSValue {
+    let jsHashMapEx = JSHashMapEx<String, Int64>()
+    jsHashMapEx.set("myKey", 100)
+
+    let value = jsHashMapEx["myKey"]
+    Hilog.info(0, "test", "Value for 'myKey': ${value}")
+
+    return context.number(Float64(value)).toJSValue()
+}
+```
+
 ### func \[](K, V)
 
 ```cangjie
 public operator func [](key: K, value!: V): Unit
 ```
 
-**Function:** Operator overload for set method. If the key exists, the new value overwrites the old; if not, the key-value pair is added.
+**Function:** Operator overload for the set method. If the key exists, the new value overwrites the old one; if the key does not exist, the key-value pair is added.
 
-**Since Version:** 22
+**Since:** 22
 
 **Parameters:**
 
@@ -3919,15 +6206,36 @@ public operator func [](key: K, value!: V): Unit
 |key|K|Yes|-|Key to be inserted.|
 |value|V|Yes|-| **Named parameter.** Value to be assigned.|
 
-## class JSHeapObject
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func setIndexOperatorHashMapEx(context: JSContext): JSValue {
+    let jsHashMapEx = JSHashMapEx<String, Int64>()
+    jsHashMapEx["newKey"] = context.number(200).toJSValue()
+
+    Hilog.info(0, "test", "Set value using index operator")
+
+    return jsHashMapEx.toJSValue(context)
+}
+```## class JSHeapObject
 
 ```cangjie
 sealed abstract class JSHeapObject {}
 ```
 
-**Function:** A strong reference to an ArkTS runtime object (but will not exceed the ArkTS runtime's lifecycle nor prevent its destruction). Can be converted to JSValue.
+**Function:** A strong reference to an ArkTS runtime object (but it will not exceed the lifecycle of the ArkTS runtime nor prevent its destruction). Can be converted to JSValue.
 
-It serves as the base class for all safe references. Users cannot create instances directly but can only create its subclasses (hidden constructor). Its purpose is to allow the referenced ArkTS runtime object to outlive the Cangjie object itself.
+It serves as the base class for all safe references. Users cannot create instances of this class directly, only its subclasses (hidden constructor). Its purpose is to allow the referenced ArkTS runtime object to outlive the Cangjie object itself.
 
 **Initial Version:** 22
 
@@ -3943,9 +6251,28 @@ public func toJSValue(): JSValue
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
+**Example:**
+
+```cangjie
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let external = context.external(123)
+    let jsValue = external.toJSValue()
+    return jsValue
+}
+```
 
 ## class JSModule
 
@@ -3953,9 +6280,9 @@ public func toJSValue(): JSValue
 public class JSModule {}
 ```
 
-**Function:** A static class providing symbol export registration interface.
+**Function:** A static class providing symbol export registration interfaces.
 
-JSModule aims to provide symbol export capability (exporting to ArkTS). When combined with custom static initialization functions, it registers export targets to the global table upon dynamic library loading, which are then executed by the ArkTS engine for export.
+The goal of JSModule is to provide symbol export capability (exporting to ArkTS). It works in conjunction with custom static initialization functions to register export targets into a global table when the dynamic library is loaded, which are then executed by the ArkTS engine for export.
 
 **Initial Version:** 22
 
@@ -3971,10 +6298,10 @@ public static func registerClass(name: String, register: ClassRegister): Unit
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|name|String|Yes|-|Export name.|
-|register|[ClassRegister](#type-classregister)|Yes|-|A function that returns an ArkTS class.|
+| name | String | Yes | - | Export name. |
+| register | [ClassRegister](#type-classregister) | Yes | - | A function that returns an ArkTS class. |
 
 **Example:**
 
@@ -4003,10 +6330,10 @@ public static func registerFunc(name: String, register: FuncRegister): Unit
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|name|String|Yes|-|Exported function name.|
-|register|[FuncRegister](#type-funcregister)|Yes|-|A function that returns JSFunction.|
+| name | String | Yes | - | Export function name. |
+| register | [FuncRegister](#type-funcregister) | Yes | - | A function that returns a JSFunction. |
 
 **Example:**
 
@@ -4032,10 +6359,10 @@ public static func registerFunc(name: String, lambda: JSLambda): Unit
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|name|String|Yes|-|Exported function name.|
-|lambda|[JSLambda](#type-jslambda)|Yes|-|The function to export.|
+| name | String | Yes | - | Export function name. |
+| lambda | [JSLambda](#type-jslambda) | Yes | - | The function to be exported. |
 
 **Example:**
 
@@ -4061,9 +6388,9 @@ public static func registerModule(register: ModuleRegister): Unit
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|register|[ModuleRegister](#type-moduleregister)|Yes|-|A function that can return an ArkTS class (constructor).|
+| register | [ModuleRegister](#type-moduleregister) | Yes | - | A function that can return an ArkTS class (constructor). |
 
 **Example:**
 
@@ -4091,7 +6418,30 @@ public class JSObject <: JSObjectBase {}
 
 **Parent Type:**
 
-* [JSObjectBase](#class-jsobjectbase)
+- [JSObjectBase](#class-jsobjectbase)
+
+**Example:**
+
+```cangjie
+func setObjectProperties(context: JSContext): JSValue {
+    let jsObject = context.object()
+    
+    // Set properties of different types
+    jsObject.setProperty("name", context.string("John").toJSValue())
+    jsObject.setProperty("age", context.number(30).toJSValue())
+    jsObject.setProperty("isActive", context.boolean(true).toJSValue())
+    
+    // Set nested object
+    let address = context.object()
+    address.setProperty("city", context.string("Beijing").toJSValue())
+    address.setProperty("country", context.string("China").toJSValue())
+    jsObject.setProperty("address", address.toJSValue())
+    
+    Hilog.info(0, "test", "Set object properties")
+    
+    return jsObject.toJSValue()
+}
+```
 
 ## class JSObjectBase
 
@@ -4099,13 +6449,13 @@ public class JSObject <: JSObjectBase {}
 sealed abstract class JSObjectBase <: JSHeapObject {}
 ```
 
-**Function:** Base class for safe references to ArkTS objects. Allows operations on ArkTS objects.
+**Function:** The base class for safe references to ArkTS objects. Allows manipulation of ArkTS objects.
 
 **Initial Version:** 22
 
 **Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### func attachCJObject(JSExternal)
 
@@ -4119,9 +6469,9 @@ public func attachCJObject(target: JSExternal): Unit
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|target|[JSExternal](#class-jsexternal)|Yes|-|ArkTS reference to the Cangjie object.|
+| target | [JSExternal](#class-jsexternal) | Yes | - | ArkTS reference to the Cangjie object. |
 
 **Example:**
 
@@ -4144,22 +6494,32 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func callMethod(key: JSKeyable, args: Array<JSValue>): JSValue
 ```
 
-**Function:** Calls a method under the current object.
+**Function:** Invokes a method under the current object.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target method name.|
-|args|Array\<[JSValue](#struct-jsvalue)>|Yes|-|Argument list for the call.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target method name. |
+| args | Array\<[JSValue](#struct-jsvalue)> | Yes | - | List of arguments for the invocation. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Method call return value.|
+| [JSValue](#struct-jsvalue) | Method invocation return value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -4186,19 +6546,29 @@ public func defineOwnAccessor(key: JSKeyable, getter!:? JSFunction = None, sette
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
-|getter|?[JSFunction](#class-jsfunction)|No|None| **Named parameter.** Getter implementation.|
-|setter|?[JSFunction](#class-jsfunction)|No|None| **Named parameter.** Setter implementation.|
-|isEnumerable|Bool|No|false| **Named parameter.** Whether enumerable.|
-|isConfigurable|Bool|No|false| **Named parameter.** Whether redefinable.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
+| getter | ?[JSFunction](#class-jsfunction) | No | None | **Named parameter.** Getter implementation. |
+| setter | ?[JSFunction](#class-jsfunction) | No | None | **Named parameter.** Setter implementation. |
+| isEnumerable | Bool | No | false | **Named parameter.** Whether enumerable. |
+| isConfigurable | Bool | No | false | **Named parameter.** Whether redefinable. |
 
 **Return Value:**
 
-| Type   | Description    |
+| Type | Description |
 |:-----|:------|
 | Bool | Whether successful. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -4229,19 +6599,29 @@ public func defineOwnAccessor(key: JSKeyable, getter!:? JSLambda = None, setter!
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
-|getter|?[JSLambda](#type-jslambda)|No|None| **Named parameter.** Getter implementation.|
-|setter|?[JSLambda](#type-jslambda)|No|None| **Named parameter.** Setter implementation.|
-|isEnumerable|Bool|No|false| **Named parameter.** Whether enumerable.|
-|isConfigurable|Bool|No|false| **Named parameter.** Whether redefinable.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
+| getter | ?[JSLambda](#type-jslambda) | No | None | **Named parameter.** Getter implementation. |
+| setter | ?[JSLambda](#type-jslambda) | No | None | **Named parameter.** Setter implementation. |
+| isEnumerable | Bool | No | false | **Named parameter.** Whether enumerable. |
+| isConfigurable | Bool | No | false | **Named parameter.** Whether redefinable. |
 
 **Return Value:**
 
-| Type   | Description    |
+| Type | Description |
 |:-----|:------|
 | Bool | Whether successful. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -4255,9 +6635,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     obj.defineOwnAccessor("a", getter: getter, isConfigurable: false)
     return obj.toJSValue()
 }
-```
-
-### func defineOwnProperty(JSKeyable, JSValue, Bool, Bool, Bool)
+```### func defineOwnProperty(JSKeyable, JSValue, Bool, Bool, Bool)
 
 ```cangjie
 public func defineOwnProperty(key: JSKeyable, setValue: JSValue,
@@ -4273,19 +6651,29 @@ public func defineOwnProperty(key: JSKeyable, setValue: JSValue,
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
-|setValue|[JSValue](#struct-jsvalue)|Yes|-|Target value.|
-|isWritable|Bool|No|true| **Named parameter.** Whether writable.|
-|isEnumerable|Bool|No|true| **Named parameter.** Whether enumerable.|
-|isConfigurable|Bool|No|true| **Named parameter.** Whether redefinable.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
+| setValue | [JSValue](#struct-jsvalue) | Yes | - | Target value. |
+| isWritable | Bool | No | true | **Named parameter.** Whether writable. |
+| isEnumerable | Bool | No | true | **Named parameter.** Whether enumerable. |
+| isConfigurable | Bool | No | true | **Named parameter.** Whether redefinable. |
 
 **Return Value:**
 
-| Type   | Description    |
+| Type | Description |
 |:-----|:------|
 | Bool | Whether successful. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4310,9 +6698,18 @@ public func getAttachInfo(): ?JSExternal
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|?[JSExternal](#class-jsexternal)|ArkTS reference to the Cangjie object or None.|
+| ?[JSExternal](#class-jsexternal) | ArkTS reference to the Cangjie object or None. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4343,15 +6740,25 @@ public func getProperty(key: JSKeyable): JSValue
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Retrieved value.|
+| [JSValue](#struct-jsvalue) | Retrieved value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4370,21 +6777,30 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func hasProperty(key: JSKeyable): Bool
 ```
 
-**Function:** Checks whether the current object has the target property.
+**Function:** Determines whether the current object has the target property.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|True indicates the current object has the target property.|
+| Bool | Returns true if the current object has the target property. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4404,21 +6820,30 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func instanceOf(clazz: JSClass): Bool
 ```
 
-**Function:** Checks whether the current object is an instance of the target ArkTS class.
+**Function:** Determines whether the current object is an instance of the target ArkTS class.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|clazz|[JSClass](#class-jsclass)|Yes|-|Target ArkTS class.|
+| clazz | [JSClass](#class-jsclass) | Yes | - | Target ArkTS class. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|True indicates the object is an instance of the target ArkTS class.|
+| Bool | Returns true if the object is an instance of the target ArkTS class. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4448,9 +6873,18 @@ public func keys(): Array<String>
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Array\<String>|List of keys.|
+| Array\<String> | List of keys. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4469,16 +6903,26 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func setProperty(key: JSKeyable, setValue: JSValue): Unit
 ```
 
-**Function:** Assigns a property to the current object.
+**Function:** Assigns a value to a property of the current object.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
-|setValue|[JSValue](#struct-jsvalue)|Yes|-|Target value.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
+| setValue | [JSValue](#struct-jsvalue) | Yes | - | Target value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4497,21 +6941,31 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public operator func [](key: JSKeyable): JSValue
 ```
 
-**Function:** Assigns a property to the current object.
+**Function:** Assigns a value to a property of the current object.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Retrieved value.|
+| [JSValue](#struct-jsvalue) | Retrieved value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4530,16 +6984,26 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public operator func [](key: JSKeyable, value!: JSValue): Unit
 ```
 
-**Function:** Assigns a property to the current object.
+**Function:** Assigns a value to a property of the current object.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|key|[JSKeyable](#interface-jskeyable)|Yes|-|Target key.|
-|value|[JSValue](#struct-jsvalue)|Yes|-| **Named parameter.** Target value.|
+| key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
+| value | [JSValue](#struct-jsvalue) | Yes | - | **Named parameter.** Target value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2 | Outside error occurred. |
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4548,23 +7012,27 @@ public operator func [](key: JSKeyable, value!: JSValue): Unit
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let obj = context.object()
     obj["a"] = context.number(1.0).toJSValue()
-    return obj.to## class JSPromise
+    return obj.toJSValue()
+}
+```
+
+## class JSPromise
 
 ```cangjie
 public class JSPromise <: JSHeapObject {}
 ```
 
-**Function:** A wrapper object for callback mechanisms.
+**Function:** A callback mechanism encapsulation object.
 
-The goal of JSPromise is to provide consistent encapsulation for callback patterns, greatly enhancing usability when combined with async/await syntactic sugar.
+JSPromise aims to provide a consistent encapsulation for callback patterns, greatly enhancing usability when combined with async/await syntax sugar.
 
-The lifecycle of JSPromise extends beyond the referenced ArkTS object.
+The lifecycle of JSPromise exceeds that of the referenced ArkTS object.
 
 **Initial Version:** 22
 
-**Parent Types:**
+**Parent Type:**
 
-* [JSHeapObject](#class-jsheapobject)
+- [JSHeapObject](#class-jsheapobject)
 
 ### func catchError(JSFunction)
 
@@ -4578,9 +7046,18 @@ public func catchError(callback: JSFunction): Unit
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | callback | [JSFunction](#class-jsfunction) | Yes | - | Exception handling callback. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4602,16 +7079,25 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func then(onFulfilled: JSFunction, onRejected!: ?JSFunction = None): Unit
 ```
 
-**Function:** Registers result handling callbacks.
+**Function:** Registers a result handling callback.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | onFulfilled | [JSFunction](#class-jsfunction) | Yes | - | Result handling callback. |
 | onRejected | ?[JSFunction](#class-jsfunction) | No | None | **Named parameter.** Exception handling callback. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
 
 **Example:**
 
@@ -4625,18 +7111,16 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     promise.then(context.function(onFulfilled))
     context.undefined().toJSValue()
 }
-```
-
-## class JSPromiseCapability
+```## class JSPromiseCapability
 
 ```cangjie
 public class JSPromiseCapability {
 }
 ```
 
-**Function:** JSPromiseCapability corresponds to a Promise object, allowing it to resolve or reject the Promise.
+**Function:** JSPromiseCapability corresponds to a Promise object, allowing resolution and rejection of that Promise.
 
-Lifecycle: JSPromiseCapability is a weak reference. The lifecycle of the corresponding ArkTS object ends upon the first resolve or reject. Subsequent usage will throw a Cangjie exception.
+Lifecycle: JSPromiseCapability is a weak reference. The lifecycle of the corresponding ArkTS object ends upon first resolution or rejection. Subsequent usage after termination will throw a Cangjie exception.
 
 **Initial Version:** 22
 
@@ -4656,13 +7140,22 @@ public func reject(value: JSValue): Unit
 |:---|:---|:---|:---|:---|
 | value | [JSValue](#struct-jsvalue) | Yes | - | Exception data, typically an Error object or string. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
 ```cangjie
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let promise = context.promiseCapability()
-    // toJSValue must be called before reject; the object becomes inaccessible after reject
+    // toJSValue must be called before reject, as the object becomes inaccessible after rejection
     let result = promise.toJSValue()
     promise.reject(context.string("a exception occured").toJSValue())
     return result
@@ -4685,6 +7178,15 @@ public func resolve(value: JSValue): Unit
 |:---|:---|:---|:---|:---|
 | value | [JSValue](#struct-jsvalue) | Yes | - | Processing result. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -4693,7 +7195,7 @@ func addNumberAsync(context: JSContext, callInfo: JSCallInfo): JSValue {
     let a = callInfo[0].toNumber()
     let b = callInfo[1].toNumber()
     let promise = context.promiseCapability()
-    // toJSValue must be called before resolve; the object becomes inaccessible after resolve
+    // toJSValue must be called before resolve, as the object becomes inaccessible after resolution
     let result = promise.toJSValue()
     promise.resolve(context.number(a + b).toJSValue())
     return result
@@ -4716,6 +7218,15 @@ public func toJSValue(): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -4731,11 +7242,11 @@ func addNumberAsync(context: JSContext, callInfo: JSCallInfo): JSValue {
         let result = a + b
         // Return to the ArkTS thread
         context.postJSTask {
-            // Return the result to ArkTS
+            // Submit result to ArkTS
             promise.resolve(context.number(result).toJSValue())
         }
     }
-    // Return the Promise
+    // Return Promise
     promise.toJSValue()
 }
 ```
@@ -4748,13 +7259,29 @@ public class JSRuntime {
 }
 ```
 
-**Function:** The ArkTS runtime created by Cangjie.
+**Function:** ArkTS runtime created by Cangjie.
 
 **Initial Version:** 22
 
 > **Note:**
 >
 > In Cangjie applications, JSRuntime() can only be used on the main thread to create an ArkTS runtime.
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getJSRuntimeInstance(): Unit {
+    // Create JSRuntime instance
+    let runtime = JSRuntime()
+    // Get JSContext instance
+    let context = runtime.mainContext
+    
+    Hilog.info(0, "test", "Got JSRuntime instance")
+    
+    let jsValue = context.string("JSRuntime instance obtained").toJSValue()
+}
+```
 
 ### prop mainContext
 
@@ -4780,6 +7307,14 @@ public init()
 
 **Initial Version:** 22
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.　             |
+
 ### func getNapiEnv()
 
 ```cangjie
@@ -4791,8 +7326,8 @@ public func getNapiEnv(): CPointer<Unit>
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| CPointer<Unit> | The env for napi interfaces. |
+|:---------|:------------|
+| CPointer<Unit> | napi interface env. |
 
 **Initial Version:** 22
 
@@ -4808,9 +7343,9 @@ public class JSString <: JSHeapObject & ToString & JSKeyable {}
 
 **Parent Types:**
 
-* [JSHeapObject](#class-jsheapobject)
-* ToString
-* [JSKeyable](#interface-jskeyable)
+- [JSHeapObject](#class-jsheapobject)
+- ToString
+- [JSKeyable](#interface-jskeyable)
 
 ### func toJSValue(JSContext)
 
@@ -4834,6 +7369,15 @@ public func toJSValue(_: JSContext): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 ### func toString()
 
 ```cangjie
@@ -4849,6 +7393,15 @@ public func toString(): String
 | Type | Description |
 |:----|:----|
 | String | Cangjie string. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -4878,6 +7431,15 @@ public func toUtf16String(): Utf16String
 |:----|:----|
 | [Utf16String](#class-utf16string) | Converted Utf16String object. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 ## class JSStringEx
 
 ```cangjie
@@ -4886,15 +7448,30 @@ public class JSStringEx <: JSInteropType<JSStringEx> & Equatable<JSStringEx> & T
 }
 ```
 
-**Function:** Extends the functionality and performance of [JSString](#class-jsstring) for use in declarative interoperation macros.
+**Function:** Extends the functionality and performance of [JSString](#class-jsstring), usable in declarative interoperation macros.
 
 **Initial Version:** 22
 
 **Parent Types:**
 
-* [JSInteropType\<JSStringEx>](#interface-jsinteroptype)
-* Equatable\<JSStringEx>
-* ToString
+- [JSInteropType\<JSStringEx>](#interface-jsinteroptype)
+- Equatable\<JSStringEx>
+- ToString
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createJSStringEx(context: JSContext): JSValue {
+    // Create a JSStringEx object
+    let sourceString: String = "Hello, World!"
+    let jsStringEx = JSStringEx(sourceString)
+    
+    Hilog.info(0, "test", "Created JSStringEx with content: ${jsStringEx.toString()}")
+    
+    return jsStringEx.toJSValue(context)
+}
+```
 
 ### init(String)
 
@@ -4902,7 +7479,7 @@ public class JSStringEx <: JSInteropType<JSStringEx> & Equatable<JSStringEx> & T
 public init(str: String)
 ```
 
-**Function:** Constructs a corresponding JSStringEx instance given a String.
+**Function:** Constructs a corresponding JSStringEx instance from a given String.
 
 **Initial Version:** 22
 
@@ -4918,7 +7495,7 @@ public init(str: String)
 public static func fromJSValue(context: JSContext, input: JSValue): JSStringEx
 ```
 
-**Function:** Converts from JSValue to JSStringEx. Used in declarative interoperation macro frameworks; developers do not need to use this API.
+**Function:** Converts from JSValue to JSStringEx. Used in declarative interoperation macro framework scenarios; developers do not need to use this API.
 
 **Initial Version:** 22
 
@@ -4935,13 +7512,23 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSStringEx
 |:----|:----|
 | [JSStringEx](#class-jsstringex) | Declarative interoperation macro type JSStringEx. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 ### static func toArktsType()
 
 ```cangjie
 public static func toArktsType(): String
 ```
 
-**Function:** Retrieves the ArkTS type name corresponding to the Cangjie type. Used in declarative interoperation macro frameworks; developers do not need to use this API.
+**Function:** Retrieves the ArkTS type name corresponding to the Cangjie type. Used in declarative interoperation macro framework scenarios; developers do not need to use this API.
 
 **Initial Version:** 22
 
@@ -4957,7 +7544,7 @@ public static func toArktsType(): String
 public func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Converts to JSValue. Used in declarative interoperation macro frameworks; developers do not need to use this API.
+**Function:** Converts to JSValue. Used in declarative interoperation macro framework scenarios; developers do not need to use this API.
 
 **Initial Version:** 22
 
@@ -4972,6 +7559,15 @@ public func toJSValue(context: JSContext): JSValue
 | Type | Description |
 |:----|:----|
 | [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func toString()
 
@@ -4988,6 +7584,15 @@ public func toString(): String
 | Type | Description |
 |:----|:----|
 | String | Converted string. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 ### func !=(JSStringEx)
 
@@ -5011,6 +7616,15 @@ public operator func !=(str: JSStringEx): Bool
 |:----|:----|
 | Bool | Returns true if not equal, false if equal. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 ### func ==(JSStringEx)
 
 ```cangjie
@@ -5031,20 +7645,48 @@ public operator func ==(str: JSStringEx): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if equal, false if not equal. |## class JSSymbol
+| Bool | Returns true if equal, false if not equal. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |## class JSSymbol
 
 ```cangjie
 public class JSSymbol <: JSHeapObject & JSKeyable {}
 ```
 
-**Function:** A safe reference to a JavaScript symbol.
+**Function:** A secure reference to a JavaScript symbol.
 
 **Initial Version:** 22
 
 **Parent Types:**
 
-* [JSHeapObject](#class-jsheapobject)
-* [JSKeyable](#interface-jskeyable)
+- [JSHeapObject](#class-jsheapobject)
+- [JSKeyable](#interface-jskeyable)
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createSymbol(context: JSContext): JSValue {
+    // Create a JSSymbol object
+    let symbol = context.symbol(description: "mySymbol")
+    // Create a JSObject
+    let object = context.object()
+    // Use symbol as key to store a hidden property
+    object[symbol] = context.string("123").toJSValue()
+    // Create a publicly visible function that accesses the object property via symbol
+    object["name"] = context.function { context, callInfo =>
+        return object[symbol]
+    }.toJSValue()
+    return jsStringEx.toJSValue(context)
+}
+```
 
 ### prop description
 
@@ -5052,13 +7694,22 @@ public class JSSymbol <: JSHeapObject & JSKeyable {}
 public prop description: String
 ```
 
-**Function:** The description of the symbol.
+**Function:** Description of the symbol.
 
 **Initial Version:** 22
 
 **Type:** String
 
-**Read/Write Capability:** Read-only
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 ### func toJSValue(JSContext)
 
@@ -5066,21 +7717,30 @@ public prop description: String
 public func toJSValue(_: JSContext): JSValue
 ```
 
-**Function:** Converts to JSValue. Used in declarative interoperability macro framework scenarios, developers do not need to use this API.
+**Function:** Converts to JSValue. Used in declarative interoperability macro framework scenarios. Developers should not use this API directly.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
-|:---|:---|:---|:---|:---|
-|_|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
+| Parameter | Type | Required | Default | Description |
+|:----------|:-----|:---------|:--------|:------------|
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 ### func toString()
 
@@ -5094,9 +7754,18 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|Converted string.|
+| Type | Description |
+|:-----|:------------|
+| String | Converted string. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 ## class SharedObject
 
@@ -5106,9 +7775,41 @@ public open class SharedObject {
 }
 ```
 
-**Function:** The base class for Cangjie objects that can be referenced by ArkTS.
+**Function:** Base class for Cangjie objects that can be referenced by ArkTS.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+// Create a class inheriting from SharedObject
+class MyObject <: SharedObject {
+    let name: String = "MyObject"
+}
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // Instantiate a MyObject
+    let data = MyObject()
+    // Create a JSExternal object from data
+    let external = context.external(data)
+    // Create a JSObject
+    let object = context.object()
+    // Bind external to object
+    object.attachCJObject(external)
+    // Create a publicly visible function that accesses object properties
+    object["name"] = context.function { context, callInfo =>
+        // Get this object
+        let object = callInfo.thisArg.asObject()
+        // Retrieve the bound MyObject instance from object
+        let data = object.getAttachInfo<MyObject>().getOrThrow()
+        // Convert data.name to JSString
+        let name = context.string(data.name)
+        return name.toJSValue()
+    }.toJSValue()
+    return object.toJSValue()
+}
+```
 
 ### prop nativeId
 
@@ -5122,7 +7823,7 @@ public prop nativeId: Int64
 
 **Type:** Int64
 
-**Read/Write Capability:** Read-only
+**Access:** Read-only
 
 ### init()
 
@@ -5156,9 +7857,18 @@ public func toBool(): Bool
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Cangjie Bool value.|
+| Type | Description |
+|:-----|:------------|
+| Bool | Cangjie boolean value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 **Example:**
 
@@ -5184,9 +7894,18 @@ public func toJSValue(): JSValue
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 ## struct JSCallInfo
 
@@ -5194,11 +7913,11 @@ public func toJSValue(): JSValue
 public struct JSCallInfo {}
 ```
 
-**Function:** Information related to an ArkTS function call. Allows accessing the `this` pointer, obtaining parameter count, and reading parameters by index.
+**Function:** Contains information about an ArkTS function call. Allows accessing this pointer, parameter count, and retrieving parameters by index.
 
-Each ArkTS function call stores parameter lists and other related information on the ArkTS stack. JSCallInfo is a pointer to this information.
+Each ArkTS function call stores parameter lists and related information on the ArkTS stack. JSCallInfo is a pointer to this information.
 
-**Lifecycle:** This JSCallInfo becomes invalid when the ArkTS function call ends.
+Lifecycle: The JSCallInfo becomes invalid when the ArkTS function call ends.
 
 **Initial Version:** 22
 
@@ -5214,7 +7933,16 @@ public prop count: Int64
 
 **Type:** Int64
 
-**Read/Write Capability:** Read-only
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 ### prop thisArg
 
@@ -5222,13 +7950,22 @@ public prop count: Int64
 public prop thisArg: JSValue
 ```
 
-**Function:** `this` pointer.
+**Function:** this pointer.
 
 **Initial Version:** 22
 
 **Type:** [JSValue](#struct-jsvalue)
 
-**Read/Write Capability:** Read-only
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
 
 ### func \[](Int64)
 
@@ -5236,21 +7973,31 @@ public prop thisArg: JSValue
 public operator func[](index: Int64): JSValue
 ```
 
-**Function:** Gets the corresponding parameter by index.
+**Function:** Retrieves the corresponding parameter by index.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
-|:---|:---|:---|:---|:---|
-|index|Int64|Yes|-|Parameter index, safe range: [0, parameter count).|
+| Parameter | Type | Required | Default | Description |
+|:----------|:-----|:---------|:--------|:------------|
+| index | Int64 | Yes | - | Parameter index, safe range: [0, parameter count). |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|Parameter value.|
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#struct-jsvalue) | Parameter value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 1            | The accessing index is out of range.  |
+| 3            | Accessing reference is beyond reach.  |
+| 4            | Thread mismatch.                      |
 
 **Example:**
 
@@ -5287,9 +8034,18 @@ public func toJSValue(): JSValue
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 3            | Accessing reference is beyond reach.  |
+| 4            | Thread mismatch.                      |
 
 ## struct JSNumber
 
@@ -5313,9 +8069,18 @@ public func toFloat64(): Float64
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Float64|Cangjie floating-point number.|
+| Type | Description |
+|:-----|:------------|
+| Float64 | Cangjie floating-point number. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 3            | Accessing reference is beyond reach.  |
+| 4            | Thread mismatch.                      |
 
 **Example:**
 
@@ -5341,11 +8106,18 @@ public func toJSValue(): JSValue
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
 
-## struct JSType
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 3            | Accessing reference is beyond reach.  |
+| 4            | Thread mismatch.                      |## struct JSType
 
 ```cangjie
 public struct JSType {
@@ -5362,11 +8134,32 @@ public struct JSType {
 }
 ```
 
-**Function:** ArkTS data type enumeration.
+**Function:** Enumeration of ArkTS data types.
 
-In ArkTS, the `typeof` operator can enumerate the general type of data. JSType lists these types and adds the EXTERNAL type.
+In ArkTS, the `typeof` operator can enumerate the general type of data. JSType lists these types and includes the EXTERNAL type.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // Get the first argument
+    let firstArg = callInfo[0]
+    // Get the argument type
+    let typeInfo = firstArg.typeof()
+    // Check the argument type
+    if (typeInfo == JSType.STRING) {
+        Hilog.info(0, "test", "input is string: ${firstArg.toString()}")
+    } else {
+        // Get the type name
+        let typeName = typeInfo.toString()
+        Hilog.info(0, "test", "input is unexpected type: ${typeName}")
+    }
+    return context.undefined().toJSValue()
+}
+```
 
 ### static let BIGINT
 
@@ -5516,7 +8309,7 @@ public operator func !=(target: JSType): Bool
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |target|[JSType](#struct-jstype)|Yes|-|Target type for comparison.|
 
@@ -5524,7 +8317,7 @@ public operator func !=(target: JSType): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true when the two types are not equal.|
+|Bool|Returns true if the types are not equal.|
 
 ### func ==(JSType)
 
@@ -5538,7 +8331,7 @@ public operator func ==(target: JSType): Bool
 
 **Parameters:**
 
-|Parameter Name|Type|Required|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |target|[JSType](#struct-jstype)|Yes|-|Target type for comparison.|
 
@@ -5546,15 +8339,17 @@ public operator func ==(target: JSType): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true when the two types are equal.|## struct JSUndefined
+|Bool|Returns true if the types are equal.|
+
+## struct JSUndefined
 
 ```cangjie
 public struct JSUndefined {}
 ```
 
-**Description:** ArkTS null equivalent.
+**Function:** ArkTS null.
 
-**Since:** 22
+**Initial Version:** 22
 
 ### func toJSValue()
 
@@ -5562,9 +8357,9 @@ public struct JSUndefined {}
 public func toJSValue(): JSValue
 ```
 
-**Description:** Converts to JSValue.
+**Function:** Converts to JSValue.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -5572,19 +8367,39 @@ public func toJSValue(): JSValue
 |:----|:----|
 |[JSValue](#struct-jsvalue)|ArkTS unified type.|
 
+**Exceptions:**
+
+- BusinessException: Error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:--------------------------------------|
+| 3     | Accessing reference is beyond reach.  |
+| 4     | Thread mismatch.                      |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let undefined = context.undefined()
+    let jsValue = undefined.toJSValue()
+    return jsValue
+}
+```
+
 ## struct JSValue
 
 ```cangjie
 public struct JSValue {}
 ```
 
-**Description:** An ArkTS variable (weakly typed, short lifecycle).
+**Function:** An ArkTS variable (weakly typed, short lifecycle).
 
-JSValue is the unified type in ArkTS runtime and serves as the data type for direct interaction with ArkTS runtime.
+JSValue is the unified type in ArkTS runtime and serves as the data type for direct interaction with the ArkTS runtime.
 
-Only interop interfaces can create JSValue. Its lifecycle ends when popped from the stack (the stack where it was created). It cannot be copied, captured, or returned in non-interop functions. To pass this variable, it must first be converted and then passed as a Cangjie type or safe reference.
+Only interoperation interfaces can create JSValue. Its lifecycle ends when it goes out of scope (the stack where it was created). It cannot be copied, captured, or returned in non-interoperation functions. If you need to pass this variable, you must first convert it and then pass it as a Cangjie type or safe reference.
 
-**Since:** 22
+**Initial Version:** 22
 
 ### func asArray()
 
@@ -5592,15 +8407,25 @@ Only interop interfaces can create JSValue. Its lifecycle ends when popped from 
 public func asArray(): JSArray
 ```
 
-**Description:** Converts a JSValue to JSArray.
+**Function:** Converts a JSValue to JSArray.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSArray](#class-jsarray)|Reference to an ArkTS array.|
+|[JSArray](#class-jsarray)|A reference to an ArkTS array.|
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asArrayBuffer()
 
@@ -5608,15 +8433,25 @@ public func asArray(): JSArray
 public func asArrayBuffer(): JSArrayBuffer
 ```
 
-**Description:** Converts a JSValue to JSArrayBuffer.
+**Function:** Converts a JSValue to JSArrayBuffer.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSArrayBuffer](#class-jsarraybuffer)|Reference to an ArkTS ArrayBuffer.|
+|[JSArrayBuffer](#class-jsarraybuffer)|A reference to an ArkTS ArrayBuffer.|
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asBigInt()
 
@@ -5624,15 +8459,25 @@ public func asArrayBuffer(): JSArrayBuffer
 public func asBigInt(): JSBigInt
 ```
 
-**Description:** Converts a JSValue to JSBigInt.
+**Function:** Converts a JSValue to JSBigInt.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSBigInt](#class-jsbigint)|Reference to an ArkTS bigint.|
+|[JSBigInt](#class-jsbigint)|A reference to an ArkTS bigint.|
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asBoolean()
 
@@ -5640,9 +8485,9 @@ public func asBigInt(): JSBigInt
 public func asBoolean(): JSBoolean
 ```
 
-**Description:** Converts a JSValue to JSBoolean.
+**Function:** Converts a JSValue to JSBoolean.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -5650,37 +8495,65 @@ public func asBoolean(): JSBoolean
 |:----|:----|
 |[JSBoolean](#struct-jsboolean)|An ArkTS boolean.|
 
+**Exceptions:**
+
+- BusinessException: Error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 ### func asClass()
 
 ```cangjie
 public func asClass(): JSClass
 ```
 
-**Description:** Converts a JSValue to JSClass.
+**Function:** Converts a JSValue to JSClass.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSClass](#class-jsclass)|Reference to an ArkTS class.|
+|[JSClass](#class-jsclass)|A reference to an ArkTS class.|
 
-### func asExternal()
+**Exceptions:**
+
+- BusinessException: Error codes are listed below.
+
+| Error Code ID | Error Message                               |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |### func asExternal()
 
 ```cangjie
 public func asExternal(): JSExternal
 ```
 
-**Description:** Converts a JSValue to JSExternal.
+**Function:** Converts a JSValue to JSExternal.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSExternal](#class-jsexternal)|Reference to an ArkTS reference of a Cangjie object.|
+|[JSExternal](#class-jsexternal)|A reference to a Cangjie object in ArkTS.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asFunction()
 
@@ -5688,15 +8561,25 @@ public func asExternal(): JSExternal
 public func asFunction(): JSFunction
 ```
 
-**Description:** Converts a JSValue to JSFunction.
+**Function:** Converts a JSValue to JSFunction.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSFunction](#class-jsfunction)|Reference to an ArkTS function.|
+|[JSFunction](#class-jsfunction)|A reference to an ArkTS function.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asNull()
 
@@ -5704,15 +8587,25 @@ public func asFunction(): JSFunction
 public func asNull(): JSNull
 ```
 
-**Description:** Converts a JSValue to JSNull.
+**Function:** Converts a JSValue to JSNull.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSNull](#struct-jsnull)|An ArkTS null.|
+|[JSNull](#struct-jsnull)|An ArkTS null value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asNumber()
 
@@ -5720,15 +8613,25 @@ public func asNull(): JSNull
 public func asNumber(): JSNumber
 ```
 
-**Description:** Converts a JSValue to JSNumber.
+**Function:** Converts a JSValue to JSNumber.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSNumber](#struct-jsnumber)|An ArkTS number.|
+|[JSNumber](#struct-jsnumber)|An ArkTS number value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asObject()
 
@@ -5736,19 +8639,25 @@ public func asNumber(): JSNumber
 public func asObject(): JSObject
 ```
 
-**Description:** Converts a JSValue to JSObject.
+**Function:** Converts a JSValue to JSObject.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSObject](#class-jsobject)|Reference to an ArkTS object.|
+|[JSObject](#class-jsobject)|A reference to an ArkTS object.|
 
-> **Note:**
->
-> Throws JSTypeMisMatch exception when JSValue type is not object. For example, during Cangjie-ArkTS interop, ArkTS types are uniformly converted to JSValue, then converted to Cangjie types via asObject. If the returned type from ArkTS side doesn't match the actual type, an exception will be thrown.
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asPromise()
 
@@ -5756,15 +8665,25 @@ public func asObject(): JSObject
 public func asPromise(): JSPromise
 ```
 
-**Description:** Converts a JSValue to JSPromise.
+**Function:** Converts a JSValue to JSPromise.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSPromise](#class-jspromise)|Reference to an ArkTS promise.|
+|[JSPromise](#class-jspromise)|A reference to an ArkTS promise.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asString()
 
@@ -5772,15 +8691,25 @@ public func asPromise(): JSPromise
 public func asString(): JSString
 ```
 
-**Description:** Converts a JSValue to JSString.
+**Function:** Converts a JSValue to JSString.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSString](#class-jsstring)|Reference to an ArkTS string.|
+|[JSString](#class-jsstring)|A reference to an ArkTS string.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asSymbol()
 
@@ -5788,15 +8717,25 @@ public func asString(): JSString
 public func asSymbol(): JSSymbol
 ```
 
-**Description:** Converts a JSValue to JSSymbol.
+**Function:** Converts a JSValue to JSSymbol.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSSymbol](#class-jssymbol)|Reference to an ArkTS symbol.|
+|[JSSymbol](#class-jssymbol)|A reference to an ArkTS symbol.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func asUndefined()
 
@@ -5804,15 +8743,25 @@ public func asSymbol(): JSSymbol
 public func asUndefined(): JSUndefined
 ```
 
-**Description:** Converts a JSValue to JSUndefined.
+**Function:** Converts a JSValue to JSUndefined.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSUndefined](#struct-jsundefined)|An ArkTS undefined.|
+|[JSUndefined](#struct-jsundefined)|An ArkTS undefined value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func bindObject(JSValue)
 
@@ -5820,15 +8769,25 @@ public func asUndefined(): JSUndefined
 public func bindObject(external: JSValue): Unit
 ```
 
-**Description:** Binds a Cangjie object to an ArkTS object.
+**Function:** Binds a Cangjie object to an ArkTS object.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|external|[JSValue](#struct-jsvalue)|Yes|-|ArkTS reference of the Cangjie object.|
+|external|[JSValue](#struct-jsvalue)|Yes|-|ArkTS reference to a Cangjie object.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 **Example:**
 
@@ -5854,15 +8813,25 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func bindObject(data: SharedObject): Unit
 ```
 
-**Description:** Binds a Cangjie object to an ArkTS object.
+**Function:** Binds a Cangjie object to an ArkTS object.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |data|[SharedObject](#class-sharedobject)|Yes|-|Cangjie object.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 **Example:**
 
@@ -5887,15 +8856,26 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func getBindingObject(): ?SharedObject
 ```
 
-**Description:** Gets the Cangjie object bound to an ArkTS object.
+**Function:** Retrieves the Cangjie object bound to an ArkTS object.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|?[SharedObject](#class-sharedobject)|Bound Cangjie object.|
+|?[SharedObject](#class-sharedobject)|The bound Cangjie object.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.　             |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 **Example:**
 
@@ -5922,13 +8902,13 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func getElement(index: Int64): JSValue
 ```
 
-**Description:** Reads an element from an ArkTS array.
+**Function:** Retrieves an element from an ArkTS array.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |index|Int64|Yes|-|Array element index.|
 
@@ -5937,6 +8917,17 @@ public func getElement(index: Int64): JSValue
 |Type|Description|
 |:----|:----|
 |[JSValue](#struct-jsvalue)|An ArkTS value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                              |
+|:------|:-------------------------------------|
+| 1     | The accessing index is out of range. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 **Example:**
 
@@ -5969,6 +8960,16 @@ public func getProperty(key: JSKeyable): JSValue
 |:----|:----|
 | [JSValue](#struct-jsvalue) | The retrieved value |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 **Example:**
 
 <!--compile-->
@@ -6000,6 +9001,15 @@ public func isArray(): Bool
 |:----|:----|
 | Bool | Returns true if the type is Array. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6007,7 +9017,7 @@ public func isArray(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's an object
+    // Check if it is an object
     let result = arg0.isArray()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6030,6 +9040,15 @@ public func isArrayBuffer(): Bool
 |:----|:----|
 | Bool | Returns true if the type is ArrayBuffer. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6037,7 +9056,7 @@ public func isArrayBuffer(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's an ArrayBuffer
+    // Check if it is an ArrayBuffer
     let result = arg0.isArrayBuffer()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6060,6 +9079,15 @@ public func isBigInt(): Bool
 |:----|:----|
 | Bool | Returns true if the type is bigint. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6067,7 +9095,7 @@ public func isBigInt(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's a bigint
+    // Check if it is a bigint
     let result = arg0.isBigInt()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6090,6 +9118,15 @@ public func isBoolean(): Bool
 |:----|:----|
 | Bool | Returns true if the type is boolean. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6097,7 +9134,7 @@ public func isBoolean(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's a boolean
+    // Check if it is a boolean
     let result = arg0.isBoolean()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6110,7 +9147,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isClass(): Bool
 ```
 
-**Function:** Determines whether a JSValue is an ArkTS class (constructor function).
+**Function:** Determines whether a JSValue is an ArkTS class (constructor).
 
 **Initial Version:** 22
 
@@ -6118,7 +9155,16 @@ public func isClass(): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the type is an ArkTS class (constructor function). |
+| Bool | Returns true if the type is an ArkTS class (constructor). |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -6127,7 +9173,7 @@ public func isClass(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's an ArkTS class (constructor function)
+    // Check if it is an ArkTS class (constructor)
     let result = arg0.isClass()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6140,7 +9186,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isExternal(): Bool
 ```
 
-**Function:** Determines whether a JSValue is an external object (ArkTS reference to a Cangjie object).
+**Function:** Determines whether a JSValue is an external object (ArkTS reference of a Cangjie object).
 
 **Initial Version:** 22
 
@@ -6148,7 +9194,16 @@ public func isExternal(): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the type is an external object (ArkTS reference to a Cangjie object). |
+| Bool | Returns true if the type is an external object (ArkTS reference of a Cangjie object). |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -6157,7 +9212,7 @@ public func isExternal(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's an external object (ArkTS reference to a Cangjie object)
+    // Check if it is an external object (ArkTS reference of a Cangjie object)
     let result = arg0.isExternal()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6180,6 +9235,15 @@ public func isFunction(): Bool
 |:----|:----|
 | Bool | Returns true if the type is function. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6187,7 +9251,7 @@ public func isFunction(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's a function
+    // Check if it is a function
     let result = arg0.isFunction()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6210,6 +9274,15 @@ public func isNull(): Bool
 |:----|:----|
 | Bool | Returns true if the type is null. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6217,7 +9290,7 @@ public func isNull(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's null
+    // Check if it is null
     let result = arg0.isNull()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6240,6 +9313,15 @@ public func isNumber(): Bool
 |:----|:----|
 | Bool | Returns true if the type is number. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6247,7 +9329,7 @@ public func isNumber(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's a number
+    // Check if it is a number
     let result = arg0.isNumber()
     // Return the result
     return context.boolean(result).toJSValue()
@@ -6270,6 +9352,15 @@ public func isObject(): Bool
 |:----|:----|
 | Bool | Returns true if the type is object. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6277,14 +9368,12 @@ public func isObject(): Bool
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get input parameter
     let arg0 = callInfo[0]
-    // Check if it's an object
+    // Check if it is an object
     let result = arg0.isObject()
     // Return the result
     return context.boolean(result).toJSValue()
 }
-```
-
-### func isPromise()
+```### func isPromise()
 
 ```cangjie
 public func isPromise(): Bool
@@ -6296,9 +9385,18 @@ public func isPromise(): Bool
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the type is Promise. |
+|Bool|Returns true if the type is Promise.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -6309,7 +9407,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arg0 = callInfo[0]
     // Check if it's a Promise
     let result = arg0.isPromise()
-    // Return the result
+    // Return result
     return context.boolean(result).toJSValue()
 }
 ```
@@ -6326,9 +9424,18 @@ public func isString(): Bool
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the type is string. |
+|Bool|Returns true if the type is string.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -6339,7 +9446,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arg0 = callInfo[0]
     // Check if it's a string
     let result = arg0.isString()
-    // Return the result
+    // Return result
     return context.boolean(result).toJSValue()
 }
 ```
@@ -6356,9 +9463,18 @@ public func isSymbol(): Bool
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the type is Symbol. |
+|Bool|Returns true if the type is Symbol.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -6369,10 +9485,12 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arg0 = callInfo[0]
     // Check if it's a Symbol
     let result = arg0.isSymbol()
-    // Return the result
+    // Return result
     return context.boolean(result).toJSValue()
 }
-```### func isUndefined()
+```
+
+### func isUndefined()
 
 ```cangjie
 public func isUndefined(): Bool
@@ -6387,6 +9505,15 @@ public func isUndefined(): Bool
 |Type|Description|
 |:----|:----|
 |Bool|Returns true if the type is undefined.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
 
 **Example:**
 
@@ -6419,6 +9546,17 @@ public func setElement(index: Int64, value: JSValue): Unit
 |index|Int64|Yes|-|Array write index.|
 |value|[JSValue](#struct-jsvalue)|Yes|-|Value to write to the array.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 1     | The accessing index is out of range. |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 **Example:**
 
 <!--compile-->
@@ -6448,6 +9586,17 @@ public func setProperty(key: JSKeyable, setValue: JSValue): Unit
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
 |setValue|[JSValue](#struct-jsvalue)|Yes|-|Property value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.                |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 **Example:**
 
@@ -6483,6 +9632,15 @@ public func strictEqual(target: JSValue): Bool
 |:----|:----|
 |Bool|Returns true if the two values are identical|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
@@ -6514,6 +9672,16 @@ public func toBigInt(): BigInt
 |:----|:----|
 |BigInt|Cangjie BigInt.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 **Example:**
 
 <!--compile-->
@@ -6540,6 +9708,16 @@ public func toBoolean(): Bool
 |Type|Description|
 |:----|:----|
 |Bool|Cangjie Bool value.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 **Example:**
 
@@ -6568,6 +9746,16 @@ public func toNumber(): Float64
 |:----|:----|
 |Float64|Cangjie Float64 value.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 **Example:**
 
 <!--compile-->
@@ -6595,11 +9783,22 @@ public func toString(): String
 |:----|:----|
 |String|Cangjie string.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 2     | Outside error occurred.　             |
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
+
 **Example:**
 
 <!--compile-->
 ```cangjie
-// Checks if the first parameter is a number, returns true if yes, otherwise returns the data type string
+// Checks if the first parameter is a number; if yes, returns true; otherwise returns the data type as a string
 func checkIsNumber(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get parameter
     let value: JSValue = callInfo[0]
@@ -6630,6 +9829,15 @@ public func toUtf16String(): Utf16String
 |Type|Description|
 |:----|:----|
 |[Utf16String](#class-utf16string)|Converted Utf16String object.|
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+| 5     | The ArkTS data types do not match.   |
 
 ### func typeof()
 
@@ -6637,7 +9845,7 @@ public func toUtf16String(): Utf16String
 public func typeof(): JSType
 ```
 
-**Function:** Gets the type of a JSValue, which is generally consistent with the types enumerated by ArkTS's typeof syntax.
+**Function:** Gets the type of a JSValue, which is basically consistent with the types enumerated by ArkTS's typeof syntax.
 
 **Initial Version:** 22
 
@@ -6647,12 +9855,21 @@ public func typeof(): JSType
 |:----|:----|
 |[JSType](#struct-jstype)|ArkTS type|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message                                |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+| 4     | Thread mismatch.                     |
+
 **Example:**
 
 <!--compile-->
 ```cangjie
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    // Get the first parameter
+    // Get first parameter
     let arg0 = callInfo[0]
     // Get parameter type
     let valueType = arg0.typeof()
@@ -6660,8 +9877,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     println("arg type is ${valueType.toString()}")
     arg0
 }
-```
-
+``````markdown
 ## type ClassRegister
 
 ```cangjie
@@ -6670,7 +9886,7 @@ public type ClassRegister =(JSContext) -> JSClass
 
 **Function:** ClassRegister is a type alias for ([JSContext](#class-jscontext)) -> [JSClass](#class-jsclass).
 
-**Initial Version:** 22
+**Since:** 22
 
 ## type FuncRegister
 
@@ -6680,7 +9896,7 @@ public type FuncRegister =(JSContext) -> JSFunction
 
 **Function:** FuncRegister is a type alias for ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction).
 
-**Initial Version:** 22
+**Since:** 22
 
 ## type JSBufferFinalizer
 
@@ -6690,7 +9906,7 @@ public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
 
 **Function:** JSBufferFinalizer is a type alias for (CPointer\<Byte>) -> Unit.
 
-**Initial Version:** 22
+**Since:** 22
 
 ## type JSLambda
 
@@ -6700,7 +9916,7 @@ public type JSLambda =(JSContext, JSCallInfo) -> JSValue
 
 **Function:** JSLambda is a type alias for ([JSContext](#class-jscontext), [JSCallInfo](#struct-jscallinfo)) -> [JSValue](#struct-jsvalue).
 
-**Initial Version:** 22
+**Since:** 22
 
 ## type ModuleRegister
 
@@ -6710,7 +9926,7 @@ public type ModuleRegister =(JSContext, JSObject) -> Unit
 
 **Function:** ModuleRegister is a type alias for ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit.
 
-**Initial Version:** 22
+**Since:** 22
 
 ## type napi_env
 
@@ -6720,7 +9936,7 @@ public type napi_env = CPointer<Unit>
 
 **Function:** napi_env is a type alias for CPointer\<Unit>.
 
-**Initial Version:** 22
+**Since:** 22
 
 ## type napi_value
 
@@ -6730,7 +9946,7 @@ public type napi_value = CPointer<Unit>
 
 **Function:** napi_value is a type alias for CPointer\<Unit>.
 
-**Initial Version:** 22
+**Since:** 22
 
 ## class Utf16String
 
@@ -6740,17 +9956,17 @@ public class Utf16String <: ToString & Equatable<Utf16String> & Hashable & JSKey
 }
 ```
 
-**Function:** A string stored in UTF-16 encoding format, which provides better performance than String when converting to/from ArkTS strings.
+**Function:** A string stored in UTF-16 encoding format, which offers better performance than String when converting to/from ArkTS strings.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parent Types:**
 
-* ToString
-* Equatable\<Utf16String>
-* Hashable
-* [JSKeyable](#interface-jskeyable)
-* [JSInteropType\<Utf16String>](#interface-jsinteroptype)
+- ToString
+- Equatable\<Utf16String>
+- Hashable
+- [JSKeyable](#interface-jskeyable)
+- [JSInteropType\<Utf16String>](#interface-jsinteroptype)
 
 ### prop accessible
 
@@ -6758,13 +9974,33 @@ public class Utf16String <: ToString & Equatable<Utf16String> & Hashable & JSKey
 public prop accessible: Bool
 ```
 
-**Function:** Determines whether the string content is accessible. The string content of this object can be manually released using dispose, and accessing it after release will throw an exception.
+**Function:** Determines whether the string content is accessible. The string content of this object can be manually released using dispose. Accessing it after release will throw an exception.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Type:** Bool
 
 **Access:** Read-only
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkStringAccessibility(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Test String")
+    
+    if (utf16Str.accessible) {
+        Hilog.info(0, "test", "String content is accessible")
+        // Safely use the string content
+        let length = utf16Str.size
+        Hilog.info(0, "test", "String length: ${length}")
+    } else {
+        Hilog.info(0, "test", "String content is not accessible")
+    }
+    
+    return context.boolean(utf16Str.accessible).toJSValue()
+}
+```
 
 ### prop size
 
@@ -6772,13 +10008,37 @@ public prop accessible: Bool
 public prop size: Int64
 ```
 
-**Function:** Represents the total length of code units in this string (UTF-16 encoding format). Each UTF-16 code unit occupies 2 bytes, and each character consists of 1-2 code units.
+**Function:** Represents the total length of code units in this string (UTF-16 encoding format). In UTF-16 encoding, each code unit occupies 2 bytes, and each character consists of 1-2 code units.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Type:** Int64
 
-**Access:** Read-only### prop totalChars
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getStringSize(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello 世界")  // Contains mixed Chinese and English characters
+    let size = utf16Str.size  // Total length of UTF-16 code units
+    
+    Hilog.info(0, "test", "UTF-16 string size: ${size}")
+    
+    return context.number(Float64(size)).toJSValue()
+}
+```
+
+### prop totalChars
 
 ```cangjie
 public prop totalChars: Int64
@@ -6786,11 +10046,33 @@ public prop totalChars: Int64
 
 **Function:** The total number of characters in this string.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Type:** Int64
 
 **Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getStringTotalChars(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello 世界")  // Contains mixed Chinese and English characters
+    let totalChars = utf16Str.totalChars  // Total number of characters
+    
+    Hilog.info(0, "test", "Total characters: ${totalChars}")
+    
+    return context.number(Float64(totalChars)).toJSValue()
+}
+```
 
 ### static let empty
 
@@ -6800,7 +10082,7 @@ public static let empty: Utf16String
 
 **Function:** An empty string.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Type:** Utf16String
 
@@ -6814,13 +10096,39 @@ public init(src: String)
 
 **Function:** Creates a Utf16String from a standard library String.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| src | String | Yes | - | The target string. |
+| Parameter | Type   | Required | Default | Description          |
+|:----------|:-------|:---------|:--------|:---------------------|
+| src       | String | Yes      | -       | The target string.   |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 2            | Outside error occurred.                |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createUtf16String(context: JSContext): JSValue {
+    // Create Utf16String from a string
+    let utf16Str = Utf16String("Hello World")
+    Hilog.info(0, "test", "Created Utf16String with content: ${utf16Str.toString()}")
+    
+    // Create Utf16String from JSValue
+    let jsString = context.string("Test String")
+    let utf16Str2 = Utf16String(jsString.toJSValue())
+    Hilog.info(0, "test", "Created Utf16String from JSValue: ${utf16Str2.toString()}")
+    
+    return context.string(utf16Str.toString()).toJSValue()
+}
+```
 
 ### static func fromJSValue(JSContext, JSValue)
 
@@ -6830,20 +10138,47 @@ public static func fromJSValue(_: JSContext, value: JSValue): Utf16String
 
 **Function:** Converts a JSValue to a Utf16String object.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| _ | [JSContext](#class-jscontext) | Yes | - | The ArkTS interoperability context. |
-| value | [JSValue](#struct-jsvalue) | Yes | - | The ArkTS unified type. |
+| Parameter | Type               | Required | Default | Description                     |
+|:----------|:-------------------|:---------|:--------|:--------------------------------|
+| _         | [JSContext](#class-jscontext) | Yes      | -       | ArkTS interoperability context. |
+| value     | [JSValue](#struct-jsvalue)    | Yes      | -       | ArkTS unified type.             |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [Utf16String](#class-utf16string) | A Utf16String object. |
+| Type                     | Description            |
+|:-------------------------|:-----------------------|
+| [Utf16String](#class-utf16string) | A Utf16String object.  |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+| 4            | Thread mismatch.                       |
+| 5            | The ArkTS data types do not match.     |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func createFromJSValue(context: JSContext): JSValue {
+    let jsString = context.string("Hello from JS")
+    let jsValue = jsString.toJSValue()
+    
+    // Create Utf16String from JSValue
+    let utf16Str = Utf16String.fromJSValue(context, jsValue)
+    
+    Hilog.info(0, "test", "Created from JSValue: ${utf16Str.toString()}")
+    
+    return context.string(utf16Str.toString()).toJSValue()
+}
+```
 
 ### static func toArktsType()
 
@@ -6853,12 +10188,12 @@ public static func toArktsType(): String
 
 **Function:** The corresponding ArkTS type name.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:---|
+| Type   | Description                     |
+|:-------|:--------------------------------|
 | String | The corresponding ArkTS type name. |
 
 ### func compare(Utf16String)
@@ -6869,19 +10204,27 @@ public func compare(target: Utf16String): Ordering
 
 **Function:** Compares strings lexicographically based on Unicode characters.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The Utf16String object to compare. |
+| Parameter | Type                     | Required | Default | Description                     |
+|:----------|:-------------------------|:---------|:--------|:--------------------------------|
+| target    | [Utf16String](#class-utf16string) | Yes      | -       | The Utf16String to compare with. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Ordering | The comparison result. |
+| Type    | Description                |
+|:--------|:---------------------------|
+| Ordering | The comparison result.     |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
 
 ### func contains(Utf16String)
 
@@ -6891,19 +10234,27 @@ public func contains(target: Utf16String): Bool
 
 **Function:** Checks whether the string contains the target string.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The target string. |
+| Parameter | Type                     | Required | Default | Description                     |
+|:----------|:-------------------------|:---------|:--------|:--------------------------------|
+| target    | [Utf16String](#class-utf16string) | Yes      | -       | The target string.               |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type | Description                          |
+|:-----|:-------------------------------------|
 | Bool | Whether the target string is contained. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
 
 ### func count(Utf16String)
 
@@ -6913,29 +10264,72 @@ public func count(src: Utf16String): Int64
 
 **Function:** Counts the occurrences of the target string.
 
-**Initial Version:** 22
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| src | [Utf16String](#class-utf16string) | Yes | - | The target string. |
+| Parameter | Type                     | Required | Default | Description                     |
+|:----------|:-------------------------|:---------|:--------|:--------------------------------|
+| src       | [Utf16String](#class-utf16string) | Yes      | -       | The target string.               |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Int64 | The number of occurrences of the target string. |
+| Type  | Description                     |
+|:------|:--------------------------------|
+| Int64 | The count of target string occurrences. |
 
-### func dispose()
+**Exceptions:**
+
+- BusinessException: Error codes as follows:
+
+| Error Code ID | Error Message                          |
+|:-------------|:---------------------------------------|
+| 3            | Accessing reference is beyond reach.   |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func countSubstring(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World Hello Hello")
+    let target = Utf16String("Hello")
+    
+    let count = utf16Str.count(target)
+    
+    Hilog.info(0, "test", "Count of 'Hello': ${count}")
+    
+    return context.number(Float64(count)).toJSValue()
+}
+```### func dispose()
 
 ```cangjie
 public func dispose(): Unit
 ```
 
-**Function:** Releases the memory storing the string content. Accessing the string content after the first disposal will cause an exception.
+**Function:** Releases the memory storing the string content. Accessing the string content after the first dispose will cause an exception.
 
 **Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func disposeString(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Test String")
+    
+    // Using string content
+    let content = utf16Str.toString()
+    Hilog.info(0, "test", "String content before dispose: ${content}")
+    
+    // Manually release string content memory
+    utf16Str.dispose()
+    
+    // Access after dispose will throw exception
+    // let contentAfterDispose = utf16Str.toString() // This line will throw exception
+    
+    return context.string("String disposed").toJSValue()
+}
+```
 
 ### func endsWith(Utf16String)
 
@@ -6943,7 +10337,7 @@ public func dispose(): Unit
 public func endsWith(target: Utf16String): Bool
 ```
 
-**Function:** Checks whether the string ends with the target string.
+**Function:** Determines whether the string ends with the target string.
 
 **Initial Version:** 22
 
@@ -6951,7 +10345,7 @@ public func endsWith(target: Utf16String): Bool
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The target string. |
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
 
 **Return Value:**
 
@@ -6959,13 +10353,37 @@ public func endsWith(target: Utf16String): Bool
 |:----|:----|
 | Bool | Whether the string ends with the target string. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkEndsWith(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World")
+    let target = Utf16String("World")
+    
+    let endsWithResult = utf16Str.endsWith(target)
+    
+    Hilog.info(0, "test", "String ends with 'World': ${endsWithResult}")
+    
+    return context.boolean(endsWithResult).toJSValue()
+}
+```
+
 ### func hashCode()
 
 ```cangjie
 public func hashCode(): Int64
 ```
 
-**Function:** The hash value of the string.
+**Function:** Computes the hash value of the string.
 
 **Initial Version:** 22
 
@@ -6973,7 +10391,29 @@ public func hashCode(): Int64
 
 | Type | Description |
 |:----|:----|
-| Int64 | The hash value of the string.<br>**Note:** This hash value is not guaranteed to match the hash of a String with the same content. It is also not guaranteed to match the hash of an ArkTS string with the same content. |
+| Int64 | Hash value of the string.<br>**Note:** This hash value is not guaranteed to match the hash of a String with identical content. Nor is it guaranteed to match the hash of an ArkTS string with identical content. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getStringHashCode(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World")
+    let hashCode = utf16Str.hashCode()
+    
+    Hilog.info(0, "test", "String hash code: ${hashCode}")
+    
+    return context.number(Float64(hashCode)).toJSValue()
+}
+```
 
 ### func indexOf(Utf16String)
 
@@ -6989,13 +10429,41 @@ public func indexOf(target: Utf16String): ?Int64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The target string. |
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| ?Int64 | Returns the index of the first occurrence of the target string, or None if not found. |
+| ?Int64 | Returns the position index when the target string is first found, or None if not found. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func findSubstring(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World Hello")
+    let target = Utf16String("World")
+    
+    let index = utf16Str.indexOf(target)
+    
+    if (index != None) {
+        Hilog.info(0, "test", "Found 'World' at index: ${index!}")
+    } else {
+        Hilog.info(0, "test", "Substring not found")
+    }
+    
+    return context.number(Float64(index.getOrElse(-1))).toJSValue()
+}
+```
 
 ### func indexOf(Utf16String, Int64)
 
@@ -7011,14 +10479,22 @@ public func indexOf(target: Utf16String, fromIndex: Int64): ?Int64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The target string. |
-| fromIndex | Int64 | Yes | - | The starting position for the search in the current string. Default is 0. |
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
+| fromIndex | Int64 | Yes | - | Starting position for search in the current string. Default is 0 if not specified. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| ?Int64 | Returns the index of the first occurrence of the target string, or None if not found. |
+| ?Int64 | Returns the position index when the target string is first found, or None if not found. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
 
 ### func isEmpty()
 
@@ -7026,7 +10502,7 @@ public func indexOf(target: Utf16String, fromIndex: Int64): ?Int64
 public func isEmpty(): Bool
 ```
 
-**Function:** Checks whether the string is empty.
+**Function:** Determines whether the string is empty.
 
 **Initial Version:** 22
 
@@ -7036,13 +10512,39 @@ public func isEmpty(): Bool
 |:----|:----|
 | Bool | Whether the string is empty. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkIsEmpty(context: JSContext): JSValue {
+    let emptyStr = Utf16String("")
+    let nonEmptyStr = Utf16String("Hello")
+    
+    let isEmpty1 = emptyStr.isEmpty()
+    let isEmpty2 = nonEmptyStr.isEmpty()
+    
+    Hilog.info(0, "test", "Empty string is empty: ${isEmpty1}")
+    Hilog.info(0, "test", "Non-empty string is empty: ${isEmpty2}")
+    
+    return context.boolean(isEmpty1).toJSValue()
+}
+```
+
 ### func isCompressed()
 
 ```cangjie
 public func isCompressed(): Bool
 ```
 
-**Function:** Checks whether the content is compressed.
+**Function:** Determines whether the content is compressed.
 
 **Initial Version:** 22
 
@@ -7051,6 +10553,29 @@ public func isCompressed(): Bool
 | Type | Description |
 |:----|:----|
 | Bool | Whether the content is compressed. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkIsCompressed(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World")
+    
+    let isCompressed = utf16Str.isCompressed()
+    
+    Hilog.info(0, "test", "String is compressed: ${isCompressed}")
+    
+    return context.boolean(isCompressed).toJSValue()
+}
+```
 
 ### func lastIndexOf(Utf16String)
 
@@ -7066,13 +10591,41 @@ public func lastIndexOf(target: Utf16String): ?Int64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The target string. |
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| ?Int64 | Returns the index of the first occurrence of the target string, or None if not found. |
+| ?Int64 | Returns the position index when the target string is first found, or None if not found. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func findLastSubstring(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World Hello")
+    let target = Utf16String("Hello")
+    
+    let index = utf16Str.lastIndexOf(target)
+    
+    if (index != None) {
+        Hilog.info(0, "test", "Last 'Hello' found at index: ${index!}")
+    } else {
+        Hilog.info(0, "test", "Substring not found")
+    }
+    
+    return context.number(Float64(index.getOrElse(-1))).toJSValue()
+}
+```
 
 ### func lastIndexOf(Utf16String, Int64)
 
@@ -7088,14 +10641,43 @@ public func lastIndexOf(target: Utf16String, fromIndex: Int64): ?Int64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | The target string. |
-| fromIndex | Int64 | Yes | - | The starting position for the search in the current string. Default is the string size. |
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
+| fromIndex | Int64 | Yes | - | Starting position for search in the current string. Default is size if not specified. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| ?Int64 | Returns the index of the first occurrence of the target string, or None if not found. |
+| ?Int64 | Returns the position index when the target string is first found, or None if not found. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func findLastSubstringFromIndex(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World Hello")
+    let target = Utf16String("Hello")
+    
+    // Search forward starting from index 10
+    let index = utf16Str.lastIndexOf(target, 10)
+    
+    if (index != None) {
+        Hilog.info(0, "test", "Last 'Hello' found at index: ${index!}")
+    } else {
+        Hilog.info(0, "test", "Substring not found")
+    }
+    
+    return context.number(Float64(index.getOrElse(-1))).toJSValue()
+}
+```
 
 ### func lazySplit(Utf16String, Bool)
 
@@ -7111,38 +10693,73 @@ public func lazySplit(separator: Utf16String, remoteEmpty!: Bool = false): Itera
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| separator | [Utf16String](#class-utf16string) | Yes | - | The separator. If the separator is an empty string, each character is treated as a separate element. |
+| separator | [Utf16String](#class-utf16string) | Yes | - | Separator. When the separator is an empty string, each character is treated as a separate element. |
 | remoteEmpty | Bool | No | false | Whether to remove empty elements. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Iterator\<[Utf16String](#class-utf16string)> | An iterator of the split elements. |
+| Iterator\<[Utf16String](#class-utf16string)> | Iterator of split elements. |
 
-### func lazySplit(Utf16String, Int64, Bool)
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func lazySplitString(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello,World,Test,Example")
+    let separator = Utf16String(",")
+    
+    // Lazily split the string, removing empty elements
+    let splitIterator = utf16Str.lazySplit(separator, true)
+    
+    let count = 0
+    for (part in splitIterator) {
+        Hilog.info(0, "test", "Lazy split part ${count}: ${part.toString()}")
+        count = count + 1
+    }
+    
+    return context.number(Float64(count)).toJSValue()
+}
+```### func lazySplit(Utf16String, Int64, Bool)
 
 ```cangjie
 public func lazySplit(separator: Utf16String, maxSplit: Int64, remoteEmpty!: Bool = false): Iterator<Utf16String>
 ```
 
-**Function:** Lazily splits the string.
+**Function:** Lazy string splitting.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| separator | [Utf16String](#class-utf16string) | Yes | - | The separator. If the separator is an empty string, each character is treated as a separate element. |
-| maxSplit | Int64 | Yes | - | The maximum number of splits. 0 means no limit. |
+| separator | [Utf16String](#class-utf16string) | Yes | - | Delimiter. When the delimiter is an empty string, each character is treated as a separate element. |
+| maxSplit | Int64 | Yes | - | Maximum number of splits. Unlimited when set to 0. |
 | remoteEmpty | Bool | No | false | Whether to remove empty elements. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Iterator\<[Utf16String](#class-utf16string)> | An iterator of the split elements. |
+| Iterator\<[Utf16String](#class-utf16string)> | Iterator of split elements. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
 
 ### func lines()
 
@@ -7150,7 +10767,7 @@ public func lazySplit(separator: Utf16String, maxSplit: Int64, remoteEmpty!: Boo
 public func lines(): Iterator<Utf16String>
 ```
 
-**Function:** Gets an iterator of lines.
+**Function:** Get line iterator.
 
 **Initial Version:** 22
 
@@ -7158,7 +10775,35 @@ public func lines(): Iterator<Utf16String>
 
 | Type | Description |
 |:----|:----|
-| Iterator\<[Utf16String](#class-utf16string)> | An iterator of lines. |
+| Iterator\<[Utf16String](#class-utf16string)> | Line iterator. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func getLines(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Line 1\nLine 2\nLine 3")
+    
+    // Get line iterator
+    let lineIterator = utf16Str.lines()
+    
+    let count = 0
+    for (line in lineIterator) {
+        Hilog.info(0, "test", "Line ${count}: ${line.toString()}")
+        count = count + 1
+    }
+    
+    return context.number(Float64(count)).toJSValue()
+}
+```
 
 ### func replace(Utf16String, Utf16String, Int64)
 
@@ -7166,84 +10811,159 @@ public func lines(): Iterator<Utf16String>
 public func replace(old: Utf16String, new: Utf16String, count!: Int64 = Int64.Max): Utf16String
 ```
 
-**Function:** Replaces the string.
+**Function:** Replace string.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| old | [Utf16String](#class-utf16string) | Yes | - | The element to be replaced. |
-| new | [Utf16String](#class-utf16string) | Yes | - | The replacement element. |
-| count | Int64 | No | Int64.Max | The number of replacements. |
+| old | [Utf16String](#class-utf16string) | Yes | - | Element to be replaced |
+| new | [Utf16String](#class-utf16string) | Yes | - | Replacement element |
+| count | Int64 | No | Int64.Max | Number of replacements |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [Utf16String](#class-utf16string) | The replaced string. |### func runes()
+| [Utf16String](#class-utf16string) | Replaced string |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func replaceString(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World Hello")
+    let target = Utf16String("Hello")
+    let replacement = Utf16String("Hi")
+    
+    // Replace at most once
+    let replacedStr = utf16Str.replace(target, replacement, 1)
+    
+    Hilog.info(0, "test", "Original string: ${utf16Str.toString()}")
+    Hilog.info(0, "test", "Replaced string: ${replacedStr.toString()}")
+    
+    return context.string(replacedStr.toString()).toJSValue()
+}
+```
+
+### func runes()
 
 ```cangjie
 public func runes(): Iterator<Rune>
 ```
 
-**Function:** Get a character iterator.
+**Function:** Get character iterator.
 
 **Initial Version:** 22
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Iterator\<Rune>|Character iterator.|
+| Iterator\<Rune> | Character iterator. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
 
 ### func split(Utf16String, Bool)
 
 ```cangjie
-public func split(seperator: Utf16String, remoteEmpty!: Bool = false): Array<Utf16String>
+public func split(separator: Utf16String, remoteEmpty!: Bool = false): Array<Utf16String>
 ```
 
-**Function:** Split the string.
+**Function:** Split string.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|seperator|[Utf16String](#class-utf16string)|Yes|-|Separator. When the separator is an empty string, each character is treated as a separate element.|
-|remoteEmpty|Bool|No|false|Whether to remove empty elements.|
+| separator | [Utf16String](#class-utf16string) | Yes | - | Delimiter. When the delimiter is an empty string, each character is treated as a separate element. |
+| remoteEmpty | Bool | No | false | Whether to remove empty elements. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Array\<[Utf16String](#class-utf16string)>|Array of split elements.|
+| Array\<[Utf16String](#class-utf16string)> | Array of split elements. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func splitString(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello,World,Test")
+    let separator = Utf16String(",")
+    
+    // Split string into max 3 parts, keeping empty elements
+    let splitResult = utf16Str.split(separator, 3, false)
+    
+    Hilog.info(0, "test", "Split result size: ${splitResult.size}")
+    
+    for (i in 0..splitResult.size) {
+        Hilog.info(0, "test", "Part ${i}: ${splitResult[i].toString()}")
+    }
+    
+    return context.number(Float64(splitResult.size)).toJSValue()
+}
+```
 
 ### func split(Utf16String, Int64, Bool)
 
 ```cangjie
-public func split(seperator: Utf16String, maxSplit: Int64, remoteEmpty!: Bool = false): Array<Utf16String>
+public func split(separator: Utf16String, maxSplit: Int64, remoteEmpty!: Bool = false): Array<Utf16String>
 ```
 
-**Function:** Split the string.
+**Function:** Split string.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|seperator|[Utf16String](#class-utf16string)|Yes|-|Separator. When the separator is an empty string, each character is treated as a separate element.|
-|maxSplit|Int64|Yes|-|Maximum number of splits. 0 means no limit.|
-|remoteEmpty|Bool|No|false|Whether to remove empty elements.|
+| separator | [Utf16String](#class-utf16string) | Yes | - | Delimiter. When the delimiter is an empty string, each character is treated as a separate element. |
+| maxSplit | Int64 | Yes | - | Maximum number of splits. Unlimited when set to 0. |
+| remoteEmpty | Bool | No | false | Whether to remove empty elements. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Array\<[Utf16String](#class-utf16string)>|Array of split elements.|
+| Array\<[Utf16String](#class-utf16string)> | Array of split elements. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 1 | The accessing index is out of range. |
+| 3 | Accessing reference is beyond reach. |
 
 ### func startsWith(Utf16String)
 
@@ -7251,21 +10971,45 @@ public func split(seperator: Utf16String, maxSplit: Int64, remoteEmpty!: Bool = 
 public func startsWith(target: Utf16String): Bool
 ```
 
-**Function:** Check if the string starts with the target string.
+**Function:** Check if string starts with target string.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string.|
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the string starts with the target string, otherwise false.|
+| Bool | Whether the string starts with the target string. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func checkStartsWith(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello World")
+    let target = Utf16String("Hello")
+    
+    let startsWithResult = utf16Str.startsWith(target)
+    
+    Hilog.info(0, "test", "String starts with 'Hello': ${startsWithResult}")
+    
+    return context.boolean(startsWithResult).toJSValue()
+}
+```
 
 ### func toJSValue(JSContext)
 
@@ -7273,21 +11017,46 @@ public func startsWith(target: Utf16String): Bool
 public func toJSValue(context: JSContext): JSValue
 ```
 
-**Function:** Convert a Utf16String object to JSValue.
+**Function:** Convert Utf16String object to JSValue.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
+| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+| 4 | Thread mismatch. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToJSValue(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello from Utf16String")
+    
+    // Convert to JSValue
+    let jsValue = utf16Str.toJSValue(context)
+    
+    Hilog.info(0, "test", "Converted to JSValue")
+    
+    return jsValue
+}
+```
 
 ### func toString()
 
@@ -7301,9 +11070,31 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|Converted String object.|
+| String | Converted String object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func convertToString(context: JSContext): JSValue {
+    let utf16Str = Utf16String("Hello Utf16String")
+    let stringResult = utf16Str.toString()
+    
+    Hilog.info(0, "test", "Converted to string: ${stringResult}")
+    
+    return context.string(stringResult).toJSValue()
+}
+```
 
 ### func !=(Utf16String)
 
@@ -7311,21 +11102,29 @@ public func toString(): String
 public operator func != (target: Utf16String): Bool
 ```
 
-**Function:** Check if the string is not equal to the target string.
+**Function:** Check if strings are not equal.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string to compare.|
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string for comparison. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the strings are not equal, otherwise false.|
+| Bool | Returns true if strings are not equal, otherwise false. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |
 
 ### func +(Utf16String)
 
@@ -7333,43 +11132,57 @@ public operator func != (target: Utf16String): Bool
 public operator func + (right: Utf16String): Utf16String
 ```
 
-**Function:** Concatenate a string at the end.
+**Function:** Concatenate strings.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|right|[Utf16String](#class-utf16string)|Yes|-|Target string to concatenate.|
+| right | [Utf16String](#class-utf16string) | Yes | - | Target string to concatenate. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[Utf16String](#class-utf16string)|Concatenated string.|
+| [Utf16String](#class-utf16string) | Concatenated string. |
 
-### func \<(Utf16String)
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3 | Accessing reference is beyond reach. |### func \<(Utf16String)
 
 ```cangjie
 public operator func < (target: Utf16String): Bool
 ```
 
-**Function:** Check if the string is less than the target string (based on Unicode lexicographical order).
+**Function:** Determines whether the string is less than the target string (based on Unicode lexicographical order).
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string to compare.|
+| target | [Utf16String](#class-utf16string) | Yes | - | The target string for comparison. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the string is less than the target string, otherwise false.|
+| Bool | Returns `true` if less than the target string, otherwise `false`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
 
 ### func \<=(Utf16String)
 
@@ -7377,21 +11190,29 @@ public operator func < (target: Utf16String): Bool
 public operator func <= (target: Utf16String): Bool
 ```
 
-**Function:** Check if the string is less than or equal to the target string (based on Unicode lexicographical order).
+**Function:** Determines whether the string is less than or equal to the target string (based on Unicode lexicographical order).
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string to compare.|
+| target | [Utf16String](#class-utf16string) | Yes | - | The target string for comparison. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the string is less than or equal to the target string, otherwise false.|
+| Bool | Returns `true` if less than or equal to the target string, otherwise `false`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
 
 ### func ==(Utf16String)
 
@@ -7399,21 +11220,29 @@ public operator func <= (target: Utf16String): Bool
 public operator func == (target: Utf16String): Bool
 ```
 
-**Function:** Check if the string is equal to the target string.
+**Function:** Determines whether the string is equal to the target string.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string to compare.|
+| target | [Utf16String](#class-utf16string) | Yes | - | The target string for comparison. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the strings are equal, otherwise false.|
+| Bool | Returns `true` if the strings are equal, otherwise `false`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
 
 ### func >(Utf16String)
 
@@ -7421,21 +11250,29 @@ public operator func == (target: Utf16String): Bool
 public operator func > (target: Utf16String): Bool
 ```
 
-**Function:** Check if the string is greater than the target string (based on Unicode lexicographical order).
+**Function:** Determines whether the string is greater than the target string (based on Unicode lexicographical order).
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string to compare.|
+| target | [Utf16String](#class-utf16string) | Yes | - | The target string for comparison. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the string is greater than the target string, otherwise false.|
+| Bool | Returns `true` if greater than the target string, otherwise `false`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
 
 ### func >=(Utf16String)
 
@@ -7443,21 +11280,29 @@ public operator func > (target: Utf16String): Bool
 public operator func >= (target: Utf16String): Bool
 ```
 
-**Function:** Check if the string is greater than or equal to the target string (based on Unicode lexicographical order).
+**Function:** Determines whether the string is greater than or equal to the target string (based on Unicode lexicographical order).
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|Yes|-|Target string to compare.|
+| target | [Utf16String](#class-utf16string) | Yes | - | The target string for comparison. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the string is greater than or equal to the target string, otherwise false.|
+| Bool | Returns `true` if greater than or equal to the target string, otherwise `false`. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 3     | Accessing reference is beyond reach. |
 
 ### func \[](Int64)
 
@@ -7465,21 +11310,30 @@ public operator func >= (target: Utf16String): Bool
 public operator func [](index: Int64): UInt16
 ```
 
-**Function:** Get a character by index.
+**Function:** Retrieves a character based on the element index.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|index|Int64|Yes|-|Index.|
+| index | Int64 | Yes | - | The subscript index. |
 
 **Return Value:**
 
-| Type     |Description|
+| Type | Description |
 |:-------|:----|
-| UInt16 |Retrieved character.|
+| UInt16 | The retrieved character. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 1     | The accessing index is out of range. |
+| 3     | Accessing reference is beyond reach. |
 
 ### func \[](Range\<Int64>)
 
@@ -7487,18 +11341,27 @@ public operator func [](index: Int64): UInt16
 public operator func [](range: Range<Int64>): Utf16String
 ```
 
-**Function:** Extract a substring from the string.
+**Function:** Extracts a substring from the string.
 
 **Initial Version:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|range|Range\<Int64>|Yes|-|Range to extract.|
+| range | Range\<Int64> | Yes | - | The range for extraction. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|[Utf16String](#class-utf16string)|Extracted Utf16String substring.|
+| [Utf16String](#class-utf16string) | The extracted Utf16String substring. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below.
+
+| Error Code ID | Error Message |
+|:------|:-------------------------------------|
+| 1     | The accessing index is out of range. |
+| 3     | Accessing reference is beyond reach. |

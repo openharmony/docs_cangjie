@@ -1,6 +1,6 @@
 # ohos.data.preferences
 
-User Preferences provide applications with Key-Value data processing capabilities, supporting lightweight persistent data storage, modification, and query operations.
+User Preferences provide applications with Key-Value pair data processing capabilities, supporting lightweight data persistence for applications, along with modification and query operations.
 
 Data is stored in key-value pairs where keys are of string type, and values can be numeric, string, boolean, or arrays of these three types.
 
@@ -14,11 +14,11 @@ import kit.ArkData.*
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of a Cangjie template project.
-- If the sample requires obtaining [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration must be done in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration is needed in the "main_ability.cj" file of the Cangjie template project.
 - A valid [dataGroupId](#var-datagroupid) must be obtained from the application market.
 
-For details about the sample project and configuration template, see [Cangjie Sample Code Guide](../cj-development-intro.md#Cangjie-Sample-Code-Guide).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## const MAX_KEY_LENGTH
 
@@ -32,7 +32,7 @@ public const MAX_KEY_LENGTH: UInt32 = 1024
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ## const MAX_VALUE_LENGTH
 
@@ -46,12 +46,12 @@ public const MAX_VALUE_LENGTH: UInt32 = 16 * 1024 * 1024
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
-## class Options
+## class PreferencesOptions
 
 ```cangjie
-public class Options {
+public class PreferencesOptions {
     public var name: String
     public var dataGroupId: String
     public var storageType: StorageType
@@ -64,7 +64,7 @@ public class Options {
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var dataGroupId
 
@@ -80,7 +80,7 @@ public var dataGroupId: String
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var name
 
@@ -96,7 +96,7 @@ public var name: String
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var storageType
 
@@ -112,7 +112,7 @@ public var storageType: StorageType
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, StorageType)
 
@@ -121,18 +121,18 @@ public init(name: String, dataGroupId!: String = String.empty,
     storageType!: StorageType = StorageType.Xml)
 ```
 
-**Description:** Constructor for creating Options instances. By default, creates a Preferences instance in the application sandbox directory.
+**Description:** Constructor for creating PreferencesOptions instances. By default, creates a Preferences instance in the application sandbox directory.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | name | String | Yes | - | Name of the Preferences instance. |
-| dataGroupId | String | No | String.empty | Application group ID (must be obtained from the application market). |
+| dataGroupId | String | No | String.empty | Application group ID, which must be obtained from the application market. |
 | storageType | [StorageType](#enum-storagetype) | No | StorageType.Xml | Storage mode (optional parameter). |
 
 ## class Preferences
@@ -145,7 +145,7 @@ public class Preferences {}
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static func deletePreferences(UIAbilityContext, String)
 
@@ -153,29 +153,28 @@ public class Preferences {}
 public static func deletePreferences(context: UIAbilityContext, name: String): Unit
 ```
 
-**Description:** Removes the specified Preferences instance from cache. If the instance has an associated persistent file, the file is also deleted.
+**Description:** Removes the specified Preferences instance from cache. If the Preferences instance has a corresponding persistent file, the file is also deleted.
 
 After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may cause data consistency issues.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
 | name | String | Yes | - | Name of the Preferences instance. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as follows:
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
-| Error Code | Error Message |
+| Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 15500000 | Internal error. |
+| 15500000 | Inner error. |
 | 15500010 | Failed to delete the user preferences persistence file. |
 
 **Example:**
@@ -186,50 +185,50 @@ After calling this interface, it is not recommended to continue using the old Pr
 // index.cj
 
 import kit.ArkData.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// Get Preferences instance
-let preferences = Preferences.getPreferences(Global.abilityContext, "myStore")  // Context required; see usage instructions
 try {
+    // Get Preferences instance
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), "myStore")  // Application context required; see usage instructions above
     // Delete Preferences instance
-    Preferences.deletePreferences(Global.abilityContext, "myStore")
-} catch (e: Exception) {
-    Hilog.error(0, "AppLogCj", "delete Preferences failed")
+    Preferences.deletePreferences(Global.getAbilityContext(), "myStore")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
-### static func deletePreferences(UIAbilityContext, Options)
+### static func deletePreferences(UIAbilityContext, PreferencesOptions)
 
 ```cangjie
-public static func deletePreferences(context: UIAbilityContext, options: Options): Unit
+public static func deletePreferences(context: UIAbilityContext, options: PreferencesOptions): Unit
 ```
 
-**Description:** Removes the specified Preferences instance from cache. If the instance has an associated persistent file, the file is also deleted.
+**Description:** Removes the specified Preferences instance from cache. If the Preferences instance has a corresponding persistent file, the file is also deleted.
 
 After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may cause data consistency issues.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
-| options | [Options](#class-options) | Yes | - | Configuration options for the Preferences instance. |
+| options | [PreferencesOptions](#class-preferencesoptions) | Yes | - | Configuration options related to the Preferences instance. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as follows:
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Preferences Error Codes](./cj-errorcode-preferences.md).
 
-| Error Code | Error Message |
+| Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 | 15500000 | Inner error. |
 | 15500010 | Failed to delete the user preferences persistence file. |
-| 15501001 | The operation is supported in stage mode only. |
+| 15501001 | The operations is supported in stage mode only. |
 | 15501002 | Invalid dataGroupId. |
 
 - IllegalArgumentException:
@@ -246,15 +245,16 @@ After calling this interface, it is not recommended to continue using the old Pr
 // index.cj
 
 import kit.ArkData.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// Get Preferences instance
-let preferences = Preferences.getPreferences(Global.abilityContext, "myStore")  // Context required; see usage instructions
 try {
+    // Get Preferences instance
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), "myStore")  // Application context required; see usage instructions above
     // Delete Preferences instance
-    Preferences.deletePreferences(Global.abilityContext, "myStore")
-} catch (e: Exception) {
-    Hilog.error(0, "AppLogCj", "delete Preferences failed")
+    Preferences.deletePreferences(Global.getAbilityContext(), "myStore")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -266,36 +266,99 @@ public static func getPreferences(context: UIAbilityContext, name: String): Pref
 
 **Description:** Removes the specified Preferences instance from cache.
 
-When an application first calls [getPreferences](#static-func-getpreferencesuiabilitycontext-string) to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-string) will retrieve the instance directly from cache instead of reading the persistence file. After calling this interface to remove the instance from cache, the next getPreferences call will re-read the persistence file and generate a new Preferences instance.
+When an application first calls [getPreferences](#static-func-getpreferencesuiabilitycontext-string) to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-string) will retrieve the instance directly from cache rather than reading from the persistent file. After calling this interface to remove the instance from cache, the next getPreferences call will read the persistent file again and generate a new Preferences instance.
 
 After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may cause data consistency issues.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
 | name | String | Yes | - | Name of the Preferences instance. |
 
-**Returns:**
+**Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | [Preferences](#class-preferences) | Preferences instance. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as follows:
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
-| Error Code | Error Message |
+| Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 15500000 | Inner error. |
+
+- IllegalArgumentException:
+
+  | Error Message | Possible Cause | Handling Steps |
+| :---- | :--- | :--- |
+| The context is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Application context required; see usage instructions above
+    // Remove Preferences instance from cache
+    Preferences.removePreferencesFromCache(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID"))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### static func getPreferences(UIAbilityContext, PreferencesOptions)
+
+```cangjie
+public static func getPreferences(context: UIAbilityContext, options: PreferencesOptions): Preferences
+```
+
+**Description:** Removes the specified Preferences instance from cache.
+
+When an application first calls [getPreferences](#static-func-getpreferencesuiabilitycontext-preferencesoptions) to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-preferencesoptions) will retrieve the instance directly from cache rather than reading from the persistent file. After calling this interface to remove the instance from cache, the next getPreferences call will read the persistent file again and generate a new Preferences instance.
+
+After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may cause data consistency issues.
+
+**System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
+| options | [PreferencesOptions](#class-preferencesoptions) | Yes | - | Name of the Preferences instance. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [Preferences](#class-preferences) | Preferences instance. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Preferences Error Codes](./cj-errorcode-preferences.md).
+
+| Error Code ID | Error Message |
+| :---- | :--- |
 | 801 | Capability not supported. |
-| 15500000 | Internal error. |
+| 15500000 | Inner error. |
 | 15501001 | The operations is supported in stage mode only. |
 | 15501002 | Invalid dataGroupId. |
 
@@ -314,80 +377,15 @@ After calling this interface, it is not recommended to continue using the old Pr
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context required; see usage instructions
 try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Application context required; see usage instructions above
     // Remove Preferences instance from cache
-    Preferences.removePreferencesFromCache(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID"))
-} catch (e: Exception) {
-    Hilog.error(0, "AppLogCj", "Failed to remove cache for preferences")
-}
-```
-
-### static func getPreferences(UIAbilityContext, Options)
-
-```cangjie
-public static func getPreferences(context: UIAbilityContext, options: Options): Preferences
-```
-
-**Description:** Removes the specified Preferences instance from cache.
-
-When an application first calls [getPreferences](#static-func-getpreferencesuiabilitycontext-options) to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-options) will retrieve the instance directly from cache instead of reading the persistence file. After calling this interface to remove the instance from cache, the next getPreferences call will re-read the persistence file and generate a new Preferences instance.
-
-After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may cause data consistency issues.
-
-**System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
-| options | [Options](#class-options) | Yes | - | Name of the Preferences instance. |
-
-**Returns:**
-
-| Type | Description |
-| :---- | :---- |
-| [Preferences](#class-preferences) | Preferences instance. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows:
-
-| Error Code | Error Message |
-| :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 15500000 | Internal error. |
-
-- IllegalArgumentException:
-
-  | Error Message | Possible Cause | Handling Steps |
-| :---- | :--- | :--- |
-| The context is invalid. | todo | todo |
-
-**Example:**
-
-<!-- compile only -->
-<!-- compile -->
-
-```cangjie
-// index.cj
-
-import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.base.*
-
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context required; see usage instructions
-try {
-    // Remove Preferences instance from cache
-    Preferences.removePreferencesFromCache(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID"))
-} catch (e: Exception) {
-    Hilog.error(0, "AppLogCj", "Failed to remove cache for preferences")
+    Preferences.removePreferencesFromCache(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID"))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -399,29 +397,28 @@ public static func removePreferencesFromCache(context: UIAbilityContext, name: S
 
 **Description:** Removes the specified Preferences instance from cache.
 
-When an application first calls [getPreferences](#static-func-getpreferencesuiabilitycontext-string) to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-string) will retrieve the instance directly from cache instead of reading the persistence file. After calling this interface to remove the instance from cache, the next getPreferences call will re-read the persistence file and generate a new Preferences instance.
+When an application first calls [getPreferences](#static-func-getpreferencesuiabilitycontext-string) to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-string) will retrieve the instance directly from cache rather than reading from the persistent file. After calling this interface to remove the instance from cache, the next getPreferences call will read the persistent file again and generate a new Preferences instance.
 
 After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may cause data consistency issues.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
 | name | String | Yes | - | Name of the Preferences instance. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as follows:
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
-| Error Code | Error Message |
+| Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are missing; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 15500000 | Internal error. |
+| 15500000 | Inner error. |
 
 **Example:**
 
@@ -432,49 +429,48 @@ After calling this interface, it is not recommended to continue using the old Pr
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context required; see usage instructions
 try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Application context required; see usage instructions above
     // Remove Preferences instance from cache
-    Preferences.removePreferencesFromCache(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID"))
-} catch (e: Exception) {
-    Hilog.error(0, "AppLogCj", "Failed to remove cache for preferences")
+    Preferences.removePreferencesFromCache(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID"))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
-```### static func removePreferencesFromCache(UIAbilityContext, Options)
+```### static func removePreferencesFromCache(UIAbilityContext, PreferencesOptions)
 
 ```cangjie
-public static func removePreferencesFromCache(context: UIAbilityContext, options: Options): Unit
+public static func removePreferencesFromCache(context: UIAbilityContext, options: PreferencesOptions): Unit
 ```
 
 **Function:** Removes the specified Preferences instance from the cache.
 
-When an application first calls the [getPreferences](#static-func-getpreferencesuiabilitycontext-options) interface to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-options) will retrieve the instance directly from the cache without reading from the persistent file again. After calling this interface to remove the instance from the cache, the next getPreferences call will re-read the persistent file and generate a new Preferences instance.
+When an application first calls the [getPreferences](#static-func-getpreferencesuiabilitycontext-preferencesoptions) interface to obtain a Preferences instance, the instance is cached. Subsequent calls to [getPreferences](#static-func-getpreferencesuiabilitycontext-preferencesoptions) will retrieve the instance directly from the cache without reading from the persistent file again. After calling this interface to remove the instance from the cache, the next getPreferences call will re-read the persistent file and generate a new Preferences instance.
 
 After calling this interface, it is not recommended to continue using the old Preferences instance for data operations, as this may lead to data consistency issues.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
-| options | [Options](#class-options) | Yes | - | Name of the Preferences instance. |
+| options | [PreferencesOptions](#class-preferencesoptions) | Yes | - | The name of the Preferences instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801 | Capability not supported. |
 | 15500000 | Inner error. |
-| 15501001 | The operation is supported in stage mode only. |
+| 15501001 | The operations is supported in stage mode only. |
 | 15501002 | Invalid dataGroupId. |
 
 - IllegalArgumentException:
@@ -492,15 +488,15 @@ After calling this interface, it is not recommended to continue using the old Pr
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
 try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained. For details, see the usage instructions in this document.
     // Remove the Preferences instance from the cache
-    Preferences.removePreferencesFromCache(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID"))
-} catch (e: Exception) {
-    Hilog.error(0, "AppLogCj", "Failed to remove cache for preferences")
+    Preferences.removePreferencesFromCache(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID"))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -514,15 +510,14 @@ public func clear(): Unit
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Mandatory parameters are left unspecified. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -534,12 +529,16 @@ public func clear(): Unit
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.data.preferences.ValueType as PreferencesValueType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
-preferences.put("myKey", PreferencesValueType.StringData("myValue"))
-preferences.clear()
+try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    preferences.put("myKey", PreferencesValueType.StringData("myValue"))
+    preferences.clear()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func delete(String)
@@ -552,21 +551,20 @@ public func delete(key: String): Unit
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| key | String | Yes | - | Name of the key to be deleted. Cannot be empty. |
+| key | String | Yes | - | The name of the key to be deleted. Cannot be empty. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -577,10 +575,16 @@ public func delete(key: String): Unit
 // index.cj
 
 import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// Obtain the Preferences instance
-let preferences = Preferences.getPreferences(Global.abilityContext, "myStore") // Context application context needs to be obtained; see usage instructions in this document.
-preferences.delete("startup")
+try {
+    // Obtain the Preferences instance
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), "myStore") // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    preferences.delete("startup")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func flush()
@@ -589,19 +593,18 @@ preferences.delete("startup")
 public func flush(): Unit
 ```
 
-**Function:** Persists the data in the cached Preferences instance to the user preferences persistent file.
+**Function:** Stores the data in the cached Preferences instance into the persistent file of user preferences.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Mandatory parameters are left unspecified. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -613,46 +616,49 @@ public func flush(): Unit
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.data.preferences.ValueType as PreferencesValueType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
-preferences.put("myKey", PreferencesValueType.StringData("myValue"))
-preferences.flush()
+try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    preferences.put("myKey", PreferencesValueType.StringData("myValue"))
+    preferences.flush()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
-### func get(String, ValueType)
+### func get(String, PreferencesValueType)
 
 ```cangjie
-public func get(key: String, defValue: ValueType): ValueType
+public func get(key: String, defValue: PreferencesValueType): PreferencesValueType
 ```
 
 **Function:** Retrieves the value corresponding to the key from the cached Preferences instance. If the key does not exist, returns the default value defValue.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| key | String | Yes | - | Name of the key to retrieve. |
-| defValue | [ValueType](#enum-valuetype) | Yes | - | Default return value. Supports Int64, Float64, String, Bool, Array\<Bool>, Array\<Float64>, Array\<String>. |
+| key | String | Yes | - | The name of the key to be retrieved. |
+| defValue | [PreferencesValueType](#enum-preferencesvaluetype) | Yes | - | The default return value. Supports Int64, Float64, String, Bool, Array\<Bool>, Array\<Float64>, Array\<String>. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [ValueType](#enum-valuetype) | Returns the value corresponding to the key. |
+| [PreferencesValueType](#enum-preferencesvaluetype) | The value corresponding to the key. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -664,45 +670,45 @@ public func get(key: String, defValue: ValueType): ValueType
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.data.preferences.ValueType as PreferencesValueType
-import ohos.base.*
-
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
-var value = preferences.get("key", PreferencesValueType.Integer(0))
-match (value) {
-    case PreferencesValueType.Integer(n) => Hilog.info(0, "AppLogCj", "Retrieved value: ${n}")
-    case _ => Hilog.info(0, "AppLogCj", "Retrieved value is not Int")
+try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    var value = preferences.get("key", PreferencesValueType.Integer(0))
+    match (value) {
+        case PreferencesValueType.Integer(n) => Hilog.info(0, "AppLogCj", "Retrieved value: ${n}")
+        case _ => Hilog.info(0, "AppLogCj", "Retrieved value is not an Int")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
 ### func getAll()
 
 ```cangjie
-public func getAll(): HashMap<String, ValueType>
+public func getAll(): HashMap<String, PreferencesValueType>
 ```
 
 **Function:** Retrieves all key-value data from the cached Preferences instance.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| HashMap\<String, [ValueType](#enum-valuetype)> | HashMap object containing all key-value data. |
+| HashMap\<String, [PreferencesValueType](#enum-preferencesvaluetype)> | A HashMap object containing all key-value data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Mandatory parameters are left unspecified. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -714,20 +720,22 @@ public func getAll(): HashMap<String, ValueType>
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.base.*
-
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
-var values = preferences.getAll()
-for ((k, v) in values) {
-    match (v) {
-        case Integer(n) => Hilog.info(0, "AppLogCj", "Key-value pair: key: ${k} value: ${n}")
-        case Double(n) => Hilog.info(0, "AppLogCj", "Key-value pair: key: ${k} value: ${n}")
-        case StringData(n) => Hilog.info(0, "AppLogCj", "Key-value pair: key: ${k} value: ${n}")
-        case _ => Hilog.info(0, "AppLogCj", "Other value")
+try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    var values = preferences.getAll()
+    for ((k, v) in values) {
+        match (v) {
+            case Integer(n) => Hilog.info(0, "AppLogCj", "Retrieved key-value pair: key: ${k} value: ${n}")
+            case Double(n) => Hilog.info(0, "AppLogCj", "Retrieved key-value pair: key: ${k} value: ${n}")
+            case StringData(n) => Hilog.info(0, "AppLogCj", "Retrieved key-value pair: key: ${k} value: ${n}")
+            case _ => Hilog.info(0, "AppLogCj", "Other value")
+        }
     }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -741,27 +749,26 @@ public func has(key: String): Bool
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| key | String | Yes | - | Name of the key to check. |
+| key | String | Yes | - | The name of the key to be checked. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Boolean value. Returns whether the Preferences instance contains a key-value pair with the given key. true indicates existence; false indicates non-existence. |
+| Bool | A Boolean value. Returns whether the Preferences instance contains a key-value pair with the given key. true indicates existence; false indicates non-existence. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -773,46 +780,47 @@ public func has(key: String): Bool
 // index.cj
 
 import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.base.*
-
+import ohos.business_exception.BusinessException
 import kit.PerformanceAnalysisKit.Hilog
 
-let preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
-let hasKey = preferences.has("startup")
-if (hasKey) {
-    Hilog.info(0, "AppLogCj", "The key 'startup' is contained.")
-} else {
-    Hilog.info(0, "AppLogCj", "The key 'startup' does not contain.")
+try {
+    let preferences = Preferences.getPreferences(Global.getAbilityContext(), PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    let hasKey = preferences.has("startup")
+    if (hasKey) {
+        Hilog.info(0, "AppLogCj", "The key 'startup' is contained.")
+    } else {
+        Hilog.info(0, "AppLogCj", "The key 'startup' does not exist.")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
 ### func off(PreferencesEvent, ?Callback1Argument\<String>)
 
 ```cangjie
-public func off(event: PreferencesEvent, callback: ?Callback1Argument<String> = None): Unit
+public func off(event :PreferencesEvent, callback!: ?Callback1Argument<String> = None): Unit
 ```
 
 **Function:** Unsubscribes from data changes.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | event | [PreferencesEvent](#enum-preferencesevent) | Yes | - | Event type, indicating unsubscription from data changes or inter-process data changes. |
-| callback | ?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<String> | No | None | Callback function to be unsubscribed. If not specified, all callbacks are unsubscribed. <br> String: Type of the changed key. |
+| callback | ?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<String> | No | None | The callback function to be unsubscribed. If not specified, all callbacks are unsubscribed.<br> String: The type of the changed key. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -823,52 +831,54 @@ public func off(event: PreferencesEvent, callback: ?Callback1Argument<String> = 
 // index.cj
 
 import kit.ArkData.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
-import ohos.data.preferences.ValueType as PValueType
-
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
-// This code can be added to the dependency definition
-// Callback function
-class Callback <: Callback1Argument<String> {
-    public func invoke(err: ?BusinessException, arg: String): Unit {
-        Hilog.info(0, "AppLogCj", "=========callback========= ${arg.toString()}======================")
+try {
+    // This code can be added to the dependency definition
+    // Callback function
+    class Callback <: Callback1Argument<String> {
+        public func invoke(err: ?BusinessException, arg: String): Unit {
+            Hilog.info(0, "AppLogCj", "=========callback========= ${arg.toString()}======================")
+        }
     }
-}
 
-var str = "container"
-var a = Preferences.getPreferences(Global.abilityContext, str) // Context application context needs to be obtained; see usage instructions in this document.
-var c = Callback()
-a.on(PreferencesEvent.PreferencesChange, c)
-a.off(PreferencesEvent.PreferencesChange)
-a.put("kkk1", PValueType.StringData("vvv1"))
-a.flush()
+    var str = "container"
+    var a = Preferences.getPreferences(Global.getAbilityContext(), str) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    var c = Callback()
+    a.on(PreferencesEvent.PreferencesChange, c)
+    a.off(PreferencesEvent.PreferencesChange)
+    a.put("kkk1", PreferencesValueType.StringData("vvv1"))
+    a.flush()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(PreferencesEvent, Callback1Argument\<String>)
 
 ```cangjie
-public func on(event: PreferencesEvent, callback: Callback1Argument<String>): Unit
+public func on(event :PreferencesEvent, callback: Callback1Argument<String>): Unit
 ```
 
 **Function:** Subscribes to data changes.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| event | [PreferencesEvent](#enum-preferencesevent) | Yes | - | Event type. <br> PreferencesChange: Subscribes to data changes. When the value of the subscribed key changes, the callback is triggered after the flush method is executed. <br> PreferencesMultiProcessChange: Subscribes to inter-process data changes. When multiple processes hold the same preferences file, the callback is triggered after the flush method is executed when the value of the subscribed key changes in any process. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<String> | Yes | - | Callback function. <br> String: Type of the changed key. |
+| event | [PreferencesEvent](#enum-preferencesevent) | Yes | - | Event type.<br> When PreferencesChange, it indicates subscription to data changes. After the value of the subscribed key changes, the callback is triggered upon executing the flush method.<br> When PreferencesMultiProcessChange, it indicates subscription to inter-process data changes. When multiple processes hold the same preferences file, the callback is triggered upon executing the flush method after the value of the subscribed key changes in any process. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<String> | Yes | - | Callback function.<br>String: The type of the changed key. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
@@ -883,54 +893,55 @@ public func on(event: PreferencesEvent, callback: Callback1Argument<String>): Un
 // index.cj
 
 import kit.ArkData.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
-import ohos.data.preferences.ValueType as PValueType
-
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
-// Callback function
-class Callback <: Callback1Argument<String> {
-    public func invoke(err: ?BusinessException, arg: String): Unit {
-        Hilog.info(0, "AppLogCj", "=========callback========= ${arg.toString()}======================")
+try {
+    // Callback function
+    class Callback <: Callback1Argument<String> {
+        public func invoke(err: ?BusinessException, arg: String): Unit {
+            Hilog.info(0, "AppLogCj", "=========callback========= ${arg.toString()}======================")
+        }
     }
-}
 
-var str = "container"
-var a = Preferences.getPreferences(Global.abilityContext, str) // Context application context needs to be obtained; see usage instructions in this document.
-var c = Callback()
-a.on(PreferencesEvent.PreferencesChange, c)
-a.put("kkk1", PValueType.StringData("vvv1"))
-a.flush()
+    var str = "container"
+    var a = Preferences.getPreferences(Global.getAbilityContext(), str) // Context application context needs to be obtained. For details, see the usage instructions in this document.
+    var c = Callback()
+    a.on(PreferencesEvent.PreferencesChange, c)
+    a.put("kkk1", PreferencesValueType.StringData("vvv1"))
+    a.flush()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
-### func put(String, ValueType)
+### func put(String, PreferencesValueType)
 
 ```cangjie
-public func put(key: String, value: ValueType): Unit
+public func put(key: String, value: PreferencesValueType): Unit
 ```
 
 **Function:** Writes data to the cached Preferences instance. The Preferences instance can be persisted via [flush](#func-flush).
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| key | String | Yes | - | Key to be modified. Cannot be empty. |
-| value | [ValueType](#enum-valuetype) | Yes | - | New value to store. Supports Int64, Float64, String, Bool, Array\<Bool>, Array\<Float64>, Array\<String>. |
+| key | String | Yes | - | The key to be modified. Cannot be empty. |
+| value | [PreferencesValueType](#enum-preferencesvaluetype) | Yes | - | The new value to be stored. Supports Int64, Float64, String, Bool, Array\<Bool>, Array\<Float64>, Array\<String>. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below.
+- BusinessException: Corresponding error codes are listed below. For details, see [Preferences Error Codes](./cj-errorcode-preferences.md).
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 15500000 | Inner error. |
 
 **Example:**
@@ -941,13 +952,7 @@ public func put(key: String, value: ValueType): Unit
 ```cangjie
 // index.cj
 
-import kit.ArkData.*
-import ohos.data.preferences.Options as PreferencesOptions
-import ohos.data.preferences.ValueType as PreferencesValueType
-
-var preferences = Preferences.getPreferences(Global.abilityContext, PreferencesOptions("mystore", dataGroupId:"myGroupID")) // Context application context needs to be obtained; see usage instructions in this document.
-preferences.put("Monday", PreferencesValueType.StringData("The weather is nice today"))
-```## enum PreferencesEvent
+import kit.ArkData## enum PreferencesEvent
 
 ```cangjie
 public enum PreferencesEvent {
@@ -956,11 +961,11 @@ public enum PreferencesEvent {
 }
 ```
 
-**Description:** Enumeration of event types for Preferences.
+**Description:** Enumeration of Preferences event types.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PreferencesChange
 
@@ -972,7 +977,7 @@ PreferencesChange
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PreferencesMultiProcessChange
 
@@ -984,7 +989,7 @@ PreferencesMultiProcessChange
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum StorageType
 
@@ -995,11 +1000,11 @@ public enum StorageType {
 }
 ```
 
-**Description:** Enumeration of storage modes for Preferences.
+**Description:** Enumeration of Preferences storage modes.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Gskv
 
@@ -1007,13 +1012,13 @@ public enum StorageType {
 Gskv
 ```
 
-**Description:** Indicates GSKV storage mode.
+**Description:** Represents GSKV storage mode.
 
-**Features:** Data is stored in GSKV database mode. Operations on data are immediately persisted to disk without requiring the flush interface.
+**Characteristics:** Data is stored in GSKV database mode. Operations on data are immediately persisted to disk without requiring the flush interface.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Xml
 
@@ -1021,18 +1026,18 @@ Gskv
 Xml
 ```
 
-**Description:** Indicates XML storage mode, which is the default storage mode for Preferences.
+**Description:** Represents XML storage mode, which is the default storage mode for Preferences.
 
-**Features:** Data is stored in XML format. Operations on data occur in memory, requiring the flush interface for disk persistence.
+**Characteristics:** Data is stored in XML format. Operations on data occur in memory, requiring the flush interface for disk persistence.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
-## enum ValueType
+## enum PreferencesValueType
 
 ```cangjie
-public enum ValueType {
+public enum PreferencesValueType {
     | Integer(Int64)
     | Double(Float64)
     | StringData(String)
@@ -1047,7 +1052,7 @@ public enum ValueType {
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BoolArray(Array\<Bool>)
 
@@ -1055,11 +1060,11 @@ public enum ValueType {
 BoolArray(Array<Bool>)
 ```
 
-**Description:** Indicates an array of boolean values.
+**Description:** Represents an array of boolean values.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BoolData(Bool)
 
@@ -1067,11 +1072,11 @@ BoolArray(Array<Bool>)
 BoolData(Bool)
 ```
 
-**Description:** Indicates a boolean value.
+**Description:** Represents a boolean value.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Double(Float64)
 
@@ -1079,11 +1084,11 @@ BoolData(Bool)
 Double(Float64)
 ```
 
-**Description:** Indicates a 64-bit floating-point value.
+**Description:** Represents a 64-bit floating-point value.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### DoubleArray(Array\<Float64>)
 
@@ -1091,11 +1096,11 @@ Double(Float64)
 DoubleArray(Array<Float64>)
 ```
 
-**Description:** Indicates an array of 64-bit floating-point values.
+**Description:** Represents an array of 64-bit floating-point values.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Integer(Int64)
 
@@ -1103,11 +1108,11 @@ DoubleArray(Array<Float64>)
 Integer(Int64)
 ```
 
-**Description:** Indicates a 64-bit signed integer value.
+**Description:** Represents a 64-bit signed integer value.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StringArray(Array\<String>)
 
@@ -1115,11 +1120,11 @@ Integer(Int64)
 StringArray(Array<String>)
 ```
 
-**Description:** Indicates an array of string values.
+**Description:** Represents an array of string values.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StringData(String)
 
@@ -1127,8 +1132,8 @@ StringArray(Array<String>)
 StringData(String)
 ```
 
-**Description:** Indicates a string value.
+**Description:** Represents a string value.
 
 **System Capability:** SystemCapability.DistributedDataManager.Preferences.Core
 
-**Since:** 21
+**Since:** 22

@@ -1,10 +1,10 @@
 # Using ImageSource for Image Decoding
 
-Image decoding refers to the process of converting archived images in supported formats into a unified [PixelMap](./cj-image-overview.md) for image display or [image processing](./cj-image-transformation.md) within applications or systems. Currently supported archived image formats include JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (availability may vary across different hardware devices).
+Image decoding refers to the process of converting supported archive image formats into a unified [PixelMap](./cj-image-overview.md) for image display or [image processing](./cj-image-transformation.md) in applications or systems. Currently supported archive image formats include JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (support may vary across different hardware devices).
 
 ## Development Steps
 
-For detailed API documentation on image decoding, refer to: [Image Decoding API Reference](../../../../en/application-dev/reference/ImageKit/cj-apis-image.md#class-imagesource).
+For detailed API documentation on image decoding, refer to: [Image Decoding API Reference](../../reference/ImageKit/cj-apis-image.md#class-imagesource).
 
 1. Import the Image module globally.
 
@@ -15,8 +15,8 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
     ```
 
 2. Obtain the image.
-    - Method 1: Get the file descriptor through the sandbox path. Refer to the [file.fs API documentation](../../../../en/application-dev/reference/CoreFileKit/cj-apis-file_fs.md).
-       This method requires importing the kit.CoreFileKit and kit.AbilityKit modules first.
+    - Method 1: Get the file descriptor through the sandbox path. Refer to the [file.fs API documentation](../../reference/CoreFileKit/cj-apis-file_fs.md) for details.
+      This method requires importing the kit.CoreFileKit and kit.AbilityKit modules first.
 
         <!-- compile -->
 
@@ -36,7 +36,7 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
         let fd = file.fd 
         ```
 
-    - Method 2: Get the resource file's Array\<UInt8> through the resource manager. Refer to the [ResourceManager API documentation](../../../../en/application-dev/reference/LocalizationKit/cj-apis-resource_manager.md#func-getrawfilecontentstring).
+    - Method 2: Get the resource file's Array\<UInt8> through the resource manager. Refer to the [ResourceManager API documentation](../../reference/LocalizationKit/cj-apis-resource_manager.md#func-getrawfilecontentstring) for details.
 
         <!-- compile -->
 
@@ -62,7 +62,7 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
         }
         ```
 
-    - Method 4: Get the resource file's RawFileDescriptor through the resource manager. Refer to the [ResourceManager API documentation](../../../../en/application-dev/reference/LocalizationKit/cj-apis-resource_manager.md#func-getrawfdstring).
+    - Method 4: Get the resource file's RawFileDescriptor through the resource manager. Refer to the [ResourceManager API documentation](../../reference/LocalizationKit/cj-apis-resource_manager.md#func-getrawfdstring) for details.
 
         <!-- compile -->
 
@@ -160,7 +160,7 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
 
         let img = resourceManager.getMediaContent(@r(app.media.layered_image))
         let imageSource = createImageSource(img)
-        // Setting to AUTO will decode based on the image resource format. If the resource is HDR, it will decode to an HDR pixelmap.
+        // Set to AUTO to decode based on the image resource format. If the resource is HDR, it will decode to an HDR pixelmap.
         let decodingOptions = DecodingOptions(desiredDynamicRange: DecodingDynamicRange.Auto)
 
         // Create pixelMap.
@@ -173,7 +173,7 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
 
 5. Release pixelMap and imageSource.
 
-    Ensure that all pixelMap and imageSource operations are completed. When these variables are no longer needed, manually call the following methods to release them as required.
+    Ensure that the pixelMap and imageSource methods have completed execution. When these variables are no longer needed, manually call the following methods to release them as required.
 
     <!-- compile -->
 
@@ -193,7 +193,7 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
     import kit.LocalizationKit.*
     import kit.AbilityKit.*
 
-    // globalcontext needs to be assigned in func onCreate of main_ability.cj: globalcontext = this.context
+    // globalcontext needs to be assigned in func onCreate in main_ability.cj: globalcontext = this.context
     var abilityContext = Global.abilityContext
     // Get the resourceManager.
     let resourceManager = abilityContext.resourceManager
@@ -228,7 +228,7 @@ For detailed API documentation on image decoding, refer to: [Image Decoding API 
 
 4. Release pixelMap and imageSource.
 
-    Ensure that all pixelMap and imageSource operations are completed. When these variables are no longer needed, manually call the following methods to release them as required.
+    Ensure that the pixelMap and imageSource methods have completed execution. When these variables are no longer needed, manually call the following methods to release them as required.
 
     <!-- compile -->
 

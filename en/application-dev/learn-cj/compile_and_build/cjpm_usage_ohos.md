@@ -1,10 +1,10 @@
 # Introduction to `cjpm`
 
-`CJPM (Cangjie Package Manager)` is the official package management tool for the Cangjie language, designed to manage and maintain the module system of Cangjie projects. It provides a simpler and unified compilation entry point while supporting custom compilation commands. Through automated dependency management, it analyzes and merges third-party dependencies with multiple versions, eliminating developers' concerns about version conflicts and significantly reducing their workload. Additionally, it offers a native Cangjie language-based custom build mechanism, allowing developers to add preprocessing and postprocessing steps at different build stages. This enables flexible customization of the build process to meet various compilation requirements in different business scenarios.
+`CJPM (Cangjie Package Manager)` is the official package management tool for the Cangjie language, designed to manage and maintain the module system of Cangjie projects. It provides a simplified and unified compilation entry point with support for custom compilation commands. Through automatic dependency management, the package manager analyzes and merges third-party dependencies with multiple versions, eliminating developers' concerns about version conflicts and significantly reducing their workload. Additionally, it offers a native Cangjie-based custom build mechanism, allowing developers to add pre-processing and post-processing workflows at different build stages. This enables flexible customization of the build process to meet various compilation requirements in different business scenarios.
 
 ## Basic Usage of `cjpm`
 
-Run `cjpm -h` to view the main interface, which consists of several sections: current command description, usage examples (Usage), available subcommands (Available subcommands), supported configuration options (Available options), and additional hints.
+Run `cjpm -h` to view the main interface, which consists of several sections: command description, usage examples (Usage), available subcommands (Available subcommands), supported configuration options (Available options), and additional hints.
 
 ```text
 Cangjie Package Manager
@@ -32,7 +32,7 @@ Available options:
 Use "cjpm [subcommand] --help" for more information about a command.
 ```
 
-`cjpm init` initializes a new Cangjie module or workspace. By default, it creates a `cjpm.toml` file in the current directory, along with a `src` source code folder containing a default `main.cj` file. For custom initialization parameters, run `cjpm init -h`.
+`cjpm init` initializes a new Cangjie module or workspace. When initializing a module, it creates a `cjpm.toml` file in the current folder by default, along with a `src` directory containing a default `main.cj` file. For custom initialization parameters, run `cjpm init -h`.
 
 Example:
 
@@ -41,7 +41,7 @@ Input: cjpm init
 Output: cjpm init success
 ```
 
-`cjpm build` compiles the current Cangjie project. Before execution, it checks dependencies and then invokes `cjc` for compilation. It supports full compilation, incremental compilation, cross-compilation, parallel compilation, etc. For more compilation features, run `cjpm build -h`. Use `cjpm build -V` to print all compilation commands.
+`cjpm build` compiles the current Cangjie project. Before execution, it checks dependencies and then invokes `cjc` for compilation. It supports full compilation, incremental compilation, cross-compilation, parallel compilation, and more. For additional compilation features, run `cjpm build -h`. Use `cjpm build -V` to print all compilation commands.
 
 Example:
 
@@ -56,42 +56,42 @@ cjpm build success
 
 ## `cjpm.toml` Configuration File Description
 
-The `cjpm.toml` configuration file defines basic information, dependencies, compilation options, etc. `cjpm` primarily parses and executes based on this file.
+The configuration file `cjpm.toml` defines basic information, dependencies, and compilation options. `cjpm` primarily relies on this file for parsing and execution.
 
 Example configuration:
 
 ```text
 [package] # Single-module configuration field; cannot coexist with [workspace]
-  cjc-version = "1.0.0" # Minimum required `cjc` version (required)
-  name = "demo" # Module name and root package name (required)
+  cjc-version = "1.0.0" # Minimum required `cjc` version (mandatory)
+  name = "demo" # Module name and root package name (mandatory)
   description = "nothing here" # Description (optional)
-  version = "1.0.0" # Module version (required)
+  version = "1.0.0" # Module version (mandatory)
   compile-option = "" # Additional compilation options (optional)
   override-compile-option = "" # Additional global compilation options (optional)
-  link-option = "" # Linker passthrough options (optional)
-  output-type = "executable" # Compilation output type (required)
-  src-dir = "" # Source code directory (optional)
-  target-dir = "" # Output directory (optional)
-  package-configuration = {} # Single-package configuration (optional)
+  link-option = "" # Linker passthrough options (e.g., secure compilation flags) (optional)
+  output-type = "executable" # Compilation output type (mandatory)
+  src-dir = "" # Custom source code directory (optional)
+  target-dir = "" # Custom output directory (optional)
+  package-configuration = {} # Single-package configuration options (optional)
 
 [workspace] # Workspace management field; cannot coexist with [package]
-  members = [] # Workspace member modules (required)
-  build-members = [] # Workspace compilation modules (subset of members, optional)
-  test-members = [] # Workspace test modules (subset of build-members, optional)
+  members = [] # List of workspace member modules (mandatory)
+  build-members = [] # Subset of members to compile (optional)
+  test-members = [] # Subset of build-members to test (optional)
   compile-option = "" # Additional compilation options for all workspace members (optional)
   override-compile-option = "" # Additional global compilation options for all workspace members (optional)
   link-option = "" # Linker passthrough options for all workspace members (optional)
-  target-dir = "" # Output directory (optional)
+  target-dir = "" # Custom output directory (optional)
 
 [dependencies] # Source code dependencies (optional)
   coo = { git = "xxx", branch = "dev" } # Git dependency
   doo = { path = "./pro1" } # Local source dependency
 
-[test-dependencies] # Test-phase dependencies (same format as [dependencies], optional)
+[test-dependencies] # Test-phase dependencies (format same as [dependencies]) (optional)
 
-[script-dependencies] # Build script dependencies (same format as [dependencies], optional)
+[script-dependencies] # Build script dependencies (format same as [dependencies]) (optional)
 
-[replace] # Dependency replacement (same format as [dependencies], optional)
+[replace] # Dependency replacement (format same as [dependencies]) (optional)
 
 [ffi.c] # C library dependencies (optional)
   clib1.path = "xxx"
@@ -112,8 +112,8 @@ Example configuration:
 [target.x86_64-w64-mingw32.test-dependencies] # Test-phase dependencies for specific targets (optional)
 
 [target.x86_64-unknown-linux-gnu.bin-dependencies] # Cangjie binary library dependencies for specific targets or cross-compilation (optional)
-  path-option = ["./test/pro0", "./test/pro1"] # Binary library dependencies configured as directories
-[target.x86_64-unknown-linux-gnu.bin-dependencies.package-option] # Binary library dependencies configured as single files
+  path-option = ["./test/pro0", "./test/pro1"] # Binary library paths
+[target.x86_64-unknown-linux-gnu.bin-dependencies.package-option] # Single-file binary library configuration
   "pro0.xoo" = "./test/pro0/pro0.xoo.cjo"
   "pro0.yoo" = "./test/pro0/pro0.yoo.cjo"
   "pro1.zoo" = "./test/pro1/pro1.zoo.cjo"

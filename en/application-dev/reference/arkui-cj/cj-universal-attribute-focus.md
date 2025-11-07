@@ -1,111 +1,140 @@
 # Focus Control
 
-Custom component focus navigation effects, allowing configuration of whether a component can receive focus and the specific focus navigation order, with focus switching via the Tab key or arrow keys.
+Custom component focus navigation effects, allowing configuration of whether a component can receive focus and the specific focus navigation order. Focus can be switched using the Tab key or arrow keys.
 
 > **Note:**
 >
-> - Custom components inherently lack focus acquisition capability. When properties such as [focusable](./cj-universal-attribute-focus.md#func-focusablebool), [enabled](./cj-universal-attribute-enable.md#func-enabledbool) are set to false, or when the [visibility](./cj-universal-attribute-visibility.md#func-visibilityvisibility) property is set to Hidden/None, this does not affect the focus acquisition capability of their child components.
+> - Custom components inherently cannot receive focus. When setting properties such as [focusable](./cj-universal-attribute-focus.md#func-focusablebool) or [enabled](./cj-universal-attribute-enable.md#func-enabledbool) to false, or setting the [visibility](./cj-universal-attribute-visibility.md#func-visibilityvisibility) property to Hidden or None, it does not affect the ability of child components to receive focus.
 > - A component actively acquiring focus is not controlled by window focus.
+> - For focus development reference, see [Focus Development Guide](./cj-universal-event-focus.md).
 
-## Module Import
+## Import Module
 
 ```cangjie
 import kit.ArkUI.*
 ```
 
-## func defaultFocus(Bool)
+## func defaultFocus(?Bool)
 
 ```cangjie
-public func defaultFocus(value: Bool): This
+public func defaultFocus(value: ?Bool): T
 ```
 
-**Function:** Sets whether the component is the default focus.
+**Function:** Sets whether the current component is the default focus on the current page.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the component is the default focus. |
+| Name | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| value | ?Bool | Yes | - | Determines whether the current component is the default focus on the current page. Takes effect only when the page is first created and entered for the first time. <br/>Initial value: false. |
 
-## func focusOnTouch(Bool)
+**Return Value:**
+
+| Type | Description |
+| :--- | :--- |
+| T | Returns the component instance itself that called this interface. |
+
+## func focusable(?Bool)
 
 ```cangjie
-public func focusOnTouch(value: Bool): This
+public func focusable(value: ?Bool): T
 ```
 
-**Function:** Sets whether the component acquires focus upon touch.
+**Function:** Sets whether the current component can receive focus.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the component supports focus acquisition via touch. true indicates the component supports touch-based focus acquisition, false indicates it does not.<br>Initial value: false.<br>**Note:**<br>Focus can only be acquired normally when the component is clickable. |
+| Name | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| value | ?Bool | Yes | - | Determines whether the current component can receive focus. true means the component can receive focus, false means it cannot. <br/>Initial value: true. |
 
-## func focusable(Bool)
+**Return Value:**
+
+| Type | Description |
+| :--- | :--- |
+| T | Returns the component instance itself that called this interface. |
+
+## func focusOnTouch(?Bool)
 
 ```cangjie
-public func focusable(value: Bool): This
+public func focusOnTouch(value: ?Bool): T
 ```
 
-**Function:** Sets whether the component can acquire focus.
+**Function:** Sets whether the current component supports focus acquisition via touch.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the component can acquire focus. true indicates the component can acquire focus, false indicates it cannot.<br>**Note:**<br>Components with default interaction logic such as [Button](./cj-button-picker-button.md), [TextInput](./cj-text-input-textinput.md) are focusable by default, while components like [Text](./cj-text-input-text.md), [Image](./cj-image-video-image.md) are non-focusable by default. In non-focusable state, focus events cannot be triggered. |
+| Name | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| value | ?Bool | Yes | - | Determines whether the current component supports focus acquisition via touch. true means the component supports touch focus, false means it does not. <br/>Initial value: false. |
 
-## func groupDefaultFocus(Bool)
+**Return Value:**
+
+| Type | Description |
+| :--- | :--- |
+| T | Returns the component instance itself that called this interface. |
+
+## func groupDefaultFocus(?Bool)
 
 ```cangjie
-public func groupDefaultFocus(value: Bool): This
+public func groupDefaultFocus(value: ?Bool): T
 ```
 
-**Function:** Sets whether the group is the default focus.
+**Function:** Sets whether the current component is the default focus when its container receives focus.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the current component is the default focus when its container acquires focus, effective only during the container node's initial focus acquisition. true indicates the current component is the container's default focus, false indicates it is not.<br>Initial value: false <br>**Note:**<br>Must be used in conjunction with tabIndex. When a container has [tabIndex](./cj-universal-attribute-focus.md#func-tabindexint32) set and a child component (or the container itself) has groupDefaultFocus(true), focus will automatically transfer to the specified component when the container first acquires focus via Tab key. If multiple components (including the container) within the container have groupDefaultFocus(true), the first component found during depth-first traversal of the component tree will be selected. |
+| Name | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| value | ?Bool | Yes | - | Determines whether the current component is the default focus when its container receives focus. Takes effect only when the container node is first created and receives focus for the first time. true means the current component is the default focus for its container, false means it is not. <br/>Initial value: false. |
 
-## func tabIndex(Int32)
+**Return Value:**
+
+| Type | Description |
+| :--- | :--- |
+| T | Returns the component instance itself that called this interface. |
+
+## func tabIndex(?Int32)
 
 ```cangjie
-public func tabIndex(index: Int32): This
+public func tabIndex(index: ?Int32): T
 ```
 
-**Function:** Sets the component's Tab index.
+**Function:** Customizes the component's focus navigation behavior using the Tab key.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| index | Int32 | Yes | - | Tab index value. |
+| Name | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| index | ?Int32 | Yes | - | Customizes the component's focus navigation behavior using the Tab key. If there are components with tabIndex greater than 0, Tab key navigation will only cycle through these components in ascending order of their tabIndex values. If no components have tabIndex greater than 0, components with tabIndex equal to 0 will follow the default focus navigation rules. <br/>Initial value: 0. |
 
-## Basic Type Definitions
+**Return Value:**
 
-### class FocusControl
+| Type | Description |
+| :--- | :--- |
+| T | Returns the component instance itself that called this interface. |
+
+## class FocusControl
 
 ```cangjie
 public class FocusControl {}
@@ -115,28 +144,28 @@ public class FocusControl {}
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
-#### static func requestFocus(String)
+### static func requestFocus(?String)
 
 ```cangjie
-public static func requestFocus(value: String): Bool
+public static func requestFocus(value: ?String): Bool
 ```
 
-**Function:** Global interface available in method statements. Calling this interface actively transfers focus to the component specified by the parameter.
+**Function:** A global interface usable in method statements. Calling this interface actively transfers focus to the component specified by the parameter.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| value | String | Yes | - | The string bound to the target component using either the key(value: string) or id(value: string) interface.<br/>Returns whether focus was successfully requested for the target component. Returns true if the target component exists and is focusable, otherwise returns false. |
+| Name | Type | Required | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| value | ?String | Yes | - | The target component is identified using the interface key(value: string) or id(value: string) bound to a string. <br>Returns whether focus was successfully requested for the target component. If the target component exists and can receive focus, returns true; otherwise, returns false. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Bool | Returns whether focus was successfully requested for the target component. Returns true if the target component exists and is focusable, otherwise returns false. |
+| :--- | :--- |
+| Bool | Returns whether focus was successfully requested for the target component. If the target component exists and can receive focus, returns true; otherwise, returns false. |

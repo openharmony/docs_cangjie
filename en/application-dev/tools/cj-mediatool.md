@@ -2,15 +2,15 @@
 
 mediatool is a lightweight command-line toolset that allows developers to manipulate media library resources. The media library provides and manages data for the gallery, where images and videos from the media library are displayed in the gallery interface.
 
-The mediatool comes pre-installed with the system and does not require additional installation. It is built into the `/bin` folder and can be directly invoked via `hdc shell`.
+The mediatool comes pre-installed with the system and does not require additional installation. It is built into the `/bin` folder and can be directly invoked via hdc shell.
 
 ## Prerequisites
 
-- Establish a proper device connection.
-- Enable Developer Mode in system settings.
+- Device must be properly connected.
+- Developer mode must be enabled in system settings.
 - Use `hdc shell` to enter command-line execution mode.
 
-## Command Line Reference
+## Command Line Instructions
 
 <!--Del-->
 
@@ -20,22 +20,22 @@ The mediatool comes pre-installed with the system and does not require additiona
 mediatool send <path-to-local-media-file> [-ts] [-tas] [-rf] [-urf]
 ```
 
-This command pushes image, video, or audio files from the device's `<path-to-local-media-file>` path into the media library for storage. It supports saving images, videos, and audio files. Files retain their original names in the media library. `<path-to-local-media-file>` can be a folder, in which case mediatool will place all files within the folder into the media library. Upon successful saving, the URI of the imported resource is printed.
+This command pushes image, video, or audio files from the device path `<path-to-local-media-file>` into the media library for storage. It supports saving images, videos, and audio files. Files retain their original names in the media library. `<path-to-local-media-file>` can also be a folder, in which case mediatool will place all files within the folder into the media library. Upon successful saving, the URI of the pushed resource is printed.
 
-By default, media files are saved to the media library with synchronous thumbnail generation, and the original files under `<path-to-local-media-file>` are deleted after import.
+By default, media files are saved into the media library with synchronous thumbnail creation, and the files under `<path-to-local-media-file>` are deleted afterward.
 
 | Option               | Description             |
 | :---- | :--------------- |
-| -ts | Synchronously generates thumbnails when saving images/videos. Ensures thumbnails are fully generated before display, but increases save time. (Default) |
-| -tas | Asynchronously generates thumbnails when saving images/videos. Cannot be used with -ts. Images/videos display immediately without waiting for thumbnails. Reduces save time. |
-| -rf | Deletes source files after media import. (Default) |
-| -urf | Preserves source files after media import. Cannot be used with -rf. |
+| -ts | Synchronously creates thumbnails when saving images or videos. Ensures thumbnails are generated before the media is displayed, but may result in longer save times. (Default) |
+| -tas | Asynchronously creates thumbnails when saving images or videos. Cannot be used with the -ts option. Media files are displayed immediately after saving without waiting for thumbnails to generate. Results in shorter save times. |
+| -rf | Deletes the source file after pushing it into the media library. (Default) |
+| -urf | Does not delete the source file after pushing it into the media library. Cannot be used with the -rf option. |
 
-**Example Usage:**
+**Usage Example:**
 
 ```shell
 > mediatool send /data/tmp/MyImage.jpg
-file://media/Photo/3/IMG_1721381297_001/MyImage.jpg # Successfully pushed image, prints imported resource URI
+file://media/Photo/3/IMG_1721381297_001/MyImage.jpg # Successfully pushed the image, prints the URI of the pushed resource
 ```
 
 ### mediatool list
@@ -44,27 +44,28 @@ file://media/Photo/3/IMG_1721381297_001/MyImage.jpg # Successfully pushed image,
 mediatool list <resource-uri>
 ```
 
-This command prints information about media library resources corresponding to the specified `<resource-uri>` in CSV format.
+This command prints the information of the media library resource corresponding to the specified `<resource-uri>` in CSV format.
 
-For example, if image resource A in the media library has URI `file://media/Photo/3/IMG_1721381297_001/MyImage.jpg`, both `mediatool list file://media/Photo/3` and `mediatool list file://media/Photo/3/IMG_1721381297_001/MyImage.jpg` will successfully print the resource information.
+For example, if the URI of image resource A in the media library is `file://media/Photo/3/IMG_1721381297_001/MyImage.jpg`, both `mediatool list file://media/Photo/3` and `mediatool list file://media/Photo/3/IMG_1721381297_001/MyImage.jpg` will successfully print the resource information.
 
-Printed information includes:
-- uri: The resource's URI
-- display_name: The resource's name
-- data: Physical path of the resource's source file on the device
+The printed information includes:
 
-Alternatively, setting `<resource-uri>` to `all` (`mediatool list all`) will print information for all resources in the media library.
+- uri: The URI of the media resource.
+- display_name: The name of the media resource.
+- data: The physical path of the media resource's source file on the device.
 
-**Example Usage:**
+Alternatively, `<resource-uri>` can be specified as `all`. `mediatool list all` will print information for all resources in the media library.
+
+**Usage Example:**
 
 ```shell
-# Query with existing URI
+# Query using an existing URI
 > mediatool list file://media/Photo/3
 Table Name: Photos
 uri, display_name, data
 "file://media/Photo/3/IMG_1721381297_001/MyImage.jpg", "MyImage.jpg", "/storage/cloud/100/files/Photo/2/IMG_1721381297_001.jpg"
 
-# Query with malformed URI
+# Query using an invalid URI format
 > mediatool list file://media/Photo/
 [FAIL] uri invalid. uri:file://media/Photo/
 ```
@@ -79,24 +80,24 @@ mediatool recv <resource-uri> <dest-path>
 
 This command exports the source file content of the media library resource specified by `<resource-uri>` to the device path specified by `<dest-path>`.
 
-`<dest-path>` can specify either a target file path or directory path. If a directory path is specified, files will be exported to that directory while retaining their media library names.
+`<dest-path>` can be specified as either a file path to be created or a folder path. If it is a folder path, the file will be exported to that folder, retaining its name from the media library.
 
-When `<dest-path>` specifies a target file path, it must not point to an existing file.
+When `<dest-path>` specifies a file path to be created, it must not point to an existing file.
 <!--Del-->
 `<dest-path>` must specify a path with accessible permissions.
 <!--DelEnd-->
 
-Upon successful export, the exported file path is printed.
+Upon successful export, the path of the exported file is printed.
 
-For obtaining media library resource URIs, refer to [Media Library URI Introduction/Acquisition Methods](#媒体库uri介绍获取方式).
+For obtaining media library resource URIs, refer to [Media Library URI Introduction/Acquisition Methods](#media-library-uri-introductionacquisition-methods).
 
-Setting `<resource-uri>` to `all` exports source files for all media library resources. In this case, `<dest-path>` must be a directory path.
+Specifying `<resource-uri>` as `all` will export the source files of all media library resources. When `<resource-uri>` is `all`, `<dest-path>` must be a folder path.
 
 This command cannot export media assets from hidden albums.
 
 <!--RP1--><!--RP1End-->
 
-**Example Usage:**
+**Usage Example:**
 
 ```shell
 > mediatool recv file://media/Photo/3 /data/local/tmp/out.jpg
@@ -110,19 +111,19 @@ Table Name: Photos
 mediatool delete <resource-uri>
 ```
 
-This command permanently deletes the media library resource specified by `<resource-uri>`. Deleted resources cannot be recovered—use with caution.
+This command permanently deletes the media library resource specified by `<resource-uri>`. Deleted resources cannot be recovered, so use this command with caution.
 
-For obtaining media library resource URIs, refer to [Media Library URI Introduction/Acquisition Methods](#媒体库uri介绍获取方式).
+For obtaining media library resource URIs, refer to [Media Library URI Introduction/Acquisition Methods](#media-library-uri-introductionacquisition-methods).
 
-Setting `<resource-uri>` to `all` deletes all media library resources and resets all media library data.
+Specifying `<resource-uri>` as `all` will delete all media library resources and reset all media library data.
 
-**Example Usage:**
+**Usage Example:**
 
 ```shell
 > mediatool delete file://media/Photo/3
 [SUCCESS] delete success.
 
-> mediatool delete all # No output on successful execution
+> mediatool delete all # No output is printed upon successful execution of "delete all"
 ```
 
 ### mediatool query
@@ -131,40 +132,40 @@ Setting `<resource-uri>` to `all` deletes all media library resources and resets
 mediatool query <display-name> [-p] [-u]
 ```
 
-This command queries all media library resources with name `<display-name>`, returning either the resource's source file path or media resource URI. By default, it returns the source file path.
+This command queries all media library resources with the name `<display-name>` and returns either the physical path of the source file or the URI of the media resource. By default, it returns the physical path of the source file.
 
 This command cannot query media assets from hidden albums.
 
 | Option   | Description  |
 | ---- |----- |
-| -p | Returns the physical path of the resource's source file on the device. (Default) |
-| -u | Returns the media resource URI. Cannot be used with -p. |
+| -p | Returns the physical path of the media resource's source file on the device. (Default) |
+| -u | Returns the URI of the media resource. Cannot be used with the -p option. |
 
-**Example Usage:**
+**Usage Example:**
 
 ```shell
-# Query existing media resource
+# Querying an existing media resource
 > mediatool query MyImage.jpg
 find 1 result:
 path
 /storage/cloud/100/files/Photo/2/IMG_1721381297_001.jpg
 
-# Query non-existent media resource
+# Querying a non-existent media resource
 > mediatool query non_exist.jpg
 find 0 result
 
-# Malformed display name format
+# Querying with an incorrect name format
 > mediatool query IMG_001
 find 0 result
 The displayName format is not correct!
 
-# Query source file path
+# Querying the physical path of a media resource
 > mediatool query MyImage.jpg -p
 find 1 result:
 path
 /storage/cloud/100/files/Photo/2/IMG_1721381297_001.jpg
 
-# Query media resource URI
+# Querying the URI of a media resource
 > mediatool query MyImage.jpg -u
 find 1 result:
 uri
@@ -173,11 +174,11 @@ uri
 
 ## Usage Guidelines
 
-The following guidelines illustrate common mediatool usage scenarios.
+The following guidelines illustrate common usage scenarios for mediatool.
 
 ### Exporting Specific Media Library Assets
 
-Example: Exporting a JPG image named MyImage from the gallery.
+Example: Exporting a JPG image named "MyImage" from the gallery.
 
 ```shell
 > hdc shell mediatool query -u MyImage.jpg
@@ -212,7 +213,7 @@ FileTransfer finish, Size:10017280, File count = 1, time:664ms rate:15086.27kB/s
 
 ### Deleting Specific Media Library Assets
 
-Example: Deleting a JPG image named MyImage from the gallery.
+Example: Deleting a JPG image named "MyImage" from the gallery.
 
 ```shell
 > hdc shell mediatool query -u MyImage.jpg
@@ -224,7 +225,7 @@ uri
 [SUCCESS] delete success.
 ```
 
-### Completely Resetting Media Library Database
+### Fully Resetting the Media Library Database
 
 ```shell
 > hdc shell mediatool delete all
@@ -232,14 +233,14 @@ uri
 
 ## Media Library URI Introduction/Acquisition Methods
 
-URIs serve as unique identifiers for media library assets, with each URI corresponding to one media asset. mediatool uses URIs to identify target media assets for operations.
+The URI is the unique identifier for media library assets, with each URI corresponding to one media asset. mediatool uses URIs to determine the media asset objects to operate on.
 
-URIs can be obtained through:
+URIs can be obtained in the following ways:
 
-- `mediatool query` with `-u` option returns the URI of matching media assets (requires input of the display name shown in gallery, including extension).<!--Del-->
-- `mediatool list all` retrieves URIs and display names for all media library assets.<!--DelEnd-->
+- Using `mediatool query` with the `-u` option returns the URI of the corresponding media asset. The display name of the asset (as shown in the gallery, including the file extension) must be provided.<!--Del-->
+- `mediatool list all` retrieves a list of URIs for all media library assets, along with their display names.<!--DelEnd-->
 
-Media library URIs can be used with `mediatool recv` to export specific assets or with `mediatool delete` to remove specific assets.
+Media library URIs can be used with the `mediatool recv` command to export specific media library assets or with the `mediatool delete` command to delete specific media library assets.
 
-URI example: `file://media/Photo/1/IMG_1743078145_000/MyImage.jpg`.
+URI Example: `file://media/Photo/1/IMG_1743078145_000/MyImage.jpg`.
 When using this URI in mediatool operations, both `file://media/Photo/1/IMG_1743078145_000/MyImage.jpg` and `file://media/Photo/1` will correctly locate the target asset.

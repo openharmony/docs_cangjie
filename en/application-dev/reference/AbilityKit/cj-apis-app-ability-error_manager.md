@@ -16,14 +16,14 @@ ohos.permission.PREPARE_APP_TERMINATE
 
 ohos.permission.PRIVACY_WINDOW
 
-## Usage Guidelines
+## Usage Instructions
 
-API sample code usage instructions:
+API example code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of example code contains a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of a Cangjie template project.
+- If the example requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For the aforementioned example projects and configuration templates, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie-Example-Code-Instructions).
 
 ## class ErrorManager
 
@@ -35,7 +35,7 @@ public class ErrorManager {}
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static func off(ErrorManagerEvent, Int32)
 
@@ -47,23 +47,40 @@ public static func off(eventType: ErrorManagerEvent, observerId: Int32): Unit
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| eventType | [ErrorManagerEvent](#enum-errormanagerevent) | Yes | - | The type of error event. |
-| observerId | Int32 | Yes | - | The observer ID. |
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| eventType | [ErrorManagerEvent](#enum-errormanagerevent) | Yes | - | Error event type. |
+| observerId | Int32 | Yes | - | Observer ID. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Ability Subsystem Error Codes](./cj-errorcode-ability.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Ability Subsystem Error Codes](./cj-errorcode-ability.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 16000003 | The specified ID does not exist. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+try {
+    let observerId: Int32 = 1
+    ErrorManager.off(ErrorManagerEvent.Error, observerId)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test_errorManager", "${e.message}")
+}
+```
 
 ### static func on(ErrorManagerEvent, ErrorObserver)
 
@@ -75,29 +92,59 @@ public static func on(eventType: ErrorManagerEvent, observer: ErrorObserver): In
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| eventType | [ErrorManagerEvent](#enum-errormanagerevent) | Yes | - | The type of error event. |
-| observer | [ErrorObserver](./cj-apis-application-error_observer.md#class-errorobserver) | Yes | - | The error observer. |
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| eventType | [ErrorManagerEvent](#enum-errormanagerevent) | Yes | - | Error event type. |
+| observer | [ErrorObserver](./cj-apis-application-error_observer.md#class-errorobserver) | Yes | - | Error observer. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Int32 | The observer ID. |
+|:----|:----|
+| Int32 | Observer ID. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Ability Subsystem Error Codes](./cj-errorcode-ability.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Ability Subsystem Error Codes](./cj-errorcode-ability.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 16000003 | The specified ID does not exist. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let observer = ErrorObserver(
+        {
+            errorMsg =>
+                Hilog.info(0, "test_errorManager", "onUnhandledException, errorMsg:  =${errorMsg}")
+        },
+        onException: Some({ errorObj =>
+            Hilog.info(0, "test_errorManager", "onException, name:   =${errorObj.name}")
+            Hilog.info(0, "test_errorManager", "onException, message:   =${errorObj.message}")
+            if (let Some(v) <-errorObj.stack) {
+                Hilog.info(0, "test_errorManager", "onException, stack:    =${v}")
+            }
+        })
+    )
+    ErrorManager.on(ErrorManagerEvent.Error, observer)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## enum ErrorManagerEvent
 
@@ -108,11 +155,11 @@ public enum ErrorManagerEvent {
 }
 ```
 
-**Description:** Types of error management events.
+**Description:** Error management event types.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Error
 
@@ -124,4 +171,4 @@ Error
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22

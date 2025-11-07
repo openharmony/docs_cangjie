@@ -20,10 +20,10 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code's first line contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of a Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the aforementioned sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class Want
 
@@ -59,7 +59,7 @@ public class Want {
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var abilityName
 
@@ -71,11 +71,11 @@ public var abilityName: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var action
 
@@ -87,11 +87,11 @@ public var action: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var bundleName
 
@@ -103,11 +103,11 @@ public var bundleName: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -119,11 +119,11 @@ public var deviceId: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var entities
 
@@ -135,11 +135,11 @@ public var entities: Array<String>
 
 **Type:** Array\<String>
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var flags
 
@@ -151,11 +151,11 @@ public var flags: UInt32
 
 **Type:** UInt32
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var moduleName
 
@@ -167,11 +167,11 @@ public var moduleName: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var parameters
 
@@ -183,11 +183,11 @@ public var parameters: HashMap<String, WantValueType>
 
 **Type:** HashMap\<String,[WantValueType](#enum-wantvaluetype)>
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var uri
 
@@ -199,11 +199,11 @@ public var uri: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var wantType
 
@@ -215,11 +215,11 @@ public var wantType: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, String, String, UInt32, String, String, Array\<String>, String, HashMap\<String,WantValueType>, HashMap\<String,Int32>)
 
@@ -239,11 +239,11 @@ public init(
 )
 ```
 
-**Function:** Constructor to create a Want instance.
+**Function:** Constructor, creates a Want instance.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -275,11 +275,11 @@ public enum WantValueType {
 }
 ```
 
-**Function:** Want value types.
+**Function:** Want value type.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### ArrayValue(Array\<WantValueType>)
 
@@ -291,7 +291,7 @@ ArrayValue(Array<WantValueType>)
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### BoolValue(Bool)
 
@@ -303,7 +303,7 @@ BoolValue(Bool)
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### Float64Value(Float64)
 
@@ -315,7 +315,7 @@ Float64Value(Float64)
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### HashMapValue(HashMap\<String, WantValueType>)
 
@@ -327,7 +327,7 @@ HashMapValue(HashMap<String, WantValueType>)
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### Int64Value(Int64)
 
@@ -339,7 +339,7 @@ Int64Value(Int64)
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### StringValue(String)
 
@@ -351,4 +351,4 @@ StringValue(String)
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22

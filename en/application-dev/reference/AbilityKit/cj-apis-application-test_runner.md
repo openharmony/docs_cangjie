@@ -20,10 +20,10 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the sample code begins with a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment in the first line, it indicates the example can be compiled and run in the "index.cj" file of a Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Description](../cj-development-intro.md#仓颉示例代码说明).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class TestRunner
 
@@ -31,11 +31,11 @@ For details about the aforementioned sample project and configuration template, 
 public open class TestRunner {}
 ```
 
-**Description:** Provides framework testing capabilities.
+**Functionality:** Provides framework testing capabilities.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** Version 22
 
 ### static func registerCreator(String, () -> TestRunner)
 
@@ -43,18 +43,32 @@ public open class TestRunner {}
 public static func registerCreator(name: String, creator: () -> TestRunner): Unit
 ```
 
-**Description:** Registers a function for constructing [TestRunner](#class-testrunner) objects.
+**Functionality:** Registers a function for creating [TestRunner](#class-testrunner) objects.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** Version 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | name | String | Yes | - | Identifier for the constructor function. |
-| creator | ()->[TestRunner](#class-testrunner) | Yes | - | Function for constructing [TestRunner](#class-testrunner) objects. |
+| creator | ()->[TestRunner](#class-testrunner) | Yes | - | Function for creating [TestRunner](#class-testrunner) objects. |
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.TestKit.*
+
+let TESTRUNNER_REGISTER_RESULT = TestRunner.registerCreator("test", () -> MyTestRunner)
+
+class MyTestRunner <: TestRunner {
+    public override func onPrepare(): Unit {
+    }
+}
+```
 
 ### func onPrepare()
 
@@ -62,11 +76,25 @@ public static func registerCreator(name: String, creator: () -> TestRunner): Uni
 public open func onPrepare(): Unit
 ```
 
-**Description:** Executes test cases.
+**Functionality:** Executes test cases.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** Version 22
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.TestKit.*
+
+let TESTRUNNER_REGISTER_RESULT = TestRunner.registerCreator("test", () -> MyTestRunner)
+
+class MyTestRunner <: TestRunner {
+    public override func onPrepare(): Unit {
+    }
+}
+```
 
 ### func onRun()
 
@@ -74,8 +102,22 @@ public open func onPrepare(): Unit
 public open func onRun(): Unit
 ```
 
-**Description:** Prepares the unit testing environment for running test cases.
+**Functionality:** Prepares the unit testing environment for executing test cases.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** Version 22
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.TestKit.*
+
+let TESTRUNNER_REGISTER_RESULT = TestRunner.registerCreator("test", () -> MyTestRunner)
+
+class MyTestRunner <: TestRunner {
+    public override func onRun(): Unit {
+    }
+}
+```
