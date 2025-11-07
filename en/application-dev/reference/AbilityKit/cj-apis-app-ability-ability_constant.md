@@ -20,10 +20,10 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the first line of sample code has a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample project and configuration template, refer to [Cangjie Sample Code Description](../cj-development-intro.md#仓颉示例代码说明).
+For details about the above sample project and configuration template, see [Cangjie Sample Code Description](../cj-development-intro.md#Cangjie-Sample-Code-Description).
 
 ## class LaunchParam
 
@@ -34,11 +34,11 @@ public class LaunchParam {
 }
 ```
 
-**Description:** Launch parameters, including launch reason and last exit reason.
+**Function:** Launch parameters, including launch reason and last exit reason.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var lastExitReason
 
@@ -46,15 +46,15 @@ public class LaunchParam {
 public var lastExitReason: LastExitReason
 ```
 
-**Description:** Last exit reason.
+**Function:** Last exit reason.
 
 **Type:** [LastExitReason](#enum-lastexitreason)
 
-**Access:** Readable and writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var launchReason
 
@@ -62,15 +62,15 @@ public var lastExitReason: LastExitReason
 public var launchReason: LaunchReason
 ```
 
-**Description:** Launch reason.
+**Function:** Launch reason.
 
 **Type:** [LaunchReason](#enum-launchreason)
 
-**Access:** Readable and writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum LastExitReason
 
@@ -84,11 +84,11 @@ public enum LastExitReason {
 }
 ```
 
-**Description:** Last exit reason.
+**Function:** Last exit reason.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AppFreeze
 
@@ -96,11 +96,11 @@ public enum LastExitReason {
 AppFreeze
 ```
 
-**Description:** Application freeze.
+**Function:** Application freeze.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CppCrash
 
@@ -108,11 +108,11 @@ AppFreeze
 CppCrash
 ```
 
-**Description:** C++ crash.
+**Function:** C++ crash.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Normal
 
@@ -120,11 +120,11 @@ CppCrash
 Normal
 ```
 
-**Description:** Normal exit.
+**Function:** Normal exit.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unknown
 
@@ -132,11 +132,11 @@ Normal
 Unknown
 ```
 
-**Description:** Unknown reason.
+**Function:** Unknown reason.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum LaunchReason
 
@@ -151,11 +151,11 @@ public enum LaunchReason {
 }
 ```
 
-**Description:** Launch reason.
+**Function:** Launch reason.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AppRecovery
 
@@ -163,11 +163,11 @@ public enum LaunchReason {
 AppRecovery
 ```
 
-**Description:** Application recovery.
+**Function:** Application recovery.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Call
 
@@ -175,11 +175,11 @@ AppRecovery
 Call
 ```
 
-**Description:** Call launch.
+**Function:** Call launch.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Continuation
 
@@ -187,11 +187,11 @@ Call
 Continuation
 ```
 
-**Description:** Cross-device migration.
+**Function:** Cross-device migration.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StartAbility
 
@@ -199,11 +199,11 @@ Continuation
 StartAbility
 ```
 
-**Description:** Launch Ability.
+**Function:** Start Ability.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unknown
 
@@ -211,11 +211,11 @@ StartAbility
 Unknown
 ```
 
-**Description:** Unknown reason.
+**Function:** Unknown reason.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum MemoryLevel
 
@@ -228,11 +228,11 @@ public enum MemoryLevel <: Equatable<MemoryLevel> & ToString {
 }
 ```
 
-**Description:** Memory level.
+**Function:** Memory level.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -245,11 +245,11 @@ public enum MemoryLevel <: Equatable<MemoryLevel> & ToString {
 MemoryLevelCritical
 ```
 
-**Description:** Critical memory shortage.
+**Function:** Critical memory shortage.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### MemoryLevelLow
 
@@ -257,11 +257,11 @@ MemoryLevelCritical
 MemoryLevelLow
 ```
 
-**Description:** Low memory.
+**Function:** Low memory.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### MemoryLevelModerate
 
@@ -269,11 +269,11 @@ MemoryLevelLow
 MemoryLevelModerate
 ```
 
-**Description:** Moderate memory.
+**Function:** Moderate memory.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(MemoryLevel)
 
@@ -281,19 +281,19 @@ MemoryLevelModerate
 public operator func !=(other: MemoryLevel): Bool
 ```
 
-**Description:** Determines whether two enumeration values are not equal.
+**Function:** Determines whether two enumeration values are not equal.
 
 **Parameters:**
 
-|Name|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[MemoryLevel](#enum-memorylevel)|Yes|-|Another enumeration value.|
+| other | [MemoryLevel](#enum-memorylevel) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enumeration values are not equal, otherwise returns false.|
+| Bool | Returns true if the two enumeration values are not equal, otherwise returns false. |
 
 ### func ==(MemoryLevel)
 
@@ -301,19 +301,19 @@ public operator func !=(other: MemoryLevel): Bool
 public operator func ==(other: MemoryLevel): Bool
 ```
 
-**Description:** Determines whether two enumeration values are equal.
+**Function:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-|Name|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[MemoryLevel](#enum-memorylevel)|Yes|-|Another enumeration value.|
+| other | [MemoryLevel](#enum-memorylevel) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -321,13 +321,13 @@ public operator func ==(other: MemoryLevel): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string representation of the current enumeration.
+**Function:** Gets the string representation of the current enumeration.
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|String representation of the current enumeration.|
+| String | The string representation of the current enumeration. |
 
 ## enum OnContinueResult
 
@@ -340,11 +340,11 @@ public enum OnContinueResult {
 }
 ```
 
-**Description:** Cross-device migration result.
+**Function:** Cross-device migration result.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Agree
 
@@ -352,11 +352,11 @@ public enum OnContinueResult {
 Agree
 ```
 
-**Description:** Agree to migrate.
+**Function:** Agree to migrate.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Mismatch
 
@@ -364,11 +364,11 @@ Agree
 Mismatch
 ```
 
-**Description:** Migration mismatch.
+**Function:** Migration mismatch.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Reject
 
@@ -376,11 +376,11 @@ Mismatch
 Reject
 ```
 
-**Description:** Reject migration.
+**Function:** Reject migration.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum WindowMode
 
@@ -393,11 +393,11 @@ public enum WindowMode {
 }
 ```
 
-**Description:** Window mode.
+**Function:** Window mode.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21### WindowModeFullscreen
+**Since:** 22### WindowModeFullscreen
 
 ```cangjie
 WindowModeFullscreen
@@ -407,7 +407,7 @@ WindowModeFullscreen
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since Version:** 22
 
 ### WindowModeSplitPrimary
 
@@ -419,7 +419,7 @@ WindowModeSplitPrimary
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since Version:** 22
 
 ### WindowModeSplitSecondary
 
@@ -431,4 +431,4 @@ WindowModeSplitSecondary
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since Version:** 22

@@ -1,6 +1,6 @@
 # Path
 
-A path drawing component that generates closed custom shapes based on drawn paths.
+A path drawing component that generates closed custom shapes based on the drawn path.
 
 ## Import Module
 
@@ -14,140 +14,69 @@ None
 
 ## Creating the Component
 
-### init(ResourceStr)
+### init(?ResourceStr)
 
 ```cangjie
-public init(commands!: ResourceStr = "")
+public init(commands!: ?ResourceStr = None)
 ```
 
 **Function:** Creates a path drawing component based on the path drawing command string.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| commands | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | **Named parameter.** The command string for path drawing. |
+| commands | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** The command string for path drawing. |
 
-### init(Length, Length, ResourceStr)
+### init(?Length, ?Length, ?ResourceStr)
 
 ```cangjie
-public init(width!: Length, height!: Length, commands!: ResourceStr = "")
+public init(width!: ?Length, height!: ?Length, commands!: ?ResourceStr = None)
 ```
 
 **Function:** Creates a path drawing component based on the width and height of the rectangle where the path is located.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| width | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** The width of the rectangle where the path is located, value range ≥0.<br>Default unit: vp.<br>If the value is abnormal or missing, it will be processed according to the width required by its own content. |
-| height | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** The height of the rectangle where the path is located, value range ≥0.<br>Default unit: vp.<br>If the value is abnormal or missing, it will be processed according to the height required by its own content. |
-| commands | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | **Named parameter.** The command string for path drawing. |
+| width | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** The width of the rectangle where the path is located, value range ≥0. Default unit: vp. If the value is abnormal or omitted, it will be handled according to the width required by its own content. |
+| height | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** The height of the rectangle where the path is located, value range ≥0. Default unit: vp. If the value is abnormal or omitted, it will be handled according to the height required by its own content. |
+| commands | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** The command string for path drawing. |
 
 ## Common Attributes/Common Events
 
-Common Attributes: All supported.
+Common Attributes: In addition to supporting common attributes, it also supports [Graphic Drawing Common Attributes](./cj-graphic-drawing-common.md#component-attributes).
 
 Common Events: All supported.
 
 ## Component Attributes
 
-### func commands(ResourceStr)
+### func commands(?ResourceStr)
 
 ```cangjie
-public func commands(commands: ResourceStr): This
+public func commands(value: ?ResourceStr): This
 ```
 
-**Function:** Sets the command string that conforms to the [SVG Path Description Specification](#svg-path-description-specification), with units in px. For pixel unit conversion methods, refer to [Pixel Unit Conversion](./cj-common-types.md#pixel-unit-conversion).
+**Function:** Sets the command string that conforms to the [SVG Path Description Specification](#svg-path-description-specification), with units in px. For pixel unit conversion methods, refer to [Pixel Unit Conversion](./cj-common-pixelunits.md).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| commands | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | The command string for path drawing. Initial value: "", abnormal values are processed as the initial value. |
-
-### func initial()
-
-```cangjie
-public override func initial()
-```
-
-**Function:** For UI framework use.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-## Basic Type Definitions
-
-### class PathShape
-
-```cangjie
-public class PathShape <: BaseShape {
-    public init(commands!: ResourceStr = "")
-    public init(width!: Length, height!: Length, commands!: ResourceStr = "")
-}
-```
-
-**Function:** Creates a path drawing component based on the path drawing command string.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-**Parent Type:**
-
-- [BaseShape](./cj-graphic-drawing-shape.md#class-baseshape)
-
-#### init(ResourceStr)
-
-```cangjie
-public init(commands!: ResourceStr = "")
-```
-
-**Function:** Creates a path drawing component based on the path drawing command string.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| commands | [ResourceStr](./cj-common-types.md#interface-resourcestr) | No | "" | **Named parameter.** The command string for path drawing. |
-
-#### init(Length, Length, ResourceStr)
-
-```cangjie
-public init(width!: Length, height!: Length, commands!: ResourceStr = "")
-```
-
-**Function:** Creates a path drawing component based on the width and height of the rectangle where the path is located.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| width | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** The width of the rectangle where the path is located, value range ≥0.<br>Default unit: vp.<br>If the value is abnormal or missing, it will be processed according to the width required by its own content. |
-| height | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** The height of the rectangle where the path is located, value range ≥0.<br>Default unit: vp.<br>If the value is abnormal or missing, it will be processed according to the height required by its own content. |
-| commands | [ResourceStr](./cj-common-types.md#interface-resourcestr) | No | "" | **Named parameter.** The command string for path drawing. |
+| value | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | The command string for path drawing. Initial value: "", abnormal values are handled according to the initial value. |
 
 ## SVG Path Description Specification
 
@@ -155,22 +84,22 @@ The commands supported by the SVG path description specification are as follows:
 
 | Command | Name | Parameters | Description |
 |:---|:---|:---|:---|
-| M | moveto | (x y) | Starts a new subpath at the given (x,y) coordinates. For example, `M 0 0` sets (0,0) as the starting point of the new subpath. |
-| L | lineto | (x y) | Draws a line from the current point to the given (x,y) coordinates, which becomes the new current point. For example, `L 50 50` draws a line from the current point to (50,50) and sets (50,50) as the new starting point of the subpath. |
-| H | horizontal lineto | x | Draws a horizontal line from the current point, equivalent to the L command with the y coordinate set to 0. For example, `H 50` draws a line from the current point to (50,0) and sets (50,0) as the new starting point of the subpath. |
-| V | vertical lineto | y | Draws a vertical line from the current point, equivalent to the L command with the x coordinate set to 0. For example, `V 50` draws a line from the current point to (0,50) and sets (0,50) as the new starting point of the subpath. |
-| C | curveto | (x1 y1 x2 y2 x y) | Draws a cubic Bézier curve from the current point to (x,y) using (x1,y1) as the control point at the start of the curve and (x2,y2) as the control point at the end of the curve. For example, `C100 100 250 100 250 200` draws a cubic Bézier curve from the current point to (250,200) and sets (250,200) as the new starting point of the subpath. |
-| S | smooth curveto | (x2 y2 x y) | Draws a cubic Bézier curve from the current point to (x,y) using (x2,y2) as the control point at the end of the curve. If the previous command was C or S, the control point at the start is the reflection of the control point at the end of the previous command relative to the start point. For example, `C100 100 250 100 250 200 S400 300 400 200` sets the starting control point of the second Bézier curve as (250,300). If there is no previous command or the previous command was not C or S, the first control point coincides with the current point. |
-| Q | quadratic Bézier curve | (x1 y1 x y) | Draws a quadratic Bézier curve from the current point to (x,y) using (x1,y1) as the control point. For example, `Q400 50 600 300` draws a quadratic Bézier curve from the current point to (600,300) and sets (600,300) as the new starting point of the subpath. |
-| T | smooth quadratic Bézier curveto | (x y) | Draws a quadratic Bézier curve from the current point to (x,y). If the previous command was Q or T, the control point is the reflection of the control point at the end of the previous command relative to the start point. For example, `Q400 50 600 300 T1000 300` sets the control point of the second Bézier curve as (800,350). If there is no previous command or the previous command was not Q or T, the first control point coincides with the current point. |
-| A | elliptical Arc | (rx ry x-axis-rotation large-arc-flag sweep-flag x y) | Draws an elliptical arc from the current point to (x,y). The size and orientation of the ellipse are defined by two radii (rx,ry) and x-axis-rotation, indicating how the entire ellipse is rotated relative to the current coordinate system (in degrees). The large-arc-flag and sweep-flag determine how the arc is drawn. |
+| M | moveto | (x y) | Starts a new subpath at the given (x,y) coordinates. For example, `M 0 0` means setting (0,0) as the starting point of the new subpath. |
+| L | lineto | (x y) | Draws a line from the current point to the given (x,y) coordinates, which becomes the new current point. For example, `L 50 50` means drawing a line from the current point to (50,50) and setting (50,50) as the new starting point of the subpath. |
+| H | horizontallineto | x | Draws a horizontal line from the current point, equivalent to the L command with the y coordinate specified as 0. For example, `H 50` means drawing a line from the current point to (50,0) and setting (50,0) as the new starting point of the subpath. |
+| V | verticallineto | y | Draws a vertical line from the current point, equivalent to the L command with the x coordinate specified as 0. For example, `V 50` means drawing a line from the current point to (0,50) and setting (0,50) as the new starting point of the subpath. |
+| C | curveto | (x1 y1 x2 y2 x y) | Draws a cubic Bézier curve from the current point to (x,y) using (x1,y1) as the control point at the start of the curve and (x2,y2) as the control point at the end of the curve. For example, `C100 100 250 100 250 200` means drawing a cubic Bézier curve from the current point to (250,200) and setting (250,200) as the new starting point of the subpath. |
+| S | smoothcurveto | (x2 y2 x y) | Draws a cubic Bézier curve from the current point to (x,y) using (x2,y2) as the control point at the end of the curve. If the previous command was C or S, the control point at the start is the reflection of the control point at the end of the previous command relative to the start point. For example, `C100 100 250 100 250 200 S400 300 400 200` sets the control point at the start of the second Bézier curve as (250,300). If there is no previous command or the previous command was not C or S, the first control point coincides with the current point. |
+| Q | quadraticBelziercurve | (x1 y1 x y) | Draws a quadratic Bézier curve from the current point to (x,y) using (x1,y1) as the control point. For example, `Q400 50 600 300` means drawing a quadratic Bézier curve from the current point to (600,300) and setting (600,300) as the new starting point of the subpath. |
+| T | smoothquadraticBelziercurveto | (x y) | Draws a quadratic Bézier curve from the current point to (x,y). If the previous command was Q or T, the control point is the reflection of the control point at the end of the previous command relative to the start point. For example, `Q400 50 600 300 T1000 300` sets the control point of the second Bézier curve as (800,350). If there is no previous command or the previous command was not Q or T, the first control point coincides with the current point. |
+| A | ellipticalArc | (rx ry x-axis-rotation large-arc-flag sweep-flag x y) | Draws an elliptical arc from the current point to (x,y). The size and orientation of the ellipse are defined by two radii (rx,ry) and x-axis-rotation, which indicates how the entire ellipse is rotated relative to the current coordinate system (in degrees). The large-arc-flag and sweep-flag determine how the arc is drawn. |
 | Z | closepath | none | Closes the current subpath by connecting it back to the initial point of the current subpath. |
 
-For example: `commands("M0 20 L50 50 L50 100 Z")` defines a triangle starting at (0,20), drawing a line from (0,20) to (50,50), then from (50,50) to (50,100), and finally closing the path by drawing a line from (50,100) back to (0,20), forming a closed triangle.
+For example: commands("M0 20 L50 50 L50 100 Z") defines a triangle starting at position (0,20), then draws a line from (0,20) to (50,50), then from (50,50) to (50,100), and finally closes the path by drawing a line from (50,100) back to (0,20), forming a closed triangle.
 
 ## Example Code
 
-Examples of drawing straight lines, straight-line shapes, and curved shapes.
+Examples of drawing straight lines, straight-line shapes, and curve shapes.
 
 <!-- run -->
 

@@ -1,34 +1,34 @@
 # PersistentStorage: Persisting UI State
 
-The first two sections introduced LocalStorage and AppStorage, both of which are runtime memory. However, a common requirement in application development is to preserve selected results even after the application exits and restarts. This is where PersistentStorage comes into play.
+The first two sections introduced LocalStorage and AppStorage, which are runtime memory solutions. However, a common requirement in application development is to preserve selected results even after the application exits and restarts. This is where PersistentStorage comes into play.
 
-PersistentStorage is an optional singleton object in an application. Its purpose is to persistently store selected AppStorage properties, ensuring these properties retain their values when the application restarts, matching their state at application shutdown.
+PersistentStorage is an optional singleton object in an application. Its purpose is to persistently store selected AppStorage properties, ensuring these properties retain their values from when the application was last closed upon subsequent restarts.
 
-PersistentStorage provides the capability to persist state variables, but it's important to note that both persistence and UI read-back functionality depend on AppStorage. Before reading this documentation, it is recommended to review: [AppStorage](cj-appstorage.md) and [PersistentStorage API Documentation](../../../../en/application-dev/reference/arkui-cj/cj-state-rendering-appstatemanagement.md#persistentstorage持久化存储ui状态).
+While PersistentStorage provides the capability to persist state variables, it's important to note that both persistence and UI read-back functionalities depend on AppStorage. Before reading this documentation, we recommend reviewing: [AppStorage](./cj-appstorage.md) and [PersistentStorage API Documentation](../../reference/arkui-cj/cj-state-rendering-appstatemanagement.md#class-persistentstorage).
 
 ## Overview
 
-PersistentStorage retains selected AppStorage properties on the device disk. Applications use APIs to determine which AppStorage properties should be persisted via PersistentStorage. The UI and business logic do not directly access properties in PersistentStorage; all property access is performed through AppStorage, where changes are automatically synchronized to PersistentStorage.
+PersistentStorage retains selected AppStorage properties on the device's disk. Applications use APIs to determine which AppStorage properties should be persisted via PersistentStorage. The UI and business logic do not directly access properties in PersistentStorage—all property access is performed through AppStorage, where changes are automatically synchronized to PersistentStorage.
 
-PersistentStorage establishes bidirectional synchronization with properties in AppStorage. Application development typically accesses PersistentStorage through AppStorage. Additionally, there are interfaces available for managing persistent properties, but business logic always retrieves and sets properties through AppStorage.
+A two-way synchronization is established between PersistentStorage and AppStorage properties. Application development typically accesses PersistentStorage through AppStorage. Additionally, there are interfaces available for managing persisted properties, but business logic always retrieves and sets properties through AppStorage.
 
 ## Constraints
 
 PersistentStorage supports the following types and values:
 
-- Simple types such as Bool, String, integer, float, etc.
-- Objects that can be reconstructed using JSON.stringify() and JSON.parse(), though member methods within objects are not supported for persistence.
+- Simple types: Bool, String, integer, floating-point, etc.
+- Objects that can be reconstructed using JSON.stringify() and JSON.parse(), though member methods within objects are not persisted.
 
-PersistentStorage does not support the following types and values:
+PersistentStorage does NOT support:
 
-- Nested objects (arrays of objects, object properties that are objects, etc.). This is because the framework currently cannot detect changes in nested objects (including arrays) within AppStorage, preventing write-back to PersistentStorage.
+- Nested objects (object arrays, object properties containing objects, etc.). The framework currently cannot detect changes in nested objects (including arrays) within AppStorage, preventing write-back to PersistentStorage.
 
-Persisting data is a relatively slow operation, so applications should avoid:
+Persistence operations are relatively slow, so applications should avoid:
 
-- Persisting large datasets.
-- Persisting frequently changing variables.
+- Persisting large datasets
+- Persisting frequently changing variables
 
-PersistentStorage is best suited for persisting small data (preferably under 2KB). Avoid persisting large amounts of data, as PersistentStorage's disk write operations are synchronous. Large-scale data read/write operations executed synchronously on the UI thread can impact UI rendering performance. For storing large datasets, developers are advised to use database APIs.
+PersistentStorage works best with data smaller than 2KB. Avoid persisting large amounts of data because disk write operations are synchronous, and bulk local read-write operations execute on the UI thread, potentially impacting rendering performance. For large-scale data storage needs, we recommend using database APIs.
 
 ## Usage Scenarios
 
@@ -46,7 +46,7 @@ PersistentStorage.persistProp("aProp",47)
 AppStorage.get<Int64>("aProp")
 ```
 
-&nbsp;&nbsp;Or define it within a component:
+&nbsp;&nbsp;Or define within a component:
 
 ```cangjie
 @StorageLink["aProp"] var aProp : Int64 = 48
@@ -80,44 +80,44 @@ class EntryView {
 }
 ```
 
-- First run after a fresh application installation:
-  a. Calling `persistProp` initializes PersistentStorage by first checking if "aProp" exists in the PersistentStorage local file. The result is negative since this is the first installation.
-  b. Next, it checks if property "aProp" exists in AppStorage, which also returns negative.
+- First launch after fresh installation:
+  a. persistProp initializes PersistentStorage by first checking if "aProp" exists in the local PersistentStorage file—it doesn't exist for first-time installations.
+  b. Next checks if "aProp" exists in AppStorage—still absent.
   c. Creates a number-type property named "aProp" in AppStorage with the default value 47.
   d. PersistentStorage writes property "aProp" with value 47 to disk. Subsequent changes to "aProp" in AppStorage will be persisted.
-  e. The Index component creates state variable `@StorageLink("aProp") aProp`, establishing bidirectional binding with "aProp" in AppStorage. During creation, it successfully finds "aProp" in AppStorage and uses its value 47.
+  e. The @StorageLink("aProp") aProp state variable in the Index component establishes two-way binding with "aProp" in AppStorage. During creation, it successfully finds "aProp" in AppStorage and uses its value 47.
 
 **Figure 1** PersistProp Initialization Rules
 
 ![PersistProp](figures/PersistProp.png)
 
-- After triggering a click event:
-  a. The state variable `@StorageLink("aProp") aProp` changes, causing the Text component to refresh.
-  b. Variables decorated with `@StorageLink` maintain bidirectional synchronization with AppStorage, so changes to `@StorageLink("aProp") aProp` are synchronized back to AppStorage.
-  c. Changes to the "aProp" property in AppStorage synchronize to all variables (unidirectional or bidirectional) bound to "aProp". In this example, no other variables are bound to "aProp".
-  d. Since "aProp" is persisted, changes in AppStorage trigger PersistentStorage to write the new value to disk.
+- After click event:
+  a. The @StorageLink("aProp") aProp state variable changes, triggering Text component refresh.
+  b. @StorageLink variables maintain two-way sync with AppStorage, so changes propagate back to AppStorage.
+  c. Changes to "aProp" in AppStorage synchronize to all bound variables (none in this example).
+  d. Since "aProp" is persisted, AppStorage changes trigger PersistentStorage to write updates to disk.
 
 - Subsequent application launches:
-  a. Executing `PersistentStorage.persistProp("aProp", 47)` first queries the "aProp" property in the PersistentStorage local file, successfully finding it.
-  b. The queried value from PersistentStorage is written to AppStorage.
-  c. The queried value from PersistentStorage is written to AppStorage.
+  a. PersistentStorage.persistProp("aProp", 47) first queries the "aProp" property in PersistentStorage local files—successful.
+  b. Writes the queried value to AppStorage.
+  c. Writes the queried value to AppStorage.
 
 ### Accessing AppStorage Properties Before PersistentStorage
 
-This example demonstrates an anti-pattern. Accessing AppStorage properties before calling `PersistentStorage.persistProp` or `persistProps` is incorrect because this sequence loses property values from the previous application run:
+This example demonstrates an anti-pattern. Accessing AppStorage properties via interface calls before invoking PersistentStorage.persistProp or persistProps is incorrect, as this sequence loses property values from the previous application run:
 
 ```cangjie
 let aProp = AppStorage.setOrCreate("aProp", 47)
 let temp = PersistentStorage.persistProp("aProp", 48)
 ```
 
-During non-first runs, executing `AppStorage.setOrCreate("aProp", 47)` first creates property "aProp" in AppStorage as a number type with the specified default value 47. Since "aProp" is persistent, it is written back to PersistentStorage disk, overwriting any previously stored values.
-
-`PersistentStorage.persistProp("aProp", 48)` then finds "aProp" in PersistentStorage with the value 47, which was just written via the AppStorage interface.
+During non-first runs:
+- AppStorage.setOrCreate("aProp", 47) executes first: creates "aProp" in AppStorage as number type with default value 47. Being a persisted property, it writes back to PersistentStorage, overwriting previous values.
+- PersistentStorage.persistProp("aProp", 48) then finds "aProp" with the newly written value 47.
 
 ### Accessing AppStorage Properties After PersistentStorage
 
-Developers can first determine whether to overwrite values previously saved in PersistentStorage. If overwriting is needed, they can then call AppStorage's interface for modification; otherwise, they can skip the AppStorage interface call.
+Developers should first determine whether to overwrite values previously saved in PersistentStorage. If overwriting is needed, then call AppStorage interfaces for modification; otherwise, refrain from calling them.
 
 ```cangjie
 let temp = PersistentStorage.persistProp("aProp", 48)
@@ -126,4 +126,4 @@ if(AppStorage.get<Int64>("aProp").getOrThrow() > 50){
 }
 ```
 
-This example reads data stored in PersistentStorage and checks if the value of "aProp" exceeds 50. If it does, the AppStorage interface is used to set it to 47.
+This example reads PersistentStorage data first, then checks if "aProp" exceeds 50. If true, it uses AppStorage interfaces to set the value to 47.

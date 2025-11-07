@@ -1,6 +1,6 @@
 # ohos.security.permission_request_result (PermissionRequestResult)
 
-The PermissionRequestResult object is returned when calling [requestPermissionsFromUser](cj-apis-ability_access_ctrl.md#func-requestpermissionsfromuseruiabilitycontext-arraypermissions-asynccallbackpermissionrequestresult) to request permissions, indicating the result of the permission request.
+The permission request result object, returned when calling [requestPermissionsFromUser](cj-apis-ability_access_ctrl.md#func-requestpermissionsfromuseruiabilitycontext-arraypermissions-asynccallbackpermissionrequestresult) to request permissions, indicating the outcome of this permission request.
 
 ## Import Module
 
@@ -12,12 +12,12 @@ import kit.AbilityKit.*
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment in the first line, it means the example can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the above example projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
-### class PermissionRequestResult(Array\<String>, Array\<Int32>, ?Array\<Bool>)
+## class PermissionRequestResult
 
 ```cangjie
 public class PermissionRequestResult {
@@ -31,7 +31,7 @@ public class PermissionRequestResult {
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var authResults
 
@@ -39,15 +39,15 @@ public class PermissionRequestResult {
 public var authResults: Array<Int32>
 ```
 
-**Function:** The results of the corresponding requested permissions. -1: Not granted. 0: Granted. 2: Not granted, indicating the request is invalid. Possible reasons include: the target permission is not declared in the configuration file; the permission name is invalid; some permissions have special application conditions that were not met when requesting the corresponding permission.
+**Function:** Results of the corresponding requested permissions. -1: Not authorized. 0: Authorized. 2: Not authorized, indicating the request is invalid. Possible reasons include: target permission not declared in the configuration file; illegal permission name; some permissions have special application conditions that were not met when requesting the corresponding permission.
 
 **Type:** Array<\Int32>
 
-**Read/Write:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var dialogShownResults
 
@@ -55,15 +55,15 @@ public var authResults: Array<Int32>
 public var dialogShownResults = Array<Bool>()
 ```
 
-**Function:** Indicates whether a dialog was shown for this permission request: true: Dialog shown. false: No dialog shown.
+**Function:** Whether there was a pop-up for this permission request: true: Pop-up shown. false: No pop-up.
 
 **Type:** Array<\Bool>
 
-**Read/Write:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var permissions
 
@@ -71,12 +71,12 @@ public var dialogShownResults = Array<Bool>()
 public var permissions: Array<String>
 ```
 
-**Function:** The permissions passed by the user.
+**Function:** Permissions passed by the user.
 
 **Type:** Array<\String>
 
-**Read/Write:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.Security.AccessToken
 
-**Since:** 21
+**Initial Version:** 22

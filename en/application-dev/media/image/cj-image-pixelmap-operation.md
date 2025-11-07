@@ -1,16 +1,18 @@
-# Performing Bitmap Operations with PixelMap
+# Performing Bitmap Operations Using PixelMap
 
-When it is necessary to process specific regions of a target image, bitmap operation functionality can be utilized. This feature is commonly used for operations such as image enhancement.
+When it's necessary to process specific regions within a target image, bitmap operation functionality can be utilized. This feature is commonly used for operations such as image beautification.
 
-As shown in the following diagram, pixel data from a specified rectangular region of an image is read, modified, and then written back to the corresponding region of the original image.
+As illustrated below, pixel data from a specified rectangular area in an image is read, modified, and then written back to the corresponding area in the original image.
 
 **Figure 1** Bitmap Operation Schematic  
 
-## Development Procedure
+![Bitmap operation](./figures/bitmap-operation.png)
 
-For detailed information about bitmap operation-related APIs, please refer to the [API Reference](../../../../en/application-dev/reference/ImageKit/cj-apis-image.md#class-pixelmap).
+## Development Procedure  
 
-1. Complete [image decoding](./cj-image-decoding.md) to obtain the PixelMap bitmap object.
+For detailed API documentation on bitmap operations, please refer to the [API Reference](../../reference/ImageKit/cj-apis-image.md#class-pixelmap).
+
+1. Complete [Image Decoding](./cj-image-decoding.md) to obtain the PixelMap bitmap object.
 
 2. Retrieve information from the PixelMap bitmap object.
 
@@ -18,7 +20,7 @@ For detailed information about bitmap operation-related APIs, please refer to th
 
     ```cangjie
     import kit.ImageKit.*
-    // Get the total number of bytes of the image pixels.
+    // Get the total number of bytes for the image pixels.
     let pixelBytesNumber = pixelMap.getPixelBytesNumber()
     // Get the number of bytes per row of the image pixels.
     let rowBytes = pixelMap.getBytesNumberPerRow()
@@ -26,7 +28,7 @@ For detailed information about bitmap operation-related APIs, please refer to th
     let density = pixelMap.getDensity()
     ```
 
-3. Read and modify the pixel data of the target region, then write it back to the original image.
+3. Read and modify the pixel data of the target area, then write it back to the original image.
     > **Note:**  
     > It is recommended to use `readPixelsToBuffer` and `writeBufferToPixels` as a pair, and `readPixels` and `writePixels` as a pair, to avoid anomalies in the PixelMap image due to inconsistent pixel formats.
 
@@ -34,7 +36,8 @@ For detailed information about bitmap operation-related APIs, please refer to th
 
     ```cangjie
     // Scenario 1: Read and modify the entire image data.
-    // Read the image pixel data of the PixelMap according to its pixel format and write it into the buffer.
+    // Read the image pixel data from the PixelMap according to its pixel format and write it into the buffer.
+    let pixelBytesNumber = 100000
     let buffer = Array<UInt8>(Int64(pixelBytesNumber), repeat: 0)
     pixelMap.readPixelsToBuffer(buffer)
 
@@ -42,18 +45,18 @@ For detailed information about bitmap operation-related APIs, please refer to th
     pixelMap.writeBufferToPixels(buffer)
 
     // Scenario 2: Read and modify the image data within a specified region.
-    // Read the image pixel data of the specified region in the PixelMap in BGRA_8888 format and write it into the PositionArea.pixels buffer. The region is specified by PositionArea.region.
-    let area = PositionArea(Array<UInt8>(8, repeat: 0), 0, 8, Region(Size(height: 1, width: 2), 0, 0))
+    // Read the image pixel data from the specified region of the PixelMap in BGRA_8888 format and write it into the PositionArea.pixels buffer. The region is defined by PositionArea.region.
+    let area = PositionArea(Array<UInt8>(8, repeat: 0), 0, 8, Region(Size(1, 2), 0, 0))
 
     pixelMap.readPixels(area)
 
-    // Read the image pixel data from the PositionArea.pixels buffer in BGRA_8888 format and write it back to the specified region in the PixelMap. The region is specified by PositionArea.region.
+    // Read the image pixel data from the PositionArea.pixels buffer in BGRA_8888 format and write it back to the specified region of the PixelMap. The region is defined by PositionArea.region.
     pixelMap.writePixels(area)
     ```
 
-## Development Example - Copy (Deep Copy) a New PixelMap
+## Development Example - Copying (Deep Copy) a New PixelMap  
 
-1. Complete [image decoding](./cj-image-decoding.md) to obtain the PixelMap bitmap object.
+1. Complete [Image Decoding](./cj-image-decoding.md) to obtain the PixelMap bitmap object.
 
 2. Copy (deep copy) a new PixelMap.
     > **Note:**  
@@ -72,18 +75,24 @@ For detailed information about bitmap operation-related APIs, please refer to th
     func clonePixelMap(pixelMap: PixelMap, desiredPixelFormat: ?PixelMapFormat): PixelMap {
         // Get the image information of the current PixelMap.
         let imageInfo = pixelMap.getImageInfo()
-        // Read the image pixel data of the current PixelMap and write it into the buffer array according to the current PixelMap's pixel format.
+        // Read the image pixel data from the current PixelMap and write it into the buffer array according to the current PixelMap's pixel format.
         let buffer = Array<UInt8>(Int64(pixelMap.getPixelBytesNumber()), repeat: 0)
         pixelMap.readPixelsToBuffer(buffer)
         // Generate initialization options based on the current PixelMap's image information.
         let options = InitializationOptions(
+            imageInfo.size,
+            // Hypothetical alphaType enumeration value
+            alphaType: AlphaType.Opaque,
+            // Hypothetical editable value
+            editable: true,
             // The pixel format of the current PixelMap.
-            imageInfo.pixelFormat,
+            srcPixelFormat: imageInfo.pixelFormat,
             // The pixel format of the new PixelMap.
             pixelFormat: desiredPixelFormat??imageInfo.pixelFormat,
-            // The size of the current PixelMap.
-            size: imageInfo.size)
-        // Generate a new PixelMap based on the initialization options and buffer array.
+            // Hypothetical scaleMode enumeration value
+            scaleMode: ScaleMode.FitTargetSize
+            )
+        // Generate the new PixelMap based on the initialization options and buffer array.
         createPixelMap(buffer, options)
     }
     ```

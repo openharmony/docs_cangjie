@@ -12,7 +12,7 @@ Service exception.
 
 **Error Description**
 
-This error code is reported when calling the `on`, `once`, or `off` interfaces of the sensor module if the HDI service is abnormal.
+This error code is reported when calling the on, once, or off interfaces of the sensor module if the HDI service is abnormal.
 
 **Possible Causes**
 
@@ -31,12 +31,12 @@ The sensor is not supported by the device.
 
 **Error Description**
 
-This error code is reported when calling the `GetSingleSensor` interface if the device does not support the specified sensor.
+This error code is reported when calling the GetSingleSensor interface if the device does not support the specified sensor.
 
 **Possible Causes**
 
-The underlying hardware does not support the sensor, or the device lacks the necessary adaptation for the sensor.
+The underlying hardware does not support the sensor, or the device is not compatible with the sensor.
 
 **Resolution Steps**
 
-1. If the `GetSingleSensor` interface returns error code 14500102, it indicates that the device does not support the specified sensor.
+1. If the GetSingleSensor interface returns error code 14500102, it indicates that the device does not support the sensor.

@@ -2,9 +2,9 @@
 
 > **Note:**
 >
-> To ensure operational effectiveness, this document uses **DevEco Studio 5.0.2 Release** and **DevEco Studio-Cangjie Plugin 5.0.9.100 Beta1** as examples. Click [here](https://developer.huawei.com/consumer/cn/download/) to obtain the download links for the latest versions.
+> To ensure operational effectiveness, this document uses **DevEco Studio 5.0.2 Release** and **DevEco Studio-Cangjie Plugin 5.0.9.100 Beta1** as examples. Click [here](https://developer.huawei.com/consumer/cn/download/) to obtain download links for the latest versions.
 
-This document describes how to use the DevEco Studio Cangjie plugin to invoke ArkTS third-party libraries in Cangjie code.
+This document explains how to use the DevEco Studio Cangjie Plugin to invoke ArkTS third-party libraries in Cangjie code.
 
 ## Usage Example
 
@@ -14,7 +14,7 @@ The following demonstrates detailed steps for invoking the [lz4js](https://ohpm.
 
     ![hleCreateHybridAbility](../../figures/hleCreateHybridAbility.png)
 
-2. Configure lz4js third-party library dependencies
+2. Configure lz4js third-party library dependency
 
     Add the lz4js third-party library dependency in the project-level oh-package.json5 file, then click Sync Now to download the ArkTS third-party library.
 
@@ -29,13 +29,13 @@ The following demonstrates detailed steps for invoking the [lz4js](https://ohpm.
 
     ![hleAddDependencies](../../figures/hleAddDependencies.png)
 
-3. Generate Cangjie wrapper layer using the code generation tool
+3. Generate Cangjie wrapper layer using code generation tool
 
    a. Locate the corresponding lz4js third-party library directory under the oh_modules folder, open the .d.ts or .d.ets file in the directory, right-click in the file editor interface, and select **Generate... > Cangjie Bindings** to generate the Cangjie wrapper layer code.
 
    ![hleMenu](../../figures/hleMenu.png)
 
-   b. After clicking the button, a pop-up window will appear allowing you to choose between the current file or the directory containing the current file. Select **Current Directory**. The default package name for the generated Cangjie wrapper layer is the ArkTS third-party library name with a "_cj" suffix, which developers can manually modify.
+   b. After clicking the button, a pop-up window will appear allowing selection between the current file or the directory containing the current file. Choose **Current Directory**. The default package name for the generated Cangjie wrapper layer is the ArkTS third-party library name with "_cj" suffix, which developers can manually modify.
 
    ![hleModuleNameWindow-lz4cj](../../figures/hleModuleNameWindow-lz4cj.png)
 
@@ -43,13 +43,13 @@ The following demonstrates detailed steps for invoking the [lz4js](https://ohpm.
 
    ![hleCangjieModule](../../figures/hleCangjieModule.png)
 
-   d. Currently, errors may occur during wrapper layer generation. If certain types or declarations cannot be correctly generated as interoperability wrapper layer code, manual modifications are required based on the prompts in the "Cangjie Bindings Output" console.
+   d. Currently, there may be generation errors in the Cangjie wrapper layer. If certain types or declarations cannot correctly generate interoperation wrapper layer code, manual modifications are required based on the prompts in the "Cangjie Bindings Output" in the console.
 
    ![hleConsoleOutput](../../figures/hleConsoleOutput.png)
 
-4. Add the generated Cangjie module dependency in Cangjie code and invoke the wrapper layer interfaces. The following example demonstrates invoking the compress interface in lz4js.
+4. Add the generated Cangjie module dependency in Cangjie code and invoke wrapper layer interfaces. Taking the compress interface in lz4js as an example:
 
-   a. Add the generated Cangjie module lz4cj dependency in the oh-package.json5 file of the entry module, then click Sync Now to automatically add the Cangjie wrapper layer dependency.
+   a. Add the dependency for the generated Cangjie module lz4cj in the oh-package.json5 file of the entry module, then click Sync Now to automatically add the Cangjie wrapper layer dependency.
 
    ```json
    "dependencies": {
@@ -61,7 +61,9 @@ The following demonstrates detailed steps for invoking the [lz4js](https://ohpm.
 
    ![hleAddCangjieDependencies](../../figures/hleAddCangjieDependencies.png)
 
-    b. Invoke the corresponding interfaces of the Cangjie wrapper library lz4cj in Cangjie code. The following example demonstrates invoking the compress interface in lz4js by modifying the **entry > src > main > cangjie > index.cj** file:
+    b. Invoke the corresponding interfaces of the Cangjie wrapper library lz4cj in Cangjie code. Taking the compress interface in lz4js as an example, modify the **entry > src > main > cangjie > index.cj** file as follows:
+
+     <!-- compile -->
 
      ```cangjie
      //index.cj
@@ -82,7 +84,7 @@ The following demonstrates detailed steps for invoking the [lz4js](https://ohpm.
      }
      ```
 
-    c. Due to certain limitations in the interoperability implementation, developers must manually pass the ArkTS module object in the ArkTS code entry (e.g., Index.ets file).
+    c. Due to certain limitations in interoperation implementation, developers also need to manually pass the ArkTS module object in the ArkTS code entry (e.g., Index.ets file).
 
     ```js
     import * as lz4js from "lz4js";
@@ -93,7 +95,7 @@ The following demonstrates detailed steps for invoking the [lz4js](https://ohpm.
 
     > **Note:**
     >
-    > If you need to invoke functions from the lz4js/util and lz4js/xxh32 modules, you must import the corresponding module objects. Since module names cannot contain `/`, use `_` for concatenation.
+    > If functions from lz4js/util and lz4js/xxh32 modules need to be invoked, the corresponding module objects must be imported. Since module names cannot contain `/`, `_` is used for concatenation here.
     >
 
     ```javascript

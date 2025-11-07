@@ -1,6 +1,6 @@
 # Shared Element Transition (sharedTransition)
 
-By setting the `sharedTransition` property of a component, the element can be marked as a shared element with corresponding transition effects. Shared transitions only occur during page routing (router) navigation.
+By setting the `sharedTransition` property of a component, the element can be marked as a shared element and configured with corresponding shared element transition effects. The `sharedTransition` effect only occurs during page routing (router) navigation.
 
 ## Import Module
 
@@ -8,181 +8,38 @@ By setting the `sharedTransition` property of a component, the element can be ma
 import kit.ArkUI.*
 ```
 
-## class SharedTransitionOptions
+## func sharedTransition(String, ?SharedTransitionOptions)
 
 ```cangjie
-public class SharedTransitionOptions {
-    public var duration: Int32 = 1000
-    public var curve: Curve = Curve.Linear
-    public var delay: Int32 = 0
-    public var motionPath: MotionPathOptions = MotionPathOptions(path: "")
-    public var zIndex: Int32 = 0
-    public var effectType: SharedTransitionEffectType = SharedTransitionEffectType.Exchange
-    public init(
-        duration!: Int32 = 1000,
-        curve!: Curve = Curve.Linear,
-        delay!: Int32 = 0,
-        motionPath!: MotionPathOptions = MotionPathOptions(path: ""),
-        zIndex!: Int32 = 0,
-        effectType!: SharedTransitionEffectType = SharedTransitionEffectType.Exchange
-    )
-}
+public func sharedTransition(id: String, options!: ?SharedTransitionOptions = None): T
 ```
 
-**Function:** Shared transition options.
+**Function:** Configures shared element transition effects.
+
+> **Note:**
+>
+> The `motionPath` takes effect only when `type` is `SharedTransitionEffectType.Exchange`. When `type` is `SharedTransitionEffectType.Exchange`, the effect produces transitions in position and size for matched shared elements (observable via component border configuration), but does not support content transitions. For example, if a `Text` component uses different `fontSize` property values on two pages (i.e., the rendered content has size differences), the `fontSize` effect of the `Text` component will abruptly change to the target page's `fontSize` effect in the final frame after the `sharedTransition` animation completes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### var curve
-
-```cangjie
-public var curve: Curve = Curve.Linear
-```
-
-**Function:** Sets the animation curve for shared transitions.
-
-**Type:** [Curve](./cj-common-types.md#enum-curve)
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var delay
-
-```cangjie
-public var delay: Int32 = 0
-```
-
-**Function:** Sets the delay time for shared transitions.
-
-**Type:** Int32
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var duration
-
-```cangjie
-public var duration: Int32 = 1000
-```
-
-**Function:** Sets the duration for shared transitions.
-
-**Type:** Int32
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var effectType
-
-```cangjie
-public var effectType: SharedTransitionEffectType = SharedTransitionEffectType.Exchange
-```
-
-**Function:** Sets the effect type for shared transitions.
-
-**Type:** [SharedTransitionEffectType](./cj-common-types.md#enum-sharedtransitioneffecttype)
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var motionPath
-
-```cangjie
-public var motionPath: MotionPathOptions = MotionPathOptions(path: "")
-```
-
-**Function:** Sets the motion path for shared transitions.
-
-**Type:** [MotionPathOptions](./cj-animation-motionpath.md#class-motionpathoptions)
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var zIndex
-
-```cangjie
-public var zIndex: Int32 = 0
-```
-
-**Function:** Sets the z-index for shared transitions.
-
-**Type:** Int32
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### init(Int32, Curve, Int32, MotionPathOptions, Int32, SharedTransitionEffectType)
-
-```cangjie
-public init(
-    duration!: Int32 = 1000,
-    curve!: Curve = Curve.Linear,
-    delay!: Int32 = 0,
-    motionPath!: MotionPathOptions = MotionPathOptions(path: ""),
-    zIndex!: Int32 = 0,
-    effectType!: SharedTransitionEffectType = SharedTransitionEffectType.Exchange
-)
-```
-
-**Function:** Constructs a SharedTransitionOptions object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| duration | Int32 | No | 1000 | Sets the duration for shared transitions. |
-| curve | [Curve](./cj-common-types.md#enum-curve) | No | Curve.Linear | Sets the animation curve for shared transitions. |
-| delay | Int32 | No | 0 | Sets the delay time for shared transitions. |
-| motionPath | [MotionPathOptions](./cj-animation-motionpath.md#class-motionpathoptions) | No | MotionPathOptions(path: "") | Sets the motion path for shared transitions. |
-| zIndex | Int32 | No | 0 | Sets the z-index for shared transitions. |
-| effectType | [SharedTransitionEffectType](./cj-common-types.md#enum-sharedtransitioneffecttype) | No | SharedTransitionEffectType.Exchange | Sets the effect type for shared transitions. |
+| id | String | Yes | - | Components with the same non-empty `id` value across two pages are considered shared elements and will display shared element transition effects during page navigation. |
+| options | ?[SharedTransitionOptions](./cj-common-types.md#class-sharedtransitionoptions) | No | None | **Named parameter** Shared element transition animation parameters.<br>Default: `SharedTransitionOptions()`. |
 
-## func sharedTransition(String, SharedTransitionOptions)
+**Return Value:**
 
-```cangjie
-public func sharedTransition(id: String, options!: SharedTransitionOptions = SharedTransitionOptions()): This
-```
-
-**Function:** Sets shared transition animation.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| id | String | Yes | - | Components with identical non-empty id values across two pages are treated as shared elements, displaying transition effects during page navigation. |
-| options | [SharedTransitionOptions](#class-sharedtransitionoptions) | No | SharedTransitionOptions() | Shared transition options. |
+| Type | Description |
+|:----|:----|
+| T | Returns the component instance. |
 
 ## Example Code
 
-The example demonstrates a custom shared element transition effect when clicking an image to navigate between pages.
+The example demonstrates a custom transition effect for a shared element image when clicking to navigate between pages.
 
 <!-- run -->
 
@@ -202,9 +59,9 @@ class EntryView {
             Image(@r(app.media.startIcon))
                 .width(50)
                 .height(50)
-                .onClick {
+                .onClick({
                     e => getUIContext().getRouter()
-                }
+                })
                 .sharedTransition("sharedImage",
                     options: SharedTransitionOptions(duration: 800, curve: Curve.Linear, delay: 100))
         }

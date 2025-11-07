@@ -1,46 +1,33 @@
-# Camera Recovery Practice (Cangjie)
+# Camera Foreground Recovery Practice (Cangjie)
 
-This example provides a comprehensive introduction to the camera application's recovery process when switching from background to foreground, helping developers understand the complete interface invocation sequence.
+This example provides a complete workflow for camera application recovery when switching from background to foreground, helping developers understand the full sequence of API calls.
 
-Explanation of camera application state changes during background/foreground switching:
+Explanation of camera application state changes during background/foreground transitions:
 
-- When the camera application moves to the background, it will be forcibly disconnected due to security policies. At this time, the camera status callback will return an available state, indicating that the camera device has been closed and is idle.
-- When the camera application switches from background to foreground, the camera status callback will return an unavailable state, indicating that the camera device is currently opened and busy.
-- When switching from background to foreground, the camera application needs to restart the camera device's preview stream, capture stream, and camera session management.
+- When the camera application moves to the background, the stream will be forcibly terminated due to security policies. The camera status callback will return an "available" state, indicating the camera device has been closed and is idle.
+- When the camera application returns to the foreground, the camera status callback will return an "unavailable" state, indicating the camera device is being opened and is busy.
+- When switching from background to foreground, the camera application needs to restart the preview stream, capture stream, and camera session management.
 
 Before referring to this example, developers are advised to review specific sections of the [Camera Development Guide (Cangjie)](./cj-camera-preparation.md), including [Camera Management](./cj-camera-device-management.md), [Device Input](./cj-camera-device-input.md), and [Session Management](./cj-camera-session-management.md).
 
-## Development Process
+## Development Workflow
 
-The recommended invocation flowchart for camera application recovery when switching from background to foreground:
+The recommended call flow for camera application foreground recovery is as follows:
 
 ![Camera Background recovery processing](./figures/camera-background-recovery.png)
 
 ## Complete Example
 
-For context acquisition methods, please refer to: [Obtaining UIAbility Context Information](../../application-models/cj-uiability-usage.md#获取uiability的上下文信息).
+For Context acquisition methods, refer to: [Obtaining UIAbility Context Information](../../application-models/cj-uiability-usage.md#获取uiability的上下文信息).
 
-Camera application recovery when switching from background to foreground needs to be called in the page lifecycle callback function onPageShow to reinitialize the camera device.
+Camera application foreground recovery should be implemented in the onPageShow lifecycle callback function to reinitialize the camera device.
 
 <!-- compile -->
 
 ```cangjie
 package ohos_app_cangjie_entry
-internal import ohos.base.LengthProp
-internal import ohos.arkui.component.Column
-internal import ohos.arkui.component.Row
-internal import ohos.arkui.component.Text
-internal import ohos.arkui.component.CustomView
-internal import ohos.arkui.component.CJEntry
-internal import ohos.arkui.component.loadNativeView
-internal import ohos.arkui.component.FontWeight
-internal import ohos.arkui.state_management.SubscriberManager
-internal import ohos.arkui.state_management.ObservedProperty
-internal import ohos.arkui.state_management.LocalStorage
-import ohos.arkui.state_macro_manage.Entry
-import ohos.arkui.state_macro_manage.Component
-import ohos.arkui.state_macro_manage.State
-import ohos.arkui.state_macro_manage.r
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
 import kit.AbilityKit.*
 import kit.CameraKit.*
 import ohos.business_exception.BusinessException
@@ -59,17 +46,17 @@ class EntryView {
     let context = ctx.getOrThrow()
     let surfaceId: String = ''
     protected override func onPageShow() {
-        // When the application switches from background to foreground page display, reinitialize the camera device.
+        // When the application returns to foreground, reinitialize the camera device
         initCamera(context, surfaceId)
     }
 
     func initCamera(baseContext: UIAbilityContext, surfaceId: String): Unit {
         Hilog.info(0,"",'onForeGround recovery begin.')
         let cameraManager: CameraManager = getCameraManager(context)
-        // Monitor camera status changes.
+        // Monitor camera status changes
         cameraManager.on(CameraEvents.CameraStatus, Cb1())
 
-        // Get camera list.
+        // Get camera list
         let cameraArray: Array<CameraDevice> = cameraManager.getSupportedCameras()
         if (cameraArray.size <= 0) {
             Hilog.error(0,"","cameraManager.getSupportedCameras error")
@@ -77,19 +64,19 @@ class EntryView {
         }
 
         for (index in 0..cameraArray.size) {
-            Hilog.info(0,"",'cameraId : ' + cameraArray[index].cameraId) // Get camera ID.
+            Hilog.info(0,"",'cameraId : ' + cameraArray[index].cameraId) // Get camera ID
             Hilog.info(0,"",'cameraPosition : ' + cameraArray[index]
                 .cameraPosition
-                .toString()) // Get camera position.
+                .toString()) // Get camera position
             Hilog.info(0,"",'cameraType : ' + cameraArray[index]
                 .cameraType
-                .toString()) // Get camera type.
+                .toString()) // Get camera type
             Hilog.info(0,"",'connectionType : ' + cameraArray[index]
                 .connectionType
-                .toString()) // Get camera connection type.
+                .toString()) // Get camera connection type
         }
 
-        // Create camera input stream.
+        // Create camera input stream
         var cameraInput: ?CameraInput = None
         try {
             cameraInput = cameraManager.createCameraInput(cameraArray[0])
@@ -100,14 +87,14 @@ class EntryView {
             return
         }
 
-        // Monitor cameraInput error messages.
+        // Monitor cameraInput error messages
         let cameraDevice: CameraDevice = cameraArray[0]
         cameraInput?.on(CameraEvents.CameraError, cameraDevice, Cb2())
 
-        // Open camera.
+        // Open camera
         cameraInput?.open()
 
-        // Get supported mode types.
+        // Get supported mode types
         let sceneModes: Array<SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0])
         let isSupportPhotoMode: Bool = sceneModes
             .indexOf(SceneMode.NormalPhoto)
@@ -116,7 +103,7 @@ class EntryView {
             Hilog.error(0,"",'photo mode not support')
             return
         }
-        // Get camera device supported output capabilities.
+        // Get camera device output capabilities
         let cameraOutputCap: CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0],
             SceneMode.NormalPhoto)
         Hilog.info(0,"","outputCapability: ")
@@ -125,7 +112,7 @@ class EntryView {
 
         let photoProfilesArray: Array<Profile> = cameraOutputCap.photoProfiles
 
-        // Create preview output stream, where the surfaceId parameter refers to the XComponent mentioned above, and the preview stream is the surface provided by the XComponent.
+        // Create preview output stream, where surfaceId refers to the XComponent surface
         var previewOutput: ?PreviewOutput = None
         try {
             previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId)
@@ -135,10 +122,10 @@ class EntryView {
         if (previewOutput.isNone()) {
             return
         }
-        // Monitor preview output error messages.
+        // Monitor preview output errors
         previewOutput?.on(CameraEvents.CameraError, Cb3())
 
-        // Create photo output stream.
+        // Create photo output stream
         var photoOutput: ?PhotoOutput = None
         try {
             photoOutput = cameraManager.createPhotoOutput(profile:photoProfilesArray[0])
@@ -149,7 +136,7 @@ class EntryView {
             return
         }
 
-        // Create session.
+        // Create session
         var photoSession: ?PhotoSession = None
         try {
             photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
@@ -159,43 +146,43 @@ class EntryView {
         if (photoSession.isNone()) {
             return
         }
-        // Monitor session error messages.
+        // Monitor session errors
         photoSession?.on(CameraEvents.CameraError, Cb4())
 
-        // Start configuring session.
+        // Begin session configuration
         try {
             photoSession?.beginConfig()
         } catch (err: BusinessException) {
             Hilog.error(0,"",'Failed to beginConfig. errorCode = ')
         }
 
-        // Add camera input stream to session.
+        // Add camera input to session
         try {
             photoSession?.addInput(cameraInput.getOrThrow())
         } catch (err: BusinessException) {
             Hilog.error(0,"",'Failed to addInput. errorCode = ${err.code}')
         }
 
-        // Add preview output stream to session.
+        // Add preview output to session
         try {
             photoSession?.addOutput(previewOutput.getOrThrow())
         } catch (err: BusinessException) {
             Hilog.error(0,"",'Failed to addOutput(previewOutput). errorCode = ${err.code}')
         }
 
-        // Add photo output stream to session.
+        // Add photo output to session
         try {
             photoSession?.addOutput(photoOutput.getOrThrow())
         } catch (err: BusinessException) {
             Hilog.error(0,"",'Failed to addOutput(photoOutput). errorCode = ${err.code}')
         }
 
-        // Commit session configuration.
+        // Commit session configuration
         photoSession?.commitConfig()
 
-        // Start session.
+        // Start session
         photoSession?.start()
-        // Check if device supports flash.
+        // Check if device supports flash
         var flashStatus: Bool = false
         try {
             flashStatus = photoSession
@@ -207,7 +194,7 @@ class EntryView {
         Hilog.info(0,"",'Returned with the flash light support status: ${flashStatus}')
 
         if (flashStatus) {
-            // Check if auto flash mode is supported.
+            // Check if auto flash mode is supported
             var flashModeStatus: Bool = false
             try {
                 let status: Bool = photoSession
@@ -218,7 +205,7 @@ class EntryView {
                 Hilog.error(0,"",'Failed to check whether the flash mode is supported. errorCode = ${err.code}')
             }
             if (flashModeStatus) {
-                // Set auto flash mode.
+                // Set auto flash mode
                 try {
                     photoSession?.setFlashMode(FlashMode.FlashModeAuto)
                 } catch (err: BusinessException) {
@@ -227,7 +214,7 @@ class EntryView {
             }
         }
 
-        // Check if continuous auto focus mode is supported.
+        // Check if continuous auto focus mode is supported
         var focusModeStatus: Bool = false
         try {
             let status: Bool = photoSession
@@ -239,7 +226,7 @@ class EntryView {
         }
 
         if (focusModeStatus) {
-            // Set continuous auto focus mode.
+            // Set continuous auto focus mode
             try {
                 photoSession?.setFocusMode(FocusMode.FocusModeContinuousAuto)
             } catch (err: BusinessException) {
@@ -247,7 +234,7 @@ class EntryView {
             }
         }
 
-        // Get supported zoom ratio range for camera.
+        // Get supported zoom ratio range
         var zoomRatioRange: Array<Float64> = []
         try {
             zoomRatioRange = photoSession
@@ -259,17 +246,17 @@ class EntryView {
         if (zoomRatioRange.size <= 0) {
             return
         }
-        // Set zoom ratio.
+        // Set zoom ratio
         try {
             photoSession?.setZoomRatio(zoomRatioRange[0])
         } catch (err: BusinessException) {
             Hilog.error(0,"",'Failed to set the zoom ratio value. errorCode = ${err.code}')
         }
         let photoCaptureSetting: PhotoCaptureSetting = PhotoCaptureSetting(
-            quality: QualityLevel.QualityLevelHigh, // Set high image quality.
-            rotation: ImageRotation.Rotation0 // Set image rotation angle to 0.
+            quality: QualityLevel.QualityLevelHigh, // Set high image quality
+            rotation: ImageRotation.Rotation0 // Set image rotation to 0 degrees
         )
-        // Capture photo with current settings.
+        // Capture photo with current settings
         photoOutput?.capture(photoCaptureSetting)
 
         Hilog.info(0,"",'onForeGround recovery end.')
@@ -281,9 +268,9 @@ class EntryView {
                 Text(this.message)
                     .fontSize(50)
                     .fontWeight(FontWeight.Bold)
-                    .onClick {
+                    .onClick ({
                         evt =>
-                    }
+                    })
             }.width(100.percent)
         }.height(100.percent)
     }

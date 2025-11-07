@@ -1,18 +1,21 @@
-# @Builder Macro: Custom Builder Functions
+# @Builder Macro: Custom Build Functions
 
-The Cangjie UI provides a lightweight mechanism for UI element reuse through @Builder, where the internal UI structure is fixed and only data is exchanged with the caller. Developers can abstract reusable UI elements into a method and invoke it within the build method.
+The Cangjie UI provides a lightweight UI element reuse mechanism called @Builder, which has a fixed internal UI structure and only interacts with the caller through data transfer. Developers can abstract reusable UI elements into a method and call it within the build method.
 
-For simplicity, we refer to functions decorated with @Builder as "custom builder functions."
+For simplicity, functions decorated with @Builder are also referred to as "custom build functions."
 
-Before reading this document, it is recommended to review: [Basic Syntax Overview](./cj-basic-syntax-overview.md), [Declarative UI Description](./cj-declarative-ui-description.md), [Custom Components - Creating Custom Components](./cj-create-custom-components.md).
+Before reading this document, it is recommended to review the following:
+- [Basic Syntax Overview](./cj-basic-syntax-overview.md)
+- [Declarative UI Description](./cj-declarative-ui-description.md)
+- [Custom Components - Creating Custom Components](./cj-create-custom-components.md)
 
 ## Macro Usage Instructions
 
-The @Builder macro can be used in two ways: as a private custom builder function defined within a custom component or as a global custom builder function defined globally.
+The @Builder macro can be used in two ways: [Private Custom Build Functions](#private-custom-build-functions) defined within a custom component and [Global Custom Build Functions](#global-custom-build-functions) defined globally.
 
-### Private Custom Builder Function
+### Private Custom Build Functions
 
-Definition syntax:
+Example:
 
  <!-- run -->
 
@@ -50,21 +53,21 @@ class EntryView {
 }
 ```
 
-Usage method:
+Usage:
 
 ```cangjie
 this.showTextBuilder()
 ```
 
-- Allows defining one or more @Builder methods within a custom component, which are considered private, special-type member functions of the component.
+- Allows defining one or more @Builder methods within a custom component. These methods are considered private, special-type member functions of the component.
 
-- Private custom builder functions can be invoked within the custom component, the build method, and other custom builder functions.
+- Private custom build functions can be called within the custom component, the build method, and other custom build functions.
 
-- Within the custom function body, `this` refers to the current component, and the component's state variables can be accessed within the custom builder function. It is recommended to access the component's state variables via `this` rather than through parameter passing.
+- Within the custom function body, `this` refers to the current component. The component's state variables can be accessed within the custom build function. It is recommended to access the component's state variables via `this` rather than passing them as parameters.
 
-### Global Custom Builder Function
+### Global Custom Build Functions
 
-Definition syntax:
+Example:
 
  <!-- run -->
 
@@ -93,31 +96,31 @@ class EntryView {
 }
 ```
 
-Usage method:
+Usage:
 
 ```cangjie
 showTextBuilder()
 ```
 
-- If component state changes are not involved, it is recommended to use global custom builder methods.
+- If component state changes are not involved, it is recommended to use global custom build methods.
 
-- Global custom builder functions can be invoked within the build method and other custom builder functions.
+- Global custom build functions can be called within the build method and other custom build functions.
 
 ## Parameter Passing Rules
 
-Custom builder functions support two parameter passing methods: [pass-by-value](#pass-by-value-parameters) and [pass-by-reference](#pass-by-reference-parameters). Both must adhere to the following rules:
+Custom build functions support two parameter passing methods: [Pass by Value](#pass-by-value-parameters) and [Pass by Reference](#pass-by-reference-parameters). Both must adhere to the following rules:
 
 - The parameter type must match the declared parameter type.
 
-- Within a function decorated with @Builder, modifying parameter values is not allowed.
+- Within the @Builder-decorated function, modifying parameter values is not allowed.
 
-- UI syntax within @Builder follows [UI Syntax Rules](./cj-create-custom-components.md).
+- The UI syntax within @Builder follows the [UI Syntax Rules](./cj-create-custom-components.md).
 
-- Pass-by-reference occurs only when a single parameter is passed and the parameter requires direct object literal input. All other passing methods are pass-by-value.
+- Only when a single parameter is passed and the parameter requires direct object literal passing will it be passed by reference. All other passing methods are by value.
 
-### Pass-by-Value Parameters
+### Pass by Value Parameters
 
-By default, functions decorated with @Builder use pass-by-value. When passing state variables as parameters, changes to the state variables do not trigger UI refreshes within the @Builder method. Therefore, when using state variables, [pass-by-reference](#pass-by-reference-parameters) is recommended.
+By default, parameters are passed by value when calling @Builder-decorated functions. When passing state variables, changes to the state variables will not trigger UI refreshes within the @Builder method. Therefore, when using state variables, it is recommended to use [Pass by Reference](#pass-by-reference-parameters).
 
  <!-- run -->
 
@@ -147,7 +150,7 @@ class EntryView {
 }
 ```
 
-### Pass-by-Reference Parameters
+### Pass by Reference Parameters
 
 When passing parameters by reference, the parameters can be state variables, and changes to the state variables will trigger UI refreshes within the @Builder method.
 
@@ -178,7 +181,7 @@ class EntryView {
 
     func build() {
         Column {
-            // When invoking the overBuilder component in the parent component,
+            // When calling the overBuilder component in the parent component,
             // pass the parameter to the overBuilder component by reference.
             overBuilder(tmp)
             Button("Click me")
@@ -192,15 +195,15 @@ class EntryView {
 }
 ```
 
-## Constraints
+## Limitations
 
-Dynamic UI rendering is triggered only when parameters are passed by reference in @Builder. Refer to [Pass-by-Reference Parameters](#pass-by-reference-parameters).
+@Builder triggers dynamic UI rendering only when parameters are passed by reference. Refer to [Pass by Reference Parameters](#pass-by-reference-parameters).
 
 ## Usage Scenarios
 
-### Using Custom Builder Functions Within Custom Components
+### Using Custom Build Functions Within Custom Components
 
-Create a private @Builder method and invoke it within a Column using `this.builder()`. Use the `aboutToAppear` lifecycle function and button click events to modify the content of `builder_value`, enabling dynamic UI rendering.
+Create a private @Builder method and call it within a Column using `this.builder()`. Use the `aboutToAppear` lifecycle function and a button click event to change the content of `builder_value`, enabling dynamic UI rendering.
 
  <!-- run -->
 
@@ -237,19 +240,19 @@ class EntryView {
 
                 this.builder()
                 Button("Click to change builder_value content")
-                .onClick{
+                .onClick({
                     e =>
                     this.builder_value = "builder_value was clicked"
-                }
+                })
             }
         }
     }
 }
 ```
 
-### Using Global Custom Builder Functions
+### Using Global Custom Build Functions
 
-Create a global @Builder method and invoke it within a Column using `overBuilder()`. Pass parameters in the form of object literals. Changes to values, whether simple or complex, will trigger UI refreshes.
+Create a global @Builder method and call it within a Column using `overBuilder()`. Pass parameters as object literals. Changes to values, whether simple or complex, will trigger UI refreshes.
 
  <!-- run -->
 
@@ -301,7 +304,7 @@ class EntryView {
 
     func build() {
         Column {
-            Text("Render UI by invoking @Builder").fontSize(20)
+            Text("Render UI by calling @Builder").fontSize(20)
             overBuilder(this.objParam)
 
             Line()
@@ -327,7 +330,7 @@ class EntryView {
 
 ### Modifying Macro-Decorated Variables to Trigger UI Refresh
 
-In this scenario, @Builder is only used to display the Text component and does not participate in dynamic UI refresh functionality. Changes to the Text component's value are triggered by the macro's feature of listening for value changes, not by @Builder's capability.
+In this scenario, @Builder is only used to display the Text component and does not participate in dynamic UI refresh functionality. Changes to the values in the Text component are triggered by the macro's feature of listening to value changes, not by @Builder's capability.
 
  <!-- run -->
 
@@ -358,7 +361,7 @@ class EntryView {
 
     func build() {
         Column {
-            Text("Render UI by invoking @Builder")
+            Text("Render UI by calling @Builder")
             .fontSize(20)
             this.privateBuilder()
             Line()
@@ -379,9 +382,9 @@ class EntryView {
 }
 ```
 
-### Passing customBuilder Types Using Global and Local @Builder
+### Using Global and Local @Builder with CustomBuilder Type
 
-When a parameter type is `customBuilder`, a defined @Builder function can be passed in because `customBuilder` is essentially a Function or Unit type, and @Builder is also a Function type. In this scenario, passing @Builder achieves specific effects.
+When a parameter type is CustomBuilder, the defined @Builder function can be passed in because CustomBuilder is essentially a `Function(() -> Unit)` type, and @Builder is also a Function type. In this scenario, passing @Builder achieves specific effects.
 
  <!-- run -->
 
@@ -419,17 +422,17 @@ class EntryView {
     func build() {
         Column {
             Button("Local Builder")
-            .onClick{
+            .onClick({
               e => this.isShow = true
-            }
+            })
             .fontSize(20)
             .margin(10)
             .bindSheet(this.isShow, myBuilder, options: SheetOptions(onDisappear: {=> this.isShow = false}) )
 
             Button("Global Builder")
-            .onClick{
+            .onClick({
               e => this.isShow2 = true
-            }
+            })
             .fontSize(20)
             .margin(10)
             .bindSheet(this.isShow2, myBuilder2, options: SheetOptions(onDisappear: {=> this.isShow2 = false}) )
@@ -440,9 +443,9 @@ class EntryView {
         .height(100.percent)
     }
 }
-```### Multi-layer @Builder Method Nesting Usage
+```### Multi-layer @Builder Method Nesting
 
-Calling custom components or other @Builder methods within an @Builder method enables scenarios of multiple @Builder nestings. To achieve dynamic UI refresh functionality for the innermost @Builder, it is essential to ensure that each layer of @Builder invocation uses pass-by-reference.
+Calling custom components or other @Builder methods within an @Builder method enables scenarios of nested @Builder usage. To achieve dynamic UI refresh functionality for the innermost @Builder, it is essential to ensure that each layer of @Builder invocation uses pass-by-reference.
 
  <!-- run -->
 

@@ -18,14 +18,14 @@ ohos.permission.LOCATION_IN_BACKGROUND
 
 ohos.permission.INTERNET
 
-## Usage Guidelines
+## Usage Instructions
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Interface Usage Instructions](../cj-development-intro.md#接口使用说明).
+For the above sample project and configuration template, refer to [Interface Usage Instructions](../cj-development-intro.md#接口使用说明).
 
 ## class BackForwardList
 
@@ -37,7 +37,7 @@ public class BackForwardList {}
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop currentIndex
 
@@ -49,11 +49,11 @@ public prop currentIndex: Int32
 
 **Type:** Int32
 
-**Read/Write Attribute:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop size
 
@@ -61,15 +61,15 @@ public prop currentIndex: Int32
 public prop size: Int32
 ```
 
-**Description:** The number of indices in the history list, with a maximum of 50 entries. When exceeded, the earliest records will be overwritten.
+**Description:** The number of indices in the history list, with a maximum of 50 entries. When exceeded, the initial records will be overwritten.
 
 **Type:** Int32
 
-**Read/Write Attribute:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getItemAtIndex(Int32)
 
@@ -81,11 +81,11 @@ public func getItemAtIndex(index: Int32): HistoryItem
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | index | Int32 | Yes | - | The specified index in the history list. |
 
@@ -97,7 +97,7 @@ public func getItemAtIndex(index: Int32): HistoryItem
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Webview Error Codes](./cj-errorcode-webview.md).
+- BusinessException: The error codes are as follows. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -110,11 +110,10 @@ public func getItemAtIndex(index: Int32): HistoryItem
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
 import ohos.arkui.component.button.Button
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 
 @Entry
 @Component
@@ -158,11 +157,11 @@ public class HistoryItem {
 }
 ```
 
-**Description:** A page history item.
+**Description:** Page history item.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var historyRawUrl
 
@@ -174,11 +173,11 @@ public var historyRawUrl: String
 
 **Type:** String
 
-**Read/Write Attribute:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var historyUrl
 
@@ -190,11 +189,11 @@ public var historyUrl: String
 
 **Type:** String
 
-**Read/Write Attribute:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var title
 
@@ -206,11 +205,11 @@ public var title: String
 
 **Type:** String
 
-**Read/Write Attribute:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var icon
 
@@ -224,7 +223,7 @@ public var icon: ?PixelMap
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class HitTestValue
 
@@ -235,11 +234,11 @@ public class HitTestValue {
 }
 ```
 
-**Description:** Provides information about the element in the clicked area. For sample code, refer to [getHitTestValue](#func-gethittestvalue).
+**Description:** Provides information about the clicked element. For sample code, refer to [getHitTestValue](#func-gethittestvalue).
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var extra
 
@@ -251,11 +250,11 @@ public var extra: String
 
 **Type:** String
 
-**Read/Write Attribute:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var hitTestType
 
@@ -267,11 +266,11 @@ public var hitTestType: WebHitTestType
 
 **Type:** [WebHitTestType](#enum-webhittesttype)
 
-**Read/Write Attribute:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class WebCookieManager
 
@@ -279,11 +278,11 @@ public var hitTestType: WebHitTestType
 public class WebCookieManager {}
 ```
 
-**Description:** Through WebCookie, various behaviors of cookies in Web components can be controlled. All Web components in an application share a single WebCookieManager instance.
+**Description:** Through WebCookie, various behaviors of cookies in Web components can be controlled. All Web components in an application share one WebCookieManager instance.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static func clearAllCookies(Bool)
 
@@ -295,11 +294,11 @@ public static func clearAllCookies(incognito!: Bool = false): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | incognito | Bool | No | false | **Named parameter.** true indicates clearing all memory cookies of the Webview in incognito mode, false indicates clearing all cookies in normal non-incognito mode. |
 
@@ -315,13 +314,14 @@ import ohos.business_exception.BusinessException
 import kit.PerformanceAnalysisKit.Hilog
 
 try {
-    // The cookie is obtained from the web session, such as from the request in an HTTP request. In this example, it is assumed that the obtained cookie is "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV".
+    // Cookies are obtained from the web session, such as from the request of an HTTP request. In this example, the obtained cookie is assumed to be "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
+    // Set the cookie
     let cookie = "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
-    // configCookie
+    // Set the cookie for the specified URL
     WebCookieManager.configCookie("https://www.example.com", cookie, incognito: false)
     // ... 
-    // Execute business logic here, such as loading a webpage with cookies.
-    // clear cookie
+    // Perform business logic here, such as loading a web page with cookies.
+    // After execution, clear the cookies
     WebCookieManager.clearAllCookies()
 } catch (e: BusinessException) {
     Hilog.error(0, "AppLogCj", "ErrorCode: ${e.code}, ErrorMessage: ${e.message}")
@@ -338,7 +338,7 @@ public static func clearSessionCookie(): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -352,13 +352,14 @@ import ohos.business_exception.BusinessException
 import kit.PerformanceAnalysisKit.Hilog
 
 try {
-    // The cookie is obtained from the web session, such as from the request in an HTTP request. In this example, it is assumed that the obtained cookie is "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV".
+    // Cookies are obtained from the web session, such as from the request of an HTTP request. In this example, the obtained cookie is assumed to be "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
+    // Set the cookie
     let cookie = "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
-    // configCookie
+    // Set the cookie for the specified URL
     WebCookieManager.configCookie("https://www.example.com", cookie, incognito: false)
     // ... 
-    // Execute business logic here, such as loading a webpage with cookies.
-    // clear cookie
+    // Perform business logic here, such as loading a web page with cookies.
+    // After execution, clear the cookies
     WebCookieManager.clearSessionCookie()
 } catch (e: BusinessException) {
     Hilog.error(0, "AppLogCj", "ErrorCode: ${e.code}, ErrorMessage: ${e.message}")
@@ -375,11 +376,11 @@ public static func configCookie(url: String, value: String, incognito!: Bool = f
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | url | String | Yes | - | The URL to which the cookie belongs. It is recommended to use the complete URL. |
 | value | String | Yes | - | The value of the cookie to be set. |
@@ -387,11 +388,10 @@ public static func configCookie(url: String, value: String, incognito!: Bool = f
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Webview Error Codes](./cj-errorcode-webview.md).
+- BusinessException: The error codes are as follows. For details, refer to [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100002 | Invalid url. |
   | 17100005 | Invalid cookie value. |
 
@@ -407,13 +407,14 @@ import ohos.business_exception.BusinessException
 import kit.PerformanceAnalysisKit.Hilog
 
 try {
-    // The cookie is obtained from the web session, such as from the request in an HTTP request. In this example, it is assumed that the obtained cookie is "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV".
+    // Cookies are obtained from the web session, such as from the request of an HTTP request. In this example, the obtained cookie is assumed to be "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
+    // Set the cookie
     let cookie = "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
-    // configCookie
+    // Set the cookie for the specified URL
     WebCookieManager.configCookie("https://www.example.com", cookie, incognito: false)
     // ... 
-    // Execute business logic here, such as loading a webpage with cookies.
-    // clear cookie
+    // Perform business logic here, such as loading a web page with cookies.
+    // After execution, clear the cookies
     WebCookieManager.clearSessionCookie()
 } catch (e: BusinessException) {
     Hilog.error(0, "AppLogCj", "ErrorCode: ${e.code}, ErrorMessage: ${e.message}")
@@ -430,11 +431,11 @@ public static func existCookie(incognito!: Bool = false): Bool
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | incognito | Bool | No | false | **Named parameter.** true indicates checking for cookies in incognito mode, false indicates checking for cookies in normal non-incognito mode. |
 
@@ -451,7 +452,6 @@ public static func existCookie(incognito!: Bool = false): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.PerformanceAnalysisKit.Hilog
 
@@ -469,11 +469,11 @@ public static func fetchCookie(url: String, incognito!: Bool = false): String
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | url | String | Yes | - | The URL to which the cookie belongs. It is recommended to use the complete URL. |
 | incognito | Bool | No | false | **Named parameter.** true indicates retrieving memory cookies of the Webview in incognito mode, false indicates retrieving cookies in normal non-incognito mode. |
@@ -486,11 +486,10 @@ public static func fetchCookie(url: String, incognito!: Bool = false): String
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Webview Error Codes](./cj-errorcode-webview.md).
+- BusinessException: The error codes are as follows. For details, refer to [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100002 | Invalid url. |
 
 **Example:**
@@ -500,20 +499,20 @@ public static func fetchCookie(url: String, incognito!: Bool = false): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
 try {
-    // The cookie is obtained from the web session, such as from the request in an HTTP request. In this example, it is assumed that the obtained cookie is "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV".
+    // The cookie to be set, where the format is name=value. In this example, the name is ZFY and the value is 4Mvfh8V4iYFnDc8CGowMa3KE4m0dV
     let cookie = "ZFY=4Mvfh8V4iYFnDc8CGowMa3KE4m0dV"
-    // configCookie
+    // Set the cookie for the specified URL
     WebCookieManager.configCookie("https://www.example.com", cookie, incognito: false)
-    // fetchCookie
+    // After setting, retrieve the cookie for the specified URL
     let value = WebCookieManager.fetchCookie("https://www.example.com")
-    Hilog.info(0, "AppLogCj",  "WebCookieManager,fetchCookie cookie = ${value}")
+    Hilog.info(0, "AppLogCj",  "WebCookieManager,fetchCookie cookie = ${value}", "")
 } catch (e: BusinessException) {
-    Hilog.error(0, "AppLogCj", "ErrorCode: ${e.code}, ErrorMessage: ${e.message}")
+    Hilog.error(0, "AppLogCj", "ErrorCode: ${e.code}, ErrorMessage: ${e.message}", "")
 }
 ```
 
@@ -527,13 +526,13 @@ public static func isCookieAllowed(): Bool
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Whether the permission to send and receive cookies is granted. true indicates the permission is granted, false indicates the permission is not granted. The default value is true. |
+| Bool | Whether permission to send and receive cookies is granted. true indicates permission is granted, false indicates permission is not granted. The default is true. |
 
 **Example:**
 
@@ -542,7 +541,6 @@ public static func isCookieAllowed(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.PerformanceAnalysisKit.Hilog
 
@@ -560,13 +558,13 @@ public static func isThirdPartyCookieAllowed(): Bool
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Whether the permission to send and receive third-party cookies is granted. true indicates the permission is granted, false indicates the permission is not granted. The default value is false. |
+| Bool | Whether permission to send and receive third-party cookies is granted. true indicates permission is granted, false indicates permission is not granted. The default is false. |
 
 **Example:**
 
@@ -575,7 +573,6 @@ public static func isThirdPartyCookieAllowed(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.PerformanceAnalysisKit.Hilog
 
@@ -593,13 +590,13 @@ public static func putAcceptCookieEnabled(accept: Bool): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| accept | Bool | Yes | - | Sets whether the permission to send and receive cookies is granted. The default value is true, indicating the permission is granted. |
+| accept | Bool | Yes | - | Sets whether permission to send and receive cookies is granted. The default is true, indicating permission is granted. |
 
 **Example:**
 
@@ -608,44 +605,13 @@ public static func putAcceptCookieEnabled(accept: Bool): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.PerformanceAnalysisKit.Hilog
 
 WebCookieManager.putAcceptCookieEnabled(false)
 ```
 
-### static func putAcceptThirdPartyCookieEnabled(Bool)
-
-```cangjie
-public static func putAcceptThirdPartyCookieEnabled(accept: Bool): Unit
-```
-
-**Description:** Sets whether the WebCookieManager instance has permission to send and receive third-party cookies.
-
-**System Capability:** SystemCapability.Web.Webview.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| accept | Bool | Yes | - | Sets whether the permission to send and receive third-party cookies is granted. true indicates the permission is granted, false indicates the permission is not granted. The default value is false. |
-
-**Example:**
-
-<!-- compile -->
-
-```cangjie
-// index.cj
-
-import ohos.base.*
-import kit.ArkWeb.*
-import kit.PerformanceAnalysisKit.Hilog
-
-WebCookieManager.putAcceptThirdPartyCookieEnabled(true)
-```## class WebHeader
+### static func putAcceptThirdPartyCookieEnabled(B## class WebHeader
 
 ```cangjie
 public class WebHeader {
@@ -655,11 +621,11 @@ public class WebHeader {
 }
 ```
 
-**Function:** Request/response header object returned by web components.
+**Description:** Request/response header object returned by web components.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var headerKey
 
@@ -667,15 +633,15 @@ public class WebHeader {
 public var headerKey: String
 ```
 
-**Function:** Key of the request/response header.
+**Description:** The key of request/response header.
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var headerValue
 
@@ -683,15 +649,15 @@ public var headerKey: String
 public var headerValue: String
 ```
 
-**Function:** Value of the request/response header.
+**Description:** The value of request/response header.
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String)
 
@@ -699,18 +665,18 @@ public var headerValue: String
 public init(headerKey: String, headerValue: String)
 ```
 
-**Function:** Constructor of WebHeader.
+**Description:** Constructor for WebHeader.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| headerKey | String | Yes | - | Key of the request/response header. |
-| headerValue | String | Yes | - | Value of the request/response header. |
+| headerKey | String | Yes | - | The key of request/response header. |
+| headerValue | String | Yes | - | The value of request/response header. |
 
 ## class WebviewController
 
@@ -720,11 +686,11 @@ public class WebviewController {
 }
 ```
 
-**Function:** Clears the IP address owned by the main name.
+**Description:** Clears the IP address owned by the primary name.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(?String)
 
@@ -732,15 +698,15 @@ public class WebviewController {
 public init(webTag!: ?String = None)
 ```
 
-**Function:** Creates a WebviewController object.
+**Description:** Creates a WebviewController object.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | webTag | ?String | No | None | Specifies the name of the web component. |
 
@@ -750,21 +716,21 @@ public init(webTag!: ?String = None)
 public static func setWebDebuggingAccess(webDebuggingAccess: Bool): Unit
 ```
 
-**Function:** Sets whether to enable web page debugging.
+**Description:** Sets whether to enable web page debugging functionality.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| webDebuggingAccess | Bool | Yes | - | Sets whether to enable web page debugging. |
+| webDebuggingAccess | Bool | Yes | - | Sets whether to enable web page debugging functionality. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -777,7 +743,6 @@ public static func setWebDebuggingAccess(webDebuggingAccess: Bool): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
 import kit.PerformanceAnalysisKit.Hilog
@@ -815,25 +780,24 @@ class EntryView {
 public func accessBackward(): Bool
 ```
 
-**Function:** Checks whether the current page can go back, i.e., whether there is a back history for the current page.
+**Description:** Checks whether the current page can go back, i.e., whether there is a back history for the current page.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if it can go back; otherwise, returns false. |
+| Bool | Returns true if it can go back, otherwise returns false. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. |
 
 **Example:**
@@ -843,10 +807,9 @@ public func accessBackward(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -881,17 +844,17 @@ class EntryView {
 public func accessStep(step: Int32): Bool
 ```
 
-**Function:** Checks whether the current page can go forward or backward by the specified number of steps.
+**Description:** Checks whether the current page can go forward or backward by the specified number of steps.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| step | Int32 | Yes | - | Number of steps to jump. Positive numbers represent forward, and negative numbers represent backward. |
+| step | Int32 | Yes | - | The number of steps to jump, positive for forward, negative for backward. |
 
 **Return Value:**
 
@@ -901,11 +864,10 @@ public func accessStep(step: Int32): Bool
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -915,11 +877,10 @@ public func accessStep(step: Int32): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
 import ohos.arkui.component.button.Button
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 
 @Entry
 @Component
@@ -954,27 +915,26 @@ class EntryView {
 public func backOrForward(step: Int32): Unit
 ```
 
-**Function:** Goes forward or backward by the specified number of steps in the history stack. If there is no corresponding step in the history stack, no page jump will occur.
+**Description:** Navigates forward or backward by the specified number of steps in the history stack. If no corresponding step exists in the history stack, no navigation occurs.
 
-When going forward or backward, the already loaded web page is used directly without reloading.
+When navigating forward or backward, the already loaded web page is used directly without reloading.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| step | Int32 | Yes | - | Number of steps to go forward or backward. |
+| step | Int32 | Yes | - | The number of steps to navigate forward or backward. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -984,11 +944,10 @@ When going forward or backward, the already loaded web page is used directly wit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
 import ohos.arkui.component.button.Button
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 
 @Entry
 @Component
@@ -1021,19 +980,18 @@ class EntryView {
 public func backward(): Unit
 ```
 
-**Function:** Goes back one page in the history stack. Typically used in conjunction with accessBackward.
+**Description:** Navigates backward by one page in the history stack. Typically used in conjunction with accessBackward.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1043,10 +1001,9 @@ public func backward(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1082,15 +1039,14 @@ public func clearHistory(): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1100,10 +1056,9 @@ public func clearHistory(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1137,25 +1092,24 @@ class EntryView {
 public func enableSafeBrowsing(enable: Bool): Unit
 ```
 
-**Function:** Enables the feature to check for website security risks. Illegal and fraudulent websites are forcibly enabled and cannot be disabled through this function.
+**Function:** Enables the website security risk check feature. Illegal and fraudulent websites are forcibly enabled and cannot be disabled via this function.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| enable | Bool | Yes | - | Whether to enable the feature to check for website security risks. |
+| enable | Bool | Yes | - | Whether to enable the website security risk check feature. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1165,10 +1119,9 @@ public func enableSafeBrowsing(enable: Bool): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1206,15 +1159,14 @@ public func forward(): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1224,10 +1176,9 @@ public func forward(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1265,21 +1216,20 @@ public func getBackForwardEntries(): BackForwardList
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[BackForwardList](#class-backforwardlist)| The current Webview's history information list. |
+| [BackForwardList](#class-backforwardlist) | The current Webview's history information list. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1289,10 +1239,9 @@ public func getBackForwardEntries(): BackForwardList
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1332,7 +1281,7 @@ public func getCustomUserAgent(): String
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -1342,11 +1291,10 @@ public func getCustomUserAgent(): String
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1356,10 +1304,9 @@ public func getCustomUserAgent(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1399,21 +1346,20 @@ public func getHitTest(): WebHitTestType
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[WebHitTestType](#enum-webhittesttype)| The element type of the clicked area. |
+| [WebHitTestType](#enum-webhittesttype) | The element type of the clicked area. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1423,10 +1369,9 @@ public func getHitTest(): WebHitTestType
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1469,21 +1414,20 @@ public func getHitTestValue(): HitTestValue
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[HitTestValue](#class-hittestvalue)| The element information of the clicked area. |
+| [HitTestValue](#class-hittestvalue) | The element information of the clicked area. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1493,10 +1437,9 @@ public func getHitTestValue(): HitTestValue
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1538,21 +1481,20 @@ public func getOriginalUrl(): String
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type   | Description                     |
-| :----  | :----------------------------- |
+| Type   | Description                  |
+|:-------|:-----------------------------|
 | String | The original URL of the current page. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1562,10 +1504,9 @@ public func getOriginalUrl(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1604,22 +1545,50 @@ public func getPageHeight(): Int32
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type  | Description                  |
-| :---- | :-------------------------- |
+|:------|:-----------------------------|
 | Int32 | The height of the current webpage. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkWeb.*
+import kit.ArkUI.Web
+import kit.PerformanceAnalysisKit.*
+import ohos.arkui.component.button.Button
+
+@Entry
+@Component
+class EntryView {
+    let webController = WebviewController()
+    func build() {
+        Column(space: 10) {
+            Button("getOriginalUrl")
+            .onClick {
+                evt =>
+                Hilog.info(0, "cangjieTest", "getOriginalUrl")
+                let height = webController.getPageHeight()
+            }.width(400.px).height(150.px)
+        }
+    }
+}
+```
 
 ### func getSecurityLevel()
 
@@ -1631,21 +1600,20 @@ public func getSecurityLevel(): SecurityLevel
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type            | Description                                                                 |
-| :------------- | :------------------------------------------------------------------------- |
-| [SecurityLevel](#enum-securitylevel) | The security level of the current webpage, with possible values: NONE, SECURE, WARNING, DANGEROUS. |
+| Type                     | Description                                                                 |
+|:-------------------------|:----------------------------------------------------------------------------|
+| [SecurityLevel](#enum-securitylevel) | The security level of the current webpage. Possible values: NONE, SECURE, WARNING, DANGEROUS. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1655,10 +1623,9 @@ public func getSecurityLevel(): SecurityLevel
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1702,21 +1669,20 @@ public func getTitle(): String
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type   | Description             |
-| :----  | :--------------------- |
+| Type   | Description                  |
+|:-------|:-----------------------------|
 | String | The title of the current webpage. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1726,10 +1692,9 @@ public func getTitle(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1768,21 +1733,20 @@ public func getUrl(): String
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type   | Description             |
-| :----  | :--------------------- |
+| Type   | Description                  |
+|:-------|:-----------------------------|
 | String | The URL of the current page. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1792,10 +1756,9 @@ public func getUrl(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1833,21 +1796,20 @@ public func getUserAgent(): String
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type   | Description         |
-| :----  | :----------------- |
+| Type   | Description                  |
+|:-------|:-----------------------------|
 | String | The default user agent. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1857,10 +1819,9 @@ public func getUserAgent(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1899,21 +1860,20 @@ public func isIncognitoMode(): Bool
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description                          |
-| :--- | :---------------------------------- |
+|:-----|:-------------------------------------|
 | Bool | Returns whether the Webview is in incognito mode. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
-  | Error Code ID | Error Message                  |
-  | :----------- | :---------------------------- |
-  | 401          | Invalid input parameter.      |
+  | Error Code ID | Error Message |
+  | :----------- | :------------ |
   | 17100001     | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -1923,10 +1883,9 @@ public func isIncognitoMode(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -1959,26 +1918,25 @@ class EntryView {
 public func isSafeBrowsingEnabled(): Bool
 ```
 
-**Function:** Checks whether the current webpage has enabled website security risk inspection.
+**Function:** Checks whether the current webpage has enabled website security risk detection.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Whether the current webpage has enabled website security risk inspection. Default is false.|
+|Bool|Whether the current webpage has enabled website security risk detection. Default is false.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
-  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **Example:**
 
@@ -1987,10 +1945,9 @@ public func isSafeBrowsingEnabled(): Bool
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -2028,22 +1985,21 @@ public func pageDown(bottom: Bool): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|bottom|Bool|Yes|-|Whether to jump to the bottom of the page. If set to false, the page content scrolls down by half a viewport size. If set to true, it jumps to the bottom of the page.|
+|bottom|Bool|Yes|-|Whether to jump to the bottom of the page. If set to false, scrolls the content down by half a viewport size. If set to true, jumps to the bottom of the page.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
-  | 17100001 | Init error. The WebviewController must be associated with a Web component.relation pageDown(bottom: boolean): void |
+  | 17100001 | Init error.The WebviewController must be associated with a Web component.relation pageDown(bottom: boolean): void |
 
 **Example:**
 
@@ -2052,10 +2008,9 @@ public func pageDown(bottom: Bool): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -2093,22 +2048,21 @@ public func pageUp(top: Bool): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|top|Bool|Yes|-|Whether to jump to the top of the page. If set to false, the page content scrolls up by half a viewport size. If set to true, it jumps to the top of the page.|
+|top|Bool|Yes|-|Whether to jump to the top of the page. If set to false, scrolls the content up by half a viewport size. If set to true, jumps to the top of the page.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
-  | 17100001 | Init error. The WebviewController must be associated with a Web component.relation pageUp(top: boolean): void |
+  | 17100001 | Init error.The WebviewController must be associated with a Web component.relation pageUp(top: boolean): void |
 
 **Example:**
 
@@ -2117,10 +2071,9 @@ public func pageUp(top: Bool): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -2158,16 +2111,15 @@ public func refresh(): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
-  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
 
 **Example:**
 
@@ -2176,10 +2128,9 @@ public func refresh(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.ArkUI.Web
-import ohos.hilog.Hilog
+import kit.PerformanceAnalysisKit.*
 import ohos.arkui.component.button.Button
 
 @Entry
@@ -2214,19 +2165,146 @@ class EntryView {
 public func registerJavaScriptProxy(funcs: Array<(String) -> String>, name: String, methodList: Array<String>): Unit
 ```
 
-**Function:** Injects Cangjie methods into the Window object for invocation within the window context. After registration, the [refresh](#func-refresh) interface must be called to take effect.
+**Function:** Injects Cangjie methods into the Window object for invocation within the window context. Requires calling the [refresh](#func-refresh) interface to take effect after registration.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|funcs|Array\<(String)->String>|Yes|-|Array of application-side Cangjie methods to register. Registered Cangjie methods must have String-type parameters and return values.|
-|name|String|Yes|-|Name of the registered Cangjie method array, matching the object name used in window invocation. After registration, the window object can access the application-side Cangjie methods via this name.|
-|methodList|Array\<String>|Yes|-|Names of the application-side Cangjie methods to register. The length of this array must match the `funcs` array. After registration, method equality checks will use `methodList`. Therefore, to register new or modified `funcs`, a new `methodList` must be provided.|
+|funcs|Array\<(String)->String>|Yes|-|Array of application-side Cangjie methods to register. Registered Cangjie methods must have String parameters and return values.|
+|name|String|Yes|-|Name of the registered Cangjie method array, matching the object name used in window context calls.|
+|methodList|Array\<String>|Yes|-|Names of the application-side Cangjie methods to register. This array's length must match the `funcs` array. Subsequent equality checks for `funcs` will use `methodList`. To register new or modified `funcs`, provide a new `methodList`.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkWeb.*
+import kit.UIKit.Web
+
+let webController = WebviewController()
+let callback: AsyncCallback<String> = {
+    errorCode: Option<AsyncError>, data: Option<String> => match (errorCode) {
+        case Some(e) => AppLog.error("callback error: errcode is ${e.code}")
+        case _ => match (data) {
+            case Some(value) =>
+                AppLog.info("callback: get data successfully and data is ${value.toArray()}")
+                AppLog.info("callback: get data successfully and data is ${value}")
+            case _ => AppLog.error("callback: data is null")
+        }
+    }
+}
+@Entry
+@Component
+class EntryView {
+    func build() {
+        Row {
+            Column {
+                Button("refresh").onClick {
+                    evt =>
+                    AppLog.info("refresh")
+                    webController.refresh()
+                }.width(400.px).height(150.px)
+                Button("proxy").onClick {
+                    evt =>
+                    AppLog.info("registerJavaScriptProxy")
+                    let funcA1 = {
+                        a: String =>
+                        AppLog.info("funcA1 ${a}")
+                        return "funcA1 " + a
+                    }
+                    let funcA2 = {
+                        a: String =>
+                        AppLog.info("funcA2 ${a}")
+                        return "funcA2 " + a
+                    }
+                    let funcA3 = {
+                        a: String =>
+                        AppLog.info("funcA3 ${a}")
+                        return "funcA3 " + a
+                    }
+                    let funcB1 = {
+                        a: String =>
+                        AppLog.info("funcB1 ${a}")
+                        return "funcB1 " + a
+                    }
+                    let funcB2 = {
+                        a: String =>
+                        AppLog.info("funcB2 ${a}")
+                        return "funcB2 " + a
+                    }
+                    let funcB3 = {
+                        a: String =>
+                        AppLog.info("funcB3 ${a}")
+                        return "funcB3 " + a
+                    }
+                    let funcsA = [funcA1, funcA2, funcA3]
+                    let funcsB = [funcB1, funcB2, funcB3]
+                    let methodListA = ["testFunA1", "testFunA2", "testFunA3"]
+                    let methodListB = ["testFunB1", "testFunB2", "testFunB3"]
+                    try {
+                        webController.registerJavaScriptProxy(funcsA, "testObjA", methodListA)
+                        webController.registerJavaScriptProxy(funcsB, "testObjB", methodListB)
+                    } catch (e: Exception) {
+                        AppLog.info(e.message)
+                    }
+                }.width(400.px).height(150.px)
+                Button("deleteJavaScriptRegister").onClick {
+                    evt =>
+                    AppLog.info("deleteJavaScriptRegister")
+                    webController.deleteJavaScriptRegister("testObjA")
+                }.width(400.px).height(150.px)
+                Button("runProxy").onClick {
+                    evt =>
+                    AppLog.info("runProxy")
+                    webController.runJavaScript("testObjA.testFunA2('someData')", callback)
+                    webController.runJavaScript("testObjB.testFunB2('someData')", callback)
+                }.width(400.px).height(150.px)
+
+                Web(src: "www.example.com", controller: webController).onPageBegin(
+                    {
+                    evt => AppLog.info("page begin url: ${evt.url}")
+                }).onPageEnd({
+                    evt => AppLog.info("page end url: ${evt.url}")
+                })
+            }.width(100.percent)
+        }.height(100.percent)
+    }
+}
+```
+
+Loaded HTML file. Place the `index.html` file under `entry\src\main\resources\rawfile`.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<body>
+<button type="button" onclick="htmlTest()">Click Me!</button>
+<p id="demo"></p>
+<p id="webDemo"></p>
+</body>
+<script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
+      let AStr=testObjA.testFunA2("A2 data");
+      let BStr=testObjB.testFunB1("B1 data");
+      testObjA.testFunA3("A3 data");
+      document.getElementById("demo").innerHTML=AStr;
+      document.getElementById("webDemo").innerHTML=BStr;
+      console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
+```
 
 ### func loadUrl\<T>(T, Array\<WebHeader>) where T \<: ResourceStr
 
@@ -2238,7 +2316,7 @@ public func loadUrl<T>(url: T, headers!: Array<WebHeader> = Array<WebHeader>()):
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2249,12 +2327,11 @@ public func loadUrl<T>(url: T, headers!: Array<WebHeader> = Array<WebHeader>()):
 
 **Exceptions:**
 
-- BusinessException: Error codes are shown in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
-  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+  | 17100001 | Init error.The WebviewController must be associated with a Web component. |
   | 17100002 | Invalid url. |
   | 17100003 | Invalid resource path or file type. |
 
@@ -2265,7 +2342,6 @@ public func loadUrl<T>(url: T, headers!: Array<WebHeader> = Array<WebHeader>()):
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.LocalizationKit.*
 import kit.UIKit.Web
@@ -2294,9 +2370,7 @@ class EntryView {
         }
     }
 }
-```
-
-### func setCustomUserAgent(String)
+```### func setCustomUserAgent(String)
 
 ```cangjie
 public func setCustomUserAgent(userAgent: String): Unit
@@ -2306,21 +2380,20 @@ public func setCustomUserAgent(userAgent: String): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|userAgent|String|Yes|-|Custom user agent information. It is recommended to first use [getUserAgent](#func-getuseragent) to obtain the current default user agent and then append custom information.|
+| userAgent | String | Yes | - | Custom user agent information. It is recommended to first use [getUserAgent](#func-getuseragent) to obtain the current default user agent and then append custom user agent information. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are shown in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -2330,7 +2403,6 @@ public func setCustomUserAgent(userAgent: String): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2358,17 +2430,19 @@ class EntryView {
         }
     }
 }
-```### func stop()
+```
+
+### func stop()
 
 ```cangjie
 public func stop(): Unit
 ```
 
-**Function:** Stops page loading.
+**Function:** Stops the current page from loading.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -2385,7 +2459,6 @@ public func stop(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2424,14 +2497,14 @@ public func storeWebArchive(baseName: String, autoName: Bool, callback: AsyncCal
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| baseName | String | Yes | - | The storage location for the generated offline webpage. This value cannot be empty. |
-| autoName | Bool | Yes | - | Determines whether to auto-generate the filename. If false, the file is stored with the name specified in `baseName`. If true, the filename is auto-generated based on the current URL and stored in the directory specified by `baseName`. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| baseName | String | Yes | - | The storage location for the offline webpage. This value cannot be empty. |
+| autoName | Bool | Yes | - | Determines whether to auto-generate the filename. If false, the file is stored with the name specified in `baseName`. If true, the filename is auto-generated based on the current URL, and the file is stored in the directory specified in `baseName`. |
 | callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<String> | Yes | - | Returns the file storage path. |
 
 **Exceptions:**
@@ -2440,7 +2513,6 @@ public func storeWebArchive(baseName: String, autoName: Bool, callback: AsyncCal
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
   | 17100003 | Invalid resource path or file type. |
 
@@ -2451,7 +2523,6 @@ public func storeWebArchive(baseName: String, autoName: Bool, callback: AsyncCal
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2497,17 +2568,17 @@ class EntryView {
 public func zoom(factor: Float32): Unit
 ```
 
-**Function:** Adjusts the zoom scale of the current webpage. `zoomAccess` must be `true`.
+**Function:** Adjusts the zoom level of the current webpage. `zoomAccess` must be set to `true`.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| factor | Float32 | Yes | - | The relative zoom scale to adjust based on the current webpage. The input must be greater than 0. A value of 1 represents the default webpage zoom scale. Values less than 1 zoom out, and values greater than 1 zoom in. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| factor | Float32 | Yes | - | The relative zoom factor based on the current webpage. The input must be greater than 0. A value of 1 represents the default zoom level. Values less than 1 zoom out, and values greater than 1 zoom in. |
 
 **Exceptions:**
 
@@ -2515,7 +2586,6 @@ public func zoom(factor: Float32): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
   | 17100004 | Function not enabled. |
 
@@ -2526,7 +2596,6 @@ public func zoom(factor: Float32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2565,7 +2634,7 @@ public func zoomIn(): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -2583,7 +2652,6 @@ public func zoomIn(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2622,7 +2690,7 @@ public func zoomOut(): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -2640,7 +2708,6 @@ public func zoomOut(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2675,18 +2742,18 @@ class EntryView {
 public func runJavaScript(script: String, callback: AsyncCallback<String>): Unit
 ```
 
-**Function:** Asynchronously executes a JavaScript script and returns the result via callback. `runJavaScript` must be called after `loadUrl` completes, such as in `onPageEnd`.
+**Function:** Asynchronously executes JavaScript and returns the result via callback. `runJavaScript` must be called after `loadUrl` completes, such as in `onPageEnd`.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| script | String | Yes | - | The JavaScript script to execute. |
-| callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<String> | Yes | - | Callback to return the result of the JavaScript script execution. Returns `null` if the script fails or has no return value. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| script | String | Yes | - | JavaScript script to execute. |
+| callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<String> | Yes | - | Callback that returns the result of the JavaScript execution. Returns `null` if the script fails or has no return value. |
 
 **Exceptions:**
 
@@ -2694,7 +2761,6 @@ public func runJavaScript(script: String, callback: AsyncCallback<String>): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -2704,7 +2770,6 @@ public func runJavaScript(script: String, callback: AsyncCallback<String>): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2744,7 +2809,7 @@ class EntryView {
 }
 ```
 
-The loaded HTML file. Add the `index.html` file under the `entry\src\main\resources\rawfile` directory.
+Loaded HTML file. Place `index.html` in the `entry\src\main\resources\rawfile` directory.
 
 ```html
 <!-- index.html -->
@@ -2773,15 +2838,15 @@ public func scrollBy(deltaX: Float32, deltaY: Float32, duration!: ?Int32 = None)
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| deltaX | Float32 | Yes | - | Horizontal offset, where right is the positive direction. |
-| deltaY | Float32 | Yes | - | Vertical offset, where down is the positive direction. |
-| duration | ?Int32 | No | None | **Named parameter.** Scroll animation duration.<br>Unit: ms.<br>If not provided, no animation is applied. If a negative value or 0 is provided, it is treated as not provided. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| deltaX | Float32 | Yes | - | Horizontal offset, where positive values scroll right. |
+| deltaY | Float32 | Yes | - | Vertical offset, where positive values scroll down. |
+| duration | ?Int32 | No | None | **Named parameter.** Scroll animation duration.<br>Unit: ms.<br>If not provided, no animation is applied. Negative or zero values are treated as not provided. |
 
 **Exceptions:**
 
@@ -2798,7 +2863,6 @@ public func scrollBy(deltaX: Float32, deltaY: Float32, duration!: ?Int32 = None)
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2827,7 +2891,7 @@ class EntryView {
 }
 ```
 
-The loaded HTML file. Add the `index.html` file under the `entry\src\main\resources\rawfile` directory.
+Loaded HTML file. Place `index.html` in the `entry\src\main\resources\rawfile` directory.
 
 ```html
 <!--index.html-->
@@ -2861,15 +2925,15 @@ public func scrollTo(x: Float32, y: Float32, duration!: ?Int32 = None): Unit
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| x | Float32 | Yes | - | Absolute horizontal coordinate. If a negative value is provided, it is treated as 0. |
-| y | Float32 | Yes | - | Absolute vertical coordinate. If a negative value is provided, it is treated as 0. |
-| duration | ?Int32 | No | None | **Named parameter.** Scroll animation duration.<br>Unit: ms.<br>If not provided, no animation is applied. If a negative value or 0 is provided, it is treated as not provided. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | Float32 | Yes | - | Absolute horizontal coordinate. Negative values are treated as 0. |
+| y | Float32 | Yes | - | Absolute vertical coordinate. Negative values are treated as 0. |
+| duration | ?Int32 | No | None | **Named parameter.** Scroll animation duration.<br>Unit: ms.<br>If not provided, no animation is applied. Negative or zero values are treated as not provided. |
 
 **Exceptions:**
 
@@ -2877,7 +2941,6 @@ public func scrollTo(x: Float32, y: Float32, duration!: ?Int32 = None): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid input parameter. |
   | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example:**
@@ -2887,7 +2950,6 @@ public func scrollTo(x: Float32, y: Float32, duration!: ?Int32 = None): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkWeb.*
 import kit.UIKit.Web
 
@@ -2916,7 +2978,7 @@ class EntryView {
 }
 ```
 
-The loaded HTML file. Add the `index.html` file under the `entry\src\main\resources\rawfile` directory.
+Loaded HTML file. Place `index.html` in the `entry\src\main\resources\rawfile` directory.
 
 ```html
 <!--index.html-->
@@ -2933,49 +2995,7 @@ The loaded HTML file. Add the `index.html` file under the `entry\src\main\resour
             border:5px solid blueviolet
         }
     </style>
-</head>
-<body>
-Scroll Test
-</body>
-</html>
-```
-
-### func removeCache(Bool)
-
-```cangjie
-public func removeCache(clearRom: Bool): Unit
-```
-
-**Function:** Clears resource cache files in the application. This method will clear cache files for all webviews in the same application.
-
-**System Capability:** SystemCapability.Web.Webview.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| clearRom | Bool | Yes | - | If `true`, clears both ROM and RAM caches. If `false`, clears only RAM cache. |
-
-**Exceptions:**
-
-- BusinessException: Error codes are listed in the table below. For details, see [Webview Error Codes](./cj-errorcode-webview.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**Example:**
-
-<!-- compile -->
-
-```cangjie
-// index.cj
-
-import ohos.base.*
-import kit.ArkWeb.*
-import kit## enum SecurityLevel
+## enum SecurityLevel
 
 ```cangjie
 public enum SecurityLevel <: Equatable<SecurityLevel> & ToString {
@@ -2987,11 +3007,11 @@ public enum SecurityLevel <: Equatable<SecurityLevel> & ToString {
 }
 ```
 
-**Description:** The security level of the current webpage.
+**Function:** Indicates the security level of the current webpage.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3004,11 +3024,11 @@ public enum SecurityLevel <: Equatable<SecurityLevel> & ToString {
 NoneLevel
 ```
 
-**Description:** The page is neither absolutely secure nor insecure, indicating a neutral state. For example, URLs with non-HTTP/HTTPS schemes.
+**Function:** The page is neither absolutely secure nor insecure, i.e., neutral. For example, URLs with schemes other than http/https.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Secure
 
@@ -3016,11 +3036,11 @@ NoneLevel
 Secure
 ```
 
-**Description:** The page is secure, using HTTPS protocol with a trusted certificate.
+**Function:** The page is secure, using HTTPS protocol with a trusted certificate.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Warning
 
@@ -3028,11 +3048,11 @@ Secure
 Warning
 ```
 
-**Description:** The page is insecure. Examples include using HTTP protocol or HTTPS with outdated TLS versions.
+**Function:** The page is insecure. For example, using HTTP protocol or HTTPS with outdated TLS versions.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Danger
 
@@ -3040,11 +3060,11 @@ Warning
 Danger
 ```
 
-**Description:** The page is insecure. Scenarios include failed HTTPS attempts, unauthenticated pages, HTTPS pages containing unsafe active content, malware, phishing, or any other critical security risks.
+**Function:** The page is insecure. This includes failed HTTPS attempts, unauthenticated pages, HTTPS pages containing unsafe active content, malware, phishing, or any other critical security risks.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(SecurityLevel)
 
@@ -3052,7 +3072,7 @@ Danger
 public operator func !=(other: SecurityLevel): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
@@ -3072,11 +3092,11 @@ public operator func !=(other: SecurityLevel): Bool
 public operator func ==(other: SecurityLevel): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -3096,7 +3116,7 @@ public operator func ==(other: SecurityLevel): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string representation of the enum.
+**Function:** Gets the string representation of the enum.
 
 **Return Value:**
 
@@ -3115,11 +3135,11 @@ public enum WebHitTestType <: Equatable<WebHitTestType> & ToString {
 }
 ```
 
-**Description:** Indicates the cursor node type for [getHitTest](#func-gethittest).
+**Function:** Indicates the cursor node for [getHitTest](#func-gethittest).
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3132,11 +3152,11 @@ public enum WebHitTestType <: Equatable<WebHitTestType> & ToString {
 EditText
 ```
 
-**Description:** An editable area.
+**Function:** An editable area.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Email
 
@@ -3144,11 +3164,11 @@ EditText
 Email
 ```
 
-**Description:** An email address.
+**Function:** An email address.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unknown
 
@@ -3156,11 +3176,11 @@ Email
 Unknown
 ```
 
-**Description:** Unknown content.
+**Function:** Unknown content.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(WebHitTestType)
 
@@ -3168,7 +3188,7 @@ Unknown
 public operator func !=(other: WebHitTestType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
@@ -3188,11 +3208,11 @@ public operator func !=(other: WebHitTestType): Bool
 public operator func ==(other: WebHitTestType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **System Capability:** SystemCapability.Web.Webview.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -3212,7 +3232,7 @@ public operator func ==(other: WebHitTestType): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string representation of the enum.
+**Function:** Gets the string representation of the enum.
 
 **Return Value:**
 

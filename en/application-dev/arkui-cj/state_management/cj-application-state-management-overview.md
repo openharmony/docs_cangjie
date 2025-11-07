@@ -8,4 +8,4 @@ The decorators introduced in the previous chapter can only share state variables
 
 - [PersistentStorage](./cj-persiststorage.md): Persistent storage of UI state, usually used in conjunction with AppStorage. It selects data stored in AppStorage to write to disk, ensuring that these properties retain the same values when the application restarts as they had when the application was closed.
 
-- [Environment](./cj-environment.md): Environmental parameters of the device on which the application is running. These parameters are synchronized to AppStorage and can be used in combination with AppStorage.
+- [Environment](./cj-environment.md): Environmental parameters of the device on which the application runs. These parameters are synchronized to AppStorage and can be used in combination with AppStorage.

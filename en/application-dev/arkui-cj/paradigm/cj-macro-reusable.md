@@ -4,11 +4,11 @@ The @Reusable macro decorates any custom component, indicating that the custom c
 
 ## Overview
 
-@Reusable is applicable to custom components and is used in conjunction with @Component. When a custom component marked with @Reusable is removed from the component tree, both the component and its corresponding page object are placed into a reuse cache. Subsequent creation of new custom component nodes will reuse nodes from the cache, saving the time required for re-creating components.
+@Reusable is applicable to custom components and is used in conjunction with [@Component](./cj-create-custom-components.md#component). When a custom component marked with @Reusable is removed from the component tree, both the component and its corresponding page object are placed into a reuse cache. When creating a new custom component node subsequently, the cached node will be reused, saving the time required for component recreation.
 
 ## Constraints
 
-- Mixed projects are currently not supported.
+- Mixed projects are temporarily not supported.
 
 - @Reusable is only applicable to custom components.
 
@@ -20,7 +20,7 @@ The @Reusable macro decorates any custom component, indicating that the custom c
     import ohos.arkui.state_management.*
     import ohos.arkui.state_macro_manage.*
 
-    // Adding @Reusable to @Builder will cause compilation errors; it is not applicable to builders
+    // Adding @Reusable to @Builder will cause compilation errors; not applicable to builder
     // @Reusable
     @Builder
     func MyBuilder() {
@@ -57,10 +57,10 @@ The @Reusable macro decorates any custom component, indicating that the custom c
 
     > **Note:**
     >
-    > - Nested usage is not supported. It merely adds a tag and creates an additional cache pool. Separate reuse cache pools will contain identical tree structures, resulting in low reuse efficiency and increased memory consumption.
-    > - Nested usage creates independent reuse cache pools, causing issues with lifecycle propagation. Resource and variable management cannot be shared, making maintenance difficult and prone to problems.
-    > - In the example, the reuse cache pool formed by PlayButton cannot be used in PlayButton02's reuse cache pool, but PlayButton02's own cache pool can be reused internally.
-    > - When PlayButton is hidden, it triggers PlayButton02's aboutToRecycle. However, when PlayButton02 is displayed separately, aboutToReuse cannot be executed, leading to mismatched lifecycle method calls.
+    > - Nested usage is not supported. It merely serves as a marker and would create an additional cache pool. Each reuse cache pool contains the same tree structure, resulting in low reuse efficiency and increased memory consumption.
+    > - After nested usage forms independent reuse cache pools, lifecycle propagation becomes problematic. Resource and variable management cannot be shared, making maintenance difficult and prone to issues.
+    > - In the example, the reuse cache pool formed by PlayButton cannot be used in PlayButton02's reuse cache pool, but PlayButton02 can reuse its own cache pool internally.
+    > - When PlayButton is hidden, it triggers PlayButton02's aboutToRecycle. However, when PlayButton02 is displayed separately, aboutToReuse cannot be executed, leading to mismatched lifecycle method calls for component reuse.
     > - In summary, nested usage is not recommended.
 
     <!-- run -->
@@ -85,7 +85,7 @@ The @Reusable macro decorates any custom component, indicating that the custom c
         public func build() {
             Column() {
                 if (this.isPlaying02) {
-                    // Initially displayed button
+                    // Initially visible button
                     Text("Default shown childbutton").fontSize(14)
                     PlayButton02(isPlaying02: isPlaying02)
                 }
@@ -107,28 +107,28 @@ The @Reusable macro decorates any custom component, indicating that the custom c
 
                 // Parent-child nesting control
                 Text("Parent=child==is ${if(isPlaying) {""} else {"not"}} playing").fontSize(14)
-                Button("Parent=child===controll=${isPlaying}").margin(14).onClick {
+                Button("Parent=child===controll=${isPlaying}").margin(14).onClick({
                     e => isPlaying = !isPlaying
-                }
+                })
                 Text("==================").fontSize(14)
 
                 // Default hidden button control
                 Text("Hiddenchild==is ${if(isPlaying01) {""} else {"not"}} playing").fontSize(14)
-                Button("Button===hiddenchild==control==${isPlaying01}").margin(14).onClick {
+                Button("Button===hiddenchild==control==${isPlaying01}").margin(14).onClick({
                    e  => isPlaying01 = !isPlaying01
-                }
+                })
                 Text("==================").fontSize(14)
 
-                // Default shown button control
+                // Default visible button control
                 Text("shownchid==is ${if(isPlaying02) {""} else {"not"}} playing").fontSize(14)
-                Button("Button===shownchid==control==${isPlaying02}").margin(14).onClick {
+                Button("Button===shownchid==control==${isPlaying02}").margin(14).onClick({
                     e => isPlaying02 = !isPlaying02
-                }
+                })
             }
         }
     }
 
-    // Reusable 1
+    // Reuse 1
     @Reusable
     @Component
     class PlayButton {
@@ -138,14 +138,14 @@ The @Reusable macro decorates any custom component, indicating that the custom c
             Column() {
                 // Reuse
                 PlayButton02(isPlaying02: buttonPlaying)
-                Button(if(buttonPlaying) {"parent_pause"} else {"parent_play"}).margin(12).onClick {
+                Button(if(buttonPlaying) {"parent_pause"} else {"parent_play"}).margin(12).onClick({
                     e => buttonPlaying = !buttonPlaying
-                }
+                })
             }
         }
     }
 
-    // Reusable 2 (nested usage not recommended)
+    // Reuse 2 - Nested usage not recommended
     @Reusable
     @Component
     class PlayButton02 {
@@ -164,21 +164,21 @@ The @Reusable macro decorates any custom component, indicating that the custom c
     }
     ```
 
-## Use Cases
+## Usage Scenarios
 
-- List Scrolling: When an application needs to display a large amount of data in a list and users perform scrolling operations, frequent creation and destruction of list item views may cause lag and performance issues. In such cases, using the component reuse mechanism for list components can reuse already created list item views, improving scrolling smoothness.
+- List scrolling: When an application needs to display a large amount of data in a list and users perform scrolling operations, frequent creation and destruction of list item views may cause lag and performance issues. In such cases, using the component reuse mechanism for list components can reuse already created list item views, improving scrolling smoothness.
 
-- Dynamic Layout Updates: If an application's interface requires frequent layout updates—for example, dynamically changing view structures and styles based on user actions or data changes—repeatedly creating and destroying views may lead to frequent layout calculations, affecting frame rates. In such scenarios, component reuse can avoid unnecessary view creation and layout calculations, improving performance.
+- Dynamic layout updates: If an application's interface requires frequent layout updates (e.g., dynamically changing view structures and styles based on user operations or data changes), repeated view creation and destruction may lead to frequent layout calculations, affecting frame rates. In such cases, component reuse can avoid unnecessary view creation and layout calculations, improving performance.
 
-- Frequent View Creation and Destruction: In scenarios where views for data items are frequently created and destroyed, component reuse can reuse existing views and only update the data content, reducing view creation and destruction, thereby effectively improving performance.
+- Scenarios involving frequent creation and destruction of data item views. Using component reuse can reuse already created views, only updating the data content, reducing view creation and destruction, and effectively improving performance.
 
 ## Usage Examples
 
 ### Dynamic Layout Updates
 
-- The sample code marks the Child custom component as reusable. Clicking the Button updates Child, triggering its reuse.
+- The example code marks the Child custom component as reusable. Child reuse is triggered by updating Child via Button clicks.
 
-- @Reusable: A custom component decorated with the @Reusable macro indicates it has reuse capability.
+- @Reusable: A custom component decorated with the @Reusable macro indicates it has component reuse capability.
 
 - aboutToReuse: When a reusable custom component is re-added to the node tree from the reuse cache, the aboutToReuse lifecycle callback is triggered, and the component's construction parameters are passed to aboutToReuse.
 
@@ -207,9 +207,9 @@ public class EntryView {
             Button("Hello")
             .fontSize(30)
             .fontWeight(FontWeight.Bold)
-            .onClick{ =>
+            .onClick({evt =>
                 switch = !switch
-            }
+            })
             if (switch) {
                 Child(message: Message("Child"))
             }
@@ -238,11 +238,11 @@ class Child {
 
 ### List Scrolling with LazyForEach
 
-- The sample code marks the CardView custom component as reusable. Scrolling the List up and down triggers CardView reuse.
+- The example code marks the CardView custom component as reusable. CardView reuse is triggered by scrolling the List up and down.
 
-- @Reusable: A custom component decorated with the @Reusable macro indicates it has reuse capability.
+- @Reusable: A custom component decorated with the @Reusable macro indicates it has component reuse capability.
 
-- The variable item must be decorated with @State to enable updates. Non-@State variables cannot be updated.
+- The variable item must be decorated with @State to enable updates. Non-@State decorated variables may fail to update.
 
  <!-- run -->
 
@@ -269,11 +269,11 @@ class MyDataSource <: IDataSource<Int64> {
         data_.add(val)
     }
 
-    public func onRegisterDataChangeListener(listener: DataChangeListener): Unit {
+    public func registerDataChangeListener(listener: DataChangeListener): Unit {
         listenerOp = listener
     }
 
-    public func onUnregisterDataChangeListener(listener: DataChangeListener): Unit {
+    public func unregisterDataChangeListener(listener: DataChangeListener): Unit {
         listenerOp = None
     }
 }
@@ -293,7 +293,7 @@ public class EntryView {
             List() {
                 LazyForEach(
                     data,
-                    itemGeneratorFunc: {
+                    itemGenerator: {
                         item: Int64, idx: Int64 => ListItem() {
                             CardView(item: "${item}")
                         }
@@ -312,7 +312,7 @@ class CardView {
     var item: String = ""
     protected override func aboutToReuse(params: ReuseParams) {
         if (let Some(value) <- params.get<String>("item")) {
-            item = value as String ?? ""
+            item = value
             Hilog.info(0, "cangjie", "Recycle ===Child===")
         }
     }
@@ -326,7 +326,7 @@ class CardView {
 
 ### if Usage Scenario
 
-The sample code marks the OneMoment custom component as reusable. Scrolling the List up and down triggers OneMoment reuse.
+The example code marks the OneMoment custom component as reusable. OneMoment reuse is triggered by scrolling the List up and down.
 
  <!-- run -->
 
@@ -338,6 +338,7 @@ import ohos.arkui.state_management.*
 import ohos.arkui.state_macro_manage.*
 import std.collection.ArrayList
 import kit.PerformanceAnalysisKit.Hilog
+import kit.LocalizationKit.*
 
 class MyDataSource <: IDataSource<FriendMoment> {
     public MyDataSource(let data_: ArrayList<FriendMoment>) {}
@@ -353,11 +354,11 @@ class MyDataSource <: IDataSource<FriendMoment> {
         data_.add(val)
     }
 
-    public func onRegisterDataChangeListener(listener: DataChangeListener): Unit {
+    public func registerDataChangeListener(listener: DataChangeListener): Unit {
         listenerOp = listener
     }
 
-    public func onUnregisterDataChangeListener(listener: DataChangeListener): Unit {
+    public func unregisterDataChangeListener(listener: DataChangeListener): Unit {
         listenerOp = None
     }
 }
@@ -379,8 +380,8 @@ public class FriendMoment {
 public class OneMoment {
     @State var moment: FriendMoment = FriendMoment("", "", @r(app.media.startIcon))
     protected override func aboutToReuse(params: ReuseParams) {
-        if (let Some(value) <- params.get<FriendMoment>("moment"))
-            let pVal = (value as FriendMoment) ?? FriendMoment("", "", @r(app.media.startIcon))
+        if (let Some(value) <- params.get<FriendMoment>("moment")) {
+            let pVal = value
             this.moment = pVal
             Hilog.info(0, "cangjie", "====aboutToReuse====OnMoment==reused==== ${pVal.text}")
         }
@@ -398,8 +399,7 @@ public class OneMoment {
             }
         }
     }
-}
-
+}```markdown
 @Entry
 @Component
 public class EntryView {

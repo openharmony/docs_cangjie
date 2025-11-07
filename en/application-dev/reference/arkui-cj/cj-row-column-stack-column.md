@@ -14,23 +14,23 @@ Can contain child components.
 
 ## Creating the Component
 
-### init(Length, () -> Unit)
+### init(?Length, () -> Unit)
 
 ```cangjie
-public init(space!: Length = 0.vp, child!: () -> Unit = {=>})
+public init(space!: ?Length = None, child!: () -> Unit = {=>})
 ```
 
-**Function:** Creates a Column container with vertical spacing between child elements set to `space` that can contain child components.
+**Function:** Creates a Column container with vertical spacing between child elements set by `space` parameter, which can contain child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| space | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | Vertical spacing between child elements in the Column layout.<br> Does not take effect when space is negative or when [justifyContent](#func-justifycontentflexalign) is set to FlexAlign.SpaceBetween, FlexAlign.SpaceAround, or FlexAlign.SpaceEvenly. <br> Initial value: 0 <br> Unit: vp <br> **Note:** <br> space must be a number greater than or equal to 0. |
+| space | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Vertical spacing between child elements in the column layout. Initial value: 0.vp<br>Does not take effect when space is negative or when [justifyContent](#func-justifycontentflexalign) is set to FlexAlign.SpaceBetween, FlexAlign.SpaceAround, or FlexAlign.SpaceEvenly. |
 | child | () -> Unit | No | { => } | Child components of the Column container |
 
 ## Common Attributes/Common Events
@@ -41,41 +41,41 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func alignItems(HorizontalAlign)
+### func alignItems(?HorizontalAlign)
 
 ```cangjie
-public func alignItems(value: HorizontalAlign): This
+public func alignItems(value: ?HorizontalAlign): This
 ```
 
 **Function:** Sets the horizontal alignment of child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [HorizontalAlign](./cj-common-types.md#enum-horizontalalign) | Yes | - | Horizontal alignment format for child components.<br> Initial value: HorizontalAlign.Center |
+| value | ?[HorizontalAlign](./cj-common-types.md#enum-horizontalalign) | Yes | - | Horizontal alignment format for child components. Initial value: HorizontalAlign.Center |
 
-### func justifyContent(FlexAlign)
+### func justifyContent(?FlexAlign)
 
 ```cangjie
-public func justifyContent(value: FlexAlign): This
+public func justifyContent(value: ?FlexAlign): This
 ```
 
 **Function:** Sets the vertical alignment of child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [FlexAlign](./cj-common-types.md#enum-flexalign) | Yes | - | Vertical alignment format for child components. <br> Initial value: FlexAlign.Start |
+| value | ?[FlexAlign](./cj-common-types.md#enum-flexalign) | Yes | - | Vertical alignment format for child components. Initial value: FlexAlign.Start |
 
 ## Example Code
 

@@ -1,12 +1,12 @@
 # Drawing Geometric Shapes (Shape)
 
-The drawing component is used to create graphics on a page. The Shape component serves as the parent component for all drawing components, describing common properties supported by all drawing components. For specific usage, please refer to [Shape](../../../en/application-dev/reference/arkui-cj/cj-graphic-drawing-shape.md).
+The drawing component is used to render shapes on a page. The Shape component serves as the parent component for all drawing components, encapsulating common properties supported by all drawing components. For specific usage, please refer to [Shape](../reference/arkui-cj/cj-graphic-drawing-shape.md).
 
 ## Creating Drawing Components
 
 Drawing components can be created in the following two forms:
 
-- Drawing components use Shape as the parent component to achieve SVG-like effects. The interface calls are as follows:
+- Drawing components use Shape as the parent component to achieve SVG-like effects. The interface call is as follows:
 
   ```cangjie
   init()
@@ -14,7 +14,7 @@ Drawing components can be created in the following two forms:
   init(target: PixelMap)
   ```
 
-  This interface is used to create drawing components with a parent component, where `target` sets the drawing target, allowing graphics to be drawn in a specified PixelMap object. If not set, drawing occurs in the current target.
+  This interface is used to create drawing components with a parent component, where `target` specifies the drawing target. It allows rendering graphics onto a specified PixelMap object. If not set, the graphics will be drawn on the current drawing target.
 
   ```cangjie
   Shape() {
@@ -22,7 +22,7 @@ Drawing components can be created in the following two forms:
   }
   ```
 
-- Drawing components can be used independently to draw specified shapes on a page. There are 7 drawing types: [Circle](../../../en/application-dev/reference/arkui-cj/cj-graphic-drawing-circle.md), [Ellipse](../../../en/application-dev/reference/arkui-cj/cj-graphic-drawing-ellipse.md), [Line](../../../en/application-dev/reference/arkui-cj/cj-graphic-drawing-line.md), [Path](../../../en/application-dev/reference/arkui-cj/cj-graphic-drawing-path.md), and [Rect](../../../en/application-dev/reference/arkui-cj/cj-graphic-drawing-rect.md). Using Circle as an example:
+- Drawing components can be used independently to render specified shapes on a page. There are 7 types of drawing components: [Circle](../reference/arkui-cj/cj-graphic-drawing-circle.md), [Ellipse](../reference/arkui-cj/cj-graphic-drawing-ellipse.md), [Line](../reference/arkui-cj/cj-graphic-drawing-line.md), [Path](../reference/arkui-cj/cj-graphic-drawing-path.md), and [Rect](../reference/arkui-cj/cj-graphic-drawing-rect.md). Taking the Circle interface as an example:
 
   ```cangjie
   Circle()
@@ -30,7 +30,7 @@ Drawing components can be created in the following two forms:
   Circle(width!: Length, height!: Length)
   ```
 
-  This interface draws a circle on the page, where `width` sets the circle's width and `height` sets its height. The circle's diameter is determined by the smaller of the two dimensions.
+  This interface is used to draw a circle on the page, where `width` sets the circle's width and `height` sets its height. The circle's diameter is determined by the smaller of the two dimensions.
 
   ```cangjie
   Circle(width: 150, height: 150)
@@ -44,9 +44,9 @@ Drawing components can be created in the following two forms:
 viewPort(x!: Length, y!: Length, width!: Length, height!: Length)
 ```
 
-The shape viewport specifies a rectangle in user space that maps to the viewport boundaries established for the associated SVG element. The `viewport` property includes four optional parameters: `x`, `y`, `width`, and `height`. `x` and `y` represent the top-left corner coordinates of the viewport, while `width` and `height` define its dimensions.
+The shape viewport specifies a rectangle in user space that maps to the viewport boundaries established for the associated SVG element. The viewport property includes four optional parameters: `x` and `y` represent the top-left corner coordinates, while `width` and `height` define its dimensions.
 
-The following three examples demonstrate the usage of `viewport`:
+The following three examples illustrate the usage of viewport:
 
 - Scaling graphics using the viewport.
 
@@ -74,8 +74,8 @@ The following three examples demonstrate the usage of `viewport`:
               }
               Row() {
                   Column {
-                      // Create a Shape component with width and height of 150, yellow background, and a viewport of 75x75. Fill the viewport with a blue rectangle and draw a circle with diameter 75 inside it.
-                      // After drawing, the viewport scales up by a factor of 2.
+                      // Create a Shape component with width and height of 150, yellow background, and a viewport of 75x75. Fill the viewport with a blue rectangle and draw a circle with a diameter of 75 inside it.
+                      // After drawing, the viewport will scale up by a factor of 2 based on the component dimensions.
                       Text('Scaled-Up Circle Component in Shape')
                       Shape() {
                           Rect().width(100.percent).height(100.percent).fill(0X0097D4)
@@ -87,8 +87,8 @@ The following three examples demonstrate the usage of `viewport`:
                       .backgroundColor(0XF5DC62)
                   }
                   Column {
-                      // Create a Shape component with width and height of 150, yellow background, and a viewport of 300x300. Fill the viewport with a green rectangle and draw a circle with diameter 75 inside it.
-                      // After drawing, the viewport scales down by a factor of 2.
+                      // Create a Shape component with width and height of 150, yellow background, and a viewport of 300x300. Fill the viewport with a green rectangle and draw a circle with a diameter of 75 inside it.
+                      // After drawing, the viewport will scale down by a factor of 2 based on the component dimensions.
                       Text('Scaled-Down Circle Component in Shape')
                       Shape() {
                           Rect().width(100.percent).height(100.percent).fill(0XBDDB69)
@@ -107,7 +107,7 @@ The following three examples demonstrate the usage of `viewport`:
 
   ![drawing2](figures/drawing2.jpg)
 
-- Create a Shape component with width and height of 300, yellow background, and a viewport of 300x300. Fill the viewport with a blue rectangle and draw a circle with radius 75 inside it.
+- Create a Shape component with width and height of 300, yellow background, and a viewport of 300x300. Fill the viewport with a blue rectangle and draw a circle with a radius of 75 inside it.
 
  <!-- run -->
 
@@ -139,7 +139,7 @@ The following three examples demonstrate the usage of `viewport`:
 
   ![viewport(2)](figures/viewport(2).jpg)
 
-- Create a Shape component with width and height of 300, yellow background, and a viewport of 300x300. Fill the viewport with a blue rectangle and draw a circle with radius 75 inside it, then translate the viewport 150 units right and down.
+- Create a Shape component with width and height of 300, yellow background, and a viewport of 300x300. Fill the viewport with a blue rectangle and draw a circle with a radius of 75 inside it. Translate the viewport 150 units right and 150 units down.
 
  <!-- run -->
 
@@ -173,9 +173,9 @@ The following three examples demonstrate the usage of `viewport`:
 
 ## Custom Styles
 
-Drawing components support various properties for customizing their appearance.
+Drawing components support style customization through various properties.
 
-- Use `fill` to set the fill color of the component.
+- Use [fill](../reference/arkui-cj/cj-graphic-drawing-common.md#func-fillresourcecolor) to set the fill color of the component.
 
   ```cangjie
   Path()
@@ -188,7 +188,7 @@ Drawing components support various properties for customizing their appearance.
 
   ![drawing3](figures/drawing3.jpg)
 
-- Use `stroke` to set the border color of the component.
+- Use [stroke](../reference/arkui-cj/cj-graphic-drawing-common.md#func-strokeresourcecolor) to set the border color of the component.
 
   ```cangjie
   Path()
@@ -201,7 +201,7 @@ Drawing components support various properties for customizing their appearance.
 
   ![stroke](figures/stroke.png)
 
-- Use `strokeOpacity` to set the border transparency.
+- Use [strokeOpacity](../reference/arkui-cj/cj-graphic-drawing-common.md#func-strokeopacityappresource) to set the border transparency.
 
   ```cangjie
   Path()
@@ -216,7 +216,7 @@ Drawing components support various properties for customizing their appearance.
 
   ![strokeopacity](figures/strokeopacity.jpg)
 
-- Use `antiAlias` to enable or disable anti-aliasing (enabled by default).
+- Use [antiAlias](../reference/arkui-cj/cj-graphic-drawing-common.md#func-antialiasbool) to enable or disable anti-aliasing. The default value is `true` (anti-aliasing enabled).
 
   ```cangjie
   // Enable anti-aliasing
@@ -280,7 +280,7 @@ class EntryView {
 
 ### Drawing a Circle and a Ring
 
-Draw a circle with diameter 150 and a ring with diameter 150 and red dashed border (the diameter is determined by the shorter dimension if width and height differ).
+Draw a circle with a diameter of 150 and a ring with a diameter of 150 and a red dashed border (when width and height differ, the shorter dimension determines the diameter).
 
  <!-- run -->
 
@@ -295,9 +295,9 @@ import ohos.arkui.state_macro_manage.*
 class EntryView {
     func build() {
         Column(space: 10) {
-            // Draw a circle with diameter 150
+            // Draw a circle with a diameter of 150
             Circle( width: 150, height: 150 )
-            // Draw a ring with diameter 150 and red dashed border
+            // Draw a ring with a diameter of 150 and a red dashed border
             Circle()
                 .width(150)
                 .height(200)

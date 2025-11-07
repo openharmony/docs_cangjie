@@ -1,4 +1,4 @@
-# Using Cangjie Modules in ArkTS Applications
+# Using the Cangjie Module in ArkTS Applications
 
 ## Overview
 
@@ -6,16 +6,16 @@ The Cangjie program runs on a lightweight runtime while delivering excellent per
 
 ## Usage Guide
 
-Cangjie recommends using the "Declarative Interoperation Macro" approach to integrate Cangjie modules into ArkTS applications. Below is the operational guidance for this method.
+Cangjie recommends implementing the use of Cangjie modules in ArkTS applications through "declarative interoperation macros." This section provides operational guidance for this approach.
 
-### Adding Cangjie Modules to ArkTS Projects
+### Adding a Cangjie Module to an ArkTS Project
 
 Supported SDK versions: API 12 and above.  
 Supported device types:  
 - For ArkTS (with C++) HAP modules: phone, tablet, 2in1  
 - For ArkTS (with C++) HAR modules: default, phone, tablet, 2in1  
 
-If the current HAP module supports device types beyond phone, tablet, and 2in1, or if the HAR module supports device types beyond default, phone, tablet, and 2in1, please remove unsupported device types from the `deviceTypes` field in the module.json5 file of the HAP or HAR module (e.g., delete the "wearable" device type as shown below) before proceeding with Cangjie module integration.
+If the current HAP module supports device types other than phone, tablet, or 2in1, or if the HAR module supports device types other than default, phone, tablet, or 2in1, remove the unsupported device types from the `deviceTypes` field in the module.json5 file of the HAP or HAR module. Modify it to the supported device type format (e.g., remove the wearable device as shown in the figure below) before proceeding with the creation and insertion of the Cangjie module content.
 
 ![deviceTypes](../figures/deviceTypes.png)
 
@@ -23,17 +23,19 @@ If the current HAP module supports device types beyond phone, tablet, and 2in1, 
 
    ![enableCangjie](../figures/enableCangjie.png)
 
-2. Click the **Cangjie(Interop)** button to complete the creation and integration of Cangjie module content in the ArkTS (with C++) HAP or HAR module.
+2. Click the **Cangjie(Interop)** button to complete the creation and insertion of the Cangjie module content in the ArkTS (with C++) HAP or HAR module.
 
    ![finishEnableCangjie](../figures/finishEnableCangjie.png)
 
-### Implementing Cangjie Interoperation Modules
+### Implementing the Cangjie Interoperation Module
 
-After successfully integrating the Cangjie interoperation module into the ArkTS project, example code will be automatically generated with the following logic:
+After successfully inserting the Cangjie interoperation module into the ArkTS project, sample code will be automatically generated. The code logic is as follows:
 
 1. Import the interoperation library `ark_interop` and interoperation macros.
 
-2. Implement a Cangjie function named `addF64` and decorate it with `@Interop[ArkTS]`. A simple example of a Cangjie module is as follows:
+2. Implement a Cangjie function named `addF64` and decorate it with `@Interop[ArkTS]`. A simple example of the Cangjie module is as follows:
+
+   <!-- compile -->
 
    ```cangjie
    package ohos_app_cangjie_entry
@@ -52,17 +54,14 @@ After successfully integrating the Cangjie interoperation module into the ArkTS 
    }
    ```
 
-3. Open the aforementioned Cangjie file in DevEco Studio. Right-click in the file editor and select **Generate... > Cangjie-ArkTS Interop API**. This will generate:
-   - In the **cangjie->types->libohos_app_cangjie_entry** directory:  
-     - Index.d.ts declaration file  
-     - oh_package.json5 configuration file  
-   - In the **cangjie -> ark_interop_api** directory:  
-     - ark_interop_api.d.ts declaration file  
-     - oh_package.json5 configuration file  
-   - Additionally, dependencies will be automatically added to the oh-package.json5 file in the HAP or HAR module:
+3. Open the aforementioned Cangjie file in DevEco Studio. Right-click in the file editor and select **Generate... > Cangjie-ArkTS Interop API**. This will generate the following files:
+   - In the **cangjie->types->libohos_app_cangjie_entry** directory: `Index.d.ts` declaration file and `oh_package.json5` configuration file.
+   - In the **cangjie -> ark_interop_api** directory: `ark_interop_api.d.ts` declaration file and `oh_package.json5` configuration file.
+   - Automatically add dependencies to the `oh-package.json5` file in the HAP or HAR module:
 
-    > **Note:**  
-    > The `ark_interop_api` directory is generated for applications that need to be compatible with OpenHarmony 5.0.x. If there are no compatibility requirements, this directory can be ignored.
+    > **Note:**
+    >
+    > The `ark_interop_api` directory is generated for compatibility with applications that need to run on OpenHarmony 5.0.x. If there are no compatibility requirements, this directory can be ignored.
 
    ```json
    "dependencies": {
@@ -73,13 +72,14 @@ After successfully integrating the Cangjie interoperation module into the ArkTS 
    }
    ```
 
-> **Note: The Cangjie interoperation module must not be imported by other modules, as this may cause missing content when ArkTS imports the interoperation module.**
+> **Note: The Cangjie interoperation module must not be imported by other modules. Otherwise, the imported content may be missing when ArkTS imports the interoperation module.**
 
-### Loading Cangjie Modules in ArkTS
+### Loading the Cangjie Module in ArkTS
 
-After implementing the Cangjie interoperation module, import the Cangjie `ohos_app_cangjie_entry` module in ArkTS code to load the custom Cangjie interoperation module and call its interfaces.
+After implementing the Cangjie interoperation module, import the `ohos_app_cangjie_entry` module in ArkTS code to load the custom Cangjie interoperation module and call its interfaces.
 
-> **Note:**  
+> **Note:**
+>
 > This loading method is supported starting from API version 18. Minimum compatible version: OpenHarmony 5.1.0(18).
 
 ```typescript
@@ -91,7 +91,7 @@ import cjLib from "libohos_app_cangjie_entry.so"
 
 Once the custom Cangjie interoperation module is successfully loaded, you can call the interfaces provided by the module in the ArkTS project.
 
-Example of calling the `addF64` function provided by the Cangjie interoperation module in an ArkTS application:
+The following example demonstrates calling the `addF64` function provided by the Cangjie interoperation module in an ArkTS application:
 
 ```typescript
 // Call the Cangjie interface

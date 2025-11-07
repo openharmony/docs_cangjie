@@ -1,6 +1,6 @@
 # ohos.net.connection (Network Connection Management)
 
-Network connection management provides fundamental capabilities for managing networks, including obtaining the default active data network, retrieving a list of all active data networks, enabling/disabling airplane mode, and obtaining network capability information, among others.
+Network connection management provides fundamental capabilities for managing networks, including obtaining the default active data network, retrieving a list of all active data networks, enabling/disabling airplane mode, obtaining network capability information, and more.
 
 For detailed error code descriptions in this section, please refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md).
 
@@ -23,7 +23,7 @@ API example code usage instructions:
 - If the first line of example code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the aforementioned example projects and configuration templates, please refer to [Cangjie Example Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the aforementioned example projects and configuration templates, please refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie Example Code Instructions).
 
 ## func createNetConnection(?NetSpecifier, UInt32)
 
@@ -31,18 +31,18 @@ For the aforementioned example projects and configuration templates, please refe
 public func createNetConnection(netSpecifier!: ?NetSpecifier = None, timeout!: UInt32 = 0): NetConnection
 ```
 
-**Function:** Creates a NetConnection object. `netSpecifier` specifies the characteristics of the network to monitor; `timeout` is the timeout duration (in milliseconds); `netSpecifier` is a prerequisite for `timeout`. If neither is provided, it monitors the default network.
+**Function:** Creates a NetConnection object. netSpecifier specifies the characteristics of the network to monitor; timeout is the timeout duration (in milliseconds); netSpecifier is a prerequisite for timeout. If neither is specified, it monitors the default network.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| netSpecifier | ?[NetSpecifier](#class-netspecifier) | No | None | **Named parameter.** Specifies the characteristics of the network to monitor. If None, monitors the default network. |
-| timeout | UInt32 | No | 0 | **Named parameter.** Timeout duration for obtaining the network specified by `netSpecifier`. Only takes effect if `netSpecifier` is provided. Default value is 0. |
+| netSpecifier | ?[NetSpecifier](#class-netspecifier) | No | None | **Named parameter.** Specifies the characteristics of the network. If None, monitors the default network. |
+| timeout | UInt32 | No | 0 | **Named parameter.** Timeout duration for obtaining the network specified by netSpecifier. Only takes effect if netSpecifier is present. Default value is 0. |
 
 **Return Value:**
 
@@ -59,13 +59,19 @@ public func createNetConnection(netSpecifier!: ?NetSpecifier = None, timeout!: U
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// Monitor the default network; no parameters needed
-let netConnection = createNetConnection()
+try {
+    // Monitor default network, no parameters needed
+    let netConnection = createNetConnection()
 
-// Monitor cellular network; requires passing relevant network characteristics. Since timeout parameter is not provided, timeout is 0.
-let netspecifier = NetSpecifier(NetCapabilities([NetBearType.BearerCellular]))
-let netConnectionCellular = createNetConnection(netSpecifier: netspecifier)
+    // Monitor cellular network, requires passing relevant network characteristics. timeout parameter not passed means no timeout is used, so timeout is 0
+    let netspecifier = NetSpecifier(NetCapabilities([NetBearType.BearerCellular]))
+    let netConnectionCellular = createNetConnection(netSpecifier: netspecifier)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func getAddressesByName(String)
@@ -80,7 +86,7 @@ public func getAddressesByName(host: String): Array<NetAddress>
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -96,12 +102,11 @@ public func getAddressesByName(host: String): Array<NetAddress>
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -115,8 +120,14 @@ public func getAddressesByName(host: String): Array<NetAddress>
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let addresses = getAddressesByName("localhost")
+try {
+    let addresses = getAddressesByName("localhost")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func getAllNets()
@@ -125,13 +136,13 @@ let addresses = getAddressesByName("localhost")
 public func getAllNets(): Array<NetHandle>
 ```
 
-**Function:** Retrieves a list of all connected networks.
+**Function:** Retrieves a list of all networks currently in a connected state.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -141,12 +152,11 @@ public func getAllNets(): Array<NetHandle>
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
 
@@ -159,8 +169,14 @@ public func getAllNets(): Array<NetHandle>
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let netHandles = getAllNets()
+try {
+    let netHandles = getAllNets()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func getAppNet()
@@ -169,25 +185,24 @@ let netHandles = getAllNets()
 public func getAppNet(): NetHandle
 ```
 
-**Function:** Binds the App to a specified network. After binding, the App can only access external networks through the specified network.
+**Function:** Binds an app to a specified network. After binding, the app can only access external networks through the specified network.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [NetHandle](#class-nethandle) | Returns the data network bound to the App. |
+| [NetHandle](#class-nethandle) | Returns the data network bound to the app. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
 
@@ -200,8 +215,14 @@ public func getAppNet(): NetHandle
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let netHandle = getAppNet()
+try {
+    let netHandle = getAppNet()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func getConnectionProperties(NetHandle)
@@ -210,13 +231,13 @@ let netHandle = getAppNet()
 public func getConnectionProperties(netHandle: NetHandle): ConnectionProperties
 ```
 
-**Function:** Retrieves the connection information of the network corresponding to `netHandle`.
+**Function:** Retrieves the connection information for the network corresponding to netHandle.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -232,12 +253,11 @@ public func getConnectionProperties(netHandle: NetHandle): ConnectionProperties
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -268,21 +288,21 @@ try {
 public func getDefaultHttpProxy(): HttpProxy
 ```
 
-**Function:** Retrieves the default proxy configuration of the network. If a global proxy is set, it returns the global proxy configuration. If the process is bound to a specified network using `setAppNet`, it returns the proxy configuration of the network corresponding to `NetHandle`. In other cases, it returns the proxy configuration of the default network.
+**Function:** Retrieves the default proxy configuration information for the network. If a global proxy is set, it returns the global proxy configuration. If the process uses setAppNet to bind to a network specified by NetHandle, it returns the proxy configuration for that network. In other cases, it returns the proxy configuration for the default network.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [HttpProxy](#class-httpproxy) | Returns the default proxy configuration of the network. |
+| [HttpProxy](#class-httpproxy) | Returns the default proxy configuration for the network. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -315,13 +335,13 @@ try {
 public func getDefaultNet(): NetHandle
 ```
 
-**Function:** Retrieves the default active data network. Use `getNetCapabilities` to obtain the network type and capabilities.
+**Function:** Retrieves the default active data network. Use getNetCapabilities to obtain the network type and capabilities.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -331,12 +351,11 @@ public func getDefaultNet(): NetHandle
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
 
@@ -349,8 +368,14 @@ public func getDefaultNet(): NetHandle
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let netHandle = getDefaultNet()
+try {
+    let netHandle = getDefaultNet()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func getNetCapabilities(NetHandle)
@@ -359,13 +384,13 @@ let netHandle = getDefaultNet()
 public func getNetCapabilities(netHandle: NetHandle): NetCapabilities
 ```
 
-**Function:** Retrieves the capability information of the network corresponding to `netHandle`.
+**Function:** Retrieves the capability information for the network corresponding to netHandle.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -381,12 +406,11 @@ public func getNetCapabilities(netHandle: NetHandle): NetCapabilities
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -415,28 +439,27 @@ try {
 public func hasDefaultNet(): Bool
 ```
 
-**Function:** Checks whether the default data network is activated. Returns true if activated.
+**Function:** Checks whether the default data network is activated. Returns an interface, returning true if activated.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the default data network is activated. |
+|Bool|Returns true if the default data network is activated.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
 
@@ -449,8 +472,14 @@ public func hasDefaultNet(): Bool
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let hasDefault = hasDefaultNet()
+try {
+    let hasDefault = hasDefaultNet()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func isDefaultNetMetered()
@@ -465,22 +494,21 @@ public func isDefaultNetMetered(): Bool
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if data traffic usage on the current network is metered; otherwise, returns false. |
+|Bool|Returns true if data traffic usage on the current network is metered, otherwise returns false.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
 
@@ -493,8 +521,14 @@ public func isDefaultNetMetered(): Bool
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let isMetered = isDefaultNetMetered()
+try {
+    let isMetered = isDefaultNetMetered()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func reportNetConnected(NetHandle)
@@ -503,28 +537,27 @@ let isMetered = isDefaultNetMetered()
 public func reportNetConnected(netHandle: NetHandle): Unit
 ```
 
-**Function:** Reports to network management that the network is available.
+**Function:** Reports to network management that the network is in an available state.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO & ohos.permission.INTERNET
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| netHandle | [NetHandle](#class-nethandle) | Yes | - | The handle of the data network. Refer to [NetHandle](#class-nethandle). |
+|netHandle|[NetHandle](#class-nethandle)|Yes|-|Handle of the data network. Refer to [NetHandle](#class-nethandle).|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -538,9 +571,15 @@ public func reportNetConnected(netHandle: NetHandle): Unit
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let handle = getDefaultNet()
-reportNetConnected(handle)
+try {
+    let handle = getDefaultNet()
+    reportNetConnected(handle)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func reportNetDisconnected(NetHandle)
@@ -549,28 +588,27 @@ reportNetConnected(handle)
 public func reportNetDisconnected(netHandle: NetHandle): Unit
 ```
 
-**Function:** Reports to network management that the network is unavailable.
+**Function:** Reports to network management that the network is in an unavailable state.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO & ohos.permission.INTERNET
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| netHandle | [NetHandle](#class-nethandle) | Yes | - | The handle of the data network. Refer to [NetHandle](#class-nethandle). |
+|netHandle|[NetHandle](#class-nethandle)|Yes|-|Handle of the data network. Refer to [NetHandle](#class-nethandle).|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -584,9 +622,15 @@ public func reportNetDisconnected(netHandle: NetHandle): Unit
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let handle = getDefaultNet()
-reportNetDisconnected(handle)
+try {
+    let handle = getDefaultNet()
+    reportNetDisconnected(handle)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func setAppNet(NetHandle)
@@ -595,28 +639,27 @@ reportNetDisconnected(handle)
 public func setAppNet(netHandle: NetHandle): Unit
 ```
 
-**Function:** Binds the app to the specified network. After binding, the app can only access external networks through the specified network.
+**Function:** Binds the app to the specified network. After binding, the app can only access the external network through the specified network.
 
 **Required Permission:** ohos.permission.INTERNET
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| netHandle | [NetHandle](#class-nethandle) | Yes | - | The handle of the data network. |
+|netHandle|[NetHandle](#class-nethandle)|Yes|-|Handle of the data network.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -658,7 +701,7 @@ public class ConnectionProperties {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var dnses
 
@@ -666,15 +709,15 @@ public class ConnectionProperties {
 public var dnses: Array<NetAddress>
 ```
 
-**Function:** Network addresses. Refer to [NetAddress](#class-netaddress).
+**Function:** Network address. Refer to [NetAddress](#class-netaddress).
 
 **Type:** Array\<[NetAddress](#class-netaddress)>
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var domains
 
@@ -682,15 +725,15 @@ public var dnses: Array<NetAddress>
 public var domains: String
 ```
 
-**Function:** The domain to which it belongs. Default is "".
+**Function:** Belonging domain, default is "".
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var interfaceName
 
@@ -702,11 +745,11 @@ public var interfaceName: String
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var linkAddresses
 
@@ -718,11 +761,11 @@ public var linkAddresses: Array<LinkAddress>
 
 **Type:** Array\<[LinkAddress](#class-linkaddress)>
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var mtu
 
@@ -734,11 +777,11 @@ public var mtu: UInt32
 
 **Type:** UInt32
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var routes
 
@@ -750,11 +793,11 @@ public var routes: Array<RouteInfo>
 
 **Type:** Array\<[RouteInfo](#class-routeinfo)>
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class HttpProxy
 
@@ -774,7 +817,7 @@ public class HttpProxy {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var exclusionList
 
@@ -782,7 +825,7 @@ public class HttpProxy {
 public var exclusionList: Array<String>
 ```
 
-**Function:** The list of hostnames that do not use the proxy. Hostnames support domain names, IP addresses, and wildcards. The detailed matching rules are as follows:
+**Function:** List of hostnames that do not use the proxy. Hostnames support domain names, IP addresses, and wildcard formats. The detailed matching rules are as follows:
 
 1. Domain name matching rules:
 
@@ -790,25 +833,25 @@ public var exclusionList: Array<String>
 
     (2) Partial match: The proxy server hostname matches if it contains any hostname in the list.
 
-    For example, if "ample.com" is set in the hostname list, "ample.com", "www.ample.com", and "ample.com:80" will all match, while "www.example.com" and "ample.com.org" will not.
+    For example, if "ample.com" is set in the hostname list, then "ample.com", "www.ample.com", and "ample.com:80" will all match, while "www.example.com" and "ample.com.org" will not match.
 
 2. IP address matching rules: The proxy server hostname matches if it is exactly the same as any IP address in the list.
 
-3. Both domain names and IP addresses can be added to the list for matching.
+3. Domain names and IP addresses can be added to the list simultaneously for matching.
 
-4. The single "*" is the only valid wildcard. When the list contains only the wildcard, it will match all proxy server hostnames, indicating that the proxy is disabled. The wildcard must be added alone and cannot be combined with other domain names or IP addresses in the list; otherwise, the wildcard will not take effect.
+4. The single "*" is the only valid wildcard. When only the wildcard is in the list, it will match all proxy server hostnames, indicating that the proxy is disabled. The wildcard can only be added alone and cannot be combined with other domain names or IP addresses in the list; otherwise, the wildcard will not take effect.
 
-5. The matching rules are case-insensitive for hostnames.
+5. Matching rules are case-insensitive for hostnames.
 
-6. Protocol prefixes such as http and https are not considered when matching hostnames.
+6. When matching hostnames, protocol prefixes such as http and https are not considered.
 
 **Type:** Array\<String>
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var host
 
@@ -820,11 +863,11 @@ public var host: String
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var password
 
@@ -836,11 +879,11 @@ public var password: String
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var port
 
@@ -852,11 +895,11 @@ public var port: UInt32
 
 **Type:** UInt32
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var username
 
@@ -868,11 +911,11 @@ public var username: String
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, UInt32, Array\<String>, String, String)
 
@@ -885,17 +928,17 @@ public init(host: String,  port: UInt32, exclusionList: Array<String>,
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| host | String | Yes | - | Proxy server hostname. |
-| port | UInt32 | Yes | - | Host port. |
-| exclusionList | Array\<String> | Yes | - | The list of hostnames that do not use the proxy. Hostnames support domain names, IP addresses, and wildcards. The detailed matching rules are as follows:<br>1. Domain name matching rules:<br>(1) Exact match: The proxy server hostname matches if it is exactly the same as any hostname in the list.<br>(2) Partial match: The proxy server hostname matches if it contains any hostname in the list.<br>For example, if "ample.com" is set in the hostname list, "ample.com", "www.ample.com", and "ample.com:80" will all match, while "www.example.com" and "ample.com.org" will not.<br>2. IP address matching rules: The proxy server hostname matches if it is exactly the same as any IP address in the list.<br>3. Both domain names and IP addresses can be added to the list for matching.<br>4. The single "*" is the only valid wildcard. When the list contains only the wildcard, it will match all proxy server hostnames, indicating that the proxy is disabled. The wildcard must be added alone and cannot be combined with other domain names or IP addresses in the list; otherwise, the wildcard will not take effect.<br>5. The matching rules are case-insensitive for hostnames.<br>6. Protocol prefixes such as http and https are not considered when matching hostnames. |
-| username | String | No | "" | Proxy authentication username. |
-| password | String | No | "" | Proxy authentication password. |## class LinkAddress
+|host|String|Yes|-|Proxy server hostname.|
+|port|UInt32|Yes|-|Host port.|
+|exclusionList|Array\<String>|Yes|-|List of hostnames that do not use the proxy. Hostnames support domain names, IP addresses, and wildcard formats. The detailed matching rules are as follows:<br>1. Domain name matching rules:<br>(1) Exact match: The proxy server hostname matches if it is exactly the same as any hostname in the list.<br>(2) Partial match: The proxy server hostname matches if it contains any hostname in the list.<br>For example, if "ample.com" is set in the hostname list, then "ample.com", "www.ample.com", and "ample.com:80" will all match, while "www.example.com" and "ample.com.org" will not match.<br>2. IP address matching rules: The proxy server hostname matches if it is exactly the same as any IP address in the list.<br>3. Domain names and IP addresses can be added to the list simultaneously for matching.<br>4. The single "*" is the only valid wildcard. When only the wildcard is in the list, it will match all proxy server hostnames, indicating that the proxy is disabled. The wildcard can only be added alone and cannot be combined with other domain names or IP addresses in the list; otherwise, the wildcard will not take effect.<br>5. Matching rules are case-insensitive for hostnames.<br>6. When matching hostnames, protocol prefixes such as http and https are not considered.|
+|username|String|No|""|Proxy authentication username.|
+|password|String|No|""|Proxy authentication password.|## class LinkAddress
 
 ```cangjie
 public class LinkAddress {
@@ -908,7 +951,7 @@ public class LinkAddress {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var address
 
@@ -920,11 +963,11 @@ public var address: NetAddress
 
 **Type:** [NetAddress](#class-netaddress)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var prefixLength
 
@@ -936,11 +979,11 @@ public var prefixLength: Int32
 
 **Type:** Int32
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class NetAddress
 
@@ -957,7 +1000,7 @@ public class NetAddress {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var address
 
@@ -969,11 +1012,11 @@ public var address: String
 
 **Type:** String
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var family
 
@@ -985,11 +1028,11 @@ public var family: UInt32
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var port
 
@@ -1001,11 +1044,11 @@ public var port: UInt32
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, UInt32, UInt32)
 
@@ -1017,11 +1060,11 @@ public init(address: String, family!: UInt32 = 1, port!: UInt32 = 0)
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | address | String | Yes | - | Address. |
 | family | UInt32 | No | 1 | IPv4 = 1, IPv6 = 2, default is IPv4. |
@@ -1040,7 +1083,7 @@ public class NetBlockStatusInfo {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var blocked
 
@@ -1052,11 +1095,11 @@ public var blocked: Bool
 
 **Type:** Bool
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var netHandle
 
@@ -1068,11 +1111,11 @@ public var netHandle: NetHandle
 
 **Type:** [NetHandle](#class-nethandle)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class NetCapabilities
 
@@ -1091,7 +1134,7 @@ public class NetCapabilities {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var bearerTypes
 
@@ -1103,11 +1146,11 @@ public var bearerTypes: Array<NetBearType>
 
 **Type:** Array\<[NetBearType](#enum-netbeartype)>
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var linkDownBandwidthKbps
 
@@ -1119,11 +1162,11 @@ public var linkDownBandwidthKbps: UInt32
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var linkUpBandwidthKbps
 
@@ -1135,11 +1178,11 @@ public var linkUpBandwidthKbps: UInt32
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var networkCap
 
@@ -1151,11 +1194,11 @@ public var networkCap: Array<NetCap>
 
 **Type:** Array\<[NetCap](#enum-netcap)>
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Array\<NetBearType>, UInt32, UInt32, Array\<NetCap>)
 
@@ -1168,11 +1211,11 @@ public init(bearerTypes: Array<NetBearType>, linkUpBandwidthKbps!: UInt32 = 0, l
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | bearerTypes | Array\<[NetBearType](#enum-netbeartype)> | Yes | - | Network type. |
 | linkUpBandwidthKbps | UInt32 | No | 0 | **Named parameter.** Uplink (device to network) bandwidth, 0 indicates inability to evaluate current network bandwidth. |
@@ -1192,7 +1235,7 @@ public class NetCapabilityInfo {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var netCap
 
@@ -1204,11 +1247,11 @@ public var netCap: NetCapabilities
 
 **Type:** [NetCapabilities](#class-netcapabilities)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var netHandle
 
@@ -1220,11 +1263,11 @@ public var netHandle: NetHandle
 
 **Type:** [NetHandle](#class-nethandle)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class NetConnection
 
@@ -1232,11 +1275,11 @@ public var netHandle: NetHandle
 public class NetConnection {}
 ```
 
-**Description:** Network connection handle; Device transitions from no network to having network will trigger netAvailable event, netCapabilitiesChange event, and netConnectionPropertiesChange event; Device transitions from having network to no network will trigger netLost event; Device transitions from WiFi to cellular will trigger netLost event (WiFi lost) followed by netAvailable event (cellular available).
+**Description:** Network connection handle; device transitioning from no network to having a network triggers netAvailable, netCapabilitiesChange, and netConnectionPropertiesChange events; device transitioning from having a network to no network triggers netLost event; device transitioning from WiFi to cellular triggers netLost event (WiFi lost) followed by netAvailable event (cellular available).
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func on(NetConnectionEvent, Callback1Argument\<NetHandle>)
 
@@ -1246,15 +1289,15 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetHandle>
 
 **Description:** Subscribes to network available and network lost events.
 
-**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network status change notifications.
+**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network state change notifications.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | event | [NetConnectionEvent](#enum-netconnectionevent) | Yes | - | Network connection event type, only supports NetAvailable and NetLost events. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[NetHandle](#class-nethandle)> | Yes | - | Callback function, returns data network handle. |
@@ -1275,15 +1318,15 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetBlockSt
 
 **Description:** Subscribes to network blocking status events.
 
-**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network status change notifications.
+**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network state change notifications.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | event | [NetConnectionEvent](#enum-netconnectionevent) | Yes | - | Network connection event type, only supports NetBlockStatusChange event. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[NetBlockStatusInfo](#class-netblockstatusinfo)> | Yes | - | Callback function, returns data network handle (netHandle) and network blocking status (blocked). |
@@ -1304,15 +1347,15 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetCapabil
 
 **Description:** Subscribes to network capability change events.
 
-**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network status change notifications.
+**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network state change notifications.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | event | [NetConnectionEvent](#enum-netconnectionevent) | Yes | - | Network connection event type, only supports NetCapabilitiesChange event. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[NetCapabilityInfo](#class-netcapabilityinfo)> | Yes | - | Callback function, returns data network handle (netHandle) and network capability information (netCap). |
@@ -1333,15 +1376,15 @@ public func on(event: NetConnectionEvent, callback: Callback1Argument<NetConnect
 
 **Description:** Subscribes to network connection information change events.
 
-**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network status change notifications.
+**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network state change notifications.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | event | [NetConnectionEvent](#enum-netconnectionevent) | Yes | - | Network connection event type, only supports NetConnectionPropertiesChange event. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[NetConnectionPropertyInfo](#class-netconnectionpropertyinfo)> | Yes | - | Callback function, returns data network handle (netHandle) and network connection information (connectionProperties). |
@@ -1362,15 +1405,15 @@ public func on(event: NetConnectionEvent, callback: Callback0Argument): Unit
 
 **Description:** Subscribes to network unavailable events.
 
-**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network status change notifications.
+**Model Constraints:** This interface must be called after the register interface, use unregister to unsubscribe from default network state change notifications.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | event | [NetConnectionEvent](#enum-netconnectionevent) | Yes | - | Network connection event type, only supports NetUnavailable event. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function, no return result. |
@@ -1389,13 +1432,13 @@ public func on(event: NetConnectionEvent, callback: Callback0Argument): Unit
 public func register(): Unit
 ```
 
-**Description:** Subscribes to specified network status change notifications.
+**Description:** Subscribes to specified network state change notifications.
 
 **Required Permission:** ohos.permission.GET_NETWORK_INFO
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -1404,7 +1447,6 @@ public func register(): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
   | 2101008 | The callback already exists. |
@@ -1419,9 +1461,15 @@ public func register(): Unit
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let netCon: NetConnection = createNetConnection()
-netCon.register()
+try {
+    let netCon: NetConnection = createNetConnection()
+    netCon.register()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func unregister()
@@ -1430,19 +1478,18 @@ netCon.register()
 public func unregister(): Unit
 ```
 
-**Description:** Unsubscribes from default network status change notifications.
+**Description:** Unsubscribes from default network state change notifications.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. |
   | 2100002 | Failed to connect to the service. |
   | 2100003 | System internal error. |
   | 2101007 | The callback does not exist. |
@@ -1456,10 +1503,16 @@ public func unregister(): Unit
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let netCon: NetConnection = createNetConnection()
-netCon.register()
-netCon.unregister()
+try {
+    let netCon: NetConnection = createNetConnection()
+    netCon.register()
+    netCon.unregister()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```## class NetConnectionPropertyInfo
 
 ```cangjie
@@ -1473,7 +1526,7 @@ public class NetConnectionPropertyInfo {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var connectionProperties
 
@@ -1485,11 +1538,11 @@ public var connectionProperties: ConnectionProperties
 
 **Type:** [ConnectionProperties](#class-connectionproperties)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var netHandle
 
@@ -1501,11 +1554,11 @@ public var netHandle: NetHandle
 
 **Type:** [NetHandle](#class-nethandle)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class NetHandle
 
@@ -1515,11 +1568,11 @@ public class NetHandle {
 }
 ```
 
-**Description:** Handle for data networks. A NetHandle object must be obtained before calling NetHandle methods.
+**Description:** Handle for data networks. A NetHandle object must be obtained before calling its methods.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var netId
 
@@ -1531,11 +1584,11 @@ public var netId: Int32
 
 **Type:** Int32
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getAddressByName(String)
 
@@ -1549,11 +1602,11 @@ public func getAddressByName(host: String): NetAddress
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | host | String | Yes | - | Hostname to resolve. |
 
@@ -1565,12 +1618,11 @@ public func getAddressByName(host: String): NetAddress
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. See [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -1584,10 +1636,16 @@ public func getAddressByName(host: String): NetAddress
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let handle = getDefaultNet()
+try {
+    let handle = getDefaultNet()
 
-let address = handle.getAddressByName("localhost")
+    let address = handle.getAddressByName("localhost")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getAddressesByName(String)
@@ -1602,11 +1660,11 @@ public func getAddressesByName(host: String): Array<NetAddress>
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | host | String | Yes | - | Hostname to resolve. |
 
@@ -1618,12 +1676,11 @@ public func getAddressesByName(host: String): Array<NetAddress>
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. See [Network Connection Management Error Codes](./cj-errorcode-net-connection.md) and [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Parameter error. |
   | 2100001 | Invalid parameter value. |
   | 2100002 | Operation failed. Cannot connect to service. |
   | 2100003 | System internal error. |
@@ -1637,10 +1694,16 @@ public func getAddressesByName(host: String): Array<NetAddress>
 
 import ohos.base.*
 import kit.NetworkKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let handle = getDefaultNet()
+try {
+    let handle = getDefaultNet()
 
-let addresses = handle.getAddressesByName("localhost")
+    let addresses = handle.getAddressesByName("localhost")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## class NetSpecifier
@@ -1653,11 +1716,11 @@ public class NetSpecifier {
 }
 ```
 
-**Description:** Provides an instance of data network bearer capabilities.
+**Description:** Provides an instance with data network bearer capabilities.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var bearerPrivateIdentifier
 
@@ -1665,15 +1728,15 @@ public class NetSpecifier {
 public var bearerPrivateIdentifier: String
 ```
 
-**Description:** Network identifier. The identifier for Wi-Fi networks is "wifi", and for cellular networks is "slot0" (corresponding to SIM card 1).
+**Description:** Network identifier. For Wi-Fi networks, the identifier is "wifi"; for cellular networks, it's "slot0" (corresponding to SIM card 1).
 
 **Type:** String
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var netCapabilities
 
@@ -1685,11 +1748,11 @@ public var netCapabilities: NetCapabilities
 
 **Type:** [NetCapabilities](#class-netcapabilities)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(NetCapabilities, String)
 
@@ -1697,18 +1760,18 @@ public var netCapabilities: NetCapabilities
 public init(netCapabilities: NetCapabilities, bearerPrivateIdentifier!: String = "")
 ```
 
-**Description:** Provides an instance of data network bearer capabilities.
+**Description:** Provides an instance with data network bearer capabilities.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Mandatory | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | netCapabilities | [NetCapabilities](#class-netcapabilities) | Yes | - | Stores the transmission capabilities and bearer types of data networks. |
-| bearerPrivateIdentifier | String | No | "" | **Named parameter.** Network identifier. The identifier for Wi-Fi networks is "wifi", and for cellular networks is "slot0" (corresponding to SIM card 1). |
+| bearerPrivateIdentifier | String | No | "" | **Named parameter.** Network identifier. For Wi-Fi networks, the identifier is "wifi"; for cellular networks, it's "slot0" (corresponding to SIM card 1). |
 
 ## class RouteInfo
 
@@ -1726,7 +1789,7 @@ public class RouteInfo {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var destination
 
@@ -1738,11 +1801,11 @@ public var destination: LinkAddress
 
 **Type:** [LinkAddress](#class-linkaddress)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var gateway
 
@@ -1754,11 +1817,11 @@ public var gateway: NetAddress
 
 **Type:** [NetAddress](#class-netaddress)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var hasGateway
 
@@ -1770,11 +1833,11 @@ public var hasGateway: Bool
 
 **Type:** Bool
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var interfaceName
 
@@ -1786,11 +1849,11 @@ public var interfaceName: String
 
 **Type:** String
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var isDefaultRoute
 
@@ -1802,11 +1865,11 @@ public var isDefaultRoute: Bool
 
 **Type:** Bool
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum NetBearType
 
@@ -1819,11 +1882,11 @@ public enum NetBearType {
 }
 ```
 
-**Description:** Network type.
+**Description:** Network types.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BearerCellular
 
@@ -1835,7 +1898,7 @@ BearerCellular
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BearerEthernet
 
@@ -1847,7 +1910,7 @@ BearerEthernet
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BearerWifi
 
@@ -1859,7 +1922,7 @@ BearerWifi
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Since:** 21## enum NetCap
+**Since:** 22## enum NetCap
 
 ```cangjie
 public enum NetCap {
@@ -1876,7 +1939,7 @@ public enum NetCap {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetCapabilityInternet
 
@@ -1884,11 +1947,11 @@ public enum NetCap {
 NetCapabilityInternet
 ```
 
-**Function:** Indicates that the network should have Internet access capability, which is set by the network provider.
+**Function:** Indicates that the network should have the capability to access the Internet, which is set by the network provider.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetCapabilityMms
 
@@ -1896,11 +1959,11 @@ NetCapabilityInternet
 NetCapabilityMms
 ```
 
-**Function:** Indicates that the network can access the carrier's MMSC (Multimedia Message Service) to send and receive MMS messages.
+**Function:** Indicates that the network can access the carrier's MMSC (Multimedia Message Service) to send and receive MMS.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetCapabilityNotMetered
 
@@ -1912,7 +1975,7 @@ NetCapabilityNotMetered
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetCapabilityNotVpn
 
@@ -1920,11 +1983,11 @@ NetCapabilityNotMetered
 NetCapabilityNotVpn
 ```
 
-**Function:** Indicates that the network does not use VPN (Virtual Private Network).
+**Function:** Indicates that the network does not use a VPN (Virtual Private Network).
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetCapabilityValidated
 
@@ -1932,11 +1995,11 @@ NetCapabilityNotVpn
 NetCapabilityValidated
 ```
 
-**Function:** Indicates that the network's Internet access capability has been successfully validated by the network management module, which is set by the network management module.
+**Function:** Indicates that the network's capability to access the Internet has been successfully validated by the network management module, which is set by the network management module.
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ## enum NetConnectionEvent
 
@@ -1956,7 +2019,7 @@ public enum NetConnectionEvent <: Equatable<NetConnectionEvent> {
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1972,7 +2035,7 @@ NetAvailable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetBlockStatusChange
 
@@ -1984,7 +2047,7 @@ NetBlockStatusChange
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetCapabilitiesChange
 
@@ -1996,7 +2059,7 @@ NetCapabilitiesChange
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetConnectionPropertiesChange
 
@@ -2008,7 +2071,7 @@ NetConnectionPropertiesChange
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetLost
 
@@ -2020,7 +2083,7 @@ NetLost
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### NetUnavailable
 
@@ -2032,7 +2095,7 @@ NetUnavailable
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### func !=(NetConnectionEvent)
 
@@ -2044,7 +2107,7 @@ public operator func !=(other: NetConnectionEvent): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[NetConnectionEvent](#enum-netconnectionevent)|Yes|-|Another event enumeration value.|
 
@@ -2064,11 +2127,11 @@ public operator func ==(other: NetConnectionEvent): Bool
 
 **System Capability:** SystemCapability.Communication.NetManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[NetConnectionEvent](#enum-netconnectionevent)|Yes|-|Another event enumeration value.|
 

@@ -1,63 +1,12 @@
 # ohos.window (Window)
 
-ohos.window provides fundamental capabilities for window management, including creating and destroying the current window, setting various properties, and managing scheduling between windows.
+Provides window-related functionalities.
 
-This module offers the following common window-related functionalities:
-
-- [Window](#class-window): The current window instance, which is the basic unit managed by the window manager.
-
-> **Note:**
->
-> ohos.window only supports pure Cangjie scenarios and cannot be used for mixed development scenarios involving ArkTS and Cangjie.
-
-## Importing the Module
+## Import Module
 
 ```cangjie
 import kit.ArkUI.*
 ```
-
-## func createWindow(Configuration)
-
-```cangjie
-public func createWindow(config: Configuration): Window
-```
-
-**Function:** Creates a sub-window or system window.
-
-**Required Permission:** ohos.permission.SYSTEM_FLOAT_WINDOW (Required only when creating a window of type WindowType.TYPE_FLOAT)
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since Version:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| config | [Configuration](#class-configuration) | Yes | - | Parameters for creating the window. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| [Window](#class-window) | Returns the currently created window object. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are not specified; 2. Incorrect parameter types. |
-  | 1300003 | This window manager service is functioning abnormally. |
-  | 1300006 | This window context is abnormal. |
-
-- IllegalArgumentException:
-
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | The context type is not supported. Only UIAbilityContext is supported. | Illegal parameter. | Check if ctx is an object of type UIAbilityContext. |
 
 ## func findWindow(String)
 
@@ -65,31 +14,99 @@ public func createWindow(config: Configuration): Window
 public func findWindow(name: String): Window
 ```
 
-**Function:** Finds the window corresponding to the specified name.
+**Description:** Finds a window by name.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| name | String | Yes | - | Window name, which is the name in [Configuration](#class-configuration). |
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:--------|:-------------|:------------|
+| name | String | Yes | - | Window name, which corresponds to the name value in Configuration. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [Window](#class-window) | The currently found window object. |
+|:-----|:-----------|
+| [Window](#class-window) | Returns the found window. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
+  | Error Code | Description |
+  |:----------|:-----------|
   | 1300002 | This window state is abnormal. |
+
+## func createWindow(Configuration)
+
+```cangjie
+public func createWindow(config: Configuration): Window
+```
+
+**Description:** Creates a window with specific configurations. When config.windowType == TypeFloat, the "ohos.permission.SYSTEM_FLOAT_WINDOW" permission is required.
+
+**Required Permission:** ohos.permission.SYSTEM_FLOAT_WINDOW
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:--------|:-------------|:------------|
+| config | [Configuration](#class-configuration) | Yes | - | Window creation parameters. |
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:-----------|
+| [Window](#class-window) | Returns the created window. |
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:-----------|
+  | 201 | Permission verification failed. The application does not have the permission required to call the API. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types. |
+  | 1300003 | This window manager service works abnormally. |
+  | 1300006 | This window context is abnormal. |
+
+## func shiftAppWindowFocus(Int32, Int32)
+
+```cangjie
+public func shiftAppWindowFocus(sourceWindowID: Int32, targetWindowID: Int32): Unit
+```
+
+**Description:** Transfers window focus from the source window to the target window within the same application. Window focus can be transferred between the main window and sub-windows.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:--------|:-------------|:------------|
+| sourceWindowID | Int32 | Yes | - | Source window ID for focus transfer. |
+| targetWindowID | Int32 | Yes | - | Target window ID for focus transfer. |
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:-----------|
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types. |
+  | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+  | 1300002 | This window state is abnormal. |
+  | 1300003 | This window manager service works abnormally. |
+  | 1300004 | Unauthorized operation. |
 
 ## func getLastWindow(BaseContext)
 
@@ -97,107 +114,57 @@ public func findWindow(name: String): Window
 public func getLastWindow(ctx: BaseContext): Window
 ```
 
-**Function:** Gets the topmost sub-window within the current application. If there are no application sub-windows, returns the application's main window.
+**Description:** Retrieves the top-level window of the current application. If there are no sub-windows, the main window of the application is returned.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| ctx | [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext) | Yes | - | Current application context information. |
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:--------|:-------------|:------------|
+| ctx | [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext) | Yes | - | Current application context. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [Window](#class-window) | Returns the last displayed window object within the current application. |
+|:-----|:-----------|
+| [Window](#class-window) | Returns the retrieved top-level window. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. Top window or main window is null or destroyed. |
-
-- IllegalArgumentException:
-
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | The context type is not supported. Only UIAbilityContext is supported. | Illegal parameter. | Check if ctx is an object of type UIAbilityContext. |
-
-## func shiftAppWindowFocus(Int32, Int32)
-
-```cangjie
-public func shiftAppWindowFocus(sourceWindowId: Int32, targetWindowId: Int32): Unit
-```
-
-**Function:** Transfers window focus from the source window to the target window within the same application.
-
-> **Note:**
->
-> Only supports focus transfer between the application's main window and sub-windows.
-
-**System Capability:** SystemCapability.Window.SessionManager
-
-**Since Version:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| sourceWindowId | Int32 | Yes | - | Source window ID, which must be in focus. |
-| targetWindowId | Int32 | Yes | - | Target window ID. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are not specified; 2. Incorrect parameter types. |
-  | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+  | Error Code | Description |
+  |:----------|:-----------|
   | 1300002 | This window state is abnormal. |
-  | 1300003 | This window manager service is functioning abnormally. |
-  | 1300004 | Unauthorized operation. |
+  | 1300006 | This window context is abnormal. |
 
 ## class AvoidArea
 
 ```cangjie
 public class AvoidArea {
-    public var visible: Bool
-    public var leftRect: Rect
-    public var topRect: Rect
-    public var rightRect: Rect
     public var bottomRect: Rect
+    public var leftRect: Rect
+    public var rightRect: Rect
+    public var topRect: Rect
+    public var visible: Bool
     public init(
-        visible!: Bool,
-        leftRect!: Rect,
-        topRect!: Rect,
-        rightRect!: Rect,
-        bottomRect!: Rect
+    visible!: Bool,
+    leftRect!: Rect,
+    topRect!: Rect,
+    rightRect!: Rect,
+    bottomRect!: Rect
     )
 }
 ```
 
-**Function:** The area where window content should avoid overlapping.
-
-> **Note:**
->
-> When system bars, notches, gesture areas, or soft keyboard areas overlap with window content, these areas need to be avoided. User click events cannot be responded to in these avoidance areas.
->
-> Additionally, the following constraints apply to avoidance areas:
->
-> - The non-navigation bar area in the bottom gesture area supports click and long-press event passthrough but does not support drag-in.
-> - The left and right gesture areas support click, long-press, and vertical swipe event passthrough but do not support drag-in.
-> - The navigation bar area supports long-press, click, and drag-in event responses but does not support event passthrough.
+**Description:** Avoidance area.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Since:** 22
 
 ### var bottomRect
 
@@ -205,15 +172,17 @@ public class AvoidArea {
 public var bottomRect: Rect
 ```
 
-**Function:** Represents the rectangular area at the bottom of the screen.
-
-**Type:** [Rect](#class-rect)
-
-**Read/Write Capability:** Readable and Writable
+**Description:** Rectangle at the bottom of the screen.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Type:** [Rect](#class-rect)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var leftRect
 
@@ -221,15 +190,17 @@ public var bottomRect: Rect
 public var leftRect: Rect
 ```
 
-**Function:** Represents the rectangular area on the left side of the screen.
-
-**Type:** [Rect](#class-rect)
-
-**Read/Write Capability:** Readable and Writable
+**Description:** Rectangle on the left side of the screen.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Type:** [Rect](#class-rect)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var rightRect
 
@@ -237,15 +208,17 @@ public var leftRect: Rect
 public var rightRect: Rect
 ```
 
-**Function:** Represents the rectangular area on the right side of the screen.
-
-**Type:** [Rect](#class-rect)
-
-**Read/Write Capability:** Readable and Writable
+**Description:** Rectangle on the right side of the screen.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Type:** [Rect](#class-rect)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var topRect
 
@@ -253,15 +226,17 @@ public var rightRect: Rect
 public var topRect: Rect
 ```
 
-**Function:** Represents the rectangular area at the top of the screen.
-
-**Type:** [Rect](#class-rect)
-
-**Read/Write Capability:** Readable and Writable
+**Description:** Rectangle at the top of the screen.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Type:** [Rect](#class-rect)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var visible
 
@@ -269,15 +244,17 @@ public var topRect: Rect
 public var visible: Bool
 ```
 
-**Function:** Indicates whether the avoidance area is visible.
-
-**Type:** Bool
-
-**Read/Write Capability:** Readable and Writable
+**Description:** Indicates whether the avoidance area is visible on the screen.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Type:** Bool
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### init(Bool, Rect, Rect, Rect, Rect)
 
@@ -291,46 +268,46 @@ public init(
 )
 ```
 
-**Function:** Constructs an object of type AvoidArea.
+**Description:** Constructor for AvoidArea.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| visible | Bool | Yes | - | Whether the avoidance area is visible. true indicates visible; false indicates invisible. |
-| leftRect | [Rect](#class-rect) | Yes | - | The rectangular area on the left side of the screen. |
-| topRect | [Rect](#class-rect) | Yes | - | The rectangular area at the top of the screen. |
-| rightRect | [Rect](#class-rect) | Yes | - | The rectangular area on the right side of the screen. |
-| bottomRect | [Rect](#class-rect) | Yes | - | The rectangular area at the bottom of the screen. |
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:--------|:-------------|:------------|
+| visible | Bool | Yes | - | **Named parameter.** Indicates whether the avoidance area is visible. |
+| leftRect | [Rect](#class-rect) | Yes | - | **Named parameter.** Left rectangle. |
+| topRect | [Rect](#class-rect) | Yes | - | **Named parameter.** Top rectangle. |
+| rightRect | [Rect](#class-rect) | Yes | - | **Named parameter.** Right rectangle. |
+| bottomRect | [Rect](#class-rect) | Yes | - | **Named parameter.** Bottom rectangle. |
 
 ## class Configuration
 
 ```cangjie
 public class Configuration {
-    public var name: String
-    public var windowType: WindowType
     public var ctx: BaseContext
-    public var displayId: Int64 = - 1
-    public var parentId: Int64 = - 1
+    public var displayID: Int64
+    public var name: String
+    public var parentID: Int64
+    public var windowType: WindowType
     public init(
-        name!: String,
-        windowType!: WindowType,
-        ctx!: BaseContext,
-        displayId!: Int64 = -1,
-        parentId!: Int64 = -1
+      name!: String,
+      windowType!: WindowType,
+      ctx!: BaseContext,
+      displayID!: Int64 = -1,
+      parentID!: Int64 = -1
     )
 }
 ```
 
-**Function:** Parameters for creating a sub-window or system window.
+**Description:** Parameters for creating sub-windows or system windows.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Since:** 22
 
 ### var ctx
 
@@ -338,31 +315,31 @@ public class Configuration {
 public var ctx: BaseContext
 ```
 
-**Function:** Represents the current application context information. Used for creating floating windows, modal windows, or system windows.
+**Description:** Current application context information.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext)
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+**Since:** 22
 
-**Since Version:** 21
-
-### var displayId
+### var displayID
 
 ```cangjie
-public var displayId: Int64 = - 1
+public var displayID: Int64
 ```
 
-**Function:** Sets the current physical screen ID. If not set, the default is -1.
+**Description:** Current physical screen ID.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Int64
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since Version:** 21
+**Since:** 22
 
 ### var name
 
@@ -370,31 +347,31 @@ public var displayId: Int64 = - 1
 public var name: String
 ```
 
-**Function:** Represents the window name.
+**Description:** Window name.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** String
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+**Since:** 22
 
-**Since Version:** 21
-
-### var parentId
+### var parentID
 
 ```cangjie
-public var parentId: Int64 = - 1
+public var parentID: Int64
 ```
 
-**Function:** Sets the parent window ID. If not set, the default is -1.
+**Description:** Parent window ID.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Int64
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since Version:** 21
+**Since:** 22
 
 ### var windowType
 
@@ -402,15 +379,15 @@ public var parentId: Int64 = - 1
 public var windowType: WindowType
 ```
 
-**Function:** Represents the window type.
-
-**Type:** [WindowType](#enum-windowtype)
-
-**Read/Write Capability:** Readable and Writable
+**Description:** Window type.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Type:** [WindowType](#enum-windowtype)
+
+**Read/Write:** Readable and Writable
+
+**Since:** 22
 
 ### init(String, WindowType, BaseContext, Int64, Int64)
 
@@ -419,38 +396,39 @@ public init(
     name!: String,
     windowType!: WindowType,
     ctx!: BaseContext,
-    displayId!: Int64 = -1,
-    parentId!: Int64 = -1
+    displayID!: Int64 = -1,
+    parentID!: Int64 = -1
 )
 ```
 
-**Function:** Constructs an object of type Configuration.
+**Description:** Constructor for Configuration.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| name | String | Yes | - | Window name. |
-| windowType | [WindowType](#enum-windowtype) | Yes | - | Window type. |
-| ctx | [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext) | Yes | - | Current application context information. Used for creating floating windows, modal windows, or system windows. |
-| displayId | Int64 | No | -1 | Current physical screen ID. |
-| parentId | Int64 | No | -1 | Parent window ID. |## class Rect
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:--------|:-------------|:------------|
+| name | String | Yes | - | **Named parameter.** Window name. |
+| windowType | [WindowType](#enum-windowtype) | Yes | - | **Named parameter.** Window type. |
+| ctx | [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext) | Yes | - | **Named parameter.** Current application context information. |
+| displayID | Int64 | No | -1 | **Named parameter.** Current physical screen ID. |
+| parentID | Int64 | No | -1 | **Named parameter.** Parent window ID. |## class Rect
 
 ```cangjie
+
 public class Rect {
+    public var height: UInt32
     public var left: Int32
     public var top: Int32
     public var width: UInt32
-    public var height: UInt32
     public init(
-        left!: Int32,
-        top!: Int32,
-        width!: UInt32,
-        height!: UInt32
+      left!: Int32,
+      top!: Int32,
+      width!: UInt32,
+      height!: UInt32
     )
 }
 ```
@@ -459,7 +437,7 @@ public class Rect {
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
@@ -467,15 +445,15 @@ public class Rect {
 public var height: UInt32
 ```
 
-**Function:** Sets the height of the rectangular area in px.
-
-**Type:** UInt32
-
-**Access:** Read-write
+**Function:** Height of the rectangular area in pixels.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** UInt32
+
+**Read/Write Permission:** Readable and Writable
+
+**Since:** 22
 
 ### var left
 
@@ -483,15 +461,15 @@ public var height: UInt32
 public var left: Int32
 ```
 
-**Function:** Sets the left boundary of the rectangular area in px.
-
-**Type:** Int32
-
-**Access:** Read-write
+**Function:** Left boundary of the rectangular area in pixels.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** Int32
+
+**Read/Write Permission:** Readable and Writable
+
+**Since:** 22
 
 ### var top
 
@@ -499,15 +477,15 @@ public var left: Int32
 public var top: Int32
 ```
 
-**Function:** Sets the top boundary of the rectangular area in px.
-
-**Type:** Int32
-
-**Access:** Read-write
+**Function:** Top boundary of the rectangular area in pixels.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** Int32
+
+**Read/Write Permission:** Readable and Writable
+
+**Since:** 22
 
 ### var width
 
@@ -515,15 +493,15 @@ public var top: Int32
 public var width: UInt32
 ```
 
-**Function:** Sets the width of the rectangular area in px.
-
-**Type:** UInt32
-
-**Access:** Read-write
+**Function:** Width of the rectangular area in pixels.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** UInt32
+
+**Read/Write Permission:** Readable and Writable
+
+**Since:** 22
 
 ### init(Int32, Int32, UInt32, UInt32)
 
@@ -536,30 +514,30 @@ public init(
 )
 ```
 
-**Function:** Constructs a Rect object.
+**Function:** Rect constructor.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| left | Int32 | Yes | - | Left boundary of the rectangular area in px. |
-| top | Int32 | Yes | - | Top boundary of the rectangular area in px. |
-| width | UInt32 | Yes | - | Width of the rectangular area in px. |
-| height | UInt32 | Yes | - | Height of the rectangular area in px. |
+|left|Int32|Yes|-| **Named parameter.** Left boundary of the rectangular area in pixels.|
+|top|Int32|Yes|-| **Named parameter.** Top boundary of the rectangular area in pixels.|
+|width|UInt32|Yes|-| **Named parameter.** Width of the rectangular area in pixels.|
+|height|UInt32|Yes|-| **Named parameter.** Height of the rectangular area in pixels.|
 
 ## class Size
 
 ```cangjie
 public class Size {
-    public var width: UInt32
     public var height: UInt32
+    public var width: UInt32
     public init(
-        width!: UInt32,
-        height!: UInt32
+    width!: UInt32,
+    height!: UInt32
     )
 }
 ```
@@ -568,7 +546,7 @@ public class Size {
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
@@ -576,15 +554,13 @@ public class Size {
 public var height: UInt32
 ```
 
-**Function:** Sets the window height in px.
+**Function:** Height of the window.
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Since:** 22
 
 ### var width
 
@@ -592,15 +568,13 @@ public var height: UInt32
 public var width: UInt32
 ```
 
-**Function:** Sets the window width in px.
+**Function:** Width of the window.
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Since:** 22
 
 ### init(UInt32, UInt32)
 
@@ -611,31 +585,31 @@ public init(
 )
 ```
 
-**Function:** Constructs a Size object.
+**Function:** Size constructor.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| width | UInt32 | Yes | - | Window width in px. |
-| height | UInt32 | Yes | - | Window height in px. |
+|width|UInt32|Yes|-| **Named parameter.** Window width.|
+|height|UInt32|Yes|-| **Named parameter.** Window height.|
 
 ## class SystemBarProperties
 
 ```cangjie
 public class SystemBarProperties {
-    public var statusBarColor: String = "#66000000"
-    public var isStatusBarLightIcon: Bool = false
-    public var statusBarContentColor: String = "#E5FFFFFF"
-    public var navigationBarColor: String = "#66000000"
-    public var isNavigationBarLightIcon: Bool = false
-    public var navigationBarContentColor: String = "#E5FFFFFF"
-    public var enableStatusBarAnimation: Bool = false
-    public var enableNavigationBarAnimation: Bool = false
+    public var enableNavigationBarAnimation: Bool
+    public var enableStatusBarAnimation: Bool
+    public var isNavigationBarLightIcon: Bool
+    public var isStatusBarLightIcon: Bool
+    public var navigationBarColor: String
+    public var navigationBarContentColor: String
+    public var statusBarColor: String
+    public var statusBarContentColor: String
     public init(
         statusBarColor!: String = "#66000000",
         isStatusBarLightIcon!: Bool = false,
@@ -649,139 +623,155 @@ public class SystemBarProperties {
 }
 ```
 
-**Function:** Properties of the status bar and navigation bar. Used when setting window-level status bar and navigation bar properties.
+**Function:** Properties of the status bar and navigation bar, which are not automatically updated.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var enableNavigationBarAnimation
 
 ```cangjie
-public var enableNavigationBarAnimation: Bool = false
+public var enableNavigationBarAnimation: Bool
 ```
 
-**Function:** Sets whether to enable animation effects when navigation bar properties change. true enables animation effects; false disables them.
+**Function:** Enable navigation bar animation.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Bool
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### var enableStatusBarAnimation
 
 ```cangjie
-public var enableStatusBarAnimation: Bool = false
+public var enableStatusBarAnimation: Bool
 ```
 
-**Function:** Sets whether to enable animation effects when status bar properties change. true enables animation effects; false disables them.
+**Function:** Enable status bar animation.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Bool
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### var isNavigationBarLightIcon
 
 ```cangjie
-public var isNavigationBarLightIcon: Bool = false
+public var isNavigationBarLightIcon: Bool
 ```
 
-**Function:** Sets whether navigation bar icons are highlighted. true means highlighted; false means not highlighted.
-
-**Type:** Bool
-
-**Access:** Read-write
+**Function:** Light-colored icons for the navigation bar.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** Bool
+
+**Read/Write Permission:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var isStatusBarLightIcon
 
 ```cangjie
-public var isStatusBarLightIcon: Bool = false
+public var isStatusBarLightIcon: Bool
 ```
 
-**Function:** Sets whether status bar icons are highlighted. true means highlighted; false means not highlighted.
-
-**Type:** Bool
-
-**Access:** Read-write
+**Function:** Light-colored icons for the status bar.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** Bool
+
+**Read/Write Permission:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var navigationBarColor
 
 ```cangjie
-public var navigationBarColor: String = "#66000000"
+public var navigationBarColor: String
 ```
 
-**Function:** Sets the background color of the navigation bar in hexadecimal RGB or ARGB format (case-insensitive).
-
-**Type:** String
-
-**Access:** Read-write
+**Function:** Color of the navigation bar.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** String
+
+**Read/Write Permission:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var navigationBarContentColor
 
 ```cangjie
-public var navigationBarContentColor: String = "#E5FFFFFF"
+public var navigationBarContentColor: String
 ```
 
-**Function:** Sets the text color of the navigation bar. After setting this property, the [isNavigationBarLightIcon](#var-isnavigationbarlighticon) setting becomes invalid.
-
-**Type:** String
-
-**Access:** Read-write
+**Function:** Content color of the navigation bar.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** String
+
+**Read/Write Permission:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var statusBarColor
 
 ```cangjie
-public var statusBarColor: String = "#66000000"
+public var statusBarColor: String
 ```
 
-**Function:** Sets the background color of the status bar in hexadecimal RGB or ARGB format.
-
-**Type:** String
-
-**Access:** Read-write
+**Function:** Color of the status bar.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** String
+
+**Read/Write Permission:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### var statusBarContentColor
 
 ```cangjie
-public var statusBarContentColor: String = "#E5FFFFFF"
+public var statusBarContentColor: String
 ```
 
-**Function:** Sets the text color of the status bar. After setting this property, the [isStatusBarLightIcon](#var-isstatusbarlighticon) setting becomes invalid.
-
-**Type:** String
-
-**Access:** Read-write
+**Function:** Content color of the status bar.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Type:** String
+
+**Read/Write Permission:** Readable and Writable
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### init(String, Bool, String, String, Bool, String, Bool, Bool)
 
@@ -798,47 +788,47 @@ public init(
 )
 ```
 
-**Function:** Constructs a SystemBarProperties object.
+**Function:** SystemBarProperties constructor.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| statusBarColor | String | No | "#66000000" | Background color of the status bar in hexadecimal RGB or ARGB format (case-insensitive). |
-| isStatusBarLightIcon | Bool | No | false | Whether status bar icons are highlighted. true means highlighted; false means not highlighted. |
-| statusBarContentColor | String | No | "#E5FFFFFF" | Text color of the status bar. After setting this property, the isStatusBarLightIcon setting becomes invalid. |
-| navigationBarColor | String | No | "#66000000" | Background color of the navigation bar in hexadecimal RGB or ARGB format (case-insensitive). |
-| isNavigationBarLightIcon | Bool | No | false | Whether navigation bar icons are highlighted. true means highlighted; false means not highlighted. |
-| navigationBarContentColor | String | No | "#E5FFFFFF" | Text color of the navigation bar. After setting this property, the isNavigationBarLightIcon setting becomes invalid. |
-| enableStatusBarAnimation | Bool | No | false | Whether to enable animation effects when status bar properties change. true enables animation effects; false disables them. |
-| enableNavigationBarAnimation | Bool | No | false | Whether to enable animation effects when navigation bar properties change. true enables animation effects; false disables them. |
+|statusBarColor|String|No|"#66000000"| **Named parameter.** Color of the status bar.|
+|isStatusBarLightIcon|Bool|No|false| **Named parameter.** Light-colored icons for the status bar.|
+|statusBarContentColor|String|No|"#E5FFFFFF"| **Named parameter.** Content color of the status bar.|
+|navigationBarColor|String|No|"#66000000"| **Named parameter.** Color of the navigation bar.|
+|isNavigationBarLightIcon|Bool|No|false| **Named parameter.** Light-colored icons for the navigation bar.|
+|navigationBarContentColor|String|No|"#E5FFFFFF"| **Named parameter.** Content color of the navigation bar.|
+|enableStatusBarAnimation|Bool|No|false| **Named parameter.** Enable status bar animation.|
+|enableNavigationBarAnimation|Bool|No|false| **Named parameter.** Enable navigation bar animation.|
 
 ## class TitleButtonRect
 
 ```cangjie
 public class TitleButtonRect {
+    public var height: UInt32
     public var right: Int32
     public var top: Int32
     public var width: UInt32
-    public var height: UInt32
     public init(
-        right!: Int32,
-        top!: Int32,
-        width!: UInt32,
-        height!: UInt32
+      right!: Int32,
+      top!: Int32,
+      width!: UInt32,
+      height!: UInt32
     )
 }
 ```
 
-**Function:** Rectangular area for minimize, maximize, and close buttons on the title bar. The coordinates of this area are relative to the top-right corner of the window.
+**Function:** Rectangular area for minimize, maximize, and close buttons on the title bar, with coordinates relative to the top-right corner of the window.
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
@@ -846,15 +836,15 @@ public class TitleButtonRect {
 public var height: UInt32
 ```
 
-**Function:** Sets the height of the rectangular area in vp.
+**Function:** Height of the rectangular area.
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### var right
 
@@ -862,15 +852,15 @@ public var height: UInt32
 public var right: Int32
 ```
 
-**Function:** Sets the right boundary of the rectangular area in vp.
+**Function:** Right boundary of the rectangular area.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### var top
 
@@ -878,15 +868,15 @@ public var right: Int32
 public var top: Int32
 ```
 
-**Function:** Sets the top boundary of the rectangular area in vp.
+**Function:** Top boundary of the rectangular area.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### var width
 
@@ -894,15 +884,15 @@ public var top: Int32
 public var width: UInt32
 ```
 
-**Function:** Sets the width of the rectangular area in vp.
+**Function:** Width of the rectangular area.
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, Int32, UInt32, UInt32)
 
@@ -915,34 +905,30 @@ public init(
 )
 ```
 
-**Function:** Constructs a TitleButtonRect object.
+**Function:** TitleButtonRect constructor.
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| right | Int32 | Yes | - | Right boundary of the rectangular area in vp. |
-| top | Int32 | Yes | - | Top boundary of the rectangular area in vp. |
-| width | UInt32 | Yes | - | Width of the rectangular area in vp. |
-| height | UInt32 | Yes | - | Height of the rectangular area in vp. |## class Window
+|right|Int32|Yes|-| **Named parameter.** Right boundary of the rectangular area in vp.|
+|top|Int32|Yes|-| **Named parameter.** Top boundary of the rectangular area in vp.|
+|width|UInt32|Yes|-| **Named parameter.** Width of the rectangular area in vp.|
+|height|UInt32|Yes|-| **Named parameter.** Height of the rectangular area in vp.|## class Window
 
 ```cangjie
 public class Window {}
 ```
 
-**Functionality:** The current window instance, which is the basic unit managed by the window manager.
-
-> **Note:**
->
-> In the following API examples, you must first obtain a [Window](#class-window) instance using any of the methods [getLastWindow()](#func-getlastwindowbasecontext), [createWindow()](#func-createwindowconfiguration), or [findWindow()](#func-findwindowstring). Then, call the corresponding methods through this instance.
+**Description:** Window class.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### func destroyWindow()
 
@@ -950,23 +936,19 @@ public class Window {}
 public func destroyWindow(): Unit
 ```
 
-**Functionality:** Destroys the current window.
-
-> **Note:**
->
-> Only system windows and application sub-windows are supported.
+**Description:** Destroys this window. This API only takes effect for system windows or application sub-windows.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func getWindowAvoidArea(AvoidAreaType)
 
@@ -974,38 +956,32 @@ public func destroyWindow(): Unit
 public func getWindowAvoidArea(areaType: AvoidAreaType): AvoidArea
 ```
 
-**Functionality:** Retrieves the avoidance area for the current application window content. When overlapping with system bars, notches, gesture areas, soft keyboard areas, etc., the window content needs to avoid these regions.
-
-> **Note:**
->
-> This interface is generally applicable in two scenarios:
-> 1. In the `onWindowStageCreate` method, you can call this interface to obtain the initial layout avoidance area when the application starts.
-> 2. When a sub-window within the application needs to be temporarily displayed, you can call this interface to adjust the content layout to avoid overlapping.
+**Description:** Gets the avoid area.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| areaType | [AvoidAreaType](#enum-avoidareatype) | Yes | - | Indicates the type of avoidance area. |
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|areaType|[AvoidAreaType](#enum-avoidareatype)|Yes|-|Area type.|
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| [AvoidArea](#class-avoidarea) | The avoidance area for window content. |
+|Type|Description|
+|:----|:----|
+|[AvoidArea](#class-avoidarea)|Returns the area where the window cannot be displayed.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |401|Parameter error. Possible causes:<br> 1. Mandatory parameters are left unspecified. <br>2. Incorrect parameter types. |
+  |1300002|This window state is abnormal.|
 
 ### func getWindowColorSpace()
 
@@ -1013,25 +989,25 @@ public func getWindowAvoidArea(areaType: AvoidAreaType): AvoidArea
 public func getWindowColorSpace(): ColorSpace
 ```
 
-**Functionality:** Retrieves the current window's color space mode.
+**Description:** Gets the set color space.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| [ColorSpace](#enum-colorspace) | The current color space mode. |
+|Type|Description|
+|:----|:----|
+|[ColorSpace](#enum-colorspace)|Returns the obtained color space.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func getWindowProperties()
 
@@ -1039,25 +1015,25 @@ public func getWindowColorSpace(): ColorSpace
 public func getWindowProperties(): WindowProperties
 ```
 
-**Functionality:** Retrieves the properties of the current window, returning a WindowProperties object.
+**Description:** Gets the properties of the current window.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| [WindowProperties](#class-windowproperties) | The properties of the current window. |
+|Type|Description|
+|:----|:----|
+|[WindowProperties](#class-windowproperties)|Returns the window properties.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func isWindowShowing()
 
@@ -1065,25 +1041,25 @@ public func getWindowProperties(): WindowProperties
 public func isWindowShowing(): Bool
 ```
 
-**Functionality:** Determines whether the current window is displayed.
+**Description:** Checks whether the window is displayed. A value of true indicates the window is displayed, and false indicates the opposite.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| Bool | Whether the current window is displayed. `true` indicates the window is displayed, `false` indicates it is not. |
+|Type|Description|
+|:----|:----|
+|Bool|Returns whether the window is displayed.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func isWindowSupportWideGamut()
 
@@ -1091,25 +1067,25 @@ public func isWindowShowing(): Bool
 public func isWindowSupportWideGamut(): Bool
 ```
 
-**Functionality:** Determines whether the current window supports wide color gamut mode.
+**Description:** Checks whether the window supports wide color gamut settings.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| Bool | Returns `true` if the current window supports wide color gamut mode, `false` otherwise. |
+|Type|Description|
+|:----|:----|
+|Bool|A value of true indicates support for wide color gamut color space, and false indicates the opposite.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func minimize()
 
@@ -1117,30 +1093,21 @@ public func isWindowSupportWideGamut(): Bool
 public func minimize(): Unit
 ```
 
-**Functionality:** Minimizes or hides the window, with different functionalities based on the calling object.
-
-> **Note:**
->
-> This interface provides different functionalities based on the calling object:
->
-> - When called by a main window, it minimizes the window, which can be restored from the Dock.
->
-> - When called by a sub-window, it hides the window, which cannot be restored from the Dock but can be restored using [showWindow()](#func-showwindow).
->
-> - Calling this interface on a floating window will result in error code 1300002.
+**Description:** Minimizes the main window (if the caller is the main window). The main window can be restored from the dock. For 2-in-1 devices, it can be restored by calling recover().
+Hides the sub-window (if the caller is a sub-window). Sub-windows cannot be restored from the dock. They can be made visible again by calling showWindow().
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |801|Capability not supported. Failed to call the API due to limited device capabilities.|
+  |1300002|This window state is abnormal.|
 
 ### func moveWindowTo(Int32, Int32)
 
@@ -1148,59 +1115,26 @@ public func minimize(): Unit
 public func moveWindowTo(x: Int32, y: Int32): Unit
 ```
 
-**Functionality:** Moves the window position.
-
-> **Note:**
->
-> - On 2-in-1 devices, this operation works for all window modes. On other devices, it only works in free-floating window mode (i.e., when the window mode is `WindowStatusType.Floating`), excluding Smart Multi-Window.
->
-> - On 2-in-1 devices, the window moves relative to the screen. On other devices, it moves relative to the parent window.
+**Description:** Sets the window position.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| x | Int32 | Yes | - | The x-coordinate position to move the window to, in pixels. Positive values indicate positions to the right of the x-axis origin; negative values indicate positions to the left; zero indicates the x-axis origin. |
-| y | Int32 | Yes | - | The y-coordinate position to move the window to, in pixels. Positive values indicate positions below the y-axis origin; negative values indicate positions above; zero indicates the y-axis origin. |
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|x|Int32|Yes|-|Indicates the X-coordinate of the window.|
+|y|Int32|Yes|-|Indicates the Y-coordinate of the window.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
-
-### func off(WindowCallbackType, Callback1Argument\<UInt32>)
-
-```cangjie
-public func off(callbackType: WindowCallbackType, callback: Callback1Argument<UInt32>): Unit
-```
-
-**Functionality:** Stops listening for fixed-state soft keyboard height changes.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| callbackType | [WindowCallbackType](#enum-windowcallbacktype) | Yes | - | The event to stop listening for, fixed as `WindowCallbackType.KeyboardHeightChange`, i.e., keyboard height change events. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32> | Yes | - | The callback function instance object. Returns the current keyboard height in pixels. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func off(WindowCallbackType)
 
@@ -1208,25 +1142,52 @@ public func off(callbackType: WindowCallbackType, callback: Callback1Argument<UI
 public func off(callbackType: WindowCallbackType): Unit
 ```
 
-**Functionality:** Stops listening for the specified window event.
+**Description:** Unregisters the callback for the specified event.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| callbackType | [WindowCallbackType](#enum-windowcallbacktype) | Yes | - | The event to stop listening for. Must be within the [WindowCallbackType](#enum-windowcallbacktype) enumeration. |
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|callbackType|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|Event type.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
+### func off(WindowCallbackType, Callback1Argument\<UInt32>)
+
+```cangjie
+public func off(callbackType: WindowCallbackType, callback: Callback1Argument<UInt32>): Unit
+```
+
+**Description:** Unregisters the callback for keyboardHeightChange.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+**Parameters:**
+
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|callbackType|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|The value must be KeyboardHeightChange, indicating the keyboard height change event.|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|Yes|-|Callback used to return the current keyboard height, which is an integer in px.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 ### func on(WindowCallbackType, Callback1Argument\<UInt32>)
 
@@ -1234,26 +1195,26 @@ public func off(callbackType: WindowCallbackType): Unit
 public func on(callbackType: WindowCallbackType, callback: Callback1Argument<UInt32>): Unit
 ```
 
-**Functionality:** Starts listening for fixed-state soft keyboard height changes. Notifies when the keyboard height changes if the soft keyboard is invoked by this window and overlaps with it.
+**Description:** Registers the callback for keyboardHeightChange.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| callbackType | [WindowCallbackType](#enum-windowcallbacktype) | Yes | - | The event to listen for, fixed as `WindowCallbackType.KeyboardHeightChange`, i.e., keyboard height change events. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32> | Yes | - | The callback function. Returns the current keyboard height in pixels. |
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|callbackType|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|The value must be KeyboardHeightChange, indicating the keyboard height change event.|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|Yes|-|Callback used to return the current keyboard height, which is an integer in px.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 ### func resetAspectRatio()
 
@@ -1261,24 +1222,20 @@ public func on(callbackType: WindowCallbackType, callback: Callback1Argument<UIn
 public func resetAspectRatio(): Unit
 ```
 
-**Functionality:** Resets the aspect ratio of the window content layout.
-
-> **Note:**
->
-> Only the main window can set this, and it only takes effect in free-floating window mode (i.e., when the window mode is [WindowStatusType.Floating](#enum-windowstatustype)). Calling this will clear the persistently stored ratio information.
+**Description:** Resets the aspect ratio of the window.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
-  | 1300004 | Unauthorized operation. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300004|Unauthorized operation.|
 
 ### func resize(UInt32, UInt32)
 
@@ -1286,34 +1243,26 @@ public func resetAspectRatio(): Unit
 public func resize(width: UInt32, height: UInt32): Unit
 ```
 
-**Functionality:** Resizes the current window.
-
-> **Note:**
->
-> - Application main windows and sub-windows have size limits. The default width range is [320, 1920], and the default height range is [240, 1920], in virtual pixels (vp).
->
-> - The minimum width and height of application main windows and sub-windows can be configured by the product side. The configured minimum values will take precedence.
->
-> - System windows have size limits. The width range is (0, 1920], and the height range is (0, 1920], in virtual pixels (vp). The set width and height are constrained by these rules: <br>If the set window width/height is less than the minimum limit, the minimum limit takes effect; <br>If the set window width/height exceeds the maximum limit, the maximum limit takes effect. <br>Full-screen mode windows do not support this operation.
+**Description:** Sets the window size.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| width | UInt32 | Yes | - | The target window width, in pixels. |
-| height | UInt32 | Yes | - | The target window height, in pixels. |
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|width|UInt32|Yes|-|Indicates the width of the window.|
+|height|UInt32|Yes|-|Indicates the height of the window.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func setAspectRatio(Float64)
 
@@ -1321,91 +1270,78 @@ public func resize(width: UInt32, height: UInt32): Unit
 public func setAspectRatio(ratio: Float64): Unit
 ```
 
-**Functionality:** Sets the aspect ratio of the window content layout.
-
-> **Note:**
->
-> - When resizing the window using other interfaces like `resize` or `resizeAsync`, the `ratio` constraint does not apply.
-> - Only the main window can set this, and it only takes effect in free-floating window mode (i.e., when the window mode is [WindowStatusType.Floating](#enum-windowstatustype)). The ratio parameter is persistently saved and remains effective after closing the application or restarting the device.
+**Description:** Sets the aspect ratio of the window.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| ratio | Float64 | Yes | - | The width-to-height ratio of the window content layout, excluding borders and decorations. <br>**Note:** <br>This parameter is constrained by the window's maximum and minimum size limits. The lower bound of the ratio is `minimum width / maximum height`, and the upper bound is `maximum width / minimum height`. |
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|ratio|Float64|Yes|-|The aspect ratio of the window excluding decorations.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
-  | 1300004 | Unauthorized operation. |### func setPreferredOrientation(Orientation)
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300004|Unauthorized operation.|
+
+### func setPreferredOrientation(Orientation)
 
 ```cangjie
 public func setPreferredOrientation(orientation: Orientation): Unit
 ```
 
-**Function:** Sets the display orientation property for the main window.
-
-> **Note:**
->
-> Only effective on devices that support sensor-based rotation. Calling this method on child windows has no effect.
+**Description:** Sets the preferred orientation for the main window. This does not take effect on devices that do not support sensor rotation, 2-in-1 devices, or sub-windows.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| orientation | [Orientation](#enum-orientation) | Yes | - | The display orientation property of the window. |
+|orientation|[Orientation](#enum-orientation)|Yes|-|Window orientation configuration.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-  | 1300002 | This window state is abnormal. |
-
-### func setWindowBackgroundColor(String)
+  |Error Code|Description|
+  |:----|:----|
+  |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+  |1300002|This window state is abnormal.|### func setWindowBackgroundColor(String)
 
 ```cangjie
 public func setWindowBackgroundColor(color: String): Unit
 ```
 
-**Function:** Sets the background color of the window.
-
-> **Note:**
->
-> This method must be called after `loadContent()` takes effect.
+**Function:** Sets the window background color.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| color | String | Yes | - | The background color to set, in hexadecimal RGB or ARGB format (case-insensitive). |
+| Parameter | Type   | Required | Default | Description          |
+|:---------|:-------|:--------|:--------|:---------------------|
+| color    | String | Yes      | -       | The specified color. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types. |
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowBrightness(Float32)
 
@@ -1413,29 +1349,25 @@ public func setWindowBackgroundColor(color: String): Unit
 public func setWindowBrightness(brightness: Float32): Unit
 ```
 
-**Function:** Allows the application's main window to set the screen brightness value.
-
-> **Note:**
->
-> Current screen brightness specifications: When the window sets the screen brightness, the control center cannot adjust the system screen brightness. After the window restores the default system brightness, the control center can adjust the system screen brightness.
+**Function:** Sets the window brightness.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| brightness | Float32 | Yes | - | The screen brightness value. Range: [0.0, 1.0] or -1.0. 1.0 indicates maximum brightness; -1.0 indicates default brightness. |
+| Parameter  | Type   | Required | Default | Description           |
+|:----------|:-------|:--------|:--------|:----------------------|
+| brightness | Float32 | Yes      | -       | The specified brightness value. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowColorSpace(ColorSpace)
 
@@ -1443,25 +1375,25 @@ public func setWindowBrightness(brightness: Float32): Unit
 public func setWindowColorSpace(colorSpace: ColorSpace): Unit
 ```
 
-**Function:** Sets the current window to wide color gamut mode or default color gamut mode.
+**Function:** Sets the specified color space.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| colorSpace | [ColorSpace](#enum-colorspace) | Yes | - | The color gamut mode to set. |
+| Parameter   | Type                     | Required | Default | Description           |
+|:-----------|:-------------------------|:--------|:--------|:----------------------|
+| colorSpace | [ColorSpace](#enum-colorspace) | Yes      | -       | The specified color space. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowFocusable(Bool)
 
@@ -1469,25 +1401,25 @@ public func setWindowColorSpace(colorSpace: ColorSpace): Unit
 public func setWindowFocusable(isFocusable: Bool): Unit
 ```
 
-**Function:** Sets whether the window supports switching focus from the previously focused window to this window when clicked or interacted with in other ways.
+**Function:** Sets whether the window can obtain focus.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| isFocusable | Bool | Yes | - | Whether the window supports focus switching. `true` indicates support; `false` indicates no support. |
+| Parameter    | Type | Required | Default | Description           |
+|:------------|:-----|:--------|:--------|:----------------------|
+| isFocusable | Bool | Yes      | -       | If true, the window can obtain focus; if false, it cannot. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowKeepScreenOn(Bool)
 
@@ -1495,120 +1427,51 @@ public func setWindowFocusable(isFocusable: Bool): Unit
 public func setWindowKeepScreenOn(isKeepScreenOn: Bool): Unit
 ```
 
-**Function:** Sets whether the screen remains always-on.
-
-> **Note:**
->
-> Use this method properly: Set this property to `true` only in necessary scenarios (navigation, video playback, drawing, gaming, etc.). Reset it to `false` after exiting these scenarios. Do not use this method in other scenarios (no screen interaction, audio playback, etc.). The system may restore the auto-screen-off function if it detects improper use.
+**Function:** Sets whether to keep the screen always on.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| isKeepScreenOn | Bool | Yes | - | Whether the screen remains always-on. `true` indicates always-on; `false` indicates not always-on. |
+| Parameter      | Type | Required | Default | Description           |
+|:--------------|:-----|:--------|:--------|:----------------------|
+| isKeepScreenOn | Bool | Yes      | -       | If true, the screen will stay always on; if false, it will not. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
-### func setWindowLayoutFullScreen(Bool)
+### func setWindowSystemBarEnabled(Array<SystemBarType>)
 
 ```cangjie
-public func setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit
+public func setWindowSystemBarEnabled(names: Array<SystemBarType>): Unit
 ```
 
-**Function:** Sets whether the layout of the main window or child window is immersive.
-
-> **Note:**
->
-> - When immersive layout is enabled, the layout does not avoid the status bar and navigation bar, which may cause components to overlap with them.
-> - When non-immersive layout is enabled, the layout avoids the status bar and navigation bar, preventing component overlap.
+**Function:** Sets whether to display the system bars of the main window.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| isLayoutFullScreen | Bool | Yes | - | Whether the window layout is immersive (the status bar and navigation bar are still displayed). `true` indicates immersive layout; `false` indicates non-immersive layout. |
+| Parameter | Type                              | Required | Default | Description           |
+|:---------|:----------------------------------|:--------|:--------|:----------------------|
+| names    | Array\<[SystemBarType](#enum-systembartype)> | Yes      | -       | Collection of system bar types. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
-
-### func setWindowPrivacyMode(Bool)
-
-```cangjie
-public func setWindowPrivacyMode(isPrivacyMode: Bool): Unit
-```
-
-**Function:** Sets whether the window is in privacy mode. A window in privacy mode cannot be screenshotted or recorded. This method can be used in scenarios where screenshots/recordings are prohibited.
-
-**Required Permission:** ohos.permission.PRIVACY_WINDOW
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| isPrivacyMode | Bool | Yes | - | Whether the window is in privacy mode. `true` indicates mode enabled; `false` indicates mode disabled. |
-
-**Exceptions:**
-
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
-
-### func setWindowSystemBarEnable(Array\<SystemBarType>)
-
-```cangjie
-public func setWindowSystemBarEnable(names: Array<SystemBarType>): Unit
-```
-
-**Function:** Sets the visibility mode of the three-key navigation bar, status bar, and bottom navigation bar for the main window. The status bar and bottom navigation bar are controlled by `status`, and the three-key navigation bar is controlled by `navigation`.
-
-> **Note:**
->
-> - This method does not take effect when called on 2-in-1 devices. On other devices, calling this method in split-screen mode (i.e., window mode is [WindowStatusType.SplitScreen](#enum-windowstatustype)), free-floating window mode (i.e., window mode is [WindowStatusType.Floating](#enum-windowstatustype)), or free multi-window mode (enabled by clicking the free multi-window button in the device control center) does not take effect immediately. It only takes effect when entering full-screen main window.
->
-> - The return of this method does not indicate that the display or hiding of the three-key navigation bar, status bar, and bottom navigation bar is complete. Calling this method on child windows has no effect.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| names | Array\<[SystemBarType](#enum-systembartype)> | Yes | - | Sets whether the status bar, three-key navigation bar, and bottom navigation bar are displayed in full-screen mode. For example, to display all, set this parameter to `[SystemBarType.Status, SystemBarType.Navigation]`. If not set, they are hidden by default. |
-
-**Exceptions:**
-
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowSystemBarProperties(SystemBarProperties)
 
@@ -1616,31 +1479,131 @@ public func setWindowSystemBarEnable(names: Array<SystemBarType>): Unit
 public func setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Unit
 ```
 
-**Function:** Sets the properties of the three-key navigation bar and status bar for the main window.
-
-> **Note:**
->
-> - This method does not take effect when called on 2-in-1 devices. On other devices, calling this method in split-screen mode (i.e., window mode is [WindowStatusType.SplitScreen](#enum-windowstatustype)), free-floating window mode (i.e., window mode is [WindowStatusType.Floating](#enum-windowstatustype)), or free multi-window mode (enabled by clicking the free multi-window button in the device control center) does not take effect immediately. It only takes effect when entering full-screen main window.
->
-> - Calling this method on child windows has no effect.
+**Function:** Sets the system bar properties.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| systemBarProperties | [SystemBarProperties](#class-systembarproperties) | Yes | - | The properties of the three-key navigation bar and status bar. |
+| Parameter            | Type                                   | Required | Default | Description           |
+|:--------------------|:---------------------------------------|:--------|:--------|:----------------------|
+| systemBarProperties | [SystemBarProperties](#class-systembarproperties) | Yes      | -       | The system bar properties. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
+### func setWindowLayoutFullScreen(Bool)
+
+```cangjie
+public func setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit
+```
+
+**Function:** Sets whether the main window layout or sub-window layout is immersive.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter          | Type | Required | Default | Description           |
+|:------------------|:-----|:--------|:--------|:----------------------|
+| isLayoutFullScreen | Bool | Yes      | -       | Whether the window layout is immersive. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
+### func setWindowPrivacyMode(Bool)
+
+```cangjie
+public func setWindowPrivacyMode(isPrivacyMode: Bool): Unit
+```
+
+**Function:** Sets whether it is in privacy mode.
+
+**Required Permission:** ohos.permission.PRIVACY_WINDOW
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter     | Type | Required | Default | Description           |
+|:-------------|:-----|:--------|:--------|:----------------------|
+| isPrivacyMode | Bool | Yes      | -       | If true, it is in privacy mode; if false, it is not. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
+### func setWindowSystemBarEnable(Array<SystemBarType>)
+
+```cangjie
+public func setWindowSystemBarEnable(names: Array<SystemBarType>): Unit
+```
+
+**Function:** Sets whether to display the system bars of the main window.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type                              | Required | Default | Description           |
+|:---------|:----------------------------------|:--------|:--------|:----------------------|
+| names    | Array\<[SystemBarType](#enum-systembartype)> | Yes      | -       | Collection of system bar types. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
+### func setWindowSystemBarProperties(SystemBarProperties)
+
+```cangjie
+public func setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Unit
+```
+
+**Function:** Sets the system bar properties.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter            | Type                                   | Required | Default | Description           |
+|:--------------------|:---------------------------------------|:--------|:--------|:----------------------|
+| systemBarProperties | [SystemBarProperties](#class-systembarproperties) | Yes      | -       | The system bar properties. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowTouchable(Bool)
 
@@ -1652,21 +1615,21 @@ public func setWindowTouchable(isTouchable: Bool): Unit
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| isTouchable | Bool | Yes | - | Whether the window is touchable. `true` indicates touchable; `false` indicates not touchable. |
+| Parameter    | Type | Required | Default | Description           |
+|:------------|:-----|:--------|:--------|:----------------------|
+| isTouchable | Bool | Yes      | -       | If true, the window is touchable; if false, it is not. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func showWindow()
 
@@ -1674,23 +1637,19 @@ public func setWindowTouchable(isTouchable: Bool): Unit
 public func showWindow(): Unit
 ```
 
-**Function:** Displays the current window.
-
-> **Note:**
->
-> Only supports system windows and application child windows, or bringing an already displayed application main window to the top.
+**Function:** Displays this window. This API only takes effect for system windows or application sub-windows. For the main window of an application, when the main window is already displayed, this API will move it to the top.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func snapshot()
 
@@ -1698,64 +1657,64 @@ public func showWindow(): Unit
 public func snapshot(): PixelMap
 ```
 
-**Function:** Captures a screenshot of the window, using a callback for asynchronous processing.
+**Function:** Captures a window snapshot.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap) | Returns the screenshot of the current window. |
+|:----|:------------|
+| [PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap) | Returns a Promise without a value. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ## class WindowProperties
 
 ```cangjie
 public class WindowProperties {
-    public var windowRect: Rect
-    public var drawableRect: Rect
-    public var winType: WindowType
-    public var isFullScreen: Bool
-    public var isLayoutFullScreen: Bool
-    public var focusable: Bool
-    public var touchable: Bool
     public var brightness: Float32
+    public var drawableRect: Rect
+    public var focusable: Bool
+    public var id: UInt32
+    public var isFullScreen: Bool
     public var isKeepScreenOn: Bool
+    public var isLayoutFullScreen: Bool
     public var isPrivacyMode: Bool
     public var isTransparent: Bool
-    public var id: UInt32
+    public var touchable: Bool
+    public var winType: WindowType
+    public var windowRect: Rect
     public init(
-        windowRect!: Rect,
-        drawableRect!: Rect,
-        winType!: WindowType,
-        isFullScreen!: Bool,
-        isLayoutFullScreen!: Bool,
-        focusable!: Bool,
-        touchable!: Bool,
-        brightness!: Float32,
-        isKeepScreenOn!: Bool,
-        isPrivacyMode!: Bool,
-        isTransparent!: Bool,
-        id!: UInt32
+      windowRect!: Rect,
+      drawableRect!: Rect,
+      winType!: WindowType,
+      isFullScreen!: Bool,
+      isLayoutFullScreen!: Bool,
+      focusable!: Bool,
+      touchable!: Bool,
+      brightness!: Float32,
+      isKeepScreenOn!: Bool,
+      isPrivacyMode!: Bool,
+      isTransparent!: Bool,
+      id!: UInt32
     )
 }
 ```
 
-**Function:** Window properties.
+**Function:** Window properties, which are not automatically updated.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### var brightness
 
@@ -1763,15 +1722,15 @@ public class WindowProperties {
 public var brightness: Float32
 ```
 
-**Function:** Indicates the screen brightness. The settable range is [0.0, 1.0], where 1.0 indicates maximum brightness. If the window has no brightness set, it follows the system brightness, and the obtained value is -1.
+**Function:** The brightness value of the window.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Float32
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Initial Version:** 22
 
 ### var drawableRect
 
@@ -1779,15 +1738,15 @@ public var brightness: Float32
 public var drawableRect: Rect
 ```
 
-**Function:** Indicates the drawable area size within the window, where the left and top boundaries are relative to the window.
+**Function:** The position and size of the drawable area relative to the window.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** [Rect](#class-rect)
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Initial Version:** 22
 
 ### var focusable
 
@@ -1795,15 +1754,15 @@ public var drawableRect: Rect
 public var focusable: Bool
 ```
 
-**Function:** Indicates whether the window is focusable. Initial value is `true`. `true` indicates focusable; `false` indicates not focusable.
+**Function:** Whether the window can obtain focus. The default value is true.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Bool
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Initial Version:** 22
 
 ### var id
 
@@ -1811,15 +1770,15 @@ public var focusable: Bool
 public var id: UInt32
 ```
 
-**Function:** Indicates the window ID. Initial value is 0.
+**Function:** The window ID.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** UInt32
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Initial Version:** 22
 
 ### var isFullScreen
 
@@ -1827,15 +1786,15 @@ public var id: UInt32
 public var isFullScreen: Bool
 ```
 
-**Function:** Indicates whether the window is in full-screen mode. Initial value is `false`. `true` indicates full-screen; `false` indicates not full-screen.
+**Function:** Whether the window is displayed in full-screen mode. The default value is false.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Bool
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Initial Version:** 22
 
 ### var isKeepScreenOn
 
@@ -1843,30 +1802,143 @@ public var isFullScreen: Bool
 public var isKeepScreenOn: Bool
 ```
 
-**Function:** Indicates whether the screen remains always-on. Initial value is `false`. `true` indicates always-on; `false` indicates not always-on.
+**Function:** Whether to keep the screen always on.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Type:** Bool
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+**Initial Version:** 22
 
 ### var isLayoutFullScreen
 
 ```cangjie
-public var isLayoutFullScreen:## class WindowStage
+public var isLayoutFullScreen: Bool
+```
+
+**Function:** Whether the window layout is in full-screen mode (whether the window is immersive). The default value is false.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Type:** Bool
+
+**Read/Write:** Readable and Writable
+
+**Initial Version:** 22
+
+### var isPrivacyMode
+
+```cangjie
+public var isPrivacyMode: Bool
+```
+
+**Function:** Whether it is in privacy mode.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Type:** Bool
+
+**Read/Write:** Readable and Writable
+
+**Initial Version:** 22
+
+### var isTransparent
+
+```cangjie
+public var isTransparent: Bool
+```
+
+**Function:** Whether it is transparent.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Type:** Bool
+
+**Read/Write:** Readable and Writable
+
+**Initial Version:** 22
+
+### var touchable
+
+```cangjie
+public var touchable: Bool
+```
+
+**Function:** Whether the window is touchable. The default value is false.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Type:** Bool
+
+**Read/Write:** Readable and Writable
+
+**Initial Version:** 22
+
+### var winType
+
+```cangjie
+public var winType: WindowType
+```
+
+**Function:** The window type.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Type:** [WindowType](#enum-windowtype)
+
+**Read/Write:** Readable and Writable
+
+**Initial Version:** 22
+
+### var windowRect
+
+```cangjie
+public var windowRect: Rect
+```
+
+**Function:** The position and size of the window.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Type:** [Rect](#class-rect)
+
+**Read/Write:** Readable and Writable
+
+**Initial Version:** 22
+
+### init(Rect, Rect, WindowType, Bool, Bool, Bool, Bool, Float32, Bool, Bool, Bool, UInt32)
+
+```cangjie
+public init(
+    windowRect!: Rect,
+    drawableRect!: Rect,
+    winType!: WindowType,
+    isFullScreen!: Bool,
+    isLayoutFullScreen!: Bool,
+    focusable!: Bool,
+    touchable!: Bool,
+    brightness!: Float32,
+    isKeepScreenOn!: Bool,
+    isPrivacyMode!: Bool,
+    isTransparent!: Bool,
+    id!: UInt32
+)
+```
+
+**Function:** Constructor for Window```markdown
+## class WindowStage
 
 ```cangjie
 public class WindowStage {}
 ```
 
-**Description:** Window manager. Manages basic window units, i.e., Window instances.
+**Description:** Window manager. Manages basic window units, i.e., instances of [Window](#class-window).
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func createSubWindow(String)
 
@@ -1878,27 +1950,27 @@ public func createSubWindow(name: String): Window
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| name | String | Yes | - | Name of the sub-window. |
+| Parameter | Type   | Required | Default | Description          |
+|:----------|:-------|:---------|:--------|:---------------------|
+| name      | String | Yes      | -       | Name of the sub-window. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [Window](#class-window) | Returns the sub-window object under the current WindowStage. |
+| Type                | Description        |
+|:--------------------|:-------------------|
+| [Window](#class-window) | Returns the sub-window. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description                     |
+  |:-----------|:--------------------------------|
+  | 1300002    | This window state is abnormal. |
 
 ### func getMainWindow()
 
@@ -1906,25 +1978,25 @@ public func createSubWindow(name: String): Window
 public func getMainWindow(): Window
 ```
 
-**Description:** Retrieves the main window under this WindowStage instance.
+**Description:** Retrieves the main window of this window stage.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [Window](#class-window) | Returns the main window object under the current WindowStage. |
+| Type                | Description      |
+|:--------------------|:-----------------|
+| [Window](#class-window) | Returns the main window. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description                     |
+  |:-----------|:--------------------------------|
+  | 1300002    | This window state is abnormal. |
 
 ### func getSubWindow()
 
@@ -1932,25 +2004,25 @@ public func getMainWindow(): Window
 public func getSubWindow(): Array<Window>
 ```
 
-**Description:** Retrieves all sub-windows under this WindowStage instance.
+**Description:** Retrieves all sub-windows of this window stage.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Array\<[Window](#class-window)> | Returns all sub-window objects under the current WindowStage. |
+| Type                     | Description           |
+|:-------------------------|:----------------------|
+| Array\<[Window](#class-window)> | Returns all sub-windows. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Window Error Codes](./cj-errorcode-window.md).
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 1300002 | This window state is abnormal. |
+  | Error Code | Description                     |
+  |:-----------|:--------------------------------|
+  | 1300002    | This window state is abnormal. |
 
 ### func loadContent(String)
 
@@ -1958,22 +2030,24 @@ public func getSubWindow(): Array<Window>
 public func loadContent(path: String): Unit
 ```
 
-**Description:** Loads specific page content for the main window of the current WindowStage.
+**Description:** Loads page content into this window. It is recommended to call this API during UIAbility startup.  
+If called multiple times, this API will destroy the existing page content (UIContent) before loading new content. Use with caution.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| path | String | Yes | - | Path of the page content to be loaded into the window. This path must be added to the project's main_pages.json file. |
+| Parameter | Type   | Required | Default | Description               |
+|:----------|:-------|:---------|:--------|:--------------------------|
+| path      | String | Yes      | -       | Path of the page to load. |
+
 
 ## enum AvoidAreaType
 
 ```cangjie
-public enum AvoidAreaType {
+public enum AvoidAreaType <: Equatable<AvoidAreaType> {
     | TypeSystem
     | TypeCutout
     | TypeSystemGesture
@@ -1983,51 +2057,15 @@ public enum AvoidAreaType {
 }
 ```
 
-**Description:** Enumeration of types for areas that window content needs to avoid.
+**Description:** Describes types of avoidable areas.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<AvoidAreaType>
-
-### TypeCutout
-
-```cangjie
-TypeCutout
-```
-
-**Description:** Represents the notch area.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### TypeKeyboard
-
-```cangjie
-TypeKeyboard
-```
-
-**Description:** Represents the soft keyboard area.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### TypeNavigationIndicator
-
-```cangjie
-TypeNavigationIndicator
-```
-
-**Description:** Represents the navigation bar area.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+- Equatable\<[AvoidAreaType](#enum-avoidareatype)>
 
 ### TypeSystem
 
@@ -2035,11 +2073,23 @@ TypeNavigationIndicator
 TypeSystem
 ```
 
-**Description:** Represents the default system area. Generally includes the status bar and navigation bar, though definitions may vary across device systems.
+**Description:** Default system area.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
+
+### TypeCutout
+
+```cangjie
+TypeCutout
+```
+
+**Description:** Notch screen area.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### TypeSystemGesture
 
@@ -2047,51 +2097,104 @@ TypeSystem
 TypeSystemGesture
 ```
 
-**Description:** Represents the gesture area.
+**Description:** System gesture area.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func ==(AvoidAreaType)
+### TypeKeyboard
+
+```cangjie
+TypeKeyboard
+```
+
+**Description:** Keyboard area.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### TypeNavigationIndicator
+
+```cangjie
+TypeNavigationIndicator
+```
+
+**Description:** Navigation indicator area.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### operator func !=(AvoidAreaType)
+
+```cangjie
+public operator func !=(other: AvoidAreaType): Bool
+```
+
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type                     | Required | Default | Description                          |
+|:----------|:-------------------------|:---------|:--------|:-------------------------------------|
+| other     | [AvoidAreaType](#enum-avoidareatype) | Yes      | -       | Another AvoidAreaType instance to compare. |
+
+**Return Value:**
+
+| Type | Description                              |
+|:-----|:-----------------------------------------|
+| Bool | Returns `true` if the instances are not equal. |
+
+### operator func ==(AvoidAreaType)
 
 ```cangjie
 public operator func ==(other: AvoidAreaType): Bool
 ```
 
-**Description:** Determines whether two enumeration values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [AvoidAreaType](#enum-avoidareatype) | Yes | - | Another enumeration value. |
+| Parameter | Type                     | Required | Default | Description                          |
+|:----------|:-------------------------|:---------|:--------|:-------------------------------------|
+| other     | [AvoidAreaType](#enum-avoidareatype) | Yes      | -       | Another AvoidAreaType instance to compare. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two enumeration values are equal; otherwise, returns false. |
+| Type | Description                            |
+|:-----|:---------------------------------------|
+| Bool | Returns `true` if the instances are equal. |
+
 
 ## enum ColorSpace
 
 ```cangjie
-public enum ColorSpace {
+public enum ColorSpace <: Equatable<ColorSpace> {
     | Default
     | WideGamut
     | ...
 }
 ```
 
-**Description:** Color gamut mode.
+**Description:** Specifies allowed color space types.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<ColorSpace>
+- Equatable\<[ColorSpace](#enum-colorspace)>
 
 ### Default
 
@@ -2099,11 +2202,11 @@ public enum ColorSpace {
 Default
 ```
 
-**Description:** Default Srgb color gamut mode.
+**Description:** Default color space.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WideGamut
 
@@ -2111,56 +2214,65 @@ Default
 WideGamut
 ```
 
-**Description:** Wide color gamut mode.
+**Description:** Wide-gamut color space. The specific gamut depends on the screen.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(ColorSpace)
+### operator func !=(ColorSpace)
 
 ```cangjie
 public operator func !=(other: ColorSpace): Bool
 ```
 
-**Description:** Determines whether two enumeration values are not equal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [ColorSpace](#enum-colorspace) | Yes | - | Another enumeration value. |
+| Parameter | Type                   | Required | Default | Description                        |
+|:----------|:-----------------------|:---------|:--------|:-----------------------------------|
+| other     | [ColorSpace](#enum-colorspace) | Yes      | -       | Another ColorSpace instance to compare. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two enumeration values are not equal; otherwise, returns false. |
+| Type | Description                              |
+|:-----|:-----------------------------------------|
+| Bool | Returns `true` if the instances are not equal. |
 
-### func ==(ColorSpace)
+### operator func ==(ColorSpace)
 
 ```cangjie
 public operator func ==(other: ColorSpace): Bool
 ```
 
-**Description:** Determines whether two enumeration values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [ColorSpace](#enum-colorspace) | Yes | - | Another enumeration value. |
+| Parameter | Type                   | Required | Default | Description                        |
+|:----------|:-----------------------|:---------|:--------|:-----------------------------------|
+| other     | [ColorSpace](#enum-colorspace) | Yes      | -       | Another ColorSpace instance to compare. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two enumeration values are equal; otherwise, returns false. |
+| Type | Description                            |
+|:-----|:---------------------------------------|
+| Bool | Returns `true` if the instances are equal. |
+
 
 ## enum Orientation
 
 ```cangjie
-public enum Orientation {
+public enum Orientation <: Equatable<Orientation> {
     | Unspecified
     | Portrait
     | Landscape
@@ -2177,147 +2289,15 @@ public enum Orientation {
 }
 ```
 
-**Description:** Enumeration of window display orientation types.
+**Description:** Display orientation.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<Orientation>
-
-### AutoRotation
-
-```cangjie
-AutoRotation
-```
-
-**Description:** Automatically rotates with the sensor, allowing rotation to portrait, landscape, inverted portrait, and inverted landscape orientations.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### AutoRotationLandscape
-
-```cangjie
-AutoRotationLandscape
-```
-
-**Description:** Automatically rotates horizontally with the sensor, allowing rotation to landscape and inverted landscape orientations, but not to portrait or inverted portrait.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### AutoRotationLandscapeRestricted
-
-```cangjie
-AutoRotationLandscapeRestricted
-```
-
-**Description:** Automatically rotates horizontally with the sensor, allowing rotation to landscape and inverted landscape orientations, but not to portrait or inverted portrait, and is controlled by the rotation switch in the control center.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### AutoRotationPortrait
-
-```cangjie
-AutoRotationPortrait
-```
-
-**Description:** Temporarily rotates to portrait when called, then automatically rotates with the sensor, controlled by the rotation switch in the control center, with rotation direction determined by the system.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### AutoRotationPortraitRestricted
-
-```cangjie
-AutoRotationPortraitRestricted
-```
-
-**Description:** Automatically rotates vertically with the sensor, allowing rotation to portrait and inverted portrait orientations, but not to landscape or inverted landscape, and is controlled by the rotation switch in the control center.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### AutoRotationRestricted
-
-```cangjie
-AutoRotationRestricted
-```
-
-**Description:** Automatically rotates with the sensor, allowing rotation to portrait, landscape, inverted portrait, and inverted landscape orientations, and is controlled by the rotation switch in the control center.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Landscape
-
-```cangjie
-Landscape
-```
-
-**Description:** Represents landscape display mode.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### LandscapeInverted
-
-```cangjie
-LandscapeInverted
-```
-
-**Description:** Represents inverted landscape display mode.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Locked
-
-```cangjie
-Locked
-```
-
-**Description:** Represents locked mode.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Portrait
-
-```cangjie
-Portrait
-```
-
-**Description:** Represents portrait display mode.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### PortraitInverted
-
-```cangjie
-PortraitInverted
-```
-
-**Description:** Represents inverted portrait display mode.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+- Equatable\<[Orientation](#enum-orientation)>
 
 ### Unspecified
 
@@ -2325,81 +2305,210 @@ PortraitInverted
 Unspecified
 ```
 
-**Description:** Represents undefined orientation mode, determined by the system.
+**Description:** Default value. Orientation mode is not explicitly defined and is determined by the system.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(Orientation)
+### Portrait
+
+```cangjie
+Portrait
+```
+
+**Description:** Portrait display.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Landscape
+
+```cangjie
+Landscape
+```
+
+**Description:** Landscape display.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### PortraitInverted
+
+```cangjie
+PortraitInverted
+```
+
+**Description:** Inverted portrait display.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### LandscapeInverted
+
+```cangjie
+LandscapeInverted
+```
+
+**Description:** Inverted landscape display.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### AutoRotation
+
+```cangjie
+AutoRotation
+```
+
+**Description:** Follows sensor rotation, ignoring auto-rotation lock.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### AutoRotationPortrait
+
+```cangjie
+AutoRotationPortrait
+```
+
+**Description:** Follows sensor rotation, works only in portrait mode, ignoring auto-rotation lock.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### AutoRotationLandscape
+
+```cangjie
+AutoRotationLandscape
+```
+
+**Description:** Follows sensor rotation, works only in landscape mode, ignoring auto-rotation lock.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### AutoRotationRestricted
+
+```cangjie
+AutoRotationRestricted
+```
+
+**Description:** Follows sensor rotation, controlled by auto-rotation lock.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### AutoRotationPortraitRestricted
+
+```cangjie
+AutoRotationPortraitRestricted
+```
+
+**Description:** Follows sensor rotation, works only in portrait mode, controlled by auto-rotation lock.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### AutoRotationLandscapeRestricted
+
+```cangjie
+AutoRotationLandscapeRestricted
+```
+
+**Description:** Follows sensor rotation, works only in landscape mode, controlled by auto-rotation lock.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Locked
+
+```cangjie
+Locked
+```
+
+**Description:** Locked mode, maintains the same orientation as before.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### operator func !=(Orientation)
 
 ```cangjie
 public operator func !=(other: Orientation): Bool
 ```
 
-**Description:** Determines whether two enumeration values are not equal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [Orientation](#enum-orientation) | Yes | - | Another enumeration value. |
+| Parameter | Type                   | Required | Default | Description                        |
+|:----------|:-----------------------|:---------|:--------|:-----------------------------------|
+| other     | [Orientation](#enum-orientation) | Yes      | -       | Another Orientation instance to compare. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two enumeration values are not equal; otherwise, returns false. |
+| Type | Description                              |
+|:-----|:-----------------------------------------|
+| Bool | Returns `true` if the instances are not equal. |
 
-### func ==(Orientation)
+### operator func ==(Orientation)
 
 ```cangjie
 public operator func ==(other: Orientation): Bool
 ```
 
-**Description:** Determines whether two enumeration values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [Orientation](#enum-orientation) | Yes | - | Another enumeration value. |
+| Parameter | Type                   | Required | Default | Description                        |
+|:----------|:-----------------------|:---------|:--------|:-----------------------------------|
+| other     | [Orientation](#enum-orientation) | Yes      | -       | Another Orientation instance to compare. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two enumeration values are equal; otherwise, returns false. |## enum SystemBarType
+| Type | Description                            |
+|:-----|:---------------------------------------|
+| Bool | Returns `true` if the instances are equal. |
+```## enum SystemBarType
 
 ```cangjie
-public enum SystemBarType {
+public enum SystemBarType <: Equatable<SystemBarType> {
     | Status
     | Navigation
     | ...
 }
 ```
 
-**Description:** System bar type.
+**Description:** Enumeration of system bar types.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<SystemBarType>
-
-### Navigation
-
-```cangjie
-Navigation
-```
-
-**Description:** Bottom navigation bar.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+- Equatable\<[SystemBarType](#enum-systembartype)>
 
 ### Status
 
@@ -2411,52 +2520,72 @@ Status
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(SystemBarType)
+### Navigation
+
+```cangjie
+Navigation
+```
+
+**Description:** Navigation bar.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### operator func !=(SystemBarType)
 
 ```cangjie
 public operator func !=(other: SystemBarType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[SystemBarType](#enum-systembartype)|Yes|-|Another enum value.|
+|other|[SystemBarType](#enum-systembartype)|Yes|-|Another SystemBarType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Comparison result, returns true when not equal.|
 
-### func ==(SystemBarType)
+### operator func ==(SystemBarType)
 
 ```cangjie
 public operator func ==(other: SystemBarType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[SystemBarType](#enum-systembartype)|Yes|-|Another enum value.|
+|other|[SystemBarType](#enum-systembartype)|Yes|-|Another SystemBarType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Comparison result, returns true when equal.|
 
 ## enum WindowCallbackType
 
 ```cangjie
-public enum WindowCallbackType {
+public enum WindowCallbackType <: Equatable<WindowCallbackType> {
     | WindowStageEvent
     | WindowSizeChange
     | WindowAvoidAreaChange
@@ -2475,135 +2604,15 @@ public enum WindowCallbackType {
 }
 ```
 
-**Description:** Enumeration of window callback event types.
+**Description:** Enumeration of listening events.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<WindowCallbackType>
-
-### DialogTargetTouch
-
-```cangjie
-DialogTargetTouch
-```
-
-**Description:** Click or touch event on the window covered by a modal window.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### KeyboardHeightChange
-
-```cangjie
-KeyboardHeightChange
-```
-
-**Description:** Keyboard height change event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### NoInteractionDetected
-
-```cangjie
-NoInteractionDetected
-```
-
-**Description:** Event indicating no interaction detected within the specified timeout period for this window.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Screenshot
-
-```cangjie
-Screenshot
-```
-
-**Description:** Screenshot event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### SubWindowClose
-
-```cangjie
-SubWindowClose
-```
-
-**Description:** Sub-window close event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### TouchOutside
-
-```cangjie
-TouchOutside
-```
-
-**Description:** Click event outside this window's bounds.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowAvoidAreaChange
-
-```cangjie
-WindowAvoidAreaChange
-```
-
-**Description:** System avoid area change event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowEvent
-
-```cangjie
-WindowEvent
-```
-
-**Description:** Window lifecycle change event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowRectChange
-
-```cangjie
-WindowRectChange
-```
-
-**Description:** Window rectangle change event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowSizeChange
-
-```cangjie
-WindowSizeChange
-```
-
-**Description:** Window size change event.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+- Equatable\<[WindowCallbackType](#enum-windowcallbacktype)>
 
 ### WindowStageEvent
 
@@ -2611,35 +2620,59 @@ WindowSizeChange
 WindowStageEvent
 ```
 
-**Description:** WindowStage lifecycle change event.
+**Description:** Indicates window stage lifecycle change event.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### WindowStatusChange
+### WindowSizeChange
 
 ```cangjie
-WindowStatusChange
+WindowSizeChange
 ```
 
-**Description:** Window mode change event.
+**Description:** Indicates window size change event.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### WindowTitleButtonRectChange
+### WindowAvoidAreaChange
 
 ```cangjie
-WindowTitleButtonRectChange
+WindowAvoidAreaChange
 ```
 
-**Description:** Title bar button (minimize/maximize/close) rectangle area change event.
+**Description:** Indicates avoid area change event.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
+
+### KeyboardHeightChange
+
+```cangjie
+KeyboardHeightChange
+```
+
+**Description:** Indicates keyboard height change event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### TouchOutside
+
+```cangjie
+TouchOutside
+```
+
+**Description:** Indicates window outside touch event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 ### WindowVisibilityChange
 
@@ -2647,56 +2680,160 @@ WindowTitleButtonRectChange
 WindowVisibilityChange
 ```
 
-**Description:** Window visibility state change event.
+**Description:** Indicates window visibility change.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(WindowCallbackType)
+### NoInteractionDetected
+
+```cangjie
+NoInteractionDetected
+```
+
+**Description:** Indicates no interaction detected in window for a long time.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Screenshot
+
+```cangjie
+Screenshot
+```
+
+**Description:** Indicates screenshot event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### DialogTargetTouch
+
+```cangjie
+DialogTargetTouch
+```
+
+**Description:** Indicates target window touch event in modal window mode.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowEvent
+
+```cangjie
+WindowEvent
+```
+
+**Description:** Indicates window lifecycle change event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowStatusChange
+
+```cangjie
+WindowStatusChange
+```
+
+**Description:** Indicates window status change event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### SubWindowClose
+
+```cangjie
+SubWindowClose
+```
+
+**Description:** Indicates sub-window close event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowTitleButtonRectChange
+
+```cangjie
+WindowTitleButtonRectChange
+```
+
+**Description:** Indicates title button area change event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowRectChange
+
+```cangjie
+WindowRectChange
+```
+
+**Description:** Indicates window rectangle change event.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### operator func !=(WindowCallbackType)
 
 ```cangjie
 public operator func !=(other: WindowCallbackType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|Another enum value.|
+|other|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|Another WindowCallbackType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Comparison result, returns true when not equal.|
 
-### func ==(WindowCallbackType)
+### operator func ==(WindowCallbackType)
 
 ```cangjie
 public operator func ==(other: WindowCallbackType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|Another enum value.|
+|other|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|Another WindowCallbackType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Comparison result, returns true when equal.|
 
 ## enum WindowEventType
 
 ```cangjie
-public enum WindowEventType {
+public enum WindowEventType <: Equatable<WindowEventType> {
     | WindowShown
     | WindowActive
     | WindowInactive
@@ -2706,63 +2843,15 @@ public enum WindowEventType {
 }
 ```
 
-**Description:** Window lifecycle events.
+**Description:** Enumeration of window callback event types.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<WindowEventType>
-
-### WindowActive
-
-```cangjie
-WindowActive
-```
-
-**Description:** Focused state.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowDestroyed
-
-```cangjie
-WindowDestroyed
-```
-
-**Description:** Window destroyed.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowHidden
-
-```cangjie
-WindowHidden
-```
-
-**Description:** Moved to background.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### WindowInactive
-
-```cangjie
-WindowInactive
-```
-
-**Description:** Unfocused state.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+- Equatable\<[WindowEventType](#enum-windoweventtype)>
 
 ### WindowShown
 
@@ -2770,54 +2859,110 @@ WindowInactive
 WindowShown
 ```
 
-**Description:** Moved to foreground.
+**Description:** Window shown event value.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(WindowEventType)
+### WindowActive
+
+```cangjie
+WindowActive
+```
+
+**Description:** Window activated event value.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowInactive
+
+```cangjie
+WindowInactive
+```
+
+**Description:** Window deactivated event value.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowHidden
+
+```cangjie
+WindowHidden
+```
+
+**Description:** Window hidden event value.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### WindowDestroyed
+
+```cangjie
+WindowDestroyed
+```
+
+**Description:** Window destroyed event value.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+### operator func !=(WindowEventType)
 
 ```cangjie
 public operator func !=(other: WindowEventType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowEventType](#enum-windoweventtype)|Yes|-|Another enum value.|
+|other|[WindowEventType](#enum-windoweventtype)|Yes|-|Another WindowEventType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Comparison result, returns true when not equal.|
 
-### func ==(WindowEventType)
+### operator func ==(WindowEventType)
 
 ```cangjie
 public operator func ==(other: WindowEventType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowEventType](#enum-windoweventtype)|Yes|-|Another enum value.|
+|other|[WindowEventType](#enum-windoweventtype)|Yes|-|Another WindowEventType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|## enum WindowStageEventType
+|Bool|Comparison result, returns true when equal.|## enum WindowStageEventType
 
 ```cangjie
-public enum WindowStageEventType {
+public enum WindowStageEventType <: Equatable<WindowStageEventType> {
     | Shown
     | Active
     | Inactive
@@ -2828,75 +2973,15 @@ public enum WindowStageEventType {
 }
 ```
 
-**Function:** WindowStage lifecycle events.
+**Description:** Window stage callback event types.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<WindowStageEventType>
-
-### Active
-
-```cangjie
-Active
-```
-
-**Function:** Focused state, such as when an application window handles click events or after application startup.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Hidden
-
-```cangjie
-Hidden
-```
-
-**Function:** Background state, such as when an application is swiped up to exit or when its window is closed.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Inactive
-
-```cangjie
-Inactive
-```
-
-**Function:** Unfocused state, such as when a new application is opened or another window is clicked, causing the originally focused window to lose focus.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Paused
-
-```cangjie
-Paused
-```
-
-**Function:** Foreground non-interactive state, such as when an application enters the multitasking interface after swiping up from the bottom of the screen.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
-
-### Resumed
-
-```cangjie
-Resumed
-```
-
-**Function:** Foreground interactive state, such as when an application is opened and can interact with the user.
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
-**Since:** 21
+- Equatable\<[WindowStageEventType](#enum-windowstageeventtype)>
 
 ### Shown
 
@@ -2904,56 +2989,124 @@ Resumed
 Shown
 ```
 
-**Function:** Switched to foreground, such as when clicking the application icon to launch it, whether for the first time or from the background.
+**Description:** The window stage is running in the foreground.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(WindowStageEventType)
+### Active
+
+```cangjie
+Active
+```
+
+**Description:** The window stage gains focus.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Inactive
+
+```cangjie
+Inactive
+```
+
+**Description:** The window stage loses focus.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Hidden
+
+```cangjie
+Hidden
+```
+
+**Description:** The window stage is running in the background.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Resumed
+
+```cangjie
+Resumed
+```
+
+**Description:** The window stage is interactive in the foreground.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### Paused
+
+```cangjie
+Paused
+```
+
+**Description:** The window stage is non-interactive in the foreground.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### operator func !=(WindowStageEventType)
 
 ```cangjie
 public operator func !=(other: WindowStageEventType): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowStageEventType](#enum-windowstageeventtype)|Yes|-|Another enum value.|
+|other|[WindowStageEventType](#enum-windowstageeventtype)|Yes|-|Another WindowStageEventType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+|Bool|Comparison result, returns true if not equal.|
 
-### func ==(WindowStageEventType)
+### operator func ==(WindowStageEventType)
 
 ```cangjie
 public operator func ==(other: WindowStageEventType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowStageEventType](#enum-windowstageeventtype)|Yes|-|Another enum value.|
+|other|[WindowStageEventType](#enum-windowstageeventtype)|Yes|-|Another WindowStageEventType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Comparison result, returns true if equal.|
 
 ## enum WindowStatusType
 
 ```cangjie
-public enum WindowStatusType {
+public enum WindowStatusType <: Equatable<WindowStatusType> {
     | Undefined
     | FullScreen
     | Maximize
@@ -2964,75 +3117,15 @@ public enum WindowStatusType {
 }
 ```
 
-**Function:** Window mode enumeration.
+**Description:** Describes the window status of an application.
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<WindowStatusType>
-
-### Floating
-
-```cangjie
-Floating
-```
-
-**Function:** Represents the free-floating window mode for applications.
-
-**System Capability:** SystemCapability.Window.SessionManager
-
-**Since:** 21
-
-### FullScreen
-
-```cangjie
-FullScreen
-```
-
-**Function:** Represents full-screen mode for applications.
-
-**System Capability:** SystemCapability.Window.SessionManager
-
-**Since:** 21
-
-### Maximize
-
-```cangjie
-Maximize
-```
-
-**Function:** Represents maximized window mode for applications.
-
-**System Capability:** SystemCapability.Window.SessionManager
-
-**Since:** 21
-
-### Minimize
-
-```cangjie
-Minimize
-```
-
-**Function:** Represents minimized window mode for applications.
-
-**System Capability:** SystemCapability.Window.SessionManager
-
-**Since:** 21
-
-### SplitScreen
-
-```cangjie
-SplitScreen
-```
-
-**Function:** Represents split-screen mode for applications.
-
-**System Capability:** SystemCapability.Window.SessionManager
-
-**Since:** 21
+- Equatable\<[WindowStatusType](#enum-windowstatustype)>
 
 ### Undefined
 
@@ -3040,72 +3133,141 @@ SplitScreen
 Undefined
 ```
 
-**Function:** Represents undefined window mode for applications.
+**Description:** Undefined window status.
 
 **System Capability:** SystemCapability.Window.SessionManager
 
-**Since:** 21
+**Since:** 22
 
-### func !=(WindowStatusType)
+### FullScreen
+
+```cangjie
+FullScreen
+```
+
+**Description:** Full-screen window status.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+### Maximize
+
+```cangjie
+Maximize
+```
+
+**Description:** Maximized window status.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+### Minimize
+
+```cangjie
+Minimize
+```
+
+**Description:** Minimized window status.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+### Floating
+
+```cangjie
+Floating
+```
+
+**Description:** Floating window status.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+### SplitScreen
+
+```cangjie
+SplitScreen
+```
+
+**Description:** Split-screen window status.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
+
+### operator func !=(WindowStatusType)
 
 ```cangjie
 public operator func !=(other: WindowStatusType): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowStatusType](#enum-windowstatustype)|Yes|-|Another enum value.|
+|other|[WindowStatusType](#enum-windowstatustype)|Yes|-|Another WindowStatusType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+|Bool|Comparison result, returns true if not equal.|
 
-### func ==(WindowStatusType)
+### operator func ==(WindowStatusType)
 
 ```cangjie
 public operator func ==(other: WindowStatusType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.Window.SessionManager
+
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowStatusType](#enum-windowstatustype)|Yes|-|Another enum value.|
+|other|[WindowStatusType](#enum-windowstatustype)|Yes|-|Another WindowStatusType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Comparison result, returns true if equal.|
 
 ## enum WindowType
 
 ```cangjie
-public enum WindowType {
+public enum WindowType <: Equatable<WindowType> {
     | TypeApp
+    | TypeSystemAlert
     | TypeFloat
     | TypeDialog
     | ...
 }
 ```
 
-**Function:** Window type enumeration.
+**Description:** Window types.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<WindowType>
+- Equatable\<[WindowType](#enum-windowtype)>
 
 ### TypeApp
 
@@ -3113,23 +3275,23 @@ public enum WindowType {
 TypeApp
 ```
 
-**Function:** Represents application windows.
+**Description:** Application window.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### TypeDialog
+### TypeSystemAlert
 
 ```cangjie
-TypeDialog
+TypeSystemAlert
 ```
 
-**Function:** Represents modal windows.
+**Description:** System alert window.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
 ### TypeFloat
 
@@ -3137,57 +3299,75 @@ TypeDialog
 TypeFloat
 ```
 
-**Function:** Represents floating windows.
+**Description:** Floating window. Requires "ohos.permission.SYSTEM_FLOAT_WINDOW" permission.
 
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 21
+**Since:** 22
 
-### func !=(WindowType)
+### TypeDialog
+
+```cangjie
+TypeDialog
+```
+
+**Description:** Dialog window.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
+
+### operator func !=(WindowType)
 
 ```cangjie
 public operator func !=(other: WindowType): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Inequality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowType](#enum-windowtype)|Yes|-|Another enum value.|
+|other|[WindowType](#enum-windowtype)|Yes|-|Another WindowType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+|Bool|Comparison result, returns true if not equal.|
 
-### func ==(WindowType)
+### operator func ==(WindowType)
 
 ```cangjie
 public operator func ==(other: WindowType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Equality comparison operator.
+
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[WindowType](#enum-windowtype)|Yes|-|Another enum value.|
+|other|[WindowType](#enum-windowtype)|Yes|-|Another WindowType instance to compare.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
-
-## Example Code
+|Bool|Comparison result, returns true if equal.|## Sample Code
 
 ### Example 1 (Setting Main Window as Untouchable)
 
-After setting the main window property to untouchable, clicking buttons on the page will not trigger pop-ups.
+After setting the main window property as untouchable, clicking buttons on the page will not trigger pop-ups.
 
 <!-- run -example1 -->
 
@@ -3196,9 +3376,8 @@ After setting the main window property to untouchable, clicking buttons on the p
 
 package ohos_app_cangjie_entry
 
-internal import kit.ArkUI.*
-internal import kit.AbilityKit.*
-internal import kit.ArkUI.*
+import kit.ArkUI.*
+import ohos.app.ability.ui_ability.*
 
 class MainAbility <: UIAbility {
     public init() {
@@ -3207,13 +3386,13 @@ class MainAbility <: UIAbility {
     }
 
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-        // 1. Get the main window of the application.
+        // 1. Get the application's main window
         var window: Window = windowStage.getMainWindow()
 
-        // 2. Set window properties. Example: setting the "touchable" property.
+        // 2. Set window properties. Using "touchable" property as an example
         window.setWindowTouchable(false)
 
-        // 3. Load the corresponding target page for the main window.
+        // 3. Load corresponding target page for the main window
         windowStage.loadContent("newPage")
     }
 }
@@ -3236,16 +3415,18 @@ class newPage{
         Flex(justifyContent: FlexAlign.Center ,alignItems: ItemAlign.Center) {
             Column{
                 Text("New Page")
-                Button("Untouchable").onClick{ evt
+                Button("Untouchable").onClick({ evt
                     => AlertDialogParamWithConfirm(message:"Unreachable")
-                }.margin(10.vp)
+                }).margin(10.vp)
             }.margin(10.vp)
         }
     }
 }
 ```
 
-![img1](figures/window_touchable_is_false.png)### Example 2 (Main Window Listening for Keyboard Height Change Events)
+![img1](figures/window_touchable_is_false.png)
+
+### Example 2 (Main Window Listening for Keyboard Height Change Events)
 
 <!-- run -example2 -->
 
@@ -3254,8 +3435,8 @@ class newPage{
 
 package ohos_app_cangjie_entry
 
-internal import kit.AbilityKit.*
-internal import kit.ArkUI.*
+import ohos.app.ability.ui_ability.*
+import kit.ArkUI.*
 
 class MainAbility <: UIAbility {
 
@@ -3280,7 +3461,6 @@ class MainAbility <: UIAbility {
 package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
-import kit.ArkUI.*
 import ohos.hilog.*
 import ohos.arkui.state_macro_manage.*
 import ohos.callback_invoke.*
@@ -3294,7 +3474,7 @@ class newPage{
         let windowStage: WindowStage = AppStorage.get<WindowStage>("windowStage").getOrThrow()
         let mainWindow: Window = windowStage.getMainWindow()
 
-        // Enable monitoring
+        // Enable listening
         var tmp: Unit = mainWindow.on(WindowCallbackType.KeyboardHeightChange,TestCallback(0))
     }
 
@@ -3317,13 +3497,13 @@ public class TestCallback <: Callback1Argument<UInt32>{
 
     public func invoke(err: ?BusinessException, value: UInt32): Unit {
         count++
-        // When the keyboard is raised or hidden, it triggers logging of the total keyboard height change count
+        // When raising or hiding the keyboard, logs will print the total count of keyboard height changes
         Hilog.info(0,"","KeyboardHeightChangeCount: ${this.count}")
     }
 }
 ```
 
-After running, click the text box to trigger the callback. View the effect in the logs, which will print as follows:
+After running, click the text box to trigger callbacks. Check the effect in logs, which will print as follows:
 
 ```text
 KeyboardHeightChangeCount: 1

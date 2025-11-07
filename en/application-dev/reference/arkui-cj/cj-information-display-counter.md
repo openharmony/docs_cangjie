@@ -2,9 +2,15 @@
 
 A counter component that provides corresponding increment or decrement operations.
 
-## Subcomponents
+## Import Module
 
-Can contain subcomponents.
+```cangjie
+import kit.ArkUI.*
+```
+
+## Child Components
+
+Can contain child components.
 
 ## Creating the Component
 
@@ -18,13 +24,13 @@ public init(content: () -> Unit)
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| content | ()->Unit | Yes | - | Defines the counter component and its content area. |
+| content | () -> Unit | Yes | - | Defines the counter component and its content area. |
 
 ## Common Attributes/Common Events
 
@@ -34,79 +40,79 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func enableDec(Bool)
+### func enableDec(?Bool)
 
 ```cangjie
-public func enableDec(value: Bool): This
+public func enableDec(value: ?Bool): This
 ```
 
-**Function:** Enables or disables the decrement button.
+**Function:** Sets the decrement button to be disabled or enabled.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Enables or disables the decrement button.<br>true: Button enabled.<br>false: Button disabled.<br>Initial value: true. |
+| value | ?Bool | Yes | - | Disables or enables the decrement button. Initial value: true<br>true means the button is enabled.<br>false means the button is disabled. |
 
-### func enableInc(Bool)
+### func enableInc(?Bool)
 
 ```cangjie
-public func enableInc(value: Bool): This
+public func enableInc(value: ?Bool): This
 ```
 
-**Function:** Enables or disables the increment button.
+**Function:** Sets the increment button to be disabled or enabled.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Enables or disables the increment button.<br>true: + button enabled.<br>false: + button disabled.<br>Component initial value: true. |
+| value | ?Bool | Yes | - | Disables or enables the increment button. Initial value: true<br>true means the + button is enabled.<br>false means the + button is disabled. |
 
 ## Component Events
 
-### func onDec(VoidCallback)
+### func onDec(?VoidCallback)
 
 ```cangjie
-public func onDec(event: VoidCallback): This
+public func onDec(event: ?VoidCallback): This
 ```
 
 **Function:** Listens for the event triggered when the value decreases.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| event | VoidCallback | Yes | - | Callback function triggered when the Counter value decreases. |
+| event | ?[VoidCallback](./cj-common-types.md#type-voidcallback) | Yes | - | Callback function triggered when the Counter value decreases. Initial value: { => } |
 
-### func onInc(VoidCallback)
+### func onInc(?VoidCallback)
 
 ```cangjie
-public func onInc(event: VoidCallback): This
+public func onInc(event: ?VoidCallback): This
 ```
 
 **Function:** Listens for the event triggered when the value increases.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| event | VoidCallback | Yes | - | Callback function triggered when the Counter value increases. |
+| event | ?[VoidCallback](./cj-common-types.md#type-voidcallback) | Yes | - | Callback function triggered when the Counter value increases. Initial value: { => } |
 
 ## Example Code
 
@@ -126,12 +132,12 @@ class EntryView {
             Counter() {Text(this.value.toString())}
                 .margin(100.0)
                 .height(10.percent)
-                .onInc {
+                .onInc({ =>
                 this.value++
-            }
-                .onDec {
+            })
+                .onDec({ =>
                 this.value--
-            }
+            })
         }
     }
 }

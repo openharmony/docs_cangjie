@@ -5,9 +5,8 @@ This module defines common exception information that occurs during interface ca
 ## class BusinessException
 
 ```cangjie
-public open class BusinessException <: Exception {
+public class BusinessException <: Exception {
     public let code: Int32
-    public init(code: Int32, msg: String)
 }
 ```
 
@@ -35,24 +34,19 @@ public let code: Int32
 
 **Since:** 22
 
-### init(Int32, String)
+### getData<T>()
 
 ```cangjie
-public init(code: Int32, msg: String)
+public func getData<T>(): ?T
 ```
 
-**Description:** Creates an instance of the BusinessException class.
+**Description:** Additional supplementary exception information.
 
-**System Capability:** SystemCapability.Base
+**Type:** T
+
+**Access:** Read-only
 
 **Since:** 22
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|:---|:---|:---|:------|
-| code | Int32 | Yes | Error code. |
-| msg | String | Yes | Error message. |
 
 ### func toString()
 
@@ -69,61 +63,8 @@ public open func toString(): String
 **Return Value:**
 
 | Type | Description |
-|:----|:------|
+|:----|:-----------|
 | String | Error message. |
-
-## class BusinessError
-
-```cangjie
-public class BusinessError<T> <: BusinessException  {
-    public var data: T
-    public init (data: T, code: Int32, msg: String)
-}
-```
-
-**Description:** Business error class, inherits from BusinessException.
-
-**System Capability:** SystemCapability.Base
-
-**Since:** 22
-
-**Parent Type:**
-
-- BusinessException
-
-### let data
-
-```cangjie
-public var data: T
-```
-
-**Description:** Defines additional error information.
-
-**Type:** T
-
-**Access:** Read-write
-
-**Since:** 22
-
-### init(T, Int32, String)
-
-```cangjie
-public init(data: T, code: Int32, msg: String)
-```
-
-**Description:** Creates an instance of the BusinessError class.
-
-**System Capability:** SystemCapability.Base
-
-**Since:** 22
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|:---|:---|:---|:------|
-| data | T | Yes | Additional information |
-| code | Int32 | Yes | Error code. |
-| msg | String | Yes | Error message. |
 
 ### getClassName()
 
@@ -139,8 +80,8 @@ protected override func getClassName(): String
 
 **Return Value:**
 
-| Type | Description |
-|:-------|:------|
+| Type     | Description |
+|:--------|:-----------|
 | String | Type name. |
 
 ## type AsyncCallback

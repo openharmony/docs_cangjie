@@ -1,13 +1,13 @@
 # Frame Animation (ohos.animator)
 
-Frame animation features frame-by-frame callback capabilities, enabling developers to process properties requiring adjustment in each frame. By providing an onFrame callback to applications, frame animation allows developers to set property values in each frame of the application, thereby achieving smooth transitions in component property value changes and creating animation effects.
+Frame animation features frame-by-frame callback capabilities, enabling developers to handle properties requiring adjustment in each frame. By providing an onFrame callback to applications, frame animation allows developers to set property values in every frame of the application, thereby achieving smooth transitions of component property values and creating animation effects.
 
-Compared to property animation, frame animation enables developers to perceive animation progress in real-time and adjust UI values instantly, offering advantages in immediate event response and pausability. However, it performs slightly worse than property animation in terms of performance. When property animation can meet requirements, it is recommended to prioritize using property animation interfaces. For property animation interfaces, refer to [Implementing Property Animation](cj-attribute-animation-apis.md).
+Compared to property animation, frame animation enables developers to perceive animation progress in real-time and adjust UI values instantly, offering advantages such as immediate event response and pausability. However, it performs slightly worse than property animation in terms of performance. When property animation meets the requirements, it is recommended to prioritize using property animation interfaces. For property animation interfaces, refer to [Implementing Property Animation](cj-attribute-animation-apis.md).
 
 | Name | Implementation | Event Response | Pausable | Performance |
 |:---|:---|:---|:---|:---|
-| Frame Animation (ohos.animator) | Developers can modify UI-side property values frame-by-frame, with real-time UI-side property updates | Real-time response | Yes | Poor |
-| Property Animation | UI-side only calculates the final animation state; the animation process involves changing rendered values while the UI-side remains in the final animation state, unaware of real-time rendered values | Responds based on final state | No | Good |
+| Frame Animation (ohos.animator) | Developers can modify UI-side property values frame-by-frame, with real-time updates to UI properties | Real-time response | Yes | Poor |
+| Property Animation | UI-side only calculates the final animation state. The animation process involves changing rendered values, while the UI-side remains in the final animation state and does not perceive real-time rendered values | Responds based on final state | No | Good |
 
 As shown in the diagram, frame animation responds in real-time during the animation process, while property animation responds based on the final state.
 
@@ -19,13 +19,13 @@ As shown in the diagram, frame animation responds in real-time during the animat
 
 Follow these steps to create a simple animator and print the current interpolation in each frame callback.
 
-1. Import the necessary dependencies.
+1. Import the required dependencies.
 
     ```cangjie
     import kit.ArkUI.*
     ```
 
-2. Create the object to execute the animation.
+2. Create an object to execute the animation.
 
     ```cangjie
     // Create initial parameters for the animation
@@ -41,9 +41,9 @@ Follow these steps to create a simple animator and print the current interpolati
       // Final value for onFrame interpolation in the last frame
       end: 400.0
     ))
-    // Set the callback for receiving frames; the onFrame callback is invoked for each frame during animation playback
+    // Set the callback for frame reception. The onFrame callback is invoked for each frame during animation playback.
     this.backAnimator?.onFrame =  {  progress: Float64 =>
-      Hilog.info(0,"", "current value is: " + progress.toString())
+      Hilog.info(0,"",current value is :" + progress.toString())
     }
     ```
 
@@ -63,7 +63,7 @@ Follow these steps to create a simple animator and print the current interpolati
 
 ## Implementing Parabolic Motion of a Ball Using Frame Animation
 
-1. Import the necessary dependencies.
+1. Import the required dependencies.
 
     ```cangjie
     import kit.ArkUI.*
@@ -110,7 +110,7 @@ Follow these steps to create a simple animator and print the current interpolati
       }
       // Method executed when the animation repeats
       this.backAnimator?.onRepeat = { =>
-          Hilog.info(0,"", "Animation repeated")
+          Hilog.info(0,"","Animation repeated")
       }
     }
     ```
@@ -140,13 +140,13 @@ Follow these steps to create a simple animator and print the current interpolati
     }
     ```
 
-Complete example follows.
+The complete example is as follows.
 
  <!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
-
+import ohos.arkui.ui_context.*
 import kit.ArkUI.*
 import std.math.*
 import ohos.arkui.state_macro_manage.*
@@ -166,7 +166,7 @@ class EntryView {
     @State
     var translateY: Int64 = 0
     protected override func onPageShow() {
-        this.backAnimator = getUIContext.createAnimator(AnimatorOptions(
+        this.backAnimator = this.getUIContext().createAnimator(AnimatorOptions(
           duration: 4000,
           easing: "ease",
           delay: 0,
@@ -189,7 +189,7 @@ class EntryView {
           this.animatorStatus = 'Completed'
         }
         this.backAnimator?.onRepeat = { =>
-            Hilog.info(0,"", "Animation repeated")
+            Hilog.info(0,"","Animation repeated")
         }
     }
     protected override func onPageHide() {
@@ -223,7 +223,7 @@ class EntryView {
           .height(45.percent)
           .align(Alignment.Start)
 
-          Text("Current animation status: " + this.animatorStatus)
+          Text("Current animation status:" + this.animatorStatus)
         }.width(100.percent).height(100.percent)
     }
 }

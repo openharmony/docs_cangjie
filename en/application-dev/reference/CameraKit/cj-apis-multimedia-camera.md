@@ -1,8 +1,8 @@
 # ohos.multimedia.camera (Camera Management)
 
-This module provides developers with a set of simple and easy-to-understand camera service interfaces, enabling them to develop camera applications. By accessing and operating camera hardware, applications can perform basic operations such as preview, photo capture, and video recording. Additionally, more advanced operations can be achieved through interface combinations, such as controlling flash and exposure time, focusing or zooming.
+This module provides developers with a set of simple and easy-to-understand camera service interfaces, enabling them to develop camera applications. Through accessing and operating camera hardware, applications can perform basic operations such as preview, photo capture, and video recording. Additionally, more advanced operations can be achieved by combining interfaces, such as controlling flashlights, exposure time, focus or zoom adjustments.
 
-## Import Module
+## Importing the Module
 
 ```cangjie
 import kit.CameraKit.*
@@ -18,10 +18,10 @@ ohos.permission.MICROPHONE
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment on the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code's first line contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## func getCameraManager(UIAbilityContext)
 
@@ -33,7 +33,7 @@ public func getCameraManager(context: UIAbilityContext): CameraManager
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ public func getCameraManager(context: UIAbilityContext): CameraManager
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -64,9 +64,15 @@ public func getCameraManager(context: UIAbilityContext): CameraManager
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface AutoExposure
@@ -86,7 +92,7 @@ public interface AutoExposure <: AutoExposureQuery {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parent Type:**
 
@@ -102,7 +108,7 @@ func getExposureMode(): ExposureMode
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -112,7 +118,7 @@ func getExposureMode(): ExposureMode
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -126,15 +132,18 @@ func getExposureMode(): ExposureMode
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-import kit.PerformanceAnalysisKit.*
-
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let photoSession = session as PhotoSession
-Hilog.info(0, "AppLogCj", photoSession.getOrThrow().getExposureMode().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let photoSession = session as PhotoSession
+    Hilog.info(0, "AppLogCj", photoSession.getOrThrow().getExposureMode().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getExposureValue()
@@ -147,7 +156,7 @@ func getExposureValue(): Float64
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -157,7 +166,7 @@ func getExposureValue(): Float64
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -171,13 +180,18 @@ func getExposureValue(): Float64
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let photoSession = session as PhotoSession
-Hilog.info(0, "AppLogCj", photoSession.getOrThrow().getExposureValue().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let photoSession = session as PhotoSession
+    Hilog.info(0, "AppLogCj", photoSession.getOrThrow().getExposureValue().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getMeteringPoint()
@@ -190,7 +204,7 @@ func getMeteringPoint(): Point
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -200,7 +214,7 @@ func getMeteringPoint(): Point
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -214,12 +228,18 @@ func getMeteringPoint(): Point
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let photoSession = session as PhotoSession
-let point = photoSession.getOrThrow().getMeteringPoint()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let photoSession = session as PhotoSession
+    let point = photoSession.getOrThrow().getMeteringPoint()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setExposureBias(Float64)
@@ -228,21 +248,21 @@ let point = photoSession.getOrThrow().getMeteringPoint()
 func setExposureBias(exposureBias: Float64): Unit
 ```
 
-**Function:** Sets exposure compensation (EV).
+**Function:** Sets exposure compensation (EV value).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| exposureBias | Float64 | Yes | - | Exposure compensation. Use [getExposureBiasRange](#func-getexposurebiasrange) to query the supported range. If the set value exceeds the supported range, it will automatically match the nearest boundary point. Exposure compensation has a step size. For example, if the step size is 0.5, setting 1.2 will result in an actual effective exposure compensation of 1.0. |
+| exposureBias | Float64 | Yes | - | Exposure compensation. Use [getExposureBiasRange](#func-getexposurebiasrange) to query the supported range. If the set value exceeds the supported range, it will automatically adjust to the nearest boundary. Exposure compensation has a step size. For example, if the step size is 0.5, setting 1.2 will result in an actual effective exposure compensation of 1.0. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -257,14 +277,20 @@ func setExposureBias(exposureBias: Float64): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let exposureBias = 1.2
-photoSession.setExposureBias(exposureBias)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let exposureBias = 1.2
+    photoSession.setExposureBias(exposureBias)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setExposureMode(ExposureMode)
@@ -277,7 +303,7 @@ func setExposureMode(aeMode: ExposureMode): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -287,7 +313,7 @@ func setExposureMode(aeMode: ExposureMode): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -302,14 +328,20 @@ func setExposureMode(aeMode: ExposureMode): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let aeMode = ExposureMode.ExposureModeAuto
-photoSession.setExposureMode(aeMode)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let aeMode = ExposureMode.ExposureModeAuto
+    photoSession.setExposureMode(aeMode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setMeteringPoint(Point)
@@ -318,11 +350,11 @@ photoSession.setExposureMode(aeMode)
 func setMeteringPoint(point: Point): Unit
 ```
 
-**Function:** Sets the center point of the exposure area.
+**Function:** Queries the center point of the exposure area.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -332,7 +364,7 @@ func setMeteringPoint(point: Point): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -347,14 +379,20 @@ func setMeteringPoint(point: Point): Unit
 
 import kit.CameraKit.*
 import kit.CameraKit.Point as ImagePoint
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let point = ImagePoint(1.0, 1.0)
-photoSession.setMeteringPoint(point)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let point = ImagePoint(1.0, 1.0)
+    photoSession.setMeteringPoint(point)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface AutoExposureQuery
@@ -366,11 +404,11 @@ public interface AutoExposureQuery {
 }
 ```
 
-**Function:** Provides device auto-exposure feature query capabilities.
+**Function:** Provides device auto-exposure feature query functionality.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### func getExposureBiasRange()
 
@@ -382,17 +420,17 @@ func getExposureBiasRange(): Array<Float64>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Array\<Float64> | Compensation range array. |
+| Array\<Float64> | Array of compensation range. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -406,13 +444,19 @@ func getExposureBiasRange(): Array<Float64>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let range = photoSession.getExposureBiasRange()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let range = photoSession.getExposureBiasRange()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func isExposureModeSupported(ExposureMode)
@@ -425,7 +469,7 @@ func isExposureModeSupported(aeMode: ExposureMode): Bool
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -441,7 +485,7 @@ func isExposureModeSupported(aeMode: ExposureMode): Bool
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -455,18 +499,21 @@ func isExposureModeSupported(aeMode: ExposureMode): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context needs to be obtained. For details, see the usage instructions in this document.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let aeMode = ExposureMode.ExposureModeAuto
-Hilog.info(0, "AppLogCj", photoSession.isExposureModeSupported(aeMode).toString())
-```
-
-## interface CameraOutput
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions above.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let aeMode = ExposureMode.ExposureModeAuto
+    Hilog.info(0, "AppLogCj", photoSession.isExposureModeSupported(aeMode).toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## interface CameraOutput
 
 ```cangjie
 public interface CameraOutput {
@@ -478,7 +525,7 @@ public interface CameraOutput {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func release()
 
@@ -490,11 +537,11 @@ func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -511,17 +558,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let previewOutput = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-previewOutput.release()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let previewOutput = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    previewOutput.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface ColorManagement
@@ -537,7 +590,7 @@ public interface ColorManagement <: ColorManagementQuery {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -553,17 +606,17 @@ func getActiveColorSpace(): ColorSpace
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| [ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace) | Currently set color space. |
+|:----|:----|
+|[ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace)| Currently set color space. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -577,13 +630,19 @@ func getActiveColorSpace(): ColorSpace
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let colorSpace = photoSession.getActiveColorSpace()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let colorSpace = photoSession.getActiveColorSpace()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setColorSpace(ColorSpace)
@@ -592,43 +651,43 @@ let colorSpace = photoSession.getActiveColorSpace()
 func setColorSpace(colorSpace: ColorSpace): Unit
 ```
 
-**Description:** Sets the color space. You can first obtain the supported ColorSpaces for the current device via [getSupportedColorSpaces](#func-getsupportedcolorspaces).
+**Description:** Sets the color space. You can first obtain the supported ColorSpaces of the current device through [getSupportedColorSpaces](#func-getsupportedcolorspaces).
 
-Applications can specify different color space parameters ([ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace)) to support P3 wide color gamut and HDR high dynamic range imaging.
+Applications can set different color space ([ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace)) parameters to support P3 wide color gamut and HDR high dynamic range imaging.
 
 When the application does not actively set the color space, the default for photo and video modes is HDR shooting effect.
 
 Setting HDR high-display effect in photo mode directly supports P3 color gamut.
 
-Applications can refer to the following tables for enabling HDR effects and setting color spaces in different modes.
+Applications can refer to the following table for enabling HDR effects and setting color spaces in different modes.
 
 Table 1: Video Mode
 
-| SDR/HDR Shooting | CameraFormat | ColorSpace |
-| :--- | :--- | :--- |
+| SDR/HRD Shooting | CameraFormat | ColorSpace |
+|:---|:---|:---|
 | SDR | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT |
-| HDR_VIVID (Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
 
 Table 2: Photo Mode
 
-| SDR/HDR Shooting | ColorSpace |
-| :--- | :--- |
+| SDR/HRD Shooting | ColorSpace |
+|:---|:---|
 | SDR | Srgb |
-| HDR_VIVID (Default) | DisplayP3 |
+| HDR_VIVID(Default) | DisplayP3 |
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| colorSpace | [ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace) | Yes | - | Color space, obtained via [getSupportedColorSpaces](#func-getsupportedcolorspaces). |
+|:---|:---|:---|:---|:---|
+| colorSpace | [ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace) | Yes | - | Color space, obtained through the [getSupportedColorSpaces](#func-getsupportedcolorspaces) interface. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -645,14 +704,20 @@ Table 2: Photo Mode
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let colorSpace = photoSession.getSupportedColorSpaces()[0]
-photoSession.setColorSpace(colorSpace)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let colorSpace = photoSession.getSupportedColorSpaces()[0]
+    photoSession.setColorSpace(colorSpace)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface ColorManagementQuery
@@ -667,7 +732,7 @@ public interface ColorManagementQuery {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getSupportedColorSpaces()
 
@@ -679,17 +744,17 @@ func getSupportedColorSpaces(): Array<ColorSpace>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Array\<[ColorSpace](../ArkGraphics2D/cj-apis-color_manager.md#enum-colorspace)> | List of supported color spaces. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -703,13 +768,19 @@ func getSupportedColorSpaces(): Array<ColorSpace>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let colorSpaces = photoSession.getSupportedColorSpaces()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let colorSpaces = photoSession.getSupportedColorSpaces()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface Flash
@@ -721,11 +792,11 @@ public interface Flash <: FlashQuery {
 }
 ```
 
-**Description:** Operations for device flash.
+**Description:** Operates the device flash.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -741,17 +812,17 @@ func getFlashMode(): FlashMode
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | [FlashMode](#enum-flashmode) | Current flash mode of the device. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -765,13 +836,19 @@ func getFlashMode(): FlashMode
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let flashMode = photoSession.getFlashMode()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let flashMode = photoSession.getFlashMode()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setFlashMode(FlashMode)
@@ -782,24 +859,24 @@ func setFlashMode(flashMode: FlashMode): Unit
 
 **Description:** Sets the flash mode.
 
-Before setting, check:
+Before setting, you need to check:
 
-1. Whether the device supports flash, using [hasFlash](#func-hasflash).
-2. Whether the device supports the specified flash mode, using [isFlashModeSupported](#func-isflashmodesupportedflashmode).
+1. Whether the device supports flash, which can be determined using the [hasFlash](#func-hasflash) method.
+2. Whether the device supports the specified flash mode, which can be determined using the [isFlashModeSupported](#func-isflashmodesupportedflashmode) method.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | flashMode | [FlashMode](#enum-flashmode) | Yes | - | Specified flash mode. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -813,14 +890,20 @@ Before setting, check:
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let flashMode = FlashMode.FlashModeAlwaysOpen
-photoSession.setFlashMode(flashMode)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let flashMode = FlashMode.FlashModeAlwaysOpen
+    photoSession.setFlashMode(flashMode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface FlashQuery
@@ -832,11 +915,11 @@ public interface FlashQuery {
 }
 ```
 
-**Description:** Provides capabilities to query device flash status and modes.
+**Description:** Provides the ability to query the device's flash status and modes.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func hasFlash()
 
@@ -848,17 +931,17 @@ func hasFlash(): Bool
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Bool | Returns true if the device supports flash, false otherwise. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -872,14 +955,19 @@ func hasFlash(): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-Hilog.info(0, "AppLogCj", photoSession.hasFlash().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    Hilog.info(0, "AppLogCj", photoSession.hasFlash().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func isFlashModeSupported(FlashMode)
@@ -892,23 +980,23 @@ func isFlashModeSupported(flashMode: FlashMode): Bool
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | flashMode | [FlashMode](#enum-flashmode) | Yes | - | Specified flash mode. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Bool | Returns true if the flash mode is supported, false otherwise. |
+|:----|:----|
+| Bool | Returns true if the specified flash mode is supported, false otherwise. |
 
 **Exceptions:**
 
-- BusinessException: Error codes as listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -922,13 +1010,19 @@ func isFlashModeSupported(flashMode: FlashMode): Bool
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-photoSession.isFlashModeSupported(FlashMode.FlashModeAlwaysOpen)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    photoSession.isFlashModeSupported(FlashMode.FlashModeAlwaysOpen)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```## interface Focus
 
 ```cangjie
@@ -945,7 +1039,7 @@ public interface Focus <: FocusQuery {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -961,21 +1055,21 @@ func getFocalLength(): Float64
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Float64|Returns the current focal length in millimeters (mm).|
+| Type    | Description |
+|:--------|:------------|
+| Float64 | Returns the current focal length in millimeters (mm). |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400103 | Session not config. |
+  | :----------- | :------------ |
+  | 7400103      | Session not config. |
 
 **Example:**
 
@@ -985,14 +1079,19 @@ func getFocalLength(): Float64
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-Hilog.info(0, "AppLogCj", photoSession.getFocalLength().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    Hilog.info(0, "AppLogCj", photoSession.getFocalLength().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getFocusMode()
@@ -1005,21 +1104,21 @@ func getFocusMode(): FocusMode
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[FocusMode](#enum-focusmode)|Current focus mode of the device.|
+| Type                     | Description |
+|:-------------------------|:------------|
+| [FocusMode](#enum-focusmode) | Current focus mode of the device. |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400103 | Session not config. |
+  | :----------- | :------------ |
+  | 7400103      | Session not config. |
 
 **Example:**
 
@@ -1029,14 +1128,19 @@ func getFocusMode(): FocusMode
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-Hilog.info(0, "AppLogCj", photoSession.getFocusMode().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    Hilog.info(0, "AppLogCj", photoSession.getFocusMode().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getFocusPoint()
@@ -1049,21 +1153,21 @@ func getFocusPoint(): Point
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|[Point](#class-point)|Current focus point.|
+| Type           | Description |
+|:---------------|:------------|
+| [Point](#class-point) | Current focus point. |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400103 | Session not config. |
+  | :----------- | :------------ |
+  | 7400103      | Session not config. |
 
 **Example:**
 
@@ -1073,13 +1177,19 @@ func getFocusPoint(): Point
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let point = photoSession.getFocusPoint()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let point = photoSession.getFocusPoint()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setFocusMode(FocusMode)
@@ -1090,25 +1200,25 @@ func setFocusMode(afMode: FocusMode): Unit
 
 **Functionality:** Sets the focus mode.
 
-Before setting, check whether the device supports the specified focus mode using [isFocusModeSupported](#func-isfocusmodesupportedfocusmode).
+Before setting, check if the device supports the specified focus mode using [isFocusModeSupported](#func-isfocusmodesupportedfocusmode).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|afMode|[FocusMode](#enum-focusmode)|Yes|-|Specified focus mode.|
+| Parameter | Type                     | Required | Default | Description |
+|:----------|:-------------------------|:---------|:--------|:------------|
+| afMode    | [FocusMode](#enum-focusmode) | Yes      | -       | Specified focus mode. |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400103 | Session not config. |
+  | :----------- | :------------ |
+  | 7400103      | Session not config. |
 
 **Example:**
 
@@ -1118,14 +1228,20 @@ Before setting, check whether the device supports the specified focus mode using
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let afMode = FocusMode.FocusModeManual
-photoSession.setFocusMode(afMode)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let afMode = FocusMode.FocusModeManual
+    photoSession.setFocusMode(afMode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setFocusPoint(Point)
@@ -1140,21 +1256,21 @@ This coordinate system is based on the horizontal device orientation with the ch
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|point|[Point](#class-point)|Yes|-|Focus point. The x and y values must be within [0.0, 1.0]. Values outside this range will be clamped to 0.0 if less than 0.0 or 1.0 if greater than 1.0.|
+| Parameter | Type           | Required | Default | Description |
+|:----------|:---------------|:---------|:--------|:------------|
+| point     | [Point](#class-point) | Yes      | -       | Focus point. x and y must be within [0.0, 1.0]. Values outside this range will be clamped to 0.0 if less than 0.0 or 1.0 if greater than 1.0. |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400103 | Session not config. |
+  | :----------- | :------------ |
+  | 7400103      | Session not config. |
 
 **Example:**
 
@@ -1165,13 +1281,19 @@ This coordinate system is based on the horizontal device orientation with the ch
 
 import kit.CameraKit.*
 import kit.CameraKit.Point as ImagePoint
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-photoSession.setFocusPoint(ImagePoint(0.5, 0.5))
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    photoSession.setFocusPoint(ImagePoint(0.5, 0.5))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface FocusQuery
@@ -1182,11 +1304,11 @@ public interface FocusQuery {
 }
 ```
 
-**Functionality:** Provides methods to check whether a specified focus mode is supported.
+**Functionality:** Provides methods to check if a specified focus mode is supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func isFocusModeSupported(FocusMode)
 
@@ -1194,31 +1316,31 @@ public interface FocusQuery {
 func isFocusModeSupported(afMode: FocusMode): Bool
 ```
 
-**Functionality:** Checks whether a focus mode is supported.
+**Functionality:** Checks if a focus mode is supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|afMode|[FocusMode](#enum-focusmode)|Yes|-|Specified focus mode.|
+| Parameter | Type                     | Required | Default | Description |
+|:----------|:-------------------------|:---------|:--------|:------------|
+| afMode    | [FocusMode](#enum-focusmode) | Yes      | -       | Specified focus mode. |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the focus mode is supported, false otherwise.|
+| Type | Description |
+|:-----|:------------|
+| Bool | Returns true if the focus mode is supported, false otherwise. |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400103 | Session not config. |
+  | :----------- | :------------ |
+  | 7400103      | Session not config. |
 
 **Example:**
 
@@ -1228,15 +1350,20 @@ func isFocusModeSupported(afMode: FocusMode): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let afMode = FocusMode.FocusModeManual
-Hilog.info(0, "AppLogCj", photoSession.isFocusModeSupported(afMode).toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let afMode = FocusMode.FocusModeManual
+    Hilog.info(0, "AppLogCj", photoSession.isFocusModeSupported(afMode).toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface Session
@@ -1257,11 +1384,11 @@ public interface Session {
 }
 ```
 
-**Functionality:** Session type that holds all resources required for a camera operation ([CameraInput](#class-camerainput), [CameraOutput](#interface-cameraoutput)) and requests camera functionalities (recording, photo capture) from the camera device.
+**Functionality:** Session type that holds all resources required for a camera operation ([CameraInput](#class-camerainput), [CameraOutput](#interface-cameraoutput)) and requests camera functions (recording, photo capture) from the camera device.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func addInput(CameraInput)
 
@@ -1273,23 +1400,23 @@ func addInput(cameraInput: CameraInput): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|cameraInput|[CameraInput](#class-camerainput)|Yes|-|CameraInput instance to be added.|
+| Parameter   | Type                     | Required | Default | Description |
+|:------------|:-------------------------|:---------|:--------|:------------|
+| cameraInput | [CameraInput](#class-camerainput) | Yes      | -       | CameraInput instance to be added. |
 
 **Exceptions:**
 
 - BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400102 | Operation not allowed. |
-  | 7400201 | Camera service fatal error. |
+  | :----------- | :------------ |
+  | 7400101      | Parameter missing or parameter type incorrect. |
+  | 7400102      | Operation not allowed. |
+  | 7400201      | Camera service fatal error. |
 
 **Example:**
 
@@ -1299,36 +1426,40 @@ func addInput(cameraInput: CameraInput): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-session.addInput(cameraInput)
-```
-
-### func addOutput(CameraOutput)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    session.addInput(cameraInput)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func addOutput(CameraOutput)
 
 ```cangjie
 func addOutput(cameraOutput: CameraOutput): Unit
 ```
 
-**Functionality:** Adds a [CameraOutput](#interface-cameraoutput) to the session.
+**Function:** Adds a [CameraOutput](#interface-cameraoutput) to the session.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|cameraOutput|[CameraOutput](#interface-cameraoutput)|Yes|-|CameraOutput instance to be added.|
+| cameraOutput | [CameraOutput](#interface-cameraoutput) | Yes | - | The CameraOutput instance to be added. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1344,30 +1475,38 @@ func addOutput(cameraOutput: CameraOutput): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(cameraDevice)[0]
-let ability = cameraManager.getSupportedOutputCapability(cameraDevice, mode)
-let cameraOutput = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-session.addOutput(cameraOutput)
-```### func beginConfig()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(cameraDevice)[0]
+    let ability = cameraManager.getSupportedOutputCapability(cameraDevice, mode)
+    let cameraOutput = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    session.addOutput(cameraOutput)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func beginConfig()
 
 ```cangjie
 func beginConfig(): Unit
 ```
 
-**Function:** Initiates a configuration session.
+**Function:** Starts session configuration.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1382,11 +1521,17 @@ func beginConfig(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-session.beginConfig()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    session.beginConfig()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func canAddInput(CameraInput)
@@ -1395,25 +1540,25 @@ session.beginConfig()
 func canAddInput(cameraInput: CameraInput): Bool
 ```
 
-**Function:** Determines whether the current `cameraInput` can be added to the session.
+**Function:** Checks whether the current cameraInput can be added to the session.
 
-This method must be called between [`beginConfig`](#func-beginconfig) and [`commitConfig`](#func-commitconfig) to take effect.
+This method takes effect only when called between [beginConfig](#func-beginconfig) and [commitConfig](#func-commitconfig).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| cameraInput | [CameraInput](#class-camerainput) | Yes | - | The `CameraInput` instance to be added. |
+| cameraInput | [CameraInput](#class-camerainput) | Yes | - | The CameraInput instance to be added. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the current `cameraInput` can be added; otherwise, returns `false`. |
+| Bool | Returns true if the current cameraInput can be added; otherwise, returns false. |
 
 **Example:**
 
@@ -1423,14 +1568,19 @@ This method must be called between [`beginConfig`](#func-beginconfig) and [`comm
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-Hilog.info(0, "AppLogCj", session.canAddInput(cameraInput).toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    Hilog.info(0, "AppLogCj", session.canAddInput(cameraInput).toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func canAddOutput(CameraOutput)
@@ -1439,25 +1589,25 @@ Hilog.info(0, "AppLogCj", session.canAddInput(cameraInput).toString())
 func canAddOutput(cameraOutput: CameraOutput): Bool
 ```
 
-**Function:** Determines whether the current `cameraOutput` can be added to the session.
+**Function:** Checks whether the current cameraOutput can be added to the session.
 
-This method must be called between [`beginConfig`](#func-beginconfig) and [`commitConfig`](#func-commitconfig) to take effect.
+This method takes effect only when called between [beginConfig](#func-beginconfig) and [commitConfig](#func-commitconfig).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| cameraOutput | [CameraOutput](#interface-cameraoutput) | Yes | - | The `CameraOutput` instance to be added. |
+| cameraOutput | [CameraOutput](#interface-cameraoutput) | Yes | - | The CameraOutput instance to be added. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Whether the current `cameraOutput` can be added to the session. |
+| Bool | Whether the current cameraOutput can be added to the session. |
 
 **Example:**
 
@@ -1467,16 +1617,21 @@ This method must be called between [`beginConfig`](#func-beginconfig) and [`comm
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(cameraDevice)[0]
-let ability = cameraManager.getSupportedOutputCapability(cameraDevice, mode)
-let cameraOutput = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-Hilog.info(0, "AppLogCj", session.canAddOutput(cameraOutput).toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(cameraDevice)[0]
+    let ability = cameraManager.getSupportedOutputCapability(cameraDevice, mode)
+    let cameraOutput = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    Hilog.info(0, "AppLogCj", session.canAddOutput(cameraOutput).toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func commitConfig()
@@ -1489,11 +1644,11 @@ func commitConfig(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1508,11 +1663,17 @@ func commitConfig(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-session.commitConfig()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    session.commitConfig()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -1525,11 +1686,11 @@ func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1543,11 +1704,17 @@ func release(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-session.release()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    session.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func removeInput(CameraInput)
@@ -1556,23 +1723,23 @@ session.release()
 func removeInput(cameraInput: CameraInput): Unit
 ```
 
-**Function:** Removes the specified `CameraInput` from the session.
+**Function:** Removes the specified CameraInput from the session.
 
-This method must be called between [`beginConfig`](#func-beginconfig) and [`commitConfig`](#func-commitconfig) to take effect.
+This method takes effect only when called between [beginConfig](#func-beginconfig) and [commitConfig](#func-commitconfig).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| cameraInput | [CameraInput](#class-camerainput) | Yes | - | The `CameraInput` instance to be removed. |
+| cameraInput | [CameraInput](#class-camerainput) | Yes | - | The CameraInput instance to be removed. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1588,13 +1755,19 @@ This method must be called between [`beginConfig`](#func-beginconfig) and [`comm
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-session.removeInput(cameraInput)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    session.removeInput(cameraInput)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func removeOutput(CameraOutput)
@@ -1603,21 +1776,21 @@ session.removeInput(cameraInput)
 func removeOutput(cameraOutput: CameraOutput): Unit
 ```
 
-**Function:** Removes the specified `CameraOutput` from the session.
+**Function:** Removes the specified CameraOutput from the session.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| cameraOutput | [CameraOutput](#interface-cameraoutput) | Yes | - | The `CameraOutput` instance to be removed. |
+| cameraOutput | [CameraOutput](#interface-cameraoutput) | Yes | - | The CameraOutput instance to be removed. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1636,18 +1809,24 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(cameraDevice)[0]
-let ability = cameraManager.getSupportedOutputCapability(cameraDevice, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let previewOutput = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-session.removeOutput(previewOutput)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(cameraDevice)[0]
+    let ability = cameraManager.getSupportedOutputCapability(cameraDevice, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let previewOutput = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    session.removeOutput(previewOutput)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func start()
@@ -1660,11 +1839,11 @@ func start(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1680,11 +1859,17 @@ func start(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-session.start()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    session.start()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func stop()
@@ -1697,11 +1882,11 @@ func stop(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1715,14 +1900,18 @@ func stop(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-session.stop()
-```
-
-## interface Stabilization
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    session.stop()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## interface Stabilization
 
 ```cangjie
 public interface Stabilization <: StabilizationQuery {
@@ -1731,11 +1920,11 @@ public interface Stabilization <: StabilizationQuery {
 }
 ```
 
-**Function:** Provides operations related to video stabilization in video recording mode.
+**Function:** Provides operations related to video stabilization during recording mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1751,17 +1940,17 @@ func getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| [VideoStabilizationMode](#enum-videostabilizationmode) | Whether video stabilization is active. |
+|[VideoStabilizationMode](#enum-videostabilizationmode)|Whether video stabilization is currently active.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1775,14 +1964,19 @@ func getActiveVideoStabilizationMode(): VideoStabilizationMode
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalVideo)
-var videoSessionOption = session as VideoSession
-let videoSession = videoSessionOption.getOrThrow()
-Hilog.info(0, "AppLogCj", videoSession.getActiveVideoStabilizationMode().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalVideo)
+    var videoSessionOption = session as VideoSession
+    let videoSession = videoSessionOption.getOrThrow()
+    Hilog.info(0, "AppLogCj", videoSession.getActiveVideoStabilizationMode().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setVideoStabilizationMode(VideoStabilizationMode)
@@ -1791,21 +1985,21 @@ Hilog.info(0, "AppLogCj", videoSession.getActiveVideoStabilizationMode().toStrin
 func setVideoStabilizationMode(mode: VideoStabilizationMode): Unit
 ```
 
-**Function:** Sets the video stabilization mode. Check whether the device supports the specified stabilization mode using the [`isVideoStabilizationModeSupported`](#func-isvideostabilizationmodesupportedvideostabilizationmode) method before setting.
+**Function:** Sets the video stabilization mode. First check whether the device supports the specified stabilization mode using the [isVideoStabilizationModeSupported](#func-isvideostabilizationmodesupportedvideostabilizationmode) method.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| mode | [VideoStabilizationMode](#enum-videostabilizationmode) | Yes | - | The video stabilization mode to set. |
+|mode|[VideoStabilizationMode](#enum-videostabilizationmode)|Yes|-|The video stabilization mode to set.|
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1819,15 +2013,23 @@ func setVideoStabilizationMode(mode: VideoStabilizationMode): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalVideo)
-var videoSessionOption = session as VideoSession
-let videoSession = videoSessionOption.getOrThrow()
-let vsMode = VideoStabilizationMode.Off
-videoSession.setVideoStabilizationMode(vsMode)
-```## interface StabilizationQuery
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalVideo)
+    var videoSessionOption = session as VideoSession
+    let videoSession = videoSessionOption.getOrThrow()
+    let vsMode = VideoStabilizationMode.Off
+    videoSession.setVideoStabilizationMode(vsMode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+## interface StabilizationQuery
 
 ```cangjie
 public interface StabilizationQuery {
@@ -1835,11 +2037,11 @@ public interface StabilizationQuery {
 }
 ```
 
-**Function:** Provides the capability to query whether the device supports the specified video stabilization mode during video recording.
+**Function:** Provides the capability to query whether the device supports specified video stabilization modes during recording mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func isVideoStabilizationModeSupported(VideoStabilizationMode)
 
@@ -1851,23 +2053,23 @@ func isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): Bool
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| vsMode | [VideoStabilizationMode](#enum-videostabilizationmode) | Yes | - | Video stabilization mode. |
+|vsMode|[VideoStabilizationMode](#enum-videostabilizationmode)|Yes|-|The video stabilization mode.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns whether the video stabilization mode is supported. `true` indicates supported, `false` indicates not supported. |
+|Bool|Returns whether the video stabilization mode is supported: true for supported, false for unsupported.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1881,14 +2083,20 @@ func isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): Bool
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalVideo)
-var videoSessionOption = session as VideoSession
-let videoSession = videoSessionOption.getOrThrow()
-let vsMode = VideoStabilizationMode.Off
-videoSession.isVideoStabilizationModeSupported(vsMode)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalVideo)
+    var videoSessionOption = session as VideoSession
+    let videoSession = videoSessionOption.getOrThrow()
+    let vsMode = VideoStabilizationMode.Off
+    videoSession.isVideoStabilizationModeSupported(vsMode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface Zoom
@@ -1906,7 +2114,7 @@ public interface Zoom <: ZoomQuery {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -1922,17 +2130,17 @@ func getZoomRatio(): Float64
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Float64 | Current zoom ratio result. |
+|Float64|The current zoom ratio result.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -1947,14 +2155,19 @@ func getZoomRatio(): Float64
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-Hilog.info(0, "AppLogCj", photoSession.getZoomRatio().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    Hilog.info(0, "AppLogCj", photoSession.getZoomRatio().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setSmoothZoom(Float64, SmoothZoomMode)
@@ -1967,14 +2180,14 @@ func setSmoothZoom(targetRatio: Float64, mode: SmoothZoomMode): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| targetRatio | Float64 | Yes | - | Target value. |
-| mode | [SmoothZoomMode](#enum-smoothzoommode) | Yes | - | Mode. |
+|targetRatio|Float64|Yes|-|Target value.|
+|mode|[SmoothZoomMode](#enum-smoothzoommode)|Yes|-|Mode.|
 
 **Example:**
 
@@ -1984,14 +2197,20 @@ func setSmoothZoom(targetRatio: Float64, mode: SmoothZoomMode): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let targetRatio: Float64 = 0.3
-photoSession.setSmoothZoom(targetRatio, SmoothZoomMode.Normal)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let targetRatio: Float64 = 0.3
+    photoSession.setSmoothZoom(targetRatio, SmoothZoomMode.Normal)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setSmoothZoom(Float64)
@@ -2004,13 +2223,13 @@ func setSmoothZoom(targetRatio: Float64): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| targetRatio | Float64 | Yes | - | Target value. |
+|targetRatio|Float64|Yes|-|Target value.|
 
 **Example:**
 
@@ -2020,14 +2239,20 @@ func setSmoothZoom(targetRatio: Float64): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let targetRatio: Float64 = 0.3
-photoSession.setSmoothZoom(targetRatio)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let targetRatio: Float64 = 0.3
+    photoSession.setSmoothZoom(targetRatio)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setZoomRatio(Float64)
@@ -2036,21 +2261,21 @@ photoSession.setSmoothZoom(targetRatio)
 func setZoomRatio(zoomRatio: Float64): Unit
 ```
 
-**Function:** Sets the zoom ratio. The maximum precision is two decimal places. If the set value exceeds the supported precision range, only the value within the precision range is retained.
+**Function:** Sets the zoom ratio. The maximum precision is two decimal places. If the set value exceeds the supported precision range, only values within the precision range will be retained.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| zoomRatio | Float64 | Yes | - | Zoom ratio. Use [getZoomRatioRange](#func-getzoomratiorange) to get the supported zoom range. If the set value exceeds the supported range, only the value within the precision range is retained. It takes some time for the zoom ratio to take effect at the underlying layer. To get the correctly set zoom ratio, wait for 1-2 frames. |
+|zoomRatio|Float64|Yes|-|The zoom ratio. Use [getZoomRatioRange](#func-getzoomratiorange) to get the supported zoom range. If the set value exceeds the supported range, only values within the precision range will be retained. It takes some time for the zoom ratio to take effect at the underlying layer. Wait for 1-2 frames to get the correctly set zoom ratio.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2064,14 +2289,20 @@ func setZoomRatio(zoomRatio: Float64): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let zoomRatio: Float64 = 0.5
-photoSession.setZoomRatio(zoomRatio)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let zoomRatio: Float64 = 0.5
+    photoSession.setZoomRatio(zoomRatio)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## interface ZoomQuery
@@ -2086,7 +2317,7 @@ public interface ZoomQuery {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getZoomRatioRange()
 
@@ -2098,17 +2329,17 @@ func getZoomRatioRange(): Array<Float64>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Array\<Float64> | Used to obtain the zoom ratio range. The returned array includes the minimum and maximum values. |
+|Array\<Float64>|Used to obtain the zoom ratio range. The returned array includes the minimum and maximum values.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -2122,18 +2353,21 @@ func getZoomRatioRange(): Array<Float64>
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let session = cameraManager.createSession(SceneMode.NormalPhoto)
-var photoSessionOption = session as PhotoSession
-let photoSession = photoSessionOption.getOrThrow()
-let zoomRatio: Float64 = 0.5
-Hilog.info(0, "AppLogCj", photoSession.getZoomRatioRange().toString())
-```
-
-## class CameraDevice
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage instructions
+    let cameraManager = getCameraManager(ctx)
+    let session = cameraManager.createSession(SceneMode.NormalPhoto)
+    var photoSessionOption = session as PhotoSession
+    let photoSession = photoSessionOption.getOrThrow()
+    let zoomRatio: Float64 = 0.5
+    Hilog.info(0, "AppLogCj", photoSession.getZoomRatioRange().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class CameraDevice
 
 ```cangjie
 public class CameraDevice {
@@ -2145,11 +2379,11 @@ public class CameraDevice {
 }
 ```
 
-**Function:** Camera device information.
+**Description:** Camera device information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let cameraId
 
@@ -2157,15 +2391,15 @@ public class CameraDevice {
 public let cameraId: String
 ```
 
-**Function:** Camera ID.
+**Description:** Camera ID.
 
 **Type:** String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let cameraOrientation
 
@@ -2173,15 +2407,15 @@ public let cameraId: String
 public let cameraOrientation: UInt32
 ```
 
-**Function:** The installation angle of the lens, which does not change with screen rotation. The value ranges from 0 to 360.
+**Description:** The installation angle of the camera lens, which does not change with screen rotation. Value range: 0-360.
 
 **Type:** UInt32
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let cameraPosition
 
@@ -2189,15 +2423,15 @@ public let cameraOrientation: UInt32
 public let cameraPosition: CameraPosition
 ```
 
-**Function:** Camera position.
+**Description:** Camera position.
 
 **Type:** [CameraPosition](#enum-cameraposition)
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let cameraType
 
@@ -2205,15 +2439,15 @@ public let cameraPosition: CameraPosition
 public let cameraType: CameraType
 ```
 
-**Function:** Camera type.
+**Description:** Camera type.
 
 **Type:** [CameraType](#enum-cameratype)
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let connectionType
 
@@ -2221,25 +2455,27 @@ public let cameraType: CameraType
 public let connectionType: ConnectionType
 ```
 
-**Function:** Camera connection type.
+**Description:** Camera connection type.
 
 **Type:** [ConnectionType](#enum-connectiontype)
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21## class CameraInput
+**Since:** 22
+
+## class CameraInput
 
 ```cangjie
 public class CameraInput {}
 ```
 
-**Function:** Camera device input object. Contains camera information used by a Session.
+**Description:** Camera device input object. Contains camera information used by the Session in a session.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func close()
 
@@ -2247,11 +2483,11 @@ public class CameraInput {}
 public func close(): Unit
 ```
 
-**Function:** Closes the camera.
+**Description:** Closes the camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -2269,12 +2505,18 @@ public func close(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-cameraInput.close()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    cameraInput.close()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, CameraDevice, Callback0Argument)
@@ -2283,17 +2525,17 @@ cameraInput.close()
 public func off(eventType: CameraEvents, camera: CameraDevice, callback: Callback0Argument): Unit
 ```
 
-**Function:** Unregisters the specified callback for the corresponding event.
+**Description:** Unregisters the specified callback for the specified event.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event to listen for. |
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event type to unregister. |
 | camera | [CameraDevice](#class-cameradevice) | Yes | - | CameraDevice object. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function. |
 
@@ -2303,7 +2545,6 @@ public func off(eventType: CameraEvents, camera: CameraDevice, callback: Callbac
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -2314,12 +2555,18 @@ public func off(eventType: CameraEvents, camera: CameraDevice, callback: Callbac
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-cameraInput.off(CameraEvents.CameraError, cameraDevice)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    cameraInput.off(CameraEvents.CameraError, cameraDevice)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, CameraDevice)
@@ -2328,17 +2575,17 @@ cameraInput.off(CameraEvents.CameraError, cameraDevice)
 public func off(eventType: CameraEvents, camera: CameraDevice): Unit
 ```
 
-**Function:** Unregisters all callbacks for the corresponding event.
+**Description:** Unregisters all callbacks for the specified event.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event to listen for. |
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event type to unregister. |
 | camera | [CameraDevice](#class-cameradevice) | Yes | - | CameraDevice object. |
 
 **Exceptions:**
@@ -2347,7 +2594,6 @@ public func off(eventType: CameraEvents, camera: CameraDevice): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -2358,12 +2604,18 @@ public func off(eventType: CameraEvents, camera: CameraDevice): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-cameraInput.off(CameraEvents.CameraError, cameraDevice)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    cameraInput.off(CameraEvents.CameraError, cameraDevice)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, CameraDevice, Callback0Argument)
@@ -2372,21 +2624,21 @@ cameraInput.off(CameraEvents.CameraError, cameraDevice)
 public func on(eventType: CameraEvents, camera: CameraDevice, callback: Callback0Argument): Unit
 ```
 
-**Function:** Listens for CameraInput error events and obtains results through registered callback functions.
+**Description:** Listens for CameraInput error events and obtains results through registered callback functions.
 
 > **Note:**
 >
-> Calling `off` to unregister callbacks within the `on` callback method is not supported.
+> Do not call the off method to unregister callbacks within the callback method of on.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event to listen for. Must be CameraError. Can be listened to after successful creation of CameraInput object. Triggered when camera device encounters errors (e.g., device unavailable or conflicts), returning corresponding error messages. |
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event type to listen for. Must be CameraError. Can be listened to after successful creation of CameraInput object. Triggers the event and returns results when the camera device encounters errors, such as unavailability or conflicts, with corresponding error messages. |
 | camera | [CameraDevice](#class-cameradevice) | Yes | - | CameraDevice object. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function to obtain results. |
 
@@ -2396,7 +2648,6 @@ public func on(eventType: CameraEvents, camera: CameraDevice, callback: Callback
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -2407,29 +2658,28 @@ public func on(eventType: CameraEvents, camera: CameraDevice, callback: Callback
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
-import kit.PerformanceAnalysisKit.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// Code here can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added in dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-let testCallbackError = TestCallbackError()
-return cameraInput.on(CameraEvents.CameraError, cameraDevice, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    let testCallbackError = TestCallbackError()
+    cameraInput.on(CameraEvents.CameraError, cameraDevice, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func open()
@@ -2438,11 +2688,11 @@ return cameraInput.on(CameraEvents.CameraError, cameraDevice, testCallbackError)
 public func open(): Unit
 ```
 
-**Function:** Opens the camera.
+**Description:** Opens the camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -2463,12 +2713,18 @@ public func open(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-cameraInput.open()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    cameraInput.open()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func open(Bool)
@@ -2477,22 +2733,22 @@ cameraInput.open()
 public func open(isSecureEnabled: Bool): UInt64
 ```
 
-**Function:** Opens the camera and obtains the handle for a secure camera.
+**Description:** Opens the camera and obtains the handle for a secure camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
 | isSecureEnabled | Bool | Yes | - | Whether to open the camera in secure mode. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | UInt64 | Handle of the opened camera. |
 
 **Exceptions:**
@@ -2513,26 +2769,30 @@ public func open(isSecureEnabled: Bool): UInt64
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevice = cameraManager.getSupportedCameras()[0]
-let cameraInput = cameraManager.createCameraInput(cameraDevice)
-let isSecureEnabled = false
-let handle = cameraInput.open(isSecureEnabled)
-```
-
-## class CameraManager
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevice = cameraManager.getSupportedCameras()[0]
+    let cameraInput = cameraManager.createCameraInput(cameraDevice)
+    let isSecureEnabled = false
+    let handle = cameraInput.open(isSecureEnabled)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class CameraManager
 
 ```cangjie
 public class CameraManager {}
 ```
 
-**Function:** Camera manager class. Must be obtained via [getCameraManager](#func-getcameramanageruiabilitycontext) before use.
+**Description:** The camera manager class. You must call [getCameraManager](#func-getcameramanageruiabilitycontext) to obtain a camera manager instance before using this class.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func createCameraInput(CameraDevice)
 
@@ -2540,35 +2800,35 @@ public class CameraManager {}
 public func createCameraInput(camera: CameraDevice): CameraInput
 ```
 
-**Function:** Creates a CameraInput instance based on camera position and type.
+**Description:** Creates a CameraInput instance based on the camera position and type.
 
 **Required Permission:** ohos.permission.CAMERA
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| camera | [CameraDevice](#class-cameradevice) | Yes | - | CameraDevice object, obtained via [getSupportedCameras](#func-getsupportedcameras). |
+| Name     | Type                          | Mandatory | Default | Description                                                                 |
+| :------- | :---------------------------- | :-------- | :------ | :-------------------------------------------------------------------------- |
+| camera   | [CameraDevice](#class-cameradevice) | Yes       | -       | CameraDevice object obtained via the [getSupportedCameras](#func-getsupportedcameras) API. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                          | Description          |
+| :---------------------------- | :------------------- |
 | [CameraInput](#class-camerainput) | CameraInput instance. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400102 | Operation not allowed. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter missing or parameter type incorrect.    |
+  | 7400102      | Operation not allowed.                            |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2578,14 +2838,20 @@ public func createCameraInput(camera: CameraDevice): CameraInput
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
-let cameraDevice0 = cameraDevices[0]
-let position = cameraDevice0.cameraPosition
-let `type` = cameraDevice0.cameraType
-let cameraInput = cameraManager.createCameraInput(position , `type`)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+    let cameraDevice0 = cameraDevices[0]
+    let position = cameraDevice0.cameraPosition
+    let cameraType = cameraDevice0.cameraType
+    let cameraInput = cameraManager.createCameraInput(position , cameraType)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func createCameraInput(CameraPosition, CameraType)
@@ -2594,36 +2860,36 @@ let cameraInput = cameraManager.createCameraInput(position , `type`)
 public func createCameraInput(position: CameraPosition, cameraType: CameraType): CameraInput
 ```
 
-**Function:** Creates a CameraInput instance based on camera position and type.
+**Description:** Creates a CameraInput instance based on the camera position and type.
 
 **Required Permission:** ohos.permission.CAMERA
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| position | [CameraPosition](#enum-cameraposition) | Yes | - | Camera position. Obtain device via [getSupportedCameras](#func-getsupportedcameras), then get device position information. |
-| cameraType | [CameraType](#enum-cameratype) | Yes | - | Camera type. Obtain device via [getSupportedCameras](#func-getsupportedcameras), then get device type information. |
+| Name       | Type                          | Mandatory | Default | Description                                                                 |
+| :--------- | :---------------------------- | :-------- | :------ | :-------------------------------------------------------------------------- |
+| position   | [CameraPosition](#enum-cameraposition) | Yes       | -       | Camera position obtained via the [getSupportedCameras](#func-getsupportedcameras) API. |
+| cameraType | [CameraType](#enum-cameratype) | Yes       | -       | Camera type obtained via the [getSupportedCameras](#func-getsupportedcameras) API. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                          | Description          |
+| :---------------------------- | :------------------- |
 | [CameraInput](#class-camerainput) | CameraInput instance. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400102 | Operation not allowed. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter missing or parameter type incorrect.    |
+  | 7400102      | Operation not allowed.                            |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2633,46 +2899,54 @@ public func createCameraInput(position: CameraPosition, cameraType: CameraType):
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
-let cameraDevice0 = cameraDevices[0]
-let position = cameraDevice0.cameraPosition
-let `type` = cameraDevice0.cameraType
-let cameraInput = cameraManager.createCameraInput(position , `type`)
-```### func createPhotoOutput(?Profile)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+    let cameraDevice0 = cameraDevices[0]
+    let position = cameraDevice0.cameraPosition
+    let cameraType = cameraDevice0.cameraType
+    let cameraInput = cameraManager.createCameraInput(position , cameraType)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func createPhotoOutput(?Profile)
 
 ```cangjie
 public func createPhotoOutput(?Profile = None): PhotoOutput
 ```
 
-**Function:** Creates a photo output object.
+**Description:** Creates a photo output object.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| profile | ?[Profile](#class-profile) | No | None | Supported photo configuration information, obtained via the [getSupportedOutputCapability](#func-getsupportedoutputcapabilitycameradevice-scenemode) interface. |
+| Name    | Type                    | Mandatory | Default | Description                                                                 |
+| :------ | :---------------------- | :-------- | :------ | :-------------------------------------------------------------------------- |
+| profile | ?[Profile](#class-profile) | No        | None    | Supported photo configuration obtained via the [getSupportedOutputCapability](#func-getsupportedoutputcapabilitycameradevice-scenemode) API. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                    | Description         |
+| :---------------------- | :------------------ |
 | [PhotoOutput](#class-photooutput) | PhotoOutput instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter missing or parameter type incorrect.    |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2682,15 +2956,21 @@ public func createPhotoOutput(?Profile = None): PhotoOutput
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
-let camera = cameraDevices[0]
-let mode = cameraManager.getSupportedSceneModes(camera)[0]
-let cameraOutputCapability = cameraManager.getSupportedOutputCapability(camera, mode)
-let profile = cameraOutputCapability.photoProfiles[0]
-let photoOutput  = cameraManager.createPhotoOutput(profile:profile)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+    let camera = cameraDevices[0]
+    let mode = cameraManager.getSupportedSceneModes(camera)[0]
+    let cameraOutputCapability = cameraManager.getSupportedOutputCapability(camera, mode)
+    let profile = cameraOutputCapability.photoProfiles[0]
+    let photoOutput  = cameraManager.createPhotoOutput(profile:profile)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func createPreviewOutput(Profile, String)
@@ -2699,33 +2979,33 @@ let photoOutput  = cameraManager.createPhotoOutput(profile:profile)
 public func createPreviewOutput(profile: Profile, surfaceId: String): PreviewOutput
 ```
 
-**Function:** Creates a preview output object.
+**Description:** Creates a preview output object.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| profile | [Profile](#class-profile) | Yes | - | Supported preview configuration information, obtained via the [getSupportedOutputCapability](#func-getsupportedoutputcapabilitycameradevice-scenemode) interface. |
-| surfaceId | String | Yes | - | The surfaceId obtained from the XComponent or [ImageReceiver](../ImageKit/cj-apis-image.md#class-imagereceiver) component. |
+| Name      | Type                    | Mandatory | Default | Description                                                                 |
+| :-------- | :---------------------- | :-------- | :------ | :-------------------------------------------------------------------------- |
+| profile   | [Profile](#class-profile) | Yes       | -       | Supported preview configuration obtained via the [getSupportedOutputCapability](#func-getsupportedoutputcapabilitycameradevice-scenemode) API. |
+| surfaceId | String                  | Yes       | -       | surfaceId obtained from the XComponent or [ImageReceiver](../ImageKit/cj-apis-image.md#class-imagereceiver) component. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                      | Description           |
+| :------------------------ | :-------------------- |
 | [PreviewOutput](#class-previewoutput) | PreviewOutput instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter missing or parameter type incorrect.    |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2738,13 +3018,19 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let previewOutput = cameraManager.createPreviewOutput(surfaceId)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let previewOutput = cameraManager.createPreviewOutput(surfaceId)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func createPreviewOutput(String)
@@ -2753,32 +3039,32 @@ let previewOutput = cameraManager.createPreviewOutput(surfaceId)
 public func createPreviewOutput(surfaceId: String): PreviewOutput
 ```
 
-**Function:** Creates a preview output object without configuration information. This interface must be used in conjunction with [preconfig](#func-preconfigpreconfigtype-preconfigratio).
+**Description:** Creates a preview output object without configuration information. This API must be used together with [preconfig](#func-preconfigpreconfigtype-preconfigratio).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| surfaceId | String | Yes | - | The surfaceId obtained from the XComponent or [ImageReceiver](../ImageKit/cj-apis-image.md#class-imagereceiver) component. |
+| Name      | Type   | Mandatory | Default | Description                                                                 |
+| :-------- | :----- | :-------- | :------ | :-------------------------------------------------------------------------- |
+| surfaceId | String | Yes       | -       | surfaceId obtained from the XComponent or [ImageReceiver](../ImageKit/cj-apis-image.md#class-imagereceiver) component. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                      | Description           |
+| :------------------------ | :-------------------- |
 | [PreviewOutput](#class-previewoutput) | PreviewOutput instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter missing or parameter type incorrect.    |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2791,13 +3077,19 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let previewOutput = cameraManager.createPreviewOutput(surfaceId)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let previewOutput = cameraManager.createPreviewOutput(surfaceId)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func createSession(SceneMode)
@@ -2806,32 +3098,32 @@ let previewOutput = cameraManager.createPreviewOutput(surfaceId)
 public func createSession(mode: SceneMode): Session
 ```
 
-**Function:** Creates a Session instance with the specified SceneMode.
+**Description:** Creates a Session instance with the specified SceneMode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| mode | [SceneMode](#enum-scenemode) | Yes | - | The mode supported by the camera. |
+| Name | Type                    | Mandatory | Default | Description                          |
+| :--- | :---------------------- | :-------- | :------ | :----------------------------------- |
+| mode | [SceneMode](#enum-scenemode) | Yes       | -       | Mode supported by the camera.        |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                | Description      |
+| :------------------ | :--------------- |
 | [Session](#interface-session) | Session instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter error. Possible causes:1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;3. Parameter verification failed. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;3. Parameter verification failed. |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2841,13 +3133,19 @@ public func createSession(mode: SceneMode): Session
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
-let camera = cameraDevices[0]
-let mode = cameraManager.getSupportedSceneModes(camera)[0]
-let session = cameraManager.createSession(mode)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+    let camera = cameraDevices[0]
+    let mode = cameraManager.getSupportedSceneModes(camera)[0]
+    let session = cameraManager.createSession(mode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func createVideoOutput(VideoProfile, String)
@@ -2856,33 +3154,33 @@ let session = cameraManager.createSession(mode)
 public func createVideoOutput(profile: VideoProfile, surfaceId: String): VideoOutput
 ```
 
-**Function:** Creates a video output object.
+**Description:** Creates a video output object.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| profile | [VideoProfile](#class-videoprofile) | Yes | - | Supported video configuration information, obtained via the [getSupportedOutputCapability](#func-getsupportedoutputcapabilitycameradevice-scenemode) interface. |
-| surfaceId | String | Yes | - | The surfaceId obtained from AVRecorder. |
+| Name      | Type                      | Mandatory | Default | Description                                                                 |
+| :-------- | :------------------------ | :-------- | :------ | :-------------------------------------------------------------------------- |
+| profile   | [VideoProfile](#class-videoprofile) | Yes       | -       | Supported video configuration obtained via the [getSupportedOutputCapability](#func-getsupportedoutputcapabilitycameradevice-scenemode) API. |
+| surfaceId | String                    | Yes       | -       | surfaceId obtained from the AVRecorder.                                     |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                    | Description         |
+| :---------------------- | :------------------ |
 | [VideoOutput](#class-videooutput) | VideoOutput instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: For details about the error codes, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400201 | Camera service fatal error. |
+  | Error Code ID | Error Message                                      |
+  | :----------- | :------------------------------------------------ |
+  | 7400101      | Parameter missing or parameter type incorrect.    |
+  | 7400201      | Camera service fatal error.                       |
 
 **Example:**
 
@@ -2895,16 +3193,20 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let videoOutput = cameraManager.createVideoOutput(surfaceId)
-```
-
-### func createVideoOutput(String)
+try {
+    let ctx = Global.getAbilityContext() // Obtain the Context application context. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let videoOutput = cameraManager.createVideoOutput(surfaceId)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func createVideoOutput(String)
 
 ```cangjie
 public func createVideoOutput(surfaceId: String): VideoOutput
@@ -2914,28 +3216,28 @@ public func createVideoOutput(surfaceId: String): VideoOutput
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| surfaceId | String | Yes | - | The surfaceId obtained from AVRecorder. |
+| Parameter Name | Type   | Required | Default Value | Description |
+|:--------------|:-------|:---------|:--------------|:------------|
+| surfaceId     | String | Yes      | -             | The surfaceId obtained from AVRecorder. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                     | Description |
+|:-------------------------|:------------|
 | [VideoOutput](#class-videooutput) | VideoOutput instance. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400201 | Camera service fatal error. |
+  |:-------------|:-------------|
+  | 7400101      | Parameter missing or parameter type incorrect. |
+  | 7400201      | Camera service fatal error. |
 
 **Example:**
 
@@ -2948,13 +3250,19 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let videoOutput = cameraManager.createVideoOutput(surfaceId)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let videoOutput = cameraManager.createVideoOutput(surfaceId)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getSupportedCameras()
@@ -2963,16 +3271,16 @@ let videoOutput = cameraManager.createVideoOutput(surfaceId)
 public func getSupportedCameras(): Array<CameraDevice>
 ```
 
-**Function:** Obtains the supported camera device objects.
+**Function:** Retrieves the supported camera device objects.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                          | Description |
+|:------------------------------|:------------|
 | Array\<[CameraDevice](#class-cameradevice)> | List of camera devices. |
 
 **Example:**
@@ -2983,10 +3291,16 @@ public func getSupportedCameras(): Array<CameraDevice>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getSupportedOutputCapability(CameraDevice, SceneMode)
@@ -2995,24 +3309,24 @@ let cameraDevices = cameraManager.getSupportedCameras()
 public func getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode): CameraOutputCapability
 ```
 
-**Function:** Queries the output capabilities supported by the camera device in the specified mode.
+**Function:** Queries the supported output capabilities of the camera device in the specified mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| camera | [CameraDevice](#class-cameradevice) | Yes | - | Camera device, obtained via the [getSupportedCameras](#func-getsupportedcameras) interface. |
-| mode | [SceneMode](#enum-scenemode) | Yes | - | Camera mode, obtained via the [getSupportedSceneModes](#func-getsupportedscenemodescameradevice) interface. |
+| Parameter Name | Type                     | Required | Default Value | Description |
+|:--------------|:-------------------------|:---------|:--------------|:------------|
+| camera        | [CameraDevice](#class-cameradevice) | Yes      | -             | Camera device, obtained via the [getSupportedCameras](#func-getsupportedcameras) interface. |
+| mode          | [SceneMode](#enum-scenemode) | Yes      | -             | Camera mode, obtained via the [getSupportedSceneModes](#func-getsupportedscenemodescameradevice) interface. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [CameraOutputCapability](#class-cameraoutputcapability) | Camera output capabilities. |
+| Type                               | Description |
+|:-----------------------------------|:------------|
+| [CameraOutputCapability](#class-cameraoutputcapability) | Camera output capability. |
 
 **Example:**
 
@@ -3022,13 +3336,19 @@ public func getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode):
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
-let camera = cameraDevices[0]
-let mode = cameraManager.getSupportedSceneModes(camera)[0]
-let cameraOutputCapability = cameraManager.getSupportedOutputCapability(camera, mode)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+    let camera = cameraDevices[0]
+    let mode = cameraManager.getSupportedSceneModes(camera)[0]
+    let cameraOutputCapability = cameraManager.getSupportedOutputCapability(camera, mode)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getSupportedSceneModes(CameraDevice)
@@ -3037,23 +3357,23 @@ let cameraOutputCapability = cameraManager.getSupportedOutputCapability(camera, 
 public func getSupportedSceneModes(camera: CameraDevice): Array<SceneMode>
 ```
 
-**Function:** Obtains the modes supported by the specified camera device object.
+**Function:** Retrieves the supported modes of the specified camera device object.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| camera | [CameraDevice](#class-cameradevice) | Yes | - | Camera device, obtained via the [getSupportedCameras](#func-getsupportedcameras) interface. |
+| Parameter Name | Type                     | Required | Default Value | Description |
+|:--------------|:-------------------------|:---------|:--------------|:------------|
+| camera        | [CameraDevice](#class-cameradevice) | Yes      | -             | Camera device, obtained via the [getSupportedCameras](#func-getsupportedcameras) interface. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Array\<[SceneMode](#enum-scenemode)> | List of modes supported by the camera. |
+| Type                     | Description |
+|:-------------------------|:------------|
+| Array\<[SceneMode](#enum-scenemode)> | List of supported camera modes. |
 
 **Example:**
 
@@ -3063,29 +3383,37 @@ public func getSupportedSceneModes(camera: CameraDevice): Array<SceneMode>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let cameraDevices = cameraManager.getSupportedCameras()
-let camera = cameraDevices[0]
-let mode = cameraManager.getSupportedSceneModes(camera)
-```### func getTorchMode()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let cameraDevices = cameraManager.getSupportedCameras()
+    let camera = cameraDevices[0]
+    let mode = cameraManager.getSupportedSceneModes(camera)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getTorchMode()
 
 ```cangjie
 public func getTorchMode(): TorchMode
 ```
 
-**Function:** Gets the current torch mode of the device.
+**Function:** Retrieves the current torch mode of the device.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-|[TorchMode](#enum-torchmode)| Returns the current torch mode of the device. |
+| Type               | Description |
+|:-------------------|:------------|
+| [TorchMode](#enum-torchmode) | Current torch mode of the device. |
 
 **Example:**
 
@@ -3095,10 +3423,16 @@ public func getTorchMode(): TorchMode
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let torchMode = cameraManager.getTorchMode()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let torchMode = cameraManager.getTorchMode()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func isCameraMuted()
@@ -3107,17 +3441,17 @@ let torchMode = cameraManager.getTorchMode()
 public func isCameraMuted(): Bool
 ```
 
-**Function:** Queries the current disabled state of the camera (disabled/enabled).
+**Function:** Queries the current disabled status of the camera (disabled/enabled).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-|Bool| Returns `true` if the camera is disabled, `false` otherwise. |
+|:-----|:------------|
+| Bool | Returns `true` if the camera is disabled, `false` otherwise. |
 
 **Example:**
 
@@ -3127,11 +3461,16 @@ public func isCameraMuted(): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-Hilog.info(0, "AppLogCj", cameraManager.isCameraMuted().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    Hilog.info(0, "AppLogCj", cameraManager.isCameraMuted().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func isTorchModeSupported(TorchMode)
@@ -3144,19 +3483,19 @@ public func isTorchModeSupported(mode: TorchMode): Bool
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-|mode|[TorchMode](#enum-torchmode)|Yes|-|The torch mode. |
+| Parameter Name | Type               | Required | Default Value | Description |
+|:--------------|:-------------------|:---------|:--------------|:------------|
+| mode          | [TorchMode](#enum-torchmode) | Yes      | -             | Torch mode. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-|Bool| Returns `true` if the device supports the specified torch mode. |
+|:-----|:------------|
+| Bool | Returns `true` if the device supports the specified torch mode. |
 
 **Example:**
 
@@ -3166,12 +3505,17 @@ public func isTorchModeSupported(mode: TorchMode): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let torchMode = cameraManager.getTorchMode()
-Hilog.info(0, "AppLogCj", cameraManager.isTorchModeSupported(torchMode).toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let torchMode = cameraManager.getTorchMode()
+    Hilog.info(0, "AppLogCj", cameraManager.isTorchModeSupported(torchMode).toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func isTorchSupported()
@@ -3180,17 +3524,17 @@ Hilog.info(0, "AppLogCj", cameraManager.isTorchModeSupported(torchMode).toString
 public func isTorchSupported(): Bool
 ```
 
-**Function:** Checks whether the device supports torch functionality.
+**Function:** Checks whether the device supports torch.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-|Bool| Returns `true` if the device supports torch functionality. |
+|:-----|:------------|
+| Bool | Returns `true` if the device supports torch. |
 
 **Example:**
 
@@ -3200,11 +3544,16 @@ public func isTorchSupported(): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-Hilog.info(0, "AppLogCj", cameraManager.isTorchSupported().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    Hilog.info(0, "AppLogCj", cameraManager.isTorchSupported().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<CameraStatusInfo>)
@@ -3213,27 +3562,26 @@ Hilog.info(0, "AppLogCj", cameraManager.isTorchSupported().toString())
 public func off(eventType: CameraEvents, callback: Callback1Argument<CameraStatusInfo>): Unit
 ```
 
-**Function:** Unregisters the callback for camera device status changes, cancelling the receipt of camera status updates.
+**Function:** Unregisters the camera device status callback, cancelling the retrieval of camera status changes via the callback function.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to unregister, must be `CameraStatus`. Can be monitored after successfully obtaining the `CameraManager` object. Currently, only device open/close events trigger this event and return corresponding information. |
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CameraStatusInfo](#class-camerastatusinfo)>|Yes|-| The callback function. |
+| Parameter Name | Type                                     | Required | Default Value | Description |
+|:--------------|:-----------------------------------------|:---------|:--------------|:------------|
+| eventType     | [CameraEvents](#enum-cameraevents)       | Yes      | -             | Event to listen for, must be `CameraStatus`. Can be monitored after the CameraManager object is successfully obtained. Currently, only device opening or closing triggers this event and returns corresponding information. |
+| callback      | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CameraStatusInfo](#class-camerastatusinfo)> | Yes      | -             | Callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | The parameter check failed. |
-  | 7400201 | Camera service fatal error. |
+  |:-------------|:-------------|
+  | 7400201      | Camera service fatal error. |
 
 **Example:**
 
@@ -3243,10 +3591,16 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<CameraStatu
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-cameraManager.off(CameraEvents.TorchStatusChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    cameraManager.off(CameraEvents.TorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<FoldStatusInfo>)
@@ -3255,27 +3609,26 @@ cameraManager.off(CameraEvents.TorchStatusChange)
 public func off(eventType: CameraEvents, callback: Callback1Argument<FoldStatusInfo>): Unit
 ```
 
-**Function:** Unregisters the callback for foldable device fold status changes, cancelling the receipt of fold status updates.
+**Function:** Unregisters the fold status change callback for foldable devices, cancelling the retrieval of fold status changes via the callback function.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to unregister, must be `FoldStatusChange`. Indicates a change in the fold status of a foldable device. |
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FoldStatusInfo](#class-foldstatusinfo)>|Yes|-| The callback function. |
+| Parameter Name | Type                                     | Required | Default Value | Description |
+|:--------------|:-----------------------------------------|:---------|:--------------|:------------|
+| eventType     | [CameraEvents](#enum-cameraevents)       | Yes      | -             | Event to listen for, must be `FoldStatusChange`. Indicates a change in the fold status of a foldable device. |
+| callback      | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FoldStatusInfo](#class-foldstatusinfo)> | Yes      | -             | Callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | The parameter check failed. |
-  | 7400201 | Camera service fatal error. |
+  |:-------------|:-------------|
+  | 7400201      | Camera service fatal error. |
 
 **Example:**
 
@@ -3285,38 +3638,41 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FoldStatusI
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-cameraManager.off(CameraEvents.TorchStatusChange)
-```
-
-### func off(CameraEvents, Callback1Argument\<TorchStatusInfo>)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. For details, see the usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    cameraManager.off(CameraEvents.TorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func off(CameraEvents, Callback1Argument\<TorchStatusInfo>)
 
 ```cangjie
 public func off(eventType: CameraEvents, callback: Callback1Argument<TorchStatusInfo>): Unit
 ```
 
-**Function:** Unregisters the callback for torch status changes, cancelling the receipt of torch status updates.
+**Function:** Unregisters the callback for torch status changes by removing the callback function that receives torch status updates.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to unregister, must be `TorchStatusChange`. Can be monitored after successfully obtaining the `CameraManager` object. Currently, only torch on/off, torch unavailable, and torch restored events trigger this event and return corresponding information. |
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[TorchStatusInfo](#class-torchstatusinfo)>|Yes|-| The callback function. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to unlisten for, must be TorchStatusChange. Can be monitored after successfully obtaining the CameraManager object. Currently only supports torch on, torch off, torch unavailable, and torch becoming available events which trigger this callback with corresponding information. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[TorchStatusInfo](#class-torchstatusinfo)> | Yes | - | The callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -3327,10 +3683,16 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<TorchStatus
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-cameraManager.off(CameraEvents.TorchStatusChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    cameraManager.off(CameraEvents.TorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents)
@@ -3339,25 +3701,24 @@ cameraManager.off(CameraEvents.TorchStatusChange)
 public func off(eventType: CameraEvents): Unit
 ```
 
-**Function:** Cancels all callbacks for the specified event.
+**Function:** Cancels all callbacks for the specified event type.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to unregister. Must be an event that can be registered via the `on` function. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event type to unlisten for. Must be an event that can be registered via the on() function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -3368,10 +3729,16 @@ public func off(eventType: CameraEvents): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-cameraManager.off(CameraEvents.TorchStatusChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    cameraManager.off(CameraEvents.TorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<CameraStatusInfo>)
@@ -3380,30 +3747,29 @@ cameraManager.off(CameraEvents.TorchStatusChange)
 public func on(eventType: CameraEvents, callback: Callback1Argument<CameraStatusInfo>): Unit
 ```
 
-**Function:** Registers a callback for camera device status changes to receive status updates. Uses asynchronous callback via `callback`.
+**Function:** Registers a callback for camera device status changes. Uses asynchronous callback via the callback parameter.
 
 > **Note:**
 >
-> Calling `off` to unregister the callback within the `on` callback method is not supported.
+> Calling off() to unregister callbacks within an on() callback method is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to register, must be `CameraStatus`. Can be monitored after successfully obtaining the `CameraManager` object. Currently, only device open/close events trigger this event and return corresponding information. |
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CameraStatusInfo](#class-camerastatusinfo)>|Yes|-| The callback function to receive camera status change information. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be CameraStatus. Can be monitored after successfully obtaining the CameraManager object. Currently only supports camera device open/close events which trigger this callback with corresponding information. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CameraStatusInfo](#class-camerastatusinfo)> | Yes | - | The callback function that receives camera status change information. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -3414,27 +3780,26 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<CameraStatus
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.business_exception.BusinessException
 import ohos.callback_invoke.Callback1Argument
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to the dependency definition
-class TestCallbackTorchStatusChange <: Callback1Argument<TorchStatusInfo> {
-    public init() {}
-    public open func invoke(err: ?BusinessException, res: TorchStatusInfo): Unit {
-        Hilog.info(0, "Camera", "Call invoke TorchStatusChange. isTorchAvailable: ${res.isTorchAvailable}, isTorchActive: ${res.isTorchActive}, torchLevel:${res.torchLevel}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackTorchStatusChange <: Callback1Argument<TorchStatusInfo> {
+        public init() {}
+        public open func invoke(err: ?BusinessException, res: TorchStatusInfo): Unit {
+            Hilog.info(0, "Camera", "Call invoke TorchStatusChange. isTorchAvailable: ${res.isTorchAvailable}, isTorchActive: ${res.isTorchActive}, torchLevel:${res.torchLevel}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let testCallbackTorchStatusChange = TestCallbackTorchStatusChange()
-cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let testCallbackTorchStatusChange = TestCallbackTorchStatusChange()
+    cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<FoldStatusInfo>)
@@ -3443,30 +3808,29 @@ cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
 public func on(eventType: CameraEvents, callback: Callback1Argument<FoldStatusInfo>): Unit
 ```
 
-**Function:** Registers a callback for foldable device fold status changes.
+**Function:** Registers a listener for foldable device folding status changes.
 
 > **Note:**
 >
-> Calling `off` to unregister the callback within the `on` callback method is not supported.
+> Calling off() to unregister callbacks within an on() callback method is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to register, must be `FoldStatusChange`. Indicates a change in the fold status of a foldable device. |
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FoldStatusInfo](#class-foldstatusinfo)>|Yes|-| The callback function. Returns fold status information of the device. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be FoldStatusChange. Indicates foldable device folding status changes. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FoldStatusInfo](#class-foldstatusinfo)> | Yes | - | The callback function that returns foldable device folding information. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -3477,27 +3841,26 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FoldStatusIn
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.business_exception.BusinessException
 import ohos.callback_invoke.Callback1Argument
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to the dependency definition
-class TestCallbackTorchStatusChange <: Callback1Argument<TorchStatusInfo> {
-    public init() {}
-    public open func invoke(err: ?BusinessException, res: TorchStatusInfo): Unit {
-        Hilog.info(0, "Camera", "Call invoke TorchStatusChange. isTorchAvailable: ${res.isTorchAvailable}, isTorchActive: ${res.isTorchActive}, torchLevel:${res.torchLevel}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackTorchStatusChange <: Callback1Argument<TorchStatusInfo> {
+        public init() {}
+        public open func invoke(err: ?BusinessException, res: TorchStatusInfo): Unit {
+            Hilog.info(0, "Camera", "Call invoke TorchStatusChange. isTorchAvailable: ${res.isTorchAvailable}, isTorchActive: ${res.isTorchActive}, torchLevel:${res.torchLevel}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let testCallbackTorchStatusChange = TestCallbackTorchStatusChange()
-cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let testCallbackTorchStatusChange = TestCallbackTorchStatusChange()
+    cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<TorchStatusInfo>)
@@ -3506,30 +3869,29 @@ cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
 public func on(eventType: CameraEvents, callback: Callback1Argument<TorchStatusInfo>): Unit
 ```
 
-**Function:** Registers a callback for torch status changes to receive status updates.
+**Function:** Registers a callback for torch status changes.
 
 > **Note:**
 >
-> Calling `off` to unregister the callback within the `on` callback method is not supported.
+> Calling off() to unregister callbacks within an on() callback method is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|eventType|[CameraEvents](#enum-cameraevents)|Yes|-| The event to register, must be `TorchStatusChange`. Can be monitored after successfully obtaining the `CameraManager` object. Currently, only torch on/off, torch unavailable, and torch restored events trigger this event and return corresponding information. |
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[TorchStatusInfo](#class-torchstatusinfo)>|Yes|-| The callback function to receive torch status change information. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be TorchStatusChange. Can be monitored after successfully obtaining the cameraManager object. Currently only supports torch on, torch off, torch unavailable, and torch becoming available events which trigger this callback with corresponding information. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[TorchStatusInfo](#class-torchstatusinfo)> | Yes | - | The callback function that receives torch status change information. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -3540,27 +3902,26 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<TorchStatusI
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.business_exception.BusinessException
 import ohos.callback_invoke.Callback1Argument
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to the dependency definition
-class TestCallbackTorchStatusChange <: Callback1Argument<TorchStatusInfo> {
-    public init() {}
-    public open func invoke(err: ?BusinessException, res: TorchStatusInfo): Unit {
-        Hilog.info(0, "Camera", "Call invoke TorchStatusChange. isTorchAvailable: ${res.isTorchAvailable}, isTorchActive: ${res.isTorchActive}, torchLevel:${res.torchLevel}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackTorchStatusChange <: Callback1Argument<TorchStatusInfo> {
+        public init() {}
+        public open func invoke(err: ?BusinessException, res: TorchStatusInfo): Unit {
+            Hilog.info(0, "Camera", "Call invoke TorchStatusChange. isTorchAvailable: ${res.isTorchAvailable}, isTorchActive: ${res.isTorchActive}, torchLevel:${res.torchLevel}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let testCallbackTorchStatusChange = TestCallbackTorchStatusChange()
-cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let testCallbackTorchStatusChange = TestCallbackTorchStatusChange()
+    cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setTorchMode(TorchMode)
@@ -3569,21 +3930,21 @@ cameraManager.on(CameraEvents.TorchStatusChange, testCallbackTorchStatusChange)
 public func setTorchMode(mode: TorchMode): Unit
 ```
 
-**Function:** Sets the torch mode of the device.
+**Function:** Sets the device's torch mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|mode|[TorchMode](#enum-torchmode)|Yes|-| The torch mode. |
+| mode | [TorchMode](#enum-torchmode) | Yes | - | The torch mode to set. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3598,10 +3959,20 @@ public func setTorchMode(mode: TorchMode): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to the usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-cameraManager.setTorchMode(T## class CameraOutputCapability
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    cameraManager.setTorchMode(TorchMode.On)
+    cameraManager.setTorchMode(TorchMode.Off)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+## class CameraOutputCapability
 
 ```cangjie
 public class CameraOutputCapability {
@@ -3612,11 +3983,11 @@ public class CameraOutputCapability {
 }
 ```
 
-**Description:** Camera output capability items.
+**Function:** Camera output capability items.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let photoProfiles
 
@@ -3624,7 +3995,7 @@ public class CameraOutputCapability {
 public let photoProfiles: Array<Profile>
 ```
 
-**Description:** Supported photo capture configuration profiles.
+**Function:** Collection of supported photo configuration profiles.
 
 **Type:** Array\<[Profile](#class-profile)>
 
@@ -3632,7 +4003,7 @@ public let photoProfiles: Array<Profile>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let previewProfiles
 
@@ -3640,7 +4011,7 @@ public let photoProfiles: Array<Profile>
 public let previewProfiles: Array<Profile>
 ```
 
-**Description:** Supported preview configuration profiles.
+**Function:** Collection of supported preview configuration profiles.
 
 **Type:** Array\<[Profile](#class-profile)>
 
@@ -3648,7 +4019,7 @@ public let previewProfiles: Array<Profile>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let supportedMetadataObjectTypes
 
@@ -3656,7 +4027,7 @@ public let previewProfiles: Array<Profile>
 public let supportedMetadataObjectTypes: Array<MetadataObjectType>
 ```
 
-**Description:** Supported metadata stream types.
+**Function:** Collection of supported metadata stream types.
 
 **Type:** Array\<[MetadataObjectType](#enum-metadataobjecttype)>
 
@@ -3664,7 +4035,7 @@ public let supportedMetadataObjectTypes: Array<MetadataObjectType>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let videoProfiles
 
@@ -3672,7 +4043,7 @@ public let supportedMetadataObjectTypes: Array<MetadataObjectType>
 public let videoProfiles: Array<VideoProfile>
 ```
 
-**Description:** Supported video recording configuration profiles.
+**Function:** Collection of supported video recording configuration profiles.
 
 **Type:** Array\<[VideoProfile](#class-videoprofile)>
 
@@ -3680,9 +4051,7 @@ public let videoProfiles: Array<VideoProfile>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
-
-## class CameraStatusInfo
+**Since:** 22## class CameraStatusInfo
 
 ```cangjie
 public class CameraStatusInfo {
@@ -3691,11 +4060,11 @@ public class CameraStatusInfo {
 }
 ```
 
-**Description:** Interface instance returned by camera manager callback, representing camera status information.
+**Function:** An interface instance returned by the camera manager callback, representing camera status information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var camera
 
@@ -3703,15 +4072,15 @@ public class CameraStatusInfo {
 public var camera: CameraDevice
 ```
 
-**Description:** Camera device information.
+**Function:** Camera information.
 
 **Type:** [CameraDevice](#class-cameradevice)
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var status
 
@@ -3719,15 +4088,15 @@ public var camera: CameraDevice
 public var status: CameraStatus
 ```
 
-**Description:** Camera status.
+**Function:** Camera status.
 
 **Type:** [CameraStatus](#enum-camerastatus)
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class CaptureEndInfo
 
@@ -3738,11 +4107,11 @@ public class CaptureEndInfo {
 }
 ```
 
-**Description:** Photo capture stop information.
+**Function:** Photo capture stop information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var captureId
 
@@ -3750,15 +4119,15 @@ public class CaptureEndInfo {
 public var captureId: Int32
 ```
 
-**Description:** Capture session ID.
+**Function:** Photo capture ID.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var frameCount
 
@@ -3766,15 +4135,15 @@ public var captureId: Int32
 public var frameCount: Int32
 ```
 
-**Description:** Frame count.
+**Function:** Frame count.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class CaptureStartInfo
 
@@ -3785,11 +4154,11 @@ public class CaptureStartInfo {
 }
 ```
 
-**Description:** Photo capture start information.
+**Function:** Photo capture start information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var captureId
 
@@ -3797,15 +4166,15 @@ public class CaptureStartInfo {
 public var captureId: Int32
 ```
 
-**Description:** Capture session ID.
+**Function:** Photo capture ID.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var time
 
@@ -3813,15 +4182,15 @@ public var captureId: Int32
 public var time: Int64
 ```
 
-**Description:** Estimated sensor frame capture time for single photo capture.
+**Function:** Estimated single photo capture time for sensor frame collection at the underlying layer.
 
 **Type:** Int64
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class FoldStatusInfo
 
@@ -3832,11 +4201,11 @@ public class FoldStatusInfo {
 }
 ```
 
-**Description:** Interface instance returned by camera manager callback, representing foldable device status information.
+**Function:** An interface instance returned by the camera manager callback, representing foldable device folding status information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let foldStatus
 
@@ -3844,15 +4213,15 @@ public class FoldStatusInfo {
 public let foldStatus: FoldStatus
 ```
 
-**Description:** Foldable screen status.
+**Function:** Foldable screen folding status.
 
 **Type:** [FoldStatus](#enum-foldstatus)
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let supportedCameras
 
@@ -3860,15 +4229,15 @@ public let foldStatus: FoldStatus
 public let supportedCameras: Array<CameraDevice>
 ```
 
-**Description:** List of supported camera devices under current fold status.
+**Function:** List of supported camera information under the current folding status.
 
 **Type:** Array\<[CameraDevice](#class-cameradevice)>
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class FrameRateRange
 
@@ -3879,11 +4248,11 @@ public class FrameRateRange {
 }
 ```
 
-**Description:** Frame rate range.
+**Function:** Frame rate range.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let max
 
@@ -3891,15 +4260,15 @@ public class FrameRateRange {
 public let max: Int32
 ```
 
-**Description:** Maximum frame rate.
+**Function:** Maximum frame rate.
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let min
 
@@ -3907,15 +4276,15 @@ public let max: Int32
 public let min: Int32
 ```
 
-**Description:** Minimum frame rate.
+**Function:** Minimum frame rate.
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class FrameShutterEndInfo
 
@@ -3925,11 +4294,11 @@ public class FrameShutterEndInfo {
 }
 ```
 
-**Description:** Photo exposure end information.
+**Function:** Photo exposure end information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var captureId
 
@@ -3937,15 +4306,15 @@ public class FrameShutterEndInfo {
 public var captureId: Int32
 ```
 
-**Description:** Capture session ID.
+**Function:** Photo capture ID.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class FrameShutterInfo
 
@@ -3956,11 +4325,11 @@ public class FrameShutterInfo {
 }
 ```
 
-**Description:** Photo frame output information.
+**Function:** Photo frame output information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var captureId
 
@@ -3968,15 +4337,15 @@ public class FrameShutterInfo {
 public var captureId: Int32
 ```
 
-**Description:** Capture session ID.
+**Function:** Photo capture ID.
 
 **Type:** Int32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var timestamp
 
@@ -3984,15 +4353,15 @@ public var captureId: Int32
 public var timestamp: Int64
 ```
 
-**Description:** Shutter timestamp.
+**Function:** Shutter timestamp.
 
 **Type:** Int64
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class Location
 
@@ -4005,11 +4374,11 @@ public class Location {
 }
 ```
 
-**Description:** Geographic location information for images.
+**Function:** Image geographical location information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var altitude
 
@@ -4017,15 +4386,15 @@ public class Location {
 public var altitude: Float64
 ```
 
-**Description:** Altitude (meters).
+**Function:** Altitude (meters).
 
 **Type:** Float64
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var latitude
 
@@ -4033,15 +4402,15 @@ public var altitude: Float64
 public var latitude: Float64
 ```
 
-**Description:** Latitude (degrees).
+**Function:** Latitude (degrees).
 
 **Type:** Float64
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var longitude
 
@@ -4049,15 +4418,15 @@ public var latitude: Float64
 public var longitude: Float64
 ```
 
-**Description:** Longitude (degrees).
+**Function:** Longitude (degrees).
 
 **Type:** Float64
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Float64, Float64, Float64)
 
@@ -4065,19 +4434,21 @@ public var longitude: Float64
 public init(latitude: Float64, longitude: Float64, altitude: Float64)
 ```
 
-**Description:** Creates a Location object.
+**Function:** Creates a Location object.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|latitude|Float64|Yes|-|Latitude (degrees).|
-|longitude|Float64|Yes|-|Longitude (degrees).|
-|altitude|Float64|Yes|-|Altitude (meters).|## class PhotoCaptureSetting
+| Parameter | Type    | Required | Default | Description            |
+|:----------|:--------|:---------|:--------|:-----------------------|
+| latitude  | Float64 | Yes      | -       | Latitude (degrees).    |
+| longitude | Float64 | Yes      | -       | Longitude (degrees).   |
+| altitude  | Float64 | Yes      | -       | Altitude (meters).     |
+
+## class PhotoCaptureSetting
 
 ```cangjie
 public class PhotoCaptureSetting {
@@ -4098,7 +4469,7 @@ public class PhotoCaptureSetting {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var location
 
@@ -4106,15 +4477,15 @@ public class PhotoCaptureSetting {
 public var location:?Location
 ```
 
-**Function:** Geographic location information of the image (defaults to device hardware information).
+**Function:** Image geographical location information (defaults to device hardware information).
 
 **Type:** ?[Location](#class-location)
 
-**Read-Write Permission:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var mirror
 
@@ -4122,15 +4493,15 @@ public var location:?Location
 public var mirror: Bool
 ```
 
-**Function:** Mirror enable switch (default off). Before use, check if mirroring is supported using [isMirrorSupported](#func-ismirrorsupported).
+**Function:** Mirror enable switch (default off). Use [isMirrorSupported](#func-ismirrorsupported) to check support before using.
 
 **Type:** Bool
 
-**Read-Write Permission:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var quality
 
@@ -4142,11 +4513,11 @@ public var quality: QualityLevel
 
 **Type:** [QualityLevel](#enum-qualitylevel)
 
-**Read-Write Permission:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var rotation
 
@@ -4158,11 +4529,11 @@ public var rotation: ImageRotation
 
 **Type:** [ImageRotation](#enum-imagerotation)
 
-**Read-Write Permission:** Readable and Writable
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(QualityLevel, ImageRotation, ?Location, Bool)
 
@@ -4179,18 +4550,16 @@ public init(
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| quality | [QualityLevel](#enum-qualitylevel) | No | QualityLevel.QualityLevelLow | **Named parameter.** Image quality (default low). |
-| rotation | [ImageRotation](#enum-imagerotation) | No | ImageRotation.Rotation0 | **Named parameter.** Image rotation angle (default 0 degrees). |
-| location | ?[Location](#class-location) | No | None | **Named parameter.** Geographic location information of the image (defaults to device hardware information). |
-| mirror | Bool | No | false | **Named parameter.** Mirror enable switch (default off). Before use, check if mirroring is supported using [isMirrorSupported](#func-ismirrorsupported). |
-
-## class PhotoOutput
+| Parameter | Type                     | Required | Default                    | Description                                                                 |
+|:----------|:-------------------------|:---------|:---------------------------|:----------------------------------------------------------------------------|
+| quality   | [QualityLevel](#enum-qualitylevel) | No       | QualityLevel.QualityLevelLow | **Named parameter.** Image quality (default low).                          |
+| rotation  | [ImageRotation](#enum-imagerotation) | No       | ImageRotation.Rotation0     | **Named parameter.** Image rotation angle (default 0 degrees).             |
+| location  | ?[Location](#class-location)         | No       | None                       | **Named parameter.** Image geographical location information (defaults to device hardware information). |
+| mirror    | Bool                     | No       | false                      | **Named parameter.** Mirror enable switch (default off). Use [isMirrorSupported](#func-ismirrorsupported) to check support before using. |## class PhotoOutput
 
 ```cangjie
 public class PhotoOutput CameraOutput {}
@@ -4200,7 +4569,7 @@ public class PhotoOutput CameraOutput {}
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -4216,7 +4585,7 @@ public func capture(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -4235,14 +4604,20 @@ public func capture(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Obtain the Context application context as described in the usage instructions
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.capture(PhotoCaptureSetting())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.capture(PhotoCaptureSetting())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func capture(PhotoCaptureSetting)
@@ -4255,12 +4630,12 @@ public func capture(setting: PhotoCaptureSetting): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
 | setting | [PhotoCaptureSetting](#class-photocapturesetting) | Yes | - | Photo capture settings. |
 
 **Exceptions:**
@@ -4281,14 +4656,20 @@ public func capture(setting: PhotoCaptureSetting): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Obtain the Context application context as described in the usage instructions
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.capture(PhotoCaptureSetting())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.capture(PhotoCaptureSetting())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func enableMirror(Bool)
@@ -4301,13 +4682,13 @@ public func enableMirror(enabled: Bool): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| enabled | Bool | Yes | - | true to enable mirror photo capture, false to disable. |
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| enabled | Bool | Yes | - | `true` to enable mirror photo capture, `false` to disable. |
 
 **Exceptions:**
 
@@ -4327,15 +4708,21 @@ public func enableMirror(enabled: Bool): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Obtain the Context application context as described in the usage instructions
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let enabled = true
-output.enableMirror(enabled)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let enabled = true
+    output.enableMirror(enabled)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func enableMovingPhoto(Bool)
@@ -4350,13 +4737,13 @@ public func enableMovingPhoto(enabled: Bool): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| enabled | Bool | Yes | - | true to enable moving photo, false to disable. |
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| enabled | Bool | Yes | - | `true` to enable moving photo, `false` to disable. |
 
 **Exceptions:**
 
@@ -4376,15 +4763,21 @@ public func enableMovingPhoto(enabled: Bool): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Obtain the Context application context as described in the usage instructions
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let enabled = true
-output.enableMovingPhoto(enabled)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let enabled = true
+    output.enableMovingPhoto(enabled)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getActiveProfile()
@@ -4397,12 +4790,12 @@ public func getActiveProfile(): Profile
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | [Profile](#class-profile) | Currently active configuration information. |
 
 **Exceptions:**
@@ -4421,14 +4814,20 @@ public func getActiveProfile(): Profile
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Obtain the Context application context as described in the usage instructions
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let profile = output.getActiveProfile()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let profile = output.getActiveProfile()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getPhotoRotation(Int32)
@@ -4439,24 +4838,24 @@ public func getPhotoRotation(deviceDegree: Int32): ImageRotation
 
 **Function:** Retrieves the photo rotation angle.
 
-- Device natural orientation: Default orientation of the device, typically portrait for phones (charging port facing downward).
-- Camera lens angle: Value equals the clockwise rotation angle from the camera image to the device's natural orientation. For example, rear camera sensors on phones are installed in portrait mode, requiring a 90-degree clockwise rotation to align with the device's natural orientation.
-- Screen display orientation: Requires the image's top-left corner to be the origin pixel point. When locked, it matches the natural orientation.
+- Device natural orientation: Default usage orientation of the device. For mobile phones, this is portrait mode (charging port facing downward).
+- Camera lens angle: Value equals the clockwise rotation angle from the camera image to the device's natural orientation. The rear camera sensor of a mobile phone is installed in portrait mode, so it needs to be rotated 90 degrees clockwise to align with the device's natural orientation.
+- Screen display orientation: The top-left corner of the displayed image should be the coordinate origin (first pixel point). When locked, it aligns with the natural orientation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
 | deviceDegree | Int32 | Yes | - | Device rotation angle. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | [ImageRotation](#enum-imagerotation) | Photo rotation angle. |
 
 **Exceptions:**
@@ -4476,31 +4875,39 @@ public func getPhotoRotation(deviceDegree: Int32): ImageRotation
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Obtain the Context application context as described in the usage instructions
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let deviceDegree: Int32 = 0
-let imageRotation = output.getPhotoRotation(deviceDegree)
-```### func getSupportedMovingPhotoVideoCodecTypes()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let deviceDegree: Int32 = 0
+    let imageRotation = output.getPhotoRotation(deviceDegree)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getSupportedMovingPhotoVideoCodecTypes()
 
 ```cangjie
 public func getSupportedMovingPhotoVideoCodecTypes(): Array<VideoCodecType>
 ```
 
-**Function:** Queries the supported video codec types for moving photos.
+**Function:** Queries supported video codec types for moving photos.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
+| :---- | :---- |
 | Array\<[VideoCodecType](#enum-videocodectype)> | List of supported video codec types for moving photos. |
 
 **Example:**
@@ -4511,14 +4918,20 @@ public func getSupportedMovingPhotoVideoCodecTypes(): Array<VideoCodecType>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let videoCodecTypes = output.getSupportedMovingPhotoVideoCodecTypes()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let videoCodecTypes = output.getSupportedMovingPhotoVideoCodecTypes()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func isMirrorSupported()
@@ -4527,17 +4940,17 @@ let videoCodecTypes = output.getSupportedMovingPhotoVideoCodecTypes()
 public func isMirrorSupported(): Bool
 ```
 
-**Function:** Checks whether mirror capture is supported.
+**Function:** Queries whether mirror photo capture is supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Bool | Returns whether mirror capture is supported. true indicates support, false indicates no support. |
+| :---- | :---- |
+| Bool | Returns whether mirror photo capture is supported. `true` indicates support, `false` indicates no support. |
 
 **Exceptions:**
 
@@ -4555,38 +4968,41 @@ public func isMirrorSupported(): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-Hilog.info(0, "AppLogCj", output.isMirrorSupported().toString())
-```
-
-### func isMovingPhotoSupported()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    Hilog.info(0, "AppLogCj", output.isMirrorSupported().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func isMovingPhotoSupported()
 
 ```cangjie
 public func isMovingPhotoSupported(): Bool
 ```
 
-**Function:** Checks whether moving photo capture is supported.
+**Function:** Queries whether moving photo capture is supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns whether moving photo capture is supported. true indicates support, false indicates no support. |
+| Bool | Returns whether moving photo capture is supported. true indicates supported, false indicates not supported. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -4600,15 +5016,20 @@ public func isMovingPhotoSupported(): Bool
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-Hilog.info(0, "AppLogCj", output.isMovingPhotoSupported().toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    Hilog.info(0, "AppLogCj", output.isMovingPhotoSupported().toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<CaptureStartInfo>)
@@ -4621,22 +5042,21 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<CaptureStar
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event, must be CaptureStartWithInfo. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CaptureStartInfo](#class-capturestartinfo)> | Yes | - | Callback function for handling [CaptureStartInfo](#class-capturestartinfo). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4647,14 +5067,20 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<CaptureStar
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<FrameShutterInfo>)
@@ -4667,22 +5093,21 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FrameShutte
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event, must be FrameShutter. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FrameShutterInfo](#class-frameshutterinfo)> | Yes | - | Callback function for handling [FrameShutterInfo](#class-frameshutterinfo). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4693,14 +5118,20 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FrameShutte
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<CaptureEndInfo>)
@@ -4709,26 +5140,25 @@ output.off(CameraEvents.CaptureStartWithInfo)
 public func off(eventType: CameraEvents, callback: Callback1Argument<CaptureEndInfo>): Unit
 ```
 
-**Function:** Unregisters the listener for photo capture end.
+**Function:** Unregisters the listener for photo capture completion.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event, must be CaptureEnd. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CaptureEndInfo](#class-captureendinfo)> | Yes | - | Callback function for handling [CaptureEndInfo](#class-captureendinfo). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4739,14 +5169,20 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<CaptureEndI
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<FrameShutterEndInfo>)
@@ -4759,22 +5195,21 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FrameShutte
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event, must be FrameShutterEnd. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FrameShutterEndInfo](#class-frameshutterendinfo)> | Yes | - | Callback function for handling [FrameShutterEndInfo](#class-frameshutterendinfo). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4785,14 +5220,20 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FrameShutte
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback0Argument)
@@ -4801,26 +5242,25 @@ output.off(CameraEvents.CaptureStartWithInfo)
 public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 ```
 
-**Function:** Unregisters the listener for next capture readiness or errors.
+**Function:** Unregisters the listener for next capture readiness or error.
 
 **System Capability:** SystemCapability.MMultimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event, must be one of [CaptureReady, CameraError]. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4831,14 +5271,20 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<Float64>)
@@ -4851,22 +5297,21 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<Float64>): 
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event, must be EstimatedCaptureDuration. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Float64> | Yes | - | Callback function for obtaining estimated capture duration (in milliseconds). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4877,39 +5322,46 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<Float64>): 
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required, refer to usage instructions in this document
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
-```### func off(CameraEvents)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func off(CameraEvents)
 
 ```cangjie
 public func off(eventType: CameraEvents): Unit
 ```
 
-**Function:** Unregisters all callbacks for the specified event.
+**Function:** Cancels all callbacks for the specified listening event.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to unregister. Must be an event that can be registered via the on function. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Listening event. Must be an event that can be listened to by the on function. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4920,46 +5372,49 @@ public func off(eventType: CameraEvents): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.off(CameraEvents.CaptureStartWithInfo)
-```
-
-### func on(CameraEvents, Callback1Argument\<CaptureStartInfo>)
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions in this document.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.off(CameraEvents.CaptureStartWithInfo)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func on(CameraEvents, Callback1Argument\<CaptureStartInfo>)
 
 ```cangjie
 public func on(eventType: CameraEvents, callback: Callback1Argument<CaptureStartInfo>): Unit
 ```
 
-**Function:** Listens for the start of photo capture and obtains CaptureStartInfo via a registered callback function. Uses asynchronous callback.
+**Function:** Listens for photo capture start events by registering a callback function to obtain CaptureStartInfo. Uses asynchronous callback via `callback`.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on callback method is not supported.
+> It is not supported to call `off` to unregister the callback within the callback method registered via `on`.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be CaptureStartWithInfo. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CaptureStartInfo](#class-capturestartinfo)> | Yes | - | Callback function to handle [CaptureStartInfo](#class-capturestartinfo). |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be `CaptureStartWithInfo`. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CaptureStartInfo](#class-capturestartinfo)> | Yes | - | Callback function for handling [CaptureStartInfo](#class-capturestartinfo). |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -4970,31 +5425,30 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<CaptureStart
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<FrameShutterInfo>)
@@ -5003,30 +5457,29 @@ output.on(CameraEvents.CameraError, testCallbackError)
 public func on(eventType: CameraEvents, callback: Callback1Argument<FrameShutterInfo>): Unit
 ```
 
-**Function:** Listens for frame capture during photo output and obtains results via a registered callback function. Uses asynchronous callback.
+**Function:** Listens for photo frame output capture events by registering a callback function to obtain results. Uses asynchronous callback via `callback`.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on callback method is not supported.
+> It is not supported to call `off` to unregister the callback within the callback method registered via `on`.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be FrameShutter. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FrameShutterInfo](#class-frameshutterinfo)> | Yes | - | Callback function to handle [FrameShutterInfo](#class-frameshutterinfo). |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be `FrameShutter`. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FrameShutterInfo](#class-frameshutterinfo)> | Yes | - | Callback function for handling [FrameShutterInfo](#class-frameshutterinfo). |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -5037,31 +5490,30 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FrameShutter
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<CaptureEndInfo>)
@@ -5070,30 +5522,29 @@ output.on(CameraEvents.CameraError, testCallbackError)
 public func on(eventType: CameraEvents, callback: Callback1Argument<CaptureEndInfo>): Unit
 ```
 
-**Function:** Listens for the end of photo capture and obtains results via a registered callback function. Uses asynchronous callback.
+**Function:** Listens for photo capture end events by registering a callback function to obtain results. Uses asynchronous callback via `callback`.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on callback method is not supported.
+> It is not supported to call `off` to unregister the callback within the callback method registered via `on`.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be CaptureEnd. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CaptureEndInfo](#class-captureendinfo)> | Yes | - | Callback function to handle [CaptureEndInfo](#class-captureendinfo). |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be `CaptureEnd`. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CaptureEndInfo](#class-captureendinfo)> | Yes | - | Callback function for handling [CaptureEndInfo](#class-captureendinfo). |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -5104,31 +5555,30 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<CaptureEndIn
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<FrameShutterEndInfo>)
@@ -5137,30 +5587,29 @@ output.on(CameraEvents.CameraError, testCallbackError)
 public func on(eventType: CameraEvents, callback: Callback1Argument<FrameShutterEndInfo>): Unit
 ```
 
-**Function:** Listens for frame capture during photo output and obtains results via a registered callback function. Uses asynchronous callback.
+**Function:** Listens for photo frame output capture events by registering a callback function to obtain results. Uses asynchronous callback via `callback`.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on callback method is not supported.
+> It is not supported to call `off` to unregister the callback within the callback method registered via `on`.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be FrameShutterEnd. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FrameShutterEndInfo](#class-frameshutterendinfo)> | Yes | - | Callback function to handle [FrameShutterEndInfo](#class-frameshutterendinfo). |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be `FrameShutterEnd`. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FrameShutterEndInfo](#class-frameshutterendinfo)> | Yes | - | Callback function for handling [FrameShutterEndInfo](#class-frameshutterendinfo). |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -5171,31 +5620,30 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FrameShutter
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback0Argument)
@@ -5204,30 +5652,29 @@ output.on(CameraEvents.CameraError, testCallbackError)
 public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 ```
 
-**Function:** Listens for readiness to capture the next photo or photo errors and obtains results via a registered callback function. Uses asynchronous callback.
+**Function:** Listens for readiness to capture the next photo or photo capture errors by registering a callback function to obtain results. Uses asynchronous callback via `callback`.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on callback method is not supported.
+> It is not supported to call `off` to unregister the callback within the callback method registered via `on`.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be one of [CaptureReady, CameraError]. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be one of `[CaptureReady, CameraError]`. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function. |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -5238,31 +5685,30 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<Float64>)
@@ -5271,30 +5717,29 @@ output.on(CameraEvents.CameraError, testCallbackError)
 public func on(eventType: CameraEvents, callback: Callback1Argument<Float64>): Unit
 ```
 
-**Function:** Listens for estimated photo capture duration and obtains results via a registered callback function. Uses asynchronous callback.
+**Function:** Listens for estimated photo capture duration by registering a callback function to obtain results. Uses asynchronous callback via `callback`.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on callback method is not supported.
+> It is not supported to call `off` to unregister the callback within the callback method registered via `on`.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be EstimatedCaptureDuration. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Float64> | Yes | - | Callback function to obtain the estimated photo capture duration (in milliseconds). |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be `EstimatedCaptureDuration`. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Float64> | Yes | - | Callback function for obtaining estimated photo capture duration (in milliseconds). |
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -5305,31 +5750,30 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<Float64>): U
 // index.cj
 
 import kit.CameraKit.*
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -5342,11 +5786,11 @@ public func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -5360,14 +5804,20 @@ public func release(): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
-output.release()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProfiles[0])
+    output.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setMovingPhotoVideoCodecType(VideoCodecType)
@@ -5376,11 +5826,11 @@ output.release()
 public func setMovingPhotoVideoCodecType(codecType: VideoCodecType): Unit
 ```
 
-**Function:** Sets the video codec type for moving photos.
+**Function:** Sets the video codec type for moving photos (short videos).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -5390,25 +5840,42 @@ public func setMovingPhotoVideoCodecType(codecType: VideoCodecType): Unit
 
 **Exceptions:**
 
-- BusinessException: Error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Error codes as listed below. See [Camera Error Codes](./cj-errorcode-multimedia-camera.md) for details.
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 7400201 | Camera service fatal error. |
 
-## class PhotoSession
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ctx = Global.getAbilityContext() // Context application context required, see usage notes
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let output = cameraManager.createPhotoOutput(profile:ability.photoProf## class PhotoSession
 
 ```cangjie
 public class PhotoSession  Session & Flash & AutoExposure & Focus & Zoom & ColorManagement {}
 ```
 
-**Function:** A standard photo capture session class that provides operations for flash, exposure, focus, zoom, and color space management.
+**Description:** A standard photo capture session class that provides operations for flash, exposure, focus, zoom, and color space management.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
-**Parent Types:**
+**Inherits From:**
 
 - [Session](#interface-session)
 - [Flash](#interface-flash)
@@ -5423,11 +5890,11 @@ public class PhotoSession  Session & Flash & AutoExposure & Focus & Zoom & Color
 public func canPreconfig(preconfigType: PreconfigType, preconfigRatio!: PreconfigRatio = PreconfigRatio_4_3): Bool
 ```
 
-**Function:** Queries whether the current Session supports the specified preconfiguration type.
+**Description:** Queries whether the current session supports the specified preconfiguration type.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -5458,13 +5925,18 @@ public func canPreconfig(preconfigType: PreconfigType, preconfigRatio!: Preconfi
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-Hilog.info(0, "AppLogCj", session.canPreconfig(Preconfig1080p, preconfigRatio: PreconfigRatio_16_9).toString())
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    Hilog.info(0, "AppLogCj", session.canPreconfig(Preconfig1080p, preconfigRatio: PreconfigRatio_16_9).toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback0Argument)
@@ -5473,17 +5945,17 @@ Hilog.info(0, "AppLogCj", session.canPreconfig(Preconfig1080p, preconfigRatio: P
 public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 ```
 
-**Function:** Unregisters the listener for error events in a standard photo capture session. Results are obtained via the registered callback function.
+**Description:** Unregisters the listener for error events in a standard photo capture session. Results are obtained through the registered callback function.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be CameraError. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, which must be CameraError. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function for handling [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception). |
 
 **Example:**
@@ -5494,12 +5966,18 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-session.off(CameraEvents.FocusStateChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    session.off(CameraEvents.FocusStateChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<FocusState>)
@@ -5508,17 +5986,17 @@ session.off(CameraEvents.FocusStateChange)
 public func off(eventType: CameraEvents, callback: Callback1Argument<FocusState>): Unit
 ```
 
-**Function:** Unregisters the listener for camera focus state changes.
+**Description:** Unregisters the listener for camera focus state changes.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be FocusStateChange. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, which must be FocusStateChange. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FocusState](#enum-focusstate)> | Yes | - | Callback function for handling [FocusState](#enum-focusstate). |
 
 **Example:**
@@ -5529,12 +6007,18 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FocusState>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-session.off(CameraEvents.FocusStateChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    session.off(CameraEvents.FocusStateChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<SmoothZoomInfo>)
@@ -5543,17 +6027,17 @@ session.off(CameraEvents.FocusStateChange)
 public func off(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomInfo>): Unit
 ```
 
-**Function:** Unregisters the listener for camera smooth zoom state changes.
+**Description:** Unregisters the listener for camera smooth zoom state changes.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be SmoothZoomInfoAvailable. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, which must be SmoothZoomInfoAvailable. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[SmoothZoomInfo](#class-smoothzoominfo)> | Yes | - | Callback function for handling [SmoothZoomInfo](#class-smoothzoominfo). |
 
 **Example:**
@@ -5564,12 +6048,18 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomI
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-session.off(CameraEvents.FocusStateChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    session.off(CameraEvents.FocusStateChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents)
@@ -5578,17 +6068,17 @@ session.off(CameraEvents.FocusStateChange)
 public func off(eventType: CameraEvents): Unit
 ```
 
-**Function:** Unregisters the listener for error events in a standard photo capture session, camera focus state changes, or camera smooth zoom state changes.
+**Description:** Unregisters the listener for error events in a standard photo capture session, camera focus state changes, or camera smooth zoom state changes.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be an event that can be registered via the on function. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be an event that can be registered via the `on` function. |
 
 **Exceptions:**
 
@@ -5596,7 +6086,6 @@ public func off(eventType: CameraEvents): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
 
 **Example:**
 
@@ -5606,12 +6095,18 @@ public func off(eventType: CameraEvents): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-session.off(CameraEvents.FocusStateChange)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    session.off(CameraEvents.FocusStateChange)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback0Argument)
@@ -5620,21 +6115,21 @@ session.off(CameraEvents.FocusStateChange)
 public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 ```
 
-**Function:** Listens for error events in a standard photo capture session. Results are obtained via the registered callback function. Uses callback for asynchronous response.
+**Description:** Listens for error events in a standard photo capture session. Results are obtained through the registered callback function. Uses callback for asynchronous results.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on listener callback method is not supported.
+> Calling `off` to unregister the callback within the `on` listener callback method is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be CameraError. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, which must be CameraError. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function for handling [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception). |
 
 **Example:**
@@ -5645,27 +6140,32 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to dependency definitions
-class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
-    public static var invoked = false
+try {
+    // This code can be added to dependency definitions
+    class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
+        public static var invoked = false
 
-    public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
-        Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
+        public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
+            Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
 
-        invoked = true
+            invoked = true
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-let callback = SmoothZoomInfoAvailableCallback()
-session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    let callback = SmoothZoomInfoAvailableCallback()
+    session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<FocusState>)
@@ -5674,21 +6174,21 @@ session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
 public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>): Unit
 ```
 
-**Function:** Listens for camera focus state changes. Results are obtained via the registered callback function. Uses callback for asynchronous response.
+**Description:** Listens for camera focus state changes. Results are obtained through the registered callback function. Uses callback for asynchronous results.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on listener callback method is not supported.
+> Calling `off` to unregister the callback within the `on` listener callback method is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be FocusStateChange. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, which must be FocusStateChange. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[FocusState](#enum-focusstate)> | Yes | - | Callback function for obtaining the current focus state. |
 
 **Example:**
@@ -5699,27 +6199,32 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>)
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to dependency definitions
-class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
-    public static var invoked = false
+try {
+    // This code can be added to dependency definitions
+    class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
+        public static var invoked = false
 
-    public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
-        Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
+        public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
+            Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
 
-        invoked = true
+            invoked = true
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-let callback = SmoothZoomInfoAvailableCallback()
-session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    let callback = SmoothZoomInfoAvailableCallback()
+    session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<SmoothZoomInfo>)
@@ -5728,21 +6233,21 @@ session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
 public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomInfo>): Unit
 ```
 
-**Function:** Listens for camera smooth zoom state changes. Results are obtained via the registered callback function. Uses callback for asynchronous response.
+**Description:** Listens for camera smooth zoom state changes. Results are obtained through the registered callback function. Uses callback for asynchronous results.
 
 > **Note:**
 >
-> Calling off to unregister the callback within the on listener callback method is not supported.
+> Calling `off` to unregister the callback within the `on` listener callback method is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, must be SmoothZoomInfoAvailable. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for, which must be SmoothZoomInfoAvailable. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[SmoothZoomInfo](#class-smoothzoominfo)> | Yes | - | Callback function for handling [SmoothZoomInfo](#class-smoothzoominfo). |
 
 **Example:**
@@ -5753,27 +6258,32 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomIn
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to dependency definitions
-class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
-    public static var invoked = false
+try {
+    // This code can be added to dependency definitions
+    class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
+        public static var invoked = false
 
-    public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
-        Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
+        public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
+            Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
 
-        invoked = true
+            invoked = true
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-let callback = SmoothZoomInfoAvailableCallback()
-session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    let callback = SmoothZoomInfoAvailableCallback()
+    session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func preconfig(PreconfigType, PreconfigRatio)
@@ -5785,11 +6295,11 @@ public func preconfig(
 ): Unit
 ```
 
-**Function:** Preconfigures the current Session.
+**Description:** Preconfigures the current session.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -5814,12 +6324,18 @@ public func preconfig(
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
-let session = photoSession.getOrThrow()
-session.preconfig(Preconfig1080p, preconfigRatio: PreconfigRatio_16_9)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let photoSession = cameraManager.createSession(SceneMode.NormalPhoto) as PhotoSession
+    let session = photoSession.getOrThrow()
+    session.preconfig(Preconfig1080p, preconfigRatio: PreconfigRatio_16_9)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```## class Point
 
 ```cangjie
@@ -5834,7 +6350,7 @@ public class Point {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
@@ -5846,11 +6362,11 @@ public var x: Float64
 
 **Type:** Float64
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
@@ -5862,11 +6378,11 @@ public var y: Float64
 
 **Type:** Float64
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Float64, Float64)
 
@@ -5878,11 +6394,11 @@ public init(x: Float64, y: Float64)
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | x | Float64 | Yes | - | The x-coordinate of the point. |
 | y | Float64 | Yes | - | The y-coordinate of the point. |
@@ -5897,7 +6413,7 @@ public class PreviewOutput  CameraOutput {}
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -5913,7 +6429,7 @@ public func getActiveFrameRate(): FrameRateRange
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -5940,17 +6456,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-let range = output.getActiveFrameRate()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    let range = output.getActiveFrameRate()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getActiveProfile()
@@ -5963,7 +6485,7 @@ public func getActiveProfile(): Profile
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -5990,17 +6512,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-let profile = output.getActiveProfile()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    let profile = output.getActiveProfile()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getPreviewRotation(Int32)
@@ -6013,15 +6541,15 @@ public func getPreviewRotation(displayRotation: Int32): ImageRotation
 
 - Device natural orientation: The default usage orientation of the device. For mobile phones, it is portrait (charging port facing downward).
 - Camera lens angle: The value equals the angle by which the camera image is rotated clockwise to align with the device's natural orientation. For mobile phone rear cameras, the sensor is installed in portrait mode, so it needs to be rotated 90 degrees clockwise to align with the device's natural orientation.
-- Screen display orientation: The image displayed on the screen should have its top-left corner as the origin (first pixel point). When the screen is locked, it aligns with the natural orientation.
+- Screen display orientation: The image displayed on the screen should have its top-left corner as the origin (0,0) of the coordinate system. When the screen is locked, it aligns with the natural orientation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | displayRotation | Int32 | Yes | - | The screen rotation angle of the display device, obtained via [getDefaultDisplaySync](../arkui-cj/cj-apis-display.md#func-getdefaultdisplaysync). |
 
@@ -6051,17 +6579,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-let imageRotation = output.getPreviewRotation(0)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    let imageRotation = output.getPreviewRotation(0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getSupportedFrameRates()
@@ -6074,7 +6608,7 @@ public func getSupportedFrameRates(): Array<FrameRateRange>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -6101,17 +6635,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-let frameRateRanges = output.getSupportedFrameRates()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    let frameRateRanges = output.getSupportedFrameRates()
+} catch (e: BusinessException) {
+    Hilog.info(0, "0", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback0Argument)
@@ -6120,17 +6660,17 @@ let frameRateRanges = output.getSupportedFrameRates()
 public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 ```
 
-**Function:** Unregisters a listener for a specific event.
+**Function:** Unregisters the listener for a specific event.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be one of [FrameStart, FrameEnd, CameraError]. Otherwise, a 401 parameter error is thrown. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be one of [FrameStart, FrameEnd, CameraError]; otherwise, a 401 parameter error will be thrown. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | The callback function. |
 
 **Exceptions:**
@@ -6139,7 +6679,6 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -6153,17 +6692,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-output.off(CameraEvents.CameraError)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(设备, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    output.off(CameraEvents.CameraError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents)
@@ -6176,11 +6721,11 @@ public func off(eventType: CameraEvents): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be an event that can be listened to via the `on` function. |
 
@@ -6190,7 +6735,6 @@ public func off(eventType: CameraEvents): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -6204,17 +6748,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-output.off(CameraEvents.CameraError)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    output.off(CameraEvents.CameraError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback0Argument)
@@ -6223,21 +6773,21 @@ output.off(CameraEvents.CameraError)
 public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 ```
 
-**Function:** Listens for preview frame start events and obtains results via a registered callback function. Uses callback for asynchronous notification.
+**Function:** Listens for the start of preview frames and obtains results via registered callback functions. Uses asynchronous callback.
 
 > **Note:**
 >
-> Calling `off` to unregister a callback within the callback method of an `on` listener is not supported.
+> Calling `off` to unregister callbacks within the callback method of `on` is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be one of [FrameStart, FrameEnd, CameraError]. Otherwise, a 401 parameter error is thrown. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | The event to listen for. Must be one of [FrameStart, FrameEnd, CameraError]; otherwise, a 401 parameter error will be thrown. |
 | callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | The callback function. |
 
 **Exceptions:**
@@ -6246,7 +6796,6 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -6260,34 +6809,33 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
-
-// This code can be added to the dependency definition
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+try {
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -6300,7 +6848,7 @@ public func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -6321,54 +6869,19 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[0]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createPreviewOutput(ability.previewProfiles[0], surfaceId)
-output.release()
-```
-
-### func setFrameRate(Int32, Int32)
-
-```cangjie
-public func setFrameRate(minFps: Int32, maxFps: Int32): Unit
-```
-
-**Function:** Sets the frame rate range for the preview stream. The specified range must be within the supported frame rate ranges. Before setting, query the supported frame rate ranges via [getSupportedFrameRates](#func-getsupportedframerates).
-
-> **Note:**
->
-> Only supported in [PhotoSession](#class-photosession) or [VideoSession](#class-videosession) mode.
-
-**System Capability:** SystemCapability.Multimedia.Camera.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| minFps | Int32 | Yes | - | The minimum frame rate. |
-| maxFps | Int32 | Yes | - | The maximum frame rate. If the minimum value is greater than the maximum value, the parameters are invalid, and the interface does not take effect. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400101 | Parameter missing or parameter type incorrect. |
-  | 7400110 | Unresolved conflicts with current configurations. |
-
-**Example:**
-
-<!-- compile## class Profile
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[0]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output =## class Profile
 
 ```cangjie
 public open class Profile {
@@ -6381,7 +6894,7 @@ public open class Profile {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let format
 
@@ -6393,11 +6906,11 @@ public let format: CameraFormat
 
 **Type:** [CameraFormat](#enum-cameraformat)
 
-**Access:** Read-only
+**Accessibility:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let size
 
@@ -6409,11 +6922,11 @@ public let size: Size
 
 **Type:** [Size](#class-size)
 
-**Access:** Read-only
+**Accessibility:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class Rect
 
@@ -6430,7 +6943,7 @@ public class Rect {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
@@ -6442,11 +6955,11 @@ public var height: Float64
 
 **Type:** Float64
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var topLeftX
 
@@ -6454,15 +6967,15 @@ public var height: Float64
 public var topLeftX: Float64
 ```
 
-**Description:** X-coordinate of the top-left corner of the rectangular area.
+**Description:** X-coordinate of the top-left corner of the rectangle area.
 
 **Type:** Float64
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var topLeftY
 
@@ -6470,15 +6983,15 @@ public var topLeftX: Float64
 public var topLeftY: Float64
 ```
 
-**Description:** Y-coordinate of the top-left corner of the rectangular area.
+**Description:** Y-coordinate of the top-left corner of the rectangle area.
 
 **Type:** Float64
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var width
 
@@ -6490,11 +7003,11 @@ public var width: Float64
 
 **Type:** Float64
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class Size
 
@@ -6509,7 +7022,7 @@ public class Size {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
@@ -6517,15 +7030,15 @@ public class Size {
 public var height: UInt32
 ```
 
-**Description:** Image height (pixels).
+**Description:** Image height (in pixels).
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var width
 
@@ -6533,15 +7046,15 @@ public var height: UInt32
 public var width: UInt32
 ```
 
-**Description:** Image width (pixels).
+**Description:** Image width (in pixels).
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class SmoothZoomInfo
 
@@ -6555,7 +7068,7 @@ public class SmoothZoomInfo {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var duration
 
@@ -6567,11 +7080,11 @@ public var duration: Int32
 
 **Type:** Int32
 
-**Access:** Read-write
+**Accessibility:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class TorchStatusInfo
 
@@ -6587,7 +7100,7 @@ public class TorchStatusInfo {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let isTorchActive
 
@@ -6599,11 +7112,11 @@ public let isTorchActive: Bool
 
 **Type:** Bool
 
-**Access:** Read-only
+**Accessibility:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let isTorchAvailable
 
@@ -6615,11 +7128,11 @@ public let isTorchAvailable: Bool
 
 **Type:** Bool
 
-**Access:** Read-only
+**Accessibility:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let torchLevel
 
@@ -6631,11 +7144,11 @@ public let torchLevel: Float64
 
 **Type:** Float64
 
-**Access:** Read-only
+**Accessibility:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class VideoOutput
 
@@ -6647,7 +7160,7 @@ public class VideoOutput  <:  CameraOutput {}
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -6663,13 +7176,13 @@ public func getActiveFrameRate(): FrameRateRange
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| [FrameRateRange](#class-frameraterange) | Frame rate range. |
+|Type|Description|
+|:----|:----|
+|[FrameRateRange](#class-frameraterange)|Frame rate range.|
 
 **Exceptions:**
 
@@ -6690,17 +7203,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-let frameRateRange = output.getActiveFrameRate()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    let frameRateRange = output.getActiveFrameRate()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getActiveProfile()
@@ -6713,13 +7232,13 @@ public func getActiveProfile(): VideoProfile
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| [VideoProfile](#class-videoprofile) | Currently active configuration information. |
+|Type|Description|
+|:----|:----|
+|[VideoProfile](#class-videoprofile)|Currently active configuration information.|
 
 **Exceptions:**
 
@@ -6740,17 +7259,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-let videoProfile = output.getActiveProfile()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    let videoProfile = output.getActiveProfile()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getSupportedFrameRates()
@@ -6763,13 +7288,13 @@ public func getSupportedFrameRates(): Array<FrameRateRange>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| Array\<[FrameRateRange](#class-frameraterange)> | List of supported frame rate ranges. |
+|Type|Description|
+|:----|:----|
+|Array\<[FrameRateRange](#class-frameraterange)>|List of supported frame rate ranges.|
 
 **Exceptions:**
 
@@ -6790,32 +7315,38 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-let frameRateRanges = output.getSupportedFrameRates()
+try {
+    let ctx = Global.getAbilityContext() // Context application context needs to be obtained. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    let frameRateRanges = output.getSupportedFrameRates()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```### func getVideoRotation(Int32)
 
 ```cangjie
 public func getVideoRotation(deviceDegree: Int32): ImageRotation
 ```
 
-**Function:** Get the video recording rotation angle.
+**Function:** Get video recording rotation angle.
 
 - **Device Natural Orientation:** The default orientation of the device, typically portrait mode for smartphones (charging port facing downward).
-- **Camera Lens Angle:** The value equals the angle by which the camera image is rotated clockwise to align with the device's natural orientation. For example, the rear camera sensor on smartphones is installed in portrait mode, requiring a 90-degree clockwise rotation to match the device's natural orientation.
-- **Screen Display Orientation:** The displayed image must have its top-left corner as the origin (first pixel point). When the screen is locked, it aligns with the natural orientation.
+- **Camera Lens Angle:** The value equals the clockwise rotation angle required to align the camera image with the device's natural orientation. For smartphone rear cameras, the sensor is mounted vertically, thus requiring a 90-degree clockwise rotation to match the device's natural orientation.
+- **Screen Display Direction:** The displayed image should have its top-left corner as the coordinate origin (first pixel point). When the screen is locked, this aligns with the natural orientation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
@@ -6831,7 +7362,7 @@ public func getVideoRotation(deviceDegree: Int32): ImageRotation
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -6849,17 +7380,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-let imageRotation = output.getVideoRotation(0)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    let imageRotation = output.getVideoRotation(0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback0Argument)
@@ -6872,22 +7409,21 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event type to unregister, must be one of [FrameStart, FrameEnd, CameraError]. |
-| callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function to be removed. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event to unregister, must be one of [FrameStart, FrameEnd, CameraError]. |
+| callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function to remove. |
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -6901,17 +7437,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-output.off(CameraEvents.CameraError)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    output.off(CameraEvents.CameraError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents)
@@ -6920,25 +7462,24 @@ output.off(CameraEvents.CameraError)
 public func off(eventType: CameraEvents): Unit
 ```
 
-**Function:** Unregister all callbacks for the specified event.
+**Function:** Remove all callbacks for the specified event.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event type to unregister, must be one of [FrameStart, FrameEnd, CameraError]. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event to unregister, must be one of [FrameStart, FrameEnd, CameraError]. |
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -6952,17 +7493,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-output.off(CameraEvents.CameraError)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    output.off(CameraEvents.CameraError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback0Argument)
@@ -6975,26 +7522,25 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 > **Note:**
 >
-> Calling `off` to unregister a callback within the `on` callback method is not supported.
+> Calling `off` to unregister callbacks within an `on` callback is not supported.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event type to listen for, must be one of [FrameStart, FrameEnd, CameraError]. Can be registered after `videoOutput` is successfully created. |
-| callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function. No information is captured during normal operation; error information is captured when an error occurs. |
+| eventType | [CameraEvents](#enum-cameraevents) | Yes | - | Event to listen for, must be one of [FrameStart, FrameEnd, CameraError]. Can be listened to after `videoOutput` is successfully created. |
+| callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function. Captures no information during normal operation but captures error information when an error occurs. |
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7008,34 +7554,37 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
-import kit.PerformanceAnalysisKit.*
-import ohos.base.*
-
 import ohos.callback_invoke.Callback0Argument
 import ohos.business_exception.BusinessException
-//// check redundant import
+import kit.PerformanceAnalysisKit.Hilog
 
-//// end
+try {
+    //// check redundant import
 
-// Code here can be added to dependency definitions
-class TestCallbackError <: Callback0Argument {
-    public init() {}
-    public open func invoke(res: ?BusinessException): Unit {
-        Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+    //// end
+
+    // This code can be added to dependency definitions
+    class TestCallbackError <: Callback0Argument {
+        public init() {}
+        public open func invoke(res: ?BusinessException): Unit {
+            Hilog.info(0, "Camera", "Call invoke error. code: ${res?.code}, msg: ${res?.message}")
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-let testCallbackError = TestCallbackError()
-output.on(CameraEvents.CameraError, testCallbackError)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    let testCallbackError = TestCallbackError()
+    output.on(CameraEvents.CameraError, testCallbackError)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -7048,11 +7597,11 @@ public func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -7069,17 +7618,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-output.release()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    output.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setFrameRate(Int32, Int32)
@@ -7088,26 +7643,26 @@ output.release()
 public func setFrameRate(minFps: Int32, maxFps: Int32): Unit
 ```
 
-**Function:** Set the frame rate range for video recording. The specified range must be within the supported frame rate range. Before setting, query the supported frame rate range via [getSupportedFrameRates](#func-getsupportedframerates).
+**Function:** Set the frame rate range for video recording. The specified range must be within the supported frame rate range. Before setting, query supported ranges via [getSupportedFrameRates](#func-getsupportedframerates).
 
 > **Note:**
 >
-> Only supported in [PhotoSession](#class-photosession) or [VideoSession](#class-videosession) mode.
+> Only supported in [PhotoSession](#class-photosession) or [VideoSession](#class-videosession) modes.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | minFps | Int32 | Yes | - | Minimum frame rate. |
-| maxFps | Int32 | Yes | - | Maximum frame rate. If the minimum value exceeds the maximum value, the parameters are invalid, and the interface will not take effect. |
+| maxFps | Int32 | Yes | - | Maximum frame rate. If the minimum value exceeds the maximum, the parameters are invalid, and the interface will not take effect. |
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -7125,17 +7680,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-output.setFrameRate(30, 60)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    output.setFrameRate(30, 60)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func start()
@@ -7148,11 +7709,11 @@ public func start(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -7170,17 +7731,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-output.start()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    output.start()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func stop()
@@ -7193,11 +7760,11 @@ public func stop(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since Version:** 22
 
 **Exceptions:**
 
-- **BusinessException:** Corresponding error codes are listed below. For details, refer to [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -7214,17 +7781,23 @@ import kit.CameraKit.*
 import kit.ImageKit.createImageReceiver
 import kit.ImageKit.Size as ImageSize
 import kit.ImageKit.ImageFormat
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let device = cameraManager.getSupportedCameras()[0]
-let mode = cameraManager.getSupportedSceneModes(device)[1]
-let ability = cameraManager.getSupportedOutputCapability(device, mode)
-let size = ImageSize(8, 8192)
-let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let surfaceId: String = receiver.getReceivingSurfaceId()
-let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
-output.stop()
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let device = cameraManager.getSupportedCameras()[0]
+    let mode = cameraManager.getSupportedSceneModes(device)[1]
+    let ability = cameraManager.getSupportedOutputCapability(device, mode)
+    let size = ImageSize(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let surfaceId: String = receiver.getReceivingSurfaceId()
+    let output = cameraManager.createVideoOutput(ability.videoProfiles[0], surfaceId)
+    output.stop()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```## class VideoProfile
 
 ```cangjie
@@ -7237,7 +7810,7 @@ public class VideoProfile <: Profile {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -7253,11 +7826,11 @@ public let frameRateRange: FrameRateRange
 
 **Type:** [FrameRateRange](#class-frameraterange)
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class VideoSession
 
@@ -7269,11 +7842,11 @@ public class VideoSession  Session & Flash & AutoExposure & Focus & Zoom & Stabi
 
 > **Note:**
 >
-> Default video recording mode suitable for general scenarios. Supports recording at various resolutions such as 720P and 1080p, with selectable frame rates (e.g., 30fps, 60fps).
+> The default video recording mode, suitable for general scenarios. Supports recording at various resolutions such as 720P and 1080p, with selectable frame rates (e.g., 30fps, 60fps).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -7291,11 +7864,11 @@ public class VideoSession  Session & Flash & AutoExposure & Focus & Zoom & Stabi
 public func canPreconfig(preconfigType: PreconfigType, preconfigRatio!: PreconfigRatio = PreconfigRatio_16_9): Bool
 ```
 
-**Function:** Queries whether the current Session supports the specified pre-configuration type.
+**Function:** Queries whether the current Session supports the specified preconfiguration type.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7308,7 +7881,7 @@ public func canPreconfig(preconfigType: PreconfigType, preconfigRatio!: Preconfi
 
 | Type | Description |
 |:----|:----|
-| Bool | true: Supports the specified pre-configuration type. false: Does not support the specified pre-configuration type. |
+| Bool | true: Supports the specified preconfiguration type. false: Does not support the specified preconfiguration type. |
 
 **Exceptions:**
 
@@ -7326,12 +7899,18 @@ public func canPreconfig(preconfigType: PreconfigType, preconfigRatio!: Preconfi
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-session.canPreconfig(Preconfig1080p, preconfigRatio: PreconfigRatio_16_9)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    session.canPreconfig(Preconfig1080p, preconfigRatio: PreconfigRatio_16_9)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback0Argument)
@@ -7344,7 +7923,7 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7359,7 +7938,6 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7370,12 +7948,18 @@ public func off(eventType: CameraEvents, callback: Callback0Argument): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-session.off(CameraEvents.SmoothZoomInfoAvailable)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    session.off(CameraEvents.SmoothZoomInfoAvailable)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<FocusState>)
@@ -7388,7 +7972,7 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FocusState>
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7403,7 +7987,6 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FocusState>
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7414,12 +7997,18 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<FocusState>
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-session.off(CameraEvents.SmoothZoomInfoAvailable)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    session.off(CameraEvents.SmoothZoomInfoAvailable)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents, Callback1Argument\<SmoothZoomInfo>)
@@ -7432,7 +8021,7 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomI
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7447,7 +8036,6 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomI
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7458,12 +8046,18 @@ public func off(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomI
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-session.off(CameraEvents.SmoothZoomInfoAvailable)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    session.off(CameraEvents.SmoothZoomInfoAvailable)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func off(CameraEvents)
@@ -7476,7 +8070,7 @@ public func off(eventType: CameraEvents): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7490,7 +8084,6 @@ public func off(eventType: CameraEvents): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7501,12 +8094,18 @@ public func off(eventType: CameraEvents): Unit
 // index.cj
 
 import kit.CameraKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-session.off(CameraEvents.SmoothZoomInfoAvailable)
+try {
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    session.off(CameraEvents.SmoothZoomInfoAvailable)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback0Argument)
@@ -7523,7 +8122,7 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7538,7 +8137,6 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7549,27 +8147,32 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to dependency definitions
-class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
-    public static var invoked = false
+try {
+    // This code can be added to dependency definitions
+    class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
+        public static var invoked = false
 
-    public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
-        Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
+        public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
+            Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
 
-        invoked = true
+            invoked = true
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-let callback = SmoothZoomInfoAvailableCallback()
-session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    let callback = SmoothZoomInfoAvailableCallback()
+    session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<FocusState>)
@@ -7586,7 +8189,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>)
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7601,7 +8204,6 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>)
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7612,27 +8214,32 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>)
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to dependency definitions
-class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
-    public static var invoked = false
+try {
+    // This code can be added to dependency definitions
+    class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
+        public static var invoked = false
 
-    public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
-        Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
+        public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
+            Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
 
-        invoked = true
+            invoked = true
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-let callback = SmoothZoomInfoAvailableCallback()
-session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    let callback = SmoothZoomInfoAvailableCallback()
+    session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func on(CameraEvents, Callback1Argument\<SmoothZoomInfo>)
@@ -7649,7 +8256,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomIn
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -7664,7 +8271,6 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomIn
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 7400201 | Camera service fatal error. |
 
 **Example:**
@@ -7675,73 +8281,38 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomIn
 // index.cj
 
 import kit.CameraKit.*
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to dependency definitions
-class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
-    public static var invoked = false
+try {
+    // This code can be added to dependency definitions
+    class SmoothZoomInfoAvailableCallback <: Callback1Argument<SmoothZoomInfo> {
+        public static var invoked = false
 
-    public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
-        Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
+        public func invoke(err: ?BusinessException, info: SmoothZoomInfo) {
+            Hilog.info(0, "AppLogCj", "[multimedia_camera | SmoothZoomInfoAvailable Callback]: info: ${info.duration}")
 
-        invoked = true
+            invoked = true
+        }
     }
-}
 
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-let callback = SmoothZoomInfoAvailableCallback()
-session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+    let ctx = Global.getAbilityContext() // Context application context required. See usage instructions for details.
+    let cameraManager = getCameraManager(ctx)
+    let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
+    let session = videoSession.getOrThrow()
+    let callback = SmoothZoomInfoAvailableCallback()
+    session.on(CameraEvents.SmoothZoomInfoAvailable, callback)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func preconfig(PreconfigType, PreconfigRatio)
 
 ```cangjie
-public func preconfig(
-    preconfigType: PreconfigType,
-    preconfigRatio!: PreconfigRatio = PreconfigRatio.PreconfigRatio_16_9
-): Unit
-```
-
-**Function:** Pre-configures the current Session.
-
-**System Capability:** SystemCapability.Multimedia.Camera.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| preconfigType | [PreconfigType](#enum-preconfigtype) | Yes | - | Specifies the expected resolution for configuration. |
-| preconfigRatio | [PreconfigRatio](#enum-preconfigratio) | No | PreconfigRatio.PreconfigRatio_16_9 | **Named parameter.** Optional aspect ratio. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, see [Camera Error Codes](./cj-errorcode-multimedia-camera.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 7400201 | Camera service fatal error. |
-
-**Example:**
-
-<!-- compile -->
-
-```cangjie
-// index.cj
-
-import kit.CameraKit.*
-
-let ctx = Global.abilityContext // Context application context required. See usage instructions for details.
-let cameraManager = getCameraManager(ctx)
-let videoSession = cameraManager.createSession(SceneMode.NormalVideo) as VideoSession
-let session = videoSession.getOrThrow()
-session.preconfig(Preconfig## enum CameraEvents
+public func## enum CameraEvents
 
 ```cangjie
 public enum CameraEvents {
@@ -7768,7 +8339,7 @@ public enum CameraEvents {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -7784,7 +8355,7 @@ CameraError
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraStatus
 
@@ -7792,11 +8363,11 @@ CameraError
 CameraStatus
 ```
 
-**Function:** Camera state changes.
+**Function:** Camera status change.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CaptureEnd
 
@@ -7808,7 +8379,7 @@ CaptureEnd
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CaptureReady
 
@@ -7816,11 +8387,11 @@ CaptureEnd
 CaptureReady
 ```
 
-**Function:** Ready to capture next photo.
+**Function:** Ready for next capture.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CaptureStartWithInfo
 
@@ -7832,7 +8403,7 @@ CaptureStartWithInfo
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### EstimatedCaptureDuration
 
@@ -7840,11 +8411,11 @@ CaptureStartWithInfo
 EstimatedCaptureDuration
 ```
 
-**Function:** Estimated photo capture duration.
+**Function:** Estimated capture duration.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusStateChange
 
@@ -7852,11 +8423,11 @@ EstimatedCaptureDuration
 FocusStateChange
 ```
 
-**Function:** Camera focus state changes.
+**Function:** Camera focus state change.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FoldStatusChange
 
@@ -7864,11 +8435,11 @@ FocusStateChange
 FoldStatusChange
 ```
 
-**Function:** Foldable device folding state changes.
+**Function:** Foldable device fold status change.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FrameEnd
 
@@ -7880,7 +8451,7 @@ FrameEnd
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FrameShutter
 
@@ -7888,11 +8459,11 @@ FrameEnd
 FrameShutter
 ```
 
-**Function:** Captured frame output.
+**Function:** Capture frame output.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FrameShutterEnd
 
@@ -7904,7 +8475,7 @@ FrameShutterEnd
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FrameStart
 
@@ -7916,7 +8487,7 @@ FrameStart
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### MetadataObjectsAvailable
 
@@ -7924,11 +8495,11 @@ FrameStart
 MetadataObjectsAvailable
 ```
 
-**Function:** Detected metadata objects.
+**Function:** Metadata objects detected.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SmoothZoomInfoAvailable
 
@@ -7936,11 +8507,11 @@ MetadataObjectsAvailable
 SmoothZoomInfoAvailable
 ```
 
-**Function:** Camera smooth zoom state changes.
+**Function:** Camera smooth zoom state change.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### TorchStatusChange
 
@@ -7948,11 +8519,11 @@ SmoothZoomInfoAvailable
 TorchStatusChange
 ```
 
-**Function:** Flashlight state changes.
+**Function:** Flashlight status change.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CameraEvents)
 
@@ -7964,15 +8535,15 @@ public operator func !=(other: CameraEvents): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Mandatory|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [CameraEvents](#enum-cameraevents) | Yes | - | Another enum value. |
+|other|[CameraEvents](#enum-cameraevents)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | true indicates unequal, false indicates equal. |
+|Bool|true indicates equal, false indicates unequal.|
 
 ### func ==(CameraEvents)
 
@@ -7984,15 +8555,15 @@ public operator func ==(other: CameraEvents): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Mandatory|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [CameraEvents](#enum-cameraevents) | Yes | - | Another enum value. |
+|other|[CameraEvents](#enum-cameraevents)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | true indicates unequal, false indicates equal. |
+|Bool|true indicates unequal, false indicates equal.|
 
 ## enum CameraFormat
 
@@ -8012,7 +8583,7 @@ public enum CameraFormat {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8029,7 +8600,7 @@ CameraFormatHeic
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraFormatJpeg
 
@@ -8041,7 +8612,7 @@ CameraFormatJpeg
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraFormatRgba8888
 
@@ -8053,7 +8624,7 @@ CameraFormatRgba8888
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraFormatYcbcrP010
 
@@ -8065,7 +8636,7 @@ CameraFormatYcbcrP010
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraFormatYcrcbP010
 
@@ -8077,7 +8648,7 @@ CameraFormatYcrcbP010
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraFormatYuv420Sp
 
@@ -8089,7 +8660,7 @@ CameraFormatYuv420Sp
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CameraFormat)
 
@@ -8101,15 +8672,15 @@ public operator func !=(other: CameraFormat): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Mandatory|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [CameraFormat](#enum-cameraformat) | Yes | - | Another enum value. |
+|other|[CameraFormat](#enum-cameraformat)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if unequal, otherwise false. |
+|Bool|Returns true if unequal, otherwise false.|
 
 ### func ==(CameraFormat)
 
@@ -8121,15 +8692,15 @@ public operator func ==(other: CameraFormat): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Mandatory|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [CameraFormat](#enum-cameraformat) | Yes | - | Another enum value. |
+|other|[CameraFormat](#enum-cameraformat)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if unequal, otherwise false. |
+|Bool|Returns true if unequal, otherwise false.|
 
 ### func toString()
 
@@ -8141,13 +8712,13 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | The string value of the enum. |## enum CameraPosition
+|String|String value of the enum.|## enum CameraPosition
 
 ```cangjie
 public enum CameraPosition {
@@ -8158,11 +8729,11 @@ public enum CameraPosition {
 }
 ```
 
-**Description:** Camera position.
+**Function:** Camera position.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8175,11 +8746,11 @@ public enum CameraPosition {
 CameraPositionBack
 ```
 
-**Description:** Rear camera.
+**Function:** Rear camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraPositionFront
 
@@ -8187,11 +8758,11 @@ CameraPositionBack
 CameraPositionFront
 ```
 
-**Description:** Front camera.
+**Function:** Front camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraPositionUnspecified
 
@@ -8199,11 +8770,11 @@ CameraPositionFront
 CameraPositionUnspecified
 ```
 
-**Description:** Camera position unspecified.
+**Function:** Camera position unspecified.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CameraPosition)
 
@@ -8211,11 +8782,11 @@ CameraPositionUnspecified
 public operator func !=(other: CameraPosition): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CameraPosition](#enum-cameraposition)|Yes|-|Another enum value.|
 
@@ -8231,11 +8802,11 @@ public operator func !=(other: CameraPosition): Bool
 public operator func ==(other: CameraPosition): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CameraPosition](#enum-cameraposition)|Yes|-|Another enum value.|
 
@@ -8251,11 +8822,11 @@ public operator func ==(other: CameraPosition): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string value of the enum.
+**Function:** Gets the string value of the enum.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -8275,11 +8846,11 @@ public enum CameraStatus {
 }
 ```
 
-**Description:** Camera status.
+**Function:** Camera status.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8292,11 +8863,11 @@ public enum CameraStatus {
 CameraStatusAppear
 ```
 
-**Description:** New camera appears.
+**Function:** New camera appears.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraStatusAvailable
 
@@ -8304,11 +8875,11 @@ CameraStatusAppear
 CameraStatusAvailable
 ```
 
-**Description:** Camera is available.
+**Function:** Camera is available.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraStatusDisappear
 
@@ -8316,11 +8887,11 @@ CameraStatusAvailable
 CameraStatusDisappear
 ```
 
-**Description:** Camera is removed.
+**Function:** Camera is removed.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraStatusUnavailable
 
@@ -8328,11 +8899,11 @@ CameraStatusDisappear
 CameraStatusUnavailable
 ```
 
-**Description:** Camera is unavailable.
+**Function:** Camera is unavailable.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CameraStatus)
 
@@ -8340,11 +8911,11 @@ CameraStatusUnavailable
 public operator func !=(other: CameraStatus): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CameraStatus](#enum-camerastatus)|Yes|-|Another enum value.|
 
@@ -8360,11 +8931,11 @@ public operator func !=(other: CameraStatus): Bool
 public operator func ==(other: CameraStatus): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CameraStatus](#enum-camerastatus)|Yes|-|Another enum value.|
 
@@ -8380,11 +8951,11 @@ public operator func ==(other: CameraStatus): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string value of the enum.
+**Function:** Gets the string value of the enum.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -8405,11 +8976,11 @@ public enum CameraType {
 }
 ```
 
-**Description:** Camera type.
+**Function:** Camera type.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8422,11 +8993,11 @@ public enum CameraType {
 CameraTypeDefault
 ```
 
-**Description:** Camera type unspecified.
+**Function:** Camera type unspecified.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraTypeTelephoto
 
@@ -8434,11 +9005,11 @@ CameraTypeDefault
 CameraTypeTelephoto
 ```
 
-**Description:** Telephoto camera.
+**Function:** Telephoto camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraTypeTrueDepth
 
@@ -8446,11 +9017,11 @@ CameraTypeTelephoto
 CameraTypeTrueDepth
 ```
 
-**Description:** Camera with depth information.
+**Function:** Camera with depth information.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraTypeUltraWide
 
@@ -8458,11 +9029,11 @@ CameraTypeTrueDepth
 CameraTypeUltraWide
 ```
 
-**Description:** Ultra-wide camera.
+**Function:** Ultra-wide camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraTypeWideAngle
 
@@ -8470,11 +9041,11 @@ CameraTypeUltraWide
 CameraTypeWideAngle
 ```
 
-**Description:** Wide-angle camera.
+**Function:** Wide-angle camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CameraType)
 
@@ -8482,11 +9053,11 @@ CameraTypeWideAngle
 public operator func !=(other: CameraType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CameraType](#enum-cameratype)|Yes|-|Another enum value.|
 
@@ -8502,11 +9073,11 @@ public operator func !=(other: CameraType): Bool
 public operator func ==(other: CameraType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CameraType](#enum-cameratype)|Yes|-|Another enum value.|
 
@@ -8522,11 +9093,11 @@ public operator func ==(other: CameraType): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string value of the enum.
+**Function:** Gets the string value of the enum.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -8545,11 +9116,11 @@ public enum ConnectionType {
 }
 ```
 
-**Description:** Camera connection type.
+**Function:** Camera connection type.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8562,11 +9133,11 @@ public enum ConnectionType {
 CameraConnectionBuiltIn
 ```
 
-**Description:** Built-in camera.
+**Function:** Built-in camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraConnectionRemote
 
@@ -8574,11 +9145,11 @@ CameraConnectionBuiltIn
 CameraConnectionRemote
 ```
 
-**Description:** Remotely connected camera.
+**Function:** Remotely connected camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CameraConnectionUsbPlugin
 
@@ -8586,11 +9157,11 @@ CameraConnectionRemote
 CameraConnectionUsbPlugin
 ```
 
-**Description:** USB-connected camera.
+**Function:** USB-connected camera.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ConnectionType)
 
@@ -8598,11 +9169,11 @@ CameraConnectionUsbPlugin
 public operator func !=(other: ConnectionType): Bool
 ```
 
-**Description:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[ConnectionType](#enum-connectiontype)|Yes|-|Another enum value.|
 
@@ -8618,11 +9189,11 @@ public operator func !=(other: ConnectionType): Bool
 public operator func ==(other: ConnectionType): Bool
 ```
 
-**Description:** Determines whether two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[ConnectionType](#enum-connectiontype)|Yes|-|Another enum value.|
 
@@ -8638,17 +9209,18 @@ public operator func ==(other: ConnectionType): Bool
 public func toString(): String
 ```
 
-**Description:** Gets the string value of the enum.
+**Function:** Gets the string value of the enum.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The string value of the enum.|## enum ExposureMode
+|String|The string value of the enum.|```markdown
+## enum ExposureMode
 
 ```cangjie
 public enum ExposureMode {
@@ -8659,11 +9231,11 @@ public enum ExposureMode {
 }
 ```
 
-**Function:** Exposure mode.
+**Description:** Exposure mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8676,11 +9248,11 @@ public enum ExposureMode {
 ExposureModeAuto
 ```
 
-**Function:** Auto exposure mode. Supports setting the center point of the exposure area using [AutoExposure.setMeteringPoint](#func-setmeteringpointpoint).
+**Description:** Auto exposure mode. Supports setting the center point of the exposure area via [AutoExposure.setMeteringPoint](#func-setmeteringpointpoint).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ExposureModeContinuousAuto
 
@@ -8688,11 +9260,11 @@ ExposureModeAuto
 ExposureModeContinuousAuto
 ```
 
-**Function:** Continuous auto exposure. Does not support setting the center point of the exposure area.
+**Description:** Continuous auto exposure. Does not support setting the center point of the exposure area.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ExposureModeLocked
 
@@ -8700,11 +9272,11 @@ ExposureModeContinuousAuto
 ExposureModeLocked
 ```
 
-**Function:** Locked exposure mode. Does not support setting the center point of the exposure area.
+**Description:** Locked exposure mode. Does not support setting the center point of the exposure area.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ExposureMode)
 
@@ -8712,7 +9284,7 @@ ExposureModeLocked
 public operator func !=(other: ExposureMode): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
@@ -8724,7 +9296,7 @@ public operator func !=(other: ExposureMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are not equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are unequal, otherwise false. |
 
 ### func ==(ExposureMode)
 
@@ -8732,7 +9304,7 @@ public operator func !=(other: ExposureMode): Bool
 public operator func ==(other: ExposureMode): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enum values are equal.
 
 **Parameters:**
 
@@ -8744,7 +9316,7 @@ public operator func ==(other: ExposureMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are equal, otherwise false. |
 
 ### func toString()
 
@@ -8752,7 +9324,7 @@ public operator func ==(other: ExposureMode): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string value of the enum.
 
 **Return Value:**
 
@@ -8772,11 +9344,11 @@ public enum FlashMode {
 }
 ```
 
-**Function:** Flash mode.
+**Description:** Flash mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8789,11 +9361,11 @@ public enum FlashMode {
 FlashModeAlwaysOpen
 ```
 
-**Function:** Flash always on.
+**Description:** Flash always on.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FlashModeAuto
 
@@ -8801,11 +9373,11 @@ FlashModeAlwaysOpen
 FlashModeAuto
 ```
 
-**Function:** Auto flash.
+**Description:** Auto flash.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FlashModeClose
 
@@ -8813,11 +9385,11 @@ FlashModeAuto
 FlashModeClose
 ```
 
-**Function:** Flash off.
+**Description:** Flash off.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FlashModeOpen
 
@@ -8825,11 +9397,11 @@ FlashModeClose
 FlashModeOpen
 ```
 
-**Function:** Flash on.
+**Description:** Flash on.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(FlashMode)
 
@@ -8837,7 +9409,7 @@ FlashModeOpen
 public operator func !=(other: FlashMode): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
@@ -8849,7 +9421,7 @@ public operator func !=(other: FlashMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are not equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are unequal, otherwise false. |
 
 ### func ==(FlashMode)
 
@@ -8857,7 +9429,7 @@ public operator func !=(other: FlashMode): Bool
 public operator func ==(other: FlashMode): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enum values are equal.
 
 **Parameters:**
 
@@ -8869,7 +9441,7 @@ public operator func ==(other: FlashMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are equal, otherwise false. |
 
 ### func toString()
 
@@ -8877,7 +9449,7 @@ public operator func ==(other: FlashMode): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string value of the enum.
 
 **Return Value:**
 
@@ -8897,11 +9469,11 @@ public enum FocusMode {
 }
 ```
 
-**Function:** Focus mode.
+**Description:** Focus mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -8914,11 +9486,11 @@ public enum FocusMode {
 FocusModeAuto
 ```
 
-**Function:** Auto focus. Supports setting the focus point using [setFocusPoint](#func-setfocuspointpoint) to perform a single auto-focus operation.
+**Description:** Auto focus. Supports focus point setting via [setFocusPoint](#func-setfocuspointpoint), performing auto focus once based on the focus point.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusModeContinuousAuto
 
@@ -8926,11 +9498,11 @@ FocusModeAuto
 FocusModeContinuousAuto
 ```
 
-**Function:** Continuous auto focus. Does not support setting the focus point.
+**Description:** Continuous auto focus. Does not support focus point setting.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusModeLocked
 
@@ -8938,11 +9510,11 @@ FocusModeContinuousAuto
 FocusModeLocked
 ```
 
-**Function:** Focus locked. Does not support setting the focus point.
+**Description:** Focus locked. Does not support focus point setting.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusModeManual
 
@@ -8950,11 +9522,11 @@ FocusModeLocked
 FocusModeManual
 ```
 
-**Function:** Manual focus. Adjusts the focus position by manually modifying the camera's focal length. Does not support setting the focus point.
+**Description:** Manual focus. Adjusts focus position by manually modifying the camera's focal length. Does not support focus point setting.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(FocusMode)
 
@@ -8962,7 +9534,7 @@ FocusModeManual
 public operator func !=(other: FocusMode): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
@@ -8974,7 +9546,7 @@ public operator func !=(other: FocusMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are not equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are unequal, otherwise false. |
 
 ### func ==(FocusMode)
 
@@ -8982,7 +9554,7 @@ public operator func !=(other: FocusMode): Bool
 public operator func ==(other: FocusMode): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enum values are equal.
 
 **Parameters:**
 
@@ -8994,7 +9566,7 @@ public operator func ==(other: FocusMode): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are equal, otherwise false. |
 
 ### func toString()
 
@@ -9002,7 +9574,7 @@ public operator func ==(other: FocusMode): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string value of the enum.
 
 **Return Value:**
 
@@ -9021,11 +9593,11 @@ public enum FocusState {
 }
 ```
 
-**Function:** Focus state.
+**Description:** Focus state.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9038,11 +9610,11 @@ public enum FocusState {
 FocusStateFocused
 ```
 
-**Function:** Focus succeeded.
+**Description:** Focus succeeded.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusStateScan
 
@@ -9050,11 +9622,11 @@ FocusStateFocused
 FocusStateScan
 ```
 
-**Function:** Focus triggered.
+**Description:** Focus triggered.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusStateUnfocused
 
@@ -9062,11 +9634,11 @@ FocusStateScan
 FocusStateUnfocused
 ```
 
-**Function:** Focus not completed.
+**Description:** Focus not completed.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(FocusState)
 
@@ -9074,7 +9646,7 @@ FocusStateUnfocused
 public operator func !=(other: FocusState): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Description:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
@@ -9086,7 +9658,7 @@ public operator func !=(other: FocusState): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are not equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are unequal, otherwise false. |
 
 ### func ==(FocusState)
 
@@ -9094,7 +9666,7 @@ public operator func !=(other: FocusState): Bool
 public operator func ==(other: FocusState): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enum values are equal.
 
 **Parameters:**
 
@@ -9106,7 +9678,7 @@ public operator func ==(other: FocusState): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
+| Bool | Returns true if the enum values are equal, otherwise false. |
 
 ### func toString()
 
@@ -9114,13 +9686,14 @@ public operator func ==(other: FocusState): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string value of the enum.
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The string value of the enum. |## enum FoldStatus
+| String | The string value of the enum. |
+```## enum FoldStatus
 
 ```cangjie
 public enum FoldStatus {
@@ -9131,11 +9704,11 @@ public enum FoldStatus {
 }
 ```
 
-**Function:** Foldable device folding status.
+**Description:** Folding state of foldable devices.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9148,11 +9721,11 @@ public enum FoldStatus {
 Expanded
 ```
 
-**Function:** Indicates the device is in fully expanded state.
+**Description:** Indicates the device is in fully unfolded state.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Folded
 
@@ -9160,11 +9733,11 @@ Expanded
 Folded
 ```
 
-**Function:** Indicates the device is in folded state.
+**Description:** Indicates the device is in folded state.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### NonFoldable
 
@@ -9172,11 +9745,11 @@ Folded
 NonFoldable
 ```
 
-**Function:** Indicates the device is non-foldable.
+**Description:** Indicates the device is non-foldable.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(FoldStatus)
 
@@ -9184,11 +9757,11 @@ NonFoldable
 public operator func !=(other: FoldStatus): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Checks whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[FoldStatus](#enum-foldstatus)|Yes|-|Another enum value.|
 
@@ -9196,7 +9769,7 @@ public operator func !=(other: FoldStatus): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are unequal, otherwise false.|
+|Bool|Returns true if the enum values are unequal, otherwise returns false.|
 
 ### func ==(FoldStatus)
 
@@ -9204,11 +9777,11 @@ public operator func !=(other: FoldStatus): Bool
 public operator func ==(other: FoldStatus): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Checks whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[FoldStatus](#enum-foldstatus)|Yes|-|Another enum value.|
 
@@ -9216,7 +9789,7 @@ public operator func ==(other: FoldStatus): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are equal, otherwise false.|
+|Bool|Returns true if the enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -9224,17 +9797,17 @@ public operator func ==(other: FoldStatus): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string representation of the enum value.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The string value of the enum.|
+|String|String representation of the enum value.|
 
 ## enum ImageRotation
 
@@ -9248,11 +9821,11 @@ public enum ImageRotation {
 }
 ```
 
-**Function:** Image rotation angle.
+**Description:** Image rotation angles.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9265,11 +9838,11 @@ public enum ImageRotation {
 Rotation0
 ```
 
-**Function:** 0-degree image rotation.
+**Description:** 0-degree image rotation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation180
 
@@ -9277,11 +9850,11 @@ Rotation0
 Rotation180
 ```
 
-**Function:** 180-degree image rotation.
+**Description:** 180-degree image rotation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation270
 
@@ -9289,11 +9862,11 @@ Rotation180
 Rotation270
 ```
 
-**Function:** 270-degree image rotation.
+**Description:** 270-degree image rotation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rotation90
 
@@ -9301,11 +9874,11 @@ Rotation270
 Rotation90
 ```
 
-**Function:** 90-degree image rotation.
+**Description:** 90-degree image rotation.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ImageRotation)
 
@@ -9313,11 +9886,11 @@ Rotation90
 public operator func !=(other: ImageRotation): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Checks whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[ImageRotation](#enum-imagerotation)|Yes|-|Another enum value.|
 
@@ -9325,7 +9898,7 @@ public operator func !=(other: ImageRotation): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are unequal, otherwise false.|
+|Bool|Returns true if the enum values are unequal, otherwise returns false.|
 
 ### func ==(ImageRotation)
 
@@ -9333,11 +9906,11 @@ public operator func !=(other: ImageRotation): Bool
 public operator func ==(other: ImageRotation): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Checks whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[ImageRotation](#enum-imagerotation)|Yes|-|Another enum value.|
 
@@ -9345,7 +9918,7 @@ public operator func ==(other: ImageRotation): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are equal, otherwise false.|
+|Bool|Returns true if the enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -9353,17 +9926,17 @@ public operator func ==(other: ImageRotation): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string representation of the enum value.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The string value of the enum.|
+|String|String representation of the enum value.|
 
 ## enum MetadataObjectType
 
@@ -9374,11 +9947,11 @@ public enum MetadataObjectType {
 }
 ```
 
-**Function:** Metadata stream.
+**Description:** Metadata stream.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9391,11 +9964,11 @@ public enum MetadataObjectType {
 FaceDetection
 ```
 
-**Function:** Metadata object type for face detection. Detection points should be in the 0-1 coordinate system, where the top-left corner is (0.0, 0.0) and the bottom-right corner is (1.0, 1.0). This coordinate system is based on the horizontal device orientation when the charging port is on the right side. For example, if the application's preview interface layout is based on the vertical orientation when the charging port is at the bottom, with layout dimensions (w, h), and the returned point is (x, y), the converted coordinate point would be (1.0-y, x).
+**Description:** Metadata object type for face detection. Detection points should be in the 0-1 coordinate system where the top-left corner is (0.0, 0.0) and the bottom-right corner is (1.0, 1.0). This coordinate system is based on the landscape device orientation with the charging port on the right. For example, if the application's preview layout is based on portrait orientation with the charging port at the bottom, and the layout dimensions are (w, h), with returned points (x, y), the converted coordinates would be (1.0-y, x).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(MetadataObjectType)
 
@@ -9403,11 +9976,11 @@ FaceDetection
 public operator func !=(other: MetadataObjectType): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Checks whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[MetadataObjectType](#enum-metadataobjecttype)|Yes|-|Another enum value.|
 
@@ -9415,7 +9988,7 @@ public operator func !=(other: MetadataObjectType): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are unequal, otherwise false.|
+|Bool|Returns true if the enum values are unequal, otherwise returns false.|
 
 ### func ==(MetadataObjectType)
 
@@ -9423,11 +9996,11 @@ public operator func !=(other: MetadataObjectType): Bool
 public operator func ==(other: MetadataObjectType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Checks whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[MetadataObjectType](#enum-metadataobjecttype)|Yes|-|Another enum value.|
 
@@ -9435,7 +10008,7 @@ public operator func ==(other: MetadataObjectType): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are equal, otherwise false.|
+|Bool|Returns true if the enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -9443,17 +10016,17 @@ public operator func ==(other: MetadataObjectType): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string representation of the enum value.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The string value of the enum.|
+|String|String representation of the enum value.|
 
 ## enum PreconfigRatio
 
@@ -9466,11 +10039,11 @@ public enum PreconfigRatio {
 }
 ```
 
-**Function:** Provides preconfigured resolution ratios.
+**Description:** Provides preconfigured resolution ratios.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9483,11 +10056,11 @@ public enum PreconfigRatio {
 PreconfigRatio_16_9
 ```
 
-**Function:** 16:9 aspect ratio.
+**Description:** 16:9 aspect ratio.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PreconfigRatio_1_1
 
@@ -9495,11 +10068,11 @@ PreconfigRatio_16_9
 PreconfigRatio_1_1
 ```
 
-**Function:** 1:1 aspect ratio.
+**Description:** 1:1 aspect ratio.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PreconfigRatio_4_3
 
@@ -9507,11 +10080,11 @@ PreconfigRatio_1_1
 PreconfigRatio_4_3
 ```
 
-**Function:** 4:3 aspect ratio.
+**Description:** 4:3 aspect ratio.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PreconfigRatio)
 
@@ -9519,11 +10092,11 @@ PreconfigRatio_4_3
 public operator func !=(other: PreconfigRatio): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Checks whether two enum values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[PreconfigRatio](#enum-preconfigratio)|Yes|-|Another enum value.|
 
@@ -9531,7 +10104,7 @@ public operator func !=(other: PreconfigRatio): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are unequal, otherwise false.|
+|Bool|Returns true if the enum values are unequal, otherwise returns false.|
 
 ### func ==(PreconfigRatio)
 
@@ -9539,11 +10112,11 @@ public operator func !=(other: PreconfigRatio): Bool
 public operator func ==(other: PreconfigRatio): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Checks whether two enum values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |other|[PreconfigRatio](#enum-preconfigratio)|Yes|-|Another enum value.|
 
@@ -9551,7 +10124,7 @@ public operator func ==(other: PreconfigRatio): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are equal, otherwise false.|
+|Bool|Returns true if the enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -9559,17 +10132,17 @@ public operator func ==(other: PreconfigRatio): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the string value of the enum.
+**Description:** Gets the string representation of the enum value.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The string value of the enum.|## enum PreconfigType
+|String|String representation of the enum value.|## enum PreconfigType
 
 ```cangjie
 public enum PreconfigType {
@@ -9581,11 +10154,11 @@ public enum PreconfigType {
 }
 ```
 
-**Function:** Provides preconfiguration types.
+**Function:** Provides preconfigured types.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9602,7 +10175,7 @@ Preconfig1080p
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Preconfig4k
 
@@ -9614,7 +10187,7 @@ Preconfig4k
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Preconfig720p
 
@@ -9626,7 +10199,7 @@ Preconfig720p
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PreconfigHighQuality
 
@@ -9638,7 +10211,7 @@ PreconfigHighQuality
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PreconfigType)
 
@@ -9650,7 +10223,7 @@ public operator func !=(other: PreconfigType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[PreconfigType](#enum-preconfigtype)|Yes|-|Another enum value.|
 
@@ -9670,7 +10243,7 @@ public operator func ==(other: PreconfigType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[PreconfigType](#enum-preconfigtype)|Yes|-|Another enum value.|
 
@@ -9690,7 +10263,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -9709,11 +10282,11 @@ public enum QualityLevel {
 }
 ```
 
-**Function:** Image quality levels.
+**Function:** Image quality.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9730,7 +10303,7 @@ QualityLevelHigh
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### QualityLevelLow
 
@@ -9742,7 +10315,7 @@ QualityLevelLow
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### QualityLevelMedium
 
@@ -9754,7 +10327,7 @@ QualityLevelMedium
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(QualityLevel)
 
@@ -9766,7 +10339,7 @@ public operator func !=(other: QualityLevel): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[QualityLevel](#enum-qualitylevel)|Yes|-|Another enum value.|
 
@@ -9786,7 +10359,7 @@ public operator func ==(other: QualityLevel): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[QualityLevel](#enum-qualitylevel)|Yes|-|Another enum value.|
 
@@ -9806,7 +10379,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -9829,7 +10402,7 @@ public enum SceneMode {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9842,11 +10415,11 @@ public enum SceneMode {
 NormalPhoto
 ```
 
-**Function:** Normal photo capture mode. See [PhotoSession](#class-photosession) for details.
+**Function:** Normal photo mode. For details, see [PhotoSession](#class-photosession).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### NormalVideo
 
@@ -9854,11 +10427,11 @@ NormalPhoto
 NormalVideo
 ```
 
-**Function:** Normal video recording mode. See [VideoSession](#class-videosession) for details.
+**Function:** Normal video mode. For details, see [VideoSession](#class-videosession).
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SecurePhoto
 
@@ -9870,7 +10443,7 @@ SecurePhoto
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(SceneMode)
 
@@ -9882,7 +10455,7 @@ public operator func !=(other: SceneMode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[SceneMode](#enum-scenemode)|Yes|-|Another enum value.|
 
@@ -9902,7 +10475,7 @@ public operator func ==(other: SceneMode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[SceneMode](#enum-scenemode)|Yes|-|Another enum value.|
 
@@ -9922,7 +10495,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -9939,11 +10512,11 @@ public enum SmoothZoomMode {
 }
 ```
 
-**Function:** Smooth zoom modes.
+**Function:** Smooth zoom mode.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -9960,7 +10533,7 @@ Normal
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(SmoothZoomMode)
 
@@ -9972,7 +10545,7 @@ public operator func !=(other: SmoothZoomMode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[SmoothZoomMode](#enum-smoothzoommode)|Yes|-|Another enum value.|
 
@@ -9992,7 +10565,7 @@ public operator func ==(other: SmoothZoomMode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[SmoothZoomMode](#enum-smoothzoommode)|Yes|-|Another enum value.|
 
@@ -10029,7 +10602,7 @@ public enum TorchMode {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -10046,7 +10619,7 @@ Auto
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Off
 
@@ -10058,7 +10631,7 @@ Off
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### On
 
@@ -10070,7 +10643,7 @@ On
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(TorchMode)
 
@@ -10078,19 +10651,19 @@ On
 public operator func !=(other: TorchMode): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [TorchMode](#enum-torchmode) | Yes | - | Another enum value. |
+|other|[TorchMode](#enum-torchmode)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
 
 ### func ==(TorchMode)
 
@@ -10102,15 +10675,15 @@ public operator func ==(other: TorchMode): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [TorchMode](#enum-torchmode) | Yes | - | Another enum value. |
+|other|[TorchMode](#enum-torchmode)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+|Bool|Returns true if the two enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -10122,13 +10695,13 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | The string value of the enum. |
+|String|The string value of the enum.|
 
 ## enum VideoCodecType
 
@@ -10144,7 +10717,7 @@ public enum VideoCodecType {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -10161,7 +10734,7 @@ Avc
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Hevc
 
@@ -10173,7 +10746,7 @@ Hevc
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(VideoCodecType)
 
@@ -10181,19 +10754,19 @@ Hevc
 public operator func !=(other: VideoCodecType): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [VideoCodecType](#enum-videocodectype) | Yes | - | Another enum value. |
+|other|[VideoCodecType](#enum-videocodectype)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
 
 ### func ==(VideoCodecType)
 
@@ -10205,15 +10778,15 @@ public operator func ==(other: VideoCodecType): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [VideoCodecType](#enum-videocodectype) | Yes | - | Another enum value. |
+|other|[VideoCodecType](#enum-videocodectype)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+|Bool|Returns true if the two enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -10225,13 +10798,13 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | The string value of the enum. |
+|String|The string value of the enum.|
 
 ## enum VideoStabilizationMode
 
@@ -10250,7 +10823,7 @@ public enum VideoStabilizationMode {
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -10267,7 +10840,7 @@ Auto
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### High
 
@@ -10279,7 +10852,7 @@ High
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Low
 
@@ -10291,7 +10864,7 @@ Low
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Middle
 
@@ -10299,11 +10872,11 @@ Low
 Middle
 ```
 
-**Function:** Uses a stabilization algorithm with moderate effect, superior to LOW type.
+**Function:** Uses a moderate stabilization algorithm, superior to LOW type.
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Off
 
@@ -10315,7 +10888,7 @@ Off
 
 **System Capability:** SystemCapability.Multimedia.Camera.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(VideoStabilizationMode)
 
@@ -10323,19 +10896,19 @@ Off
 public operator func !=(other: VideoStabilizationMode): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Function:** Determines whether two enum values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [VideoStabilizationMode](#enum-videostabilizationmode) | Yes | - | Another enum value. |
+|other|[VideoStabilizationMode](#enum-videostabilizationmode)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
 
 ### func ==(VideoStabilizationMode)
 
@@ -10347,15 +10920,15 @@ public operator func ==(other: VideoStabilizationMode): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [VideoStabilizationMode](#enum-videostabilizationmode) | Yes | - | Another enum value. |
+|other|[VideoStabilizationMode](#enum-videostabilizationmode)|Yes|-|Another enum value.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+|Bool|Returns true if the two enum values are equal, otherwise returns false.|
 
 ### func toString()
 
@@ -10367,6 +10940,6 @@ public func toString(): String
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | The string value of the enum. |
+|String|The string value of the enum.|

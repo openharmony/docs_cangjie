@@ -20,20 +20,21 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the first line of the sample code has a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Description](../cj-development-intro.md#仓颉示例代码说明).
+For the above sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
-## class Flags
+## enum Flags
 
 ```cangjie
-public class Flags {
-    public static const FLAG_AUTH_READ_URI_PERMISSION: UInt32 = 0x00000001
-    public static const FLAG_AUTH_WRITE_URI_PERMISSION: UInt32 = 0x00000002
-    public static const FLAG_AUTH_PERSISTABLE_URI_PERMISSION: UInt32 = 0x00000040
-    public static const FLAG_INSTALL_ON_DEMAND: UInt32 = 0x00000800
-    public static const FLAG_START_WITHOUT_TIPS: UInt32 = 0x40000000
+public enum Flags <: Equatable<Flags> & ToString {
+    | FlagAuthReadUriPermission
+    | FlagAuthWriteUriPermission
+    | FlagAuthPersistableUriPermission
+    | FlagInstallOnDemand
+    | FlagStartWithoutTips
+    | ...
 }
 ```
 
@@ -41,89 +42,177 @@ public class Flags {
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const FLAG_AUTH_PERSISTABLE_URI_PERMISSION
+**Parent Types:**
+
+- [Equatable\<Flags>](#enum-flags)
+- ToString
+
+### FlagAuthPersistableUriPermission
 
 ```cangjie
-public static const FLAG_AUTH_PERSISTABLE_URI_PERMISSION: UInt32 = 0x00000040
+FlagAuthPersistableUriPermission
 ```
 
 **Function:** Indicates that the URI can be persisted by the recipient. This field only takes effect on tablet devices. Value: 0x00000040.
 
-**Type:** UInt32
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const FLAG_AUTH_READ_URI_PERMISSION
+### FlagAuthReadUriPermission
 
 ```cangjie
-public static const FLAG_AUTH_READ_URI_PERMISSION: UInt32 = 0x00000001
+FlagAuthReadUriPermission
 ```
 
 **Function:** Indicates authorization to perform read operations on the URI. Value: 0x00000001.
 
-**Type:** UInt32
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const FLAG_AUTH_WRITE_URI_PERMISSION
+### FlagAuthWriteUriPermission
 
 ```cangjie
-public static const FLAG_AUTH_WRITE_URI_PERMISSION: UInt32 = 0x00000002
+FlagAuthWriteUriPermission
 ```
 
 **Function:** Indicates authorization to perform write operations on the URI. Value: 0x00000002.
 
-**Type:** UInt32
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const FLAG_INSTALL_ON_DEMAND
+### FlagInstallOnDemand
 
 ```cangjie
-public static const FLAG_INSTALL_ON_DEMAND: UInt32 = 0x00000800
+FlagInstallOnDemand
 ```
 
 **Function:** If the specified feature is not installed, install it. Value: 0x00000800.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Type:** UInt32
+**Since:** 22
 
-**Initial Version:** 22
-
-### static const FLAG_START_WITHOUT_TIPS
+### FlagStartWithoutTips
 
 ```cangjie
-public static const FLAG_START_WITHOUT_TIPS: UInt32 = 0x40000000
+FlagStartWithoutTips
 ```
 
-**Function:** If an implicit ability launch cannot match any application, no prompt dialog will pop up. Value: 0x40000000.
-
-**Type:** UInt32
+**Function:** If an implicit Ability start cannot match any application, no prompt dialog will pop up. Value: 0x40000000.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-## class Params
+### func !=(Flags)
 
 ```cangjie
-public class Params {
-    public static const ABILITY_BACK_TO_OTHER_MISSION_STACK: String = "ability.params.backToOtherMissionStack"
-    public static const ABILITY_RECOVERY_RESTART: String = "ohos.ability.params.abilityRecoveryRestart"
-    public static const CONTENT_TITLE_KEY: String = "ohos.extra.param.key.contentTitle"
-    public static const SHARE_ABSTRACT_KEY: String = "ohos.extra.param.key.shareAbstract"
-    public static const SHARE_URL_KEY: String = "ohos.extra.param.key.shareUrl"
-    public static const SUPPORT_CONTINUE_PAGE_STACK_KEY: String = "ohos.extra.param.key.supportContinuePageStack"
-    public static const SUPPORT_CONTINUE_SOURCE_EXIT_KEY: String = "ohos.extra.param.key.supportContinueSourceExit"
+public operator func !=(other: Flags): Bool
+```
+
+**Function:** Determines whether two enumeration values are not equal.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Parameters:**
+
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|other|[Flags](#enum-flags)|Yes|-|Another enumeration value.|
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the two enumeration values are not equal, otherwise returns false.|
+
+### func ==(Flags)
+
+```cangjie
+public operator func ==(other: Flags): Bool
+```
+
+**Function:** Determines whether two enumeration values are equal.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Parameters:**
+
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|other|[Flags](#enum-flags)|Yes|-|Another enumeration value.|
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
+
+### func getValue()
+
+```cangjie
+public func getValue(): UInt32
+```
+
+**Function:** Gets the value represented by the current enumeration. Used to indicate the method for processing [Want](./cj-apis-app-ability-want.md#class-want).
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|UInt32|The value represented by the current enumeration.|
+
+**Exceptions:**
+
+- IllegalArgumentException:
+
+  | Error Message | Possible Cause | Handling Steps |
+  | :---- | :--- | :--- |
+  | The type is not supported. | todo | todo |
+
+### func toString()
+
+```cangjie
+public func toString(): String
+```
+
+**Function:** Gets the string representation of the current enumeration.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|String|The string representation of the current enumeration.|
+
+## enum Params
+
+```cangjie
+public enum Params <: Equatable<Params> & ToString {
+    | AbilityBackToOtherMissionStack
+    | AbilityRecoveryRestart
+    | ContentTitleKey
+    | ShareAbstractKey
+    | ShareUrlKey
+    | SupportContinuePageStackKey
+    | SupportContinueSourceExitKey
+    | ...
 }
 ```
 
@@ -131,102 +220,189 @@ public class Params {
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const ABILITY_BACK_TO_OTHER_MISSION_STACK
+**Parent Types:**
+
+- [Equatable\<Params>](#enum-params)
+- ToString
+
+### AbilityBackToOtherMissionStack
 
 ```cangjie
-public static const ABILITY_BACK_TO_OTHER_MISSION_STACK: String = "ability.params.backToOtherMissionStack"
+AbilityBackToOtherMissionStack
 ```
 
 **Function:** Indicates whether cross-mission stack return is supported. Value: ability.params.backToOtherMissionStack.
 
-**Type:** String
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const ABILITY_RECOVERY_RESTART
+### AbilityRecoveryRestart
 
 ```cangjie
-public static const ABILITY_RECOVERY_RESTART: String = "ohos.ability.params.abilityRecoveryRestart"
+AbilityRecoveryRestart
 ```
 
 **Function:** Indicates whether the current Ability has undergone a fault recovery restart. Value: ohos.ability.params.abilityRecoveryRestart.
 
-**Type:** String
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const CONTENT_TITLE_KEY
+### ContentTitleKey
 
 ```cangjie
-public static const CONTENT_TITLE_KEY: String = "ohos.extra.param.key.contentTitle"
+ContentTitleKey
 ```
 
-**Function:** Indicates the operation parameter for sharing titles supported by meta services. Value: ohos.extra.param.key.contentTitle.
-
-**Type:** String
+**Function:** Indicates the operation of the parameter for sharing title support in meta services. Value: ohos.extra.param.key.contentTitle.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const SHARE_ABSTRACT_KEY
+### ShareAbstractKey
 
 ```cangjie
-public static const SHARE_ABSTRACT_KEY: String = "ohos.extra.param.key.shareAbstract"
+ShareAbstractKey
 ```
 
 **Function:** Indicates the page source file. Value: ohos.param.atomicservice.pageSourceFile.
 
-**Type:** String
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const SHARE_URL_KEY
+### ShareUrlKey
 
 ```cangjie
-public static const SHARE_URL_KEY: String = "ohos.extra.param.key.shareUrl"
+ShareUrlKey
 ```
 
-**Function:** Indicates the operation parameter for sharing content supported by meta services. Value: ohos.extra.param.key.shareAbstract.
-
-**Type:** String
+**Function:** Indicates the operation of the parameter for sharing content support in meta services. Value: ohos.extra.param.key.shareAbstract.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const SUPPORT_CONTINUE_PAGE_STACK_KEY
+### SupportContinuePageStackKey
 
 ```cangjie
-public static const SUPPORT_CONTINUE_PAGE_STACK_KEY: String = "ohos.extra.param.key.supportContinuePageStack"
+SupportContinuePageStackKey
 ```
 
 **Function:** Indicates whether to migrate page stack information during cross-device migration. The default value is true, meaning page stack information is automatically migrated. Value: ohos.extra.param.key.supportContinuePageStack.
 
-**Type:** String
-
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
 
-### static const SUPPORT_CONTINUE_SOURCE_EXIT_KEY
+### SupportContinueSourceExitKey
 
 ```cangjie
-public static const SUPPORT_CONTINUE_SOURCE_EXIT_KEY: String = "ohos.extra.param.key.supportContinueSourceExit"
+SupportContinueSourceExitKey
 ```
 
-**Function:** Indicates whether the source application exits during cross-device migration. The default value is true, meaning the source application exits automatically. Value: ohos.extra.param.key.supportContinueSourceExit.
-
-**Type:** String
+**Function:** Indicates whether the source application exits during cross-device migration. The default value is true, meaning the source application automatically exits. Value: ohos.extra.param.key.supportContinueSourceExit.
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Initial Version:** 22
+**Since:** 22
+
+### func !=(Params)
+
+```cangjie
+public operator func !=(other: Params): Bool
+```
+
+**Function:** Determines whether two enumeration values are not equal.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Parameters:**
+
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|other|[Params](#enum-params)|Yes|-|Another enumeration value.|
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the two enumeration values are not equal, otherwise returns false.|
+
+### func ==(Params)
+
+```cangjie
+public operator func ==(other: Params): Bool
+```
+
+**Function:** Determines whether two enumeration values are equal.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Parameters:**
+
+|Parameter Name|Type|Required|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|other|[Params](#enum-params)|Yes|-|Another enumeration value.|
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
+
+### func getValue()
+
+```cangjie
+public func getValue(): String
+```
+
+**Function:** Gets the value represented by the current enumeration. Used for [Want](./cj-apis-app-ability-want.md#class-want) Params operations.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|String|The value represented by the current enumeration.|
+
+**Exceptions:**
+
+- IllegalArgumentException:
+
+  | Error Message | Possible Cause | Handling Steps |
+  | :---- | :--- | :--- |
+  | The type is not supported. | todo | todo |
+
+### func toString()
+
+```cangjie
+public func toString(): String
+```
+
+**Function:** Gets the string representation of the current enumeration.
+
+**System Capability:** SystemCapability.Ability.AbilityBase
+
+**Since:** 22
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|String|The string representation of the current enumeration.|```markdown
+| Type       | Description                          |
+|:-----------|:------------------------------------|
+| String     | The string representation of the current enumeration. |
+```

@@ -12,23 +12,23 @@ Usage steps:
 
 2. The application can access this path to obtain the `.dmp` files and then parse them. Specific steps are as follows:
 
-    * Use the `minidump_stackwalk` tool to parse the `.dmp` file, which will provide the corresponding process crash information (crash cause, thread information, register information, etc.). Example (Linux environment):
+    * Use the `minidump_stackwalk` tool to parse the `.dmp` file, obtaining the corresponding process crash information (crash reason, thread information, register information, etc.). Example (Linux environment):
 
         ```text
         ./minidump_stackwalk b678e0b5-894b-4794-9ab3-fb5d6dda06a3.dmp > parsed_stacktrace.txt
         ```
 
-        The `minidump_stackwalk` tool is compiled from the Breakpad project source code. For compilation methods, refer to the Breakpad project repository.
+        `minidump_stackwalk` is compiled from the Breakpad project source code. Refer to the Breakpad project repository for compilation methods.
 
     * View the parsed file. The following example shows partial content:
 
         ```c
-        Crash reason:  SIGSEGV /SEGV_MAPERR    // Indicates the signal causing the crash; in this example, it's a segmentation fault
+        Crash reason:  SIGSEGV /SEGV_MAPERR    // Indicates the signal causing the process crash; this example shows a segmentation fault
         Crash address: 0x0
         Process uptime: 12 seconds
 
         Thread 0 (crashed)                     // Indicates Thread 0 crashed
-         0  libweb_engine.so + 0x2e0b340       // Layer 0 call stack; 0x2e0b340 is the SO offset address, which can be used to decompile and analyze the crash source (requires unstripped SO)
+         0  libweb_engine.so + 0x2e0b340       // Layer 0 call stack; 0x2e0b340 is the SO offset address, which can be used to decompile and analyze the crash source code (requires unstripped SO)
              x0 = 0x00000006a5719ff8    x1 = 0x000000019a5a28c0
              x2 = 0x0000000000020441    x3 = 0x00000000000001b6
              x4 = 0x0000000000000018    x5 = 0x0000000000008065
@@ -61,7 +61,7 @@ Usage steps:
          ......
         ```
 
-    * Use the LLVM toolchain to parse the crash source location. Example (Linux environment):
+    * Use the LLVM toolchain to parse the crash source code location. Example (Linux environment):
 
         ```c
         ./llvm-addr2line -Cfpie libweb_engine.so 0x2e0b340

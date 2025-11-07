@@ -1,10 +1,10 @@
 # param Tool
 
-param is a system parameter operation tool provided for developers, which only supports standard systems.
+param is a system parameter operation tool for developers, which only supports standard systems.
 
 ## Environment Requirements
 
-- Obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](https://docs.openharmony.cn/pages/v5.1/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and execute `hdc shell`.
+- Obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](https://docs.openharmony.cn/pages/v5.1/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and execute `hdc shell`.
 - Ensure the device is properly connected.
 
 ## param Command List
@@ -12,10 +12,10 @@ param is a system parameter operation tool provided for developers, which only s
 | Option | Description |
 | ----------------- | ------------------------------------------ |
 | -h | Get the commands supported by param. |
-| ls [-r] [name] | Display system parameter information matching the specified name. With "-r", it retrieves information based on parameter permissions; without "-r", it directly fetches parameter information. |
+| ls [-r] [name] | Display system parameter information matching the name. With "-r", it retrieves information based on parameter permissions; without "-r", it directly fetches parameter information. |
 | get [name] | Get the value of the specified system parameter by name; if no name is specified, returns all system parameters. |
-| set name value | Set the value of the specified system parameter by name to the given value. |
-| wait name [value] [timeout] | Synchronously wait for the specified system parameter to match the given value. The value supports fuzzy matching, e.g., "\*" matches any value, "val\*" matches values starting with "val". Timeout specifies the wait duration (in seconds), defaulting to 30s if not set. |
+| set name value | Set the value of the specified system parameter by name. |
+| wait name [value] [timeout] | Synchronously wait for the specified system parameter to match the given value. Value supports fuzzy matching, e.g., "\*" for any value, "val\*" for values starting with "val". Timeout is the wait duration (in seconds), defaulting to 30s if not specified. |
 | save | Save persist parameters to the workspace. |
 
 ## Get Commands Supported by param
@@ -28,7 +28,7 @@ param is a system parameter operation tool provided for developers, which only s
 
 ## Get System Parameter Information
 
-- Display system parameter information matching the specified name with the following command:
+- Display system parameter information matching the name, using the following format:
 
   ```bash
   param ls [-r] [name]
@@ -42,7 +42,7 @@ param is a system parameter operation tool provided for developers, which only s
 
 ## Get System Parameter Values
 
-- Get the value of the specified system parameter with the following command:
+- Get the value of the specified system parameter by name, using the following format:
 
   ```bash
   param get [name]
@@ -54,7 +54,7 @@ param is a system parameter operation tool provided for developers, which only s
 
 ## Set System Parameter Values
 
-- Set the value of the specified system parameter with the following command:
+- Set the value of the specified system parameter by name, using the following format:
 
   ```bash
   param set name value
@@ -66,7 +66,7 @@ param is a system parameter operation tool provided for developers, which only s
 
 ## Wait for System Parameter Value Match
 
-- Synchronously wait for the specified system parameter to match the given value with the following command:
+- Synchronously wait for the specified system parameter to match the given value, using the following format:
 
   ```bash
   param wait name [value] [timeout]
@@ -78,7 +78,7 @@ param is a system parameter operation tool provided for developers, which only s
 
 ## Save Persist Parameters
 
-- Save persist parameters to the workspace with the following command:
+- Save persist parameters to the workspace, using the following format:
 
   ```bash
   param save

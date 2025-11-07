@@ -5,7 +5,7 @@ A checkbox group component used to control the select-all or deselect-all state 
 ## Import Module
 
 ```cangjie
-import kit.UIkit.*
+import kit.ArkUI.*
 ```
 
 ## Child Components
@@ -14,10 +14,10 @@ None
 
 ## Creating the Component
 
-### init(String)
+### init(?String)
 
 ```cangjie
-public init(group!: String = "")
+public init(group!: ?String = None)
 ```
 
 **Function:** Creates a checkbox group that can control the select-all or deselect-all state of checkboxes within the group. Checkboxes and CheckboxGroups with the same group value belong to the same group.
@@ -26,77 +26,77 @@ When used with cached components (e.g., List), the selected state of uncreated c
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| group | String | No | "" | **Named parameter.** The group name of the checkboxes.<br/>**Note:**<br/>Among multiple CheckboxGroups with the same group name, only the first CheckboxGroup takes effect. |
+| group | ?String | No | None | **Named parameter.** The group name of the checkboxes. |
 
-## Universal Attributes/Events
+## Common Attributes/Common Events
 
-Universal Attributes: All supported.
+Common Attributes: All supported.
 
-Universal Events: All supported.
+Common Events: All supported.
 
 ## Component Attributes
 
-### func selectAll(Bool)
+### func selectAll(?Bool)
 
 ```cangjie
-public func selectAll(value: Bool): This
+public func selectAll(value: ?Bool): This
 ```
 
-**Function:** Sets whether to select all. If the [Checkbox](./cj-button-picker-checkbox.md#checkbox) in the same group explicitly sets the select attribute, the Checkbox has higher priority.
+**Function:** Sets whether to select all checkboxes. If the [Checkbox](./cj-button-picker-checkbox.md#checkbox) in the same group explicitly sets the select attribute, the Checkbox's setting takes precedence.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to select all.<br>Initial value: false.<br>When true, all checkboxes in the group are selected. When false, none are selected. |
+| value | ?Bool | Yes | - | Whether to select all. Initial value: false.<br>When true, all checkboxes in the group are selected. When false, none are selected. |
 
-### func selectedColor(ResourceColor)
+### func selectedColor(?ResourceColor)
 
 ```cangjie
-public func selectedColor(value: ResourceColor): This
+public func selectedColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the color for the selected or partially selected state.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | The color for the selected or partially selected state.<br/>Initial value:<br/>@r(sys.color.ohos_id_color_text_primary_activated).<br/>Invalid values are handled as the default. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The color for the selected or partially selected state. |
 
 ## Component Events
 
-### func onChange(OnCheckboxGroupChangeCallback)
+### func onChange(?OnCheckboxGroupChangeCallback)
 
 ```cangjie
-public func onChange(callback: OnCheckboxGroupChangeCallback): This
+public func onChange(callback: ?OnCheckboxGroupChangeCallback): This
 ```
 
-**Function:** Triggers a callback when the selected state of the CheckboxGroup or the checkboxes within the group changes.
+**Function:** Triggers a callback when the selected state of the CheckboxGroup or any checkbox within the group changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| callback | OnCheckboxGroupChangeCallback | Yes | - | Information about the checkbox group. |
+| callback | ?[OnCheckboxGroupChangeCallback](#type-oncheckboxgroupchangecallback) | Yes | - | Information about the checkbox group. Initial value: { _ => } |
 
 ## Basic Type Definitions
 
@@ -117,7 +117,7 @@ public class CheckboxGroupResult {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 #### var name
 
@@ -129,11 +129,11 @@ public var name: Array<String>
 
 **Type:** Array\<String>
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 #### var status
 
@@ -141,15 +141,15 @@ public var name: Array<String>
 public var status: SelectStatus
 ```
 
-**Function:** Selection status.
+**Function:** The selection status.
 
-**Type:** [SelectStatus](#enum-selectstatus)
+**Type:** [SelectStatus](./cj-common-types.md#enum-selectstatus)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 #### init(SelectStatus, Array\<String>)
 
@@ -164,135 +164,30 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| status | [SelectStatus](#enum-selectstatus) | Yes | - | Selection status. |
+| status | [SelectStatus](./cj-common-types.md#enum-selectstatus) | Yes | - | The selection status. |
 | name | Array\<String> | Yes | - | Names of all selected checkboxes in the group. |
 
-### enum SelectStatus
+### type OnCheckboxGroupChangeCallback
 
 ```cangjie
-public enum SelectStatus <: Equatable<SelectStatus> {
-    | All
-    | Part
-    | None
-    | ...
-}
+public type OnCheckboxGroupChangeCallback = (CheckboxGroupResult) -> Unit
 ```
 
-**Function:** Types of checkbox selection states.
+**Function:** Type alias for (CheckboxGroupResult) -> Unit.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parent Type:**
-
-- Equatable\<SelectStatus>
-
-#### All
-
-```cangjie
-All
-```
-
-**Function:** All checkboxes in the group are selected.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### None
-
-```cangjie
-None
-```
-
-**Function:** No checkboxes in the group are selected.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### Part
-
-```cangjie
-Part
-```
-
-**Function:** Some checkboxes in the group are selected.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### func !=(SelectStatus)
-
-```cangjie
-public operator func !=(other: SelectStatus): Bool
-```
-
-**Function:** Determines whether two enum values are not equal.
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [SelectStatus](#enum-selectstatus) | Yes | - | Another enum value. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the enum values are not equal, otherwise false. |
-
-#### func ==(SelectStatus)
-
-```cangjie
-public operator func ==(other: SelectStatus): Bool
-```
-
-**Function:** Determines whether two enum values are equal.
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| other | [SelectStatus](#enum-selectstatus) | Yes | - | Another enum value. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the enum values are equal, otherwise false. |
-
-#### func getValue()
-
-```cangjie
-public func getValue(): Int32
-```
-
-**Function:** Gets the value of the enum.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Int32 | The value of the enum. |
+**Type:** ([CheckboxGroupResult](#class-checkboxgroupresult)) -> Unit
 
 ## Example Code
 
 ### Example 1 (Setting Up a Checkbox Group)
 
-This example controls the select-all or deselect-all state of checkboxes.
+This example demonstrates how to control the select-all or deselect-all state of checkboxes.
 
 <!-- run -->
 
@@ -300,7 +195,7 @@ This example controls the select-all or deselect-all state of checkboxes.
 
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 import ohos.arkui.state_macro_manage.*
 import std.collection.ArrayList
 
@@ -326,9 +221,9 @@ class EntryView {
                 .size(width: 50.vp, height: 50.vp)
                 .selectedColor(0xed6f21)
                 .selectAll(false)
-                .onChange { val =>
+                .onChange({ val =>
                     loggerInfo("checkboxGroup onChange names:" + formatNames(val.name))
-                }
+                })
 
                 Text("Select All").fontSize(50)
             }
@@ -354,7 +249,7 @@ class EntryView {
 
 ### Example 2 (Custom Checkmark Style)
 
-This example implements a custom checkmark style for the checkbox group by configuring the mark.
+This example demonstrates how to customize the checkmark style of a checkbox group by configuring the mark attribute.
 
 <!-- run -->
 
@@ -362,7 +257,7 @@ This example implements a custom checkmark style for the checkbox group by confi
 
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 import ohos.arkui.state_macro_manage.*
 import std.collection.ArrayList
 
@@ -388,9 +283,9 @@ class EntryView {
                 .size(width: 50.vp, height: 50.vp)
                 .selectedColor(0xed6f21)
                 .selectAll(true)
-                .onChange { val =>
+                .onChange({ val =>
                     loggerInfo("checkboxGroup1 onChange names:" + formatNames(val.name))
-                }
+                })
 
                 Text("Select All").fontSize(50)
             }
@@ -398,7 +293,7 @@ class EntryView {
                 Checkbox(name: "checkbox1", group:"checkboxGroup1")
                 .size(width: 50.vp, height: 50.vp)
 
-                Text("checkbox1").fontSize(50)```typescript
+                Text("checkbox1").fontSize(50)
             }
 
             Flex(justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center) {

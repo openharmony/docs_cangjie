@@ -2,7 +2,7 @@
 
 Page loading is a fundamental feature of Web components. Based on the data source, page loading can be categorized into three common scenarios: loading network pages, loading local pages, and loading HTML-formatted rich text data.
 
-During the page loading process, if network resource acquisition is involved, please configure network access permissions in module.json5. For the method to add permissions, refer to [Declaring Permissions in Configuration Files](../security/AccessToken/cj-declare-permissions.md).
+During the page loading process, if network resource acquisition is involved, please configure network access permissions in module.json5. For adding methods, refer to [Declaring Permissions in Configuration Files](../security/AccessToken/cj-declare-permissions.md).
 
 ```json
 "requestPermissions":[
@@ -14,7 +14,7 @@ During the page loading process, if network resource acquisition is involved, pl
 
 ## Loading Network Pages
 
-Developers can specify the default network page to load when creating a Web component. The first parameter variable `src` of the [Web component](../../../en/application-dev/reference/arkui-cj/cj-web-web.md#web) cannot be dynamically changed using state variables (e.g., `@State`).
+Developers can specify the default network page to load when creating a Web component. The first parameter variable `src` of the [Web component](../reference/arkui-cj/cj-web-web.md#web) cannot be dynamically changed via state variables (e.g., `@State`).
 
 In the following example, after the Web component loads the "www.example.com" page, developers can use the `loadUrl` interface to change the displayed page to "www.example1.com".
 
@@ -37,14 +37,14 @@ class EntryView {
 
     func build() {
         Column {
-            Button("loadUrl").onClick { evt =>
+            Button("loadUrl").onClick ({ evt =>
                 try {
                     // When the button is clicked, use loadUrl to navigate to www.example1.com
                     webController.loadUrl('www.example1.com')
                 } catch (e: BusinessException) {
                     loggerError("loadUrl ErrorCode: ${e.code},  Message: ${e.message}")
                 }
-            }
+            })
             // Load www.example.com when the component is created
             Web(src: 'www.example.com', controller: webController)
         }
@@ -58,7 +58,7 @@ The following example demonstrates how to load local page files:
 
 Place the local page files in the application's `rawfile` directory. Developers can specify the default local page to load when creating the Web component.
 
-To reference local CSS style files when loading local HTML files, use the following methods:
+When loading local HTML files, referencing local CSS style files can be achieved using the following methods:
 
 ```html
 <link rel="stylesheet" href="resource://rawfile/xxx.css">
@@ -93,14 +93,14 @@ To reference local CSS style files when loading local HTML files, use the follow
 
         func build() {
             Column {
-                Button("loadUrl").onClick { evt =>
+                Button("loadUrl").onClick ({ evt =>
                     try {
                         // When the button is clicked, use loadUrl to navigate to local1.html
                         webController.loadUrl(@rawfile("local1.html"))
                     } catch (e: BusinessException) {
                         loggerError("loadUrl ErrorCode: ${e.code},  Message: ${e.message}")
                     }
-                }
+                })
                 // Load the local file local.html via $rawfile when the component is created
                 Web(src: @rawfile("local.html"), controller: webController)
             }
@@ -134,7 +134,7 @@ To reference local CSS style files when loading local HTML files, use the follow
 
 Example of loading local page files under the sandbox path:
 
-1. Obtain the sandbox path through the singleton object `GlobalContext`. File system access permissions ([fileAccess](../../../en/application-dev/reference/arkui-cj/cj-web-web.md#func-fileaccessbool)) must be enabled in the application.
+1. Obtain the sandbox path via the singleton object `GlobalContext`. File system access permissions ([fileAccess](../reference/arkui-cj/cj-web-web.md#func-fileaccessbool)) must be enabled in the application.
 
     <!-- compile -->
 
@@ -221,7 +221,7 @@ Example of loading local page files under the sandbox path:
 
         public override func onCreate(want: Want, launchParam: LaunchParam): Unit {
             loggerInfo("MainAbility OnCreated.${want.abilityName}")
-            // By binding filesDir to the GlobalContext object, data synchronization between Ability components and the UI can be achieved.
+            // Binding filesDir to the GlobalContext object enables data synchronization between the Ability component and the UI.
             GlobalContext.getInstance().setValue("filesDir", this.context.filesDir)
             match (launchParam.launchReason) {
                 case LaunchReason.START_ABILITY => loggerInfo("START_ABILITY")
@@ -239,7 +239,7 @@ Example of loading local page files under the sandbox path:
 
 ## Loading HTML-Formatted Text Data
 
-Web components can directly load HTML strings using the `data url` method.
+Web components can directly load HTML strings via the `data url` method.
 
 <!-- compile -->
 

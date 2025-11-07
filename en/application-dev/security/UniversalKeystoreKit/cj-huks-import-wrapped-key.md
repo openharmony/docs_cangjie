@@ -1,24 +1,24 @@
 # Encrypted Key Import (Cangjie)
 
-Taking the encrypted import of an ECDH key pair as an example, operations such as [key generation](./cj-huks-key-generation-overview.md) and [agreement](./cj-huks-key-agreement-overview.md) involving business-side encryption keys are not reflected in this example.
+Taking the encrypted import of an ECDH key pair as an example, operations such as [key generation](./cj-huks-key-generation-overview.md) and [negotiation](./cj-huks-key-agreement-overview.md) involving business-side encryption keys are not reflected in this example.
 
 For specific scenario descriptions and supported algorithm specifications, please refer to [Supported Algorithms for Key Import](./cj-huks-key-import-overview.md#supported-algorithms).
 
 ## Development Steps
 
-1. Device A (importing device) converts the key to be imported into the [HUKS Key Material Format](./cj-huks-concepts.md#key-material-format) To_Import_Key (only for asymmetric keys; if the key to be imported is symmetric, this step can be omitted).
+1. Device A (importing device) converts the key to be imported into the [HUKS Key Material Format](./cj-huks-concepts.md#key-material-format) To_Import_Key (only for asymmetric keys; this step can be omitted if the key to be imported is symmetric).
 
-2. Device B (imported device) generates an asymmetric key pair Wrapping_Key (public key Wrapping_Pk, private key Wrapping_Sk) for encrypted import purposes, used for agreement. The key usage is set to unwrap. The public key material Wrapping_Pk of Wrapping_Key is exported and saved.
+2. Device B (imported device) generates an asymmetric key pair Wrapping_Key (public key Wrapping_Pk, private key Wrapping_Sk) for encrypted import purposes, used for negotiation. The key usage is set to unwrap. The public key material Wrapping_Pk of Wrapping_Key is exported and saved.
 
-3. Device A uses the same algorithm as Device B to generate an asymmetric key pair Caller_Key (public key Caller_Pk, private key Caller_Sk) for encrypted import purposes, used for agreement. The public key material Caller_Pk of Caller_Key is exported and saved.
+3. Device A uses the same algorithm as Device B to generate an asymmetric key pair Caller_Key (public key Caller_Pk, private key Caller_Sk) for encrypted import purposes, used for negotiation. The public key material Caller_Pk of Caller_Key is exported and saved.
 
 4. Device A generates a symmetric key Caller_Kek, which will subsequently be used to encrypt To_Import_Key.
 
-5. Device A derives the Shared_Key based on the private key Caller_Sk of Caller_Key and the public key Wrapping_Pk of Device B's Wrapping_Key.
+5. Device A negotiates the Shared_Key based on the private key Caller_Sk of Caller_Key and the public key Wrapping_Pk of Device B's Wrapping_Key.
 
-6. Device A encrypts To_Import_Key using Caller_Kek to generate To_Import_Key_Enc.
+6. Device A uses Caller_Kek to encrypt To_Import_Key, generating To_Import_Key_Enc.
 
-7. Device A encrypts Caller_Kek using Shared_Key to generate Caller_Kek_Enc.
+7. Device A uses Shared_Key to encrypt Caller_Kek, generating Caller_Kek_Enc.
 
 8. Device A encapsulates the encrypted import key materials such as Caller_Pk, Caller_Kek_Enc, and To_Import_Key_Enc and sends them to Device B. The format of the encrypted import key materials can be found in [Encrypted Import Key Material Format](./cj-huks-key-import-overview.md#encrypted-import-key-material-format).
 
@@ -38,9 +38,9 @@ import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 import std.collection.*
 
-let IV = "TEST_IV" // Sample code; use random values in practice.
-let AAD = "TEST_ADD" // Sample code; use random values in practice.
-let NONCE = "TEST_NONCE" // Sample code; use random values in practice.
+let IV = "TEST_IV" // Sample code; actual usage requires random values
+let AAD = "TEST_ADD" // Sample code; actual usage requires random values
+let NONCE = "TEST_NONCE" // Sample code; actual usage requires random values
 let TAG_SIZE = 16
 let FIELD_LENGTH = 4
 let importedAes192PlainKey = "The aes192 key to import"
@@ -96,20 +96,20 @@ func assignData(data: Array<UInt8>, arrayBuf: Array<UInt8>, startIndex: Int64) {
 let genWrappingKeyParams: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_ECC
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_ECC)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_UNWRAP
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_UNWRAP)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         )
     ],
     inData: Bytes()
@@ -117,16 +117,16 @@ let genWrappingKeyParams: HuksOptions = HuksOptions(
 let genCallerEcdhParams: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_ECC
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_ECC)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256)
         )
     ],
     inData: Bytes()
@@ -134,31 +134,31 @@ let genCallerEcdhParams: HuksOptions = HuksOptions(
 let importParamsCallerKek: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_GCM
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_GCM)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_NONE
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagIv,
+            HuksTag.HUKS_TAG_IV,
             HuksParamValue.BytesValue(IV.toArray())
         )
     ],
@@ -167,31 +167,31 @@ let importParamsCallerKek: HuksOptions = HuksOptions(
 var importParamsAgreeKey: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_GCM
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_GCM)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_NONE
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagIv,
+            HuksTag.HUKS_TAG_IV,
             HuksParamValue.BytesValue(IV.toArray())
         )
     ],
@@ -200,16 +200,16 @@ var importParamsAgreeKey: HuksOptions = HuksOptions(
 let callerAgreeParams: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_ECDH
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_ECDH)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256)
         )
     ],
     inData: Bytes()
@@ -217,31 +217,31 @@ let callerAgreeParams: HuksOptions = HuksOptions(
 var encryptKeyCommonParams: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_GCM
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_GCM)
         ),
         HuksParam(
-            HuksTag.HuksTagNonce,
+            HuksTag.HUKS_TAG_NONCE,
             HuksParamValue.BytesValue(NONCE.toArray())
         ),
         HuksParam(
-            HuksTag.HuksTagAssociatedData,
+            HuksTag.HUKS_TAG_ASSOCIATED_DATA,
             HuksParamValue.BytesValue(AAD.toArray())
         )
     ],
@@ -250,35 +250,35 @@ var encryptKeyCommonParams: HuksOptions = HuksOptions(
 var importWrappedAes192Params: HuksOptions = HuksOptions(
     properties: [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_192
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_192)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_CBC
+            HuksTag.HUKS_TAG_BOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_NONE
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagUnwrapAlgorithmSuite,
-            HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
+            HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
+            HuksParamValue.Uint32Value(HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING)
         ),
         HuksParam(
-            HuksTag.HuksTagIv,
+            HuksTag.HUKS_TAG_IV,
             HuksParamValue.BytesValue(IV.toArray())
         )
     ],
@@ -397,9 +397,7 @@ func publicFinishSession(handle: HuksHandleId, huksOptions: HuksOptions, inData:
     } catch (e: Exception) {
         loggerInfo("doFinish input arg invalid, ${e}")
     }
-    return outData.getOrThrow()
-}
-
+    return outData.getOr```markdown
 func cipherfunc(keyAlias: String, huksOptions: HuksOptions) {
     let handle = publicInitFunc(keyAlias, huksOptions)
     let tmpData = publicUpdateSessionfunc(handle, huksOptions)
@@ -503,7 +501,7 @@ func BuildWrappedDataAndImportWrappedKey(plainKey: String) {
     return wrappedData
 }
 
-/* Simulating encrypted key import scenario: Device A is the remote device (importing device), Device B is the local device (imported device) */
+/* Simulating encrypted key import scenario: Device A as remote device (importing device), Device B as local device (imported device) */
 func ImportWrappedKey() {
     /**
      * 1. Device A converts the key to be imported into HUKS key material format To_Import_Key 
@@ -512,18 +510,17 @@ func ImportWrappedKey() {
      */
 
     /* 2. Device B generates an asymmetric key pair Wrapping_Key (public key Wrapping_Pk, private key Wrapping_Sk) 
-          for encrypted import purposes, with key usage set to unwrap. Exports the public key Wrapping_Pk into variable huksPubKey */
+          for encrypted import purposes, with key usage set to unwrap. Exports Wrapping_Pk to variable huksPubKey */
     let srcKeyAliasWrap = 'HUKS_Basic_Capability_Import_0200'
     generateAndExportPublicKey(srcKeyAliasWrap, genWrappingKeyParams, false)
 
-    /* 3. Device A uses the same algorithm as Device B to generate an asymmetric key pair Caller_Key 
-          (public key Caller_Pk, private key Caller_Sk) for encrypted import purposes. 
-          Exports the public key Caller_Pk into variable callerSelfPublicKey */
+    /* 3. Device A generates an asymmetric key pair Caller_Key (public key Caller_Pk, private key Caller_Sk) 
+          for encrypted import purposes using the same algorithm as Device B. Exports Caller_Pk to variable callerSelfPublicKey */
     generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true)
 
     /**
-     * 4. Device A generates a symmetric key Caller_Kek, which will be used to encrypt To_Import_Key
-     * 5. Device A derives Shared_Key using Caller_Key's private key Caller_Sk and Wrapping_Key's public key Wrapping_Pk
+     * 4. Device A generates a symmetric key Caller_Kek for encrypting To_Import_Key
+     * 5. Device A derives Shared_Key by negotiating between Caller_Sk and Wrapping_Pk
      */
     ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey.getOrThrow(),
         callerAgreeParams)
@@ -534,15 +531,15 @@ func ImportWrappedKey() {
      */
     EncryptImportedPlainKeyAndKek(importedAes192PlainKey)
 
-    /* 8. Device A packages encrypted import materials including Caller_Pk, To_Import_Key_Enc, Caller_Kek_Enc 
-          and sends them to Device B. This example stores them in variables callerSelfPublicKey, outPlainKeyEncData, outKekEncData */
+    /* 8. Device A packages encrypted import materials (Caller_Pk, To_Import_Key_Enc, Caller_Kek_Enc) 
+          and sends to Device B. Stored in variables callerSelfPublicKey, outPlainKeyEncData, outKekEncData */
     let wrappedData = BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey)
     importWrappedAes192Params.inData = wrappedData
 
-    /* 9. Device B imports the packaged encrypted key material */
+    /* 9. Device B imports the wrapped encrypted key material */
     publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params)
 
-    /* 10. Devices A and B delete keys used for encrypted import */
+    /* 10. Both devices delete keys used for encrypted import */
     publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams)
     publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams)
     publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params)

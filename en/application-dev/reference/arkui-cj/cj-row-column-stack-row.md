@@ -1,6 +1,12 @@
 # Row
 
-A container that lays out its children horizontally.
+A container that arranges its children horizontally.
+
+## Import Module
+
+```cangjie
+import kit.ArkUI.*
+```
 
 ## Child Components
 
@@ -8,75 +14,76 @@ Can contain child components.
 
 ## Creating the Component
 
-### init(Length, () -> Unit)
+### init(?Length, () -> Unit)
 
 ```cangjie
-
-public init(space!: Length = 0.vp, child!: () -> Unit = {=>})
+public init(space!: ?Length = None, child!: () -> Unit = {=>})
 ```
 
-**Function:** Creates a Row container containing child components.
+**Function:** Creates a Row container with horizontal spacing between elements set to `space`.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| space | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | Horizontal spacing between elements. <br>Does not take effect when space is negative or justifyContent is set to FlexAlign.SpaceBetween, FlexAlign.SpaceAround, FlexAlign.SpaceEvenly. <br> Initial value: 0, Unit: vp <br> **Note:** Optional values are numbers greater than or equal to 0. |
-| child | ()->Unit | No | { => } | Child components within the container. |
+| space | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Horizontal spacing between elements. Does not take effect when `space` is negative or when `justifyContent` is set to `FlexAlign.SpaceBetween`, `FlexAlign.SpaceAround`, or `FlexAlign.SpaceEvenly`. Initial value: 0, unit: vp. |
+| child | () -> Unit | No | {=>} | **Named parameter.** Child components within the container. |
 
 ## Common Attributes/Common Events
 
-Common Attributes: All supported
+Common attributes: All supported.
 
-Common Events: All supported
+Common events: All supported.
 
 ## Component Attributes
 
-### func alignItems(VerticalAlign)
+### func alignItems(?VerticalAlign)
 
 ```cangjie
-
-public func alignItems(value: VerticalAlign): This
+public func alignItems(value: ?VerticalAlign): This
 ```
 
-**Function:** Sets the vertical alignment format of child components.
+**Function:** Sets the vertical alignment format for child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [VerticalAlign](cj-common-types.md#enum-verticalalign) | Yes | - | Vertical alignment format of child components. <br> Initial value: FlexAlign.Start |
+| value | ?[VerticalAlign](./cj-common-types.md#enum-verticalalign) | Yes | - | Vertical alignment format for child components. Initial value: `VerticalAlign.Center`. |
 
-### func justifyContent(FlexAlign)
+### func justifyContent(?FlexAlign)
 
 ```cangjie
-
-public func justifyContent(value: FlexAlign): This
+public func justifyContent(value: ?FlexAlign): This
 ```
 
-**Function:** Sets the horizontal alignment format of child components.
+**Function:** Sets the horizontal alignment format for child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [FlexAlign](cj-common-types.md#enum-flexalign) | Yes | - | Horizontal alignment format of child components. <br> Initial value: FlexAlign.Start |
+| value | ?[FlexAlign](./cj-common-types.md#enum-flexalign) | Yes | - | Horizontal alignment format for child components. Initial value: `FlexAlign.Start`. |
+
+> **Note:**
+>
+> In Row layout, if child components do not set [flexShrink](cj-universal-attribute-flexlayout.md#func-flexshrinkfloat64), they will not be compressed by default, meaning the cumulative size of all child components along the main axis may exceed the container's main axis size.
 
 ## Example Code
 
-This example demonstrates the usage of Row's alignItems and justifyContent properties.
+This example demonstrates the usage of Row's `alignItems` and `justifyContent` attributes.
 
 <!-- run -->
 
@@ -109,7 +116,7 @@ class EntryView {
                 .height(107)
                 .border(width: 1.vp)
 
-                // Set vertical alignment of child elements
+                // Set vertical alignment for child elements
                 Text("alignItems(Bottom)")
                 .fontSize(9)
                 .fontColor(0xCCCCCC)
@@ -148,7 +155,7 @@ class EntryView {
                 .height(15.percent)
                 .border(width: 1.vp)
 
-              // Set horizontal alignment of child elements
+              // Set horizontal alignment for child elements
                 Text("justifyContent(End)")
                 .fontSize(9)
                 .fontColor(0xCCCCCC)
@@ -192,4 +199,4 @@ class EntryView {
 }
 ```
 
-![row](figures/row.jpg)
+![row](figures/row.png)

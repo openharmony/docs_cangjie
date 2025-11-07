@@ -1,6 +1,6 @@
-# ohos.system_date_time (System Time & Timezone)
+# ohos.system_date_time (System Time and Timezone)
 
-This module primarily consists of system time and timezone functionalities. Developers can set and retrieve system time and timezone information.
+This module primarily consists of system time and timezone functionalities. Developers can set and retrieve the system time and timezone.
 
 ## Importing the Module
 
@@ -12,10 +12,10 @@ import kit.BasicServicesKit.*
 
 API sample code usage instructions:
 
-- If the sample code begins with a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of a Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration must be done in the "main_ability.cj" file of the Cangjie template project.
+- If the sample code begins with a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#cangjie-sample-code-instructions).
+For details about the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class SystemDateTime
 
@@ -23,11 +23,11 @@ For details about the sample project and configuration template mentioned above,
 public class SystemDateTime {}
 ```
 
-**Description:** Class for system time and timezone functionalities.
+**Functionality:** System time and timezone functionality class.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22
 
 ### static func getTime(Bool)
 
@@ -35,23 +35,23 @@ public class SystemDateTime {}
 public static func getTime(isNanoseconds!: Bool = false): Int64
 ```
 
-**Description:** Gets the elapsed time since the Unix epoch.
+**Functionality:** Gets the elapsed time since the Unix epoch.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| isNanoseconds | Bool | No | false | **Named parameter.** Whether to return the result in nanoseconds.<br>- true: Returns the result in nanoseconds (ns).<br>- false: Returns the result in milliseconds (ms). |
+| isNanoseconds | Bool | No | false | **Named parameter.** Whether the result is in nanoseconds.<br>- true: Indicates the result is in nanoseconds (ns). <br>- false: Indicates the result is in milliseconds (ms). |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Int64 | Elapsed time since the Unix epoch. |
+| Int64 | The elapsed time since the Unix epoch. |
 
 **Example:**
 
@@ -61,13 +61,14 @@ public static func getTime(isNanoseconds!: Bool = false): Int64
 // index.cj
 
 import kit.BasicServicesKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let time = SystemDateTime.getTime()
     Hilog.info(0, "cangjie_ohos_test", "Succeeded in getting time : ${time}")
-} catch (e: Exception) {
-    Hilog.info(0, "cangjie_ohos_test", "Failed to get time: ${e.toString()}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -77,11 +78,11 @@ try {
 public static func getTimezone(): String
 ```
 
-**Description:** Gets the system timezone.
+**Functionality:** Gets the system timezone.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -97,13 +98,14 @@ public static func getTimezone(): String
 // index.cj
 
 import kit.BasicServicesKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let time = SystemDateTime.getTimezone()
     Hilog.info(0, "cangjie_ohos_test", "Succeeded to getTimezone, getTimezone is ${time} ")
-} catch (e: Exception) {
-    Hilog.info(0, "cangjie_ohos_test", "Failed to getTimezone: ${e.toString()}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -113,24 +115,24 @@ try {
 public static func getUptime(timeType: TimeType, isNanoseconds!: Bool = false): Int64
 ```
 
-**Description:** Gets the elapsed time since system startup.
+**Functionality:** Gets the elapsed time since system startup.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| timeType | [TimeType](#enum-timetype) | Yes | - | Type of time to retrieve. |
-| isNanoseconds | Bool | No | false | **Named parameter.** Whether to return the result in nanoseconds.<br/>- true: Returns the result in nanoseconds (ns).<br/>- false: Returns the result in milliseconds (ms). |
+| timeType | [TimeType](#enum-timetype) | Yes | - | The type of time to retrieve. |
+| isNanoseconds | Bool | No | false | **Named parameter.** Whether the result is in nanoseconds.<br/>- true: Indicates the result is in nanoseconds (ns). <br/>- false: Indicates the result is in milliseconds (ms). |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Int64 | Elapsed time since system startup. |
+| Int64 | The elapsed time since system startup. |
 
 **Example:**
 
@@ -140,13 +142,14 @@ public static func getUptime(timeType: TimeType, isNanoseconds!: Bool = false): 
 // index.cj
 
 import kit.BasicServicesKit.*
-import ohos.base.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let time = SystemDateTime.getUptime(TimeType.Active)
     Hilog.info(0, "cangjie_ohos_test", "Succeeded to getUptime : ${time}")
-} catch (e: Exception) {
-    Hilog.info(0, "cangjie_ohos_test", "Failed to getUptime: ${e.toString()}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
 }
 ```
 
@@ -160,11 +163,11 @@ public enum TimeType {
 }
 ```
 
-**Description:** Defines enumeration types for retrieving time.
+**Functionality:** Defines the enumeration type for retrieving time.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22
 
 ### Active
 
@@ -172,11 +175,11 @@ public enum TimeType {
 Active
 ```
 
-**Description:** Milliseconds elapsed since system startup, excluding deep sleep time.
+**Functionality:** The elapsed time in milliseconds since system startup, excluding deep sleep time.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22
 
 ### Startup
 
@@ -184,8 +187,8 @@ Active
 Startup
 ```
 
-**Description:** Milliseconds elapsed since system startup, including deep sleep time.
+**Functionality:** The elapsed time in milliseconds since system startup, including deep sleep time.
 
 **System Capability:** SystemCapability.MiscServices.Time
 
-**Since:** 21
+**Since:** 22

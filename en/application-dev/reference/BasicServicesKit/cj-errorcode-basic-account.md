@@ -26,7 +26,7 @@ This error code indicates an abnormal system service operation. Possible causes 
 8. File creation/deletion exception.
 9. Database read/write exception.
 
-**Resolution Steps**
+**Resolution**
 
 Please try again later or restart the device.
 
@@ -65,7 +65,7 @@ This error code indicates invalid input parameters. Possible causes include:
 23. Invalid context identifier.
 24. Invalid credential identifier.
 
-**Resolution Steps**
+**Resolution**
 
 Please provide correct parameters.
 
@@ -77,12 +77,12 @@ The account does not exist.
 
 **Possible Causes**
 
-This error code indicates the target account does not exist. Possible causes include:
+This error code indicates the target account doesn't exist. Possible causes include:
 
-1. Querying/activating/deleting a non-existent account.
+1. Querying/activating/deleting an uncreated account.
 2. Querying/activating/deleting an already deleted account.
 3. Setting constraints/username/avatar for a deleted account.
-4. Updating a non-existent account.
+4. Updating an uncreated account.
 5. Setting/revoking account information access authorization for a non-existent account.
 6. Setting/deleting/querying password for a non-existent account.
 7. Setting/deleting tokens for a non-existent account.
@@ -91,7 +91,7 @@ This error code indicates the target account does not exist. Possible causes inc
 10. Setting custom data for a non-existent account.
 11. Enabling distributed sync for a non-existent account.
 
-**Resolution Steps**
+**Resolution**
 
 Please verify the account existence.
 
@@ -107,7 +107,7 @@ This error code indicates the account already exists. Possible causes include:
 
 Creating an existing account.
 
-**Resolution Steps**
+**Resolution**
 
 Cancel the creation or retry with a different account name.
 
@@ -119,11 +119,11 @@ Multi-user is not supported.
 
 **Possible Causes**
 
-This error code indicates multi-user is not supported. Possible causes include:
+This error code indicates multi-user is unsupported. Possible causes include:
 
-Current device doesn't support multi-user mode, cannot create accounts.
+Current device doesn't support multi-user mode, preventing account creation.
 
-**Resolution Steps**
+**Resolution**
 
 Cannot create additional accounts. Please cancel the operation.
 
@@ -139,7 +139,7 @@ This error code indicates an unsupported account type. Possible causes include:
 
 Current device doesn't support creating the specified account type.
 
-**Resolution Steps**
+**Resolution**
 
 Please create other supported account types.
 
@@ -153,9 +153,9 @@ The number of accounts has reached the upper limit.
 
 This error code indicates the account limit has been reached. Possible causes include:
 
-1000 system/application accounts already exist when attempting to create new ones.
+When creating system/application accounts, the existing account count has reached 1000.
 
-**Resolution Steps**
+**Resolution**
 
 Please delete other accounts before creating new ones.
 
@@ -170,10 +170,10 @@ The specified account is restricted.
 This error code indicates operation on a restricted account. Possible causes include:
 
 1. Deleting system reserved users.
-2. Querying constraint source type for system reserved users.
+2. Querying constraint source types for system reserved users.
 3. Creating accounts with IDs between 0-100.
 
-**Resolution Steps**
+**Resolution**
 
 Specified ID belongs to system reserved users and cannot be modified.
 
@@ -189,7 +189,7 @@ This error code indicates the account is already activated. Possible causes incl
 
 Activating an already activated account.
 
-**Resolution Steps**
+**Resolution**
 
 The account is already active. No duplicate operation needed.
 
@@ -201,14 +201,14 @@ The account service is busy.
 
 **Possible Causes**
 
-This error code indicates the account service is busy. Possible causes include:
+This error code indicates account service is busy. Possible causes include:
 
-1. Submitting duplicate requests in short time (repeated activations/settings).
-2. Application account authentication sessions exceed 256, unable to process new requests.
+1. Submitting duplicate requests in short time (e.g., repeated activations/settings).
+2. Application account authentication sessions exceed 256, preventing new requests.
 
-**Resolution Steps**
+**Resolution**
 
-Please wait and retry later with reduced frequency.
+Please retry after some time and reduce call frequency.
 
 ## 12300011 Event Listener Already Registered
 
@@ -220,9 +220,9 @@ The event listener has been registered.
 
 This error code indicates duplicate listener registration. Possible causes include:
 
-Current application registering an already registered listener with the system.
+Current application registering an already registered listener.
 
-**Resolution Steps**
+**Resolution**
 
 Please unregister first or use a new listener for registration.
 
@@ -234,13 +234,13 @@ The event listener has not been registered.
 
 **Possible Causes**
 
-This error code indicates unregistering a non-existent listener. Possible causes include:
+This error code indicates unregistered listener. Possible causes include:
 
-Unregistering a listener that was never registered.
+Unregistering a non-existent listener.
 
-**Resolution Steps**
+**Resolution**
 
-Please use a registered listener for unregistration.
+Please use registered listeners for unregistration.
 
 ## 12300013 Network Exception
 
@@ -257,7 +257,7 @@ This error code indicates network issues. Possible causes include:
 3. Application lacks network permissions;
 4. Unknown network errors;
 
-**Resolution Steps**
+**Resolution**
 
 1. Connect to network;
 2. Ensure stable network connection;
@@ -274,7 +274,7 @@ The domain account is not authenticated.
 
 Domain account is not logged in.
 
-**Resolution Steps**
+**Resolution**
 
 Please log in to the domain account first.
 
@@ -286,13 +286,13 @@ The short name already exists.
 
 **Possible Causes**
 
-The short name used for account creation already exists.
+The short name for account creation already exists.
 
-**Resolution Steps**
+**Resolution**
 
-Please use a different non-existent short name.
+Please use a different available short name.
 
-## 12300016 Account Login Limit Reached
+## 12300016 Logged-in Account Limit Reached
 
 **Error Message**
 
@@ -302,7 +302,7 @@ The number of logged in accounts reaches the upper limit.
 
 The maximum number of logged-in accounts has been reached.
 
-**Resolution Steps**
+**Resolution**
 
 Log out existing accounts before logging in new ones.
 
@@ -320,7 +320,7 @@ This error code indicates invalid credentials. Possible causes include:
 2. Biometric mismatch;
 3. Expired token;
 
-**Resolution Steps**
+**Resolution**
 
 Please provide correct and valid credentials.
 
@@ -338,11 +338,11 @@ This error code indicates missing credentials. Possible causes include:
 2. Querying unregistered credential type.
 3. Deleting unregistered credential type.
 
-**Resolution Steps**
+**Resolution**
 
-Please verify the credential type existence.
+Please verify credential type existence.
 
-## 12300103 Credential Inputter Already Exists
+## 12300103 Credential Inputer Already Exists
 
 **Error Message**
 
@@ -354,10 +354,9 @@ This error code indicates duplicate credential inputer registration. Possible ca
 
 PIN inputer already registered and cannot be re-registered before unregistration.
 
-**Resolution Steps**
+**Resolution**
 
-Credential inputer already exists. No duplicate operation needed.
-
+Credential inputer already exists. No duplicate operation allowed.```markdown
 ## 12300104 Credential Inputter Not Found
 
 **Error Message**
@@ -366,13 +365,13 @@ The credential inputer is not found.
 
 **Possible Causes**
 
-This error code indicates that the credential inputter does not exist. Possible causes include:
+This error code indicates that the credential inputter does not exist. Possible reasons include:
 
-The credential inputter was not registered during authentication, credential addition, or modification.
+- The credential inputter was not registered during authentication, credential addition, or modification.
 
 **Resolution Steps**
 
-Register the credential inputter.
+Register the credential inputer.
 
 ## 12300105 Trust Level Not Supported
 
@@ -382,9 +381,9 @@ The trust level is not supported.
 
 **Possible Causes**
 
-This error code indicates that an unsupported trust level was provided. Possible causes include:
+This error code indicates that an unsupported trust level was provided. Possible reasons include:
 
-An unsupported trust level was passed to the system.
+- An unsupported trust level was passed to the system.
 
 **Resolution Steps**
 
@@ -398,13 +397,13 @@ The authentication type is not supported.
 
 **Possible Causes**
 
-This error code indicates that an unsupported authentication type was provided. Possible causes include:
+This error code indicates that an unsupported authentication type was provided. Possible reasons include:
 
-An unsupported authentication type was passed to the system.
+- An unsupported authentication type was passed to the system.
 
 **Resolution Steps**
 
-Provide an authentication type supported by the system.
+Provide a system-supported authentication type.
 
 ## 12300107 Authentication Type Does Not Exist
 
@@ -414,13 +413,13 @@ The authentication type does not exist.
 
 **Possible Causes**
 
-This error code indicates that the authentication type does not exist. Possible causes include:
+This error code indicates that the specified authentication type does not exist. Possible reasons include:
 
-The specified authentication type does not exist when querying/deleting a token.
+- The specified authentication type does not exist when querying or deleting a token.
 
 **Resolution Steps**
 
-Use an existing authentication type for querying/deletion.
+Use an existing authentication type for querying or deletion.
 
 ## 12300108 Authentication Session Does Not Exist
 
@@ -430,9 +429,9 @@ The authentication session does not exist.
 
 **Possible Causes**
 
-This error code indicates that the session does not exist. Possible causes include:
+This error code indicates that the session does not exist. Possible reasons include:
 
-Querying a non-existent session callback.
+- Attempting to query a non-existent session callback.
 
 **Resolution Steps**
 
@@ -446,11 +445,11 @@ The authentication, enrollment, or update operation is canceled.
 
 **Possible Causes**
 
-This error code indicates that the authentication, credential enrollment, or update operation was canceled. Possible causes include:
+This error code indicates that the authentication, credential enrollment, or update operation was canceled. Possible reasons include:
 
-1. The user canceled the authentication operation during the process.
-2. The user canceled the enrollment operation during credential enrollment.
-3. The user canceled the update operation during credential enrollment.
+- The user canceled the authentication operation during the process.
+- The user canceled the credential enrollment operation during the process.
+- The user canceled the credential update operation during the process.
 
 **Resolution Steps**
 
@@ -464,13 +463,13 @@ The authentication is locked.
 
 **Possible Causes**
 
-This error code indicates that authentication is locked. Possible causes include:
+This error code indicates that authentication is locked. Possible reasons include:
 
-The number of authentication failures exceeded the limit.
+- The number of authentication failures exceeded the limit.
 
 **Resolution Steps**
 
-Authentication failures have exceeded the limit. Retry after `freezingTime`.
+Authentication attempts have exceeded the limit. Retry after the `freezingTime` period.
 
 ## 12300111 Authentication Timeout
 
@@ -480,7 +479,7 @@ The authentication timed out.
 
 **Possible Causes**
 
-This error code indicates that authentication timed out. Possible causes include:
+This error code indicates that authentication timed out. Possible reasons include:
 
 1. For system accounts, authentication or enrollment exceeded three minutes.
 2. The authentication service timed out due to network issues.
@@ -498,14 +497,14 @@ The authentication service is busy.
 
 **Possible Causes**
 
-This error code indicates that the authentication service is busy. Possible causes include:
+This error code indicates that the authentication service is busy. Possible reasons include:
 
-1. For system accounts, the total number of authentications exceeded five.
-2. For third-party app accounts, the authenticator service is busy (case-dependent).
+- For system accounts, the total number of concurrent authentications exceeded five.
+- For third-party app accounts, the authenticator service is busy (case-dependent).
 
 **Resolution Steps**
 
-The authentication service is busy. Retry later.
+The authentication service is currently busy. Retry later.
 
 ## 12300113 Account Authentication Service Not Found
 
@@ -515,7 +514,7 @@ The account authentication service does not exist.
 
 **Possible Causes**
 
-This error code indicates that the authentication service does not exist. Possible causes include:
+This error code indicates that the account authentication service does not exist. Possible reasons include:
 
 For app accounts:
 1. The app associated with the account does not support the authenticator service during authentication.
@@ -536,7 +535,7 @@ The account authentication service works abnormally.
 
 **Possible Causes**
 
-This error code indicates that the account authentication service is abnormal. Possible causes include:
+This error code indicates that the account authentication service is abnormal. Possible reasons include:
 
 1. An unknown error occurred in the identity authentication service.
 2. The app authenticator does not comply with specifications.
@@ -555,7 +554,7 @@ The number of credentials reaches the upper limit.
 **Possible Causes**
 
 1. An unknown error occurred in the identity authentication service.
-2. The user already has a credential of the corresponding type and cannot add another.
+2. The user already has the maximum number of credentials for the specified type and cannot add more.
 
 **Resolution Steps**
 
@@ -574,7 +573,7 @@ The provided credential is too simple.
 
 **Resolution Steps**
 
-Enter a credential that meets the required complexity (e.g., specific characters).
+Enter a credential that meets the required complexity criteria (e.g., specific characters).
 
 ## 12300117 PIN Expired
 
@@ -598,7 +597,7 @@ The application does not exist.
 
 **Possible Causes**
 
-This error code indicates that the application does not exist. Possible causes include:
+This error code indicates that the application does not exist. Possible reasons include:
 
 1. The target application does not exist when setting access permissions.
 2. The target application does not exist when setting open authorization.
@@ -615,9 +614,9 @@ The custom data does not exist.
 
 **Possible Causes**
 
-This error code indicates that the custom data does not exist. Possible causes include:
+This error code indicates that the custom data does not exist. Possible reasons include:
 
-The specified key does not exist when querying account custom data.
+- The specified key does not exist when querying account custom data.
 
 **Resolution Steps**
 
@@ -631,9 +630,9 @@ The number of custom data records reaches the upper limit.
 
 **Possible Causes**
 
-This error code indicates that the maximum number of custom data records has been reached. Possible causes include:
+This error code indicates that the maximum number of custom data records (512) has been reached. Possible reasons include:
 
-The target account already has 512 custom data records when attempting to set custom data.
+- The target account already has 512 custom data records when attempting to set custom data.
 
 **Resolution Steps**
 
@@ -647,15 +646,15 @@ The number of tokens reaches the upper limit.
 
 **Possible Causes**
 
-This error code indicates that the maximum number of tokens has been reached. Possible causes include:
+This error code indicates that the maximum number of tokens (1024) has been reached. Possible reasons include:
 
-The target account already has 1024 tokens when attempting to add a token.
+- The target account already has 1024 tokens when attempting to add a new token.
 
 **Resolution Steps**
 
 Cancel the operation or delete existing tokens before retrying.
 
-## 12400005 Maximum Authorization List Size Reached
+## 12400005 Maximum Size of Authorization List Reached
 
 **Error Message**
 
@@ -663,11 +662,11 @@ The size of the authorization list reaches the upper limit.
 
 **Possible Causes**
 
-This error code indicates that the authorization list has reached its maximum size. Possible causes include:
+This error code indicates that the authorization list size exceeds the limit (1024). Possible reasons include:
 
-The authorization list size exceeds 1024 when setting access/open authorization.
+- The authorization list size exceeded 1024 when setting access or open authorization.
 
 **Resolution Steps**
 
-Cancel the operation or revoke existing access/open authorizations before retrying.
+Cancel the operation or revoke existing authorizations before retrying.
 ```

@@ -1,6 +1,6 @@
 # StepperItem
 
-Used as a child component for pages within the [Stepper](cj-navigation-switching-stepper.md) component.
+Used as a child component of the [Stepper](cj-navigation-switching-stepper.md) component.
 
 ## Import Module
 
@@ -20,11 +20,11 @@ Supports a single child component.
 public init(child: () -> Unit)
 ```
 
-**Function:** Creates a page child component for the [Stepper](cj-navigation-switching-stepper.md) component.
+**Function:** Creates a child component for the [Stepper](cj-navigation-switching-stepper.md) component's page.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -40,166 +40,65 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func nextLabel(String)
+### func nextLabel(?String)
 
 ```cangjie
-public func nextLabel(value: String): This
+public func nextLabel(value: ?String): This
 ```
 
-**Function:** Sets the content of the right-side text button. The default value is "Start" for the last page and "Next" for other pages.
+**Function:** Sets the content of the right text button. The default value is "Start" for the last page and "Next" for other pages.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | String | Yes | - | The content of the right-side text button. If the string is too long, it will first shrink, then wrap (2 lines), and finally truncate. |
+| value | ?String | Yes | - | The content of the right text button. If the string is too long, it will first shrink, then wrap (2 lines), and finally truncate.<br>Initial value: "". |
 
-### func prevLabel(String)
+### func prevLabel(?String)
 
 ```cangjie
-public func prevLabel(value: String): This
+public func prevLabel(value: ?String): This
 ```
 
-**Function:** Sets the content of the left-side text button. The first page does not have a left-side text button. When the stepper has more than one page, the default value for all pages except the first is "Back".
+**Function:** Sets the content of the left text button. The first page does not have a left text button. When the stepper has more than one page, the default value for pages other than the first is "Back".
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | String | Yes | - | The content of the left-side text button. If the string is too long, it will first shrink, then wrap (2 lines), and finally truncate. |
+| value | ?String | Yes | - | The content of the left text button. If the string is too long, it will first shrink, then wrap (2 lines), and finally truncate.<br>Initial value: "". |
 
-### func status(ItemState)
+### func status(?ItemState)
 
 ```cangjie
-public func status(status!: ItemState = ItemState.Normal): This
+public func status(status!: ?ItemState = None): This
 ```
 
-**Function:** Sets the display state of the stepper's `nextLabel`.
+**Function:** Sets the display state of the stepper's nextLabel.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| status | ItemState | No | ItemState.Normal | The display state of the stepper's `nextLabel`. |
+| status | ?[ItemState](./cj-common-types.md#enum-itemstate) | No | None | **Named parameter.** The display state of the stepper's nextLabel.<br>Initial value: ItemState.Normal. |
 
-## enum ItemState
+> **Notes:**
+>
+> - The StepperItem component does not support setting common width attributes; its width defaults to filling the parent Stepper component.
+> - The StepperItem component does not support setting common height attributes; its height is determined by the parent Stepper component's height minus the label button component's height.
 
-```cangjie
-public enum ItemState  <: Equatable<ItemState> {
-    | Normal
-    | Disabled
-    | Waiting
-    | Skip
-    | ...
-}
-```
+## Example Code
 
-**Function:** Item state.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-**Parent Type:**
-
-- Equatable\<ItemState>
-
-### Disabled
-
-```cangjie
-Disabled
-```
-
-**Function:** Disabled state. The right-side text button is displayed in gray and cannot be clicked to proceed to the next StepperItem.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-### Normal
-
-```cangjie
-Normal
-```
-
-**Function:** Normal state. The right-side text button is displayed normally and can be clicked to proceed to the next StepperItem.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-### Skip
-
-```cangjie
-Skip
-```
-
-**Function:** Skip state. The right-side text button defaults to "Skip". Custom logic can be defined in the `onSkip` callback of the Stepper.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-### Waiting
-
-```cangjie
-Waiting
-```
-
-**Function:** Waiting state. The right-side text button is not displayed, and a progress bar is shown instead. The button cannot be clicked to proceed to the next StepperItem.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-### func !=(ItemState)
-
-```cangjie
-public operator func !=(other: ItemState): Bool
-```
-
-**Function:** Determines whether two enum values are not equal.
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| other | [ItemState](#enum-itemstate) | Yes | - | Another enum value. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns `true` if the two enum values are not equal, otherwise returns `false`. |
-
-### func ==(ItemState)
-
-```cangjie
-public operator func ==(other: ItemState): Bool
-```
-
-**Function:** Determines whether two enum values are equal.
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| other | [ItemState](#enum-itemstate) | Yes | - | Another enum value. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
+See [Stepper](cj-navigation-switching-stepper.md)

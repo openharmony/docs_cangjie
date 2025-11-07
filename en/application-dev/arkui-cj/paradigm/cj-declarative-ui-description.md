@@ -8,7 +8,7 @@ Based on different component construction methods, creating components includes 
 
 ### Without Parameters
 
-If a component's interface definition doesn't include mandatory construction parameters, then the "()" after the component doesn't need any configuration. For example, the Divider component doesn't include construction parameters.
+If a component's interface definition doesn't include mandatory construction parameters, then the "()" following the component doesn't need any configuration. For example, the Divider component doesn't include construction parameters.
 
 <!-- run-->
 
@@ -33,7 +33,7 @@ class EntryView {
 
 ### With Parameters
 
-If a component's interface definition includes construction parameters, then the "()" after the component needs to configure corresponding parameters.
+If a component's interface definition includes construction parameters, then the "()" following the component needs to configure corresponding parameters.
 
 - The mandatory src parameter for the Image component.
 
@@ -46,13 +46,13 @@ If a component's interface definition includes construction parameters, then the
   ```cangjie
   // string-type parameter
   Text("test")
-  // @r form to reference application resources, applicable for multilingual scenarios
+  // @r format for referencing application resources, applicable for multilingual scenarios
   Text(@r(app.string.title_value))
   // parameterless form
   Text() {}
   ```
 
-- Variables or expressions can also be used for parameter assignment, where the result type returned by the expression must meet the parameter type requirements.
+- Variables or expressions can also be used for parameter assignment, where the result type returned by the expression must satisfy the parameter type requirements.
 
   For example, setting variables or expressions to construct parameters for Image and Text components.
 
@@ -82,7 +82,7 @@ Property methods are configured using "." chained calls to style system componen
     .height(100)
   ```
 
-- In addition to passing constant parameters directly, variables or expressions can also be passed.
+- Besides directly passing constant parameters, variables or expressions can also be passed.
 
   ```cangjie
   Text("hello")
@@ -92,9 +92,9 @@ Property methods are configured using "." chained calls to style system componen
     .height(this.offset + 100)
   ```
 
-- For system components, the Cangjie programming language also predefines some enumeration types for their properties, which developers can call. Enumeration types can be passed as parameters but must meet the parameter type requirements.
+- For system components, the Cangjie programming language also predefines some enumeration types for their properties, which developers can call. Enumeration types can be passed as parameters but must satisfy the parameter type requirements.
 
-  For example, the color and font style of a Text component can be configured as follows.
+  For example, configuring the color and font style for a Text component can be done as follows.
 
   ```cangjie
   Text("hello")
@@ -111,26 +111,26 @@ Event methods are configured using "." chained calls for events supported by sys
 
   ```cangjie
   Button("Click me")
-  .onClick({ =>
+  .onClick({ evt =>
     this.myText = "Cangjie"
   })
   ```
 
-- Using arrow function expressions to configure component event methods, requiring the use of "{ => ...}" to ensure the function is bound to the component while complying with Cangjie programming language syntax specifications.
+- Using arrow function expressions to configure component event methods requires using "{ => ...}" to ensure the function is bound to the component while complying with Cangjie programming language syntax specifications.
 
   ```cangjie
   Button("add counter")
-    .onClick({ =>
+    .onClick({evt =>
       this.counter += 2
     })
   ```
 
-- Using declared Lambda expressions that can be called directly.
+- Using declared Lambda expressions that can be directly called.
 
   ```cangjie
-  var fn: () -> Unit = {=>}
+  var fn: (ClickEvent) -> Unit = {evt =>}
   protected func aboutToAppear() {
-      fn = { =>
+      fn = {evt =>
           this.counter++
       }
   }
@@ -169,8 +169,8 @@ Column() {
       .width(100)
       .height(100)
     Button("click +1")
-      .onClick({ =>
-        Hilog.info(0, "cangjie", +1 clicked!");
+      .onClick({evt =>
+        Hilog.info(0, "cangjie", "+1 clicked!");
       })
   }
 }

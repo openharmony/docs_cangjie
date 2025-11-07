@@ -6,40 +6,41 @@ Applications initiate data requests via HTTP, supporting common methods such as 
 
 ## Interface Description
 
-The HTTP data request functionality is primarily provided by the `http` module.
+The HTTP data request functionality is primarily provided by the http module.
 
-Using this feature requires the `ohos.permission.INTERNET` permission.  
+Using this feature requires applying for the `ohos.permission.INTERNET` permission.
+
 For permission application, refer to [Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
 
-The involved interfaces are listed in the table below. For detailed interface descriptions, refer to the [API Documentation](../../../en/application-dev/reference/NetworkKit/cj-apis-net-http.md).
+The involved interfaces are listed in the table below. For detailed interface descriptions, refer to the [API Documentation](../reference/NetworkKit/cj-apis-net-http.md).
 
 | Interface Name            | Description                                            |
-| ------------------------- | ----------------------------------------------------- |
-| createHttp()              | Creates an HTTP request.                              |
-| request()                 | Initiates an HTTP network request based on a URL.     |
+| ------------------------- | ------------------------------------------------------ |
+| createHttp()              | Creates an HTTP request.                               |
+| request()                 | Initiates an HTTP network request based on the URL.    |
 | requestInStream()         | Initiates an HTTP network request and returns a streaming response. |
-| destroy()                 | Aborts the request task.                              |
-| onHeadersReceive()        | Subscribes to HTTP Response Header events.            |
-| offHeadersReceive()       | Unsubscribes from HTTP Response Header events.        |
-| onceHeadersReceive()      | Subscribes to HTTP Response Header events but triggers only once. |
-| onDataReceive()           | Subscribes to HTTP streaming response data reception events. |
-| offDataReceive()          | Unsubscribes from HTTP streaming response data reception events. |
-| onDataEnd()               | Subscribes to HTTP streaming response data completion events. |
-| offDataEnd()              | Unsubscribes from HTTP streaming response data completion events. |
-| onDataReceiveProgress()   | Subscribes to HTTP streaming response data reception progress events. |
-| offDataReceiveProgress()  | Unsubscribes from HTTP streaming response data reception progress events. |
-| onDataSendProgress()      | Subscribes to HTTP network request data transmission progress events. |
-| offDataSendProgress()     | Unsubscribes from HTTP network request data transmission progress events. |
+| destroy()                 | Aborts the request task.                               |
+| onHeadersReceive()        | Subscribes to the HTTP Response Header event.          |
+| offHeadersReceive()       | Unsubscribes from the HTTP Response Header event.      |
+| onceHeadersReceive()      | Subscribes to the HTTP Response Header event but triggers only once. |
+| onDataReceive()           | Subscribes to the HTTP streaming response data reception event. |
+| offDataReceive()          | Unsubscribes from the HTTP streaming response data reception event. |
+| onDataEnd()               | Subscribes to the HTTP streaming response data completion event. |
+| offDataEnd()              | Unsubscribes from the HTTP streaming response data completion event. |
+| onDataReceiveProgress()   | Subscribes to the HTTP streaming response data reception progress event. |
+| offDataReceiveProgress()  | Unsubscribes from the HTTP streaming response data reception progress event. |
+| onDataSendProgress()      | Subscribes to the HTTP network request data transmission progress event. |
+| offDataSendProgress()     | Unsubscribes from the HTTP network request data transmission progress event. |
 
-## request Interface Development Steps
+## Steps for request Interface Development
 
-1. Import `http` from `kit.NetworkKit`.
-2. Call the `createHttp()` method to create an `HttpRequest` object.
-3. Call the object's `on()` method to subscribe to HTTP response header events. This interface returns before the `request` call. Subscribe to this event as needed.
-4. Call the object's `request()` method, passing the HTTP request URL and optional parameters to initiate the network request.
+1. Import http from kit.NetworkKit.
+2. Call the createHttp() method to create an HttpRequest object.
+3. Call the object's on() method to subscribe to the HTTP response header event. This interface returns before the request. Subscribe to this message as needed.
+4. Call the object's request() method, passing the HTTP request URL and optional parameters to initiate the network request.
 5. Parse the returned results as needed.
-6. Call the object's `off()` method to unsubscribe from HTTP response header events.
-7. When the request is no longer needed, call the `destroy()` method to actively release resources.
+6. Call the object's off() method to unsubscribe from the HTTP response header event.
+7. When the request is no longer needed, call the destroy() method to actively release resources.
 
 <!-- compile -->
 
@@ -68,7 +69,7 @@ let httpRequest = createHttp()
 // Request configuration
 let option = HttpRequestOptions(
     method: RequestMethod.Post, // Optional, defaults to http.RequestMethod.GET
-    // This field is used to pass content for POST requests
+    // Used to pass content for POST requests
     extraData: HttpData.StringData("data to send"),
     expectDataType: HttpDataType.StringValue, // Optional, specifies the return data type
     usingCache: true, // Optional, defaults to true
@@ -103,7 +104,7 @@ let option = HttpRequestOptions(
 )
 
 httpRequest.request(
-    // Enter the HTTP request URL, with or without parameters. Customize the URL as needed. Parameters can be specified in extraData.
+    // Fill in the HTTP request URL, with or without parameters. The URL should be customized. Parameters can be specified in extraData.
     "EXAMPLE_URL",
     option,
     {
@@ -112,26 +113,26 @@ httpRequest.request(
             loggerError("v")
         }
         if (let Some(v) <- resp) {
-            // data.result contains the HTTP response content; parse as needed
+            // data.result contains the HTTP response content, parse as needed
             loggerInfo("code: ${v.responseCode}")
-            // data.header contains the HTTP response headers; parse as needed
+            // data.header contains the HTTP response headers, parse as needed
             loggerInfo("header: ${v.header}")
             loggerInfo("cookies: ${v.cookies}")
-            // Call destroy() to release resources when the request is no longer needed
+            // Call destroy() when the request is no longer needed
             httpRequest.destroy()
         }
     })
 ```
 
-## requestInStream Interface Development Steps
+## Steps for requestInStream Interface Development
 
-1. Import `http` from `kit.NetworkKit`.
-2. Call the `createHttp()` method to create an `HttpRequest` object.
-3. Call the object's `on()` method to subscribe to HTTP response header events, streaming data reception events, streaming data progress events, and streaming data completion events as needed.
-4. Call the object's `requestInStream()` method, passing the HTTP request URL and optional parameters to initiate the network request.
+1. Import http from kit.NetworkKit.
+2. Call the createHttp() method to create an HttpRequest object.
+3. Call the object's on() method to subscribe to events as needed: HTTP response headers, streaming response data reception, streaming response progress, and streaming response completion.
+4. Call the object's requestInStream() method, passing the HTTP request URL and optional parameters to initiate the network request.
 5. Parse the returned response code as needed.
-6. Call the object's `off()` method to unsubscribe from response events.
-7. When the request is no longer needed, call the `destroy()` method to actively release resources.
+6. Call the object's off() method to unsubscribe from response events.
+7. When the request is no longer needed, call the destroy() method to actively release resources.
 
 <!-- compile -->
 
@@ -145,6 +146,7 @@ import kit.NetworkKit.*
 import std.collection.*
 import ohos.base.*
 import ohos.net.http.*
+import ohos.callback_invoke.*
 
 func loggerInfo(str: String) {
     Hilog.info(0, "CangjieTest", str)
@@ -189,10 +191,10 @@ class DataReceiveProgressCb <: Callback1Argument<DataReceiveProgressInfo> {
 func test() {
     // Each httpRequest corresponds to one HTTP request task and cannot be reused.
     let httpRequest = createHttp()
-    // Subscribe to HTTP response header events
+    // Subscribes to HTTP response header events
     let headersReceiveCallBack = HeadersReceiveCb({ header => loggerInfo("header: ${header}") })
     httpRequest.on(HttpRequestEvent.HeadersReceive, headersReceiveCallBack)
-    // Subscribe to HTTP streaming response data reception events
+    // Subscribes to HTTP streaming response data reception events
     let res = ArrayList<Byte>()
     let dataReceiveCallBack = DataReceiveCb({ bytes =>
         res.add(all: bytes)
@@ -200,22 +202,22 @@ func test() {
     })
     httpRequest.on(HttpRequestEvent.DataReceive, dataReceiveCallBack)
 
-    // Subscribe to HTTP streaming response data completion events
+    // Subscribes to HTTP streaming response data completion events
     let dataEndCallBack = DataEndCb({ =>
         loggerInfo("No more data in response, data receive end")
-        // Unsubscribe from HTTP response header events
+        // Unsubscribes from HTTP response header events
         httpRequest.off(HttpRequestEvent.HeadersReceive)
-        // Unsubscribe from HTTP streaming response data reception events
+        // Unsubscribes from HTTP streaming response data reception events
         httpRequest.off(HttpRequestEvent.DataReceive)
-        // Unsubscribe from HTTP streaming response data progress events
+        // Unsubscribes from HTTP streaming response progress events
         httpRequest.off(HttpRequestEvent.DataReceiveProgress)
-        // Unsubscribe from HTTP streaming response data completion events
+        // Unsubscribes from HTTP streaming response completion events
         httpRequest.off(HttpRequestEvent.DataEnd)
-        // Call destroy() to release resources when the request is no longer needed
+        // Call destroy() when the request is no longer needed
         httpRequest.destroy()
     })
     httpRequest.on(HttpRequestEvent.DataEnd,dataEndCallBack)
-    // Subscribe to HTTP streaming response data progress events
+    // Subscribes to HTTP streaming response progress events
     let dataReceiveProgressCallBack = DataReceiveProgressCb({ progress =>
         loggerInfo("dataReceiveProgress receiveSize: ${progress.receiveSize} totalSize: ${progress.totalSize}")
     })
@@ -223,7 +225,7 @@ func test() {
 
     let option = HttpRequestOptions(
         method: RequestMethod.Post, // Optional, defaults to http.RequestMethod.GET
-        // This field is used to pass content for POST requests
+        // Used to pass content for POST requests
         extraData: HttpData.StringData("data to send"),
         expectDataType: HttpDataType.StringValue, // Optional, specifies the return data type
         usingCache: true, // Optional, defaults to true
@@ -257,7 +259,7 @@ func test() {
         ]
     )
 
-    // Enter the HTTP request URL, with or without parameters. Customize the URL as needed. Parameters can be specified in extraData.
+    // Fill in the HTTP request URL, with or without parameters. The URL should be customized. Parameters can be specified in extraData.
 
     httpRequest.requestInStream(
         "EXAMPLE_URL",
@@ -277,7 +279,7 @@ func test() {
 
 ## Certificate Pinning
 
-Certificate pinning can be implemented by preloading application-level certificates or preloading public key hashes of certificates. This ensures that only developer-specified certificates can establish HTTPS connections.
+Certificate pinning can be achieved by preloading application-level certificates or preloading public key hashes of certificates, ensuring that only developer-specified certificates can establish HTTPS connections.
 
 Both methods are configured in a configuration file located at: `src/main/resources/base/profile/network_config.json`. This configuration establishes mappings between preloaded certificates and network servers.
 
@@ -305,7 +307,7 @@ Directly preload certificate files in the app. Currently supports `.crt` and `.p
 
 Specify domain certificate public key hashes in the configuration to allow only matching certificates for domain access.
 
-Calculate the public key hash using the following commands (assuming the certificate is saved as `www.example.com.pem`):
+Calculate the public key hash using the following commands (assuming the domain certificate is saved as `www.example.com.pem`):
 
 ```shell
 # Extract public key from certificate
@@ -316,7 +318,7 @@ openssl asn1parse -noout -inform pem -in www.example.com.pubkey.pem -out www.exa
 openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 ```
 
-### JSON Configuration Examples
+### JSON Configuration Example
 
 Example for preloading application-level certificates:
 
@@ -381,15 +383,15 @@ Example for preloading certificate public key hashes:
 
 | Field                    | Type    | Description                                                                                                                         |
 | ------------------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| network-security-config  | object  | Network security configuration. May contain 0 or 1 `base-config` and must contain 1 `domain-config`.                                |
-| base-config              | object  | Indicates application-wide security configuration. Must contain 1 `trust-anchors`.                                                 |
-| domain-config            | array   | Indicates domain-specific security configurations. May contain any number of items. Each item must contain 1 `domains` and may contain 0 or 1 `trust-anchors` or `pin-set`. |
-| trust-anchors            | array   | Trusted CAs. May contain any number of items. Each item must contain 1 `certificates`.                                             |
+| network-security-config  | object  | Network security configuration. May contain 0 or 1 base-config and must contain 1 domain-config.                                    |
+| base-config              | object  | Application-wide security configuration. Must contain 1 trust-anchors.                                                             |
+| domain-config            | array   | Per-domain security configuration. May contain any number of items. Each item must contain 1 domains, may contain 0 or 1 trust-anchors, and may contain 0 or 1 pin-set. |
+| trust-anchors            | array   | Trusted CAs. May contain any number of items. Each item must contain 1 certificates.                                               |
 | certificates             | string  | Path to CA certificates.                                                                                                           |
-| domains                  | array   | Domains. May contain any number of items. Each item must contain 1 `name` (string: domain name) and may contain 0 or 1 `include-subdomains`. |
+| domains                  | array   | Domains. May contain any number of items. Each item must contain 1 name (string: domain name) and may contain 0 or 1 include-subdomains. |
 | include-subdomains       | boolean | Indicates whether the rule applies to subdomains.                                                                                  |
-| pin-set                  | object  | Certificate public key hash settings. Must contain 1 `pin` and may contain 0 or 1 `expiration`.                                    |
-| expiration               | string  | Indicates the expiration date of the public key hash.                                                                              |
-| pin                      | array   | Certificate public key hashes. May contain any number of items. Each item must contain 1 `digest-algorithm` and 1 `digest`.        |
-| digest-algorithm         | string  | Indicates the digest algorithm used to generate the hash. Currently only `sha256` is supported.                                    |
-| digest                   | string  | Indicates the public key hash.                                                                                                     |
+| pin-set                  | object  | Certificate public key hash settings. Must contain 1 pin and may contain 0 or 1 expiration.                                       |
+| expiration               | string  | Expiration time for the public key hash.                                                                                           |
+| pin                      | array   | Public key hashes. May contain any number of items. Each item must contain 1 digest-algorithm and 1 digest.                        |
+| digest-algorithm         | string  | Digest algorithm for hash generation. Currently only supports `sha256`.                                                            |
+| digest                   | string  | Public key hash.                                                                                                                    |

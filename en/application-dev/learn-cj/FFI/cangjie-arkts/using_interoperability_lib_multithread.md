@@ -1,14 +1,14 @@
-# Using Interoperability Libraries in Cangjie Multithreading
+# Using Interoperation Libraries in Cangjie Multithreading
 
-ArkTS is a single-threaded virtual machine that does not provide any concurrency fault tolerance at runtime, whereas Cangjie syntactically supports memory-sharing multithreading.
+ArkTS is a single-threaded execution virtual machine that does not provide any concurrency fault tolerance at runtime, whereas Cangjie syntactically supports memory-sharing multithreading.
 
-Unrestricted use of multithreading in interoperability scenarios may lead to unexpected errors. Therefore, certain specifications and guidelines are required to ensure proper program execution:
+If multithreading is used unrestrictedly in interoperation scenarios, unexpected errors may occur. Therefore, certain specifications and guidelines are required to ensure proper program execution:
 
-1. ArkTS code and most interoperability interfaces can only be executed on the ArkTS thread; otherwise, a Cangjie exception will be thrown.
+1. ArkTS code and most interoperation interfaces can only be executed on the ArkTS thread; otherwise, a Cangjie exception will be thrown.
 2. Before entering other threads, all dependent ArkTS data must be converted to Cangjie data.
-3. To use ArkTS interfaces in other threads, switch to the ArkTS thread via `context.postJSTask` for execution.
+3. If ArkTS interfaces need to be used in other threads, they must be executed on the ArkTS thread by switching via `context.postJSTask`.
 
-The following example demonstrates the specific approach. This case involves an interoperability function that adds two numbers and returns the result via a callback function.
+The following example demonstrates specific practices. This use case involves an interoperation function that adds two numbers and calls a callback function to return the sum.
 
 1. Define the Cangjie function:
 
@@ -21,7 +21,7 @@ The following example demonstrates the specific approach. This case involves an 
     class Main {
         // Define static constructor
         static init() {
-            // Register key-value pairs
+            // Register key-value pair
             JSModule.registerFunc("addNumberAsync", addNumberAsync)
         }
     }
@@ -53,7 +53,7 @@ The following example demonstrates the specific approach. This case involves an 
     }
     ```
 
-2. Provide interface declarations for interoperability in the Index.d.ts file:
+2. Provide interoperation interface declaration in the Index.d.ts file:
 
     ```typescript
     // Index.d.ts corresponding to libohos_app_cangjie_entry.so
@@ -63,7 +63,7 @@ The following example demonstrates the specific approach. This case involves an 
 3. ArkTS calls the Cangjie function:
 
     ```typescript
-    // Import Cangjie dynamic library, whose name should match the package name containing the interoperability interfaces
+    // Import Cangjie dynamic library, whose name should match the package name containing the interoperation interfaces
     import { addNumberAsync } from "libohos_app_cangjie_entry.so";
 
     // Call Cangjie function
@@ -72,7 +72,7 @@ The following example demonstrates the specific approach. This case involves an 
     });
     ```
 
-ArkTS supports Promise, which encapsulates callback mechanisms and transforms them into synchronous calls using async/await syntax. For the previous example, the interface can be defined and accessed using Promise:
+ArkTS includes Promise, which encapsulates callback mechanisms and, combined with async/await syntax, transforms callback mechanisms into synchronous invocation forms. For the previous use case, the interface can be defined and accessed using Promise:
 
 1. Define the Cangjie function:
 
@@ -85,7 +85,7 @@ ArkTS supports Promise, which encapsulates callback mechanisms and transforms th
     class Main {
         // Define static constructor
         static init() {
-            // Register key-value pairs
+            // Register key-value pair
             JSModule.registerFunc("addNumberAsync", addNumberAsync)
         }
     }
@@ -112,7 +112,7 @@ ArkTS supports Promise, which encapsulates callback mechanisms and transforms th
     }
     ```
 
-2. Provide interface declarations for interoperability in the Index.d.ts file:
+2. Provide interoperation interface declaration in the Index.d.ts file:
 
     ```typescript
     // Index.d.ts corresponding to libohos_app_cangjie_entry.so
@@ -122,7 +122,7 @@ ArkTS supports Promise, which encapsulates callback mechanisms and transforms th
 3. ArkTS calls the Cangjie function:
 
     ```typescript
-    // Import Cangjie dynamic library, whose name should match the package name containing the interoperability interfaces
+    // Import Cangjie dynamic library, whose name should match the package name containing the interoperation interfaces
     import { addNumberAsync } from "libohos_app_cangjie_entry.so";
 
     async function call() {

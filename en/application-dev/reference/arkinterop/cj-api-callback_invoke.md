@@ -6,7 +6,7 @@
 public abstract class Callback0Argument <: CallbackObject {}
 ```
 
-**Description:** Abstract class for callback functions without parameters.
+**Description:** Abstract class for callback functions with no parameters.
 
 **System Capability:** SystemCapability.Base
 
@@ -31,7 +31,7 @@ public open func invoke(err: ?BusinessException): Unit
 **Parameters:**
 
 | Parameter | Type | Required | Description |
-|:----|:---|:---|:------|
+|:---------|:-----|:---------|:------------|
 | err | ?BusinessException  | Yes | Exception information. |
 
 ## class Callback1Argument
@@ -65,7 +65,7 @@ public open func invoke(err: ?BusinessException, arg: A): Unit
 **Parameters:**
 
 | Parameter | Type | Required | Description |
-|:---|:---|:---|:-----------|
+|:---------|:-----|:---------|:------------|
 | err | ?BusinessException  | Yes | Exception information. |
 | arg | A  | Yes | Parameter required by the callback function. |
 
@@ -99,15 +99,15 @@ public open func invoke(err: ?BusinessException, arg1: A): B
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:-----------|
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:---------|:--------------|:------------|
 | err | ?BusinessException  | Yes | - | Exception information. |
 | arg1 | A | Yes | - | Parameter required by the callback function. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:---------|
+|:-----|:------------|
 | B | Return value of the callback function. |
 
 ## class Callback2Argument
@@ -140,11 +140,11 @@ public open func invoke(err: ?BusinessException, arg1: A, arg2: B): Unit
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:--------------|
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:---------|:--------------|:------------|
 | err | ?BusinessException  | Yes | - | Exception information. |
-| arg1 | A | Yes | - | First parameter required by the callback function. |
-| arg2 | B | Yes | - | Second parameter required by the callback function. |
+| arg1 | A | Yes  | - | First parameter required by the callback function. |
+| arg2 | B | Yes  | - | Second parameter required by the callback function. |
 
 ## class Callback3ArgumentWithReturn
 
@@ -176,17 +176,17 @@ public open func invoke(err: ?BusinessException, arg1: A, arg2: B, arg3: C): D
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:--------------|
+| Parameter | Type | Required | Default Value | Description |
+|:---------|:-----|:---------|:--------------|:------------|
 | err | ?BusinessException  | Yes | - | Exception information. |
-| arg1 | A | Yes | - | First parameter required by the callback function. |
-| arg2 | B | Yes | - | Second parameter required by the callback function. |
-| arg3 | C | Yes | - | Third parameter required by the callback function. |
+| arg1 | A | Yes  | - | First parameter required by the callback function. |
+| arg2 | B | Yes  | - | Second parameter required by the callback function. |
+| arg3 | C | Yes  | - | Third parameter required by the callback function. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----------|
+|:-----|:------------|
 | D | Return value of the callback function. |
 
 ## class CallbackObject
@@ -232,13 +232,13 @@ public open func invoke(err: ?BusinessException): A
 **Parameters:**
 
 | Parameter | Type | Required | Description |
-|:----|:---|:---|:------|
+|:---------|:-----|:---------|:------------|
 | err | ?BusinessException  | Yes | Exception information. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----------|
+|:-----|:------------|
 | A | Return value of the callback function. |
 
 ## type Callback

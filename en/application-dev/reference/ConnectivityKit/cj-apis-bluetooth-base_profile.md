@@ -1,6 +1,6 @@
 # ohos.bluetooth.base_profile (Bluetooth BaseProfile Module)
 
-The baseProfile module provides fundamental Profile types and related methods.
+The baseProfile module provides basic Profile types and related methods.
 
 ## Import Module
 
@@ -12,14 +12,14 @@ import kit.ConnectivityKit.*
 
 ohos.permission.ACCESS_BLUETOOTH
 
-## Usage Guidelines
+## Usage Instructions
 
-API sample code usage instructions:
+API example code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of example code contains a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration needs to be done in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie示例代码说明).
 
 ## interface BaseProfile
 
@@ -37,7 +37,7 @@ public interface BaseProfile {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getConnectedDevices()
 
@@ -51,17 +51,17 @@ func getConnectedDevices(): Array<String>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Array\<String> | Returns the addresses of currently connected devices. For information security considerations, the device addresses obtained here are randomized MAC addresses. This address remains unchanged after successful pairing; however, it will change when a paired device is unpaired and rescanned or when the Bluetooth service is powered off. |
+| Array\<String> | Returns the addresses of currently connected devices. For information security considerations, the device addresses obtained here are randomized MAC addresses. This randomized address remains unchanged after successful pairing; however, it will change when previously paired devices are unpaired and rescanned or when the Bluetooth service is powered off. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -79,7 +79,6 @@ func getConnectedDevices(): Array<String>
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -104,7 +103,7 @@ func getConnectionState(deviceId: String): ProfileConnectionState
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -120,12 +119,11 @@ func getConnectionState(deviceId: String): ProfileConnectionState
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -139,7 +137,6 @@ func getConnectionState(deviceId: String): ProfileConnectionState
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -164,7 +161,7 @@ func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -175,7 +172,7 @@ func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -190,7 +187,6 @@ func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -226,7 +222,7 @@ func off(eventType: ProfileCallbackType): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -236,7 +232,7 @@ func off(eventType: ProfileCallbackType): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -251,7 +247,6 @@ func off(eventType: ProfileCallbackType): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -281,13 +276,13 @@ try {
 func on(eventType: ProfileCallbackType, callback: Callback1Argument<StateChangeParam>): Unit
 ```
 
-**Description:** Subscribes to connection state change events. Uses Callback for asynchronous notification.
+**Description:** Subscribes to connection state change events. Uses Callback for asynchronous callbacks.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -298,7 +293,7 @@ func on(eventType: ProfileCallbackType, callback: Callback1Argument<StateChangeP
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -313,7 +308,6 @@ func on(eventType: ProfileCallbackType, callback: Callback1Argument<StateChangeP
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -346,11 +340,11 @@ public class StateChangeParam {
 }
 ```
 
-**Description:** Describes profile state change parameters.
+**Description:** Describes parameters for profile state changes.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var cause
 
@@ -362,11 +356,11 @@ public var cause: DisconnectCause
 
 **Type:** [DisconnectCause](#enum-disconnectcause)
 
-**Access:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -378,11 +372,11 @@ public var deviceId: String
 
 **Type:** String
 
-**Access:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var state
 
@@ -394,11 +388,13 @@ public var state: ProfileConnectionState
 
 **Type:** [ProfileConnectionState](cj-apis-bluetooth-constant.md#enum-profileconnectionstate)
 
-**Access:** Readable and Writable
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21## enum DisconnectCause
+**Since:** 22
+
+## enum DisconnectCause
 
 ```cangjie
 public enum DisconnectCause <: Equatable<DisconnectCause> & ToString {
@@ -412,11 +408,11 @@ public enum DisconnectCause <: Equatable<DisconnectCause> & ToString {
 }
 ```
 
-**Function:** Reasons for connection failure.
+**Description:** Reasons for connection failure.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -429,11 +425,11 @@ public enum DisconnectCause <: Equatable<DisconnectCause> & ToString {
 ConnectFailInternal
 ```
 
-**Function:** Internal error.
+**Description:** Internal error.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ConnectFromCar
 
@@ -441,11 +437,11 @@ ConnectFailInternal
 ConnectFromCar
 ```
 
-**Function:** Connection should be initiated from the vehicle side.
+**Description:** Connection should be initiated from the car side.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ConnectFromKeyboard
 
@@ -453,11 +449,11 @@ ConnectFromCar
 ConnectFromKeyboard
 ```
 
-**Function:** Connection should be initiated from the keyboard side.
+**Description:** Connection should be initiated from the keyboard side.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ConnectFromMouse
 
@@ -465,11 +461,11 @@ ConnectFromKeyboard
 ConnectFromMouse
 ```
 
-**Function:** Connection should be initiated from the mouse side.
+**Description:** Connection should be initiated from the mouse side.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### TooManyConnectedDevices
 
@@ -477,11 +473,11 @@ ConnectFromMouse
 TooManyConnectedDevices
 ```
 
-**Function:** Current number of connections exceeds the limit.
+**Description:** Current number of connections exceeds the limit.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### UserDisconnect
 
@@ -489,11 +485,11 @@ TooManyConnectedDevices
 UserDisconnect
 ```
 
-**Function:** User actively disconnected.
+**Description:** User actively disconnects.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(DisconnectCause)
 
@@ -501,19 +497,19 @@ UserDisconnect
 public operator func !=(other: DisconnectCause): Bool
 ```
 
-**Function:** Determines inequality of connection failure reasons.
+**Description:** Determines inequality for connection failure reasons.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| Parameter | Type | Mandatory | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
 | other | [DisconnectCause](#enum-disconnectcause) | Yes | - | Connection failure reason. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Bool | Returns true if connection failure reasons are different, otherwise returns false. |
+| :---- | :---- |
+| Bool | Returns true if the connection failure reasons are different, otherwise returns false. |
 
 ### func ==(DisconnectCause)
 
@@ -521,19 +517,19 @@ public operator func !=(other: DisconnectCause): Bool
 public operator func ==(other: DisconnectCause): Bool
 ```
 
-**Function:** Determines equality of connection failure reasons.
+**Description:** Determines equality for connection failure reasons.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| Parameter | Type | Mandatory | Default Value | Description |
+| :--- | :--- | :--- | :--- | :--- |
 | other | [DisconnectCause](#enum-disconnectcause) | Yes | - | Connection failure reason. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Bool | Returns true if connection failure reasons are the same, otherwise returns false. |
+| :---- | :---- |
+| Bool | Returns true if the connection failure reasons are the same, otherwise returns false. |
 
 ### func toString()
 
@@ -541,15 +537,13 @@ public operator func ==(other: DisconnectCause): Bool
 public func toString(): String
 ```
 
-**Function:** Returns the string representation of the connection failure reason.
+**Description:** Returns the string representation of the connection failure reason.
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| String | String representation of the connection failure reason. |
-
-## enum ProfileCallbackType
+| :---- | :---- |
+| String | String representation of the connection failure reason. |## enum ProfileCallbackType
 
 ```cangjie
 public enum ProfileCallbackType <: Equatable<ProfileCallbackType> & Hashable & ToString {
@@ -558,11 +552,11 @@ public enum ProfileCallbackType <: Equatable<ProfileCallbackType> & Hashable & T
 }
 ```
 
-**Function:** Bluetooth BaseProfile callback events.
+**Description:** Callback events for Bluetooth BaseProfile.
 
-**System Capability:** SystemCapability.Communication.Bluetooth.Core
+**SystemCapability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -576,11 +570,11 @@ public enum ProfileCallbackType <: Equatable<ProfileCallbackType> & Hashable & T
 ConnectionStateChange
 ```
 
-**Function:** Indicates the connection state change event type.
+**Description:** Indicates the connection state change event type.
 
-**System Capability:** SystemCapability.Communication.Bluetooth.Core
+**SystemCapability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ProfileCallbackType)
 
@@ -588,19 +582,19 @@ ConnectionStateChange
 public operator func !=(other: ProfileCallbackType): Bool
 ```
 
-**Function:** Determines inequality of Bluetooth BaseProfile callback events.
+**Description:** Performs inequality comparison for Bluetooth BaseProfile callback events.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [ProfileCallbackType](#enum-profilecallbacktype) | Yes | - | Bluetooth BaseProfile callback event. |
+|other|[ProfileCallbackType](#enum-profilecallbacktype)|Yes|-|Bluetooth BaseProfile callback event.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if Bluetooth BaseProfile callback events are different, otherwise returns false. |
+|Bool|Returns true if the Bluetooth BaseProfile callback events are different, otherwise returns false.|
 
 ### func ==(ProfileCallbackType)
 
@@ -608,19 +602,19 @@ public operator func !=(other: ProfileCallbackType): Bool
 public operator func ==(other: ProfileCallbackType): Bool
 ```
 
-**Function:** Determines equality of Bluetooth BaseProfile callback events.
+**Description:** Performs equality comparison for Bluetooth BaseProfile callback events.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-| other | [ProfileCallbackType](#enum-profilecallbacktype) | Yes | - | Bluetooth BaseProfile callback event. |
+|other|[ProfileCallbackType](#enum-profilecallbacktype)|Yes|-|Bluetooth BaseProfile callback event.|
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Bool | Returns true if Bluetooth BaseProfile callback events are the same, otherwise returns false. |
+|Bool|Returns true if the Bluetooth BaseProfile callback events are identical, otherwise returns false.|
 
 ### func hashCode()
 
@@ -628,17 +622,17 @@ public operator func ==(other: ProfileCallbackType): Bool
 public func hashCode(): Int64
 ```
 
-**Function:** Gets the hash value of the callback event.
+**Description:** Retrieves the hash value of the callback event.
 
-**System Capability:** SystemCapability.Communication.Bluetooth.Core
+**SystemCapability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| Int64 | Hash value of the callback event. |
+|Int64|The hash value of the callback event.|
 
 ### func toString()
 
@@ -646,10 +640,10 @@ public func hashCode(): Int64
 public func toString(): String
 ```
 
-**Function:** Gets the string representation of the callback event type.
+**Description:** Retrieves the string representation of the callback event type.
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | String representation of the callback event type. |
+|String|The string representation of the callback event type.|

@@ -1,58 +1,67 @@
-# Introduction to Connectivity Kit  
+# Introduction to Connectivity Kit
 
-## Overview of Connectivity Kit Development  
+## Overview of Connectivity Kit Development
 
-Mobile terminal devices have become deeply integrated into people's daily lives. Common behaviors include connecting to Bluetooth headphones for music, using Wi-Fi for internet access, and employing NFC for tap-to-open doors, all of which are now routine activities for end users.  
+Mobile terminal devices have become deeply integrated into people's daily lives. Common behaviors for end users now include connecting Bluetooth headphones for music, using WiFi for internet access, and employing NFC for touch-to-open door functions.
 
-In these diverse usage scenarios, Bluetooth provides fundamental capabilities such as music playback, calls, and file sharing, Wi-Fi offers basic wireless connectivity, and NFC enables proximity-based card swiping and reading functionalities.  
+In these diverse usage scenarios, Bluetooth provides fundamental capabilities based on wireless connections (such as music/calls/file sharing), WiFi offers basic wireless connectivity, and NFC enables proximity-based card reading and swiping functions.
 
-For developers, designing seamless communication experiences can make applications more aligned with the daily lives of end users.  
+For developers, designing experience services for basic communication can make application usage more aligned with each end user's daily life.
 
-### Introduction to Bluetooth  
+### Introduction to Bluetooth
 
-Bluetooth technology is a wireless communication standard that enables short-range data transmission. It can connect various devices such as smartphones, headphones, speakers, keyboards, mice, and printers. Its key features include low power consumption, cost-effectiveness, and ease of use. Currently in its fifth generation, Bluetooth supports higher data transfer rates and broader coverage.  
+Bluetooth technology is a wireless communication standard that enables short-range data transmission. It can connect various devices including smartphones, headphones, speakers, keyboards, mice, and printers. Its characteristics include low power consumption, low cost, and ease of use. Currently in its fifth generation, it supports higher data transfer rates and broader coverage.
 
-Below are some common Bluetooth-related modules:  
+Below are introductions to several common Bluetooth-related modules:
 
-- **CONNECTION Module**  
-  The Bluetooth connection module provides interfaces for device discovery, pairing, and retrieving local/peripheral information. To interact with peripherals, developers must first use this module's capabilities to establish successful pairing and connections before proceeding with data transmission.  
+- **BLE Module (Bluetooth Low Energy)**
 
-  For details, refer to the [ohos.bluetooth.connection API Reference](../../../en/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-connection.md).  
+  BLE stands for Bluetooth Low Energy. It's a Bluetooth technology that enables communication with minimal power consumption. Compared to traditional Bluetooth, BLE consumes significantly less power, making it ideal for low-power devices requiring long-term operation, such as smartwatches, health monitoring devices, and smart home products.
 
-- **BLE Module (Bluetooth Low Energy)**  
-  BLE stands for Bluetooth Low Energy, a technology that enables communication with minimal power consumption. Compared to classic Bluetooth, BLE is more energy-efficient, making it ideal for long-running low-power devices like smartwatches, health monitors, and smart home gadgets.  
+  For details, see [ohos.bluetooth.ble API Reference](../reference/ConnectivityKit/cj-apis-bluetooth-ble.md).
 
-  For details, refer to the [ohos.bluetooth.ble API Reference](../../../en/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-ble.md).  
+- **A2DP Module (Advanced Audio Distribution Profile)**
 
-- **A2DP Module (Advanced Audio Distribution Profile)**  
-  A2DP is a Bluetooth protocol for wirelessly streaming high-quality audio, such as music or voice calls. It supports bidirectional communication and is commonly used in headphones, speakers, and car audio systems.  
+  A2DP stands for Advanced Audio Distribution Profile. It's a Bluetooth protocol that enables wireless transmission of high-quality audio streams (such as music or voice calls) while supporting bidirectional communication. This makes it suitable for headphones, speakers, car audio systems, and similar devices.
 
-For related development guidelines, see: [Bluetooth Development Guide](./bluetooth/cj-bluetooth-overview.md).  
+  For details, see [ohos.bluetooth.a2dp API Reference](../reference/ConnectivityKit/cj-apis-bluetooth-a2dp.md).
 
-### Introduction to WLAN  
+Related development guide: [Bluetooth Development Guide](./bluetooth/cj-bluetooth-overview.md).
 
-Wireless Local Area Networks (WLAN) transmit and receive data via radio waves, infrared signals, or other technologies, enabling network communication without physical connections. WLAN is widely used in mobile office and public environments.  
+### Introduction to WLAN
 
-The WLAN system provides users with:  
-- **STA Mode (Station Mode)**  
-  STA mode functions as a client in a network. Devices in this mode can connect to routers (e.g., home routers) for uplink data services.  
+Wireless Local Area Networks (WLAN) transmit and receive data via radio waves, infrared signals, or other technologies, enabling network communication between nodes without physical connections. Commonly used in office and public environments with mobile terminals.
 
-  For details, refer to the [ohos.wifi_manager API Reference](../../../en/application-dev/reference/ConnectivityKit/cj-apis-wifi_manager.md).  
+The WLAN system provides users with:
+- WLAN network access (STA mode)
+- Peer-to-peer data transmission (P2P mode)
+- Hotspot sharing (AP mode)
 
-- **P2P Mode (Wi-Fi Direct)**  
-  P2P mode, or Wi-Fi Direct, establishes direct TCP/IP connections between two STAs without requiring an access point (AP). One STA acts as the Group Owner (GO), while the other functions as the Group Client (GC), connecting to the GO like a traditional AP.  
+These functions allow applications to interconnect with other devices via WLAN.
 
-  For details, refer to the [ohos.wifi_manager API Reference](../../../en/application-dev/reference/ConnectivityKit/cj-apis-wifi_manager.md).  
+- **STA Mode**
+  STA (Station) mode refers to client mode in a network. When a device has this capability, it can connect to another routed network (such as a home router), typically used for providing network uplink services.
 
-- **AP Mode (Access Point Mode)**  
-  AP mode provides downlink data services to client devices in a WLAN, serving as the central hub for wireless networking.  
+  For details, see [ohos.wifiManager API Reference](../reference/ConnectivityKit/cj-apis-wifi_manager.md).
 
-  For details, refer to the [ohos.wifi_manager API Reference](../../../en/application-dev/reference/ConnectivityKit/cj-apis-wifi_manager.md).  
+- **P2P Mode**
+  P2P mode, also known as Wi-Fi Direct, is a peer-to-peer connection technology that establishes TCP/IP links directly between two STAs without requiring an Access Point (AP). One STA acts as a traditional AP, called Group Owner (GO), while the other connects to it as a Group Client (GC).
 
-### Operational Mechanism  
+  For details, see [ohos.wifiManager API Reference](../reference/ConnectivityKit/cj-apis-wifi_manager.md).
 
-As a fundamental communication service provided by the system, Connectivity capabilities require users to enable relevant switches or establish connections during application usage. Connections should be terminated proactively when tasks are completed.  
+- **AP Mode**
+  AP mode provides downlink data services for client devices in a WLAN. It serves as the central device in a wireless local area network.
 
-### Constraints and Limitations  
+  For details, see [ohos.wifiManager API Reference](../reference/ConnectivityKit/cj-apis-wifi_manager.md).
 
-To utilize device capabilities, users must explicitly authorize and enable the corresponding switches. Otherwise, third-party applications will not receive system services.
+### Introduction to NFC
+
+NFC stands for Near Field Communication. The NFC service provides functions including NFC switch control, NFC tag read/write, and NFC card emulation.
+
+### Operation Mechanism
+
+As a fundamental communication service provided by the system to applications, Connectivity capabilities require corresponding switch activation/connection handling during application usage scenarios, with active connection termination upon service completion.
+
+### Constraints and Limitations
+
+Using device-related capabilities requires users to actively authorize and enable the corresponding switches. Otherwise, the system will not provide services to third-party applications.

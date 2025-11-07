@@ -2,7 +2,7 @@
 
 The constant module provides definitions for Bluetooth-related constants.
 
-## Import Module
+## Importing the Module
 
 ```cangjie
 import kit.ConnectivityKit.*
@@ -20,11 +20,11 @@ public enum ProfileConnectionState <: Equatable<ProfileConnectionState> & ToStri
 }
 ```
 
-**Description:** Connection state of Bluetooth device profiles.
+**Description:** Connection state of a Bluetooth device's profile.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -41,7 +41,7 @@ StateConnected
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StateConnecting
 
@@ -53,7 +53,7 @@ StateConnecting
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StateDisconnected
 
@@ -65,7 +65,7 @@ StateDisconnected
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StateDisconnecting
 
@@ -77,7 +77,7 @@ StateDisconnecting
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ProfileConnectionState)
 
@@ -85,11 +85,11 @@ StateDisconnecting
 public operator func !=(other: ProfileConnectionState): Bool
 ```
 
-**Description:** Determines inequality of Bluetooth device profile connection states.
+**Description:** Checks inequality of Bluetooth device's profile connection states.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ public operator func !=(other: ProfileConnectionState): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the Bluetooth device profile connection states are different, otherwise returns false. |
+| Bool | Returns true if the profile connection states are different, otherwise returns false. |
 
 ### func ==(ProfileConnectionState)
 
@@ -109,11 +109,11 @@ public operator func !=(other: ProfileConnectionState): Bool
 public operator func ==(other: ProfileConnectionState): Bool
 ```
 
-**Description:** Determines equality of Bluetooth device profile connection states.
+**Description:** Checks equality of Bluetooth device's profile connection states.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ public operator func ==(other: ProfileConnectionState): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the Bluetooth device profile connection states are identical, otherwise returns false. |
+| Bool | Returns true if the profile connection states are identical, otherwise returns false. |
 
 ### func toString()
 
@@ -133,14 +133,14 @@ public operator func ==(other: ProfileConnectionState): Bool
 public func toString(): String
 ```
 
-**Description:** Returns the string representation of the Bluetooth device profile connection state.
+**Description:** Returns the string representation of the Bluetooth device's profile connection state.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The string representation of the Bluetooth device profile connection state. |
+| String | The string representation of the profile connection state. |

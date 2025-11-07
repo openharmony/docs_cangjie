@@ -1,11 +1,11 @@
 # GridItem
 
-A single item container within a grid container.
+A single item content container within a grid container.
 
-> **NOTE:**
+> **Note:**
 >
 > - Only supported as a child component of the [Grid](./cj-scroll-swipe-grid.md) component.
-> - When GridItem is used with [LazyForEach](cj-state-rendering-lazyforeach.md), GridItem's child components are created when the GridItem is created. When used with [if/else](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-ifelse.md), [ForEach](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-foreach.md), or when the parent component is Grid, GridItem's child components are created during GridItem layout.
+> - When GridItem is used with [LazyForEach](cj-state-rendering-lazyforeach.md), GridItem's child components are created when the GridItem is created. When used with [if/else](../../arkui-cj/rendering_control/cj-rendering-control-ifelse.md), [ForEach](../../arkui-cj/rendering_control/cj-rendering-control-foreach.md), or when the parent component is Grid, GridItem's child components are created during GridItem layout.
 
 ## Import Module
 
@@ -25,11 +25,11 @@ Can contain a single child component.
 public init()
 ```
 
-**Function:** Creates a single item component within a grid container.
+**Function:** Creates a single item content component within a grid container.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 ### init(() -> Unit)
 
@@ -37,17 +37,17 @@ public init()
 public init(child: () -> Unit)
 ```
 
-**Function:** Creates a single item component within a grid container that can contain child components.
+**Function:** Creates a single item content component within a grid container that can contain child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| child | ()->Unit | Yes | - | The child component of the GridItem container. |
+| child | () -> Unit | Yes | - | The child component of the GridItem container. |
 
 ## Common Attributes/Common Events
 
@@ -57,83 +57,83 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func columnEnd(Int32)
+### func columnEnd(?Int32)
 
 ```cangjie
-public func columnEnd(value: Int32): This
+public func columnEnd(value: ?Int32): This
 ```
 
 **Function:** Sets the ending column number of the current element.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Int32 | Yes | - | The ending column number of the current element, used in conjunction with columnStart. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Valid range: [0, total columns - 1]. |
+| value | ?Int32 | Yes | - | The ending column number of the current element, used in conjunction with columnStart. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Value range: [0, total columns - 1]. Initial value: 0 |
 
-### func columnStart(Int32)
+### func columnStart(?Int32)
 
 ```cangjie
-public func columnStart(value: Int32): This
+public func columnStart(value: ?Int32): This
 ```
 
 **Function:** Sets the starting column number of the current element.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Int32 | Yes | - | The starting column number of the current element, used in conjunction with columnEnd. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Valid range: [0, total columns - 1] |
+| value | ?Int32 | Yes | - | The starting column number of the current element, used in conjunction with columnEnd. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Value range: [0, total columns - 1]. Initial value: 0 |
 
-### func rowEnd(Int32)
+### func rowEnd(?Int32)
 
 ```cangjie
-public func rowEnd(rowEnd: Int32): This
+public func rowEnd(value: ?Int32): This
 ```
 
 **Function:** Sets the ending row number of the current element.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| rowEnd | Int32 | Yes | - | The ending row number of the current element, used in conjunction with rowStart. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Valid range: [0, total rows - 1] |
+| value | ?Int32 | Yes | - | The ending row number of the current element, used in conjunction with rowStart. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Value range: [0, total rows - 1]. Initial value: 0 |
 
-### func rowStart(Int32)
+### func rowStart(?Int32)
 
 ```cangjie
-public func rowStart(rowStart: Int32): This
+public func rowStart(value: ?Int32): This
 ```
 
 **Function:** Sets the starting row number of the current element.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| rowStart | Int32 | Yes | - | The starting row number of the current element, used in conjunction with rowEnd. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Valid range: [0, total rows - 1] |
+| value | ?Int32 | Yes | - | The starting row number of the current element, used in conjunction with rowEnd. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).<br/>Value range: [0, total rows - 1]. Initial value: 0 |
 
 ## Example Code
 
 ### Example 1 (Setting GridItem Position)
 
-GridItem sets its position by configuring appropriate ColumnStart, ColumnEnd, RowStart, and RowEnd attributes. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).
+GridItem sets its own position by configuring appropriate ColumnStart, ColumnEnd, RowStart, and RowEnd attributes. For scenarios requiring specification of GridItem's starting row/column numbers and occupied rows/columns, it is recommended to use [Grid's layoutOptions parameter](./cj-scroll-swipe-grid.md#class-gridlayoutoptions).
 
 <!-- run -->
 
@@ -155,7 +155,7 @@ class EntryView {
     func build() {
         Column() {
             Grid {
-                // Set the starting row number to 1 and ending row number to 4 for the current GridItem component
+                //Specifies the starting row number as 1 and ending row number as 4 for the current GridItem component
                 GridItem {
                     Text("4")
                         .fontSize(16)
@@ -166,7 +166,7 @@ class EntryView {
                         .id("gridItem1")
                 }.rowStart(1).rowEnd(4)
 
-                // Render GridItems in a loop, labeled 0-15
+                //Renders GridItems in a loop, labeled 0-15
                 ForEach(
                     this.numbers,
                     itemGeneratorFunc: {
@@ -180,7 +180,7 @@ class EntryView {
                         }
                     }
                 )
-                // Set the starting column number to 1 and ending column number to 5 for the current GridItem component
+                //Specifies the starting column number as 1 and ending column number as 5 for the current GridItem component
                 GridItem {
                     Text("5")
                         .fontSize(16)

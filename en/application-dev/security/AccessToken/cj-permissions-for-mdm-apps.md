@@ -4,7 +4,7 @@ The following permissions are exclusively available for MDM (Mobile Device Manag
 
 > **Note:**
 >
-> The following permissions do not support automatic signing. Therefore, during both debugging and release phases, you must follow the [Manual Signing](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233) steps to complete manual signing.
+> The following permissions do not support automatic signing. Therefore, during both debugging and release phases, you must follow the steps outlined in [Manual Signing](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233) to complete manual signing.
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -12,7 +12,7 @@ Allows an application to activate device management applications.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -25,7 +25,7 @@ Allows device management applications to query network information.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -38,7 +38,7 @@ Allows device management applications to install and uninstall packages.
 
 **Permission Level:** system_core
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -51,7 +51,7 @@ Allows device management applications to set application runtime management poli
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -64,7 +64,7 @@ Allows device management applications to restore devices to factory settings.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -77,7 +77,7 @@ Allows device management applications to set account management policies.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -90,7 +90,7 @@ Allows device management applications to set package installation management pol
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -103,7 +103,7 @@ Allows device management applications to set system time.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -116,7 +116,7 @@ Allows device management applications to configure network information.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -129,7 +129,7 @@ Allows device management applications to configure and query WiFi information.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -142,7 +142,7 @@ Allows device management applications to subscribe to management events.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -155,7 +155,7 @@ Allows device administrators to issue and retrieve restriction policies.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -168,7 +168,7 @@ Allows device administrators to configure system sleep time.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -181,7 +181,7 @@ Allows device administrators to manage USB.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -194,7 +194,7 @@ Allows device administrators to manage networks.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -207,7 +207,7 @@ Allows device administrators to manage certificates.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -220,7 +220,7 @@ Allows device administrators to query data from the "Settings" application.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -233,7 +233,7 @@ Allows installation of enterprise MDM application packages on enterprise devices
 
 **Permission Level:** system_core
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -246,7 +246,7 @@ Allows enterprise MDM applications to self-upgrade on enterprise devices.
 
 **Permission Level:** system_core
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -259,7 +259,7 @@ Allows devices to set/cancel browser policies.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -272,7 +272,7 @@ Allows device management applications to configure enterprise information.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -285,7 +285,7 @@ Allows devices to configure security management policies.
 
 **Permission Level:** system_basic
 
-**Authorization Mode:** System-granted (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -296,7 +296,9 @@ Allows devices to configure security management policies.
 
 Allows device management applications to configure and query Bluetooth information.
 
-**Permission Level:** system_basic**Authorization Method:** System Grant (system_grant)
+**Permission Level:** system_basic
+
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -305,11 +307,11 @@ Allows device management applications to configure and query Bluetooth informati
 
 ## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
-Allows device management applications to configure system parameter policies.
+Allows devices to manage system configuration parameter policies.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -318,11 +320,11 @@ Allows device management applications to configure system parameter policies.
 
 ## ohos.permission.ENTERPRISE_MANAGE_WIFI
 
-Allows device management applications to configure and query WiFi information.
+Allows device management applications to configure and query WIFI information.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -335,7 +337,7 @@ Allows device management applications to manage restriction policies.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -348,7 +350,7 @@ Allows device management applications to manage application policies.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -361,7 +363,7 @@ Allows device management applications to configure and query location informatio
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -370,11 +372,11 @@ Allows device management applications to configure and query location informatio
 
 ## ohos.permission.ENTERPRISE_REBOOT
 
-Allows device management applications to perform shutdown and reboot operations.
+Allows device management applications to perform shutdown/reboot operations.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -383,11 +385,11 @@ Allows device management applications to perform shutdown and reboot operations.
 
 ## ohos.permission.ENTERPRISE_LOCK_DEVICE
 
-Allows device management applications to lock the device.
+Allows device management applications to lock devices.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -396,24 +398,22 @@ Allows device management applications to lock the device.
 
 ## ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 
-Allows device management applications to manage system settings.
+Allows device management applications to manage settings.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Grant Mode:** system_grant
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Initial Version:** 12
-
-## ohos.permission.ENTERPRISE_OPERATE_DEVICE
+**Initial Version:** 12## ohos.permission.ENTERPRISE_OPERATE_DEVICE
 
 Allows device management applications to operate the device.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -426,7 +426,7 @@ Allows applications to manage device management applications.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -439,7 +439,7 @@ Allows applications to manage enterprise recovery keys.
 
 **Permission Level:** system_core
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -448,11 +448,11 @@ Allows applications to manage enterprise recovery keys.
 
 ## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
 
-Allows device management applications to delegate other applications to configure device control policies.
+Allows device management applications to delegate other applications to set device control policies.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
@@ -465,12 +465,12 @@ Allows device management applications to obtain all application information on t
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Supported Devices:** Phone | 2in1 | Tablet
+**Supported Devices:** Phone | PC/2in1 | Tablet
 
 **Initial Version:** 20
 
@@ -480,12 +480,12 @@ Allows device management applications to restrict users from modifying system se
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Supported Devices:** Phone | 2in1 | Tablet
+**Supported Devices:** Phone | PC/2in1 | Tablet
 
 **Initial Version:** 20
 
@@ -495,12 +495,12 @@ Allows device management applications to manage device APN policies.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Supported Devices:** Phone | 2in1 | Tablet
+**Supported Devices:** Phone | PC/2in1 | Tablet
 
 **Initial Version:** 20
 
@@ -510,27 +510,27 @@ Allows device management applications to manage device call policies.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Supported Devices:** Phone | 2in1 | Tablet
+**Supported Devices:** Phone | PC/2in1 | Tablet
 
 **Initial Version:** 20
 
 ## ohos.permission.ENTERPRISE_SET_KIOSK
 
-Allows device management applications to configure Kiosk mode.
+Allows device management applications to set Kiosk mode.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Supported Devices:** Phone | 2in1 | Tablet
+**Supported Devices:** Phone | PC/2in1 | Tablet
 
 **Initial Version:** 20
 
@@ -540,11 +540,11 @@ Allows device management applications to set wallpapers.
 
 **Permission Level:** system_basic
 
-**Authorization Method:** System Grant (system_grant)
+**Authorization Method:** System grant (system_grant)
 
 <!--Del-->
 **ACL Enabled:** true<!--DelEnd-->
 
-**Supported Devices:** Phone | 2in1 | Tablet
+**Supported Devices:** Phone | PC/2in1 | Tablet
 
 **Initial Version:** 20

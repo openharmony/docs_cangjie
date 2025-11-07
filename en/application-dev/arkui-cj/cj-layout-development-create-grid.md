@@ -2,15 +2,15 @@
 
 ## Overview
 
-A grid layout consists of cells divided by "rows" and "columns," enabling diverse layouts by specifying the cells where "items" are placed. Grid layouts excel at evenly distributing page space and controlling child component proportions, making them a crucial adaptive layout solution. Common use cases include 9-grid image displays, calendars, calculators, etc.
+A grid layout consists of cells divided by "rows" and "columns", enabling diverse layouts by specifying which cells contain "items". Grid layouts excel at evenly distributing page space and controlling child component proportions, making them a crucial adaptive layout solution. Common use cases include 9-grid image displays, calendars, calculators, etc.
 
-ArkUI provides the [Grid](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-grid.md) container component and its child component [GridItem](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-griditem.md) for constructing grid layouts. Grid sets layout parameters, while GridItem defines child component characteristics. The Grid component supports generating child components through [conditional rendering](./rendering_control/cj-rendering-control-ifelse.md), [loop rendering](./rendering_control/cj-rendering-control-foreach.md), and [lazy loading](./rendering_control/cj-rendering-control-lazyforeach.md).
+ArkUI provides the [Grid](../reference/arkui-cj/cj-scroll-swipe-grid.md) container component and its child component [GridItem](../reference/arkui-cj/cj-scroll-swipe-griditem.md) for constructing grid layouts. The Grid component configures layout parameters, while GridItem defines child component characteristics. Grid supports conditional rendering, iterative rendering, and lazy loading for generating child components.
 
 ## Layout and Constraints
 
-The Grid component serves as the grid container, with each internal entry corresponding to a GridItem component, as shown in Figure 1.
+The Grid component serves as the container, with each entry inside corresponding to a GridItem component, as shown in Figure 1.
 
-**Figure 1** Relationship Between Grid and GridItem Components
+**Figure 1** Relationship between Grid and GridItem Components
 
 ![GridItem](figures/GridItem.png)
 
@@ -18,37 +18,34 @@ The Grid component serves as the grid container, with each internal entry corres
 >
 > Child components of Grid must be GridItem components.
 
-Grid layout is a two-dimensional layout system. The Grid component supports customizing row/column counts and size proportions, spanning child components across multiple rows/columns, and providing both vertical and horizontal layout capabilities. When the grid container's size changes, all child components and spacing adjust proportionally to achieve adaptive layout behavior. These capabilities enable various grid layout styles, as illustrated in Figure 2.
+As a two-dimensional layout system, Grid supports custom row/column counts and proportional sizing, enables child components to span multiple rows/columns, and provides both vertical and horizontal layout capabilities. When container dimensions change, all child components and spacing adjust proportionally for adaptive behavior. These features enable various grid styles, as illustrated in Figure 2.
 
 **Figure 2** Grid Layout Examples
 
 ![GridItem1](figures/GridItem1.png)
 
-If width/height properties are set for the Grid component, its dimensions follow those values. If unset, Grid defaults to matching its parent component's size.
+If width/height properties are set, Grid adopts those dimensions. Otherwise, it defaults to matching its parent component's size.
 
-Based on row/column count and proportion settings, Grid layouts can be categorized into three scenarios:
+Grid layouts can be configured in three ways based on row/column settings:
 
-1. **Both row/column counts and proportions set**: Grid displays only fixed rows/columns of elements without scrolling (recommended approach).
-
-2. **Only one of row/column counts or proportions set**: Elements arrange along the set direction, with overflow content accessible via scrolling.
-
-3. **Neither row/column counts nor proportions set**: Elements arrange along the layout direction, with row/column counts determined by multiple attributes including layout direction and individual cell dimensions. Overflow content is hidden without scrolling.
+1. **Both row/column counts and proportions specified**: Displays fixed rows/columns (recommended approach)
+2. **Only row or column configuration set**: Items arrange along specified axis with scrollable overflow
+3. **No row/column configuration**: Layout determines rows/columns based on multiple factors, hiding overflow content without scrolling
 
 ## Arrangement Configuration
 
 ### Setting Row/Column Counts and Proportions
 
-The overall arrangement is determined by configuring row/column counts and size proportions. Grid provides `rowsTemplate` and `columnsTemplate` properties for this purpose.
-
-These properties accept space-separated strings of "number+fr" values. The count of "fr" units defines the number of rows/columns, while preceding numbers calculate proportional width/height allocations.
+The rowsTemplate and columnsTemplate properties define grid structure using space-separated "nfr" values, where:
+- Number of "fr" units determines row/column count
+- Preceding numeric values calculate proportional width allocation
 
 **Figure 3** Row/Column Proportion Example
 
 ![GridItem2](figures/GridItem2.png)
 
-As shown in Figure 3, this three-row, three-column grid divides vertical space equally (1fr each row) and horizontal space into four parts (first column: 1fr, second: 2fr, third: 1fr).
+The 3x3 grid in Figure 3 divides vertically into equal thirds and horizontally into quarters (1:2:1 ratio):
 
-Implement this layout with:
 ```cangjie
 Grid() {
   // ...
@@ -59,17 +56,17 @@ Grid() {
 
 > **Note:**
 >
-> When `rowsTemplate` or `columnsTemplate` are set, Grid's `layoutDirection` and `cellLength` properties become ineffective. Refer to [Grid Properties](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-grid.md#组件属性) for details.
+> When rowsTemplate/columnsTemplate are set, layoutDirection and cellLength properties become ineffective (see [Grid Attributes](../reference/arkui-cj/cj-scroll-swipe-grid.md#component-attributes)).
 
 ## Displaying Data in Grid Layouts
 
-Grid layouts organize content using two-dimensional structures, as shown in Figure 5.
+Grids organize elements in two dimensions, as shown in Figure 5's office services example.
 
 **Figure 5** General Office Services
 
 ![GridItem4](figures/GridItem4.png)
 
-The Grid component can display GridItem children in a 2D arrangement:
+Basic implementation with explicit GridItems:
 
 ```cangjie
 Grid() {
@@ -97,7 +94,7 @@ Grid() {
 .columnsTemplate("1fr 1fr")
 ```
 
-For structurally similar GridItems, prefer using ForEach with nested GridItem to reduce code duplication:
+For structurally similar items, prefer ForEach with nested GridItem:
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -127,13 +124,13 @@ class EntryView {
 
 ## Configuring Row/Column Gaps
 
-Horizontal spacing between grid units is called row gap; vertical spacing is column gap (Figure 6).
+Row gaps (horizontal spacing) and column gaps (vertical spacing) between grid cells are shown in Figure 6.
 
-**Figure 6** Grid Gaps
+**Figure 6** Grid Spacing
 
 ![GridItem5](figures/GridItem5.png)
 
-Set gaps using `rowsGap` and `columnsGap`. For Figure 5's calculator, use 15vp row gap and 10vp column gap:
+Set gaps using rowsGap and columnsGap. The calculator in Figure 5 uses 15vp row gaps and 10vp column gaps:
 
 ```cangjie
 Grid() {
@@ -143,15 +140,18 @@ Grid() {
 .rowsGap(15)
 ```
 
-## Building Scrollable Grid Layouts
+## Creating Scrollable Grids
 
-Scrollable grids are common in file managers, shopping/video lists (Figure 7). When setting only one of `rowsTemplate` or `columnsTemplate`, content arranges along that axis with scrolling for overflow.
+Scrollable grids are common in file managers, shopping/video lists (Figure 7). When only rowsTemplate or columnsTemplate is set, overflow content becomes scrollable along the configured axis.
 
 **Figure 7** Horizontally Scrollable Grid
 
 ![GridItem6](figures/GridItem6.gif)
 
-Setting `columnsTemplate` enables vertical scrolling; `rowsTemplate` enables horizontal scrolling. Implement Figure 7's horizontal scroll by setting only `rowsTemplate`:
+- columnsTemplate only → vertical scrolling
+- rowsTemplate only → horizontal scrolling
+
+Implementation for Figure 7's horizontal scrolling:
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -162,7 +162,7 @@ import ohos.resource_manager.*
 @Entry
 @Component
 class EntryView {
-    @State var services: Array<String> = ["Live", "Import"]
+    @State var services: Array<String> = ["Live", "Imports"]
     func build() {
             Column(space: 5) {
                 Grid() {
@@ -181,21 +181,21 @@ class EntryView {
 }
 ```
 
-## Controlling Scroll Position
+## Scroll Position Control
 
-Similar to "back to top" in news lists, scroll control is useful for grid features like calendar pagination (Figure 8).
+Similar to news list "back to top" functionality, scroll control is useful for grid applications like calendar pagination (Figure 8).
 
 **Figure 8** Calendar Pagination
 
 ![GridItem7](figures/GridItem7.gif)
 
-Initialize Grid with a [Scroller](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-scroll.md#scroll) object for scroll control. Use [scrollPage](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-scroll.md#func-scrollpagebool) for pagination:
+Initialize Grid with a [Scroller](../reference/arkui-cj/cj-scroll-swipe-scroll.md#scroll) object for control. The scrollPage method handles page turns:
 
 ```cangjie
 var scroller: Scroller = Scroller()
 ```
 
-In calendar implementation, clicking "Next Page" triggers scrolling via `scrollPage(true)`:
+Calendar implementation for next/previous page navigation:
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -218,17 +218,17 @@ class EntryView {
             Row() {
               Row() {
                   Button("Previous")
-                  .onClick{ evt =>
-                      this.scroller.scrollPage(false)
-                  }.width(100)
+                  .onClick({ evt =>
+                      this.scroller.scrollPage(false, animation: false)
+                  }).width(100)
               }.width(50.percent)
               .justifyContent(FlexAlign.Center)
 
               Row() {
                   Button("Next")
-                  .onClick{ evt =>
-                      this.scroller.scrollPage(true)
-                  }.width(100)
+                  .onClick({ evt =>
+                      this.scroller.scrollPage(true, animation: false)
+                  }).width(100)
               }.width(50.percent)
               .justifyContent(FlexAlign.Center)
             }
@@ -240,11 +240,11 @@ class EntryView {
 
 ## Performance Optimization
 
-Like long lists, [loop rendering](./rendering_control/cj-rendering-control-foreach.md) suits smaller datasets. For large scrollable grids, prefer [lazy loading](./rendering_control/cj-rendering-control-lazyforeach.md) to load data on-demand, improving performance.
+Like [long list handling](./cj-layout-development-create-list.md#long-list-processing), iterative rendering suits smaller datasets. For large scrollable grids, implement [lazy loading](./rendering_control/cj-rendering-control-lazyforeach.md) to load data on demand and improve performance.
 
-Refer to [Lazy Loading](./rendering_control/cj-rendering-control-lazyforeach.md) for implementation details.
+Reference the [Lazy Loading](./rendering_control/cj-rendering-control-lazyforeach.md) chapter for implementation details.
 
-When using lazy loading, set `cachedCount` to preload GridItems beyond the visible area, reducing blank spaces during scrolling (only effective with LazyForEach):
+When using lazy loading, set cachedCount to preload GridItems beyond the visible area (only effective with LazyForEach). This buffers cachedCount*columns items before/after the viewport, releasing others.
 
 ```cangjie
 Grid() {
@@ -258,4 +258,4 @@ Grid() {
 
 > **Note:**
 >
-> Increasing `cachedCount` raises CPU/memory usage. Balance performance and user experience based on actual requirements.
+> Higher cachedCount values increase CPU/memory usage. Balance performance and user experience based on actual requirements.

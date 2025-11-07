@@ -23,7 +23,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## enum AreaMode
 
@@ -42,7 +42,7 @@ public enum AreaMode <: Equatable<AreaMode> & ToString {
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -59,7 +59,7 @@ El1
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### El2
 
@@ -71,7 +71,7 @@ El2
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### El3
 
@@ -83,7 +83,7 @@ El3
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### El4
 
@@ -95,7 +95,7 @@ El4
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### El5
 
@@ -107,7 +107,7 @@ El5
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(AreaMode)
 
@@ -119,11 +119,11 @@ public operator func !=(other: AreaMode): Bool
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | other | [AreaMode](#enum-areamode) | Yes | - | Another enumeration value. |
 
@@ -143,11 +143,11 @@ public operator func ==(other: AreaMode): Bool
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | other | [AreaMode](#enum-areamode) | Yes | - | Another enumeration value. |
 
@@ -167,7 +167,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 

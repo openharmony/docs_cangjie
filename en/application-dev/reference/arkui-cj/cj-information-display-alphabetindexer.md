@@ -14,83 +14,83 @@ None
 
 ## Creating the Component
 
-### init(Array\<String>, UInt32)
+### init(Array\<String>, ?UInt32)
 
 ```cangjie
-public init(arrayValue!: Array<String>, selected!: UInt32)
+public init(arrayValue!: Array<String>, selected!: ?UInt32)
 ```
 
-**Function:** Creates an AlphaIndexer component.
+**Function:** Creates an AlphabetIndexer component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | arrayValue | Array\<String> | Yes | - | **Named parameter.** String array where each string represents an index item. |
-| selected | UInt32 | Yes | - | **Named parameter.** Initial selected index value. If it exceeds the index range, the default value 0 is used. |
+| selected | ?UInt32 | Yes | - | **Named parameter.** Initial selected index value. If it exceeds the index range, the default value 0 is used. Initial value: 0 |
 
 ## Universal Attributes/Events
 
-Universal Attributes: All supported.
+Universal attributes: All supported.
 
 > **Note:**
 >
 > - When the [width](cj-text-input-imagespan.md#var-width) attribute is set to "auto", it indicates adaptive width, which changes with the maximum width of index items.
 > - The [padding](./cj-universal-attribute-size.md#func-paddinglength) attribute defaults to 4.vp.
-> - The maximum font scaling factor [maxFontScale](./cj-common-types.md#var-maxfontscale) and the minimum font scaling factor [minFontScale](./cj-common-types.md#var-minfontscale) are both 1 and do not adjust with system font size changes.
+> - The maximum font scaling factor [maxFontScale](./cj-common-types.md#var-maxfontscale) and the minimum font scaling factor [minFontScale](./cj-common-types.md#var-minfontscale) are both 1 and do not change with system font size adjustments.
 
-Universal Events: All supported.
+Universal events: All supported.
 
 ## Component Attributes
 
-### func alignStyle(IndexerAlign)
+### func alignStyle(?IndexerAlign)
 
 ```cangjie
-public func alignStyle(value: IndexerAlign): This
+public func alignStyle(value: ?IndexerAlign): This
 ```
 
 **Function:** Sets the alignment style of the alphabet indexer popup.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [IndexerAlign](#enum-indexeralign) | Yes | IndexerAlign.END | The alignment style of the alphabet indexer popup, supporting display on the left or right side of the popup. |
+| value | ?[IndexerAlign](./cj-common-types.md#enum-indexeralign) | Yes | - | Alignment style of the alphabet indexer popup, supporting display on the left or right side of the popup. Initial value: IndexerAlign.Right |
 
-### func color(ResourceColor)
+### func color(?ResourceColor)
 
 ```cangjie
-public func color(value: ResourceColor): This
+public func color(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the text color of unselected items.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Text color of unselected items.<br>Initial value: 0x99182431. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Text color of unselected items. Initial value: Color(0x99182431) |
 
-### func font(Length, FontWeight, ResourceStr, FontStyle)
+### func font(?Length, ?FontWeight, ?ResourceStr, ?FontStyle)
 
 ```cangjie
 public func font(
-    size!: Length = 10.vp,
-    weight!: FontWeight = FontWeight.Normal,
-    family!: ResourceStr = "HarmonyOS Sans",
-    style!: FontStyle = FontStyle.Normal
+    size!: ?Length = None,
+    weight!: ?FontWeight = None,
+    family!: ?ResourceStr = None,
+    style!: ?FontStyle = None
 ): This
 ```
 
@@ -98,79 +98,79 @@ public func font(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| size | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 10.vp | **Named parameter.** Text size of selected items. |
-| weight | [FontWeight](./cj-common-types.md#enum-fontweight) | No | FontWeight.Normal | **Named parameter.** Font weight of selected items. |
-| family | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "HarmonyOS Sans" | **Named parameter.** Font family of selected items. |
-| style | [FontStyle](./cj-common-types.md#enum-fontstyle) | No | FontStyle.Normal | **Named parameter.** Text style of selected items. |
+| size | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Text size of selected items. Initial value: 10.vp |
+| weight | ?[FontWeight](./cj-common-types.md#enum-fontweight) | No | None | **Named parameter.** Font weight of selected text. Initial value: FontWeight.Normal |
+| family | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Font family of selected text. Initial value: "HarmonyOS Sans" |
+| style | ?[FontStyle](./cj-common-types.md#enum-fontstyle) | No | None | **Named parameter.** Text style of selected items. Initial value: FontStyle.Normal |
 
-### func itemSize(Length)
+### func itemSize(?Length)
 
 ```cangjie
-public func itemSize(size: Length): This
+public func itemSize(size: ?Length): This
 ```
 
 **Function:** Sets the size of the index item area.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| size | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Size of the index item area. The index item area is square, i.e., the side length of the square.<br>Percentage values are not supported.<br>Initial value: 16.vp.<br>Unit: vp. |
+| size | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Size of the index item area. The index item area is square, i.e., the side length of the square.<br>Percentage values are not supported. Initial value: 16.vp |
 
-### func popupBackground(ResourceColor)
+### func popupBackground(?ResourceColor)
 
 ```cangjie
-public func popupBackground(value: ResourceColor): This
+public func popupBackground(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the background color of the popup.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Background color of the popup.<br>Initial value: 0x66808080. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Background color of the popup. Initial value: Color(0x66808080) |
 
-### func popupColor(ResourceColor)
+### func popupColor(?ResourceColor)
 
 ```cangjie
-public func popupColor(value: ResourceColor): This
+public func popupColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the text color of primary index items in the popup.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Text color of primary index items in the popup.<br>Initial value: 0xFF007DFF. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Text color of primary index items in the popup. Initial value: Color(0xFF007DFF) |
 
-### func popupFont(Length, FontWeight, ResourceStr, FontStyle)
+### func popupFont(?Length, ?FontWeight, ?ResourceStr, ?FontStyle)
 
 ```cangjie
 public func popupFont(
-    size!: Length = 24.vp,
-    weight!: FontWeight = FontWeight.Normal,
-    family!: ResourceStr = "HarmonyOS Sans",
-    style!: FontStyle = FontStyle.Normal
+    size!: ?Length = None,
+    weight!: ?FontWeight = None,
+    family!: ?ResourceStr = None,
+    style!: ?FontStyle = None
 ): This
 ```
 
@@ -178,98 +178,98 @@ public func popupFont(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| size | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 24.vp | **Named parameter.** Text size of selected items. |
-| weight | [FontWeight](./cj-common-types.md#enum-fontweight) | No | FontWeight.Normal | **Named parameter.** Font weight of selected items. |
-| family | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "HarmonyOS Sans" | **Named parameter.** Font family of selected items. |
-| style | [FontStyle](./cj-common-types.md#enum-fontstyle) | No | FontStyle.Normal | **Named parameter.** Text style of selected items. |
+| size | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Text size in the popup. Initial value: 24.vp |
+| weight | ?[FontWeight](./cj-common-types.md#enum-fontweight) | No | None | **Named parameter.** Font weight of text in the popup. Initial value: FontWeight.Normal |
+| family | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Font family of text in the popup. Initial value: "HarmonyOS Sans" |
+| style | ?[FontStyle](./cj-common-types.md#enum-fontstyle) | No | None | **Named parameter.** Text style in the popup. Initial value: FontStyle.Normal |
 
-### func popupPosition(Length, Length)
+### func popupPosition(?Length, ?Length)
 
 ```cangjie
-public func popupPosition(x!: Length = 60.vp, y!: Length = 48.vp): This
+public func popupPosition(x!: ?Length = None, y!: ?Length = None): This
 ```
 
 **Function:** Sets the position of the popup relative to the midpoint of the top border of the indexer bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| x | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 60.vp | **Named parameter.** Horizontal position of the popup relative to the midpoint of the top border of the indexer bar. |
-| y | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 48.vp | **Named parameter.** Vertical position of the popup relative to the midpoint of the top border of the indexer bar. |
+| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the popup relative to the midpoint of the top border of the indexer bar. Initial value: 60.vp |
+| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the popup relative to the midpoint of the top border of the indexer bar. Initial value: 48.vp |
 
-### func selected(Int32)
+### func selected(?Int32)
 
 ```cangjie
-public func selected(index: Int32): This
+public func selected(index: ?Int32): This
 ```
 
 **Function:** Sets the selected index value.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| index | Int32 | Yes | - | Selected index value.<br/>Initial value: 0. |
+| index | ?Int32 | Yes | - | Selected index value. Initial value: 0 |
 
-### func selectedBackgroundColor(ResourceColor)
+### func selectedBackgroundColor(?ResourceColor)
 
 ```cangjie
-public func selectedBackgroundColor(value: ResourceColor): This
+public func selectedBackgroundColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the background color of selected items.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Background color of selected items.<br>Initial value: 0x1A007DFF. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Background color of selected items. Initial value: Color(0x1A007DFF) |
 
-### func selectedColor(ResourceColor)
+### func selectedColor(?ResourceColor)
 
 ```cangjie
-public func selectedColor(value: ResourceColor): This
+public func selectedColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the text color of selected items.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Text color of selected items.<br>Initial value: 0xFF007DFF. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Text color of selected items. Initial value: Color(0xFF007DFF) |
 
-### func selectedFont(Length, FontWeight, ResourceStr, FontStyle)
+### func selectedFont(?Length, ?FontWeight, ?ResourceStr, ?FontStyle)
 
 ```cangjie
 public func selectedFont(
-    size!: Length = 10.vp,
-    weight!: FontWeight = FontWeight.Normal,
-    family!: ResourceStr = "HarmonyOS Sans",
-    style!: FontStyle = FontStyle.Normal
+    size!: ?Length = None,
+    weight!: ?FontWeight = None,
+    family!: ?ResourceStr = None,
+    style!: ?FontStyle = None
 ): This
 ```
 
@@ -277,154 +277,128 @@ public func selectedFont(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| size | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 10.vp | **Named parameter.** Text size of selected items. |
-| weight | [FontWeight](./cj-common-types.md#enum-fontweight) | No | FontWeight.Normal | **Named parameter.** Font weight of selected items. |
-| family | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "HarmonyOS Sans" | **Named parameter.** Font family of selected items. |
-| style | [FontStyle](./cj-common-types.md#enum-fontstyle) | No | FontStyle.Normal | **Named parameter.** Text style of selected items. |
+| size | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Text size of selected items. Initial value: 10.vp |
+| weight | ?[FontWeight](./cj-common-types.md#enum-fontweight) | No | None | **Named parameter.** Font weight of selected text. Initial value: FontWeight.Normal |
+| family | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Font family of selected text. Initial value: "HarmonyOS Sans" |
+| style | ?[FontStyle](./cj-common-types.md#enum-fontstyle) | No | None | **Named parameter.** Text style of selected items. Initial value: FontStyle.Normal |
 
-### func usingPopup(Bool)
+### func usingPopup(?Bool)
 
 ```cangjie
-public func usingPopup(value: Bool): This
+public func usingPopup(value: ?Bool): This
 ```
 
 **Function:** Sets whether to use the popup.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to use the popup.<br/>Initial value: false. |
+| value | ?Bool | Yes | - | Whether to use the popup.<br/>Initial value: false |
 
 ## Component Events
 
-### func onPopupSelect(OnAlphabetIndexerPopupSelectCallback)
+### func onPopupSelect(?OnAlphabetIndexerPopupSelectCallback)
 
 ```cangjie
-public func onPopupSelect(callback: OnAlphabetIndexerPopupSelectCallback): This
+public func onPopupSelect(callback: ?OnAlphabetIndexerPopupSelectCallback): This
 ```
 
-**Function:** Triggered when a string in the alphabet indexer popup list is selected.
+**Function:** Triggered when a string in the alphabet indexer popup is selected.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | [OnAlphabetIndexerPopupSelectCallback](./cj-common-types.md#class-onalphabetindexerpopupselectcallback) | Yes | - | Callback function triggered when a string in the alphabet indexer popup list is selected. |
+| callback | ?[OnAlphabetIndexerPopupSelectCallback](#type-onalphabetindexerpopupselectcallback) | Yes | - | Callback function triggered when a string in the alphabet indexer popup is selected. Initial value: { _: Int64 => } |
 
-### func onRequestPopupData(OnAlphabetIndexerRequestPopupDataCallback)
+### func onRequestPopupData(?OnAlphabetIndexerRequestPopupDataCallback)
 
 ```cangjie
-public func onRequestPopupData(callback: OnAlphabetIndexerRequestPopupDataCallback): This
+public func onRequestPopupData(callback: ?OnAlphabetIndexerRequestPopupDataCallback): This
 ```
 
-**Function:** Triggered when an alphabet index is selected, requesting the content to be displayed in the popup.
+**Function:** Triggered when an alphabet index is selected, requesting the display content of the index popup.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | [OnAlphabetIndexerRequestPopupDataCallback](./cj-common-types.md#class-onalphabetindexerrequestpopupdatacallback) | Yes | - | Callback function triggered when the current index is selected.<br>Return value: String array corresponding to the index, displayed vertically in the popup. The string list displays up to 5 items; additional items can be scrolled. |
+| callback | ?[OnAlphabetIndexerRequestPopupDataCallback](#type-onalphabetindexerrequestpopupdatacallback) | Yes | - | Callback function triggered when the current index is selected.<br>Return value: String array corresponding to the index, displayed vertically in the popup. The string list displays up to 5 items, with additional items scrollable. Initial value: { _: Int64 => Array<String>() } |
 
-### func onSelect(OnAlphabetIndexerSelectCallback)
+### func onSelect(?OnAlphabetIndexerSelectCallback)
 
 ```cangjie
-public func onSelect(callback: OnAlphabetIndexerSelectCallback): This
+public func onSelect(callback: ?OnAlphabetIndexerSelectCallback): This
 ```
 
 **Function:** Triggered when the index bar is selected, returning the current selected index.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | [OnAlphabetIndexerSelectCallback](./cj-common-types.md#class-onalphabetindexerselectcallback) | Yes | - | Callback function triggered when the index bar is selected. |
+| callback | ?[OnAlphabetIndexerSelectCallback](#type-onalphabetindexerselectcallback) | Yes | - | Callback function triggered when the index bar is selected. Initial value: { _: Int64 => } |
 
 ## Basic Type Definitions
 
-### enum IndexerAlign
+### type OnAlphabetIndexerSelectCallback
 
 ```cangjie
-public enum IndexerAlign <: Equatable<IndexerAlign> {
-    | Left
-    | Right
-    | ...
-}
+public type OnAlphabetIndexerSelectCallback = (Int64) -> Unit
 ```
 
-**Function:** Alignment style of the indexer.
+**Function:** Event triggered when an index item is selected.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-**Parent Type:**
-
-- Equatable\<IndexerAlign>
-
-#### Left
+### type OnAlphabetIndexerRequestPopupDataCallback
 
 ```cangjie
-Left
+public type OnAlphabetIndexerRequestPopupDataCallback = (Int64) -> Array<String>
 ```
 
-**Function:** Left alignment.
+**Function:** Event triggered when an index item is selected and usingPopup is set to true.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### Right
+### type OnAlphabetIndexerPopupSelectCallback
 
 ```cangjie
-Right
+public type OnAlphabetIndexerPopupSelectCallback = (Int64) -> Unit
 ```
 
-**Function:** Right alignment.
+**Function:** Event triggered when a secondary index item in the popup is selected.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-#### func getValue()
-
-```cangjie
-public func getValue(): Int32
-```
-
-**Function:** Gets the parameter value, returning whether the unlock result corresponds to the integer value.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Int32 | The value represented by the current enumeration. |## Example Code
+**Since:** 22## Sample Code
 
 ### Example 1 (Setting Prompt Popup Display Text Content)
 
@@ -433,7 +407,7 @@ public func getValue(): Int32
 ```cangjie
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 import ohos.arkui.state_macro_manage.*
 
 @Entry
@@ -513,8 +487,8 @@ class EntryView {
                             .selectedFont(size: 16.vp, weight: FontWeight.Bolder) // Selected item font style
                             .popupFont(size: 30.vp, weight: FontWeight.Bolder) // Popup content font style
                             .itemSize(28) // Size of each item
-                            .alignStyle(IndexerAlign.Right) // Popup appears on the left side of the index bar
-                            .popupBackground(0xCCCCCC) // Set the first index item's popup background color
+                            .alignStyle(IndexerAlign.Right) // Popup appears on the right side of index bar
+                            .popupBackground(0xCCCCCC) // Set first index item's popup background color
                             .selectedColor(0x00FF00)
                             .onSelect({index: Int64 => Hilog.info(0, "AppLogCj", this.value[index] + " Selected!");})
                             .onRequestPopupData(

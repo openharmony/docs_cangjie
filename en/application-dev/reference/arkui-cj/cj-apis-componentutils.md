@@ -1,13 +1,48 @@
-# ohos.arkui.component_utils
+# ohos.component_utils (ComponentUtils)
 
 Provides the capability to obtain the coordinates and dimensions of a component's drawing area.
 
 ## Import Module
 
 ```cangjie
-import ohos.component_utils.*
 import kit.ArkUI.*
 ```
+
+## class ComponentUtils
+
+```cangjie
+public class ComponentUtils {}
+```
+
+**Description:** Provides functionality to obtain the coordinates and dimensions of a specified component's drawing area.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### static func getRectangleById(String)
+
+```cangjie
+public static func getRectangleById(id: String): ComponentInfo
+```
+
+**Description:** Retrieves a component instance object by its ID and synchronously returns the obtained coordinate position and dimensions to the developer through the component instance object.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| id | String | Yes | - | The specified component ID. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [ComponentInfo](#class-componentinfo) | Information about the component's dimensions, position, translation, scaling, rotation, and affine matrix properties. |
 
 ## class ComponentInfo
 
@@ -20,9 +55,9 @@ public class ComponentInfo {
     public var translate: TranslateResult
     public var scale: ScaleResult
     public var rotate: RotateResult
-    public var transform: VArray<Float32, $16>
+    public var transform: Matrix4Result
     public init(size: Size, localOffset: Offset, windowOffset: Offset, screenOffset: Offset, translate: TranslateResult,
-        scale: ScaleResult, rotate: RotateResult, transform: VArray<Float32, $16>)
+    scale: ScaleResult, rotate: RotateResult, transform: Matrix4Result)
 }
 ```
 
@@ -30,7 +65,7 @@ public class ComponentInfo {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var localOffset
 
@@ -42,11 +77,11 @@ public var localOffset: Offset
 
 **Type:** [Offset](#class-offset)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var rotate
 
@@ -58,11 +93,11 @@ public var rotate: RotateResult
 
 **Type:** [RotateResult](#class-rotateresult)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var scale
 
@@ -74,11 +109,11 @@ public var scale: ScaleResult
 
 **Type:** [ScaleResult](#class-scaleresult)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var screenOffset
 
@@ -90,11 +125,11 @@ public var screenOffset: Offset
 
 **Type:** [Offset](#class-offset)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var size
 
@@ -102,31 +137,31 @@ public var screenOffset: Offset
 public var size: Size
 ```
 
-**Description:** Sets the component's dimensions.
+**Description:** Sets the component's dimension information.
 
 **Type:** [Size](#class-size)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var transform
 
 ```cangjie
-public var transform: VArray<Float32, $16>
+public var transform: Matrix4Result
 ```
 
-**Description:** Sets the affine matrix information, creating a fourth-order matrix object based on the input parameters.
+**Description:** Sets the component's transformation matrix information.
 
-**Type:** VArray\<Float32,$16>
+**Type:** [Matrix4Result](#type-matrix4result)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var translate
 
@@ -138,11 +173,11 @@ public var translate: TranslateResult
 
 **Type:** [TranslateResult](#class-translateresult)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var windowOffset
 
@@ -154,617 +189,521 @@ public var windowOffset: Offset
 
 **Type:** [Offset](#class-offset)
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Size, Offset, Offset, Offset, TranslateResult, ScaleResult, RotateResult, VArray\<Float32,$16>)
+### init(Size, Offset, Offset, Offset, TranslateResult, ScaleResult, RotateResult, Matrix4Result)
 
 ```cangjie
 public init(size: Size, localOffset: Offset, windowOffset: Offset, screenOffset: Offset, translate: TranslateResult,
-    scale: ScaleResult, rotate: RotateResult, transform: VArray<Float32, $16>)
+    scale: ScaleResult, rotate: RotateResult, transform: Matrix4Result)
 ```
 
-**Description:** Constructs a ComponentInfo-type object.
+**Description:** Constructs an object of type ComponentInfo.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name          | Type                              | Mandatory | Default | Description                                                                 |
-|:--------------|:----------------------------------|:----------|:--------|:----------------------------------------------------------------------------|
-| size          | [Size]                            | Yes       | -       | Component dimensions.                                                       |
-| localOffset   | [Offset](#class-offset)           | Yes       | -       | Component's information relative to its parent component.                  |
-| windowOffset  | [Offset](#class-offset)           | Yes       | -       | Component's information relative to the window.                            |
-| screenOffset  | [Offset](#class-offset)           | Yes       | -       | Component's information relative to the screen.                            |
-| translate     | [TranslateResult](#class-translateresult) | Yes       | -       | Component's translation information.                                        |
-| scale         | [ScaleResult](#class-scaleresult) | Yes       | -       | Component's scaling information.                                            |
-| rotate        | [RotateResult](#class-rotateresult) | Yes       | -       | Component's rotation information.                                           |
-| transform     | VArray<Float32, $16>              | Yes       | -       | Affine matrix information, creating a fourth-order matrix object based on input parameters. |
-
-## class ComponentUtils
-
-```cangjie
-public class ComponentUtils {}
-```
-
-**Description:** Provides the capability to obtain the coordinates and dimensions of a specified component's drawing area.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### static func getRectangleById(String)
-
-```cangjie
-public static func getRectangleById(id: String): ComponentInfo
-```
-
-**Description:** Obtains the component instance object based on the component ID and synchronously returns the obtained coordinate position and dimensions to the developer through the component instance object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type   | Mandatory | Default | Description            |
-|:-----|:-------|:----------|:--------|:-----------------------|
-| id   | String | Yes       | -       | Specified component ID. |
-
-**Return Value:**
-
-| Type                          | Description                                                                 |
-|:------------------------------|:----------------------------------------------------------------------------|
-| [ComponentInfo](#class-componentinfo) | Component's dimensions, position, translation, scaling, rotation, and affine matrix attribute information. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| size | [Size](#class-size) | Yes | - | The component's dimension information. |
+| localOffset | [Offset](#class-offset) | Yes | - | The component's information relative to its parent component. |
+| windowOffset | [Offset](#class-offset) | Yes | - | The component's information relative to the window. |
+| screenOffset | [Offset](#class-offset) | Yes | - | The component's information relative to the screen. |
+| translate | [TranslateResult](#class-translateresult) | Yes | - | The component's translation information. |
+| scale | [ScaleResult](#class-scaleresult) | Yes | - | The component's scaling information. |
+| rotate | [RotateResult](#class-rotateresult) | Yes | - | The component's rotation information. |
+| transform | [Matrix4Result](#type-matrix4result) | Yes | - | The component's transformation matrix information. |
 
 ## class Offset
 
 ```cangjie
 public class Offset {
-    public var x: Float32
-    public var y: Float32
-    public init(x: Float32, y: Float32)
+    public var x: Float64
+    public var y: Float64
+    public init(x: Float64, y: Float64)
 }
 ```
 
-**Description:** Coordinate information.
+**Description:** Defines offset properties.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
 ```cangjie
-public var x: Float32
+public var x: Float64
 ```
 
-**Description:** Sets the x-coordinate.
+**Description:** The x-coordinate of the position.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
 ```cangjie
-public var y: Float32
+public var y: Float64
 ```
 
-**Description:** Sets the y-coordinate.
+**Description:** The y-coordinate of the position.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32)
+### init(Float64, Float64)
 
 ```cangjie
-public init(x: Float32, y: Float32)
+public init(x: Float64, y: Float64)
 ```
 
-**Description:** Constructs an Offset-type object.
+**Description:** Constructs an object of type Offset.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type   | Mandatory | Default | Description                |
-|:-----|:-------|:----------|:--------|:---------------------------|
-| x    | Float32 | Yes       | -       | x-coordinate.<br>Unit: px. |
-| y    | Float32 | Yes       | -       | y-coordinate.<br>Unit: px. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | Float64 | Yes | - | The x-coordinate of the position. |
+| y | Float64 | Yes | - | The y-coordinate of the position. |
 
 ## class RotateResult
 
 ```cangjie
 public class RotateResult {
-    public var x: Float32
-    public var y: Float32
-    public var z: Float32
-    public var centerX: Float32
-    public var centerY: Float32
-    public var angle: Float32
-    /**
-     * Defines RotateResult Type.
-     */
-    public init(x: Float32, y: Float32, z: Float32, centerX: Float32, centerY: Float32, angle: Float32)
+    public var x: Float64
+    public var y: Float64
+    public var z: Float64
+    public var centerX: Float64
+    public var centerY: Float64
+    public var angle: Float64
+    public init(x: Float64, y: Float64, z: Float64, centerX: Float64, centerY: Float64, angle: Float64)
 }
 ```
 
-**Description:** Component rotation information.
+**Description:** Rotation result.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var angle
 
 ```cangjie
-public var angle: Float32
+public var angle: Float64
 ```
 
-**Description:** Sets the rotation angle.
+**Description:** The rotation angle.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var centerX
 
 ```cangjie
-public var centerX: Float32
+public var centerX: Float64
 ```
 
-**Description:** Sets the x-coordinate of the transformation center point.
+**Description:** The x-axis coordinate transformation of the center point.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var centerY
 
 ```cangjie
-public var centerY: Float32
+public var centerY: Float64
 ```
 
-**Description:** Sets the y-coordinate of the transformation center point.
+**Description:** The y-axis coordinate transformation of the center point.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
 ```cangjie
-public var x: Float32
+public var x: Float64
 ```
 
-**Description:** Sets the x-coordinate of the rotation axis vector.
+**Description:** The x-coordinate of the rotation axis vector.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
 ```cangjie
-public var y: Float32
+public var y: Float64
 ```
 
-**Description:** Sets the y-coordinate of the rotation axis vector.
+**Description:** The y-coordinate of the rotation axis vector.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var z
 
 ```cangjie
-public var z: Float32
+public var z: Float64
 ```
 
-**Description:** Sets the z-coordinate of the rotation axis vector.
+**Description:** The z-coordinate of the rotation axis vector.
 
-**Type:** Float32
+**Type:** Float64
 
-**Access:** Read-write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32, Float32, Float32, Float32, Float32)
+### init(Float64, Float64, Float64, Float64, Float64, Float64)
 
 ```cangjie
-/**
- * Defines RotateResult Type.
- */
-public init(x: Float32, y: Float32, z: Float32, centerX: Float32, centerY: Float32, angle: Float32)
+public init(x: Float64, y: Float64, z: Float64, centerX: Float64, centerY: Float64, angle: Float64)
 ```
 
-**Description:** Constructs a RotateResult-type object.
+**Description:** Constructs an object of type RotateResult.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name    | Type   | Mandatory | Default | Description                          |
-|:--------|:-------|:----------|:--------|:-------------------------------------|
-| x       | Float32 | Yes       | -       | x-coordinate of the rotation axis vector.<br>Unit: px. |
-| y       | Float32 | Yes       | -       | y-coordinate of the rotation axis vector.<br>Unit: px. |
-| z       | Float32 | Yes       | -       | z-coordinate of the rotation axis vector.<br>Unit: px. |
-| centerX | Float32 | Yes       | -       | x-coordinate of the transformation center point.<br>Unit: px. |
-| centerY | Float32 | Yes       | -       | y-coordinate of the transformation center point.<br>Unit: px. |
-| angle   | Float32 | Yes       | -       | Rotation angle.<br>Unit: px.        |## class ScaleResult
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | Float64 | Yes | - | The x-coordinate of the rotation axis vector. |
+| y | Float64 | Yes | - | The y-coordinate of the rotation axis vector. |
+| z | Float64 | Yes | - | The z-coordinate of the rotation axis vector. |
+| centerX | Float64 | Yes | - | The x-axis coordinate transformation of the center point. |
+| centerY | Float64 | Yes | - | The y-axis coordinate transformation of the center point. |
+| angle | Float64 | Yes | - | The rotation angle. |## class ScaleResult
 
 ```cangjie
 public class ScaleResult {
-    public var x: Float32
-    public var y: Float32
-    public var z: Float32
-    public var centerX: Float32
-    public var centerY: Float32
-    public init(x: Float32, y: Float32, z: Float32, centerX: Float32, centerY: Float32)
+    public var x: Float64
+    public var y: Float64
+    public var z: Float64
+    public var centerX: Float64
+    public var centerY: Float64
+    public init(x: Float64, y: Float64, z: Float64, centerX: Float64, centerY: Float64)
 }
 ```
 
-**Function:** Component scaling information.
+**Function:** Scaling result.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var centerX
 
 ```cangjie
-public var centerX: Float32
+public var centerX: Float64
 ```
 
-**Function:** Sets the x-axis coordinate of the transformation center point.
+**Function:** X-axis coordinate transformation of the center point.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var centerY
 
 ```cangjie
-public var centerY: Float32
+public var centerY: Float64
 ```
 
-**Function:** Sets the y-axis coordinate of the transformation center point.
+**Function:** Y-axis coordinate transformation of the center point.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
 ```cangjie
-public var x: Float32
+public var x: Float64
 ```
 
-**Function:** Sets the scaling factor on the x-axis.
+**Function:** X-axis scaling factor.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
 ```cangjie
-public var y: Float32
+public var y: Float64
 ```
 
-**Function:** Sets the scaling factor on the y-axis.
+**Function:** Y-axis scaling factor.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var z
 
 ```cangjie
-public var z: Float32
+public var z: Float64
 ```
 
-**Function:** Sets the scaling factor on the z-axis.
+**Function:** Z-axis scaling factor.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32, Float32, Float32, Float32)
+### init(Float64, Float64, Float64, Float64, Float64)
 
 ```cangjie
-public init(x: Float32, y: Float32, z: Float32, centerX: Float32, centerY: Float32)
+public init(x: Float64, y: Float64, z: Float64, centerX: Float64, centerY: Float64)
 ```
 
 **Function:** Constructs a ScaleResult object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type    | Required | Default | Description |
-|:----------|:--------|:---------|:--------|:------------|
-| x         | Float32 | Yes      | -       | Scaling factor on the x-axis.<br>Unit: px. |
-| y         | Float32 | Yes      | -       | Scaling factor on the y-axis.<br>Unit: px. |
-| z         | Float32 | Yes      | -       | Scaling factor on the z-axis.<br>Unit: px. |
-| centerX   | Float32 | Yes      | -       | x-axis coordinate of the transformation center point.<br>Unit: px. |
-| centerY   | Float32 | Yes      | -       | y-axis coordinate of the transformation center point.<br>Unit: px. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+|x|Float64|Yes|-|X-axis scaling factor.|
+|y|Float64|Yes|-|Y-axis scaling factor.|
+|z|Float64|Yes|-|Z-axis scaling factor.|
+|centerX|Float64|Yes|-|X-axis coordinate transformation of the center point.|
+|centerY|Float64|Yes|-|Y-axis coordinate transformation of the center point.|
 
 ## class Size
 
 ```cangjie
 public class Size {
-    public var width: Float32
-    public var height: Float32
-    public init(width: Float32, height: Float32)
+    public var width: Float64
+    public var height: Float64
+    public init(width: Float64, height: Float64)
 }
 ```
 
-**Function:** Sets the component size.
+**Function:** Defines size attributes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
 ```cangjie
-public var height: Float32
+public var height: Float64
 ```
 
-**Function:** Sets the component height.
+**Function:** Height attribute.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var width
 
 ```cangjie
-public var width: Float32
+public var width: Float64
 ```
 
-**Function:** Sets the component width.
+**Function:** Width attribute.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32)
+### init(Float64, Float64)
 
 ```cangjie
-public init(width: Float32, height: Float32)
+public init(width: Float64, height: Float64)
 ```
 
-**Function:** Constructs an Offset object.
+**Function:** Constructs a Size object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type    | Required | Default | Description |
-|:----------|:--------|:---------|:--------|:------------|
-| width     | Float32 | Yes      | -       | Component width.<br>Unit: px. |
-| height    | Float32 | Yes      | -       | Component height.<br>Unit: px. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+|width|Float64|Yes|-|Width attribute.|
+|height|Float64|Yes|-|Height attribute.|
 
 ## class TranslateResult
 
 ```cangjie
 public class TranslateResult {
-    public var x: Float32
-    public var y: Float32
-    public var z: Float32
-    public init(x: Float32, y: Float32, z: Float32)
+    public var x: Float64
+    public var y: Float64
+    public var z: Float64
+    public init(x: Float64, y: Float64, z: Float64)
 }
 ```
 
-**Function:** Component translation information.
+**Function:** Translation result.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
 ```cangjie
-public var x: Float32
+public var x: Float64
 ```
 
-**Function:** Sets the translation distance on the x-axis.
+**Function:** X-axis translation distance.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
 ```cangjie
-public var y: Float32
+public var y: Float64
 ```
 
-**Function:** Sets the translation distance on the y-axis.
+**Function:** Y-axis translation distance.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var z
 
 ```cangjie
-public var z: Float32
+public var z: Float64
 ```
 
-**Function:** Sets the translation distance on the z-axis.
+**Function:** Z-axis translation distance.
 
-**Type:** Float32
+**Type:** Float64
 
-**Readable/Writable:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32, Float32)
+### init(Float64, Float64, Float64)
 
 ```cangjie
-public init(x: Float32, y: Float32, z: Float32)
+public init(x: Float64, y: Float64, z: Float64)
 ```
 
 **Function:** Constructs a TranslateResult object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type    | Required | Default | Description |
-|:----------|:--------|:---------|:--------|:------------|
-| x         | Float32 | Yes      | -       | Translation distance on the x-axis.<br>Unit: px. |
-| y         | Float32 | Yes      | -       | Translation distance on the y-axis.<br>Unit: px. |
-| z         | Float32 | Yes      | -       | Translation distance on the z-axis.<br>Unit: px. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+|x|Float64|Yes|-|X-axis translation distance.<br>Unit: vp.|
+|y|Float64|Yes|-|Y-axis translation distance.<br>Unit: vp.|
+|z|Float64|Yes|-|Z-axis translation distance.<br>Unit: vp.|
 
-**Example:**
-
-<!-- run -->
+## type Matrix4Result
 
 ```cangjie
-package ohos_app_cangjie_entry
-import kit.ArkUI.*
-import ohos.arkui.state_macro_manage.*
-import ohos.arkui.component_utils.ComponentUtils
-import ohos.resource_manager.AppResource
-
-@Entry
-@Component
-class EntryView {
-    @State var message1: String = ""
-    @State var message2: String = ""
-    @State var message3: String = ""
-    @State var x = 120
-    @State var y = 10
-    @State var z = 100
-    func build() {
-        Column {
-            Image(@r(app.media.startIcon))
-                .width(300)
-                .height(100)
-                .scale(x: 0.5, y: 0.5, z: 1.0)
-                .translate(x: 20, y: 20, z: 20)
-                .rotate(
-                    x: 1.0,
-                    y: 1.0,
-                    z: 1.0,
-                    centerX: 50,
-                    centerY: 50,
-                    angle: 300.0
-                )
-                .id("image")
-            Button("getRectangleById").onClick ({
-                evt =>
-                let info = ComponentUtils.getRectangleById("image")
-                message1 = info
-                    .size
-                    .width
-                    .toString()
-                message2 = info
-                    .scale
-                    .x
-                    .toString()
-                message3 = info
-                    .rotate
-                    .angle
-                    .toString()
-            })
-            Text(this.message1 + this.message2 + this.message3)
-                .margin(20)
-                .width(300)
-                .height(300)
-                .borderWidth(2)
-        }
-    }
-}
+public type Matrix4Result = VArray<Float64, $16>
 ```
 
-![componentutils](figures/componentutils.gif)
+**Function:** 4x4 transformation matrix result type.
+
+**Type:** VArray<Float64, $16>

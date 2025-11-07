@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> This document only covers error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> This document only covers module-specific error codes. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 17000001 Initialization Failed
 
@@ -34,11 +34,11 @@ The API cannot be called at this time.
 
 **Possible Causes**
 
-The API was called without using `await`, causing a blockage.
+The API was called without `await`, causing blocking.
 
 **Resolution Steps**
 
-Review the test case to ensure asynchronous interfaces are called with `await`.
+Review test cases to ensure asynchronous interfaces are called with `await`.
 
 ## 17000003 Assertion Failed
 
@@ -66,7 +66,7 @@ Component lost/UiWindow lost.
 
 **Error Description**
 
-The target component/window is lost and cannot be operated on.
+Target component/window is lost and cannot be operated on.
 
 **Possible Causes**
 

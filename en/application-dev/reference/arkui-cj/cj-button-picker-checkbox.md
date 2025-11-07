@@ -2,31 +2,37 @@
 
 A checkbox component, typically used for toggling an option on or off.
 
-## Subcomponents
+## Import Module
+
+```cangjie
+import kit.ArkUI.*
+```
+
+## Child Components
 
 None
 
 ## Creating the Component
 
-### init(String, String, ?CustomBuilder)
+### init(?String, ?String, ?CustomBuilder)
 
 ```cangjie
-public init(name!: String = "", group!: String = "", indicatorBuilder!: ?CustomBuilder = None)
+public init(name!: ?String = None, group!: ?String = None, indicatorBuilder!: ?CustomBuilder = None)
 ```
 
 **Function:** Creates a checkbox component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| name | String | No | "" | **Named parameter.** The name of the checkbox. |
-| group | String | No | "" | **Named parameter.** Specifies the name of the group to which the checkbox belongs (i.e., the name of the [CheckboxGroup](./cj-button-picker-checkboxgroup.md#checkboxgroup)).<br/>**Note:**<br/>This parameter is irrelevant when not used with the [CheckboxGroup](./cj-button-picker-checkboxgroup.md#checkboxgroup) component. |
-| indicatorBuilder | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | No | None | **Named parameter.** Configures the selected style of the checkbox as a custom UI description. The custom UI description is center-aligned with the Checkbox component. When set to None, it defaults to the unset state of indicatorBuilder. Use in conjunction with [@Builder](../../../en/application-dev/arkui-cj/paradigm/cj-macro-builder.md) and the bind method. |
+| name | ?String | No | None | **Named parameter.** The name of the checkbox. |
+| group | ?String | No | None | **Named parameter.** Specifies the name of the group to which the checkbox belongs (i.e., the name of the [CheckboxGroup](./cj-button-picker-checkboxgroup.md#checkboxgroup)).<br/>**Note:**<br/>This parameter is irrelevant when not used in conjunction with the [CheckboxGroup](./cj-button-picker-checkboxgroup.md#checkboxgroup) component. |
+| indicatorBuilder | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | No | None | **Named parameter.** Configures the checkbox's selected style as a custom UI description. The custom UI description is center-aligned with the Checkbox component. When indicatorBuilder is set to None, it defaults to the unset state. Use in combination with [@Builder](../../arkui-cj/paradigm/cj-macro-builder.md) and the bind method. |
 
 ## Common Attributes/Common Events
 
@@ -36,79 +42,79 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func select(Bool)
+### func select(?Bool)
 
 ```cangjie
-public func select(value: Bool): This
+public func select(value: ?Bool): This
 ```
 
 **Function:** Sets whether the checkbox is selected.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the checkbox is selected.<br>Initial value: false<br>When true, the checkbox is selected. When false, it is not selected. |
+| value | ?Bool | Yes | - | Whether the checkbox is selected. Initial value: false.<br>When true, the checkbox is selected. When false, the checkbox is not selected. |
 
-### func selectedColor(ResourceColor)
+### func selectedColor(?ResourceColor)
 
 ```cangjie
-public func selectedColor(value: ResourceColor): This
+public func selectedColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the color of the checkbox in the selected state.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](./../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | The color of the checkbox in the selected state.<br>Initial value:<br>@r(sys.color.ohos_id_color_text_primary_activated).<br>Invalid values are treated as the default value. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The color of the checkbox in the selected state. Initial value: 0xff007dff.<br>Invalid values are treated as the default value. |
 
-### func shape(CheckBoxShape)
+### func shape(?CheckBoxShape)
 
 ```cangjie
-public func shape(value: CheckBoxShape): This
+public func shape(value: ?CheckBoxShape): This
 ```
 
 **Function:** Sets the shape of the CheckBox component, including circular and rounded square.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [CheckBoxShape](./cj-common-types.md#enum-checkboxshape) | Yes | - | Toggles the shape of the CheckBox component between circular and rounded square.<br>Initial value:<br>CheckBoxShape.Circle. |
+| value | ?[CheckBoxShape](./cj-common-types.md#enum-checkboxshape) | Yes | - | Toggles the shape of the CheckBox component between circular and rounded square. Initial value: CheckBoxShape.Circle |
 
 ## Component Events
 
-### func onChange(OnCheckboxChangeCallback)
+### func onChange(?OnCheckboxChangeCallback)
 
 ```cangjie
-public func onChange(callback: OnCheckboxChangeCallback): This
+public func onChange(callback: ?OnCheckboxChangeCallback): This
 ```
 
 **Function:** Triggers this event when the selected state changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | [OnCheckboxChangeCallback](#type-oncheckboxchangecallback) | Yes | - | The callback triggered when the selected state changes.<br>\- When the Bool value is true, it indicates selected.<br>\- When the Bool value is false, it indicates not selected. |
+| callback | ?[OnCheckboxChangeCallback](#type-oncheckboxchangecallback) | Yes | - | The callback triggered when the selected state changes. Initial value: { _: Bool => }.<br>\- When the Bool value is true, it indicates selected.<br>\- When the Bool value is false, it indicates not selected. |
 
 ## Basic Type Definitions
 
@@ -120,9 +126,7 @@ public type OnCheckboxChangeCallback = (Bool) -> Unit
 
 **Function:** Type alias for (Bool) -> Unit.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Type:** (Bool) -> Unit
 
 ## Example Code
 
@@ -175,7 +179,7 @@ class EntryView {
 
 ### Example 2 (Custom Checkbox Style)
 
-This example implements the functionality of custom checkbox styles.
+This example implements a custom checkbox style.
 
 <!-- run -->
 
@@ -216,7 +220,7 @@ class EntryView {
 
 ### Example 3 (Setting Text Checkbox Style)
 
-This example demonstrates a selected style as Text by configuring indicatorBuilder.
+This example configures the selected style as Text using indicatorBuilder.
 
 <!-- run -->
 

@@ -1,41 +1,42 @@
 # Subscribing to Application Events (Cangjie)
 
-HiAppEvent provides interfaces for subscribing to application events to retrieve them locally.
+HiAppEvent provides event subscription interfaces for locally retrieving application events.
 
 ## Interface Description
 
-For detailed usage instructions of the API interfaces (parameter usage restrictions, specific value ranges, etc.), please refer to the [Application Event Logging API Documentation](../../../en/application-dev/reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).
+For detailed usage instructions of the API interfaces (parameter usage restrictions, specific value ranges, etc.), please refer to the [Application Event Logging API Documentation](../reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).
 
-**Logging Interface Functionality:**
+**Event Logging Interface Functions:**
 
-| Interface Name                  | Description               |
-| ------------------------------- | ------------------------- |
+| Interface Name                  | Description                |
+| ------------------------------- | -------------------------- |
 | write(info: AppEventInfo): Unit | Application event logging method. |
 
-**Subscription Interface Functionality:**
+**Subscription Interface Functions:**
 
-| Interface Name                                                   | Description                                         |
-| ---------------------------------------------------------------- | -------------------------------------------------- |
-| addWatcher(watcher: Watcher): Option\<AppEventPackageHolder> | Adds an application event watcher to subscribe to application events. |
+| Interface Name                                                   | Description                                          |
+| ---------------------------------------------------------------- | --------------------------------------------------- |
+| addWatcher(watcher: Watcher): Option\<AppEventPackageHolder>     | Adds an application event watcher to subscribe to application events. |
 | removeWatcher(watcher: Watcher): Unit                            | Removes an application event watcher to unsubscribe from application events. |
 
 ## Development Steps
 
-Taking the implementation of logging and subscribing to button click events as an example, the development steps are as follows:
+Taking the implementation of event logging and subscription for user button click behavior as an example, the development steps are described below.
 
-1. Create a new Cangjie application project and edit the "entry > src > main > cangjie > main_ability.cj" file in the project to import the required modules:
+1. Create a new Cangjie application project and edit the "entry > src > main > cangjie > main_ability.cj" file in the project to import the dependency modules:
 
-    <!--compile-->
+    <!-- compile -->
+
     ```cangjie
     import kit.PerformanceAnalysisKit.*
-    import kit.PerformanceAnalysisKit.{Watcher as hiWatcher, ValueType as HiAppEventValueType}
+    import kit.PerformanceAnalysisKit.{Watcher as hiWatcher}
     import ohos.base.*
-    import ohos.component.Button
     ```
 
-2. Edit the "entry > src > main > cangjie > main_ability.cj" file in the project and add a subscription to button click events in the onCreate function. Example code:
+2. Edit the "entry > src > main > cangjie > main_ability.cj" file in the project and add a subscription to user button click events in the onCreate function. The sample code is as follows:
 
-    <!--compile-->
+    <!-- compile -->
+
     ```cangjie
     var condition = TriggerCondition(row: 1, size: 120, timeOut: 0)
     var appEventFilter = [AppEventFilter("cangjie_watcher")]
@@ -62,29 +63,31 @@ Taking the implementation of logging and subscribing to button click events as a
     )
     ```
 
-3. Edit the "entry > src > main > cangjie > index.cj" file in the project to import the required modules:
+3. Edit the "entry > src > main > cangjie > index.cj" file in the project to import the dependency modules:
 
-    <!--compile-->
+    <!-- compile -->
+
     ```cangjie
     import kit.PerformanceAnalysisKit.*
-    import kit.PerformanceAnalysisKit.{Watcher as hiWatcher, ValueType as HiAppEventValueType}
+    import kit.PerformanceAnalysisKit.{Watcher as hiWatcher}
     import ohos.base.*
     ```
 
-4. Edit the "entry > src > main > cangjie > index.cj" file in the project, add a button, and implement event logging in its onClick function to record button click events. Example code:
+4. Edit the "entry > src > main > cangjie > index.cj" file in the project and add a button to perform event logging in its onClick function to record button click events. The sample code is as follows:
 
-    <!--compile-->
+    <!-- compile -->
+
     ```cangjie
     Button("writeTest").onClick({ evt =>
-        // Log the button click event in the onClick function
-        let eventParams: Array<Parameters> = [Parameters("click_time", INT(100))]
+        // Perform event logging in the button click function to record button click events
+        let eventParams = HashMap<String, EventValueType>([("click_time", IntValue(100))])
         let eventInfo: AppEventInfo = AppEventInfo(
             // Event domain definition
             "button",
             // Event name definition
             "click",
             // Event type definition
-            EventType.BEHAVIOR,
+            EventType.Behavior,
             // Event parameter definition
             eventParams)
 
@@ -92,9 +95,9 @@ Taking the implementation of logging and subscribing to button click events as a
     })
     ```
 
-5. Click the Run button in the DevEco Studio interface to run the application project. Then, click the "writeTest" button on the application interface to trigger a button click event log.
+5. Click the Run button in the DevEco Studio interface to run the application project. Then click the "writeTest" button on the application interface to trigger a button click event logging.
 
-6. You can view the successful logging of the button click event and the processed log data from the subscription callback in the Log window:
+6. You can view the logs of successful button click event logging and the processed logging event data after triggering the subscription callback in the Log window:
 
    ```text
    HiAppEvent success to write event

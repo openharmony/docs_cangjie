@@ -1,108 +1,104 @@
-# Performing Image Transformations with PixelMap
+# Performing Image Transformations with PixelMap  
 
-Image processing involves operations on PixelMap, such as retrieving image information, cropping, scaling, translating, rotating, flipping, setting opacity, and reading/writing pixel data. Image processing primarily includes image transformations and [bitmap operations](./cj-image-pixelmap-operation.md). This document focuses on image transformations.
+Image processing involves performing operations on PixelMap, such as retrieving image information, cropping, scaling, translating, rotating, flipping, setting opacity, and reading/writing pixel data. Image processing primarily includes image transformations and [bitmap operations](./cj-image-pixelmap-operation.md). This document focuses on image transformations.  
 
-## Development Steps
+## Development Procedure  
 
-For detailed API descriptions related to image transformations, refer to the [API Reference](../../../../en/application-dev/reference/ImageKit/cj-apis-image.md#class-pixelmap).
+For detailed information about image transformation APIs, refer to the [API Reference](../../reference/ImageKit/cj-apis-image.md#class-pixelmap).  
 
-1. Complete [image decoding](./cj-image-decoding.md) to obtain a PixelMap object.
+1. Complete [image decoding](./cj-image-decoding.md) to obtain a PixelMap object.  
 
-2. Retrieve image information.
+2. Retrieve image information.  
 
-    <!-- compile -->
+    <!-- compile -->  
 
-    ```cangjie
-    import kit.ImageKit.*
-    
-    // Get image dimensions.
-    let info = pixelMap.getImageInfo()
-    AppLog.info('info width = ${info.size.width}')
-    AppLog.info('info height = ${info.size.height}')
-    ```
+    ```cangjie  
+    // Get the image dimensions.  
+    let info = pixelMap.getImageInfo()  
+    ```  
 
-3. Perform image transformation operations.
+3. Perform image transformation operations.  
 
-   Original image:
+   Original image:  
 
-     ![Original drawing](./figures/original-drawing.jpeg)
+    ![Original drawing](./figures/original-drawing.jpeg)  
 
-   - Cropping
+   - Cropping  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // x: Starting X-coordinate for cropping (0).
-     // y: Starting Y-coordinate for cropping (0).
-     // height: Crop height 400 (top-to-bottom direction, resulting image height is 400).
-     // width: Crop width 400 (left-to-right direction, resulting image width is 400).
-     pixelMap.crop(Region(Size(height: 400, width: 400), 0, 0))
-     ```
+     ```cangjie  
+     // x: Horizontal starting coordinate for cropping (0).  
+     // y: Vertical starting coordinate for cropping (0).  
+     // height: Cropping height (400), direction is top to bottom (resulting image height is 400).  
+     // width: Cropping width (400), direction is left to right (resulting image width is 400).  
+     pixelMap.crop(Region(Size(400, 400), 0, 0))  
+     ```  
 
-     ![cropping](./figures/cropping.jpeg)
+     ![cropping](./figures/cropping.jpeg)  
 
-   - Scaling
+   - Scaling  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // Width scaled to 0.5 of original.
-     // Height scaled to 0.5 of original.
-     pixelMap.scale(0.5, 0.5)
-     ```
+     ```cangjie  
+     // Width scaled to 0.5 of the original.  
+     // Height scaled to 0.5 of the original.  
+     pixelMap.scale(0.5, 0.5)  
+     ```  
 
-     ![zoom](./figures/zoom.jpeg)
+     ![zoom](./figures/zoom.jpeg)  
 
-   - Translation
+   - Translation  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // Translate downward by 100.
-     // Translate rightward by 100.
-     pixelMap.translate(100.0, 100.0);
-     ```
+     ```cangjie  
+     // Translate downward by 100.  
+     // Translate rightward by 100.  
+     pixelMap.translate(100.0, 100.0);  
+     ```  
 
-     ![offsets](./figures/offsets.jpeg)
+     ![offsets](./figures/offsets.jpeg)  
 
-   - Rotation
+   - Rotation  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // Rotate 90° clockwise.
-     pixelMap.rotate(90.0);
-     ```
+     ```cangjie  
+     // Rotate 90° clockwise.  
+     pixelMap.rotate(90.0);  
+     ```  
 
-     ![rotate](./figures/rotate.jpeg)
+     ![rotate](./figures/rotate.jpeg)  
 
-   - Flipping
+   - Flipping  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // Vertical flip.
-     pixelMap.flip(false, true);
-     ```
+     ```cangjie  
+     // Flip vertically.  
+     pixelMap.flip(false, true);  
+     ```  
 
-     ![Vertical Flip](./figures/vertical-flip.jpeg)
+     ![Vertical Flip](./figures/vertical-flip.jpeg)  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // Horizontal flip.
-     pixelMap.flip(true, false);
-     ```
+     ```cangjie  
+     // Flip horizontally.  
+     pixelMap.flip(true, false);  
+     ```  
 
-     ![Horizontal Flip](./figures/horizontal-flip.jpeg)
+     ![Horizontal Flip](./figures/horizontal-flip.jpeg)  
 
-   - Opacity
+   - Opacity  
 
-     <!-- compile -->
+     <!-- compile -->  
 
-     ```cangjie
-     // Opacity set to 0.5.
-     pixelMap.opacity(0.5);
-     ```
+     ```cangjie  
+     // Opacity set to 0.5.  
+     pixelMap.opacity(0.5);  
+     ```  
 
      ![Transparency](./figures/transparency.png)

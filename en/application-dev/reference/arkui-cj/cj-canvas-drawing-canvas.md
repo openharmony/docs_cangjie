@@ -1,6 +1,6 @@
 # Canvas
 
-Provides a canvas component for custom drawing graphics.
+Provides a canvas component for custom drawing of graphics.
 
 ## Import Module
 
@@ -14,23 +14,23 @@ Does not support child components.
 
 ## Creating the Component
 
-### init(Option\<CanvasRenderingContext2D>)
+### init(?CanvasRenderingContext2D)
 
 ```cangjie
-public init(context: Option<CanvasRenderingContext2D>)
+public init(context: ?CanvasRenderingContext2D)
 ```
 
-**Function:** Initializes a drawing canvas component.
+**Function:** Constructs a Canvas component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 12
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| context | Option<CanvasRenderingContext2D> | Yes | - | Multiple Canvas components cannot share the same [CanvasRenderingContext2D](./cj-canvas-drawing-canvasrenderingcontext2d.md#class-canvasrenderingcontext2d) object. For details, see [CanvasRenderingContext2D](./cj-canvas-drawing-canvasrenderingcontext2d.md#class-canvasrenderingcontext2d). |
+| context | ?[CanvasRenderingContext2D](./cj-canvas-drawing-canvasrenderingcontext2d.md#class-canvasrenderingcontext2d) | Yes | - | Canvas context object. |
 
 ## Common Attributes/Common Events
 
@@ -40,97 +40,80 @@ Common Events: All supported.
 
 ## Component Events
 
-### func onReady(() -> Unit)
+### func onReady(?() -> Unit)
 
 ```cangjie
-public func onReady(callback: () -> Unit): This
+public func onReady(callback: ?() -> Unit): This
 ```
 
-**Function:** Event callback when the Canvas component initialization is complete or when the Canvas component size changes.
+**Function:** Event notification when the Canvas component construction is completed. At this point, drawing on the Canvas can begin.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 12
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | () -> Unit | Yes | - | Event callback when the Canvas component initialization is complete or when the Canvas component size changes.<br>When this event is triggered, the canvas is cleared. After this event, the width and height of the Canvas component are determined and can be obtained. You can use Canvas-related APIs for drawing. When only the position of the Canvas component changes, only the [onAreaChange](./cj-ui-framework.md#func-onareachangeareaarea---unit) event is triggered, not the onReady event. The [onAreaChange](./cj-ui-framework.md#func-onareachangeareaarea---unit) event is triggered after the onReady event. |
+| callback | ?() -> Unit | Yes | - | Event callback.<br>Initial value: { => }. |
+
+**Return Value:**
+
+| Type | Description |
+|:---|:---|
+| This | Returns the current component instance. |
 
 ## Basic Type Definitions
-
-### class CanvasGradient
-
-```cangjie
-public class CanvasGradient {}
-```
-
-**Function:** Gradient object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 12
-
-#### func addColorStop(Float64, ResourceColor)
-
-```cangjie
-public func addColorStop(offset: Float64, color: ResourceColor): Unit
-```
-
-**Function:** Sets gradient breakpoint values, including offset and color.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 12
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| offset | Float64 | Yes | - | Sets the position of the gradient point relative to the starting point as a proportion of the total length, ranging from 0 to 1. Setting offset < 0 or offset > 1 will have no gradient effect. |
-| color | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Sets the gradient color. For the color format, refer to the string type description in [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor). If the color is not set in the correct format, there will be no gradient effect. |
 
 ### class RenderingContextSettings
 
 ```cangjie
 public class RenderingContextSettings {
-    public var antialias: Bool
-    public init(antialias!: Bool = false)
+    public var antialias: ?Bool
+    public init(antialias!: ?Bool = None)
 }
 ```
 
-**Function:** Used to configure parameters for the CanvasRenderingContext2D object, including whether to enable anti-aliasing.
+**Function:** An object used to set related properties when creating a rendering context.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 12
+**Since:** 22
 
 #### var antialias
 
 ```cangjie
-public var antialias: Bool
+public var antialias: ?Bool
 ```
 
-**Function:** Indicates whether the canvas has anti-aliasing enabled.
+**Function:** Indicates whether the Canvas has anti-aliasing enabled. The default value is false.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write Capability:** Readable and Writable
+**Read-Write Capability:** Read-Write
 
-#### init(Bool)
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+#### init(?Bool)
 
 ```cangjie
-public init(antialias!: Bool = false)
+public init(antialias!: ?Bool = None)
 ```
 
-**Function:** Used to configure parameters for the CanvasRenderingContext2D object, including whether to enable anti-aliasing.
+**Function:** Creates a RenderingContextSettings object based on the anti-aliasing parameter.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| antialias | Bool | No | false | **Named parameter.** Indicates whether the canvas has anti-aliasing enabled. Initial value: false |
+| antialias | ?Bool | No | None | **Named parameter.** Whether to enable anti-aliasing. |
 
 ### class TextMetrics
 
@@ -141,27 +124,11 @@ public class TextMetrics {
 }
 ```
 
-**Function:** Used to describe the dimensions of a text block.
+**Function:** Dimensions information of text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 12
-
-#### let height
-
-```cangjie
-public let height: Float64
-```
-
-**Function:** The height of the text block.
-
-**Type:** Float64
-
-**Read/Write Capability:** Read-only
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 12
+**Since:** 22
 
 #### let width
 
@@ -169,21 +136,70 @@ public let height: Float64
 public let width: Float64
 ```
 
-**Function:** The width of the text block.
+**Function:** The width of the string, of type double.
 
 **Type:** Float64
 
-**Read/Write Capability:** Read-only
+**Read-Write Capability:** Read-Only
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 12
+**Since:** 22
+
+#### let height
+
+```cangjie
+public let height: Float64
+```
+
+**Function:** The height of the string, of type double.
+
+**Type:** Float64
+
+**Read-Write Capability:** Read-Only
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### class CanvasGradient
+
+```cangjie
+public class CanvasGradient {
+    public func addColorStop(offset: Float64, color: ?ResourceColor): Unit
+}
+```
+
+**Function:** An opaque object describing a gradient, created by createLinearGradient() or createRadialGradient().
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+#### func addColorStop(Float64, ?ResourceColor)
+
+```cangjie
+public func addColorStop(offset: Float64, color: ?ResourceColor): Unit
+```
+
+**Function:** Adds a color stop defined by an offset and color to the gradient.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| offset | Float64 | Yes | - | A value between 0 and 1. Values outside this range will throw an INDEX_SIZE_ERR error. |
+| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Sets the gradient color. |
 
 ## Example Code
 
-### Example 1 (Using Methods in CanvasRenderingContext2D)
+### Example 1 (Using Methods from CanvasRenderingContext2D)
 
-This example demonstrates how to use methods in CanvasRenderingContext2D for drawing in a Canvas component.
+This example demonstrates how to use methods from CanvasRenderingContext2D to draw on a Canvas component.
 
 <!-- run -->
 
@@ -210,3 +226,5 @@ class EntryView {
     }
 }
 ```
+
+![canvas](./figures/drawingCanvas.PNG)

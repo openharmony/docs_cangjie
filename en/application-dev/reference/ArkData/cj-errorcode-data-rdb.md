@@ -25,10 +25,10 @@ Check the error log first for detailed error information. Main causes include:
 
 **Resolution Steps**
 
-1. Developers should verify the correctness of SQL statements and predicates.
+1. Developers should check if SQL statements and predicates are used correctly.
 2. Developers should check if objects are being used after being closed.
-3. Developers should ensure interfaces are used correctly as per documentation.
-4. Try retrying. If the issue persists, prompt users to restart the application, upgrade the application, or update the device version.
+3. Developers should verify if interfaces are used correctly as per the documentation.
+4. Try retrying. If the issue persists, prompt the user to restart the application, upgrade the application, or update the device version.
 
 ## 14800010 Invalid Database Path
 
@@ -38,7 +38,7 @@ Invalid database path.
 
 **Error Description**
 
-The database path is invalid.
+Invalid database path.
 
 **Possible Causes**
 
@@ -56,11 +56,11 @@ Database corrupted.
 
 **Error Description**
 
-This error code indicates that the database is corrupted when calling interfaces for operations like insert, delete, query, or data synchronization.
+This error code indicates that the database is corrupted when calling interfaces for operations such as insertion, deletion, query, or data synchronization.
 
 **Possible Causes**
 
-The database file is corrupted during operations such as insert, delete, query, or data synchronization.
+The database file is corrupted during operations like insertion, deletion, query, or data synchronization.
 
 **Resolution Steps**
 
@@ -75,11 +75,11 @@ Row out of bounds.
 
 **Error Description**
 
-The result set is empty or the specified position is invalid.
+Result set is empty or the specified position is invalid.
 
 **Possible Causes**
 
-The result set is empty or the specified row number exceeds the valid range [0, m - 1], where m = resultsetV9.rowCount.
+The result set is empty or the specified row number is out of the valid range [0, m - 1], where m = resultsetV9.rowCount.
 
 **Resolution Steps**
 
@@ -93,19 +93,19 @@ Column out of bounds.
 
 **Error Description**
 
-The column value is null or the column type is incompatible with the current interface call.
+Column value is null or the column type is incompatible with the current interface call.
 
 **Possible Causes**
 
-1. The result set is empty.
-2. The current row number exceeds the range [0, m - 1], where m = resultsetV9.rowCount.
-3. The current column number exceeds the range [0, n - 1], where n = resultsetV9.columnCount.
-4. The current column data type is not supported by the interface.
+1. Result set is empty.
+2. Current row number is out of range [0, m - 1], where m = resultsetV9.rowCount.
+3. Current column number is out of range [0, n - 1], where n = resultsetV9.columnCount.
+4. Current column data type is not supported by the interface.
 
 **Resolution Steps**
 
 1. Check if the result set is empty.
-2. Verify if the current row or column number is out of bounds.
+2. Verify if the current row and column numbers are within valid ranges.
 3. Ensure the current column data type is supported.
 
 ## 14800014 Database or Result Set Closed
@@ -116,17 +116,17 @@ Already closed.
 
 **Error Description**
 
-The database or result set is closed.
+Database or result set is closed.
 
 **Possible Causes**
 
-Objects with close interfaces like RdbStore or ResultSet have either been closed or failed to open successfully.
+Objects with close interfaces (e.g., RdbStore or ResultSet) have either been closed or failed to open successfully.
 
 **Resolution Steps**
 
 Reopen the RdbStore or requery to obtain a new ResultSet.
 
-## 14800015 Database Not Responding
+## 14800015 Database Unresponsive
 
 **Error Message**
 
@@ -134,11 +134,11 @@ The database does not respond.
 
 **Error Description**
 
-The database is not responding.
+Database is unresponsive.
 
 **Possible Causes**
 
-Read, write, attach, or detach operations are in progress, preventing the current operation from executing within the specified time (default 2s).
+Read, write, attach, or detach operations are in progress, preventing the current operation from executing within the specified time (default: 2s).
 
 **Resolution Steps**
 
@@ -170,15 +170,15 @@ Config changed.
 
 **Error Description**
 
-Critical database configurations have been changed.
+Critical database configuration has been modified.
 
 **Possible Causes**
 
-Changes in critical configurations such as area, isEncrypt, or securityLevel.
+Changes to critical configurations such as area, isEncrypt, or securityLevel.
 
 **Resolution Steps**
 
-Either maintain the original configuration or export data using the original configuration, delete the old database, create a new one with the new configuration, and import the data.
+Either revert to the original configuration or export data using the original configuration, delete the old database, create a new one with the new configuration, and import the data.
 
 ## 14800018 No Data Matches the Condition
 
@@ -188,7 +188,7 @@ No data meets the condition.
 
 **Error Description**
 
-The SQL statement is incorrect, and no data matching the condition was found.
+SQL statement is incorrect, and no data matching the condition was found.
 
 **Possible Causes**
 
@@ -206,15 +206,15 @@ The SQL must be a query statement.
 
 **Error Description**
 
-The SQL must be a query statement.
+SQL must be a query statement.
 
 **Possible Causes**
 
-The SQL statement does not comply with the specifications, causing the query to fail.
+SQL statement does not comply with specifications, causing query failure.
 
 **Resolution Steps**
 
-When the SQL statement fails due to non-compliance, rewrite it to meet the specifications.
+Write an SQL statement that complies with the specifications.
 
 ## 14800021 SQLite: Generic Error
 
@@ -232,11 +232,11 @@ Errors during SQL execution, such as:
 
 1. Inserting or updating a non-existent table.
 2. Inserting or updating a non-existent column.
-3. Calling an undefined function. Refer to SQLITE_ERROR for related scenarios.
+3. Calling undefined functions. Refer to SQLITE_ERROR scenarios.
 
 **Resolution Steps**
 
-Analyze the erroneous SQL statement to identify the issue.
+Analyze the SQL statement to identify the error.
 
 ## 14800022 SQLite: Callback Request Aborted
 
@@ -251,11 +251,11 @@ SQLite: Callback request aborted.
 **Possible Causes**
 
 1. Typically occurs when using SQLite's custom function mechanism, where the callback is aborted.
-2. Refer to SQLITE_ABORT for related scenarios.
+2. Refer to SQLITE_ABORT scenarios.
 
 **Resolution Steps**
 
-Check the implementation of SQLite's callback functions to ensure correctness.
+Check the implementation of SQLite hook functions (callbacks) to ensure correctness.
 
 ## 14800023 SQLite: Access Permission Denied
 
@@ -269,16 +269,16 @@ SQLite access permission denied.
 
 **Possible Causes**
 
-1. Operating system-level permission issues, where SQLite attempts to access or modify a file without sufficient permissions.
-2. Refer to SQLITE_PERM for related scenarios.
+1. OS-level permission issues, where SQLite lacks sufficient permissions to access or modify a file.
+2. Refer to SQLITE_PERM scenarios.
 
 **Resolution Steps**
 
-1. Ensure the file is not read-only; if it is, remove the read-only attribute.
-2. Check file and folder permissions to ensure the current user has sufficient read/write permissions.
-3. Verify the file system is not read-only; if it is, change it to writable.
-4. Ensure no other processes are locking the database file; if so, close the process occupying the file.
-5. When handling permission issues, ensure sufficient permissions to modify relevant files or folders.
+1. Ensure the file is not read-only; if so, remove the read-only attribute.
+2. Verify file and folder permissions to ensure the current user has sufficient read/write permissions.
+3. Check if the file system is read-only; if so, switch to writable mode.
+4. Ensure no other processes are locking the database file; if so, terminate those processes.
+5. Ensure sufficient permissions to modify file or folder permissions.
 
 ## 14800024 SQLite: Database File Locked
 
@@ -292,13 +292,13 @@ SQLite database file is locked.
 
 **Possible Causes**
 
-1. Two processes of the same application (e.g., UIability and datashareability) open the same database for insert, delete, or update operations, or processes within the same group from different applications open the same database for such operations.
-2. Refer to SQLITE_BUSY for related scenarios.
+1. Concurrent database operations by multiple processes (e.g., UIability and datashareability) or processes within the same group.
+2. Refer to SQLITE_BUSY scenarios.
 
 **Resolution Steps**
 
 1. Avoid concurrent database operations by processes.
-2. Wait and retry after some time.
+2. Retry after waiting.
 
 ## 14800025 SQLite: Table Locked
 
@@ -312,16 +312,16 @@ SQLite: A table in the database is locked.
 
 **Possible Causes**
 
-1. Attempting to write to an SQLite database while the file is locked by another process, possibly due to an ongoing transaction or other lock mechanisms.
-2. Refer to SQLITE_LOCKED for related scenarios.
+1. Attempting to write to a SQLite database while the file is locked by another process, possibly due to an ongoing transaction or other locking mechanisms.
+2. Refer to SQLITE_LOCKED scenarios.
 
 **Resolution Steps**
 
 1. Ensure no other processes or threads are writing to the database file.
-2. If using transactions, ensure no write operations are performed between starting and committing the transaction.
-3. Check for other lock mechanisms (e.g., file locks) that may prevent writing.
-4. If database connection objects are not properly closed, ensure they are closed after operations.
-5. In multi-threaded environments, ensure database operations are locked to prevent race conditions.
+2. If using transactions, avoid write operations before committing.
+3. Check for other locking mechanisms (e.g., file locks) blocking writes.
+4. Ensure database connections are properly closed after operations.
+5. In multi-threaded environments, use locks to prevent race conditions.
 
 ## 14800026 SQLite: Out of Memory
 
@@ -331,11 +331,11 @@ SQLite: The database is out of memory.
 
 **Error Description**
 
-SQLite: Out of memory.
+SQLite: Database out of memory.
 
 **Possible Causes**
 
-Insufficient database memory, possibly due to excessive data volume or inadequate memory allocation.
+Insufficient memory due to large data volume or inadequate memory allocation.
 
 **Resolution Steps**
 
@@ -353,14 +353,14 @@ SQLite: Attempt to write a readonly database.
 
 **Possible Causes**
 
-1. Attempting to write to an SQLite database opened in read-only mode, possibly due to file permissions, read-only file system, or the database being marked as read-only.
-2. Refer to SQLITE_READONLY for related scenarios.
+1. Attempting to write to a SQLite database opened in read-only mode, possibly due to file permissions, read-only file system, or database marked as read-only.
+2. Refer to SQLITE_READONLY scenarios.
 
 **Resolution Steps**
 
 1. Ensure sufficient permissions to write to the database file.
-2. If the file system is read-only, change it to writable.
-3. Confirm that the database was not opened with read-only parameters.
+2. If the file system is read-only, switch to writable mode.
+3. Verify that the database was not opened with read-only parameters.
 
 ## 14800028 SQLite: Disk I/O Error
 
@@ -370,24 +370,24 @@ SQLite: Some kind of disk I/O error occurred.
 
 **Error Description**
 
-SQLite encountered a disk I/O error.
+SQLite: A disk I/O error occurred.
 
 **Possible Causes**
 
-Possible reasons include but are not limited to:
+Possible reasons include:
 
 1. File does not exist.
 2. File is read-only.
 3. Insufficient disk space.
 4. File corruption.
-5. Refer to SQLITE_IOERR for related scenarios.
+5. Refer to SQLITE_IOERR scenarios.
 
 **Resolution Steps**
 
-1. Check if the file path is correct and the file exists.
-2. Ensure the file is not set to read-only.
-3. Verify disk space and free up unnecessary files if needed.
-4. Check file permissions to ensure the application has sufficient read/write permissions.
+1. Verify the file path and existence.
+2. Ensure the file is not read-only.
+3. Check disk space and free up space if necessary.
+4. Verify file permissions to ensure the application has sufficient read/write access.
 
 ## 14800029 SQLite: Database Full
 
@@ -401,7 +401,7 @@ SQLite database is full.
 
 **Possible Causes**
 
-The database is full, possibly due to excessive data volume or insufficient disk space.
+Database is full due to excessive data volume or insufficient disk space.
 
 **Resolution Steps**
 
@@ -419,14 +419,14 @@ SQLite: Unable to open the database file.
 
 1. The file does not exist, and creating a new database failed.
 2. The file exists, but the database file is corrupted.
-3. File permission issues prevent SQLite from reading/writing the file.
+3. File permission issues prevent SQLite from reading or writing the file.
 4. Insufficient disk space.
 5. Refer to error scenarios related to SQLITE_CANTOPEN.
 
 **Resolution Steps**
 
-1. Verify the database file path is correct. Check file permissions to ensure the application has sufficient read/write access.
-2. Confirm there is sufficient disk space.
+1. Verify the database file path is correct, check file permissions, and ensure the application has sufficient permissions to read/write the file.
+2. Confirm there is adequate disk space.
 
 ## 14800031 SQLite: TEXT or BLOB Exceeds Size Limit
 
@@ -440,7 +440,7 @@ SQLite: TEXT or BLOB exceeds size limit.
 
 **Possible Causes**
 
-1. The query result set exceeds SQLite's processing size limit.
+1. The query result set exceeds the size limit that SQLite can handle.
 2. Refer to error scenarios related to SQLITE_TOOBIG.
 
 **Resolution Steps**
@@ -459,12 +459,12 @@ SQLite: Abort due to constraint violation.
 
 **Possible Causes**
 
-1. A database write operation violated integrity constraints.
+1. Attempting to write to the SQLite database violated its integrity constraints.
 2. Refer to error scenarios related to SQLITE_CONSTRAINT.
 
 **Resolution Steps**
 
-Check if the inserted/updated data violates any constraints.
+Check if the data being inserted or updated violates the specified constraints.
 
 ## 14800033 SQLite: Data Type Mismatch
 
@@ -478,14 +478,14 @@ SQLite: Data type mismatch.
 
 **Possible Causes**
 
-1. Data types in an SQL statement conflict with stored database types.
+1. The data types involved in an SQL statement do not match those stored in the database.
 2. Refer to error scenarios related to SQLITE_MISMATCH.
 
 **Resolution Steps**
 
-Verify column data types in the SQL statement. Ensure inserted/updated/queried data matches column types.
+Verify the data types of columns in the SQL statement and ensure the inserted, updated, or queried data types match the column data types.
 
-## 14800034 SQLite: Incorrect Library Usage
+## 14800034 SQLite: Library Used Incorrectly
 
 **Error Message**
 
@@ -493,20 +493,20 @@ SQLite: Library used incorrectly.
 
 **Error Description**
 
-SQLite: Incorrect library usage.
+SQLite: Library used incorrectly.
 
 **Possible Causes**
 
-1. Indicates improper database operations or context. Common scenarios:
-    - Initiating new operations before completing current ones.
-    - Operating on closed database connections.
-    - Using released or invalid database objects.
+1. Indicates incorrect database operations or usage context. This error typically occurs in the following scenarios:
+    - Performing another operation before the current database operation completes.
+    - Continuing operations on a database connection after it has been closed.
+    - Using database objects that have been released or are invalid.
 2. Refer to error scenarios related to SQLITE_MISUSE.
 
 **Resolution Steps**
 
-1. Ensure proper synchronization between database operations (e.g., using locks).
-2. Verify connections are open before use and closed after operations.
+1. Ensure proper synchronization between database operations, such as using locks or other synchronization mechanisms.
+2. Ensure the database connection is open before use and closed after operations are completed.
 3. Ensure all database objects are properly released after use.
 
 ## 14800047 WAL File Size Exceeds Default Limit
@@ -517,15 +517,17 @@ The WAL file size exceeds the default limit.
 
 **Error Description**
 
-WAL file size exceeds the default limit (200MB).
+The WAL file size exceeds the default limit (200M).
 
 **Possible Causes**
 
-Continuous insert/update/delete operations during open read transactions or unclosed result sets cause WAL file expansion.
+Continuous insert, update, or delete operations while read transactions are open or result sets are not closed, causing the WAL file size to exceed the default limit.
 
 **Resolution Steps**
 
-Check for unclosed result sets or transactions. Close all result sets and transactions.
+Check if result sets or transactions are left unclosed.
+
+Close all result sets or transactions.
 
 ## 14800050 Failed to Obtain Subscription Service
 
@@ -539,13 +541,13 @@ Failed to obtain subscription service.
 
 **Possible Causes**
 
-The current platform doesn't support subscription services.
+The current platform does not support subscription services.
 
 **Resolution Steps**
 
 Deploy subscription services on the current platform.
 
-## 14801001 Context Not in Stage Model
+## 14801001 Context Environment Not in Stage Model
 
 **Error Message**
 
@@ -553,17 +555,17 @@ Only supported in stage mode.
 
 **Error Description**
 
-This operation only supports Stage model.
+This operation is only supported in Stage model.
 
 **Possible Causes**
 
-Current context is not in Stage model.
+The current context environment is not in Stage model.
 
 **Resolution Steps**
 
-Switch context to Stage model.
+Switch the current context environment to use Stage model.
 
-## 14801002 Invalid dataGroupId in storeConfig
+## 14801002 Invalid dataGroupId Parameter in storeConfig
 
 **Error Message**
 
@@ -575,11 +577,11 @@ Invalid dataGroupId parameter used.
 
 **Possible Causes**
 
-The dataGroupId wasn't properly obtained from the app market.
+The dataGroupId used was not properly obtained from the application market.
 
 **Resolution Steps**
 
-Apply for dataGroupId from the app market and pass it correctly.
+Apply for a dataGroupId from the application market and pass it correctly.
 
 ## 14800051 Distributed Table Type Mismatch
 
@@ -593,8 +595,8 @@ Inconsistent distributed table types set for the same database table.
 
 **Possible Causes**
 
-Conflicting distributed table types assigned to the same table. See [DistributedType](../ArkData/cj-apis-relational_store.md#enum-distributedtype).
+Inconsistent distributed table types set for the same database table. For distributed table types, refer to [DistributedType](../ArkData/cj-apis-relational_store.md#enum-distributedtype).
 
 **Resolution Steps**
 
-Maintain consistent distributed table types. Tables configured for device-device sync cannot be reused for device-cloud sync.
+Ensure consistent distributed table types for the same database table. A distributed table configured for device-device synchronization cannot be reconfigured for device-cloud synchronization.

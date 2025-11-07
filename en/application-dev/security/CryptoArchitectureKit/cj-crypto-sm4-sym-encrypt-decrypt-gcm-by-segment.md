@@ -1,53 +1,52 @@
-# Using SM4 Symmetric Key (GCM Mode) for Segmented Encryption and Decryption
+# Segment Encryption and Decryption Using SM4 Symmetric Key (GCM Mode)
 
-For corresponding algorithm specifications, please refer to [Symmetric Key Encryption/Decryption Algorithm Specifications: SM4](./cj-crypto-sym-encrypt-decrypt-spec.md#sm4).
+For corresponding algorithm specifications, refer to [Symmetric Key Encryption/Decryption Algorithm Specifications: SM4](./cj-crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 ## Encryption
 
-1. Call [createSymKeyGenerator](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createsymkeygeneratorstring) to generate a symmetric key (SymKey) with SM4 algorithm and 128-bit key length.
+1. Call [createSymKeyGenerator](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createsymkeygeneratorstring) to generate a symmetric key (SymKey) with SM4 algorithm and 128-bit key length.
 
-    For guidance on generating SM4 symmetric keys, developers can refer to the example below, combined with [Symmetric Key Generation and Conversion Specifications: SM4](./cj-crypto-sym-key-generation-conversion-spec.md#sm4) and [Random Symmetric Key Generation](./cj-crypto-generate-sym-key-randomly.md). Note that reference documents may have parameter differences from the current example, so please pay attention when reading.
+    For guidance on generating SM4 symmetric keys, developers can refer to the example below, along with [Symmetric Key Generation and Conversion Specifications: SM4](./cj-crypto-sym-key-generation-conversion-spec.md#sm4) and [Random Symmetric Key Generation](./cj-crypto-generate-sym-key-randomly.md). Note that reference documents may have parameter differences from this example—please distinguish carefully when reading.
 
-2. Call [createCipher](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createcipherstring), specifying the string parameter 'SM4_128|GCM|PKCS7', to create a Cipher instance with SM4_128 symmetric key type, GCM block mode, and PKCS7 padding mode for encryption operations.
+2. Call [createCipher](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createcipherstring) with the string parameter 'SM4_128|GCM|PKCS7' to create a Cipher instance configured for SM4_128 symmetric key, GCM block mode, and PKCS7 padding mode, which will perform encryption operations.
 
-3. Call [init](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-initcryptomode-key-paramsspec), set the mode to encryption (CryptoMode.ENCRYPT_MODE), specify the encryption key (SymKey) and GCM mode parameters (GcmParamsSpec), and initialize the encryption Cipher instance.
+3. Call [init](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-initcryptomode-key-paramsspec) to set the mode to encryption (CryptoMode.EncryptMode), specify the encryption key (SymKey), and provide GCM mode parameters (GcmParamsSpec) to initialize the Cipher instance.
 
-4. Set the data input size to 20 bytes per call and repeatedly call [update](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-updatedatablob) to update data (plaintext).
+4. Set the data chunk size to 20 bytes and call [update](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-updatedatablob) multiple times to process data (plaintext).
 
-    - There is currently no limit on the length of a single update. Developers can decide how to call update based on the data volume.
-    - It is recommended that developers check if the update result is an empty array each time and concatenate the data when the result is not empty to form the complete ciphertext. This is because update results may vary under different specifications.
+    - There is no restriction on the single `update` length; developers can determine how to call `update` based on data volume.
+    - It is recommended to check if each `update` result is an empty array and concatenate non-empty results to form the complete ciphertext. Different specifications may affect `update` behavior:
+        - For ECB and CBC modes, encryption operates in blocks. If an `update` fills a block, it outputs ciphertext; otherwise, it returns an empty array and retains unencrypted data for the next `update`. During `doFinal`, remaining data is padded and encrypted.
+        - For stream cipher modes (e.g., CTR and OFB), ciphertext length typically matches plaintext length.
 
-        - For ECB and CBC modes, encryption is always performed in blocks, and the encrypted block results from the current update are output. If the current update fills a block, ciphertext is output; otherwise, an empty array is returned, and the unencrypted data is concatenated with the next input to form a complete block. During doFinal, the remaining unencrypted data is padded according to the specified padding mode, and the remaining encrypted results are output. The same logic applies to decryption.
+5. Call [doFinal](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-dofinaldatablob) to obtain the final encrypted data.
 
-        - For stream encryption modes (e.g., CTR and OFB), the ciphertext length is usually equal to the plaintext length.
+    Since data was already passed via `update`, pass `None` for the `data` parameter here.
 
-5. Call [doFinal](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-dofinaldatablob) to obtain the encrypted data.
+6. Retrieve [GcmParamsSpec](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#struct-gcmparamsspec).authTag as authentication data for decryption.
 
-    Since data has already been passed via update, pass None for data here.
-
-6. Read [GcmParamsSpec](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#struct-gcmparamsspec).authTag as the authentication information for decryption.
-
-    In GCM mode, the last 16 bytes of the encrypted data must be extracted as the authentication information for decryption initialization. In this example, authTag is exactly 16 bytes.
+    In GCM mode, the last 16 bytes of encrypted data must be extracted as authentication information for decryption initialization. In this example, `authTag` is exactly 16 bytes.
 
 ## Decryption
 
-1. Call [createCipher](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createcipherstring), specifying the string parameter 'SM4_128|GCM|PKCS7', to create a Cipher instance with SM4_128 symmetric key type, GCM block mode, and PKCS7 padding mode for decryption operations.
+1. Call [createCipher](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createcipherstring) with the string parameter 'SM4_128|GCM|PKCS7' to create a Cipher instance configured for SM4_128 symmetric key, GCM block mode, and PKCS7 padding mode, which will perform decryption operations.
 
-2. Call [init](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-initcryptomode-key-paramsspec), set the mode to decryption (CryptoMode.DECRYPT_MODE), specify the decryption key (SymKey) and GCM mode parameters (GcmParamsSpec), and initialize the decryption Cipher instance.
+2. Call [init](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-initcryptomode-key-paramsspec) to set the mode to decryption (CryptoMode.DecryptMode), specify the decryption key (SymKey), and provide GCM mode parameters (GcmParamsSpec) to initialize the Cipher instance.
 
-3. Set the data input size to 20 bytes per call and repeatedly call [update](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-updatedatablob) to update data (ciphertext).
+3. Set the data chunk size to 20 bytes and call [update](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-updatedatablob) multiple times to process data (ciphertext).
 
-4. Call [doFinal](../../../../en/application-dev/reference/CryptoArchitectureKit/cj-apis-crypto.md#func-dofinaldatablob) to obtain the decrypted data.
+4. Call [doFinal](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-dofinaldatablob) to obtain the final decrypted data.
 
 ## Example
 
-The synchronous method example is as follows:
+Synchronous method example:
 
 <!-- compile -->
 
 ```cangjie
 import kit.CryptoArchitectureKit.*
 import std.collection.ArrayList
+import ohos.hilog.Hilog
 
 func generateRandom(len: Int32) {
     let rand = createRandom()
@@ -68,8 +67,8 @@ var gcmParams = genGcmParamsSpec()
 // Encrypt message.
 func encryptMessage(symKey: SymKey, plainText: DataBlob) {
     let cipher = createCipher('SM4_128|GCM|PKCS7')
-    cipher.`init`(ENCRYPT_MODE, symKey, gcmParams)
-    let updateLength = 20 // Assume 20-byte segments for update (no actual requirement).
+    cipher.initialize(CryptoMode.EncryptMode, symKey, gcmParams)
+    let updateLength = 20 // Assume 20-byte chunks for segmented update (no actual requirement).
     let cipherText = ArrayList<UInt8>()
     let size = plainText.data.size
     for (i in 0..size : updateLength) {
@@ -82,11 +81,11 @@ func encryptMessage(symKey: SymKey, plainText: DataBlob) {
         let updateMessageBlob: DataBlob = DataBlob(updateMessage)
         // Segmented update.
         let updateOutput = cipher.update(updateMessageBlob)
-        // Concatenate update results to form ciphertext (in some cases, doFinal results may also need concatenation,
-        // depending on block mode and padding. In this GCM example, doFinal only contains authTag, not ciphertext).
+        // Concatenate update results to form ciphertext (for some modes, doFinal results may also need concatenation.
+        // In GCM mode, doFinal only provides authTag, so no concatenation is needed here).
         cipherText.add(all: updateOutput.data)
     }
-    gcmParams.authTag = cipher.doFinal(None)
+    gcmParams.authTag = cipher.doFinal(Option<DataBlob>.None)
     let cipherBlob: DataBlob = DataBlob(cipherText.toArray())
     return cipherBlob
 }
@@ -94,8 +93,8 @@ func encryptMessage(symKey: SymKey, plainText: DataBlob) {
 // Decrypt message.
 func decryptMessage(symKey: SymKey, cipherText: DataBlob) {
     let decoder = createCipher('SM4_128|GCM|PKCS7')
-    decoder.`init`(DECRYPT_MODE, symKey, gcmParams)
-    let updateLength = 20 // Assume 20-byte segments for update (no actual requirement).
+    decoder.initialize(CryptoMode.DecryptMode, symKey, gcmParams)
+    let updateLength = 20 // Assume 20-byte chunks for segmented update (no actual requirement).
     let decryptText = ArrayList<UInt8>()
     let size = cipherText.data.size
     for (i in 0..size : updateLength) {
@@ -111,7 +110,7 @@ func decryptMessage(symKey: SymKey, cipherText: DataBlob) {
         // Concatenate update results to form plaintext.
         decryptText.add(all: updateOutput.data)
     }
-    decoder.doFinal(None)
+    decoder.doFinal(Option<DataBlob>.None)
     let decryptBlob: DataBlob = DataBlob(decryptText.toArray());
     return decryptBlob;
 }
@@ -120,22 +119,22 @@ func genSymKeyByData(symKeyData: Array<UInt8>) {
     let symKeyBlob: DataBlob = DataBlob(symKeyData)
     let aesGenerator = createSymKeyGenerator('SM4_128')
     let symKey = aesGenerator.convertKey(symKeyBlob)
-    AppLog.info('convertKey success')
+    Hilog.info(0,"",'convertKey success')
     return symKey
 }
 
 func test() {
     let keyData: Array<UInt8> = [83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]
     let symKey = genSymKeyByData(keyData)
-    let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee" // Assume the message is 43 bytes (UTF-8 encoded).
+    let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee" // Assume 43-byte message (UTF-8 encoded length remains 43 bytes).
     let plainText: DataBlob = DataBlob(message.toArray())
     let encryptText = encryptMessage(symKey, plainText)
     let decryptText = decryptMessage(symKey, encryptText)
     if (plainText.data.toString() == decryptText.data.toString()) {
-        AppLog.info('decrypt ok')
-        AppLog.info('decrypt plainText: ' + String.fromUtf8(decryptText.data))
+        Hilog.info(0,"",'decrypt ok')
+        Hilog.info(0,"",'decrypt plainText: ' + String.fromUtf8(decryptText.data))
     } else {
-        AppLog.error('decrypt failed')
+        Hilog.error(0,"",'decrypt failed')
     }
 }
 ```

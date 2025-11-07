@@ -1,14 +1,14 @@
 # Video Playback (Video)
 
-The Video component is used to play video files and control their playback state, commonly employed for short video lists and in-app video pages. It automatically plays when fully displayed, pauses upon user click on the video area while showing a progress bar that allows seeking to specific positions. For detailed usage, refer to [Video](../../../en/application-dev/reference/arkui-cj/cj-image-video-video.md).
+The Video component is used to play video files and control their playback state, commonly employed for short video lists and in-app video pages. It automatically plays when fully displayed, pauses upon user click on the video area, and shows a progress bar that allows seeking to specific positions. For detailed usage, refer to [Video](../reference/arkui-cj/cj-image-video-video.md).
 
 ## Creating a Video Component
 
-The Video component is created through API calls. For interface invocation forms, see [Creating a Video Component](../../../en/application-dev/reference/arkui-cj/cj-image-video-video.md#创建组件).
+The Video component is created by calling an interface. For interface invocation methods, see [Creating a Video Component](../reference/arkui-cj/cj-image-video-video.md#creating-the-component).
 
 ## Loading Video Resources
 
-The Video component supports loading both local and network videos.
+The Video component supports loading both local and online videos.
 
 ### Loading Local Videos
 
@@ -37,7 +37,7 @@ class VideoPlayer {
 
 ### Loading Sandbox Path Videos
 
-Supports strings with the file:// path prefix for reading resources within the application sandbox path. Ensure the file exists in the application sandbox directory and has read permissions.
+Supports strings with the file:// path prefix for reading resources within the application sandbox path. Ensure the file exists in the sandbox directory and has read permissions.
 
 ```cangjie
 @Component
@@ -53,16 +53,16 @@ class VideoPlayer {
 }
 ```
 
-### Loading Network Videos
+### Loading Online Videos
 
-Loading network videos requires the ohos.permission.INTERNET permission. In this case, the Video's src property should be the URL of the network video.
+Loading online videos requires the ohos.permission.INTERNET permission. For permission application methods, refer to [Declaring Permissions](../security/AccessToken/cj-declare-permissions.md). Here, the Video's src attribute is the URL of the online video.
 
 ```cangjie
 @Component
 class VideoPlayer {
     private var controller: VideoController = VideoController()
     private var previewUris: AppResource = @r(app.media.preview)
-    private var videoSrc: String = "https://www.example.com/example.mp4" // Replace with actual video URL when using
+    private var videoSrc: String = "https://www.example.com/example.mp4" // Replace with actual video URL when used
 
     func build() {
         Column() {
@@ -72,9 +72,9 @@ class VideoPlayer {
 }
 ```
 
-## Adding Properties
+## Adding Attributes
 
-Video component [properties](../../../en/application-dev/reference/arkui-cj/cj-image-video-video.md#组件属性) primarily configure playback behavior, such as muting, displaying control bars, etc.
+Video component [attributes](../reference/arkui-cj/cj-image-video-video.md#component-attributes) primarily configure playback behavior, such as muting, displaying control bars, etc.
 
 ```cangjie
 @Component
@@ -84,10 +84,10 @@ class VideoPlayer {
     func build() {
         Column() {
             Video(controller: this.controller)
-                .muted(false) // Set mute status
-                .controls(false) // Show default control bar
-                .autoPlay(false) // Enable autoplay
-                .loop(false) // Enable loop playback
+                .muted(false) // Set whether to mute
+                .controls(false) // Set whether to show default controls
+                .autoPlay(false) // Set whether to autoplay
+                .loop(false) // Set whether to loop
                 .objectFit(ImageFit.Contain) // Set video scaling mode
         }
     }
@@ -96,7 +96,7 @@ class VideoPlayer {
 
 ## Event Invocation
 
-Video component callback events include playback start, pause/end, failure, stop, preparation, and progress bar operations. It also supports general events like click and touch. For details, see [Event Description](../../../en/application-dev/reference/arkui-cj/cj-image-video-video.md#组件事件).
+Video component callback events include playback start, pause/end, playback failure, playback stop, video preparation, and progress bar operations. It also supports general events like clicks and touches. For details, see [Event Description](../reference/arkui-cj/cj-image-video-video.md#component-events).
 
 ```cangjie
 @Component
@@ -122,15 +122,15 @@ class VideoPlayer {
 }
 ```
 
-## Video Controller Usage
+## Using Video Controllers
 
-The Video controller primarily manages video states including play, pause, stop, and seeking. For details, see [VideoController Usage](../../../en/application-dev/reference/arkui-cj/cj-image-video-video.md#class-videocontroller).
+Video controllers primarily manage video states, including play, pause, stop, and seeking. For details, see [VideoController Usage](../reference/arkui-cj/cj-image-video-video.md#class-videocontroller).
 
 - Default Controller
 
   The default controller supports basic functions: play, pause, seeking, and fullscreen display.
 
-     <!-- run -->
+    <!-- run -->
 
   ```cangjie
   package ohos_app_cangjie_entry
@@ -160,9 +160,9 @@ The Video controller primarily manages video states including play, pause, stop,
 
 - Custom Controller
 
-  For custom controllers, first disable the default controller, then use components like Button and Slider for customized control and display, suitable for highly customized scenarios.
+  For custom controllers, first disable the default controls, then use components like [button](./cj-common-components-button.md) and [slider](../reference/arkui-cj/cj-button-picker-slider.md) for customized control and display, suitable for highly customized scenarios.
 
-     <!-- run -->
+    <!-- run -->
 
   ```cangjie
   package ohos_app_cangjie_entry
@@ -215,4 +215,4 @@ The Video controller primarily manages video states including play, pause, stop,
 
 ## Additional Notes
 
-The Video component encapsulates basic video playback capabilities. Developers don't need to create video instances or set/get video information—simply configure the data source and basic information to play videos, though with relatively limited extensibility.
+The Video component encapsulates basic video playback capabilities. Developers don't need to create video instances or handle video information settings—simply configure the data source and basic information to play videos, though this limits extensibility.

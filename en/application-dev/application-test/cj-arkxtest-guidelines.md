@@ -6,7 +6,7 @@ The Cangjie Automated Testing Framework consists of two components: the Cangjie 
 
 The Cangjie OpenHarmony Unit Testing Framework is implemented based on the std.unittest library native to the Cangjie language, providing fundamental capabilities for writing unit test cases, executing them, and generating test reports. Building upon std.unittest, TestRunner has been adapted for the OH platform, enabling its use within applications.
 
-UiTest offers capabilities for locating and manipulating UI components. By calling the interfaces provided by UiTest, users can write test scripts to achieve UI automation testing. The UiTest framework also provides auxiliary testing capabilities in the form of hdc shell commands, such as capturing screenshots, obtaining control trees, recording user operations, and injecting simulated UI operations.
+UiTest offers capabilities for locating and manipulating UI components. By invoking UiTest APIs, users can write test scripts to achieve UI automation testing. The UiTest framework also provides auxiliary testing functionalities via hdc shell commands, including screen capture, control tree retrieval, user operation recording, and UI simulation injection.
 
 This guide introduces the main features, implementation principles, environment setup, and methods for writing and executing test scripts in the Cangjie Automated Testing Framework.
 
@@ -14,54 +14,54 @@ This guide introduces the main features, implementation principles, environment 
 
 The testing framework is divided into a unit testing framework and a UI testing framework.
 
-The unit testing framework serves as the foundational base of the testing framework, providing essential capabilities for test case identification, scheduling, execution, and result aggregation.
+The unit testing framework serves as the foundational layer, providing basic capabilities for test case identification, scheduling, execution, and result aggregation.
 
-The UI testing framework primarily offers UiTest APIs for developers to invoke in corresponding test scenarios, while its script execution still relies on the unit testing framework.
+The UI testing framework primarily exposes UiTest APIs for developers to invoke in corresponding test scenarios, while its script execution still relies on the unit testing framework.
 
 ### Unit Testing Framework
 
-- Main Functions of the Unit Testing Framework
+- Main Features of Unit Testing Framework
 
   ![UnitTest.jpg](figures/UnitTest.jpg)
 
 - Basic Script Flow
 
-    - Locate the corresponding TestRunner.registerCreator based on the -s unittest parameter, instantiate TestRunner, and sequentially execute onPrepare and onRun.
-    - Parse startup parameters in onRun to identify which test cases to execute, along with timeout and other information.
-    - Call the Cangjie kernel unittest to initialize and execute the test suite, saving test results in XML format on the device at `/data/app/el1/100/base/${bundleName}/tests`.
+    - Locate the corresponding TestRunner.registerCreator based on the `-s unittest` parameter, instantiate TestRunner, and sequentially execute `onPrepare` and `onRun`.
+    - During `onRun`, parse startup parameters to identify which test cases to execute, along with timeout and other information.
+    - Initialize the test suite using the Cangjie kernel unittest and execute it. Test results are saved in XML format on the device at `/data/app/el1/100/base/${bundleName}/tests`.
     - After all specified test suites are executed, read the XML test report and print it to the terminal and hilog logs.
 
 ### UI Testing Framework
 
-- Main Functions of the UI Testing Framework
+- Main Features of UI Testing Framework
 
 ![Uitest.png](figures/Uitest.png)
 
-## Writing and Executing Tests with Cangjie
+## Writing and Executing Tests in Cangjie
 
-### Setting Up the Environment
+### Environment Setup
 
-Refer to the official website for instructions on [downloading](https://developer.harmonyos.com/cn/develop/deveco-studio#download) DevEco Studio and performing the necessary configuration steps.
+Download and configure DevEco Studio as described on its [official website](https://developer.harmonyos.com/cn/develop/deveco-studio#download).
 
 ### Creating and Writing Test Scripts
 
 #### Creating Test Scripts
 
 <!--RP1-->
-In DevEco Studio, create a new application development project. The ohosTest directory is where the test scripts are located.
+In DevEco Studio, create a new application development project. The `ohosTest` directory is where test scripts reside.
 <!--RP1End-->
 
 #### Writing Unit Test Scripts
 
 This section describes the capabilities supported by the unit testing framework and how to use them.
 
-In the unit testing framework, test scripts must include the following basic elements:
+A unit test script must include the following basic elements:
 
 1. Import dependencies to use the required testing interfaces.
-2. Write test code, including the relevant logic such as interface calls.
-3. Invoke assertion interfaces to set checkpoints in the test code. Without checkpoints, it cannot be considered a complete test script.
+2. Test code logic, such as interface invocations.
+3. Assertion interface calls to set checkpoints in the test code. Without checkpoints, it cannot be considered a complete test script.
 
-    The following example code implements a scenario where the test page is launched, and the current displayed page on the device is checked to see if it matches the expected page.
+    The following example demonstrates launching a test page and verifying whether the currently displayed page matches the expected page.
 
     <!-- compile -->
 
@@ -81,16 +81,14 @@ In the unit testing framework, test scripts must include the following basic ele
             let bundleName = AbilityDelegatorRegistry
                 .getArguments()
                 .bundleName
-            AppLog.info("uitest: TestUiExample begin")
+            Hilog.info(1, "info", "uitest: TestUiExample begin")
             //start tested ability
             let want = Want(bundleName: bundleName, abilityName: 'EntryAbility')
-            delegator
-                .startAbility(want)
-                .get()
+            delegator.startAbility(want)
             sleep(Duration.second * 5)
             //check top display ability
             let ability = delegator.getCurrentTopAbility()
-            AppLog.info("get top ability")
+            Hilog.info(1, "info", "get top ability")
             @Expect(ability.context.abilityInfo.name, 'EntryAbility')
         }
     }
@@ -98,20 +96,20 @@ In the unit testing framework, test scripts must include the following basic ele
 
 #### Writing UI Test Scripts
 
-This section introduces the capabilities supported by the UI testing framework and the corresponding API usage methods.
+This section introduces the capabilities supported by the UI testing framework and how to use its APIs.
 
-UI testing is based on unit testing. UI test scripts extend unit test scripts by adding UiTest interfaces. For details, refer to the [API documentation](../../../en/application-dev/reference/TestKit/cj-apis-ui_test.md).
+UI tests build upon unit tests, extending unit test scripts with UiTest interfaces. Refer to the [API documentation](../reference/TestKit/cj-apis-ui_test.md) for details.
 
-The following example code builds upon the unit test script above, implementing a scenario where a click operation is performed on the launched application page, and the resulting page change is checked to see if it matches the expected change.
+The following example extends the unit test script above to implement a scenario: clicking a button on the launched application page and verifying whether the page changes as expected.
 
-1. Write the index.cj page code as the example demo under test.
+1. Write `index.cj` page code as the demo under test.
 
     <!-- compile -->
 
     ```cangjie
     import ohos.base.*
-    import ohos.component.*
-    import ohos.state_manage.*
+    import ohos.arkui.component.*
+    import ohos.arkui.state_management.*
     import ohos.arkui.state_macro_manage.*
 
     @Entry
@@ -140,7 +138,7 @@ The following example code builds upon the unit test script above, implementing 
     }
     ```
 
-2. Write specific test code in the example_test.cj file under ohosTest > cangjie.
+2. Write the test code in the `example_test.cj` file under `ohosTest > cangjie`.
 
     <!-- compile -->
 
@@ -159,7 +157,7 @@ The following example code builds upon the unit test script above, implementing 
             let bundleName = AbilityDelegatorRegistry
                 .getArguments()
                 .bundleName
-            AppLog.info("uitest: TestUiExample begin")
+            Hilog.info(1, "info", "uitest: TestUiExample begin")
             //start tested ability
             let want = Want(bundleName: bundleName, abilityName: 'EntryAbility')
             delegator
@@ -168,7 +166,7 @@ The following example code builds upon the unit test script above, implementing 
             sleep(Duration.second * 5)
             //check top display ability
             let ability = delegator.getCurrentTopAbility()
-            AppLog.info("get top ability")
+            Hilog.info(1, "info", "get top ability")
             @Expect(ability.context.abilityInfo.name, 'EntryAbility')
             // ui test code
             // init driver
@@ -189,47 +187,47 @@ The following example code builds upon the unit test script above, implementing 
 
 #### Executing in DevEco Studio
 
-Script execution requires connecting to a hardware device. Click the button to execute the test suite, i.e., all test cases defined in the testClass method.
+Script execution requires a connected hardware device. Click the button to execute all test cases defined in the test suite (testClass methods).
 
 ![Execute.png](figures/Execute.png)
 
 **Viewing Test Results**
 
-After test execution, you can directly view the test results in DevEco Studio, as shown in the example below.
+After execution, test results can be viewed directly in DevEco Studio, as shown in the example below.
 
 ![TestResult.png](figures/Test_Result.png)
 
-#### Executing in CMD
+#### Executing via CMD
 
-Script execution requires connecting to a hardware device, installing the application test package on the test device, and executing the aa command in the cmd window to complete the test cases.
+Script execution requires a connected hardware device. Install the test package on the device and execute the `aa` command in a CMD window to run the tests.
 
 > **Note:**
 >
-> Using the cmd method requires configuring the hdc environment variables.
+> Using CMD requires configuring hdc-related environment variables.
 
-**aa test Command Execution Parameters**
+**aa test Command Parameters**
 
-| Full Parameter | Short Parameter | Meaning | Example |
+| Full Parameter | Short Parameter | Description | Example |
 | ------------- | ------ | ------- | ------------ |
-| --bundleName  | -b   | Application Bundle Name.  | - b com.test.example    |
-| --packageName | -p  | Application module name, applicable to FA model applications. | - p com.test.example.entry         |
-| --moduleName  | -m   | Application module name, applicable to STAGE model applications.        | -m entry     |
-| NA    | -s  | Specific parameters, passed as key-value pairs. | - s unittest OpenHarmonyTestRunner |
+| --bundleName  | -b   | Application bundle name.  | -b com.test.example    |
+| --packageName | -p  | Application module name (for FA model applications). | -p com.test.example.entry         |
+| --moduleName  | -m   | Application module name (for Stage model applications).        | -m entry     |
+| NA    | -s  | Specific parameters passed as `<key, value>` pairs. | -s unittest OpenHarmonyTestRunner |
 
-The framework currently supports multiple test execution methods, triggered by passing configuration key-value pair parameters after the -s parameter, as shown in the table below.
+The framework currently supports multiple test execution modes, triggered by the key-value pairs passed after the `-s` parameter, as shown below.
 
-| Parameter Name | Meaning | Values | Example |
+| Parameter Name | Description | Values | Example |
 | ------------ | ------------------- | ------------- | -------- |
-| unittest| The OpenHarmonyTestRunner object used for test execution.| OpenHarmonyTestRunner or custom runner name | - s unittest OpenHarmonyTestRunner   |
-| class |Specifies the test suite or test case to execute.| {testClassName}#{testCaseName},{testClassName}  | -s class attributeTest#testAttributeIt|
+| unittest| OpenHarmonyTestRunner object used for test execution.| OpenHarmonyTestRunner or custom runner name | -s unittest OpenHarmonyTestRunner   |
+| class |Specifies test suites or test cases to execute.| {testClassName}#{testCaseName},{testClassName}  | -s class attributeTest#testAttributeIt|
 
-Currently, only test suite execution at the TestClass level is supported, not individual TestCase execution.
+Currently, only test suite (TestClass) granularity is supported; individual test case (TestCase) granularity is not supported.
 
-**Executing the test Command in the CMD Window**
+**Executing test Commands in CMD**
 
 > **Note:**
 >
-> Parameter configuration and commands are based on the Stage model.
+> Parameters and commands are based on the Stage model.
 
 Example 1: Execute all test cases.
 
@@ -237,7 +235,7 @@ Example 1: Execute all test cases.
 hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner
 ```
 
-Example 2: Execute specified TestClass test suite cases. Separate multiple classes with commas.
+Example 2: Execute specified TestClass test suites (multiple suites separated by commas).
 
 ```shell
   hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
@@ -245,7 +243,7 @@ Example 2: Execute specified TestClass test suite cases. Separate multiple class
 
 **Viewing Test Results**
 
-- After cmd execution is complete, the following log information will be printed.
+- After CMD execution completes, the following log information will be printed.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -254,10 +252,10 @@ Example 2: Execute specified TestClass test suite cases. Separate multiple class
 </testsuite>
 ```
 
-| Log Field | Meaning |
+| Log Field | Description |
 | -----------| --------------|
-| testsuite.name | Name of the current test suite.|
-| testsuite.tests    | Total number of test cases in the current suite. |
+| testsuite.name | Name of the executed test suite.|
+| testsuite.tests    | Total number of test cases in the suite. |
 | testsuite.failures | Number of failed test cases. |
 | testsuite.errors | Number of test cases with errors. |
 | testsuite.skipped | Number of skipped test cases. |
@@ -265,96 +263,96 @@ Example 2: Execute specified TestClass test suite cases. Separate multiple class
 | testsuite.timestamp | Test suite execution start timestamp. |
 | testcase.name | Test case name. |
 | testcase.classname | Name of the test suite to which the case belongs. |
-| testcase.assertions | Number of actual assertions in the test case. |
+| testcase.assertions | Number of actual assertions in the case. |
 | testcase.time | Test case execution duration (seconds). |
 
 > **Note:**
 >
 > In breakOnError mode, when a test case encounters an error, check the Ignore and interruption descriptions.
 
-## Testing Based on Shell Commands
+## Testing via Shell Commands
 
-During development, if you need to quickly perform operations such as screenshots, screen recording, injecting simulated UI operations, or obtaining control trees, you can use shell commands to complete the corresponding tests more conveniently.
+During development, if quick screen capture, screen recording, UI simulation injection, or control tree retrieval is needed, shell commands can be used for more convenient testing.
 
 > **Note:**
 >
-> Using the cmd method requires configuring the hdc environment variables.
+> Using CMD requires configuring hdc-related environment variables.
 
 **Command List**
 
-| Command  | Parameters   |Description      |
+| Command  | Parameters |Description |
 |-------|-------------|-------|
-| help   | help|  Displays the command information supported by the uitest tool.  |
-| screenCap       |[-p] | Takes a screenshot. Optional.<br>Specifies the storage path and filename, which can only be stored under /data/local/tmp/.<br>Default storage path: /data/local/tmp, filename: timestamp + .png. |
-| dumpLayout      |[-p] \<-i \| -a>|Supports obtaining the control tree while the daemon is running.<br> **-p** : Specifies the storage path and filename, which can only be stored under /data/local/tmp/. Default storage path: /data/local/tmp, filename: timestamp + .json.<br> **-i** : Does not filter invisible controls or merge windows.<br> **-a** : Saves BackgroundColor, Content, FontColor, FontSize, and extraAttrs attribute data.<br> **Default** : Does not save the above attribute data.<br> **-a and -i** cannot be used simultaneously. |
-| uiRecord        | uiRecord \<record \| read>|Records UI operations.  <br> **record** : Starts recording, saving the current interface operations to /data/local/tmp/record.csv. Use Ctrl+C to stop recording.  <br> **read** : Reads and prints the recorded data.<br>For the meaning of each parameter, refer to [User Recording Operations](#用户录制操作).|
-| uiInput| \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| Injects simulated UI operations.<br>For the meaning of each parameter, refer to [Injecting UI Simulated Operations](#注入ui模拟操作).   |
-| --version | --version|Gets the current tool version information.   |
-| start-daemon|start-daemon| Starts the uitest test process. |
+| help   | help|  Displays supported commands in uitest.  |
+| screenCap       |[-p] | Captures the screen. Optional.<br>Specifies the storage path and filename (only under `/data/local/tmp/`).<br>Default path: `/data/local/tmp`, filename: timestamp + .png. |
+| dumpLayout      |[-p] \<-i \| -a>|Retrieves the control tree during daemon runtime.<br> **-p** : Specifies storage path and filename (only under `/data/local/tmp/`). Default: `/data/local/tmp`, filename: timestamp + .json.<br> **-i** : Does not filter invisible controls or merge windows.<br> **-a** : Saves BackgroundColor, Content, FontColor, FontSize, and extraAttrs attributes.<br> **Default** : Does not save these attributes.<br> **-a and -i** cannot be used together. |
+| uiRecord        | uiRecord \<record \| read>|Records UI operations.  <br> **record** : Starts recording; saves operations to `/data/local/tmp/record.csv`. Use Ctrl+C to stop.<br> **read** : Reads and prints recorded data.<br>Refer to [User Recording Operations](#user-recording-operations) for parameter details.|
+| uiInput| \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| Injects UI simulation operations.<br>Refer to [Injecting UI Simulation Operations](#injecting-ui-simulation-operations) for details.   |
+| --version | --version|Retrieves the current tool version.   |
+| start-daemon|start-daemon| Starts the uitest daemon process. |
 
-### Screenshot Usage Example
+### Screen Capture Example
 
 ```bash
-# Storage path: /data/local/tmp, filename: timestamp + .png.
+# Default path: /data/local/tmp, filename: timestamp + .png.
 hdc shell uitest screenCap
-# Specifies the storage path and filename, stored under /data/local/tmp/.
+# Specifies path and filename (under /data/local/tmp/).
 hdc shell uitest screenCap -p /data/local/tmp/1.png
 ```
 
-### Example for Obtaining Control Tree
+### Control Tree Retrieval Example
 
 ```bash
 hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 ```
 
-### User Operation Recording
+### User Recording Operations
 
 > **Note:**
 >
-> During recording, wait for the recognition result of the current operation to be output in the command line before proceeding to the next step.
+> During recording, wait for the current operation's recognition result to appear in the command line before proceeding.
 
 ```bash
-# Record current interface operations to /data/local/tmp/record.csv. Use Ctrl+C to stop recording.
+# Records operations to /data/local/tmp/record.csv. Use Ctrl+C to stop.
 hdc shell uitest uiRecord record
-# Read and print recorded data.
+# Reads and prints recorded data.
 hdc shell uitest uiRecord read
 ```
 
-The following example shows the fields contained in the record data and their meanings, for reference only.
+Example record data fields and their meanings (for reference):
 
 ```text
 {
   "ABILITY": "com.ohos.launcher.MainAbility", // Foreground application interface
-  "BUNDLE": "com.ohos.launcher", // Operating application
-  "CENTER_X": "", // Reserved field, currently unused
-  "CENTER_Y": "", // Reserved field, currently unused
+  "BUNDLE": "com.ohos.launcher", // Application under operation
+  "CENTER_X": "", // Reserved field (unused)
+  "CENTER_Y": "", // Reserved field (unused)
   "EVENT_TYPE": "pointer", //
   "LENGTH": "0", // Total step length
-  "OP_TYPE": "click", // Event type, currently supports recording of click, double-click, long-press, drag, swipe, and fling actions
+  "OP_TYPE": "click", // Event type (supports click, double-click, long-press, drag, swipe, fling)
   "VELO": "0.000000", // Release velocity
-  "direction.X": "0.000000", // Overall movement in X direction
-  "direction.Y": "0.000000", // Overall movement in Y direction
-  "duration": 33885000.0, // Duration of the gesture operation
+  "direction.X": "0.000000",// Total X-axis movement
+  "direction.Y": "0.000000", // Total Y-axis movement
+  "duration": 33885000.0, // Gesture operation duration
   "fingerList": [{
     "LENGTH": "0", // Total step length
     "MAX_VEL": "40000", // Maximum velocity
     "VELO": "0.000000", // Release velocity
-    "W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Starting control bounds
-    "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Starting control hierarchy
-    "W1_ID": "", // Starting control ID
-    "W1_Text": "", // Starting control text
-    "W1_Type": "Image", // Starting control type
-    "W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Ending control bounds
-    "W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Ending control hierarchy
-    "W2_ID": "", // Ending control ID
-    "W2_Text": "", // Ending control text
-    "W2_Type": "Image", // Ending control type
-    "X2_POSI": "47", // Ending X position
-    "X_POSI": "47", // Starting X position
-    "Y2_POSI": "301", // Ending Y position
-    "Y_POSI": "301", // Starting Y position
-    "direction.X": "0.000000", // Movement in X direction
-    "direction.Y": "0.000000" // Movement in Y direction
+    "W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Start control bounds
+    "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Start control hierarchy
+    "W1_ID": "", // Start control ID
+    "W1_Text": "", // Start control text
+    "W1_Type": "Image", // Start control type
+    "W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // End control bounds
+    "W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // End control hierarchy
+    "W2_ID": "", // End control ID
+    "W2_Text": "", // End control text
+    "W2_Type": "Image", // End control type
+    "X2_POSI": "47", // End X position
+    "X_POSI": "47", // Start X position
+    "Y2_POSI": "301", // End Y position
+    "Y_POSI": "301", // Start Y position
+    "direction.X": "0.000000", // X-axis movement
+    "direction.Y": "0.000000" // Y-axis movement
   }],
   "fingerNumber": "1" // Number of fingers
 }
@@ -364,157 +362,59 @@ The following example shows the fields contained in the record data and their me
 
 | Command   | Required | Description    |
 |------|------|-----------------|
-| help   | Yes    | Help information related to the uiInput command. |
-| click   | Yes    | Simulate a click operation.      |
-| doubleClick   | Yes    | Simulate a double-click operation.      |
-| longClick   | Yes    | Simulate a long-press operation.     |
-| fling   | Yes    | Simulate a fling operation.   |
-| swipe   | Yes    | Simulate a swipe operation.     |
-| drag   | Yes    | Simulate a drag operation.     |
-| dircFling   | Yes    | Simulate a directional fling operation.     |
-| inputText   | Yes    | Simulate text input in an input box.     |
-| keyEvent   | Yes    | Simulate physical key events (e.g., keyboard, power button, back, home, etc.) and combination key operations.     |
+| help   | Yes    | Displays help for uiInput commands. |
+| click   | Yes    | Simulates a single click.      |
+| doubleClick   | Yes    | Simulates a double click.      |
+| longClick   | Yes    | Simulates a long press.     |
+| fling   | Yes    | Simulates a fast swipe.   |
+| swipe   | Yes    | Simulates a slow swipe.     |
+| drag   | Yes    | Simulates a drag operation.     |
+| dircFling   | Yes    | Simulates a directional swipe.     |
+| inputText   | Yes    | Simulates text input into a text field.     |
+| keyEvent   | Yes    | Simulates physical key events (e.g., keyboard, power button, back, home) and key combinations.     |
 
-#### Example Usage of uiInput click/doubleClick/longClick
+#### uiInput click/doubleClick/longClick Example
 
-| Configuration Parameter    | Required | Description   |
+| Parameter    | Required | Description   |
 |---------|------|-----------------|
-| point_x | Yes      | X-coordinate of the click point. |
-| point_y | Yes       | Y-coordinate of the click point. |
+| point_x | Yes      | X-coordinate of the click. |
+| point_y | Yes       | Y-coordinate of the click. |
 
 ```shell
-# Execute a click event.
+# Single click.
 hdc shell uitest uiInput click 100 100
 
-# Execute a double-click event.
+# Double click.
 hdc shell uitest uiInput doubleClick 100 100
 
-# Execute a long-press event.
+# Long press.
 hdc shell uitest uiInput longClick 100 100
 ```
 
-#### Example Usage of uiInput fling
+#### uiInput fling Example
 
-| Configuration Parameter  | Required   | Description      |
+| Parameter  | Required   | Description      |
 |------|------------------|-----------------|
-| from_x   | Yes  | Starting X-coordinate of the swipe. |
-| from_y   | Yes    | Starting Y-coordinate of the swipe. |
-| to_x   | Yes   | Ending X-coordinate of the swipe. |
-| to_y   | Yes   | Ending Y-coordinate of the swipe. |
-| swipeVelocityPps_   | No      | Swipe velocity, unit: px/s, range: 200-40000.<br> Default: 600. |
-| stepLength_   | No | Swipe step length. Default: swipe distance/50.<br>  **For better simulation results, it is recommended to omit this parameter or use the default value.**  |
-
-```shell
-# Execute a fling operation with stepLength_ omitted.
-hdc shell uitest uiInput fling 10 10 200 200 500
-```
-
-#### Example Usage of uiInput swipe/drag
-
-| Configuration Parameter  | Required             | Description               |
-|------|------------------|-----------------|
-| from_x   | Yes     | Starting X-coordinate of the swipe. |
-| from_y   | Yes    | Starting Y-coordinate of the swipe. |
-| to_x   | Yes    | Ending X-coordinate of the swipe. |
-| to_y   | Yes    | Ending Y-coordinate of the swipe. |
-| swipeVelocityPps_   | No      | Swipe velocity, unit: px/s, range: 200-40000.<br> Default: 600. |
-
-```shell
-# Execute a swipe operation.
-hdc shell uitest uiInput swipe 10 10 200 200 500
-
-# Execute a drag operation.
-hdc shell uitest uiInput drag 10 10 100 100 500
-```
-
-#### Example Usage of uiInput dircFling
-
-| Configuration Parameter  | Required  | Description |
-|------------|-------------|----------|
-| direction  | No | Swipe direction, range: [0,1,2,3], default: 0.<br> 0: left, 1: right, 2: up, 3: down.    |
-| swipeVelocityPps_ | No| Swipe velocity, unit: px/s, range: 200-40000.<br> Default: 600.    |
-| stepLength   | No   | Swipe step length.<br> Default: swipe distance/50. For better simulation results, it is recommended to omit this parameter or use the default value. |
-
-```shell
-# Execute a left swipe operation.
-hdc shell uitest uiInput dircFling 0 500
-# Execute a right swipe operation.
-hdc shell uitest uiInput dircFling 1 600
-# Execute an upward swipe operation.
-hdc shell uitest uiInput dircFling 2
-# Execute a downward swipe operation.
-hdc shell uitest uiInput dircFling 3
-```
-
-#### Example Usage of uiInput inputText
-
-| Configuration Parameter  | Required   | Description |
-|------|---------|----------|
-| point_x   | Yes | X-coordinate of the input box. |
-| point_y   | Yes   | Y-coordinate of the input box. |
-| text   | Yes   | Text content to input.  |
-
-```shell
-# Execute an input box text input operation.
-hdc shell uitest uiInput inputText 100 100 hello
-```
-
-#### Example Usage of uiInput keyEvent
-
-| Configuration Parameter   | Required  | Description |
-|------|------|----------|
-| keyID1   | Yes    | Physical key ID, range: KeyCode/Back/Home/Power.<br>When Back/Home/Power is used, combination keys are not supported. |
-| keyID2    | No    | Physical key ID. |
-| keyID3    | No    | Physical key ID. |
-
-> **Note:**
->
-> A maximum of three key values can be passed. For specific key values, refer to [KeyCode](../../../en/application-dev/reference/arkui-cj/cj-universal-event-key.md#var-keycode).
-
-```shell
-# Return to home screen.
-hdc shell uitest uiInput keyEvent Home
-# Go back.
-hdc shell uitest uiInput keyEvent Back
-# Combination key paste.
-hdc shell uitest uiInput keyEvent 2072 2038
-```
-
-### Obtaining Version Information
-
-```bash
-hdc shell uitest --version
-```
-
-### Starting the uitest Test Process
-
-```shell
-hdc shell uitest start-daemon
-```
-
-> **Note**
->
-> The device must be in developer mode.
->
-> Only processes started by the `aa test` command have the capability to call UITest interfaces. For example, processes started by `aa start` will report errors when calling UITest interfaces.
->
-> The [APL level](../security/AccessToken/cj-app-permission-mgmt-overview.md#权限机制中的基本概念) of the test hap must be system_basic or normal.
-
-## Common Issues
+| from_x   | Yes  | Starting X-coordinate. |
+| from_y   | Yes    | Starting Y-coordinate. |
+| to_x   | Yes   | Ending X-coordinate. |
+| to_y   | Yes   | Ending Y-coordinate. |
+| swipeVelocityPps_   | No      | Swipe speed (px/s, range: 200-40000).<br> Default: 600. |
+| stepLength## Frequently Asked Questions
 
 ### Common Issues in UI Test Cases
 
-**1. Error log shows "Get windows failed/GetRootByWindow failed"**
+**1. Error log shows "Get windows failed/GetRootByWindow failed" message**
 
-**Issue Description**
+**Issue Description**  
 
-UI test case execution fails, and the hilog shows "Get windows failed/GetRootByWindow failed."
+The UI test case execution failed, and the hilog log contains the error message "Get windows failed/GetRootByWindow failed."
 
-**Possible Cause**
+**Possible Causes**  
 
-The ArkUI switch is not enabled, causing the control tree information of the tested interface to not be generated.
+The system ArkUI switch is not enabled, preventing the generation of the control tree information for the tested interface.
 
-**Solution**
+**Solution**  
 
 Execute the following command and restart the device before running the test case again.
 
@@ -522,32 +422,32 @@ Execute the following command and restart the device before running the test cas
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-**2. Error log shows "uitest-api dose not allow calling concurrently"**
+**2. Error log shows "uitest-api does not allow calling concurrently" message**
 
-**Issue Description**
+**Issue Description**  
 
-UI test case execution fails, and the hilog shows "uitest-api dose not allow calling concurrently."
+The UI test case execution failed, and the hilog log contains the error message "uitest-api does not allow calling concurrently."
 
-**Possible Causes**
+**Possible Causes**  
 
-1. The test case involves multi-threaded concurrent calls to UITest interfaces, which is not supported.
-2. Multiple processes in the test environment are concurrently executing UITest cases, leading to multiple UITest processes being started. The framework does not support multi-process calls.
+1. The test case involves multi-threaded concurrent calls to UITest-related APIs, which are not supported for concurrent invocation.  
+2. The test environment has multiple processes concurrently executing UITest cases, leading to multiple UITest processes being launched. The framework does not support multi-process calls.  
 
-**Solution**
+**Solution**  
 
-1. Review the test case implementation to avoid multi-threaded concurrent calls to UITest interfaces.
-2. Check the test environment to avoid multi-process concurrent execution of UITest-related cases.
+1. Review the test case implementation to avoid multi-threaded concurrent calls to UITest-related APIs.  
+2. Check the test environment to prevent multiple processes from executing UITest-related cases simultaneously.  
 
-**3. Error log shows "does not exist on current UI! Check if the UI has changed after you got the widget object"**
+**3. Error log shows "does not exist on current UI! Check if the UI has changed after you got the widget object" message**
 
-**Issue Description**
+**Issue Description**  
 
-UI test case execution fails, and the hilog shows "does not exist on current UI! Check if the UI has changed after you got the widget object."
+The UI test case execution failed, and the hilog log contains the error message "does not exist on current UI! Check if the UI has changed after you got the widget object."
 
-**Possible Cause**
+**Possible Causes**  
 
-After the target control is located in the test case code, the device interface changes, causing the located control to be lost and preventing further simulated operations.
+After the test code locates the target control, the device interface changes, causing the located control to be lost and preventing further simulated operations.  
 
-**Solution**
+**Solution**  
 
 Re-execute the UI test case.

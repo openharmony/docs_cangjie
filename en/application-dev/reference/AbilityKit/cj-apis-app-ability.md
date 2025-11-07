@@ -20,10 +20,10 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of a Cangjie template project.
+- If the sample code's first line contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the aforementioned sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class BaseContext
 
@@ -33,11 +33,11 @@ public abstract class BaseContext {
 }
 ```
 
-**Function:** Provides contextual capabilities for ability or application.
+**Function:** Provides context capabilities for ability or application.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let stageMode
 
@@ -45,7 +45,7 @@ public abstract class BaseContext {
 public let stageMode: Bool
 ```
 
-**Function:** Indicates whether it's the Stage model.
+**Function:** Indicates whether it's Stage model.
 
 **Type:** Bool
 
@@ -53,4 +53,17 @@ public let stageMode: Bool
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+
+class MyUIAbility <: UIAbility {
+    public override func onWindowStageCreate(windowStage: WindowStage): Unit {
+          let isStageMode = this.context.stageMode
+    }
+}
+```

@@ -8,9 +8,9 @@ Cangjie offers several built-in compilation tags for obtaining source code locat
 
 - `@sourcePackage()` expands to a `String` type literal containing the package name of the source file where this tag resides.
 - `@sourceFile()` expands to a `String` type literal containing the filename of the source file where this tag resides.
-- `@sourceLine()` expands to an `Int64` type literal containing the line number in the source code where this tag resides.
+- `@sourceLine()` expands to an `Int64` type literal containing the line number of the source code where this tag resides.
 
-These compilation tags can be used within any expression as long as they comply with type-checking rules. Examples:
+These compilation tags can be used within any expression as long as they comply with type checking rules. Examples:
 
 <!-- run -->
 
@@ -27,20 +27,20 @@ func test2(n!: Int64 = @sourceLine()) { /* at line 5 */
 
 ## Conditional Compilation
 
-Conditional compilation uses the `@When` tag, which is a technique for selectively compiling different code segments based on specific conditions. The primary purposes of conditional compilation include:
+Conditional compilation uses the `@When` tag, which is a technique for selectively compiling different code segments based on specific conditions within program code. The primary functions of conditional compilation include:
 
-- Platform Adaptation: Supports selective code compilation based on the current compilation environment to achieve cross-platform compatibility.
-- Feature Selection: Enables flexible configuration by selectively compiling code based on different requirements.
-- Debugging Support: Facilitates compilation of debugging-related code in debug mode to enhance program performance and security. For example, compiling debug information or logging-related code in debug mode while excluding it from release builds.
+- Platform Adaptation: Supports selectively compiling code based on the current compilation environment to achieve cross-platform compatibility.
+- Feature Selection: Enables selective compilation of code based on different requirements for flexible feature configuration.
+- Debugging Support: Facilitates compiling debugging-related code in debug mode to enhance program performance and security. For example, compiling debug information or logging-related code in debug mode while excluding it from release builds.
 - Performance Optimization: Allows selective compilation of code based on predefined conditions to improve program performance.
 
-For detailed information about conditional compilation, please refer to the <!--RP02-->[Conditional Compilation](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/compile_and_build/conditional_compilation.md)<!--RP02End--> chapter, which will not be elaborated here.
+For detailed information about conditional compilation, please refer to the <!--RP02-->[Conditional Compilation](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/conditional_compilation.md)<!--RP02End--> chapter, which will not be further elaborated here.
 
 ## @FastNative
 
 To enhance performance in interoperability with `C` language, Cangjie provides the `@FastNative` tag to optimize calls to `C` functions. Note that `@FastNative` can only be used with `foreign` declared functions.
 
-First, compile the following C program to generate a dynamic library file `libcProg.so`:
+First, compile the following C program to generate the dynamic library file `libcProg.so`. Example:
 
 ```c
 #include <stdio.h>
@@ -69,7 +69,7 @@ main(): Int32 {
 }
 ```
 
-For specific compilation instructions, refer to [Appendix](../Appendix/compile_options_ohos.md#cjc-编译选项). Below is the corresponding compilation command for this example:
+For specific compilation instructions, please refer to [Appendix](../Appendix/compile_options_ohos.md#cjc-compilation-options). Below is the corresponding compilation command for this example:
 
 ```shell
 cjc -L . -lcProg ./main.cj
@@ -83,12 +83,12 @@ this is an example
 
 When using `@FastNative` to modify `foreign` functions, developers should ensure that the corresponding `C` functions meet the following two requirements:
 
-1. The overall execution time of the function should not be too long. For example: large loops inside the function are not allowed; blocking behaviors such as calling `sleep`, `wait`, etc., are not permitted.
+1. The overall execution time of the function should not be too long. For example: large loops within the function are not allowed; blocking behaviors such as calling `sleep`, `wait`, etc., are not permitted.
 2. The function must not call Cangjie methods internally.
 
 ## @Frozen
 
-The `@Frozen` tag can be used to modify functions and properties. If a function or property is certain not to have its internal implementation modified in future version updates, it can be marked with `@Frozen`. This tag represents the developer's commitment to the function/property's stability across future versions. Functions and properties modified by `@Frozen` cannot undergo any changes to their signatures or bodies in subsequent upgrades. This means that, under the same compiler and compilation options, the generated artifacts for the function or property will be identical across two code versions.
+The `@Frozen` tag can be used to modify functions and properties. If it is certain that a function or property will not have its internal implementation modified in future version updates, the `@Frozen` tag can be applied. This tag represents the developer's commitment to the function/property's stability across future versions. Functions and properties modified by `@Frozen` cannot undergo any changes to their signatures or bodies in subsequent upgrades. This means that, under the same compiler and compilation options, the generated artifacts for the function or property will be identical across two code versions.
 
 The `@Frozen` tag can be applied to:
 
@@ -98,7 +98,7 @@ The `@Frozen` tag can be applied to:
 
 The `@Frozen` tag cannot be applied to:
 
-- Other type declarations besides functions and properties
+- Type declarations other than functions and properties
 - Nested functions
 - Expressions
 
@@ -123,7 +123,7 @@ public class testClass {
 
 ## @Attribute
 
-The Cangjie language internally provides the `@Attribute` tag, allowing developers to set attribute values for declarations to mark them. Attribute values can be either `identifier` or `string`. Below is a simple example where the variable `cnt` is given an `identifier`-type attribute `State`, and the variable `bcnt` is given a `string`-type attribute `"Binding"`.
+The Cangjie language internally provides the `@Attribute` tag, allowing developers to set attribute values for declarations to mark them. Attribute values can be either `identifier` or `string`. Below is a simple example where the variable `cnt` is given an `identifier` type attribute `State`, and the variable `bcnt` is given a `string` type attribute `"Binding"`.
 
 <!-- compile -->
 
@@ -132,7 +132,7 @@ The Cangjie language internally provides the `@Attribute` tag, allowing develope
 @Attribute["Binding"] var bcnt = 0  // string
 ```
 
-Additionally, the standard library `std.ast` package provides the `getAttrs()` method to retrieve a node's attributes and the `hasAttr(attrs: String)` method to check if a node has a specific attribute. Below is a concrete example.
+Additionally, the standard library `std.ast` package provides the `getAttrs()` method to retrieve node attributes and the `hasAttr(attrs: String)` method to check if a node has a specific attribute. Below is a concrete example.
 
 Macro definition:
 
@@ -169,7 +169,7 @@ main() {}
 
 ## @Deprecated
 
-`@Deprecated` indicates that an API is deprecated. While it remains temporarily usable, it will be removed or changed in the future, and developers are advised not to use it. Example:
+`@Deprecated` indicates that an API is deprecated. While it remains temporarily available, it will be removed or changed in the future, and developers are advised not to use this API. For example:
 
 <!-- compile -->
 
@@ -215,8 +215,8 @@ The `@Deprecated` custom macro can be applied to the following declarations:
 ### @Deprecated Parameters
 
 - `message: String` - Describes why the declaration is deprecated and how to migrate.
-- `since!: ?String` - The version since which the declaration is deprecated.
-- `strict!: Bool` - Defaults to `false`, triggering a warning at call sites of the deprecated API. If set to `true`, it triggers a compilation error.
+- `since!: ?String` - The version since which the declaration was deprecated.
+- `strict!: Bool` - Defaults to `false`, triggering a warning at call sites of the marked API. If set to `true`, it triggers a compilation error.
 
 <!-- compile.error -->
 

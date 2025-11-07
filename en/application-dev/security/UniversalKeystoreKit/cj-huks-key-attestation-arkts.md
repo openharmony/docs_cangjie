@@ -6,15 +6,24 @@ Before using this feature, you need to apply for the permission: [ohos.permissio
 
 1. Determine the key alias `keyAlias`. The maximum length of the key alias is 128 bytes.
 
-2. Initialize the parameter set. The `properties` field in [HuksOptions](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksoptions) must include the [HUKS_TAG_ATTESTATION_CHALLENGE](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#enum-hukstag) attribute. Optional parameters include [HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#enum-hukstag) and [HUKS_TAG_ATTESTATION_ID_ALIAS](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#enum-hukstag).
+2. Initialize the parameter set. The `properties` field in [HuksOptions](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksoptions) must include the [HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#enum-hukstag) attribute. Optional parameters may include [HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#enum-hukstag) and [HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#enum-hukstag) attributes.
 
 3. Generate an asymmetric key. For details, refer to [Key Generation](./cj-huks-key-generation-overview.md).
 
-4. Pass the key alias and parameter set as parameters to the [huks.attestKeyItem](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-attestkeyitemstring-huksoptions) method to attest the key.
+4. Pass the key alias and parameter set as arguments to the [huks.attestKeyItem](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-attestkeyitemstring-huksoptions) method to attest the key.
 
-<!--compile-->
+<!-- compile -->
+
 ```cangjie
+import kit.PerformanceAnalysisKit.Hilog
+import kit.BasicServicesKit.*
+import kit.CoreFileKit.*
+import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
+
+func loggerInfo(str: String) {
+    Hilog.info(0, "CangjieTest", str)
+}
 
 /* 1. Determine key alias */
 let keyAliasString = "key anon attest"
@@ -33,59 +42,47 @@ class ThrowObject {
     }
 }
 
-/* Encapsulate key parameters for generation */
+/* Encapsulate key generation parameter set */
 let genKeyProperties: Array<HuksParam> = [
     HuksParam(
         HuksTag.HUKS_TAG_ALGORITHM,
-        HuksKeyAlg.HUKS_ALG_RSA
+        HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_SIZE,
-        HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PURPOSE,
-        HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY)
     ),
     HuksParam(
         HuksTag.HUKS_TAG_DIGEST,
-        HuksKeyDigest.HUKS_DIGEST_SHA256
+        HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256)
     ),
     HuksParam(
         HuksTag.HUKS_TAG_PADDING,
-        HuksKeyPadding.HUKS_PADDING_PSS
+        HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PSS)
     ),
     HuksParam(
         HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
-        HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        HuksParamValue.Uint32Value(HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT)
     ),
     HuksParam(
         HuksTag.HUKS_TAG_BLOCK_MODE,
-        HuksCipherMode.HUKS_MODE_ECB
+        HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB)
     )
 ]
-let genOptions: HuksOptions = HuksOptions(genKeyProperties, Option<Array<UInt8>>.None)
+let genOptions: HuksOptions = HuksOptions(properties: genKeyProperties, inData: Bytes())
 
-/* 2. Encapsulate key attestation parameters */
+/* 2. Encapsulate key attestation parameter set */
 let anonAttestKeyProperties: Array<HuksParam> = [
     HuksParam(
-        HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
-        bytes(securityLevel)
-    ),
-    HuksParam(
         HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
-        bytes(challenge)
-    ),
-    HuksParam(
-        HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
-        bytes(versionInfo)
-    ),
-    HuksParam(
-        HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
-        bytes(aliasUint8)
+        HuksParamValue.BytesValue(challenge.toArray())
     )
 ]
-let huksOptions: HuksOptions = HuksOptions(anonAttestKeyProperties, Option<Array<UInt8>>.None)
+let huksOptions: HuksOptions = HuksOptions(properties: anonAttestKeyProperties, inData: Bytes())
 
 func StringToUint8Array(str: String) {
     return str.toArray()
@@ -102,19 +99,19 @@ func generateKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: Th
 
 /* 3. Generate key */
 func publicGenKeyFunc(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter generateKeyItem")
+    loggerInfo("enter generateKeyItem")
     let throwObject: ThrowObject = ThrowObject(false)
     try {
         generateKeyItem(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("generateKeyItem input arg invalid, ${e}")
+        loggerInfo("generateKeyItem input arg invalid, ${e}")
     }
 }
 
 /* 4. Attest key */
-func attestKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: ThrowObject) {
+func attestKeyItemext(keyAlias: String, huksOptions: HuksOptions, throwObject: ThrowObject): Array<String> {
     return try {
-        attestKeyItem(keyAlias, huksOptions)
+        anonAttestKeyItem(keyAlias, huksOptions)
     } catch (e: Exception) {
         throwObject.isThrow = true
         throw e
@@ -122,18 +119,18 @@ func attestKeyItem(keyAlias: String, huksOptions: HuksOptions, throwObject: Thro
 }
 
 func publicAttestKey(keyAlias: String, huksOptions: HuksOptions) {
-    AppLog.info("enter attestKeyItem")
+    loggerInfo("enter attestKeyItem")
     let throwObject: ThrowObject = ThrowObject(false)
     try {
-        attestCertChain = attestKeyItem(keyAlias, huksOptions, throwObject)
+        attestCertChain = attestKeyItemext(keyAlias, huksOptions, throwObject)
     } catch (e: Exception) {
-        AppLog.error("attestKeyItem input arg invalid, ${e}")
+        loggerInfo("attestKeyItem input arg invalid, ${e}")
     }
 }
 
 func attestKeyTest() {
     publicGenKeyFunc(aliasString, genOptions)
     publicAttestKey(aliasString, huksOptions)
-    AppLog.info('anon attest certChain data: ' + attestCertChain.getOrThrow().toString())
+    loggerInfo('anon attest certChain data: ' + attestCertChain.getOrThrow().toString())
 }
 ```

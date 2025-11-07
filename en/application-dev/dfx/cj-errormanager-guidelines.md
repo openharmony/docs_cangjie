@@ -2,28 +2,28 @@
 
 ## Scenario Description
 
-When an application's code contains specification issues or errors, exceptions and errors may occur during runtime, such as uncaught exceptions or application lifecycle timeouts. After an error occurs, the application will terminate abnormally. Error logs are typically stored in local user storage, making it inconvenient for developers to diagnose issues. Therefore, application developers can use error management interfaces to promptly report relevant errors and logs to their service platform before the application exits, facilitating issue identification.
+When an application's code contains specification issues or errors, exceptions and errors may occur during runtime, such as uncaught exceptions or application lifecycle timeouts. After an error occurs, the application will terminate abnormally. Error logs are typically stored in local user storage, making it inconvenient for developers to locate issues. Therefore, application developers can use error management interfaces to promptly report relevant errors and logs to the developer's service platform for troubleshooting before the application exits.
 
 After using the `errormanager` interface to monitor exceptions and errors, the application will not terminate. If the sole purpose is to obtain error logs, it is recommended to use [hiappevent](./cj-hiappevent-watcher-crash-events.md).
 
-## Interface Description
+## Interface Specifications
 
-The application error management interface is provided by the [errorManager](../../../en/application-dev/reference/AbilityKit/cj-apis-app-ability-error_manager.md#class-errormanager) module. Developers can import it as needed. For details, refer to the [Development Example](#Development Example).
+The application error management interface is provided by the [errorManager](../reference/AbilityKit/cj-apis-app-ability-error_manager.md#class-errormanager) module. Developers can import it as needed. For details, refer to the [Development Example](#Development Example).
 
 **Error Management Interface Functionality:**
 
 | Interface Name                                                                 | Description                                                                 |
 | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| `on(eventType: ErrorManagerEvent, observer: ErrorObserver): Int32`            | Registers an error observer. After registration, if the program crashes, the uncaught exception mechanism will be triggered. |
-| `off(eventType: ErrorManagerEvent, observerId: Int32): Unit`                   | Unregisters an error observer.                                              |
+| on(eventType: ErrorManagerEvent, observer: ErrorObserver): Int32               | Registers an error observer. After registration, if the program crashes, the uncaught exception mechanism will be triggered. |
+| off(eventType: ErrorManagerEvent, observerId: Int32): Unit                     | Unregisters an error observer.                                              |
 
 <!-- waiting -->
 **Error Observer (ErrorObserver) Interface Functionality:**
 
-| Interface Name                                      | Description                                                                 |
-| --------------------------------------------------- | --------------------------------------------------------------------------- |
-| `onUnhandledException(errMsg: String): Unit`       | This callback is invoked when an exception is thrown during program execution and not caught by any `try-catch` statement. The `errMsg` content is fixed as "Uncaught exception was found." |
-| `onException?(errObject: ErrorObject): Unit`       | This callback is invoked when an exception is thrown during program execution and not caught by any `try-catch` statement. The `errObject` contains the uncaught exception's name, message, and stack trace. |
+| Interface Name                         | Description                                                                 |
+| -------------------------------------- | --------------------------------------------------------------------------- |
+| onUnhandledException(errMsg: String): Unit | This callback function is invoked when an exception is thrown during program execution and is not successfully caught by any `try-catch` statement. The `errMsg` content is fixed as "Uncaught exception was found." |
+| onException?(errObject: ErrorObject): Unit | This callback function is invoked when an exception is thrown during program execution and is not successfully caught by any `try-catch` statement. The `errObject` contains the uncaught exception's name, message, and stack trace. |
 
 ## Development Example
 

@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> This document only covers module-specific error codes. For universal error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> The following describes only the error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 2300001 Unsupported Protocol
 
@@ -20,7 +20,7 @@ The protocol version passed in is not supported by the server.
 
 **Resolution Steps**
 
-Verify the protocol version passed in and check the server implementation.
+Check whether the protocol version passed in is reasonable and investigate the server implementation.
 
 ## 2300003 Malformed URL
 
@@ -38,9 +38,9 @@ The URL format passed in may be incorrect.
 
 **Resolution Steps**
 
-Check the URL format passed in.
+Verify the format of the URL passed in.
 
-## 2300005 Proxy Server DNS Resolution Failed
+## 2300005 Proxy Server Domain Resolution Failed
 
 **Error Message**
 
@@ -48,17 +48,17 @@ Couldn't resolve proxy name.
 
 **Error Description**
 
-The proxy server's domain name cannot be resolved.
+The proxy server's domain name could not be resolved.
 
 **Possible Causes**
 
-The server URL is incorrect.
+The server's URL is incorrect.
 
 **Resolution Steps**
 
-Verify the proxy server's URL.
+Check whether the proxy server's URL is correct.
 
-## 2300006 Hostname Resolution Failed
+## 2300006 Domain Resolution Failed
 
 **Error Message**
 
@@ -66,19 +66,19 @@ Couldn't resolve host name.
 
 **Error Description**
 
-The server's domain name cannot be resolved.
+The server's domain name could not be resolved.
 
 **Possible Causes**
 
-1. The server URL passed in is incorrect.
+1. The server's URL passed in is incorrect.
 2. Network connectivity issues.
 
 **Resolution Steps**
 
-1. Verify the server URL passed in.
-2. Check the network connection.
+1. Verify the server's URL passed in.
+2. Check the network connection status.
 
-## 2300007 Connection to Server Failed
+## 2300007 Failed to Connect to Server
 
 **Error Message**
 
@@ -94,9 +94,9 @@ The URL format passed in is incorrect.
 
 **Resolution Steps**
 
-Check the URL format passed in.
+Verify the format of the URL passed in.
 
-## 2300008 Illegal Server Response
+## 2300008 Server Returned Illegal Data
 
 **Error Message**
 
@@ -108,13 +108,13 @@ The server returned illegal data.
 
 **Possible Causes**
 
-The server returned non-HTTP formatted data due to an error.
+The server encountered an error and returned non-HTTP formatted data.
 
 **Resolution Steps**
 
 Investigate the server implementation.
 
-## 2300009 Remote Resource Access Denied
+## 2300009 Access Denied to Remote Resource
 
 **Error Message**
 
@@ -122,11 +122,11 @@ Access denied to remote resource.
 
 **Error Description**
 
-Access to the remote resource is denied.
+Access to the remote resource was denied.
 
 **Possible Causes**
 
-The specified content is denied by the server.
+The specified content was denied access by the server.
 
 **Resolution Steps**
 
@@ -140,7 +140,7 @@ Error in the HTTP2 framing layer.
 
 **Error Description**
 
-HTTP2 layer error.
+An error occurred at the HTTP2 layer.
 
 **Possible Causes**
 
@@ -148,7 +148,7 @@ The server does not support HTTP2.
 
 **Resolution Steps**
 
-Capture packets and verify if the server supports HTTP2.
+Capture network packets and verify whether the server supports HTTP2.
 
 ## 2300018 Incomplete Server Response
 
@@ -158,7 +158,7 @@ Transferred a partial file.
 
 **Error Description**
 
-The server returned incomplete data.
+The data returned by the server is incomplete.
 
 **Possible Causes**
 
@@ -176,7 +176,7 @@ Failed writing received data to disk/application.
 
 **Error Description**
 
-Failed to write received data to disk/application.
+Failed to write received data to disk or the application.
 
 **Possible Causes**
 
@@ -212,7 +212,7 @@ Failed to open/read local data from file/application.
 
 **Error Description**
 
-Failed to open/read local data from file/application.
+Failed to open or read local data from a file or the application.
 
 **Possible Causes**
 
@@ -230,7 +230,7 @@ Out of memory.
 
 **Error Description**
 
-Out of memory.
+Insufficient memory.
 
 **Possible Causes**
 
@@ -248,7 +248,7 @@ Timeout was reached.
 
 **Error Description**
 
-Operation timeout.
+Operation timed out.
 
 **Possible Causes**
 
@@ -266,7 +266,7 @@ Number of redirects hit maximum amount.
 
 **Error Description**
 
-Maximum number of redirects reached.
+The maximum number of redirects was reached.
 
 **Possible Causes**
 
@@ -276,7 +276,7 @@ Too many redirects.
 
 Investigate the server implementation.
 
-## 2300052 Empty Server Response
+## 2300052 Server Returned No Content
 
 **Error Message**
 
@@ -302,7 +302,7 @@ Failed sending data to the peer.
 
 **Error Description**
 
-Failed to send data to the peer.
+Failed to send data to the peer; network data transmission failed.
 
 **Possible Causes**
 
@@ -310,7 +310,7 @@ Network issues.
 
 **Resolution Steps**
 
-Investigate the network.
+Investigate network conditions.
 
 ## 2300056 Failed to Receive Network Data
 
@@ -320,7 +320,7 @@ Failure when receiving data from the peer.
 
 **Error Description**
 
-Failed to receive data from the peer.
+Failed to receive data from the peer; network data reception failed.
 
 **Possible Causes**
 
@@ -328,7 +328,7 @@ Network issues.
 
 **Resolution Steps**
 
-Investigate network issues.
+Investigate network conditions.
 
 ## 2300058 Local SSL Certificate Error
 
@@ -348,7 +348,7 @@ The SSL certificate format is incorrect.
 
 Check the SSL certificate format.
 
-## 2300059 Specified Cipher Unavailable
+## 2300059 Specified Cipher Not Supported
 
 **Error Message**
 
@@ -356,17 +356,17 @@ Couldn't use specified SSL cipher.
 
 **Error Description**
 
-The specified cipher cannot be used.
+The specified cipher could not be used.
 
 **Possible Causes**
 
-The encryption algorithm negotiated between client and server is not supported by the system.
+The encryption algorithm negotiated between the client and server is not supported by the system.
 
 **Resolution Steps**
 
 Capture packets and analyze the negotiated algorithm.
 
-## 2300060 Invalid Remote Server SSL Certificate or SSH Key
+## 2300060 Remote Server SSL Certificate or SSH Key Invalid
 
 **Error Message**
 
@@ -378,11 +378,11 @@ The remote server's SSL certificate or SSH key is invalid.
 
 **Possible Causes**
 
-Failed to verify the server's identity, possibly due to an expired certificate.
+Unable to verify the server's identity; the certificate may have expired.
 
 **Resolution Steps**
 
-Check the certificate validity.
+Check the certificate's validity.
 
 ## 2300061 Unrecognized or Malformed HTTP Encoding
 
@@ -400,7 +400,7 @@ The HTTP encoding format is incorrect.
 
 **Resolution Steps**
 
-Investigate the server implementation. Currently, only gzip encoding is supported.## 2300063 Maximum File Size Exceeded
+Investigate the server implementation; currently, only gzip encoding is supported.## 2300063 Maximum File Size Exceeded
 
 **Error Message**
 
@@ -436,7 +436,7 @@ The server disk is full.
 
 Check server disk space.
 
-## 2300073 Server Indicates File Already Exists
+## 2300073 File Already Exists on Server
 
 **Error Message**
 
@@ -444,11 +444,11 @@ Remote file already exists.
 
 **Error Description**
 
-The server reports that the file already exists.
+The server indicates the file already exists.
 
 **Possible Causes**
 
-During file upload, the server indicates the file already exists.
+During file upload, the server returned that the file already exists.
 
 **Resolution Steps**
 
@@ -462,11 +462,11 @@ Problem with the SSL CA cert (path? access rights?).
 
 **Error Description**
 
-SSL CA certificate is missing or access is denied.
+SSL CA certificate does not exist or access is denied.
 
 **Possible Causes**
 
-The certificate does not exist or lacks proper access permissions.
+The certificate is missing or access permissions are insufficient.
 
 **Resolution Steps**
 
@@ -480,7 +480,7 @@ Remote file not found.
 
 **Error Description**
 
-The file requested via URL does not exist.
+The file requested by URL does not exist.
 
 **Possible Causes**
 
@@ -488,9 +488,9 @@ The file specified in the URL request cannot be found.
 
 **Resolution Steps**
 
-Check if the requested file exists at the specified URL.
+Check if the requested file exists at the URL.
 
-## 2300094 Authentication Failure
+## 2300094 Authentication Failed
 
 **Error Message**
 
@@ -498,17 +498,17 @@ An authentication function returned an error.
 
 **Error Description**
 
-Authentication failed.
+Authentication failure.
 
 **Possible Causes**
 
-The provided authentication credentials do not match server records.
+The provided authentication fields do not match server records.
 
 **Resolution Steps**
 
-Verify whether the authentication fields match server requirements.
+Verify if authentication fields match server configuration.
 
-## 2300997 Plaintext HTTP Access Intercepted
+## 2300997 Cleartext HTTP Blocked
 
 **Error Message**
 
@@ -516,17 +516,17 @@ Cleartext traffic not permitted.
 
 **Error Description**
 
-This error code is reported if plaintext HTTP access is intercepted.
+Cleartext HTTP traffic is blocked and access is denied.
 
 **Possible Causes**
 
-The plaintext access is not allowed in the network_config.json file.
+The application's network_config.json file prohibits cleartext traffic.
 
 **Resolution Steps**
 
-Check the setting of the cleartextTrafficPermitted field in the network_config.json file.
+Check cleartextTrafficPermitted setting in network_config.json.
 
-## 2300998 Domain Access Denied
+## 2300998 Domain Access Not Permitted
 
 **Error Message**
 
@@ -534,15 +534,15 @@ It is not allowed to access this domain.
 
 **Error Description**
 
-This error code is reported if access to a certain domain is prohibited.
+Access to this domain is not permitted.
 
 **Possible Causes**
 
-An incorrect server domain name is configured for the atomic service.
+The meta-service application has incorrect server domain configuration.
 
 **Resolution Steps**
 
-Configure a correct server domain name for the atomic service.
+Refer to server domain configuration documentation for proper setup.
 
 ## 2300999 Unknown Error
 
