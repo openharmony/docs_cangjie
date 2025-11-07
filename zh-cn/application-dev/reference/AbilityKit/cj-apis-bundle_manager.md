@@ -1706,10 +1706,10 @@ public class DefaultAppManager {}
 
 **起始版本：** 22
 
-### static func isDefaultApplication(String)
+### static func isDefaultApplication(ApplicationType)
 
 ```cangjie
-public static func isDefaultApplication(appType: String): Bool
+public static func isDefaultApplication(appType: ApplicationType): Bool
 ```
 
 **功能：** 根据系统已定义的应用类型，判断当前应用是否是该类型的默认应用。
@@ -1722,7 +1722,7 @@ public static func isDefaultApplication(appType: String): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|appType|String|是|-|要查询的应用类型，取[ApplicationType](#enum-applicationtype)中的值。|
+|appType|ApplicationType|是|-|要查询的应用类型，取[ApplicationType](#enum-applicationtype)中的值。|
 
 **返回值：**
 
@@ -1750,7 +1750,7 @@ import ohos.business_exception.BusinessException
 import kit.PerformanceAnalysisKit.Hilog
 
 try {
-    let tag = DefaultAppManager.isDefaultApplication(ApplicationType.Image.getValue())
+    let tag = DefaultAppManager.isDefaultApplication(ApplicationType.Image)
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -3168,32 +3168,6 @@ Word
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
 **起始版本：** 22
-
-### func getValue()
-
-```cangjie
-public func getValue(): String
-```
-
-**功能：** 获取枚举的值。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|String|枚举的值。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[包管理子系统通用错误码](./cj-errorcode-bundle.md)。
-
-  | 错误码ID | 错误信息 |
-  | :---- | :--- |
-  | 17700101 | Bundle manager service exception. |
 
 ## enum BundleType
 

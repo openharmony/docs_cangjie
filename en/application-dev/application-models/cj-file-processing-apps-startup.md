@@ -21,7 +21,7 @@ Figure 1 Visual Demonstration
 | parameters     | String | No       | Custom parameters defined by the system and assigned by developers as needed. For file-opening scenarios, see Table 2.                                                                       |
 | flags          | UInt32 | No       | Processing method. For file-opening scenarios, see Table 3.                                                                                                                                  |
 
-**Table 2** Description of [parameters](../../../en/application-dev/reference/AbilityKit/cj-apis-ability.md#enum-params)  
+**Table 2** Description of [parameters](../../../en/application-dev/reference/AbilityKit/cj-apis-app-ability-want_constant.md#class-params)  
 
 | Parameter Name                              | Type    | Description                                                                                                                                                                |
 |---------------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -29,12 +29,12 @@ Figure 1 Visual Demonstration
 | ohos.ability.params.showDefaultPicker       | Bool    | Whether to force-display a selection dialog for file-opening methods. Default is `false`.<br/>- `false`: The system decides whether to directly launch the file-opening app or display a dialog based on policies or default app settings.<br/>- `true`: Always display the dialog.                      |
 | showCaller                                  | Bool    | Whether the caller itself should participate in the matching process as a target application. Default is `false`.<br/>- `false`: Does not participate.<br/>- `true`: Participates.                                                      |
 
-**Table 3** Description of [flags](../../../en/application-dev/reference/AbilityKit/cj-apis-ability.md#enum-flags)  
+**Table 3** Description of [flags](../../../en/application-dev/reference/AbilityKit/cj-apis-ability.md#class-flags)  
 
 | Parameter Name                       | Value       | Description                       |
 |--------------------------------------|-------------|-----------------------------------|
-| FlagAuthReadUriPermission        | 0x00000001  | Grants read permission for the URI. |
-| FlagAuthWriteUriPermission       | 0x00000002  | Grants write permission for the URI. |
+| Flags.FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001  | Grants read permission for the URI. |
+| Flags.FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002  | Grants write permission for the URI. |
 
 ## Integration Steps
 
@@ -94,7 +94,7 @@ Figure 1 Visual Demonstration
                 uri: uri,
                 `type`: 'general.plain-text', // Specifies the file type to be opened
                 // Configure read/write permissions for shared files, e.g., granting permissions to the file handler application
-                flags: Flags.FlagAuthWriteUriPermission.getValue() | Flags.FlagAuthReadUriPermission.getValue()
+                flags: Flags.FLAG_AUTH_WRITE_URI_PERMISSION | Flags.FLAG_AUTH_READ_URI_PERMISSION
             )
         }
         // ...
@@ -123,7 +123,7 @@ Figure 1 Visual Demonstration
                 uri: uri,
                 `type`: 'general.plain-text', // Specifies the file type to be opened
                 // Configure read/write permissions for shared files, e.g., granting permissions to the file handler application
-                flags: Flags.FlagAuthWriteUriPermission.getValue() | Flags.FlagAuthReadUriPermission.getValue()
+                flags: Flags.FLAG_AUTH_WRITE_URI_PERMISSION | Flags.FLAG_AUTH_READ_URI_PERMISSION
             )
             try {
                 this

@@ -51,7 +51,7 @@ public class AbilityInfo {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appIndex
 
@@ -67,7 +67,7 @@ public let appIndex: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let applicationInfo
 
@@ -83,7 +83,7 @@ public let applicationInfo: ApplicationInfo
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let bundleName
 
@@ -99,7 +99,7 @@ public let bundleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let description
 
@@ -115,7 +115,7 @@ public let description: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let descriptionId
 
@@ -131,7 +131,7 @@ public let descriptionId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let deviceTypes
 
@@ -147,7 +147,7 @@ public let deviceTypes: Array<String>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let enabled
 
@@ -163,7 +163,7 @@ public let enabled: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let excludeFromDock
 
@@ -179,7 +179,7 @@ public let excludeFromDock: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let exported
 
@@ -195,7 +195,7 @@ public let exported: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let icon
 
@@ -211,7 +211,7 @@ public let icon: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let iconId
 
@@ -227,7 +227,7 @@ public let iconId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let label
 
@@ -243,7 +243,7 @@ public let label: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let labelId
 
@@ -259,7 +259,7 @@ public let labelId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let launchType
 
@@ -275,7 +275,7 @@ public let launchType: LaunchType
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let metadata
 
@@ -291,7 +291,7 @@ public let metadata: Array<Metadata>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let moduleName
 
@@ -307,7 +307,7 @@ public let moduleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let name
 
@@ -323,7 +323,7 @@ public let name: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let orientation
 
@@ -339,7 +339,7 @@ public let orientation: DisplayOrientation
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let permissions
 
@@ -355,7 +355,7 @@ public let permissions: Array<String>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let process
 
@@ -371,7 +371,7 @@ public let process: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let skills
 
@@ -387,7 +387,7 @@ public let skills: Array<Skill>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let supportWindowModes
 
@@ -403,7 +403,7 @@ public let supportWindowModes: Array<SupportWindowMode>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let windowSize
 
@@ -419,7 +419,7 @@ public let windowSize: WindowSize
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21## class ApplicationInfo
+**Since:** 22## class ApplicationInfo
 
 ```cangjie
 public class ApplicationInfo {
@@ -460,7 +460,7 @@ public class ApplicationInfo {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let accessTokenId
 
@@ -476,7 +476,7 @@ public let accessTokenId: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appDistributionType
 
@@ -492,7 +492,7 @@ public let appDistributionType: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appIndex
 
@@ -508,7 +508,7 @@ public let appIndex: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appProvisionType
 
@@ -524,7 +524,7 @@ public let appProvisionType: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let bundleType
 
@@ -540,7 +540,7 @@ public let bundleType: BundleType
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let cloudFileSyncEnabled
 
@@ -556,7 +556,7 @@ public let cloudFileSyncEnabled: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let codePath
 
@@ -572,7 +572,7 @@ public let codePath: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let dataUnclearable
 
@@ -588,7 +588,7 @@ public let dataUnclearable: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let debug
 
@@ -604,7 +604,7 @@ public let debug: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let description
 
@@ -620,7 +620,7 @@ public let description: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let descriptionId
 
@@ -636,7 +636,7 @@ public let descriptionId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let descriptionResource
 
@@ -652,7 +652,7 @@ public let descriptionResource: AppResource
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let enabled
 
@@ -668,7 +668,7 @@ public let enabled: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let icon
 
@@ -684,7 +684,7 @@ public let icon: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let iconId
 
@@ -700,7 +700,7 @@ public let iconId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let iconResource
 
@@ -716,7 +716,7 @@ public let iconResource: AppResource
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let installSource
 
@@ -732,7 +732,7 @@ public let installSource: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let label
 
@@ -748,7 +748,7 @@ public let label: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let labelId
 
@@ -764,7 +764,7 @@ public let labelId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let labelResource
 
@@ -780,7 +780,7 @@ public let labelResource: AppResource
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let metadataArray
 
@@ -796,7 +796,7 @@ public let metadataArray: Array<ModuleMetadata>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let multiAppMode
 
@@ -812,7 +812,7 @@ public let multiAppMode: MultiAppMode
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let name
 
@@ -828,7 +828,7 @@ public let name: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let nativeLibraryPath
 
@@ -844,7 +844,7 @@ public let nativeLibraryPath: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let permissions
 
@@ -860,7 +860,7 @@ public let permissions: Array<String>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let process
 
@@ -876,7 +876,7 @@ public let process: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let releaseType
 
@@ -892,7 +892,7 @@ public let releaseType: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let removable
 
@@ -908,7 +908,7 @@ public let removable: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let systemApp
 
@@ -924,7 +924,7 @@ public let systemApp: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let uid
 
@@ -940,7 +940,7 @@ public let uid: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21## class BundleFlag
+**Since:** 22## class BundleFlag
 
 ```cangjie
 public class BundleFlag {
@@ -963,7 +963,7 @@ public class BundleFlag {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_DEFAULT
 
@@ -977,7 +977,7 @@ public static const GET_BUNDLE_INFO_DEFAULT: Int32 = 0x00000000
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_ABILITY
 
@@ -991,7 +991,7 @@ public static const GET_BUNDLE_INFO_WITH_ABILITY: Int32 = 0x00000004
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_APPLICATION
 
@@ -1005,7 +1005,7 @@ public static const GET_BUNDLE_INFO_WITH_APPLICATION: Int32 = 0x00000001
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_DISABLE
 
@@ -1019,7 +1019,7 @@ public static const GET_BUNDLE_INFO_WITH_DISABLE: Int32 = 0x00000040
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
 
@@ -1033,7 +1033,7 @@ public static const GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY: Int32 = 0x00000008
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_HAP_MODULE
 
@@ -1047,7 +1047,7 @@ public static const GET_BUNDLE_INFO_WITH_HAP_MODULE: Int32 = 0x00000002
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_MENU
 
@@ -1061,7 +1061,7 @@ public static const GET_BUNDLE_INFO_WITH_MENU: Int32 = 0x00000100
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_METADATA
 
@@ -1075,7 +1075,7 @@ public static const GET_BUNDLE_INFO_WITH_METADATA: Int32 = 0x00000020
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION
 
@@ -1089,7 +1089,7 @@ public static const GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION: Int32 = 0x0000001
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_ROUTER_MAP
 
@@ -1103,7 +1103,7 @@ public static const GET_BUNDLE_INFO_WITH_ROUTER_MAP: Int32 = 0x00000200
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_SIGNATURE_INFO
 
@@ -1117,7 +1117,7 @@ public static const GET_BUNDLE_INFO_WITH_SIGNATURE_INFO: Int32 = 0x00000080
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const GET_BUNDLE_INFO_WITH_SKILL
 
@@ -1131,7 +1131,7 @@ public static const GET_BUNDLE_INFO_WITH_SKILL: Int32 = 0x00000800
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class BundleInfo
 
@@ -1159,7 +1159,7 @@ public class BundleInfo {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appIndex
 
@@ -1175,7 +1175,7 @@ public let appIndex: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appInfo
 
@@ -1191,7 +1191,7 @@ public let appInfo: ApplicationInfo
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let hapModulesInfo
 
@@ -1207,7 +1207,7 @@ public let hapModulesInfo: Array<HapModuleInfo>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let installTime
 
@@ -1223,7 +1223,7 @@ public let installTime: Int64
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let minCompatibleVersionCode
 
@@ -1239,7 +1239,7 @@ public let minCompatibleVersionCode: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let name
 
@@ -1255,7 +1255,7 @@ public let name: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let permissionGrantStates
 
@@ -1271,7 +1271,7 @@ public let permissionGrantStates: Array<PermissionGrantState>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let reqPermissionDetails
 
@@ -1287,7 +1287,7 @@ public let reqPermissionDetails: Array<ReqPermissionDetail>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let routerMap
 
@@ -1303,7 +1303,7 @@ public let routerMap: Array<RouterItem>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let signatureInfo
 
@@ -1319,7 +1319,7 @@ public let signatureInfo: SignatureInfo
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let targetVersion
 
@@ -1335,7 +1335,7 @@ public let targetVersion: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let updateTime
 
@@ -1351,7 +1351,7 @@ public let updateTime: Int64
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let vendor
 
@@ -1367,7 +1367,7 @@ public let vendor: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let versionCode
 
@@ -1383,7 +1383,7 @@ public let versionCode: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let versionName
 
@@ -1399,7 +1399,7 @@ public let versionName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21## class BundleManager
+**Since:** 22## class BundleManager
 
 ```cangjie
 public class BundleManager {}
@@ -1409,7 +1409,7 @@ public class BundleManager {}
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static func canOpenLink(String)
 
@@ -1421,7 +1421,7 @@ public static func canOpenLink(link: String): Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1469,7 +1469,7 @@ public static func getBundleInfoForSelf(bundleFlags: Int32): BundleInfo
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1516,7 +1516,7 @@ If the configuration file information uses the resource reference format, the re
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1580,7 +1580,7 @@ If the configuration file information uses the resource reference format, the re
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1636,7 +1636,7 @@ public class DataItem {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let key
 
@@ -1652,7 +1652,7 @@ public let key: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let value
 
@@ -1668,7 +1668,7 @@ public let value: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class DefaultAppManager
 
@@ -1680,25 +1680,25 @@ public class DefaultAppManager {}
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
-### static func isDefaultApplication(String)
+### static func isDefaultApplication(ApplicationType)
 
 ```cangjie
-public static func isDefaultApplication(appType: String): Bool
+public static func isDefaultApplication(appType: ApplicationType): Bool
 ```
 
 **Description:** Determines whether the current application is the default application of the specified type based on the system-defined application types.
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| appType | String | Yes | - | The application type to query, which is a value from [ApplicationType](#enum-applicationtype). |
+| appType | ApplicationType | Yes | - | The application type to query, which is a value from [ApplicationType](#enum-applicationtype). |
 
 **Return Value:**
 
@@ -1724,7 +1724,7 @@ public static func isDefaultApplication(appType: String): Bool
 
 import kit.AbilityKit.*
 
-let tag = DefaultAppManager.isDefaultApplication(ApplicationType.Image.getValue())
+let tag = DefaultAppManager.isDefaultApplication(ApplicationType.Image)
 ```
 
 ## class Dependency
@@ -1741,7 +1741,7 @@ public class Dependency {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let bundleName
 
@@ -1757,7 +1757,7 @@ public let bundleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let moduleName
 
@@ -1773,7 +1773,7 @@ public let moduleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let versionCode
 
@@ -1789,7 +1789,7 @@ public let versionCode: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class ExtensionAbilityInfo
 
@@ -1819,7 +1819,7 @@ public class ExtensionAbilityInfo {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appIndex
 
@@ -1835,7 +1835,7 @@ public let appIndex: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let applicationInfo
 
@@ -1851,7 +1851,7 @@ public let applicationInfo: ApplicationInfo
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let bundleName
 
@@ -1867,7 +1867,7 @@ public let bundleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let descriptionId
 
@@ -1883,7 +1883,7 @@ public let descriptionId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let enabled
 
@@ -1899,7 +1899,7 @@ public let enabled: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let exported
 
@@ -1915,7 +1915,7 @@ public let exported: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let extensionAbilityType
 
@@ -1931,7 +1931,7 @@ public let extensionAbilityType: ExtensionAbilityType
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let extensionAbilityTypeName
 
@@ -1947,7 +1947,7 @@ public let extensionAbilityTypeName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let iconId
 
@@ -1963,7 +1963,7 @@ public let iconId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let labelId
 
@@ -2003,7 +2003,7 @@ public class HapModuleInfo {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let abilitiesInfo
 
@@ -2019,7 +2019,7 @@ public let abilitiesInfo: Array<AbilityInfo>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let codePath
 
@@ -2035,7 +2035,7 @@ public let codePath: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let dependencies
 
@@ -2051,7 +2051,7 @@ public let dependencies: Array<Dependency>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let description
 
@@ -2067,7 +2067,7 @@ public let description: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let descriptionId
 
@@ -2083,7 +2083,7 @@ public let descriptionId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let deviceTypes
 
@@ -2099,7 +2099,7 @@ public let deviceTypes: Array<String>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let extensionAbilitiesInfo
 
@@ -2115,7 +2115,7 @@ public let extensionAbilitiesInfo: Array<ExtensionAbilityInfo>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let fileContextMenuConfig
 
@@ -2131,7 +2131,7 @@ public let fileContextMenuConfig: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let hashValue
 
@@ -2147,7 +2147,7 @@ public let hashValue: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let icon
 
@@ -2163,7 +2163,7 @@ public let icon: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let iconId
 
@@ -2179,7 +2179,7 @@ public let iconId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let installationFree
 
@@ -2195,7 +2195,7 @@ public let installationFree: Bool
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let label
 
@@ -2211,7 +2211,7 @@ public let label: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let labelId
 
@@ -2227,7 +2227,7 @@ public let labelId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let mainElementName
 
@@ -2243,7 +2243,7 @@ public let mainElementName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let metadata
 
@@ -2259,7 +2259,7 @@ public let metadata: Array<Metadata>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let moduleType
 
@@ -2275,7 +2275,7 @@ public let moduleType: ModuleType
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let name
 
@@ -2291,7 +2291,7 @@ public let name: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let nativeLibraryPath
 
@@ -2307,7 +2307,7 @@ public let nativeLibraryPath: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let preloads
 
@@ -2323,7 +2323,7 @@ public let preloads: Array<PreloadItem>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let routerMap
 
@@ -2339,7 +2339,7 @@ public let routerMap: Array<RouterItem>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class ModuleMetadata
 
@@ -2354,7 +2354,7 @@ public class ModuleMetadata {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let metadata
 
@@ -2370,7 +2370,7 @@ public let metadata: Array<Metadata>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let moduleName
 
@@ -2386,7 +2386,7 @@ public let moduleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21## class MultiAppMode
+**Since:** 22## class MultiAppMode
 
 ```cangjie
 public class MultiAppMode {
@@ -2399,7 +2399,7 @@ public class MultiAppMode {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let maxCount
 
@@ -2415,7 +2415,7 @@ public let maxCount: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let multiAppModeType
 
@@ -2431,7 +2431,7 @@ public let multiAppModeType: MultiAppModeType
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class PreloadItem
 
@@ -2445,7 +2445,7 @@ public class PreloadItem {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let moduleName
 
@@ -2461,7 +2461,7 @@ public let moduleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class ReqPermissionDetail
 
@@ -2479,7 +2479,7 @@ public class ReqPermissionDetail {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var moduleName
 
@@ -2495,7 +2495,7 @@ public var moduleName: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var name
 
@@ -2511,7 +2511,7 @@ public var name: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var reason
 
@@ -2527,7 +2527,7 @@ public var reason: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var reasonId
 
@@ -2543,7 +2543,7 @@ public var reasonId: Int32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var usedScene
 
@@ -2559,7 +2559,7 @@ public var usedScene: UsedScene
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class RouterItem
 
@@ -2577,7 +2577,7 @@ public class RouterItem {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let buildFunction
 
@@ -2593,7 +2593,7 @@ public let buildFunction: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let customData
 
@@ -2609,7 +2609,7 @@ public let customData: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let data
 
@@ -2625,7 +2625,7 @@ public let data: Array<DataItem>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let name
 
@@ -2641,7 +2641,7 @@ public let name: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let pageSourceFile
 
@@ -2657,7 +2657,7 @@ public let pageSourceFile: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class SignatureInfo
 
@@ -2673,7 +2673,7 @@ public class SignatureInfo {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appId
 
@@ -2689,7 +2689,7 @@ public let appId: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let appIdentifier
 
@@ -2705,7 +2705,7 @@ public let appIdentifier: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let fingerprint
 
@@ -2721,7 +2721,7 @@ public let fingerprint: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class UsedScene
 
@@ -2736,7 +2736,7 @@ public class UsedScene {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var abilities
 
@@ -2752,7 +2752,7 @@ public var abilities: Array<String>
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var when
 
@@ -2768,7 +2768,7 @@ public var when: String
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class WindowSize
 
@@ -2787,7 +2787,7 @@ public class WindowSize {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let maxWindowHeight
 
@@ -2803,7 +2803,7 @@ public let maxWindowHeight: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let maxWindowRatio
 
@@ -2819,7 +2819,7 @@ public let maxWindowRatio: Float64
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let maxWindowWidth
 
@@ -2835,7 +2835,7 @@ public let maxWindowWidth: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let minWindowHeight
 
@@ -2851,7 +2851,7 @@ public let minWindowHeight: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let minWindowRatio
 
@@ -2867,7 +2867,7 @@ public let minWindowRatio: Float64
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let minWindowWidth
 
@@ -2883,7 +2883,9 @@ public let minWindowWidth: UInt32
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21## enum ApplicationType
+**Since:** 22
+
+## enum ApplicationType
 
 ```cangjie
 public enum ApplicationType {
@@ -2904,7 +2906,7 @@ public enum ApplicationType {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Audio
 
@@ -2916,7 +2918,7 @@ Audio
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Browser
 
@@ -2928,7 +2930,7 @@ Browser
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Email
 
@@ -2940,7 +2942,7 @@ Email
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Excel
 
@@ -2952,7 +2954,7 @@ Excel
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Image
 
@@ -2964,7 +2966,7 @@ Image
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Pdf
 
@@ -2976,7 +2978,7 @@ Pdf
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Ppt
 
@@ -2988,7 +2990,7 @@ Ppt
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Video
 
@@ -3000,7 +3002,7 @@ Video
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
+**Since:** 22
 
 ### Word
 
@@ -3012,25 +3014,7 @@ Word
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**Since:** 21
-
-### func getValue()
-
-```cangjie
-public func getValue(): String
-```
-
-**Description:** Gets the enumeration value.
-
-**System Capability:** SystemCapability.BundleManager.BundleFramework.DefaultApp
-
-**Since:** 21
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|String|The enumeration value.|
+**Since:** 22
 
 ## enum BundleType
 
@@ -3046,7 +3030,7 @@ public enum BundleType {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### App
 
@@ -3058,7 +3042,7 @@ App
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AtomicService
 
@@ -3070,7 +3054,7 @@ AtomicService
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum DisplayOrientation
 
@@ -3099,7 +3083,7 @@ public enum DisplayOrientation {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotation
 
@@ -3111,7 +3095,7 @@ AutoRotation
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotationLandscape
 
@@ -3123,7 +3107,7 @@ AutoRotationLandscape
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotationLandscapeRestricted
 
@@ -3135,7 +3119,7 @@ AutoRotationLandscapeRestricted
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotationPortrait
 
@@ -3147,7 +3131,7 @@ AutoRotationPortrait
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotationPortraitRestricted
 
@@ -3159,7 +3143,7 @@ AutoRotationPortraitRestricted
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotationRestricted
 
@@ -3171,7 +3155,7 @@ AutoRotationRestricted
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AutoRotationUnspecified
 
@@ -3183,7 +3167,7 @@ AutoRotationUnspecified
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FollowDesktop
 
@@ -3195,7 +3179,7 @@ FollowDesktop
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FollowRecent
 
@@ -3207,7 +3191,7 @@ FollowRecent
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Landscape
 
@@ -3219,7 +3203,7 @@ Landscape
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### LandscapeInverted
 
@@ -3231,7 +3215,7 @@ LandscapeInverted
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Locked
 
@@ -3243,7 +3227,7 @@ Locked
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Portrait
 
@@ -3255,7 +3239,7 @@ Portrait
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PortraitInverted
 
@@ -3267,7 +3251,7 @@ PortraitInverted
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unspecified
 
@@ -3279,7 +3263,7 @@ Unspecified
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum ExtensionAbilityType
 
@@ -3316,7 +3300,9 @@ public enum ExtensionAbilityType {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21### Accessibility
+**Since:** 22
+
+### Accessibility
 
 ```cangjie
 Accessibility
@@ -3326,7 +3312,7 @@ Accessibility
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Action
 
@@ -3338,7 +3324,7 @@ Action
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AdsService
 
@@ -3350,7 +3336,7 @@ AdsService
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Backup
 
@@ -3362,7 +3348,7 @@ Backup
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### DataShare
 
@@ -3374,7 +3360,7 @@ DataShare
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Driver
 
@@ -3386,7 +3372,7 @@ Driver
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### EmbeddedUi
 
@@ -3398,7 +3384,7 @@ EmbeddedUi
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### EnterpriseAdmin
 
@@ -3410,7 +3396,7 @@ EnterpriseAdmin
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FileShare
 
@@ -3422,7 +3408,7 @@ FileShare
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Form
 
@@ -3434,7 +3420,7 @@ Form
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### InputMethod
 
@@ -3446,7 +3432,7 @@ InputMethod
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### InsightIntentUi
 
@@ -3458,7 +3444,7 @@ InsightIntentUi
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Preview
 
@@ -3470,7 +3456,7 @@ Preview
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Print
 
@@ -3482,7 +3468,7 @@ Print
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Push
 
@@ -3494,7 +3480,7 @@ Push
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Service
 
@@ -3506,7 +3492,7 @@ Service
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Share
 
@@ -3518,7 +3504,7 @@ Share
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StaticSubscriber
 
@@ -3530,7 +3516,7 @@ StaticSubscriber
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Thumbnail
 
@@ -3542,7 +3528,7 @@ Thumbnail
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unspecified
 
@@ -3554,7 +3540,7 @@ Unspecified
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Wallpaper
 
@@ -3566,7 +3552,7 @@ Wallpaper
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Window
 
@@ -3578,7 +3564,7 @@ Window
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WorkScheduler
 
@@ -3590,7 +3576,7 @@ WorkScheduler
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum LaunchType
 
@@ -3607,7 +3593,7 @@ public enum LaunchType {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Multiton
 
@@ -3619,7 +3605,7 @@ Multiton
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Singleton
 
@@ -3631,7 +3617,7 @@ Singleton
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Specified
 
@@ -3643,7 +3629,7 @@ Specified
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum ModuleType
 
@@ -3660,7 +3646,7 @@ public enum ModuleType {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Entry
 
@@ -3672,7 +3658,7 @@ Entry
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Feature
 
@@ -3684,7 +3670,7 @@ Feature
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Shared
 
@@ -3696,7 +3682,7 @@ Shared
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum MultiAppModeType
 
@@ -3713,7 +3699,7 @@ public enum MultiAppModeType {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### AppClone
 
@@ -3725,7 +3711,7 @@ AppClone
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### MultiInstance
 
@@ -3737,7 +3723,7 @@ MultiInstance
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unspecified
 
@@ -3749,7 +3735,7 @@ Unspecified
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21## enum PermissionGrantState
+**Since:** 22## enum PermissionGrantState
 
 ```cangjie
 public enum PermissionGrantState {
@@ -3763,7 +3749,7 @@ public enum PermissionGrantState {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PermissionDenied
 
@@ -3775,7 +3761,7 @@ PermissionDenied
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PermissionGranted
 
@@ -3787,7 +3773,7 @@ PermissionGranted
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum SupportWindowMode
 
@@ -3804,7 +3790,7 @@ public enum SupportWindowMode {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Floating
 
@@ -3816,7 +3802,7 @@ Floating
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FullScreen
 
@@ -3828,7 +3814,7 @@ FullScreen
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Split
 
@@ -3840,4 +3826,4 @@ Split
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Since:** 22
