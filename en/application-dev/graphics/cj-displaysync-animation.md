@@ -1,10 +1,10 @@
 # Requesting Animation Frame Rate
 
-In application development, [property animations](../../../en/application-dev/reference/arkui-cj/cj-animation-animation.md) and [explicit animations](../../../en/application-dev/reference/arkui-cj/cj-animation-animateto.md) can use the optional parameter [ExpectedFrameRateRange](../../../en/application-dev/reference/arkui-cj/cj-animation-animateto.md#expectedframeraterange) to configure different expected rendering frame rates for various animations.
+In application development, [Property Animation](../reference/arkui-cj/cj-animation-animation.md) and [Explicit Animation](../reference/arkui-cj/cj-animation-animateto.md) can use the optional parameter [ExpectedFrameRateRange](../reference/arkui-cj/cj-animation-animateto.md#expectedframeraterange) to configure different expected frame rates for various animations.
 
 ## Requesting Frame Rate for Property Animation
 
-Define a property animation for a text component with a requested rendering frame rate of 60, as shown in the following example:
+Defining a property animation for a text component with a requested frame rate of 60, example as follows:
 
 <!-- compile -->
 
@@ -33,17 +33,17 @@ class EntryView {
                     .animationStart(animateOpt1)
                     .fontSize(50)
                     .fontWeight(FontWeight.Bold)
-                    .onClick { evt => this.message = "Hello Cangjie"
-                    }
+                    .onClick ({ evt => this.message = "Hello Cangjie"
+                    })
             }.width(100.percent)
         }.height(100.percent)
     }
 }
- ```
+```
 
 ## Requesting Frame Rate for Explicit Animation
 
-Define an explicit animation for a button component with a requested rendering frame rate of 30, as shown in the following example:
+Defining an explicit animation for a button component with a requested frame rate of 30, example as follows:
 
 <!-- compile -->
 
@@ -64,7 +64,7 @@ class EntryView {
                 Text(this.message)
                     .fontSize(50)
                     .fontWeight(FontWeight.Bold)
-                    .onClick {
+                    .onClick ({
                         evt => getUIContext().animateTo(
                             AnimateParam(
                                 duration: 1200,
@@ -77,7 +77,7 @@ class EntryView {
                             ),
                             {=> this.rotateAngle = 90.0}
                         )
-                    }
+                    })
             }.width(100.percent)
         }.height(100.percent)
     }
@@ -191,17 +191,17 @@ class EntryView {
                     )
                     .width(40.percent)
                     .height(40)
-                    .shadow(radius: 10, color: Color(0x909399), offsetX: 1, offsetY: 1)
+                    .shadow(radius: 10.0, color: Color(0x909399), offsetX: 1.0, offsetY: 1.0)
             }
                 .width(100.percent)
                 .justifyContent(FlexAlign.Center)
-                .shadow(radius: 10, color: Color(0x909399), offsetX: 1, offsetY: 1)
+                .shadow(radius: 10.0, color: Color(0x909399), offsetX: 1.0, offsetY: 1.0)
                 .alignItems(VerticalAlign.Bottom)
                 .layoutWeight(1)
         }
             .width(100.percent)
             .justifyContent(FlexAlign.Center)
-            .shadow(radius: 10, color: Color(0x909399), offsetX: 1, offsetY: 1)
+            .shadow(radius: 10.0, color: Color(0x909399), offsetX: 1.0, offsetY: 1.0)
             .layoutWeight(1)
     }
 }

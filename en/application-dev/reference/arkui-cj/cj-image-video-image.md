@@ -4,9 +4,9 @@ The Image component is used to display images in applications. It supports image
 
 > **Notes:**
 >
-> - When using shortcut keys to copy the Image component, the Image component must be in a [focused state](./cj-universal-attribute-focus.md#func-focusontouchbool). By default, the Image component is not focusable. To enable focus, set the [focusable](cj-apis-window.md#var-focusable) attribute to true, then use the TAB key to shift focus to the component. Set the [focusOnTouch](./cj-universal-attribute-focus.md#func-focusontouchbool) attribute to true to enable focus on click.
-> - The supported image formats include SVG sources. For SVG tag documentation, refer to [SVG Tag Description](../ImageKit/cj-apis-image.md#svg标签说明).
-> - The playback of animated images depends on the visibility changes of the Image node. By default, animations are not played. When the node becomes visible, the animation starts via a callback, and when the node becomes invisible, the animation stops. The visibility state is determined by the [onVisibleAreaChange](./cj-ui-framework.md#func-onvisibleareachangearrayfloat64-boolfloat64---unit) event. When the visible threshold ratios are greater than 0, the Image is considered visible.
+> - When copying the Image component using shortcut keys, the Image component must be in a [focused state](./cj-universal-attribute-focus.md#func-focusontouchbool). By default, the Image component is not focusable. To enable focus, set the [focusable](cj-apis-window.md#var-focusable) attribute to true, then use the TAB key to switch focus to the component. Setting the [focusOnTouch](./cj-universal-attribute-focus.md#func-focusontouchbool) attribute to true will allow the component to gain focus when clicked.
+> - The component supports SVG image sources. For SVG tag documentation, refer to [SVG Tag Description](../ImageKit/cj-apis-image.md#svg标签说明).
+> - The playback of animated images depends on the visibility changes of the Image node. By default, animations are not played. When the node becomes visible, the animation starts via a callback, and when the node becomes invisible, the animation stops. The visibility state is determined by the [onVisibleAreaChange](./cj-ui-framework.md#func-onvisibleareachangearrayfloat64-boolfloat64---unit) event. When the visible threshold ratio is greater than 0, the Image is considered visible.
 
 ## Import Module
 
@@ -16,7 +16,7 @@ import kit.ArkUI.*
 
 ## Required Permissions
 
-When using network images, add the internet usage permission `ohos.permission.INTERNET` to the "requestPermissions" section in module.json5.
+When using network images, add the internet usage permission `ohos.permission.INTERNET` to the `"requestPermissions"` section in module.json5.
 
 ```json
 "requestPermissions": [
@@ -30,10 +30,10 @@ None
 
 ## Creating the Component
 
-### init(ResourceStr)
+### init(?ResourceStr)
 
 ```cangjie
-public init(src: ResourceStr)
+public init(src: ?ResourceStr)
 ```
 
 **Function:** Obtains an image from the image data source for subsequent rendering and display.
@@ -41,23 +41,23 @@ public init(src: ResourceStr)
 > **Notes:**
 >
 > - If the Image component fails to load the image or the image size is 0, the component size automatically becomes 0 and does not follow the parent component's layout constraints.
-> - By default, the Image component crops the image from the center. For example, if the component's width and height are set to the same value but the original image's aspect ratio differs, the middle area is cropped.
-> - If the Image loads successfully and the component's width and height are not set, its display size adapts to the parent component.
+> - By default, the Image component crops the image from the center. For example, if the component's width and height are set to the same value but the original image has unequal dimensions, the middle area is cropped.
+> - If the Image loads successfully and no width or height is set for the component, its display size adapts to the parent component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| src | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | The data source of the image.<br/>ResourceStr can be used to load network and local images. |
+| src | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | The data source of the image.<br>Default value: "" |
 
-### init(PixelMap)
+### init(?PixelMap)
 
 ```cangjie
-public init(src: PixelMap)
+public init(src: ?PixelMap)
 ```
 
 **Function:** Obtains an image from the image data source for subsequent rendering and display.
@@ -65,312 +65,312 @@ public init(src: PixelMap)
 > **Notes:**
 >
 > - If the Image component fails to load the image or the image size is 0, the component size automatically becomes 0 and does not follow the parent component's layout constraints.
-> - By default, the Image component crops the image from the center. For example, if the component's width and height are set to the same value but the original image's aspect ratio differs, the middle area is cropped.
-> - If the Image loads successfully and the component's width and height are not set, its display size adapts to the parent component.
+> - By default, the Image component crops the image from the center. For example, if the component's width and height are set to the same value but the original image has unequal dimensions, the middle area is cropped.
+> - If the Image loads successfully and no width or height is set for the component, its display size adapts to the parent component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| src | [PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap) | Yes | - | The data source of the image.<br/>PixelMap is a pixel map format commonly used in image editing scenarios. |
+| src | ?[PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap) | Yes | - | The data source of the image.<br/>PixelMap is a pixel map format commonly used in image editing scenarios. |
 
 ## Universal Attributes/Events
 
 Universal Attributes: All supported.
 
-> **Notes:**
+> **Note:**
 >
-> The Image component does not support setting the universal attribute [foregroundColor](./cj-universal-attribute-foregroundcolor.md#func-foregroundcolorresourcecolor). Instead, use the Image component's [fillColor](#func-fillcolorresourcecolor) attribute to set the fill color.
+> The Image component does not support the universal attribute [foregroundColor](./cj-universal-attribute-foregroundcolor.md#func-foregroundcolorresourcecolor). Instead, use the Image component's [fillColor](#func-fillcolorresourcecolor) attribute to set the fill color.
 
 Universal Events: All supported.
 
 ## Component Attributes
 
-### func alt(ResourceStr)
+### func alt(?ResourceStr)
 
 ```cangjie
-public func alt(src: ResourceStr): This
+public func alt(src: ?ResourceStr): This
 ```
 
 **Function:** Sets the placeholder image displayed during image loading.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| src | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | The placeholder image displayed during loading. Local images (png, jpg, bmp, svg, gif, and heif formats) are not supported; network images are supported. |
+| src | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | The placeholder image displayed during loading. Supports local images (png, jpg, bmp, svg, gif, and heif types). Network images are not supported.<br>Default value: "". |
 
-### func autoResize(Bool)
+### func autoResize(?Bool)
 
 ```cangjie
-public func autoResize(value: Bool): This
+public func autoResize(value: ?Bool): This
 ```
 
 **Function:** Sets whether to automatically scale the image source during decoding.
 
-> **Notes:**
+> **Note:**
 >
-> This operation determines the source size used for drawing based on the display area dimensions, which helps reduce memory usage.
+> This operation determines the source image size used for drawing based on the display area dimensions, which helps reduce memory usage.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to automatically scale the image source during decoding. When set to true, the component determines the source size used for drawing based on the display area dimensions, which helps reduce memory usage. For example, if the original image size is 1920x1080 and the display area size is 200x200, the image will be downsampled to 200x200 during decoding, significantly saving memory.<br/>Default: false. |
+| value | ?Bool | Yes | - | Whether to automatically scale the image source during decoding. When set to true, the component determines the source image size used for drawing based on the display area dimensions, which helps reduce memory usage. For example, if the original image size is 1920x1080 and the display area size is 200x200, the image will be downsampled to 200x200 during decoding, significantly saving memory.<br>Default value: false |
 
-### func fillColor(ResourceColor)
+### func fillColor(?ResourceColor)
 
 ```cangjie
-public func fillColor(value: ResourceColor): This
+public func fillColor(value: ?ResourceColor): This
 ```
 
-**Function:** Sets the fill color to replace the SVG image. Only effective for SVG sources.
+**Function:** Sets the fill color to replace the SVG image color. Only effective for SVG image sources.
 
-> **Notes:**
+> **Note:**
 >
 > To modify the color of a PNG image, use [colorFilter](#class-colorfilter).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Sets the fill color.<br/>By default, the component is not filled. If an invalid value is passed, the system uses the default theme color: black in light mode and white in dark mode. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The fill color to set. |
 
-### func fitOriginalSize(Bool)
+### func fitOriginalSize(?Bool)
 
 ```cangjie
-public func fitOriginalSize(value: Bool): This
+public func fitOriginalSize(value: ?Bool): This
 ```
 
-**Function:** Sets whether the image display size follows the source image size. If the Image component size is not set, its display size follows the source image size.
+**Function:** Sets whether the display size of the image follows the source image size. If the Image component size is not set, its display size will follow the source image size.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to follow the source image size.<br/>Default: false. |
+| value | ?Bool | Yes | - | Whether to follow the source image size.<br>Default value: false. |
 
-### func interpolation(ImageInterpolation)
+### func interpolation(?ImageInterpolation)
 
 ```cangjie
-public func interpolation(value: ImageInterpolation): This
+public func interpolation(value: ?ImageInterpolation): This
 ```
 
-**Function:** Sets the interpolation effect for the image.
+**Function:** Sets the interpolation effect for the image, mitigating aliasing issues during scaling.
 
 > **Notes:**
 >
-> - Reduces aliasing issues when low-resolution images are displayed at larger sizes. Only applies to image upscaling.
-> - SVG sources do not support this attribute.
+> - Reduces aliasing when low-resolution images are enlarged. Only applies to image upscaling.
+> - SVG image sources do not support this attribute.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ImageInterpolation](#enum-imageinterpolation) | Yes | - | The interpolation effect for the image.<br/>Default: ImageInterpolation.Low. |
+| value | ?[ImageInterpolation](./cj-common-types.md#enum-imageinterpolation) | Yes | - | The interpolation effect for the image.<br>Default value: ImageInterpolation.Low. |
 
-### func matchTextDirection(Bool)
+### func matchTextDirection(?Bool)
 
 ```cangjie
-public func matchTextDirection(value: Bool): This
+public func matchTextDirection(value: ?Bool): This
 ```
 
 **Function:** Sets whether the image follows the system language direction, displaying a mirrored flip effect in RTL language environments.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to follow the system language direction.<br/>Default: false. |
+| value | ?Bool | Yes | - | Whether to follow the system language direction.<br>Default value: false. |
 
-### func objectFit(ImageFit)
+### func objectFit(?ImageFit)
 
 ```cangjie
-public func objectFit(value: ImageFit): This
+public func objectFit(value: ?ImageFit): This
 ```
 
-**Function:** Sets the fill effect for the image.
+**Function:** Sets the fill effect of the image.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ImageFit](./cj-common-types.md#enum-imagefit) | Yes | - | The fill effect for the image.<br/>Default: ImageFit.Cover. |
+| value | ?[ImageFit](./cj-common-types.md#enum-imagefit) | Yes | - | The fill effect of the image.<br>Default value: ImageFit.Cover. |
 
-### func objectRepeat(ImageRepeat)
+### func objectRepeat(?ImageRepeat)
 
 ```cangjie
-public func objectRepeat(value: ImageRepeat): This
+public func objectRepeat(value: ?ImageRepeat): This
 ```
 
-**Function:** Sets the repeat style for the image.
+**Function:** Sets the repeat style of the image.
 
 > **Notes:**
 >
-> - Repeats from the center outward, truncating if there is insufficient space for another image.
-> - SVG sources do not support this attribute.
+> - Repeats from the center outward. If there is insufficient space for another image, it will be truncated.
+> - SVG image sources do not support this attribute.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ImageRepeat](./cj-common-types.md#enum-imagerepeat) | Yes | - | The repeat style for the image.<br/>Default: ImageRepeat.NoRepeat. |
+| value | ?[ImageRepeat](./cj-common-types.md#enum-imagerepeat) | Yes | - | The repeat style of the image.<br>Default value: ImageRepeat.NoRepeat. |
 
-### func renderMode(ImageRenderMode)
+### func renderMode(?ImageRenderMode)
 
 ```cangjie
-public func renderMode(value: ImageRenderMode): This
+public func renderMode(value: ?ImageRenderMode): This
 ```
 
-**Function:** Sets the rendering mode for the image.
+**Function:** Sets the rendering mode of the image.
 
 > **Notes:**
 >
-> - SVG sources do not support this attribute.
-> - When [ColorFilter](#class-colorfilter) is set, this attribute setting does not take effect.
+> - SVG image sources do not support this attribute.
+> - If [ColorFilter](#class-colorfilter) is set, this attribute setting will not take effect.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ImageRenderMode](#enum-imagerendermode) | Yes | - | The rendering mode for the image, either original color or black.<br/>Default: ImageRenderMode.Original. |
+| value | ?[ImageRenderMode](./cj-common-types.md#enum-imagerendermode) | Yes | - | The rendering mode of the image. SVG image sources do not support this attribute.<br>Default value: ImageRenderMode.Original. |
 
-### func sourceSize(Length, Length)
+### func sourceSize(?Length, ?Length)
 
 ```cangjie
-public func sourceSize(width: Length, height: Length): This
+public func sourceSize(width: ?Length, height: ?Length): This
 ```
 
-**Function:** Decodes the original image into a PixelMap of the specified size. PixelMap resources do not support this function.
+**Function:** Decodes the original image into a PixelMap image of the specified size. PixelMap resources do not support this function.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| width | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The width of the decoded image.<br>Unit: vp. |
-| height | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The height of the decoded image.<br>Unit: vp. |
+| width | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The width of the decoded image.<br>Default value: 0.0.px. |
+| height | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The height of the decoded image.<br>Default value: 0.0.px. |
 
-### func syncLoad(Bool)
+### func syncLoad(?Bool)
 
 ```cangjie
-public func syncLoad(value: Bool): This
+public func syncLoad(value: ?Bool): This
 ```
 
 **Function:** Sets whether to load the image synchronously.
 
-> **Notes:**
+> **Note:**
 >
-> It is recommended to set `syncLoad` to true when loading small local images, as the operation is quick and can be executed on the main thread.
+> It is recommended to set `syncLoad` to true when loading small local images, as the loading time is short and can be executed on the main thread.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to load the image synchronously. By default, images are loaded asynchronously. Synchronous loading blocks the UI thread and does not display a placeholder image.<br/>Default: false. |
+| value | ?Bool | Yes | - | Whether to load the image synchronously. By default, images are loaded asynchronously. Synchronous loading blocks the UI thread and does not display a placeholder image.<br>Default value: false. |
 
 ## Component Events
 
-### func onComplete(ImageCompleteCallback)
+### func onComplete(?ImageCompleteCallback)
 
 ```cangjie
-public func onComplete(callback: ImageCompleteCallback): This
+public func onComplete(callback: ?ImageCompleteCallback): This
 ```
 
-**Function:** Triggered when the image is successfully loaded, returning the dimensions of the successfully loaded image.
+**Function:** Triggered when the image is successfully loaded, returning the dimensions of the loaded image.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | ImageCompleteCallback | Yes | - | The callback function triggered when the image is successfully loaded. |
+| callback | ?[ImageCompleteCallback](#type-imagecompletecallback) | Yes | - | The callback function triggered when the image is successfully loaded.<br>Default value: { _ => }. |
 
-### func onError(ImageErrorCallback)
+### func onError(?ImageErrorCallback)
 
 ```cangjie
-public func onError(callback: ImageErrorCallback): This
+public func onError(callback: ?ImageErrorCallback): This
 ```
 
 **Function:** Triggered when an error occurs during image loading.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | ImageErrorCallback | Yes | - | The callback function triggered when an error occurs during image loading. |
+| callback | ?[ImageErrorCallback](#type-imageerrorcallback) | Yes | - | The callback function triggered when an error occurs during image loading.<br>Default value: { _ => }. |
 
-### func onFinish(() -> Unit)
+### func onFinish(?() -> Unit)
 
 ```cangjie
-public func onFinish(event: () -> Unit): This
+public func onFinish(event: ?() -> Unit): This
 ```
 
-**Function:** When the loaded source file is an animated SVG image, this event is triggered when the SVG animation finishes playing. If the animation is set to loop infinitely, this event will not be triggered.
+**Function:** Triggered when the loaded source file is an animated SVG image and the animation completes. If the animation is set to loop infinitely, this event will not be triggered.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| event | () -> Unit | Yes | - | The callback function triggered when the SVG animation finishes playing. |
+| event | ?() -> Unit | Yes | - | The callback function triggered when the SVG animation completes.<br>Default value: { => }. |
 
 ## Basic Type Definitions
 
@@ -378,7 +378,7 @@ public func onFinish(event: () -> Unit): This
 
 ```cangjie
 public class ColorFilter {
-    public init(array: Array<Float32>)
+    public init(value: ?Array<Float32>)
 }
 ```
 
@@ -386,415 +386,165 @@ public class ColorFilter {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
-#### init(Array\<Float32>)
+#### init(?Array\<Float32>)
 
 ```cangjie
-public init(value: Array<Float32>)
+public init(value: ?Array<Float32>)
 ```
 
 **Function:** Constructs a color filter matrix.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Array\<Float32> | Yes | - | A 4x5 filter matrix. |### class ImageLoadResult
+| value | ?Array\<Float32> | No | - | A 4x5 filter matrix.<br>Default value: [] |
+
+### class ImageError
 
 ```cangjie
-public class ImageLoadResult {
-    public var width: Float64
-    public var height: Float64
-    public var componentWidth: Float64
-    public var componentHeight: Float64
-    public var loadingStatus: Int32
-    public var contentWidth: Float64
-    public var contentHeight: Float64
-    public var contentOffsetX: Float64
-    public var contentOffsetY: Float64
+public class ImageError {
+    public var componentWidth: ?Float64
+    public var componentHeight: ?Float64
+    public var message: ?String
 }
 ```
 
-**Function:** Image loading success type.
+**Function:** The return object for the callback triggered when an image loading error occurs.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 #### var componentHeight
 
 ```cangjie
-public var componentHeight: Float64
+public var componentHeight: ?Float64
 ```
 
-**Function:** Height of the component, in px.
+**Function:** The height of the component, in px.
 
-**Type:** Float64
+**Type:** ?Float64
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 #### var componentWidth
 
 ```cangjie
-public var componentWidth: Float64
+public var componentWidth: ?Float64
 ```
 
-**Function:** Width of the component, in px.
+**Function:** The width of the component, in px.
 
-**Type:** Float64
+**Type:** ?Float64
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
+
+#### var message
+
+```cangjie
+public var message: ?String
+```
+
+**Function:** The error message.
+
+**Type:** ?String
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+### class ImageLoadResult
+
+```cangjie
+public class ImageLoadResult {
+    public var width: ?Float64
+    public var height: ?Float64
+    public var componentWidth: ?Float64
+    public var componentHeight: ?Float64
+    public var loadingStatus: ?Int32
+    public var contentWidth: ?Float64
+    public var contentHeight: ?Float64
+    public var contentOffsetX: ?Float64
+    public var contentOffsetY: ?Float64
+}
+```
+
+**Function:** The type returned when an image is successfully loaded.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+#### var componentHeight
+
+```cangjie
+public var componentHeight: ?Float64
+```
+
+**Function:** The height of the component, in px.
+
+**Type:** ?Float64
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+#### var componentWidth
+
+```cangjie
+public var componentWidth: ?Float64
+```
+
+**Function:** The width of the component, in px.
+
+**Type:** ?Float64
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
 
 #### var contentHeight
 
-```cangjie
-public var contentHeight: Float64
-```
-
-**Function:** Actual rendered height of the image, in px.
-
-> **Note:**
->
-> Only valid when loadingStatus returns 1.
-
-**Type:** Float64
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var contentOffsetX
+```## type ImageCompleteCallback
 
 ```cangjie
-public var contentOffsetX: Float64
-```
-
-**Function:** X-axis offset of the actual rendered content relative to the component itself, in px.
-
-> **Note:**
->
-> Only valid when loadingStatus returns 1.
-
-**Type:** Float64
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var contentOffsetY
-
-```cangjie
-public var contentOffsetY: Float64
-```
-
-**Function:** Y-axis offset of the actual rendered content relative to the component itself, in px.
-
-> **Note:**
->
-> Only valid when loadingStatus returns 1.
-
-**Type:** Float64
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var contentWidth
-
-```cangjie
-public var contentWidth: Float64
-```
-
-**Function:** Actual rendered width of the image, in px.
-
-> **Note:**
->
-> Only valid when loadingStatus returns 1.
-
-**Type:** Float64
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var height
-
-```cangjie
-public var height: Float64
-```
-
-**Function:** Height of the image, in px.
-
-**Type:** Float64
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var loadingStatus
-
-```cangjie
-public var loadingStatus: Int32
-```
-
-**Function:** Status indicating successful image loading.
-
-**Type:** Int32
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var width
-
-```cangjie
-public var width: Float64
-```
-
-**Function:** Width of the image, in px.
-
-**Type:** Float64
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### enum ImageInterpolation
-
-```cangjie
-public enum ImageInterpolation {
-    | None
-    | High
-    | Medium
-    | Low
-    | ...
-}
-```
-
-**Function:** Image interpolation method.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parent Type:**
-
-- Equatable\<ImageInterpolation>
-
-#### High
-
-```cangjie
-High
-```
-
-**Function:** High-quality interpolation.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### Low
-
-```cangjie
-Low
-```
-
-**Function:** Low-quality interpolation.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### Medium
-
-```cangjie
-Medium
-```
-
-**Function:** Medium-quality interpolation.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### None
-
-```cangjie
-None
-```
-
-**Function:** No interpolation.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### func !=(ImageInterpolation)
-
-```cangjie
-public operator func !=(other: ImageInterpolation): Bool
-```
-
-**Function:** Determines whether two enumeration values are not equal.
-
-**Parameters:**
-
-|Parameter|Type|Required|Default Value|Description|
-|:---|:---|:---|:---|:---|
-|other|[ImageInterpolation](#enum-imageinterpolation)|Yes|-|Another enumeration value to compare.|
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enumeration values are not equal, otherwise returns false.|
-
-#### func ==(ImageInterpolation)
-
-```cangjie
-public operator func ==(other: ImageInterpolation): Bool
-```
-
-**Function:** Determines whether two enumeration values are equal.
-
-**Parameters:**
-
-|Parameter|Type|Required|Default Value|Description|
-|:---|:---|:---|:---|:---|
-|other|[ImageInterpolation](#enum-imageinterpolation)|Yes|-|Another enumeration value to compare.|
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
-
-### enum ImageRenderMode
-
-```cangjie
-public enum ImageRenderMode <: Equatable<ImageRenderMode> {
-    | Original
-    | Template
-    | ...
-}
-```
-
-**Function:** Image rendering mode.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parent Type:**
-
-- Equatable\<ImageRenderMode>
-
-#### Original
-
-```cangjie
-Original
-```
-
-**Function:** Renders the image as-is, including colors.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### Template
-
-```cangjie
-Template
-```
-
-**Function:** Renders the image as a template, ignoring color information.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### func !=(ImageRenderMode)
-
-```cangjie
-public operator func !=(other: ImageRenderMode): Bool
-```
-
-**Function:** Determines whether two enumeration values are not equal.
-
-**Parameters:**
-
-|Parameter|Type|Required|Default Value|Description|
-|:---|:---|:---|:---|:---|
-|other|[ImageRenderMode](#enum-imagerendermode)|Yes|-|Another enumeration value to compare.|
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enumeration values are not equal, otherwise returns false.|
-
-#### func ==(ImageRenderMode)
-
-```cangjie
-public operator func ==(other: ImageRenderMode): Bool
-```
-
-**Function:** Determines whether two enumeration values are equal.
-
-**Parameters:**
-
-|Parameter|Type|Required|Default Value|Description|
-|:---|:---|:---|:---|:---|
-|other|[ImageRenderMode](#enum-imagerendermode)|Yes|-|Another enumeration value to compare.|
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
-
-## type ImageCompleteCallback
-
-```cangjie
-public type ImageCompleteCallback =(ImageLoadResult) -> Unit
+public type ImageCompleteCallback = (ImageLoadResult) -> Unit
 ```
 
 **Function:** Callback function type for image loading completion.
 
+**Initial Version:** 22
+
 ## type ImageErrorCallback
 
 ```cangjie
-public type ImageErrorCallback =(ImageError) -> Unit
+public type ImageErrorCallback = (ImageError) -> Unit
 ```
 
 **Function:** Callback function type for image loading errors.
+
+**Initial Version:** 22
 
 ## Example Code
 
@@ -808,7 +558,8 @@ Loading basic image types such as png, gif, svg, and jpg.
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component
@@ -816,25 +567,25 @@ class EntryView {
     func build() {
         Flex(direction: FlexDirection.Column, alignItems: ItemAlign.Start) {
                 Row() {
-                    // Load png format image
+                    // Loading png format image
                     Image(@r(app.media.startIcon))
                     .width(110)
                     .height(110)
                     .margin(15)
                     .overlay(value: "png", align: Alignment.Bottom, offset: OverlayOffset(x: 0.0, y: 20.0))
-                    // Load gif format image
+                    // Loading gif format image
                     Image(@r(app.media.list))
                     .width(110).height(110).margin(15)
                     .overlay(value: "gif", align: Alignment.Bottom, offset: OverlayOffset(x: 0.0, y: 20.0))
                 }
                 Row() {
-                    // Load svg format image
+                    // Loading svg format image
                     Image(@r(app.media.svg))
                     .width(110)
                     .height(110)
                     .margin(15)
                     .overlay(value: "svg", align: Alignment.Bottom, offset: OverlayOffset(x: 0.0, y: 20.0))
-                    // Load jpg format image
+                    // Loading jpg format image
                     Image(@r(app.media.startIcon_jpg))
                     .width(110)
                     .height(110)
@@ -849,7 +600,9 @@ class EntryView {
 }
 ```
 
-![image1](figures/image1.gif)### Example 2 (Adding Events to Images)
+![image1](figures/image1.gif)
+
+### Example 2 (Adding Events to Images)
 
 Adding onClick and onFinish events to images.
 
@@ -859,7 +612,8 @@ Adding onClick and onFinish events to images.
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component
@@ -872,23 +626,23 @@ class EntryView {
 
     func build() {
         Column(){
-            // Add click event to image, load specific image after click
+            // Adding click event to image, loading specific image after click
             Image(this.src)
             .width(100)
             .height(100)
-            .onClick{
+            .onClick({
                     evt =>
                     this.src =this.imageTwo
-            }
-            // When loading SVG format images
+            })
+            // When loading SVG format image
             Image(this.src2)
             .width(100)
             .height(100)
-            .onFinish{
-                    // Load another image after SVG animation completes
+            .onFinish({
+                    // Loading another image when SVG animation completes
                     =>
                     this.src2 =this.imageOne
-            }
+            })
         }
     }
 }
@@ -898,7 +652,7 @@ class EntryView {
 
 ### Example 3 (Setting Image Fill Effects)
 
-This example demonstrates setting fill effects for images using objectFit.
+This example sets fill effects for images through objectFit.
 
 <!-- run -->
 
@@ -906,7 +660,8 @@ This example demonstrates setting fill effects for images using objectFit.
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component
@@ -914,16 +669,16 @@ class EntryView {
     func build() {
         Flex(direction: FlexDirection.Column, alignItems: ItemAlign.Start) {
             Row() {
-                // Load PNG format image
-                Image(@r(app.media.view))
+                // Loading png format image
+                Image(@r(app.media.flower))
                 .width(110)
                 .height(110)
                 .margin(15)
                 .overlay(value: "Contain", align: Alignment.Bottom, offset: OverlayOffset(x: 0.0, y: 20.0))
                 .border(width: 2, color: 0xFEC0CD)
                 .objectFit(ImageFit.Contain)
-                // Load GIF format image
-                Image(@r(app.media.view))
+                // Loading gif format image
+                Image(@r(app.media.bybridhar_gif1))
                 .width(110)
                 .height(110)
                 .margin(15)
@@ -932,15 +687,15 @@ class EntryView {
                 .objectFit(ImageFit.Cover)
             }
             Row() {
-                // Load SVG format image
-                Image(@r(app.media.view))
+                // Loading svg format image
+                Image(@r(app.media.svg))
                 .width(110)
                 .height(110)
                 .margin(15)
                 .overlay(value: "Fill", align: Alignment.Bottom, offset: OverlayOffset(x: 0.0, y: 20.0))
                 .border(width: 2, color: 0xFEC0CD)
                 .objectFit(ImageFit.Fill)
-                // Load JPG format image
+                // Loading jpg format image
                 Image(@r(app.media.startIcon))
                 .width(110)
                 .height(110)
@@ -950,16 +705,16 @@ class EntryView {
                 .objectFit(ImageFit.ScaleDown)
             }
             Row() {
-                // Load PNG format image
-                Image(@r(app.media.view))
+                // Loading png format image
+                Image(@r(app.media.media1))
                 .width(110)
                 .height(110)
                 .margin(15)
                 .overlay(value: "Auto", align: Alignment.Bottom, offset: OverlayOffset(x: 0.0, y: 20.0))
                 .border(width: 2, color: 0xFEC0CD)
                 .objectFit(ImageFit.Auto)
-                // Load GIF format image
-                Image(@r(app.media.view))
+                // Loading gif format image
+                Image(@r(app.media.bybridhar_gif1))
                 .width(110)
                 .height(110)
                 .margin(15)
@@ -975,11 +730,11 @@ class EntryView {
 }
 ```
 
-![image4](figures/image10.jpg)
+![image4](figures/image10.gif)
 
 ### Example 4 (Switching Between Different Image Types)
 
-This example demonstrates displaying effects when using PNG and SVG formats as data sources.
+This example demonstrates the display effects of png and svg types as data sources.
 
 <!-- run -->
 
@@ -987,7 +742,8 @@ This example demonstrates displaying effects when using PNG and SVG formats as d
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component
@@ -1004,10 +760,10 @@ class EntryView {
                 .height(100)
             Button("Click to switch Image src")
                 .padding(20)
-                .onClick{
+                .onClick({
                     evt =>
                     this.imageSrcIndex = (this.imageSrcIndex + 1) % 2
-            }
+            })
         }
     }
 }
@@ -1017,7 +773,7 @@ class EntryView {
 
 ### Example 5 (Setting Image Decoding Size via sourceSize)
 
-This example demonstrates customizing image decoding size using the [sourceSize](#func-sourcesizelength-length) interface.
+This example customizes image decoding size through the [sourceSize](#func-sourcesizelength-length) interface.
 
 <!-- run -->
 
@@ -1025,7 +781,8 @@ This example demonstrates customizing image decoding size using the [sourceSize]
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.component.ImageFit
 
 @Entry
@@ -1055,7 +812,7 @@ class EntryView {
 
 ### Example 6 (Setting Image Rendering Mode via renderMode)
 
-This example demonstrates setting image rendering mode to grayscale using the [renderMode](#func-rendermodeimagerendermode) interface.
+This example sets image rendering mode to grayscale through the [renderMode](#func-rendermodeimagerendermode) interface.
 
 <!-- run -->
 
@@ -1063,7 +820,8 @@ This example demonstrates setting image rendering mode to grayscale using the [r
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.component.ImageFit
 
 @Entry
@@ -1088,7 +846,7 @@ class EntryView {
 
 ### Example 7 (Setting Image Repeat Style via objectRepeat)
 
-This example demonstrates repeating image drawing on the vertical axis using the [objectRepeat](#func-objectrepeatimagerepeat) interface.
+This example repeats image drawing on the vertical axis through the [objectRepeat](#func-objectrepeatimagerepeat) interface.
 
 <!-- run -->
 
@@ -1096,7 +854,8 @@ This example demonstrates repeating image drawing on the vertical axis using the
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.component.ImageFit
 
 @Entry
@@ -1122,7 +881,7 @@ class EntryView {
 
 ### Example 8 (Setting Fill Color for SVG Images)
 
-This example demonstrates repeating image drawing on the vertical axis using the [fillColor](#func-fillcolorresourcecolor) interface.
+This example sets fill color for SVG images through the [fillColor](#func-fillcolorresourcecolor) interface.
 
 <!-- run -->
 
@@ -1130,7 +889,8 @@ This example demonstrates repeating image drawing on the vertical axis using the
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component
@@ -1166,7 +926,7 @@ class EntryView {
                 .borderWidth(1)
                 .fillColor(Color.Red)
         }
-        .height(100.percent)
+        .height(100.percent)```kotlin
         .width(100.percent)
     }
 }

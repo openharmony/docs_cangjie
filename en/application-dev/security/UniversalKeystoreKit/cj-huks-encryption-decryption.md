@@ -1,6 +1,6 @@
 # Encryption and Decryption (Cangjie)
 
-Using AES 128, RSA 2048, and SM2 as examples, this document demonstrates encryption and decryption operations. For specific scenarios and supported algorithm specifications, refer to [Supported Algorithms for Key Generation](./cj-huks-encryption-decryption-overview.md#supported-algorithms).
+Using AES 128, RSA 2048, and SM2 as examples to demonstrate encryption and decryption operations. For specific usage scenarios and supported algorithm specifications, please refer to [Supported Algorithms for Key Generation](./cj-huks-encryption-decryption-overview.md#supported-algorithms).
 
 ## Development Steps
 
@@ -10,9 +10,9 @@ Using AES 128, RSA 2048, and SM2 as examples, this document demonstrates encrypt
 
 2. Initialize the key property set.
 
-3. Call [generateKeyItem](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-generatekeyitemstring-huksoptions) to generate the key. For details, refer to [Key Generation](./cj-huks-key-generation-overview.md).
+3. Call [generateKeyItem](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-generatekeyitemstring-huksoptions) to generate the key. For details, see [Key Generation](./cj-huks-key-generation-overview.md).
 
-Alternatively, developers can import existing keys by referring to [Key Import](./cj-huks-key-import-overview.md).
+Alternatively, developers can refer to [Key Import](./cj-huks-key-import-overview.md) to import existing keys.
 
 ### Encryption
 
@@ -20,20 +20,20 @@ Alternatively, developers can import existing keys by referring to [Key Import](
 
 2. Obtain the data to be encrypted.
 
-3. Configure the encryption [algorithm parameters](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksparam).
+3. Configure the encryption [algorithm parameters](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksparam).
 
-    Multiple examples are provided in the documentation. When using different algorithms, ensure the corresponding parameters are configured:
+    The documentation provides multiple examples. When using different algorithms, ensure the corresponding parameters are configured:
 
-    - For AES encryption with CBC mode and PKCS7 padding, the IV parameter is mandatory. Refer to [Development Example: AES/CBC/PKCS7](#aescbcpkcs7).
-    - For AES encryption with GCM mode, the NONCE parameter is mandatory, and AAD is optional. Refer to [Development Example: AES/GCM/NoPadding](#aesgcmnopadding).
-    - For RSA encryption, select the corresponding block mode, padding mode, and digest algorithm (DIGEST). Refer to [Development Example: RSA/ECB/PKCS1_V1_5](#rsaecbpkcs1_v1_5) and [Development Example: RSA/ECB/OAEP/SHA256](#rsaecboaepsha256).
-    - For SM2 encryption, the digest algorithm (DIGEST) must be set to SM3. Refer to [Development Example: SM2](#sm2).
+    - For AES encryption with CBC mode and PKCS7 padding, the IV parameter is mandatory. See [Development Example: AES/CBC/PKCS7](#aescbcpkcs7).
+    - For AES encryption with GCM mode, the NONCE parameter is mandatory, and AAD is optional. See [Development Example: AES/GCM/NoPadding](#aesgcmnopadding).
+    - For RSA encryption, select the corresponding block mode, padding mode, and digest algorithm (DIGEST). See [Development Example: RSA/ECB/PKCS1_V1_5](#rsaecbpkcs1_v1_5) and [Development Example: RSA/ECB/OAEP/SHA256](#rsaecboaepsha256).
+    - For SM2 encryption, the digest algorithm (DIGEST) must be set to SM3. See [Development Example: SM2](#sm2).
 
     For detailed specifications, refer to [Encryption/Decryption Introduction and Algorithm Specifications](./cj-huks-encryption-decryption-overview.md).
 
-4. Call [initSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-initsessionstring-huksoptions) to initialize the key session and obtain the session handle.
+4. Call [initSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-initsessionstring-huksoptions) to initialize the key session and obtain the session handle.
 
-5. Call [finishSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-finishsessionhukshandleid-huksoptions-bytes) to complete the key session and obtain the encrypted ciphertext.
+5. Call [finishSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-finishsessionhukshandleid-huksoptions-bytes) to complete the key session and obtain the encrypted ciphertext.
 
 ### Decryption
 
@@ -41,22 +41,22 @@ Alternatively, developers can import existing keys by referring to [Key Import](
 
 2. Obtain the ciphertext to be decrypted.
 
-3. Configure the decryption [algorithm parameters](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksparam).
+3. Configure the decryption [algorithm parameters](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksparam).
 
-    Multiple examples are provided in the documentation. When using different algorithms, ensure the corresponding parameters are configured:
+    The documentation provides multiple examples. When using different algorithms, ensure the corresponding parameters are configured:
 
-    - For AES decryption with GCM mode, the NONCE and AEAD parameters are mandatory, and AAD is optional. Refer to [Development Example: AES/GCM/NoPadding](#aesgcmnopadding).
+    - For AES decryption with GCM mode, the NONCE and AEAD parameters are mandatory, and AAD is optional. See [Development Example: AES/GCM/NoPadding](#aesgcmnopadding).
     - Other examples follow the same parameter requirements as encryption.
 
     For detailed specifications, refer to [Encryption/Decryption Introduction and Algorithm Specifications](./cj-huks-encryption-decryption-overview.md).
 
-4. Call [initSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-initsessionstring-huksoptions) to initialize the key session and obtain the session handle.
+4. Call [initSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-initsessionstring-huksoptions) to initialize the key session and obtain the session handle.
 
-5. Call [finishSession](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-finishsessionhukshandleid-huksoptions-bytes) to complete the key session and obtain the decrypted data.
+5. Call [finishSession](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-finishsessionhukshandleid-huksoptions-bytes) to complete the key session and obtain the decrypted data.
 
 ### Delete Key
 
-When a key is no longer needed, call [deleteKeyItem](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-deletekeyitemstring-huksoptions) to delete it. For details, refer to [Key Deletion](./cj-huks-delete-key.md).
+When a key is no longer needed, call [deleteKeyItem](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-deletekeyitemstring-huksoptions) to delete it. For details, see [Key Deletion](./cj-huks-delete-key.md).
 
 ## Development Examples
 
@@ -66,7 +66,7 @@ When a key is no longer needed, call [deleteKeyItem](../../../../en/application-
 
 ```cangjie
 /*
- * The following demonstrates the use of AES/CBC/PKCS7 operations.
+ * The following demonstrates the usage of AES/CBC/PKCS7 operations.
  */
 import kit.PerformanceAnalysisKit.Hilog
 import kit.BasicServicesKit.*
@@ -74,11 +74,11 @@ import kit.CoreFileKit.*
 import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 
-let aesKeyAlias = 'test_aesKeyAlias'  // Key alias specified during key generation, used for encryption, decryption, and key deletion.
+let aesKeyAlias = 'test_aesKeyAlias'  // Key alias, specified during key generation and used for encryption, decryption, and deletion
 var handle: ?HuksHandleId = None
-let plainText = 'PLAIN_TEXT'  // Plaintext to be encrypted.
-let IV = 'TEST_IV' // Sample code; use random values in practice.
-var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data.
+let plainText = 'PLAIN_TEXT'  // Plaintext to be encrypted
+let IV = 'TEST_IV' // Sample code; use random values in actual scenarios
+var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data
 
 func StringToUint8Array(str: String) {
     return str.toArray()
@@ -91,15 +91,15 @@ func Uint8ArrayToString(fileData: Array<UInt8>) {
 func GetAesGenerateProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_128
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2)
 //            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
         )
@@ -110,27 +110,27 @@ func GetAesGenerateProperties() {
 func GetAesEncryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_128
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_PKCS7
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PKCS7)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_CBC
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC)
         ),
         HuksParam(
-            HuksTag.HuksTagIv,
+            HuksTag.HUKS_TAG_IV,
             HuksParamValue.BytesValue(IV.toArray())
         )
     ]
@@ -140,27 +140,27 @@ func GetAesEncryptProperties() {
 func GetAesDecryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_128
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_PKCS7
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PKCS7)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_CBC
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC)
         ),
         HuksParam(
-            HuksTag.HuksTagIv,
+            HuksTag.HUKS_TAG_IV,
             HuksParamValue.BytesValue(IV.toArray())
         )
     ]
@@ -168,55 +168,55 @@ func GetAesDecryptProperties() {
 }
 
 /*
- * Simulate key generation scenario.
+ * Simulate key generation scenario
  */
 func GenerateAesKey() {
-    // Obtain key generation algorithm parameters.
+    // Get key generation algorithm parameters
     let genProperties = GetAesGenerateProperties()
     let options: HuksOptions = HuksOptions(properties: genProperties, inData: Bytes())
 
-    // Call generateKeyItem; aesKeyAlias is the key alias specified by the user.
+    // Call generateKeyItem with the specified key alias
     generateKeyItem(aesKeyAlias, options)
 }
 
 /*
- * Simulate encryption scenario.
+ * Simulate encryption scenario
  */
 func EncryptData() {
-    // Obtain encryption algorithm parameters.
+    // Get encryption algorithm parameters
     let encryptProperties = GetAesEncryptProperties()
     let options: HuksOptions = HuksOptions(
         properties: encryptProperties,
-        inData: StringToUint8Array(plainText) // plainText is the data to be encrypted.
+        inData: StringToUint8Array(plainText) // Plaintext to be encrypted
     )
-    // Call initSession to obtain the handle; aesKeyAlias is the key alias specified during key generation.
+    // Call initSession to get the handle
     handle = initSession(aesKeyAlias, options).handle
-    // Call finishSession to obtain the encrypted ciphertext.
+    // Call finishSession to get the encrypted ciphertext
     cipherData = finishSession(handle.getOrThrow(), options)
 }
 
 /*
- * Simulate decryption scenario.
+ * Simulate decryption scenario
  */
 func DecryptData() {
-    // Obtain decryption algorithm parameters.
+    // Get decryption algorithm parameters
     let decryptOptions = GetAesDecryptProperties()
     let options: HuksOptions = HuksOptions(
         properties: decryptOptions,
         inData: cipherData.getOrThrow()
     )
-    // Call initSession to obtain the handle; aesKeyAlias is the key alias specified during key generation.
+    // Call initSession to get the handle
     handle = initSession(aesKeyAlias, options).handle
-    // Call finishSession to obtain the decrypted data.
+    // Call finishSession to get the decrypted data
     let result = finishSession(handle.getOrThrow(), options)
 }
 
 /*
- * Simulate key deletion scenario.
+ * Simulate key deletion scenario
  */
 func DeleteKey() {
     let emptyOptions: HuksOptions = HuksOptions()
-    // Call deleteKeyItem to delete the key; aesKeyAlias is the key alias specified during key generation.
+    // Call deleteKeyItem to delete the key
     deleteKeyItem(aesKeyAlias, emptyOptions)
 }
 ```
@@ -227,7 +227,7 @@ func DeleteKey() {
 
 ```cangjie
 /*
- * The following demonstrates the use of AES/GCM/NoPadding operations.
+ * The following demonstrates the usage of AES/GCM/NoPadding operations.
  */
 import kit.PerformanceAnalysisKit.Hilog
 import kit.BasicServicesKit.*
@@ -235,12 +235,12 @@ import kit.CoreFileKit.*
 import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 
-let aesKeyAlias = 'test_aesKeyAlias' // Key alias specified during key generation, used for encryption, decryption, and key deletion.
+let aesKeyAlias = 'test_aesKeyAlias' // Key alias, specified during key generation and used for encryption, decryption, and deletion
 var handle: ?HuksHandleId = None
-let plainText = 'PLAIN_TEXT'   // Plaintext to be encrypted.
-var cipherData: ?Array<UInt8> = []  // Encrypted ciphertext data.
-let AAD = '1234567890123456'
-let NONCE = '001122334455' // Sample code; use random values in practice.
+let plainText = 'PLAIN_TEXT' // Plaintext to be encrypted
+var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data
+let AAD = 'TEST_AAD' // Sample code; use random values in actual scenarios
+let NONCE = 'TEST_NONCE' // Sample code; use random values in actual scenarios
 
 func StringToUint8Array(str: String) {
     return str.toArray()
@@ -253,15 +253,15 @@ func Uint8ArrayToString(fileData: Array<UInt8>) {
 func GetAesGenerateProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_128
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2)
         )
     ]
@@ -271,31 +271,31 @@ func GetAesGenerateProperties() {
 func GetAesGcmEncryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_128
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_GCM
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_GCM)
         ),
         HuksParam(
-            HuksTag.HuksTagNonce,
+            HuksTag.HUKS_TAG_NONCE,
             HuksParamValue.BytesValue(NONCE.toArray())
         ),
         HuksParam(
-            HuksTag.HuksTagAssociatedData,
+            HuksTag.HUKS_TAG_ASSOCIATED_DATA,
             HuksParamValue.BytesValue(AAD.toArray())
         )
     ]
@@ -305,35 +305,35 @@ func GetAesGcmEncryptProperties() {
 func GetAesGcmDecryptProperties(cipherData: Array<UInt8>) {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_128
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_128)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_GCM
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_GCM)
         ),
         HuksParam(
-            HuksTag.HuksTagNonce,
+            HuksTag.HUKS_TAG_NONCE,
             HuksParamValue.BytesValue(NONCE.toArray())
         ),
         HuksParam(
-            HuksTag.HuksTagAssociatedData,
+            HuksTag.HUKS_TAG_ASSOCIATED_DATA,
             HuksParamValue.BytesValue(AAD.toArray())
         ),
         HuksParam(
-            HuksTag.HuksTagAeTag,
+            HuksTag.HUKS_TAG_AE_TAG,
             HuksParamValue.BytesValue(cipherData.slice(cipherData.size - 16, 16).toArray())
         )
     ]
@@ -341,37 +341,37 @@ func GetAesGcmDecryptProperties(cipherData: Array<UInt8>) {
 }
 
 /*
- * Simulate key generation scenario.
+ * Simulating AES key generation scenario
  */
 func GenerateAesKey() {
-    // Obtain key generation algorithm parameters.
+    // Get algorithm parameters for key generation
     let genProperties = GetAesGenerateProperties()
     let options: HuksOptions = HuksOptions(properties: genProperties, inData: Bytes())
-    // Call generateKeyItem; aesKeyAlias is the key alias specified by the user.
+    // Call generateKeyItem, where aesKeyAlias is the key alias specified by user
     generateKeyItem(aesKeyAlias, options)
 }
 
 /*
- * Simulate encryption scenario.
+ * Simulating encryption scenario
  */
 func EncryptData() {
-    // Obtain encryption algorithm parameters.
+    // Get algorithm parameters for encryption
     let encryptProperties = GetAesGcmEncryptProperties()
     let options: HuksOptions = HuksOptions(
         properties: encryptProperties,
         inData: StringToUint8Array(plainText)
     )
-    // Call initSession to obtain the handle; aesKeyAlias is the key alias specified during key generation.
+    // Call initSession to get handle, aesKeyAlias is the key alias specified during key generation
     handle = initSession(aesKeyAlias, options).handle
-    // Call finishSession to obtain the encrypted ciphertext.
+    // Call finishSession to get encrypted ciphertext
     cipherData = finishSession(handle.getOrThrow(), options)
 }
 
 /*
- * Simulate decryption scenario.
+ * Simulating decryption scenario
  */
 func DecryptData() {
-    // Obtain decryption algorithm parameters.
+    // Get algorithm parameters for decryption
     let decryptOptions = GetAesGcmDecryptProperties(cipherData.getOrThrow())
     let options: HuksOptions = HuksOptions(
         properties: decryptOptions,
@@ -381,18 +381,18 @@ func DecryptData() {
                 .getOrThrow()
                 .size - 16)
     )
-    // Call initSession to obtain the handle; aesKeyAlias is the key alias specified during key generation.
+    // Call initSession to get handle, aesKeyAlias is the key alias specified during key generation
     handle = initSession(aesKeyAlias, options).handle
-    // Call finishSession to obtain the decrypted data.
+    // Call finishSession to get decrypted data
     let result = finishSession(handle.getOrThrow(), options)
 }
 
 /*
- * Simulate key deletion scenario.
+ * Simulating key deletion scenario
  */
 func DeleteKey() {
     let emptyOptions: HuksOptions = HuksOptions()
-    // Call deleteKeyItem to delete the key; aesKeyAlias is the key alias specified during key generation.
+    // Call deleteKeyItem to delete key, aesKeyAlias is the key alias specified during key generation
     deleteKeyItem(aesKeyAlias, emptyOptions)
 }
 ```
@@ -403,7 +403,7 @@ func DeleteKey() {
 
 ```cangjie
 /*
- * The following demonstrates the use of RSA/ECB/PKCS1_V1_5 mode operations.
+ * The following demonstrates operations using RSA/ECB/PKCS1_V1_5 mode
  */
 import kit.PerformanceAnalysisKit.Hilog
 import kit.BasicServicesKit.*
@@ -411,10 +411,10 @@ import kit.CoreFileKit.*
 import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 
-let rsaKeyAlias = 'test_rsaKeyAlias'  // Key alias specified during key generation, used for encryption, decryption, and key deletion.
+let rsaKeyAlias = 'test_rsaKeyAlias'  // Key alias, specified during key generation and used for encryption/decryption/deletion
 var handle: ?HuksHandleId = None
-let plainText = 'PLAIN_TEXT'  // Plaintext to be encrypted.
-var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data.
+let plainText = 'PLAIN_TEXT' // Plaintext to be encrypted
+var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data
 
 func StringToUint8Array(str: String) {
     return str.toArray()
@@ -427,15 +427,15 @@ func Uint8ArrayToString(fileData: Array<UInt8>) {
 func GetRsaGenerateProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_RSA
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2)
         )
     ]
@@ -445,23 +445,117 @@ func GetRsaGenerateProperties() {
 func GetRsaEncryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_RSA
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode### RSA/ECB/OAEP/SHA256
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB)
+        ),
+        HuksParam(
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE)
+        )
+    ]
+    return properties
+}
+
+func GetRsaDecryptProperties() {
+    let properties: Array<HuksParam> = [
+        HuksParam(
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
+        ),
+        HuksParam(
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
+        ),
+        HuksParam(
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
+        ),
+        HuksParam(
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5)
+        ),
+        HuksParam(
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB)
+        ),
+        HuksParam(
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE)
+        )
+    ]
+    return properties
+}
+
+/*
+ * Simulating RSA key generation scenario
+ */
+func GenerateRsaKey() {
+    // Get algorithm parameters for key generation
+    let genProperties = GetRsaGenerateProperties()
+    let options: HuksOptions = HuksOptions(properties: genProperties, inData: Bytes())
+    // Call generateKeyItem, where rsaKeyAlias is the key alias specified by user
+    generateKeyItem(rsaKeyAlias, options)
+}
+
+/*
+ * Simulating encryption scenario
+ */
+func EncryptData() {
+    // Get algorithm parameters for encryption
+    let encryptProperties = GetRsaEncryptProperties()
+    let options: HuksOptions = HuksOptions(
+        properties: encryptProperties,
+        inData: StringToUint8Array(plainText) // plainText is the plaintext data to be encrypted
+    )
+    // Call initSession to get handle, rsaKeyAlias is the key alias specified during key generation
+    handle = initSession(rsaKeyAlias, options).handle
+    // Call finishSession to get encrypted ciphertext
+    finishSession(handle.getOrThrow(), options)
+}
+
+/*
+ * Simulating decryption scenario
+ */
+func DecryptData() {
+    // Get algorithm parameters for decryption
+    let decryptOptions = GetRsaDecryptProperties()
+    let options: HuksOptions = HuksOptions(
+        properties: decryptOptions,
+        inData: cipherData.getOrThrow()  // Encrypted ciphertext data
+    )
+    // Call initSession to get handle, rsaKeyAlias is the key alias specified during key generation
+    handle = initSession(rsaKeyAlias, options).handle
+    // Call finishSession to get decrypted data
+    finishSession(handle.getOrThrow(), options)
+}
+
+/*
+ * Simulating key deletion scenario
+ */
+func DeleteKey() {
+    let emptyOptions: HuksOptions = HuksOptions()
+    // Call deleteKeyItem to delete key, rsaKeyAlias is the key alias specified during key generation
+    deleteKeyItem(rsaKeyAlias, emptyOptions)
+}
+```
+
+### RSA/ECB/OAEP/SHA256
 
 <!-- compile -->
 
@@ -477,7 +571,7 @@ import kit.UniversalKeystoreKit.*
 
 let rsaKeyAlias = 'test_rsaKeyAlias' // Key alias, specified during key generation, used for encryption, decryption, and key deletion
 var handle: ?HuksHandleId = None
-let plainText = 'PLAIN_TEXT'  // Plaintext to be encrypted
+let plainText = 'PLAIN_TEXT' // Plaintext to be encrypted
 var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data
 
 func StringToUint8Array(str: String) {
@@ -491,15 +585,15 @@ func Uint8ArrayToString(fileData: Array<UInt8>) {
 func GetRsaGenerateProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_RSA
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2)
         )
     ]
@@ -509,28 +603,28 @@ func GetRsaGenerateProperties() {
 func GetRsaEncryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_RSA
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_OAEP
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_OAEP)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_ECB
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_SHA256
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256)
         )
     ]
     return properties
@@ -539,28 +633,28 @@ func GetRsaEncryptProperties() {
 func GetRsaDecryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_RSA
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_RSA)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_RSA_KEY_SIZE_2048)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_OAEP
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_OAEP)
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_ECB
+            HuksTag.HUKS_TAG_BOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_SHA256
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SHA256)
         )
     ]
     return properties
@@ -573,7 +667,7 @@ func GenerateRsaKey() {
     // Get key generation algorithm parameter configuration
     let genProperties = GetRsaGenerateProperties()
     let options: HuksOptions = HuksOptions(properties: genProperties, inData: Bytes())
-    // Call generateKeyItem, rsaKeyAlias is the key alias specified during key generation
+    // Call generateKeyItem with rsaKeyAlias (key alias specified during key generation)
     generateKeyItem(rsaKeyAlias, options)
 }
 
@@ -587,9 +681,9 @@ func EncryptData() {
         properties: encryptProperties,
         inData: StringToUint8Array(plainText)
     )
-    // Call initSession to obtain handle, rsaKeyAlias is the key alias specified during key generation
+    // Call initSession to get handle, rsaKeyAlias is the key alias specified during key generation
     handle = initSession(rsaKeyAlias, options).handle
-    // Call finishSession to obtain encrypted ciphertext
+    // Call finishSession to get encrypted ciphertext
     finishSession(handle.getOrThrow(), options)
 }
 
@@ -603,9 +697,9 @@ func DecryptData() {
         properties: decryptOptions,
         inData: cipherData.getOrThrow() // Encrypted ciphertext data
     )
-    // Call initSession to obtain handle, rsaKeyAlias is the key alias specified during key generation
+    // Call initSession to get handle, rsaKeyAlias is the key alias specified during key generation
     handle = initSession(rsaKeyAlias, options).handle
-    // Call finishSession to obtain decrypted data
+    // Call finishSession to get decrypted data
     finishSession(handle.getOrThrow(), options)
 }
 
@@ -635,7 +729,7 @@ import kit.UniversalKeystoreKit.*
 
 let sm2KeyAlias = 'test_sm2KeyAlias' // Key alias, specified during key generation, used for encryption, decryption, and key deletion
 var handle: ?HuksHandleId = None
-let plainText = 'PLAIN_TEXT'  // Plaintext to be encrypted
+let plainText = 'PLAIN_TEXT' // Plaintext to be encrypted
 var cipherData: ?Array<UInt8> = [] // Encrypted ciphertext data
 
 func StringToUint8Array(str: String) {
@@ -649,15 +743,15 @@ func Uint8ArrayToString(fileData: Array<UInt8>) {
 func GetSm2GenerateProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_SM2
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_SM2)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_SM2_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_SM2_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2)
         )
     ]
@@ -667,20 +761,20 @@ func GetSm2GenerateProperties() {
 func GetSm2EncryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_SM2
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_SM2)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_SM2_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_SM2_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_SM3
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SM3)
         )
     ]
     return properties
@@ -689,20 +783,20 @@ func GetSm2EncryptProperties() {
 func GetSm2DecryptProperties() {
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_SM2
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_SM2)
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_SM2_KEY_SIZE_256
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_SM2_KEY_SIZE_256)
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT)
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_SM3
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_SM3)
         )
     ]
     return properties
@@ -729,9 +823,9 @@ func EncryptDataSm2() {
         properties: encryptProperties,
         inData: StringToUint8Array(plainText) // plainText is the plaintext data to be encrypted
     )
-    // Call initSession to obtain handle, sm2KeyAlias is the key alias specified during key generation
+    // Call initSession to get handle, sm2KeyAlias is the key alias specified during key generation
     handle = initSession(sm2KeyAlias, options).handle
-    // Call finishSession to obtain encrypted ciphertext
+    // Call finishSession to get encrypted ciphertext
     finishSession(handle.getOrThrow(), options)
 }
 
@@ -745,9 +839,9 @@ func DecryptDataSm2() {
         properties: decryptOptions,
         inData: cipherData.getOrThrow() // Encrypted ciphertext data
     )
-    // Call initSession to obtain handle, sm2KeyAlias is the key alias specified during key generation
+    // Call initSession to get handle, sm2KeyAlias is the key alias specified during key generation
     handle = initSession(sm2KeyAlias, options).handle
-    // Call finishSession to obtain decrypted data
+    // Call finishSession to get decrypted data
     finishSession(handle.getOrThrow(), options)
 }
 

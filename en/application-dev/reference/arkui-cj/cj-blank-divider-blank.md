@@ -14,29 +14,29 @@ None
 
 ## Creating the Component
 
-### init(Length)
+### init(?Length)
 
 ```cangjie
-public init(min!: Length = 0.vp)
+public init(min!: ?Length = None)
 ```
 
 **Function:** Creates a Blank component.
 
 > **Notes:**
 >
-> - Blank automatically stretches or compresses along the main axis of its parent container ([Row](./cj-row-column-stack-row.md), [Column](./cj-row-column-stack-column.md), [Flex](./cj-row-column-stack-flex.md)) when no size is specified. It does not stretch or compress if a size is set or if the container adapts to the size of its child nodes.
-> - The constraint relationship between the main axis size (size) and min for Blank is max(min, size).
-> - When a size is set for the cross axis of the parent container, Blank does not fill the cross axis. If no size is set for the cross axis, the default alignSelf value is ItemAlign.Stretch, which fills the container's cross axis.
+> - When the Blank component's parent container ([Row](./cj-row-column-stack-row.md), [Column](./cj-row-column-stack-column.md), or [Flex](./cj-row-column-stack-flex.md)) does not specify a size along the main axis, the Blank component will automatically stretch or compress. If a size is specified or the container adapts to the size of its child nodes, the Blank component will not stretch or compress.
+> - When setting the size along the main axis (size) and min for the Blank component, the constraint relationship is `max(min, size)`.
+> - If a size is specified for the Blank component along the cross axis of the parent container, it will not fill the parent container's cross axis. If no size is specified, the default value of `alignSelf` is `ItemAlign.Stretch`, which will fill the container's cross axis.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| min | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** The minimum size of the Blank component along the main axis of the container. The default unit is vp if no pixel unit is specified. Percentage values are not supported. Negative values use the default value. If the minimum value exceeds the available container space, the minimum value is used as the component size, causing it to overflow the container. |
+| min | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The minimum size of the Blank component along the main axis of the container. If no pixel unit is specified, the default unit is `vp`. Percentage values are not supported. Negative values will use the initial value. If the minimum value exceeds the available space in the container, the minimum value will be used as the component's size, causing it to overflow the container. Initial value: `0.vp` |
 
 ## Common Attributes/Common Events
 
@@ -46,29 +46,29 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func color(ResourceColor)
+### func color(?ResourceColor)
 
 ```cangjie
-public func color(value: ResourceColor): This
+public func color(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the fill color of the Blank component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | The fill color of the Blank component.<br/>Initial value: Color.TRANSPARENT |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The fill color of the Blank component.<br>Initial value: `Color.Transparent`. |
 
 ## Example Code
 
 ### Example 1 (Filling Remaining Space)
 
-Demonstrates the Blank component filling the remaining space in both portrait and landscape orientations.
+Demonstrates the effect of the Blank component filling the remaining space in both portrait and landscape orientations.
 
 <!-- run -->
 
@@ -97,7 +97,7 @@ class EntryView {
 
 ### Example 2 (Filling Fixed Width)
 
-Demonstrates the effect of the min parameter when the parent component of the Blank component does not have a specified width.
+Demonstrates the effect of the `min` parameter when the parent component of the Blank component does not specify a width.
 
 <!-- run -->
 
@@ -128,4 +128,4 @@ class EntryView {
 }
 ```
 
-![blank2](./figures/blank2.png)
+![blank2](./figures/blank2.gif)

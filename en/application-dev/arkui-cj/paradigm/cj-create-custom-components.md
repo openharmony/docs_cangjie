@@ -1,12 +1,14 @@
 # Creating Custom Components
 
-In ArkUI, all UI-displayed content consists of components. Those provided directly by the framework are called system components, while those defined by developers are called custom components. When developing UI interfaces, it is usually not just about combining system components but also considering factors such as code reusability, separation of business logic from UI, and future version evolution. Therefore, encapsulating the UI and part of the business logic into custom components is an essential capability.
+In ArkUI, all UI-displayed content consists of components. Those provided directly by the framework are called system components, while those defined by developers are called custom components. When developing UI interfaces, it is usually not just a simple combination of system components but also requires consideration of code reusability, separation of business logic from UI, and future version evolution. Therefore, encapsulating the UI and part of the business logic into custom components is an essential capability.
 
 Custom components have the following characteristics:
 
 - **Composable**: Allows developers to combine system components, their properties, and methods.
+
 - **Reusable**: Custom components can be reused by other components and instantiated in different parent components or containers.
-- **Data-driven UI updates**: UI refreshes are driven by changes in state variables.
+
+- **Data-Driven UI Updates**: UI refreshes are driven by changes in state variables.
 
 ## Basic Usage of Custom Components
 
@@ -20,7 +22,7 @@ class HelloComponent {
         // The HelloComponent custom component combines the system components Row and Text
         Row(){
             Text(this.message)
-                // Changes to the state variable message drive UI updates, changing from "Hello, World!" to "Hello, Cangjie!"
+                // Changes to the state variable message drive UI updates, refreshing the UI from "Hello, World!" to "Hello, Cangjie!"
                 .onClick({etv=>this.message="Hello, Cangjie!"})
         }
     }
@@ -44,7 +46,13 @@ class EntryView {
 }
 ```
 
-To fully understand the above example, it is necessary to grasp the following conceptual definitions of custom components, which will be introduced in later sections.
+To fully understand the above example, the following conceptual definitions of custom components are required, which will be introduced in later sections:
+
+- Basic structure of custom components
+- Member functions/variables
+- Parameter specifications for custom components
+- `build()` function
+- Common styles for custom components
 
 ## Basic Structure of Custom Components
 
@@ -58,7 +66,7 @@ Custom components are implemented based on `class`. The combination of `class` +
 
 ### @Component
 
-The `@Component` macro can only decorate data structures declared with the `class` keyword. A `class` decorated with `@Component` gains component capabilities and must implement the `build` method to describe the UI. A `class` can only be decorated by one `@Component`.
+The `@Component` macro can only decorate data structures declared with the `class` keyword. A `class` decorated with `@Component` gains componentization capabilities and must implement the `build` method to describe the UI. A `class` can only be decorated by one `@Component`.
 
 ```cangjie
 @Component
@@ -68,7 +76,7 @@ class MyComponent {
 
 **Usage Restrictions:**
 
-A `class` type (custom component) decorated with `@Component` cannot have more than 128 member variables (including ordinary member variables and state variables).
+The total number of member variables (including ordinary member variables and state variables) in a `class` type (custom component) decorated with `@Component` cannot exceed 128.
 
 ### build() Function
 
@@ -84,7 +92,7 @@ class MyComponent {
 
 ### @Entry
 
-A custom component decorated with `@Entry` serves as the entry point for a UI page. In a single UI page, only one custom component can be decorated with `@Entry`. `@Entry` can accept an optional [LocalStorage](../state_management/cj-localstorage.md) parameter.
+A custom component decorated with `@Entry` serves as the entry point of a UI page. In a single UI page, only one custom component can be decorated with `@Entry`. `@Entry` can accept an optional [LocalStorage](../state_management/cj-localstorage.md) parameter.
 
 ```cangjie
 @Entry
@@ -119,13 +127,14 @@ In addition to implementing the `build()` function, custom components can also i
 Custom components can include member variables, which are subject to the following constraints:
 
 - Member variables of custom components are private, and it is not recommended to declare them as static variables.
-- Local initialization of member variables in custom components is optional for some and mandatory for others. For details on whether local initialization is required or whether member variables need to be initialized by passing parameters from parent components, refer to [State Management](../state_management/cj-state-management-overview.md).
 
-## Parameter Rules for Custom Components
+- Some member variables of custom components require local initialization, while others do not. For details on whether local initialization is needed and whether member variables of child components need to be initialized via parameters passed from parent components, see [State Management](../state_management/cj-state-management-overview.md).
 
-From the examples above, we have learned that custom components can be created in the `build` method. During the creation of custom components, parameters are initialized according to macro rules.
+## Parameter Specifications for Custom Components
 
- <!-- run -->
+As seen in the previous example, custom components can be created in the `build` method. During the creation of a custom component, parameters are initialized according to macro rules.
+
+<!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -153,9 +162,9 @@ class EntryView {
 }
 ```
 
-The following example demonstrates passing a function from a parent component to a child component and calling it in the child component.
+The following example code passes a function from the parent component to the child component and calls it in the child component.
 
- <!-- run -->
+<!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -191,14 +200,14 @@ class Child {
 }
 ```
 
-## build() Function Rules
+## build() Function
 
 All statements declared in the `build()` function are collectively referred to as UI descriptions and must adhere to the following rules:
 
-- For custom components decorated with `@Entry`, the root node under the `build()` function must be unique, necessary, and a container component. `ForEach` is prohibited as the root node.
-- For custom components decorated with `@Component`, the root node under the `build()` function must be unique and necessary, and it can be a non-container component. `ForEach` is prohibited as the root node.
+- For a custom component decorated with `@Entry`, the root node under the `build()` function must be unique, necessary, and a container component. `ForEach` is prohibited as the root node.
+- For a custom component decorated with `@Component`, the root node under the `build()` function must be unique and necessary, and it can be a non-container component. `ForEach` is prohibited as the root node.
 
-     <!-- run -->
+  <!-- run -->
 
   ```cangjie
   package ohos_app_cangjie_entry
@@ -226,7 +235,7 @@ All statements declared in the `build()` function are collectively referred to a
   }
   ```
 
-- Local variable declarations are not allowed. Example of incorrect usage:
+- Local variable declarations are not allowed. Counterexample:
 
   ```cangjie
   func build() {
@@ -234,20 +243,20 @@ All statements declared in the `build()` function are collectively referred to a
   }
   ```
 
-- Direct use of `Hilog.info` in UI descriptions is not allowed, but it is permitted within methods or functions. Example of incorrect usage:
+- Direct use of `Hilog.info` in UI descriptions is not allowed, but it is permitted in methods or functions. Counterexample:
 
   ```cangjie
   func build() {
-      // Incorrect: Hilog.info is not allowed
-      // Hilog.info(0, "AppLogCj","print debug log" )
+      // Counterexample: Hilog.info is not allowed
+      Hilog.info(0, "HilogCj","print debug log" )
   }
   ```
 
-- Creating local scopes is not allowed. Example of incorrect usage:
+- Creating local scopes is not allowed. Counterexample:
 
   ```cangjie
   func build() {
-      // Incorrect: Local scopes are not allowed
+      // Counterexample: Local scopes are not allowed
       {
           // ...
       }
@@ -258,72 +267,102 @@ All statements declared in the `build()` function are collectively referred to a
 
   ```cangjie
   @Component
-  class EntryView{
-      func doSomeCalculations(){
+  class EntryView {
+      func doSomeCalculations() {
 
       }
-      func calcTextValue():String{
+      func calcTextValue():String {
           return "Hello World"
       }
-      @Builder func doSomeRender(){
+      @Builder func doSomeRender() {
           Text("Hello World")
       }
       func build() {
-          Column(){
-              // Incorrect: Cannot call methods not decorated with @Builder
+          Column() {
+              // Counterexample: Cannot call methods not decorated with @Builder
               this.doSomeCalculations()
               // Correct: Can call
               this.doSomeRender()
-              // Correct: Parameters can be return values of CJ methods
+              // Correct: Parameters can be the return values of CJ methods
               Text(this.calcTextValue())
           }
       }
   }
   ```
 
-- The `match` syntax is not allowed. For conditional logic, use [if](../rendering_control/cj-rendering-control-ifelse.md) instead. Example:
+- The `match` syntax is not allowed. If conditional judgment is needed, use [if](../rendering_control/cj-rendering-control-ifelse.md) instead. Example:
 
   ```cangjie
-  func build(){
-      Column(){
-          // Incorrect: match syntax is not allowed
-          match(expression ){
+  func build() {
+      Column() {
+          // Counterexample: match syntax is not allowed
+          match(expression ) {
               case 0 => Text("...")
               case 1 => Text("...")
               case _ => Text("...")
           }
           // Correct: Use if
-          if(expression == 1){
+          if(expression == 1) {
               Text("...")
-          }else if(expression == 2){
+          } else if(expression == 2) {
               Button("...")
-          }else {
+          } else {
               Text("...")
           }
       }
   }
   ```
 
-- Direct modification of state variables is not allowed. Example of incorrect usage. For detailed analysis, see [@State FAQ: No Direct Modification of State Variables in build](../state_management/cj-macro-state.md#no-direct-modification-of-state-variables-in-build).
+- Direct modification of state variables is not allowed. Counterexample. For a detailed analysis, see [@State Common Issues: Modifying State Variables in build Is Not Allowed](../state_management/cj-macro-state.md#modifying-state-variables-in-build-is-not-allowed).
 
   ```cangjie
   @Component
-  class EntryView{
+  class EntryView {
       @State var textColor : Color = Color(0xFFFF00)
       @State var columnColor : Color  = Color.Green
       @State var count : Int64 = 1
-      func build(){
-          Column(){
-              // Incorrect: Directly modifying count within the Text component is not allowed
+      func build() {
+          Column() {
+              // Directly modifying the value of count in the Text component is not allowed
               Text("${this.count++}")
                   .width(50)
                   .height(50)
                   .fontColor(this.textColor)
                   .onClick({etv=> this.columnColor = Color.Red})
               Button("change textColor")
-                  .onClick({etv=> this.textColor = Color.PINK})
+                  .onClick({etv=> this.textColor = Color.Blue})
           }
           .backgroundColor(this.columnColor)
       }
   }
   ```
+
+## Common Styles for Custom Components
+
+Custom components set common styles via chained calls with ".".
+
+```cangjie
+@Component
+class ChildComponent {
+    func build() {
+        Button("Hello World")
+    }
+}
+
+@Entry
+@Component
+class MyComponent {
+    func build() {
+        Row(){
+            ChildComponent()
+            .width(200)
+            .height(300)
+            .backgroundColor(Color.Red)
+        }
+    }
+}
+```
+
+> **Note:**
+>
+> When ArkUI sets styles for custom components, it is equivalent to wrapping the `ChildComponent` in an invisible container component. These styles are applied to the container component, not directly to the `Button` component in `ChildComponent`. The rendering result shows that the red background color is not applied directly to the `Button` but to the invisible container component where the `Button` resides.

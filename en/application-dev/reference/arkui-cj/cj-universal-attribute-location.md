@@ -1,6 +1,6 @@
 # Position Settings
 
-Configure the alignment, layout direction, and display position of components.
+Configure the position, anchor point, and offset of components.
 
 ## Import Module
 
@@ -8,347 +8,310 @@ Configure the alignment, layout direction, and display position of components.
 import kit.ArkUI.*
 ```
 
-## func align(Alignment)
+## func position(?Length, ?Length)
 
 ```cangjie
-public func align(value: Alignment): This
+func position(x!: ?Length, y!: ?Length): T
 ```
 
-**Function:** Sets the alignment of the component within its container.
+**Function:** Sets the position of a component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Alignment](./cj-common-types.md#enum-alignment) | Yes | - | Alignment method. |
+| x | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter** The x-coordinate of the component |
+| y | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter** The y-coordinate of the component |
 
-## func alignRules(AlignRuleOption)
+**Return Value:**
+
+| Type | Description |
+|:---|:---|
+| T | Returns the generic method interface type |
+
+## func markAnchor(?Length, ?Length)
 
 ```cangjie
-public func alignRules(value: AlignRuleOption): This
+func markAnchor(x!: ?Length, y!: ?Length): T
 ```
 
-**Function:** Sets the alignment rules for the component.
+**Function:** Sets the anchor point.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [AlignRuleOption](./cj-universal-attribute-location.md#class-alignruleoption) | Yes | - | Alignment rule options. |
+| x | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter** The x-coordinate of the anchor point |
+| y | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter** The y-coordinate of the anchor point |
 
-## func direction(Direction)
+**Return Value:**
+
+| Type | Description |
+|:---|:---|
+| T | Returns the generic method interface type |
+
+## func offset(?Length, ?Length)
 
 ```cangjie
-public func direction(value: Direction): This
+func offset(x!: ?Length, y!: ?Length): T
 ```
 
-**Function:** Sets the layout direction of the component.
+**Function:** Sets the offset.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Direction](./cj-common-types.md#enum-direction) | Yes | - | Layout direction. |
+| x | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter** The x-axis offset |
+| y | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter** The y-axis offset |
 
-## func markAnchor(Length, Length)
+**Return Value:**
 
-```cangjie
-public func markAnchor(x!: Length, y!: Length): This
-```
+| Type | Description |
+|:---|:---|
+| T | Returns the generic method interface type |
 
-**Function:** Sets the anchor position of the component.
+## Example Code
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+### Example 1 (Alignment and Main Axis Layout)
 
-**Since:** 21
+Configures the alignment of content within an element and the layout of child elements along the main axis of the parent container.
 
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| x | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** X-axis coordinate. |
-| y | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** Y-axis coordinate. |
-
-## func offset(Length, Length)
+<!-- run -->
 
 ```cangjie
-public func offset(x!: Length, y!: Length): This
-```
+package ohos_app_cangjie_entry
+import kit.UIKit.*
+import ohos.state_macro_manage.*
 
-**Function:** Sets the offset of the component.
+@Entry
+@Component
+class EntryView {
+    func build(): Unit {
+        Column {
+            Column(10) {
+                // Sets the offset position of the child component's top-left corner relative to the parent component's top-left corner
+                // Element content < element dimensions, sets the alignment of content within the element
+                Text("align")
+                    .fontSize(9)
+                    .fontColor(0xCCCCCC)
+                    .width(90.percent)
+                Stack() {
+                    Text("First show in bottom end")
+                        .height(65.percent)
+                        .backgroundColor(0xD2B48C)
+                    Text("Second show in bottom end")
+                        .backgroundColor(0xF5DEB3)
+                        .opacity(0.9)
+                }
+                .width(90.percent)
+                .height(50)
+                .margin(top: 5)
+                .backgroundColor(0xFFE4C4)
+                .align(Alignment.BottomEnd)
+                Stack() {
+                    Text("top start")
+                }
+                .width(90.percent)
+                .height(50)
+                .margin(top: 5)
+                .backgroundColor(0xFFE4C4)
+                .align(Alignment.TopStart)
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| x | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** X-axis coordinate. |
-| y | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** Y-axis coordinate. |
-
-## func position(Length, Length)
-
-```cangjie
-public func position(x!: Length, y!: Length): This
-```
-
-**Function:** Sets the position of the component.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| x | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** X-axis coordinate. |
-| y | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** Y-axis coordinate. |
-
-## Basic Type Definitions
-
-### class AlignRuleOption
-
-```cangjie
-public class AlignRuleOption {
-    public var left:?HorizontalAlignment
-    public var right:?HorizontalAlignment
-    public var middle:?HorizontalAlignment
-    public var top:?VerticalAlignment
-    public var bottom:?VerticalAlignment
-    public var center:?VerticalAlignment 
-    public var bias: Bias
-    public init(left!: ?HorizontalAlignment = None, right!: ?HorizontalAlignment = None,
-        middle!: ?HorizontalAlignment = None, top!: ?VerticalAlignment = None,
-        bottom!: ?VerticalAlignment = None, center!: ?VerticalAlignment = None,
-        bias!: Bias = Bias()
-    )
+                // Parent container sets direction to Direction.Ltr, child elements are arranged left to right
+                Text("direction")
+                    .fontSize(9)
+                    .fontColor(0xCCCCCC)
+                    .width(90.percent)
+                Row() {
+                    Text("1")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xF5DEB3)
+                    Text("2")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xD2B48C)
+                    Text("3")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xF5DEB3)
+                    Text("4")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xD2B48C)
+                }
+                .width(90.percent)
+                .direction(Direction.Ltr)
+                // Parent container sets direction to Direction.Rtl, child elements are arranged right to left
+                Row() {
+                    Text("1")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xF5DEB3)
+                        .textAlign(TextAlign.End)
+                    Text("2")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xD2B48C)
+                        .textAlign(TextAlign.End)
+                    Text("3")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xF5DEB3)
+                        .textAlign(TextAlign.End)
+                    Text("4")
+                        .height(50)
+                        .width(25.percent)
+                        .fontSize(16)
+                        .backgroundColor(0xD2B48C)
+                        .textAlign(TextAlign.End)
+                }
+                .width(90.percent)
+                .direction(Direction.Rtl)
+            }
+        }
+    }
 }
 ```
 
-**Function:** Configures alignment rule options for components.
+![uni_location](figures/uni_location1.png)
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+### Example 2 (Position Offset)
 
-**Since:** 21
+Applies position offsets based on the parent component, relative positioning, and anchor points.
 
-#### var bias
-
-```cangjie
-public var bias: Bias = Bias()
-```
-
-**Function:** Sets the offset for component alignment.
-
-**Type:** [Bias](#class-bias)
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var bottom
+<!-- run -->
 
 ```cangjie
-public var bottom:?VerticalAlignment
-```
+package ohos_app_cangjie_entry
+import kit.UIKit.*
+import ohos.state_macro_manage.*
 
-**Function:** Sets the bottom alignment of the component.
+@Entry
+@Component
+class EntryView {
+    func build(): Unit {
+        Scroll() {
+            Column(20) {
+                // Sets the offset position of the child component's top-left corner relative to the parent component's top-left corner
+                Text("position")
+                    .fontSize(12)
+                    .fontColor(0xCCCCCC)
+                    .width(90.percent)
+                Row() {
+                    Text("1")
+                        .size(width: 30.percent, height: 50.vp)
+                        .backgroundColor(0xdeb887)
+                        .borderWidth(1)
+                        .fontSize(16)
+                    Text("2 position(30, 10)")
+                        .size(width: 60.percent, height: 30.vp)
+                        .backgroundColor(0xbbb2cb)
+                        .borderWidth(1)
+                        .fontSize(16)
+                        .align(Alignment.Start)
+                        .position(x: 30, y: 10)
+                    Text("3")
+                        .size(width: 45.percent, height: 50.vp)
+                        .backgroundColor(0xdeb887)
+                        .borderWidth(1)
+                        .fontSize(16)
+                    Text("4 position(50%, 70%)")
+                        .size(width: 50.percent, height: 50.vp)
+                        .backgroundColor(0xbbb2cb)
+                        .borderWidth(1)
+                        .fontSize(16)
+                        .position(x: 50.percent, y: 70.percent)
+                }
+                .width(90.percent)
+                .height(100)
+                .border(width: 1.vp, style: BorderStyle.Dashed)
 
-**Type:** ?[VerticalAlignment](./cj-common-types.md#class-verticalalignment)
+                // Offsets relative to the starting point, where x is the horizontal distance from the final position to the starting point (x>0 moves left, otherwise right)
+                // y is the vertical distance from the final position to the starting point (y>0 moves up, otherwise down)
+                Text("markAnchor")
+                    .fontSize(12)
+                    .fontColor(0xCCCCCC)
+                    .width(90.percent)
+                Stack(Alignment.TopStart) {
+                    Row()
+                        .size(width: 100, height: 100)
+                        .backgroundColor(0xdeb887)
+                    Text("A")
+                        .size(width: 25, height: 25)
+                        .backgroundColor(Color.GREEN)
+                        .markAnchor(x: 25, y: 25)
+                    Text("B")
+                        .size(width: 25, height: 25)
+                        .backgroundColor(Color.GREEN)
+                        .markAnchor(x: -100, y: -25)
+                    Text("C")
+                        .size(width: 25, height: 25)
+                        .backgroundColor(Color.GREEN)
+                        .markAnchor(x: 25, y: -25)
+                }
+                .margin(top: 25)
+                .border(width: 1.vp, style: BorderStyle.Dashed)
 
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var center
-
-```cangjie
-public var center:?VerticalAlignment
-```
-
-**Function:** Sets the vertical center alignment of the component.
-
-**Type:** ?[VerticalAlignment](./cj-common-types.md#class-verticalalignment)
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var left
-
-```cangjie
-public var left:?HorizontalAlignment
-```
-
-**Function:** Sets the left alignment of the component.
-
-**Type:** ?[HorizontalAlignment](./cj-common-types.md#class-horizontalalignment)
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var middle
-
-```cangjie
-public var middle:?HorizontalAlignment
-```
-
-**Function:** Sets the horizontal center alignment of the component.
-
-**Type:** ?[HorizontalAlignment](./cj-common-types.md#class-horizontalalignment)
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var right
-
-```cangjie
-public var right:?HorizontalAlignment
-```
-
-**Function:** Sets the right alignment of the component.
-
-**Type:** ?[HorizontalAlignment](./cj-common-types.md#class-horizontalalignment)
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var top
-
-```cangjie
-public var top:?VerticalAlignment
-```
-
-**Function:** Sets the top alignment of the component.
-
-**Type:** ?[VerticalAlignment](./cj-common-types.md#class-verticalalignment)
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### init(?HorizontalAlignment, ?HorizontalAlignment, ?HorizontalAlignment, ?VerticalAlignment, ?VerticalAlignment, ?VerticalAlignment, Bias)
-
-```cangjie
-public init(left!: ?HorizontalAlignment = None, right!: ?HorizontalAlignment = None,
-    middle!: ?HorizontalAlignment = None, top!: ?VerticalAlignment = None,
-    bottom!: ?VerticalAlignment = None, center!: ?VerticalAlignment = None,
-    bias!: Bias = Bias()
-)
-```
-
-**Function:** Constructs an AlignRuleOption object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| left | ?[HorizontalAlignment](./cj-common-types.md#class-horizontalalignment) | No | None | Sets the left alignment of the component. |
-| right | ?[HorizontalAlignment](./cj-common-types.md#class-horizontalalignment) | No | None | Sets the right alignment of the component. |
-| middle | ?[HorizontalAlignment](./cj-common-types.md#class-horizontalalignment) | No | None | Sets the horizontal center alignment of the component. |
-| top | ?[VerticalAlignment](./cj-common-types.md#class-verticalalignment) | No | None | Sets the top alignment of the component. |
-| bottom | ?[VerticalAlignment](./cj-common-types.md#class-verticalalignment) | No | None | Sets the bottom alignment of the component. |
-| center | ?[VerticalAlignment](./cj-common-types.md#class-verticalalignment) | No | None | Sets the vertical center alignment of the component. |
-| bias | [Bias](#class-bias) | No | Bias() | Sets the offset for component alignment. |
-
-### class Bias
-
-```cangjie
-public class Bias {
-    public var horizontal: Float32, 
-    public var vertical: Float32, 
-    public init(horizontal!: Float32, vertical!: Float32)
+                // Relative positioning: x>0 offsets right, otherwise left; y>0 offsets down, otherwise up
+                Text("offset")
+                    .fontSize(12)
+                    .fontColor(0xCCCCCC)
+                    .width(90.percent)
+                Row() {
+                    Text("1")
+                        .size(width: 15.percent, height: 50.vp)
+                        .backgroundColor(0xdeb887)
+                        .borderWidth(1)
+                        .fontSize(16)
+                    Text("2  offset(15, 30)")
+                        .size(width: 120.vp, height: 50.vp)
+                        .backgroundColor(0xbbb2cb)
+                        .borderWidth(1)
+                        .fontSize(16)
+                        .align(Alignment.Start)
+                        .offset(x: 15, y: 30)
+                    Text("3")
+                        .size(width: 15.percent, height: 50.vp)
+                        .backgroundColor(0xdeb887)
+                        .borderWidth(1)
+                        .fontSize(16)
+                    Text("4 offset(-10%, 20%)")
+                        .size(width: 100.vp, height: 50.vp)
+                        .backgroundColor(0xbbb2cb)
+                        .borderWidth(1)
+                        .fontSize(16)
+                        .offset(x: (-5).percent, y: 20.percent)
+                }
+                .width(90.percent)
+                .height(100)
+                .border(width: 1.vp, style: BorderStyle.Dashed)
+            }
+            .width(100.percent)
+            .margin(top: 25)
+        }
+    }
 }
 ```
 
-**Function:** Sets the offset for component alignment.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var horizontal
-
-```cangjie
-public var horizontal: Float32
-```
-
-**Function:** Sets the horizontal offset of the component.
-
-**Type:** Float32
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### var vertical
-
-```cangjie
-public var vertical: Float32
-```
-
-**Function:** Sets the vertical offset of the component.
-
-**Type:** Float32
-
-**Read-Write Capability:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### init(Float32, Float32)
-
-```cangjie
-public init(horizontal!: Float32 = 0.5, vertical!: Float32 = 0.5)
-```
-
-**Function:** Constructs a Bias object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| horizontal | Float32 | No | 0.5 | Sets the horizontal offset of the component. |
-| vertical | Float32 | No | 0.5 | Sets the vertical offset of the component. |
+![uni_location](figures/uni_location2.png)

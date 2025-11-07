@@ -1,6 +1,6 @@
 # ohos.raw_file_descriptor
 
-This module represents the descriptor information of a rawfile.
+This module represents the descriptor information of rawfile.
 
 ## Import Module
 
@@ -15,7 +15,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the aforementioned sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## Usage Instructions
 
@@ -24,7 +24,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the aforementioned sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class RawFileDescriptor
 
@@ -36,11 +36,11 @@ public class RawFileDescriptor {
 }
 ```
 
-**Description:** Represents the descriptor information of a rawfile.
+**Description:** Represents the descriptor information of rawfile.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### var fd
 
@@ -48,13 +48,13 @@ public class RawFileDescriptor {
 public var fd: Int32
 ```
 
-**Description:** File descriptor of the HAP where the rawfile is located.
+**Description:** The file descriptor of the HAP where rawfile is located.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### var length
 
@@ -62,13 +62,13 @@ public var fd: Int32
 public var length: Int64
 ```
 
-**Description:** File length of the rawfile.
+**Description:** The file length of rawfile.
 
 **Type:** Int64
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -76,10 +76,10 @@ public var length: Int64
 public var offset: Int64
 ```
 
-**Description:** Starting offset of the rawfile.
+**Description:** The starting offset of rawfile.
 
 **Type:** Int64
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22

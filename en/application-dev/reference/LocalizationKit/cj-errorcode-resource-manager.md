@@ -26,7 +26,7 @@ If the resource is not found by resId.
 
 **Error Description**
 
-This error occurs when the input resource ID passes type validation but no matching resource can be located.
+This error occurs when the input resource ID passes type validation but no matching resource can be found.
 
 **Possible Causes**
 
@@ -35,7 +35,7 @@ This error occurs when the input resource ID passes type validation but no match
 
 **Resolution Steps**
 
-Verify whether the input resource ID meets expectations.
+Check whether the input resource ID meets expectations.
 
 ## 9001003 Invalid Resource Name
 
@@ -63,7 +63,7 @@ If the resource is not found by resName.
 
 **Error Description**
 
-This error occurs when the input resource name passes type validation but no matching resource can be located.
+This error occurs when the input resource name passes type validation but no matching resource can be found.
 
 **Possible Causes**
 
@@ -72,7 +72,7 @@ This error occurs when the input resource name passes type validation but no mat
 
 **Resolution Steps**
 
-First verify whether the input resource name meets expectations.
+First check whether the input resource name meets expectations.
 
 ## 9001005 Invalid Relative Path
 
@@ -90,7 +90,7 @@ The input relative path is incorrect.
 
 **Resolution Steps**
 
-Verify whether the input relative path meets expectations.
+Check whether the input relative path meets expectations.
 
 ## 9001006 Circular Reference
 
@@ -108,7 +108,7 @@ Circular resource reference occurred.
 
 **Resolution Steps**
 
-Check resource reference locations and eliminate circular references.
+Inspect resource reference locations and eliminate circular references.
 
 ## 9001007 Formatting Failure for Resource Obtained by Current ID
 
@@ -122,9 +122,9 @@ String resource obtained by resId failed to format.
 
 **Possible Causes**
 
-1. Parameter type is not supported.
+1. Parameter type is unsupported.
 2. Parameter count doesn't match placeholder count.
-3. Parameter types don't match placeholder types.
+3. Parameter type doesn't match placeholder type.
 
 **Resolution Steps**
 
@@ -142,9 +142,9 @@ String resource obtained by resName failed to format.
 
 **Possible Causes**
 
-1. Parameter type is not supported.
+1. Parameter type is unsupported.
 2. Parameter count doesn't match placeholder count.
-3. Parameter types don't match placeholder types.
+3. Parameter type doesn't match placeholder type.
 
 **Resolution Steps**
 
@@ -158,7 +158,7 @@ If the application cannot access system resources.
 
 **Error Description**
 
-Failed to obtain the system resource manager.
+Failed to obtain system resource manager.
 
 **Possible Causes**
 

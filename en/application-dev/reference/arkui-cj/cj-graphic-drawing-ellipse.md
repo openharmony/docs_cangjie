@@ -14,44 +14,30 @@ None
 
 ## Creating the Component
 
-### init(Length, Length)
+### init(?Length, ?Length)
 
 ```cangjie
-public init(width!: Length = 0.vp, height!: Length = 0.vp)
+public init(width!: ?Length = None, height!: ?Length = None)
 ```
 
-**Function:** Draws an ellipse with specified width and height. Invalid values will be processed as initial values.
+**Functionality:** Draws an ellipse with specified width and height. Invalid values will be handled using initial values.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| width | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Width, value range ≥0. |
-| height | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Height, value range ≥0. |
+| width | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Width, value range ≥0. Initial value: 0.vp |
+| height | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Height, value range ≥0. Initial value: 0.vp |
 
-## Universal Attributes/Events
+## Common Attributes/Common Events
 
-Universal Attributes: All supported.
+Common Attributes: In addition to supporting common attributes, it also supports [Graphic Drawing Common Attributes](./cj-graphic-drawing-common.md#component-attributes).
 
-Universal Events: All supported.
-
-## Component Attributes
-
-### func initial()
-
-```cangjie
-public override func initial()
-```
-
-**Function:** Draws an ellipse with width and height set to 0. Requires setting either the [width](./cj-universal-attribute-size.md#func-widthlength) or [height](./cj-universal-attribute-size.md#func-heightlength) attribute to a non-zero value for visibility.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+Common Events: Fully supported.
 
 ## Example Code
 
@@ -67,9 +53,9 @@ import ohos.arkui.state_macro_manage.*
 class EntryView {
     func build() {
         Column() {
-            // Draws a 150 * 80 ellipse
+            // Draw a 150 * 80 ellipse
             Ellipse(width: 150, height: 80)
-            // Draws a 150 * 100 red elliptical ring
+            // Draw a 150 * 100 red elliptical ring
             Ellipse()
                 .width(150)
                 .height(100)

@@ -5,10 +5,10 @@ This component is used to display grouped list items. By default, it fills the w
 > **Note:**
 >
 > - The parent component of this component can only be [List](cj-scroll-swipe-list.md).
-> - The ListItemGroup component does not support setting the [universal attribute aspectRatio](cj-universal-attribute-layoutconstraints.md).
-> - When the listDirection property of the parent List component is set to Axis.Vertical, setting the [universal attribute height](cj-universal-attribute-size.md) will not take effect. The height of ListItemGroup is the sum of the header height, footer height, and the total height of all ListItems after layout.
-> - When the listDirection property of the parent List component is set to Axis.Horizontal, setting the [universal attribute width](cj-universal-attribute-size.md) will not take effect. The width of ListItemGroup is the sum of the header width, footer width, and the total width of all ListItems after layout.
-> - The ListItem components within the current ListItemGroup do not support editing or dragging, meaning the editable property of ListItem components will not take effect.
+> - The ListItemGroup component does not support setting the [universal attribute aspectRatio](cj-universal-attribute-layoutconstraints.md##func-aspectratiofloat64).
+> - When the listDirection property of the parent List component is set to Axis.Vertical, setting the [universal attribute height](cj-universal-attribute-size.md#func-heightlength) property will not take effect. The height of the ListItemGroup is the sum of the header height, footer height, and the total height of all ListItems after layout.
+> - When the listDirection property of the parent List component is set to Axis.Horizontal, setting the [universal attribute width](cj-universal-attribute-size.md#func-widthoptionlength) property will not take effect. The width of the ListItemGroup is the sum of the header width, footer width, and the total width of all ListItems after layout.
+> - The ListItem components inside the current ListItemGroup do not support editing or dragging, meaning the editable property of the ListItem component will not take effect.
 > - Using the direction property to set the layout direction in ListItemGroup will not take effect. The layout direction of the ListItemGroup component follows the layout direction of its parent List component.
 
 ## Import Module
@@ -23,14 +23,14 @@ Includes [ListItem](./cj-scroll-swipe-listitem.md) child components.
 
 ## Creating the Component
 
-### init(CustomBuilder, CustomBuilder, Length, ListItemGroupStyle, () -> Unit)
+### init(?CustomBuilder, ?CustomBuilder, ?Length, ?ListItemGroupStyle, () -> Unit)
 
 ```cangjie
 public init(
-    header!: CustomBuilder = {=>},
-    footer!: CustomBuilder = {=>},
-    space!: Length = 0.vp,
-    style!: ListItemGroupStyle = ListItemGroupStyle.None,
+    header!: ?CustomBuilder = None,
+    footer!: ?CustomBuilder = None,
+    space!: ?Length = None,
+    style!: ?ListItemGroupStyle = Option.None,
     child!: () -> Unit
 )
 ```
@@ -39,17 +39,17 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                                                    | Required | Default Value                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|:--------- |:--------------------------------------------------------------------- |:-------- |:------------------------------ |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| header    | [CustomBuilder](./cj-common-types.md#type-custombuilder) | No       | { => }                         | **Named parameter.** Sets the header component of ListItemGroup.<br/>**Note:**<br/>Can contain a single child component or no child component. Use in combination with [@Builder](../../../en/application-dev/arkui-cj/paradigm/cj-macro-builder.md) and the bind method.                                                                                                                                                                                                                        |
-| footer    | [CustomBuilder](./cj-common-types.md#type-custombuilder) | No       | { => }                         | **Named parameter.** Sets the footer component of ListItemGroup.<br/>**Note:**<br/>Can contain a single child component or no child component. Use in combination with [@Builder](../../../en/application-dev/arkui-cj/paradigm/cj-macro-builder.md) and the bind method.                                                                                                                                                                                                                        |
-| space     | [Length](../BasicServicesKit/cj-apis-base.md#interface-length)        | No       | 0.vp                           | **Named parameter.** Spacing between list items. Only applies between ListItem components, not between header and ListItem or footer and ListItem.<br/>Initial value: 0.<br/>Unit: vp.<br/>**Note:**<br/>If set to a negative value or a value greater than or equal to the length of the List content area, the initial value will be displayed.                                                                                                                                                                                                                   |
-| style     | [ListItemGroupStyle](#enum-listitemgroupstyle)                        | No       | ListItemGroupStyle.None        | **Named parameter.** Sets the card style for the List component.<br/>Initial value: ListItemGroupStyle.NONE<br/>When set to ListItemGroupStyle.NONE, no style is applied. When set to ListItemGroupStyle.CARD, it is recommended to use it in conjunction with ListItemStyle.CARD for ListItem to display the default card style.<br/>In card style, the initial specifications for ListItemGroup are: left and right margins of 12.vp, and top, bottom, left, and right padding of 4.vp.<br/>In card style, default focus, hover, press, selected, and disable styles are provided for list items within the card.<br/>**Note:**<br/>In the current card mode, the default Axis.Vertical arrangement direction is used. If the listDirection property is set to Axis.Horizontal, it may cause display issues; the List property alignListItem defaults to ListItemAlign.Center, displaying centered alignment. |
-| child     | ()->Unit                                                              | Yes      | -                              | Declares the child components of the container.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Parameter | Type              | Required | Default Value | Description                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|:--------- |:----------------- |:-------- |:------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| header    | ?[CustomBuilder](./cj-common-types.md#type-custombuilder)  | No       | None         | **Named parameter.** Sets the header component of the ListItemGroup.                                                                                                                                                                                                                                                                                                                                                                       |
+| footer    | ?[CustomBuilder](./cj-common-types.md#type-custombuilder)  | No       | None         | **Named parameter.** Sets the footer component of the ListItemGroup.                                                                                                                                                                                                                                                                                                                                                                       |
+| space     | ?[Length](./cj-common-types.md#interface-length)         | No       | None         | **Named parameter.** The spacing between list items. Only applies between ListItem and ListItem, not between header and ListItem or footer and ListItem.                                                                                                                                                                                                                                                                                  |
+| style     | ?[ListItemGroupStyle](#enum-listitemgroupstyle) | No       | Option.None  | **Named parameter.** Sets the card style of the List component.                                                                                                                                                                                                                                                                                                                                                                            |
+| child     | ()->Unit        | Yes      | -            | Declares the child components of the container.                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ## Universal Attributes/Events
 
@@ -63,23 +63,6 @@ Universal Events: All supported.
 
 ## Component Attributes
 
-### func divider(Option\<ListDividerOptions>)
-
-```cangjie
-public func divider(value: Option<ListDividerOptions>): This
-```
-
-**Function:** Used to set the divider style for ListItem. By default, there is no divider.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter | Type                                                                                                               | Required | Default Value | Description     |
-|:--------- |:---------------------------------------------------------------------------------------------------------------- |:-------- |:------------- |:-------------- |
-| value     |Option<ListDividerOptions> | Yes      | -             | Divider style. |
 
 ## Basic Type Definitions
 
@@ -87,97 +70,97 @@ public func divider(value: Option<ListDividerOptions>): This
 
 ```cangjie
 public class ListDividerOptions {
-    public var strokeWidth: Length
-    public var color: ResourceColor = Color(0X08000000)
-    public var startMargin: Length = 0.vp
-    public var endMargin: Length = 0.vp
+    public var strokeWidth: ?Length
+    public var color: ?ResourceColor
+    public var startMargin: ?Length
+    public var endMargin: ?Length
     public init(
-        strokeWidth!: Length,
-        color!: ResourceColor = Color.Black,
-        startMargin!: Length = 0.vp,
-        endMargin!: Length = 0.vp
+        strokeWidth!: ?Length,
+        color!: ?ResourceColor = None,
+        startMargin!: ?Length = None,
+        endMargin!: ?Length = None
     )
 }
 ```
 
-**Function:** Divider style for ListItem.
+**Function:** The divider style for ListItem.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var color
 
 ```cangjie
-public var color: ResourceColor = Color(0X08000000)
+public var color: ?ResourceColor
 ```
 
 **Function:** Sets the color of the divider.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write Capability:** Read/Write
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var endMargin
 
 ```cangjie
-public var endMargin: Length = 0.vp
+public var endMargin: ?Length
 ```
 
-**Function:** Sets the distance from the end side of the list to the divider.
+**Function:** Sets the distance from the divider to the end edge of the list side.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write Capability:** Read/Write
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var startMargin
 
 ```cangjie
-public var startMargin: Length = 0.vp
+public var startMargin: ?Length
 ```
 
-**Function:** Sets the distance from the start side of the list to the divider.
+**Function:** Sets the distance from the divider to the start edge of the list side.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write Capability:** Read/Write
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var strokeWidth
 
 ```cangjie
-public var strokeWidth: Length
+public var strokeWidth: ?Length
 ```
 
-**Function:** Sets the width of the divider line.
+**Function:** Sets the line width of the divider.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write Capability:** Read/Write
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
-#### init(Length, ResourceColor, Length, Length)
+#### init(?Length, ?ResourceColor, ?Length, ?Length)
 
 ```cangjie
 public init(
-    strokeWidth!: Length,
-    color!: ResourceColor = Color.Black,
-    startMargin!: Length = 0.vp,
-    endMargin!: Length = 0.vp
+    strokeWidth!: ?Length,
+    color!: ?ResourceColor = None,
+    startMargin!: ?Length = None,
+    endMargin!: ?Length = None
 )
 ```
 
@@ -185,32 +168,34 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter     | Type                                                                    | Required | Default Value         | Description               |
-|:------------- |:--------------------------------------------------------------------- |:-------- |:--------------------- |:------------------------ |
-| strokeWidth   | [Length](../BasicServicesKit/cj-apis-base.md#interface-length)        | Yes      | -                     | Width of the divider line.          |
-| color         | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | No       | Color.Black           | Color of the divider line.          |
-| startMargin   | [Length](../BasicServicesKit/cj-apis-base.md#interface-length)        | No       | 0.vp                  | Distance from the start side of the list to the divider. |
-| endMargin     | [Length](../BasicServicesKit/cj-apis-base.md#interface-length)        | No       | 0.vp                  | Distance from the end side of the list to the divider. |
+| Parameter    | Type            | Required | Default Value | Description               |
+|:------------ |:--------------- |:-------- |:------------- |:------------------------ |
+| strokeWidth  | ?[Length](./cj-common-types.md#interface-length)       | Yes      | -             | The line width of the divider.          |
+| color        | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No       | None          | The color of the divider.          |
+| startMargin  | ?[Length](./cj-common-types.md#interface-length)       | No       | None          | The distance from the divider to the start edge of the list side. |
+| endMargin    | ?[Length](./cj-common-types.md#interface-length)       | No       | None          | The distance from the divider to the end edge of the list side. |
 
 ### enum ListItemGroupStyle
 
 ```cangjie
-public enum ListItemGroupStyle {
+public enum ListItemGroupStyle <: Equatable<ListItemGroupStyle> {
     | None
     | Card
     | ...
 }
 ```
 
-**Function:** Sets the card style for the List component.
+**Function:** Sets the card style of the List component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
+
+**Parent Type:** Equatable\<[ListItemGroupStyle](#enum-listitemgroupstyle)>
 
 #### Card
 
@@ -222,7 +207,7 @@ Card
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### None
 
@@ -234,13 +219,53 @@ None
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
+
+#### operator func !=(ListItemGroupStyle)
+
+```cangjie
+public operator func !=(other: ListItemGroupStyle): Bool
+```
+
+**Function:** Compares whether two enum values are not equal.
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:--------- |:---- |:-------- |:------------- |:----------- |
+| other     | [ListItemGroupStyle](#enum-listitemgroupstyle) | Yes      | -             | The other enum value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----- |:----------- |
+| Bool  | Returns true if the two enum values are not equal, otherwise returns false. |
+
+#### operator func ==(ListItemGroupStyle)
+
+```cangjie
+public operator func ==(other: ListItemGroupStyle): Bool
+```
+
+**Function:** Compares whether two enum values are equal.
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:--------- |:---- |:-------- |:------------- |:----------- |
+| other     | [ListItemGroupStyle](#enum-listitemgroupstyle) | Yes      | -             | The other enum value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----- |:----------- |
+| Bool  | Returns true if the two enum values are equal, otherwise returns false. |
 
 ## Example Code
 
 ### Example 1 (Setting Sticky Header/Footer)
 
-This example demonstrates the sticky header and footer effects using the stick property.
+This example achieves the effect of a sticky header and footer using the stick property.
 
 <!-- run -->
 

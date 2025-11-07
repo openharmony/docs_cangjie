@@ -2,7 +2,7 @@
 
 A component for displaying loading animations.
 
-The loading animation stops when the component is not visible. The visibility state of the component is determined by the [onVisibleAreaChange](./cj-ui-framework.md#func-onvisibleareachangearea-area-raitos-raitos---unit) handler, where a visibility threshold ratio greater than 0 is considered as the visible state.
+The loading animation stops when the component is not visible. The visibility state of the component is determined by [onVisibleAreaChange](./cj-ui-framework.md#func-onvisibleareachangearea-area-ratios-ratios---unit), where a visibility threshold ratio greater than 0 is considered as the visible state.
 
 ## Import Module
 
@@ -26,37 +26,37 @@ public init()
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 ## Common Attributes/Common Events
 
-Common Attributes: All supported except text styles.
+Common Attributes: All are supported except text styles.
 
 > **Note:**
 >
 > The component should have reasonable width and height settings. When the component's dimensions are set too large, the loading animation may not display as expected.
 
-Common Events: All supported.
+Common Events: All are supported.
 
 ## Component Attributes
 
-### func color(ResourceColor)
+### func color(?ResourceColor)
 
 ```cangjie
-public func color(value: ResourceColor): This
+public func color(value: ?ResourceColor): This
 ```
 
-**Function:** Sets the foreground color of the current loading progress bar using the ResourceColor type.
+**Function:** Sets the foreground color of the current loading progress bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | The default foreground color of the loading progress bar.<br>Initial value: 0xff666666. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Initial value: 0xFF666666, the default foreground color of the loading progress bar. |
 
 ## Example Code
 

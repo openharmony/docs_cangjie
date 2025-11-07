@@ -1,21 +1,20 @@
-# Broadcasting and Scanning Development Guide
+# Broadcast and Scan Development Guide
 
 ## Introduction
 
-Broadcasting and scanning primarily provide methods for Bluetooth devices to start/stop broadcasting and scanning. Through broadcasting and scanning, peer Bluetooth devices can be discovered to achieve low-power communication.
+Broadcast and scan primarily provide methods for Bluetooth devices to start/stop broadcasting and scanning. Through broadcasting and scanning, peer Bluetooth devices can be discovered to achieve low-power communication.
 
 ## Scenarios
 
 Main scenarios include:
-
-- Starting/Stopping broadcasting
-- Starting/Stopping scanning
+- Starting/stopping broadcasting
+- Starting/stopping scanning
 
 ## API Description
 
-For complete Cangjie API documentation and sample code, refer to: [BLE APIs](../../../../en/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-ble.md).
+For complete Cangjie API documentation and sample code, refer to: [BLE APIs](../../reference/ConnectivityKit/cj-apis-bluetooth-ble.md).
 
-Detailed API descriptions are shown in the following table.
+Specific API descriptions are shown in the following table.
 
 | API Name | Description |
 | ---------------------------------- | -----------------------------------------------|
@@ -35,7 +34,7 @@ Detailed API descriptions are shown in the following table.
 ### Starting/Stopping Broadcasting
 
 1. Import required BLE modules.
-2. Enable device Bluetooth.
+2. Enable Bluetooth on the device.
 3. Requires SystemCapability.Communication.Bluetooth.Core capability.
 4. Start broadcasting for peer devices to scan.
 5. Stop broadcasting.
@@ -56,100 +55,72 @@ Detailed API descriptions are shown in the following table.
         // 1 Subscribe to broadcast state changes
         public func onAdvertisingStateChange() {
             try {
-                on(BluetoothBleCallbackType.ADVERTISING_STATE_CHANGE, StateChangeInfoCb())
+                on(BluetoothBleCallbackType.AdvertisingStateChange, StateChangeInfoCb())
             } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
+                Hilog.error(0x0000, 'Tag', 'errCode: ${e.code}, errMessage: ' + e.message)
             }
         }
 
-        // 2 Start initial broadcast
+        // 2 First-time broadcast startup
         public func startAdvertising() {
             // 2.1 Configure broadcast parameters
-            let setting: AdvertiseSetting = AdvertiseSetting(160, 0, true)
+            let setting: AdvertiseSetting = AdvertiseSetting(interval:160, txPower:0, connectable:true)
             // 2.2 Construct broadcast data
             let manufactureValueBuffer: Array<UInt8> = [1, 2, 3, 4]
             let serviceValueBuffer: Array<UInt8> = [5, 6, 7, 8]
             let manufactureDataUnit: ManufactureData = ManufactureData(4567, manufactureValueBuffer)
             let serviceDataUnit: ServiceData = ServiceData("00001888-0000-1000-8000-00805f9b34fb", serviceValueBuffer)
             let advData: AdvertiseData = AdvertiseData(["00001888-0000-1000-8000-00805f9b34fb"], [manufactureDataUnit],
-                [serviceDataUnit], includeDeviceName: false // Optional parameter indicating whether to include device name. Note: Broadcast packet length cannot exceed 31 bytes when including device name.
+                [serviceDataUnit], includeDeviceName: false // Optional parameter indicating whether to include device name. Note: Total broadcast packet length cannot exceed 31 bytes when including device name.
                 )
             let advResponse: AdvertiseData = AdvertiseData(["00001888-0000-1000-8000-00805f9b34fb"], [manufactureDataUnit],
                 [serviceDataUnit])
-            // 2.3 Construct complete broadcast parameters AdvertisingParams
+            // 2.3 Construct complete AdvertisingParams
             let advertisingParams: AdvertisingParams = AdvertisingParams(
                 setting,
                 advData,
-                advResponse,
+                advertisingResponse: advResponse,
                 duration: 0 // Optional parameter. If >0, broadcasting will temporarily stop after specified duration and can be restarted
             )
 
-            // 2.4 Start initial broadcast and obtain broadcast ID
+            // 2.4 First-time broadcast startup and obtaining broadcast ID
             try {
                 this.onAdvertisingStateChange()
                 this.advHandle = startAdvertising(advertisingParams)
             } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
+                Hilog.error(0x0000, 'Tag', 'errCode: ${e.code}, errMessage: ' + e.message)
             }
         }
 
-        // 4 Temporarily stop broadcasting (broadcast resources remain)
-        public func disableAdvertising() {
-            // 4.1 Construct temporary stop parameters
-            let advertisingDisableParams: AdvertisingDisableParams = AdvertisingDisableParams(this.advHandle) // Use broadcast ID obtained during initial broadcast
-
-            // 4.2 Temporarily stop
-            try {
-                disableAdvertising(advertisingDisableParams)
-            } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
-            }
-        }
-
-        // 5 Resume broadcasting
-        public func enableAdvertising(enableDuration: UInt16) {
-            // 5.1 Construct resume parameters
-            let advertisingEnableParams: AdvertisingEnableParams = AdvertisingEnableParams(
-                this.advHandle, // Use broadcast ID obtained during initial broadcast
-                duration: enableDuration
-            )
-            // 5.2 Resume broadcasting
-            try {
-                enableAdvertising(advertisingEnableParams)
-            } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
-            }
-        }
-
-        // 6 Completely stop broadcasting and release resources
+        // 3 Completely stop broadcasting and release resources
         public func stopAdvertising() {
             try {
                 stopAdvertising(this.advHandle)
-                off(BluetoothBleCallbackType.ADVERTISING_STATE_CHANGE)
+                off(BluetoothBleCallbackType.AdvertisingStateChange)
             } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
+                Hilog.error(0x0000, 'Tag', 'errCode: ${e.code}, errMessage: ' + e.message)
             }
         }
     }
 
     class StateChangeInfoCb <: Callback1Argument<AdvertisingStateChangeInfo> {
         public func invoke(err: ?BusinessException, info: AdvertisingStateChangeInfo): Unit {
-            AppLog.info("advertisingId: ${info.advertisingId}, AdvertisingState: ${info.state}")
+            Hilog.info(0xFF00, 'Tag', "advertisingId: ${info.advertisingId}, AdvertisingState: ${info.state}")
         }
     }
 
     let bleAdvertisingManager = BleAdvertisingManager()
     ```
 
-7. For error codes, refer to [Bluetooth Service Subsystem Error Codes](../../../../en/application-dev/reference/ConnectivityKit/cj-errorcode-bluetooth_manager.md).
+7. For error codes, refer to [Bluetooth Service Subsystem Error Codes](../../reference/ConnectivityKit/cj-errorcode-bluetooth_manager.md).
 
 ### Starting/Stopping Scanning
 
 1. Import required BLE modules.
-2. Enable device Bluetooth.
+2. Enable Bluetooth on the device.
 3. Requires SystemCapability.Communication.Bluetooth.Core capability.
 4. Peer device starts broadcasting.
-5. Local device starts scanning and obtains results.
+5. Local device starts scanning and obtains scan results.
 6. Stop scanning.
 7. Sample code:
 
@@ -187,7 +158,7 @@ Detailed API descriptions are shown in the following table.
     class BleScanManager {
         // 1 Subscribe to scan results
         public func onScanResult() {
-            on(BluetoothBleCallbackType.BLE_DEVICE_FIND, ScanResultCb())
+            on(BluetoothBleCallbackType.BleDeviceFind, ScanResultCb())
         }
 
         // 2 Start scanning
@@ -201,7 +172,7 @@ Detailed API descriptions are shown in the following table.
             scanFilter.manufactureData = manufactureData
             scanFilter.manufactureDataMask = manufactureDataMask
 
-            // 2.2 Construct scan parameters
+            // 2.2 Configure scan parameters
             let scanOptions: ScanOptions = ScanOptions(
                 interval: 0,
                 dutyMode: ScanDuty.ScanModeLowPower,
@@ -211,30 +182,30 @@ Detailed API descriptions are shown in the following table.
             try {
                 this.onScanResult() // Subscribe to scan results
                 startBLEScan([scanFilter], options: scanOptions)
-                AppLog.info('startBleScan success')
+                Hilog.info(0xFF00, 'Tag', 'startBleScan success')
             } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
+                Hilog.error(0x0000, 'Tag', 'errCode: ${e.code}, errMessage: ' + e.message)
             }
         }
 
         // 3 Stop scanning
         public func stopScan() {
             try {
-                off(BluetoothBleCallbackType.BLE_DEVICE_FIND) // Unsubscribe from scan results
+                off(BluetoothBleCallbackType.BleDeviceFind) // Unsubscribe from scan results
                 stopBLEScan()
-                AppLog.info('stopBleScan success')
+                Hilog.info(0xFF00, 'Tag', 'stopBleScan success')
             } catch (e: BusinessException) {
-                AppLog.error('errCode: ${e.code}, errMessage: ' + e.message)
+                Hilog.error(0x0000, 'Tag', 'errCode: ${e.code}, errMessage: ' + e.message)
             }
         }
     }
 
     private func parseScanResult(data: Array<UInt8>) {
         if (data.size == 0) {
-            AppLog.warn('nothing, adv data length is 0')
+            Hilog.warn(0xFF00, 'Tag', 'nothing, adv data length is 0')
             return
         }
-        AppLog.info('data: ' + String.fromUtf8(data))
+        Hilog.info(0xFF00, 'Tag', 'data: ' + String.fromUtf8(data))
 
         var advFlags: UInt8 = 0
         var txPowerLevel: UInt8 = 0
@@ -345,19 +316,4 @@ Detailed API descriptions are shown in the following table.
         let manufactureId: UInt16 = UInt16(data[curPos + 1]) << 8 + UInt16(data[curPos])
         let tmpValue: Array<UInt8> = data.slice(curPos + Int64(BLUETOOTH_MANUFACTURE_ID_LENGTH),
             Int64(dataLength - BLUETOOTH_MANUFACTURE_ID_LENGTH))
-        manufactureSpecificDatas[manufactureId] = tmpValue
-    }
-
-    class ScanResultCb <: Callback1Argument<Array<ScanResult>> {
-        public func invoke(err: ?BusinessException, data: Array<ScanResult>): Unit {
-            if (data.size > 0) {
-                AppLog.info('BLE scan result = ' + data[0].deviceId)
-                parseScanResult(data[0].data)
-            }
-        }
-    }
-
-    let bleScanManager = BleScanManager()
-    ```
-
-8. For error codes, please refer to [Bluetooth Service Subsystem Error Codes](../../../../en/application-dev/reference/ConnectivityKit/cj-errorcode-bluetooth_manager.md).
+        manufactureSpecificDatas[manufactureId] = tmp

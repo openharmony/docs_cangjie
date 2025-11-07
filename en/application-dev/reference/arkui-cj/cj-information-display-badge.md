@@ -1,6 +1,6 @@
 # Badge
 
-An information marker component that can be attached to a single component as a container for notification alerts.
+An information marker component that can be attached to a single component as a container for information alerts.
 
 ## Import Module
 
@@ -8,58 +8,58 @@ An information marker component that can be attached to a single component as a 
 import kit.ArkUI.*
 ```
 
-## Subcomponents
+## Child Components
 
-Supports a single subcomponent.
+Supports a single child component.
 
 > **Note:**
 >
-> Subcomponent types: System components and custom components, including rendering control types ([if/else](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-ifelse.md), [ForEach](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-foreach.md), [LazyForEach](cj-state-rendering-lazyforeach.md)).
+> Child component types: System components and custom components, including rendering control types ([if/else](../../arkui-cj/rendering_control/cj-rendering-control-ifelse.md), [ForEach](cj-state-rendering-foreach.md), [LazyForEach](cj-state-rendering-lazyforeach.md)).
 
-## Creating Components
+## Creating the Component
 
-### init(Int32, BadgeStyle, BadgePosition, Int32, () -> Unit)
+### init(Int32, ?BadgeStyle, ?BadgePosition, ?Int32, () -> Unit)
 
 ```cangjie
-public init(count!: Int32, style!: BadgeStyle, position!: BadgePosition = BadgePosition.RightTop,
-    maxCount!: Int32 = 99, child!: () -> Unit)
+public init(count!: Int32, style!: ?BadgeStyle, position!: ?BadgePosition = None,
+    maxCount!: ?Int32 = None, child!: () -> Unit)
 ```
 
 **Function:** Creates a badge component based on a numeric value.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| count | Int32 | Yes | - | **Named parameter.** Sets the notification count. The badge is hidden when the value is ≤ 0. |
-| style | [BadgeStyle](#class-badgestyle) | Yes | - | **Named parameter.** Configurable styles for the Badge component, including text color, size, dot color, and size. |
-| position | [BadgePosition](#enum-badgeposition) | No | BadgePosition.RightTop | **Named parameter.** Position of the notification dot. |
-| maxCount | Int32 | No | 99 | **Named parameter.** Maximum notification count. Exceeding this value displays as "maxCount+". |
+| count | Int32 | Yes | - | **Named parameter.** Sets the number of alert messages. Does not display the badge if the value is less than or equal to 0. |
+| style | ?[BadgeStyle](#class-badgestyle) | Yes | - | **Named parameter.** The style settings for the Badge component, including text color, size, dot color, and size. |
+| position | ?[BadgePosition](#enum-badgeposition) | No | None | **Named parameter.** The display position of the badge. Initial value: BadgePosition.RightTop |
+| maxCount | ?Int32 | No | None | **Named parameter.** The maximum number of messages. If exceeded, displays as maxCount+. Initial value: 99 |
 | child | () -> Unit | Yes | - | The child component of the container. |
 
-### init(String, BadgeStyle, BadgePosition, () -> Unit)
+### init(String, ?BadgeStyle, ?BadgePosition, () -> Unit)
 
 ```cangjie
-public init(value!: String, style!: BadgeStyle, position!: BadgePosition = BadgePosition.RightTop, child!: () -> Unit)
+public init(value!: String, style!: ?BadgeStyle, position!: ?BadgePosition = None, child!: () -> Unit)
 ```
 
-**Function:** Creates a badge component based on a string value.
+**Function:** Creates a badge component based on a string.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | String | Yes | - | Parameter for the numeric badge component. |
-| style | [BadgeStyle](#class-badgestyle) | Yes | - | **Named parameter.** Configurable styles for the Badge component, including text color, size, dot color, and size. |
-| position | [BadgePosition](#enum-badgeposition) | No | BadgePosition.RightTop | **Named parameter.** Position of the notification dot. |
+| value | String | Yes | - | **Named parameter.** The text parameter for the badge component. |
+| style | ?[BadgeStyle](#class-badgestyle) | Yes | - | **Named parameter.** The style settings for the Badge component, including text color, size, dot color, and size. |
+| position | ?[BadgePosition](#enum-badgeposition) | No | None | **Named parameter.** The display position of the badge. Initial value: BadgePosition.RightTop |
 | child | () -> Unit | Yes | - | The child component of the container. |
 
 ## Common Attributes/Events
@@ -74,16 +74,16 @@ Common Events: All supported.
 
 ```cangjie
 public class BadgeStyle {
-    public var color: ResourceColor
-    public var fontSize: Length
-    public var badgeSize: Length
-    public var badgeColor: ResourceColor
-    public var fontWeight: FontWeight
-    public var borderColor: ResourceColor
-    public var borderWidth: Length
-    public init(color!: ResourceColor = Color.White, fontSize!: Length = 10.fp, badgeSize!: Length = 16.vp,
-        badgeColor!: ResourceColor = Color.Red, fontWeight!: FontWeight = FontWeight.Normal,
-        borderColor!: ResourceColor = Color.Red, borderWidth!: Length = 1.vp)
+    public var color: ?ResourceColor
+    public var fontSize: ?Length
+    public var badgeSize: ?Length
+    public var badgeColor: ?ResourceColor
+    public var fontWeight: ?FontWeight
+    public var borderColor: ?ResourceColor
+    public var borderWidth: ?Length
+    public init(color!: ?ResourceColor = None, fontSize!: ?Length = None, badgeSize!: ?Length = None,
+        badgeColor!: ?ResourceColor = None, fontWeight!: ?FontWeight = None,
+        borderColor!: ?ResourceColor = None, borderWidth!: ?Length = None)
 }
 ```
 
@@ -91,161 +91,166 @@ public class BadgeStyle {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var badgeColor
 
 ```cangjie
-public var badgeColor: ResourceColor
+public var badgeColor: ?ResourceColor
 ```
 
-**Function:** Color of the badge.
+**Function:** The color of the badge.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var badgeSize
 
 ```cangjie
-public var badgeSize: Length
+public var badgeSize: ?Length
 ```
 
-**Function:** Size of the badge, in vp units.
+**Function:** The size of the badge, in vp units.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var borderColor
 
 ```cangjie
-public var borderColor: ResourceColor
+public var borderColor: ?ResourceColor
 ```
 
-**Function:** Border color of the base plate.
+**Function:** The border color of the base plate.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var borderWidth
 
 ```cangjie
-public var borderWidth: Length
+public var borderWidth: ?Length
 ```
 
-**Function:** Border thickness of the base plate.
+**Function:** The border width of the base plate.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var color
 
 ```cangjie
-public var color: ResourceColor
+public var color: ?ResourceColor
 ```
 
-**Function:** Text color.
+**Function:** The text color.
 
-**Type:** [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor)
+**Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var fontSize
 
 ```cangjie
-public var fontSize: Length
+public var fontSize: ?Length
 ```
 
-**Function:** Text size, in fp units.
+**Function:** The text size, in fp units.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### var fontWeight
 
 ```cangjie
-public var fontWeight: FontWeight
+public var fontWeight: ?FontWeight
 ```
 
 **Function:** Sets the font weight of the text.
 
-**Type:** [FontWeight](./cj-common-types.md#enum-fontweight)
+**Type:** ?[FontWeight](./cj-common-types.md#enum-fontweight)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
-#### init(ResourceColor, Length, Length, ResourceColor, FontWeight, ResourceColor, Length)
+#### init(?ResourceColor, ?Length, ?Length, ?ResourceColor, ?FontWeight, ?ResourceColor, ?Length)
 
 ```cangjie
-public init(color!: ResourceColor = Color.White, fontSize!: Length = 10.fp, badgeSize!: Length = 16.vp,
-    badgeColor!: ResourceColor = Color.Red, fontWeight!: FontWeight = FontWeight.Normal,
-    borderColor!: ResourceColor = Color.Red, borderWidth!: Length = 1.vp)
+public init(color!: ?ResourceColor = None, fontSize!: ?Length = None, badgeSize!: ?Length = None,
+    badgeColor!: ?ResourceColor = None, fontWeight!: ?FontWeight = None,
+    borderColor!: ?ResourceColor = None, borderWidth!: ?Length = None)
 ```
 
 **Function:** Creates a BadgeStyle object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| color | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | No | Color.White | **Named parameter.** Text color. |
-| fontSize | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 10.fp | **Named parameter.** Text size.<br>Unit: fp. |
-| badgeSize | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 16.vp | **Named parameter.** Size of the badge.<br>Unit: fp. |
-| badgeColor | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | No | Color.Red | **Named parameter.** Color of the badge. |
-| fontWeight | [FontWeight](./cj-common-types.md#enum-fontweight) | No | FontWeight.Normal | **Named parameter.** Font weight of the text. |
-| borderColor | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | No | Color.Red | **Named parameter.** Border color of the base plate. |
-| borderWidth | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 1.vp | **Named parameter.** Border thickness of the base plate.<br>Unit: vp. |
+| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** The text color. Initial value: Color.White |
+| fontSize | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The text size. Initial value: 10.fp |
+| badgeSize | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The size of the badge. Initial value: 16.vp |
+| badgeColor | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** The color of the badge. Initial value: Color.Red |
+| fontWeight | ?[FontWeight](./cj-common-types.md#enum-fontweight) | No | None | **Named parameter.** Sets the font weight of the text. Initial value: FontWeight.Normal |
+| borderColor | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** The border color of the base plate. Initial value: Color.Red |
+| borderWidth | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The border width of the base plate. Initial value: 1.vp |
 
 ### enum BadgePosition
 
 ```cangjie
-public enum BadgePosition {
+public enum BadgePosition <: Equatable<BadgePosition> {
     | RightTop
     | Right
     | Left
+    | ...
 }
 ```
 
-**Function:** Position of the notification dot.
+**Function:** Defines the position attributes of the badge.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
+
+**Parent Type:**
+
+- Equatable\<[BadgePosition](#enum-badgeposition)>
 
 #### Left
 
@@ -253,11 +258,11 @@ public enum BadgePosition {
 Left
 ```
 
-**Function:** The dot is displayed on the left side, vertically centered.
+**Function:** The badge is displayed vertically centered on the left side of the parent component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### Right
 
@@ -265,11 +270,11 @@ Left
 Right
 ```
 
-**Function:** The dot is displayed on the right side, vertically centered.
+**Function:** The badge is displayed vertically centered on the right side of the parent component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 #### RightTop
 
@@ -277,37 +282,65 @@ Right
 RightTop
 ```
 
-**Function:** The dot is displayed in the top-right corner.
+**Function:** The badge is displayed in the top-right corner of the parent component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
-#### func ==(BadgePosition)
+#### operator func !=(BadgePosition)
 
 ```cangjie
-public operator func ==(other: BadgePosition): Bool
+public operator func !=(other: BadgePosition): Bool
 ```
 
-**Function:** Determines if two BadgePosition values are equal.
+**Function:** Compares whether two enum values are not equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| other | BadgePosition | Yes | - | Another enum value. |
+| other | [BadgePosition](#enum-badgeposition) | Yes | - | The other enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns `true` if the enum values are equal, otherwise `false`. |
+| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+
+#### operator func ==(BadgePosition)
+
+```cangjie
+public operator func ==(other: BadgePosition): Bool
+```
+
+**Function:** Compares whether two enum values are equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [BadgePosition](#enum-badgeposition) | Yes | - | The other enum value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enum values are equal, otherwise returns false. |
 
 ## Example Code
 
 ### Example 1 (Setting Badge Content)
 
-This example demonstrates different badge effects when passing empty values, strings, or numbers via the `value` and `count` properties.
+This example demonstrates different badge effects when passing empty values, strings, or numbers using the `value` and `count` properties.
 
 <!-- run -->
 
@@ -323,7 +356,7 @@ class EntryView {
         Column() {
             Text("numberBadge").width(80.percent)
             Row(space: 10) {
-                // Numeric superscript, maxCount defaults to 99. Values exceeding 99 display as "99+".
+                // Numeric superscript, maxCount defaults to 99, displays as 99+ if exceeded
                 Badge(
                     count: 1,
                     style: BadgeStyle(color: Color(0xFFFFFF), fontSize: 16, badgeSize: 20, badgeColor: Color.Red,
@@ -368,7 +401,7 @@ class EntryView {
                         .textAlign(TextAlign.Center)
                         .backgroundColor(0xF3F4ED)
                 }.width(80).height(50)
-                // Empty value: Displays a dot marker
+                // Empty value, sets a dot marker
                 Badge(
                     value: "",
                     style: BadgeStyle(badgeSize: 6, badgeColor: Color.Blue),
@@ -389,11 +422,9 @@ class EntryView {
 }
 ```
 
-![badge](./figures/badge.png)
+![badge](./figures/badge.png)### Example 2 (Controlling Badge Visibility with Numeric Values)
 
-### Example 2 (Controlling Badge Visibility via Numeric Values)
-
-This example demonstrates hiding and showing the badge by setting the `count` property to 0 and 1.
+This example demonstrates how to toggle the visibility of badge components by setting the `count` property to 0 or 1.
 
 <!-- run -->
 
@@ -410,7 +441,7 @@ class EntryView {
         Column() {
             Badge(
                 count: this.badgeCount,
-                style: BadgeStyle(color: Color(0xFFFFFF), fontSize: 16, badgeSize: 20, badgeColor: Color.Red, fontWeight: FontWeight.Bolder, borderColor: Color.Black, borderWidth: 2.vp),
+                style: BadgeStyle(color: Color(0xFFFFFF), fontSize: 16, badgeSize: 20, badgeColor: Color.Red,fontWeight: FontWeight.Bolder, borderColor: Color.Black, borderWidth: 2.vp),
                 position: BadgePosition.RightTop,
             ){
                 Text("message")
@@ -421,9 +452,9 @@ class EntryView {
                 .width(100)
                 .height(50)
             Button("count 0")
-                .onClick{ evt => this.badgeCount = 0; }
+                .onClick({ evt =>  this.badgeCount =0;})
             Button("count 1")
-                .onClick{ evt => this.badgeCount = 1; }
+                .onClick({ evt =>  this.badgeCount =1;})
         }.margin(10)
     }
 }

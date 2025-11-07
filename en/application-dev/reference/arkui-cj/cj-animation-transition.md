@@ -1,13 +1,13 @@
 # Component Transition
 
-Component transition primarily configures transition parameters through the `transition` attribute, displaying transition animations when components are inserted or deleted. It is mainly used to enhance user experience during the insertion and deletion of child components within container components.
+Component transition is primarily configured through the `transition` property to display animation effects during component insertion and deletion. It is mainly used to enhance user experience when child components are inserted or deleted within container components.
 
 > **Note:**
 >
 > Currently, there are two ways to trigger component transition:
 >
 > - When a component is inserted or deleted (e.g., due to `if` condition changes or `ForEach` adding/removing components), the transition effects of all newly inserted/deleted components will be triggered recursively.
-> - When the [Visibility](./cj-universal-attribute-visibility.md) attribute of a component changes between visible and invisible, only the transition effect of that component is triggered.
+> - When the [Visibility](./cj-universal-attribute-visibility.md) attribute of a component changes between visible and invisible, only the transition effect of that component will be triggered.
 
 ## Import Module
 
@@ -15,418 +15,621 @@ Component transition primarily configures transition parameters through the `tra
 import kit.ArkUI.*
 ```
 
-## class RotateOptions
+## func transition(?TransitionEffect)
 
 ```cangjie
-public class RotateOptions {
-    public var angle: Float32
-    public var x: Float32
-    public var y: Float32
-    public var z: Float32
-    public var centerX: Length
-    public var centerY: Length
-    public var centerZ: Length
-    public var perspective: Float32
-    public init(angle: Float32, x!: Float32 = 0.0, y!: Float32 = 0.0, z!: Float32 = 0.0, centerX!: Length = 50.percent,
-        centerY!: Length = 50.percent, centerZ!: Length = 0, perspective!: Float32 = 0.0)
+public func transition(value: ?TransitionEffect): T
+```
+
+**Function:** Sets the transition effect for component insertion and deletion.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| value | ?[TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect in function form. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| T | Returns the component instance. |
+
+## func transition(?TransitionEffect, ?TransitionFinishCallback)
+
+```cangjie
+public func transition(value: ?TransitionEffect, onFinish: ?TransitionFinishCallback): T
+```
+
+**Function:** Sets the transition effect for component insertion/deletion and the callback after the transition animation ends.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| value | ?[TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect in function form. |
+| onFinish | ?[TransitionFinishCallback](./cj-common-types.md#type-transitionfinishcallback) | Yes | - | Callback type for the end of component transition animation.<br>When this parameter is `true`, it indicates the callback is for the appearance animation; when `false`, it indicates the callback is for the disappearance animation. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| T | Returns the component instance. |
+
+## class TranslateOptions
+
+```cangjie
+public class TranslateOptions {
+    public var x: ?Length
+    public var y: ?Length
+    public var z: ?Length
+    public init(x!: ?Length = None, y!: ?Length = None, z!: ?Length = None)
 }
 ```
 
-**Function:** Sets rotation parameters.
+**Function:** Defines translation options.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### var angle
-
-```cangjie
-public var angle: Float32
-```
-
-**Function:** Specifies the rotation angle.
-
-**Type:** Float32
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var centerX
-
-```cangjie
-public var centerX: Length
-```
-
-**Function:** Specifies the x-coordinate of the component's transformation center point (i.e., anchor point).
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var centerY
-
-```cangjie
-public var centerY: Length
-```
-
-**Function:** Specifies the y-coordinate of the component's transformation center point (i.e., anchor point).
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var centerZ
-
-```cangjie
-public var centerZ: Length
-```
-
-**Function:** Specifies the z-axis anchor point, i.e., the z-axis component of the 3D rotation center point.
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var perspective
-
-```cangjie
-public var perspective: Float32
-```
-
-**Function:** Specifies the perspective distance, i.e., the distance from the viewpoint to the z=0 plane.
-
-**Type:** Float32
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 ### var x
 
 ```cangjie
-public var x: Float32
+public var x: ?Length
 ```
 
-**Function:** Specifies the x-coordinate of the rotation axis vector.
+**Function:** Translation distance along the x-axis. For numeric types, the unit is vp, with a range of (-∞, +∞).
 
-**Type:** Float32
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
 **Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
 ```cangjie
-public var y: Float32
+public var y: ?Length
 ```
 
-**Function:** Specifies the y-coordinate of the rotation axis vector.
+**Function:** Translation distance along the y-axis. For numeric types, the unit is vp, with a range of (-∞, +∞).
 
-**Type:** Float32
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
 **Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var z
 
 ```cangjie
-public var z: Float32
+public var z: ?Length
 ```
 
-**Function:** Specifies the z-coordinate of the rotation axis vector.
+**Function:** Translation distance along the z-axis. For numeric types, the unit is vp, with a range of (-∞, +∞).
 
-**Type:** Float32
-
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 **Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32, Float32, Float32, Length, Length, Length, Float32)
+### init(?Length, ?Length, ?Length)
 
 ```cangjie
-public init(angle: Float32, x!: Float32 = 0.0, y!: Float32 = 0.0, z!: Float32 = 0.0, centerX!: Length = 50.percent,
-        centerY!: Length = 50.percent, centerZ!: Length = 0, perspective!: Float32 = 0.0)
+public init(x!: ?Length = None, y!: ?Length = None, z!: ?Length = None)
 ```
 
-**Function:** Constructor for RotateOptions.
+**Function:** Constructor for `TranslateOptions`.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| angle | Float32 | Yes | - | Rotation angle. Positive values rotate clockwise relative to the rotation axis direction; negative values rotate counterclockwise. |
-| x | Float32 | No | 0.0 | **Named parameter.** X-coordinate of the rotation axis vector. |
-| y | Float32 | No | 0.0 | **Named parameter.** Y-coordinate of the rotation axis vector. |
-| z | Float32 | No | 0.0 | **Named parameter.** Z-coordinate of the rotation axis vector. |
-| centerX | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 50.percent | **Named parameter.** X-coordinate of the transformation center point. Specifies the x-coordinate of the component's transformation center point (i.e., anchor point). |
-| centerY | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 50.percent | **Named parameter.** Y-coordinate of the transformation center point. Specifies the y-coordinate of the component's transformation center point (i.e., anchor point). |
-| centerZ | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0 | **Named parameter.** Z-axis anchor point, i.e., the z-axis component of the 3D rotation center point. |
-| perspective | Float32 | No | 0.0 | **Named parameter.** Perspective distance, i.e., the distance from the viewpoint to the z=0 plane.<br>The rotation axis and rotation center point are based on the coordinate system settings. When the component moves, the coordinate system does not follow. |
+| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the x-axis. Initial value: 0.0.vp |
+| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the y-axis. Initial value: 0.0.vp |
+| z | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the z-axis. Initial value: 0.0.vp |
 
 ## class ScaleOptions
 
 ```cangjie
 public class ScaleOptions {
-    public var x: Float32
-    public var y: Float32
-    public var z: Float32
-    public var centerX: Length
-    public var centerY: Length
-    public init(x!: Float32 = 1.0, y!: Float32 = 1.0, z!: Float32 = 1.0, centerX!: Length = 50.percent,
-        centerY!: Length = 50.percent)
+    public var x: ?Float32
+    public var y: ?Float32
+    public var z: ?Float32
+    public var centerX: ?Length
+    public var centerY: ?Length
+    public init(x!: ?Float32 = None, y!: ?Float32 = None, z!: ?Float32 = None, centerX!: ?Length = None,
+        centerY!: ?Length = None)
 }
 ```
 
-**Function:** Sets scaling parameters.
+**Function:** Scaling parameters.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### var centerX
-
-```cangjie
-public var centerX: Length
-```
-
-**Function:** Specifies the x-coordinate of the transformation center point.
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var centerY
-
-```cangjie
-public var centerY: Length
-```
-
-**Function:** Specifies the y-coordinate of the transformation center point.
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 ### var x
 
 ```cangjie
-public var x: Float32
+public var x: ?Float32
 ```
 
-**Function:** Specifies the scaling factor along the x-axis. Values >1 scale up along the x-axis; values between 0 and 1 scale down along the x-axis; values <0 reverse and scale along the x-axis.
+**Function:** Scaling ratio along the x-axis.
+- x > 1: Component scales up along the x-axis.
+- 0 < x < 1: Component scales down along the x-axis.
+- x < 0: Component scales in the opposite direction along the x-axis.
 
-**Type:** Float32
+**Type:** ?Float32
 
 **Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
 ```cangjie
-public var y: Float32
+public var y: ?Float32
 ```
 
-**Function:** Specifies the scaling factor along the y-axis. Values >1 scale up along the y-axis; values between 0 and 1 scale down along the y-axis; values <0 reverse and scale along the y-axis.
+**Function:** Scaling ratio along the y-axis.
+- y > 1: Component scales up along the y-axis.
+- 0 < y < 1: Component scales down along the y-axis.
+- y < 0: Component scales in the opposite direction along the y-axis.
 
-**Type:** Float32
+**Type:** ?Float32
 
 **Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### var z
 
 ```cangjie
-public var z: Float32
+public var z: ?Float32
 ```
 
-**Function:** Specifies the scaling factor along the z-axis. Values >1 scale up along the z-axis; values between 0 and 1 scale down along the z-axis; values <0 reverse and scale along the z-axis.
+**Function:** Scaling ratio along the z-axis.
+- z > 1: Component scales up along the z-axis.
+- 0 < z < 1: Component scales down along the z-axis.
+- z < 0: Component scales in the opposite direction along the z-axis.
 
-**Type:** Float32
+**Type:** ?Float32
 
 **Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(Float32, Float32, Float32, Length, Length)
+### var centerX
 
 ```cangjie
-public init(x!: Float32 = 1.0, y!: Float32 = 1.0, z!: Float32 = 1.0, centerX!: Length = 50.percent,
-        centerY!: Length = 50.percent)
+public var centerX: ?Length
 ```
 
-**Function:** Constructor for ScaleOptions.
+**Function:** X-coordinate of the transformation center point (anchor point). Unit: vp.
+
+**Type:** ?[Length](./cj-common-types.md#interface-length)
+
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+### var centerY
+
+```cangjie
+public var centerY: ?Length
+```
+
+**Function:** Y-coordinate of the transformation center point (anchor point). Unit: vp.
+
+**Type:** ?[Length](./cj-common-types.md#interface-length)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### init(?Float32, ?Float32, ?Float32, ?Length, ?Length)
+
+```cangjie
+public init(x!: ?Float32 = None, y!: ?Float32 = None, z!: ?Float32 = None, centerX!: ?Length = None,
+        centerY!: ?Length = None)
+```
+
+**Function:** Constructor for `ScaleOptions`.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| x | Float32 | No | 1.0 | **Named parameter.** Scaling factor along the x-axis. Values >1 scale up along the x-axis; values between 0 and 1 scale down along the x-axis; values <0 reverse and scale along the x-axis. |
-| y | Float32 | No | 1.0 | **Named parameter.** Scaling factor along the y-axis. Values >1 scale up along the y-axis; values between 0 and 1 scale down along the y-axis; values <0 reverse and scale along the y-axis. |
-| z | Float32 | No | 1.0 | **Named parameter.** Scaling factor along the z-axis. Values >1 scale up along the z-axis; values between 0 and 1 scale down along the z-axis; values <0 reverse and scale along the z-axis. |
-| centerX | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 50.percent | **Named parameter.** X-coordinate of the transformation center point. Specifies the x-coordinate of the component's transformation center point (i.e., anchor point). |
-| centerY | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 50.percent | **Named parameter.** Y-coordinate of the transformation center point. Specifies the y-coordinate of the component's transformation center point (i.e., anchor point). |
+| x | ?Float32 | No | None | **Named parameter.** Scaling ratio along the x-axis. Initial value: 1.0 |
+| y | ?Float32 | No | None | **Named parameter.** Scaling ratio along the y-axis. Initial value: 1.0 |
+| z | ?Float32 | No | None | **Named parameter.** Scaling ratio along the z-axis. Initial value: 1.0 |
+| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
+| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
 
-## class TransitionEffect
+## class RotateOptions
 
 ```cangjie
-public class TransitionEffect {
-    public static let IDENTITY: TransitionEffect = unsafe {    TransitionEffect(FfiOHOSAceFrameworkTransitionEffectIdentity())}
-    public static let OPACITY: TransitionEffect = TransitionEffect.opacity(0.0)
-    public static let SLIDE: TransitionEffect = TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.Start), TransitionEffect.move(TransitionEdge.End))
-    public static let SLIDE_SWITCH: TransitionEffect = unsafe {    TransitionEffect(FfiOHOSAceFrameworkTransitionEffectSlideSwitch())}
+public class RotateOptions {
+    public var angle: ?Float32
+    public var x: ?Float32
+    public var y: ?Float32
+    public var z: ?Float32
+    public var centerX: ?Length
+    public var centerY: ?Length
+    public var centerZ: ?Length
+    public var perspective: ?Float32
+    public init(angle: ?Float32, x!: ?Float32 = None, y!: ?Float32 = None, z!: ?Float32 = None, centerX!: ?Length = None,
+        centerY!: ?Length = None, centerZ!: ?Length = None, perspective!: ?Float32 = None)
 }
+```
+
+**Function:** Rotation parameters.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var angle
+
+```cangjie
+public var angle: ?Float32
+```
+
+**Function:** Rotation angle. A positive value indicates clockwise rotation relative to the rotation axis direction; a negative value indicates counterclockwise rotation.
+
+**Type:** ?Float32
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var x
+
+```cangjie
+public var x: ?Float32
+```
+
+**Function:** X-coordinate of the rotation axis vector.
+
+**Type:** ?Float32
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var y
+
+```cangjie
+public var y: ?Float32
+```
+
+**Function:** Y-coordinate of the rotation axis vector.
+
+**Type:** ?Float32
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var z
+
+```cangjie
+public var z: ?Float32
+```
+
+**Function:** Z-coordinate of the rotation axis vector.
+
+**Type:** ?Float32
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var centerX
+
+```cangjie
+public var centerX: ?Length
+```
+
+**Function:** X-coordinate of the transformation center point. Represents the x-coordinate of the component's transformation center point (i.e., anchor point).
+
+**Type:** ?[Length](./cj-common-types.md#interface-length)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var centerY
+
+```cangjie
+public var centerY: ?Length
+```
+
+**Function:** Y-coordinate of the transformation center point. Represents the y-coordinate of the component's transformation center point (i.e., anchor point).
+
+**Type:** ?[Length](./cj-common-types.md#interface-length)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var centerZ
+
+```cangjie
+public var centerZ: ?Length
+```
+
+**Function:** Z-axis anchor point, i.e., the z-component of the 3D rotation center point.
+
+**Type:** ?[Length](./cj-common-types.md#interface-length)
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### var perspective
+
+```cangjie
+public var perspective: ?Float32
+```
+
+**Function:** Z-coordinate of the camera position. The value represents the viewing distance, i.e., the distance from the camera to the z=0 plane. The sign determines the camera's viewing direction. When `perspective=0`, the system automatically calculates an appropriate camera z-position (negative value). The rotation axis and center point are based on the coordinate system, which remains fixed when the component moves.
+
+**Type:** ?Float32
+
+**Read/Write:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### init(?Float32, ?Float32, ?Float32, ?Length, ?Length, ?Length, ?Float32)
+
+```cangjie
+public init(angle: ?Float32, x!: ?Float32 = None, y!: ?Float32 = None, z!: ?Float32 = None, centerX!: ?Length = None,
+        centerY!: ?Length = None, centerZ!: ?Length = None, perspective!: ?Float32 = None)
+```
+
+**Function:** Constructor for `RotateOptions`.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| angle | ?Float32 | Yes | - | Angle parameter. |
+| x | ?Float32 | No | None | **Named parameter.** X-coordinate of the rotation axis vector. Initial value: 0.0 |
+| y | ?Float32 | No | None | **Named parameter.** Y-coordinate of the rotation axis vector. Initial value: 0.0 |
+| z | ?Float32 | No | None | **Named parameter.** Z-coordinate of the rotation axis vector. Initial value: 0.0 |
+| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
+| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
+| centerZ | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Z-axis anchor point, i.e., the z-component of the 3D rotation center point. Initial value: 0 |
+| perspective | ?Float32 | No | None | **Named parameter.** Distance from the user to the z=0 plane. The axis and rotation center are based on the coordinate system, which remains fixed when the component moves. Initial value: 0.0 |## class TransitionEffect
+
+```cangjie
+public class TransitionEffect {}
 ```
 
 **Function:** Specifies the type of transition effect in function form.
 
 > **Note:**
 >
-> - TransitionEffect can combine multiple transition effects using the `combine` function. Each effect can have its own `animation` parameters, and the `animation` parameters of the previous effect can also apply to the subsequent effects. For example, `TransitionEffect.OPACITY.animation(AnimateParam(duration: 1000)).combine(TransitionEffect.translate(TranslateOptions(x:100)))` means the animation duration of 1000ms applies to both `OPACITY` and `translate`.
-> - The order of animation parameter application is: animation parameters specified in this TransitionEffect > animation parameters specified in the previous TransitionEffect > animation parameters in the `animateTo` that triggers the component's appearance/disappearance.
-> - If `animateTo` is not used to trigger the transition animation and no animation parameters are specified in TransitionEffect, the component will appear or disappear directly.
-> - If the attribute values specified in TransitionEffect are the same as the default values, no transition animation will be generated for that attribute. For example, `TransitionEffect.opacity(1.0).animation(AnimateParam(duration: 1000))` will not generate an opacity animation because the default opacity value is also 1.0, causing the component to appear or disappear directly.
-> - For more details on `scale` and `rotate` effects, refer to [Graphic Transformation](./cj-universal-attribute-transform.md).
-> - If a component's tree attachment/detachment or visibility ([Visibility](./cj-universal-attribute-visibility.md)) changes within an animation scope (`animateTo` or `animation`) and the root component has no transition configured, a default opacity transition (`TransitionEffect.OPACITY`) will be applied to the component, with animation parameters following the surrounding animation environment. To disable this, explicitly configure `TransitionEffect.IDENTITY` to make the component appear or disappear directly.
-> - When triggering a disappearance transition by deleting an entire subtree, ensure the root component of the deleted subtree has sufficient disappearance transition time to see the complete transition process. See [Example 3](#example-code-3-setting-parent-and-child-components-as-transition).
-> - The static functions provided below are used to construct TransitionEffect objects, while non-static functions operate on constructed TransitionEffect objects to specify combinations of transition effects and animation parameters.
+> - Multiple transition effects can be combined using the `combine` function. The `animation` parameter can be specified separately for each effect, and the animation parameters of the preceding effect also apply to the subsequent effect. For example, `TransitionEffect.OPACITY.animation(AnimateParam(duration: 1000)).combine(TransitionEffect.translate(TranslateOptions(x:100)))` means the animation parameters with a duration of 1000ms apply to both `OPACITY` and `translate`.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### static let IDENTITY
 
 ```cangjie
-public static let IDENTITY: TransitionEffect = unsafe {    TransitionEffect(FfiOHOSAceFrameworkTransitionEffectIdentity())}
+public static let IDENTITY: TransitionEffect
 ```
 
-**Function:** Disables transition effects.
+**Function:** Disables the transition effect.
 
 **Type:** [TransitionEffect](#class-transitioneffect)
 
+**Read/Write:** Read-only
+
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### static let OPACITY
 
 ```cangjie
-public static let OPACITY: TransitionEffect = TransitionEffect.opacity(0.0)
+public static let OPACITY: TransitionEffect
 ```
 
-**Function:** Adds an opacity transition effect to the component, fading in from 0 to 1 and fading out from 1 to 0, equivalent to `TransitionEffect.opacity(0.0)`.
+**Function:** Defines a transition effect with opacity set to 0, equivalent to `TransitionEffect.opacity(0.0)`.
 
 **Type:** [TransitionEffect](#class-transitioneffect)
 
+**Read/Write:** Read-only
+
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### static let SLIDE
 
 ```cangjie
-public static let SLIDE: TransitionEffect = TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.Start), TransitionEffect.move(TransitionEdge.End))
+public static let SLIDE: TransitionEffect
 ```
 
-**Function:** Sets the slide-in from the START edge and slide-out from the END edge. In LTR mode, slides in from the left and out from the right; in RTL mode, slides in from the right and out from the left. Equivalent to `TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))`.
+**Function:** Defines a slide transition effect.
 
 **Type:** [TransitionEffect](#class-transitioneffect)
 
+**Read/Write:** Read-only
+
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### static let SLIDE_SWITCH
 
 ```cangjie
-public static let SLIDE_SWITCH: TransitionEffect = unsafe {    TransitionEffect(FfiOHOSAceFrameworkTransitionEffectSlideSwitch())}
+public static let SLIDE_SWITCH: TransitionEffect
 ```
 
-**Function:** Specifies a transition effect where the component slides in from the right, first shrinking and then expanding, and slides out from the left, first shrinking and then expanding. Comes with built-in animation parameters (duration: 600ms, curve: cubicBezierCurve(0.24, 0.0, 0.50, 1.0), minimum scale: 0.8), which can be overridden.
+**Function:** Specifies a transition effect where the component appears by sliding in from the right with first shrinking and then enlarging, and disappears by sliding out to the left with first shrinking and then enlarging. It comes with built-in animation parameters, which can also be overridden. The default animation duration is 600ms, with the animation curve set to `cubicBezierCurve(0.24, 0.0, 0.50, 1.0)` and the minimum scale factor set to 0.8.
 
 **Type:** [TransitionEffect](#class-transitioneffect)
 
+**Read/Write:** Read-only
+
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### static func asymmetric(TransitionEffect, TransitionEffect)
+### static func opacity(Float64)
 
 ```cangjie
-public static func asymmetric(appear: TransitionEffect, disappear: TransitionEffect): TransitionEffect
+public static func opacity(alpha: Float64): TransitionEffect
 ```
 
-**Function:** Specifies asymmetric transition effects.
-
-> **Note:**
->
-> If TransitionEffect is not constructed using the `asymmetric` function, the effect applies to both component appearance and disappearance.
+**Function:** Sets the opacity effect during component transition.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| appear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the appearance transition effect. |
-| disappear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the disappearance transition effect. |
+| alpha | Float64 | Yes | - | Sets the opacity effect during component transition, which is the value at the start of insertion and the end of deletion. Range: [0, 1].<br> **Note:** <br>Invalid values less than 0 are treated as 0, and values greater than 1 are treated as 1. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [TransitionEffect](#class-transitioneffect) | Component transition effect. |
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
+
+### static func translate(TranslateOptions)
+
+```cangjie
+public static func translate(options: TranslateOptions): TransitionEffect
+```
+
+**Function:** Sets the translation effect during component transition.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| options | [TranslateOptions](#class-translateoptions) | Yes | - | Sets the translation effect during component transition, which is the value at the start of insertion and the end of deletion. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
+
+### static func scale(?ScaleOptions)
+
+```cangjie
+public static func scale(options: ?ScaleOptions): TransitionEffect
+```
+
+**Function:** Sets the scaling effect during component transition.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| options | ?[ScaleOptions](#class-scaleoptions) | Yes | - | Sets the scaling effect during component transition, which is the value at the start of insertion and the end of deletion. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
+
+### static func rotate(?RotateOptions)
+
+```cangjie
+public static func rotate(options: ?RotateOptions): TransitionEffect
+```
+
+**Function:** Sets the rotation effect during component transition.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| options | ?[RotateOptions](#class-rotateoptions) | Yes | - | Sets the rotation effect during component transition, which is the value at the start of insertion and the end of deletion. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
 
 ### static func move(TransitionEdge)
 
@@ -434,100 +637,104 @@ public static func asymmetric(appear: TransitionEffect, disappear: TransitionEff
 public static func move(edge: TransitionEdge): TransitionEffect
 ```
 
-**Function:** Specifies a slide-in/slide-out transition effect from the screen edges.
+**Function:** Specifies the effect of sliding in and out from the screen edge during component transition.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| edge | [TransitionEdge](### class TranslateOptions
+| edge | [TransitionEdge](#enum-transitionedge) | Yes | - | Specifies the effect of sliding in and out from the screen edge during component transition, which is essentially a translation effect, representing the value at the start of insertion and the end of deletion. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
+
+### static func asymmetric(TransitionEffect, TransitionEffect)
 
 ```cangjie
-public class TranslateOptions {
-    public var x: Length
-    public var y: Length
-    public var z: Length
-    public init(x!: Length = 0.0.vp, y!: Length = 0.0.vp, z!: Length = 0.0.vp)
-}
+public static func asymmetric(appear: TransitionEffect, disappear: TransitionEffect): TransitionEffect
 ```
 
-**Function:** Sets translation parameters
+**Function:** Used to specify asymmetric transition effects.
+
+> **Note:**
+>
+> If `TransitionEffect` is not constructed using the `asymmetric` function, it means the effect applies to both the appearance and disappearance of the component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### var x
-
-```cangjie
-public var x: Length
-```
-
-**Function:** Represents the translation distance along the x-axis
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var y
-
-```cangjie
-public var y: Length
-```
-
-**Function:** Represents the translation distance along the y-axis
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### var z
-
-```cangjie
-public var z: Length
-```
-
-**Function:** Represents the translation distance along the z-axis
-
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
-
-**Read-Write Attribute:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### init(Length, Length, Length)
-
-```cangjie
-public init(x!: Length = 0.0.vp, y!: Length = 0.0.vp, z!: Length = 0.0.vp)
-```
-
-**Function:** Constructor for TranslateOptions
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|x|[Length](../BasicServicesKit/cj-apis-base.md#interface-length)|No|0.0.vp| **Named parameter.** Translation distance along x-axis.<br>Unit: vp.<br>Value range: (-∞, +∞)|
-|y|[Length](../BasicServicesKit/cj-apis-base.md#interface-length)|No|0.0.vp| **Named parameter.** Translation distance along y-axis.<br>Unit: vp.<br>Value range: (-∞, +∞)|
-|z|[Length](../BasicServicesKit/cj-apis-base.md#interface-length)|No|0.0.vp| **Named parameter.** Translation distance along z-axis.<br>Unit: vp.<br>Value range: (-∞, +∞)|
+| appear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect for appearance. |
+| disappear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect for disappearance. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
+
+### func animation(?AnimateParam)
+
+```cangjie
+public func animation(param: ?AnimateParam): TransitionEffect
+```
+
+**Function:** Specifies the animation parameters for this `TransitionEffect`.
+
+> **Note:**
+>
+> These parameters are only used to specify animation settings. The `onFinish` callback in `AnimateParam` does not take effect. If `TransitionEffect` is combined using `combine`, the animation parameters of the preceding `TransitionEffect` also apply to the subsequent one.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| param | ?[AnimateParam](./cj-common-types.md#class-animateparam) | Yes | - | Animation effect parameters. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
+
+### func combine(TransitionEffect)
+
+```cangjie
+public func combine(transitionEffect: TransitionEffect): TransitionEffect
+```
+
+**Function:** Used to chain `TransitionEffect` combinations to form a `TransitionEffect` that includes multiple transition effects.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| transitionEffect | [TransitionEffect](#class-transitioneffect) | Yes | - | The component transition effect to be chained. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [TransitionEffect](#class-transitioneffect) | Returns the transition effect. |
 
 ## enum TransitionEdge
 
@@ -541,51 +748,15 @@ public enum TransitionEdge <: Equatable<TransitionEdge> {
 }
 ```
 
-**Function:** Window edge information.
+**Function:** Defines edge objects.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- Equatable\<TransitionEdge>
-
-### Bottom
-
-```cangjie
-Bottom
-```
-
-**Function:** Sets the bottom edge of the window.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### End
-
-```cangjie
-End
-```
-
-**Function:** Sets the end edge of the window (right edge in LTR mode, left edge in RTL mode).
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### Start
-
-```cangjie
-Start
-```
-
-**Function:** Sets the start edge of the window (left edge in LTR mode, right edge in RTL mode).
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+- Equatable\<[TransitionEdge](#enum-transitionedge)>
 
 ### Top
 
@@ -593,94 +764,99 @@ Start
 Top
 ```
 
-**Function:** Sets the top edge of the window.
+**Function:** The top edge.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### func !=(TransitionEdge)
+### Bottom
+
+```cangjie
+Bottom
+```
+
+**Function:** The bottom edge of the window.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### Start
+
+```cangjie
+Start
+```
+
+**Function:** The starting edge of the window, which is the left edge for left-to-right scripts and the right edge for right-to-left scripts.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### End
+
+```cangjie
+End
+```
+
+**Function:** The ending edge of the window, which is the right edge for left-to-right scripts and the left edge for right-to-left scripts.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+### operator func !=(TransitionEdge)
 
 ```cangjie
 public operator func !=(other: TransitionEdge): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Function:** Compares whether two enum values are not equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[TransitionEdge](#enum-transitionedge)|Yes|-|Another enum value to compare.|
+| other | [TransitionEdge](#enum-transitionedge) | Yes | - | The other enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|Bool|Returns true if the enum values are unequal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are not equal, otherwise returns `false`. |
 
-### func ==(TransitionEdge)
+### operator func ==(TransitionEdge)
 
 ```cangjie
 public operator func ==(other: TransitionEdge): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Function:** Compares whether two enum values are equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[TransitionEdge](#enum-transitionedge)|Yes|-|Another enum value to compare.|
+| other | [TransitionEdge](#enum-transitionedge) | Yes | - | The other enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|Bool|Returns true if the enum values are equal, otherwise returns false.|
+| Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
 
-## func transition(TransitionEffect)
+## Example Code### Example Code 1 (Using the Same Interface for Image Appearance and Disappearance)
 
-```cangjie
-public func transition(value: TransitionEffect): This
-```
-
-**Function:** Sets transition effects for components.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-|value|TransitionEffect|Yes|-|Specifies transition effects in function form.|
-
-## func transition(TransitionEffect, ?TransitionFinishCallback)
-
-```cangjie
-public func transition(value: TransitionEffect, onFinish: ?TransitionFinishCallback): This
-```
-
-**Function:** Sets insertion/display and removal/hiding transition effects with animation completion callback.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-|value|[TransitionEffect](#class-transitioneffect)|Yes|-|Specifies transition effects in function form.|
-|onFinish|?[TransitionFinishCallback](./cj-common-types.md#type-transitionfinishcallback)|Yes|-|Callback function when component transition animation completes.|
-
-## Example Code
-
-### Example 1 (Using the same interface for appearance/disappearance)
-
-This example demonstrates how to use the same TransitionEffect for both appearance and disappearance of an image, where the two processes are inverses of each other.
+This example demonstrates how to use the same TransitionEffect to achieve both the appearance and disappearance of an image, where these two processes are inverses of each other.
 
 <!-- run -->
 
@@ -688,7 +864,7 @@ This example demonstrates how to use the same TransitionEffect for both appearan
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 
 @Entry
 @Component
@@ -698,7 +874,7 @@ class EntryView {
     func build() {
         Column {
             Button(this.show)
-                .onClick {
+                .onClick({
                     evt =>
                     Hilog.info(0, "cangjie", "Hello Cangjie")
                     if (this.flag) {
@@ -707,7 +883,7 @@ class EntryView {
                         this.show = "show"
                     }
                     this.flag = !this.flag
-                }
+                })
                 .width(800.px)
                 .height(400.px)
 
@@ -728,9 +904,9 @@ class EntryView {
 
 ![transition](figures/transition_api.gif)
 
-### Example 2 (Using different interfaces for appearance/disappearance)
+### Example Code 2 (Using Different Interfaces for Image Appearance and Disappearance)
 
-This example demonstrates using different TransitionEffects for appearance and disappearance of an image.
+This example demonstrates how to use different TransitionEffects to achieve the appearance and disappearance of an image.
 
 <!-- run -->
 
@@ -738,7 +914,7 @@ This example demonstrates using different TransitionEffects for appearance and d
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 
 @Entry
 @Component
@@ -748,7 +924,7 @@ class EntryView {
     func build() {
         Column {
             Button(this.show)
-                .onClick {
+                .onClick({
                     evt =>
                     Hilog.info(0, "cangjie", "Hello Cangjie")
                     if (this.flag) {
@@ -757,7 +933,7 @@ class EntryView {
                         this.show = "show"
                     }
                     this.flag = !this.flag
-                }
+                })
                 .width(800.px)
                 .height(400.px)
 
@@ -789,9 +965,9 @@ class EntryView {
 
 ![transition2](./figures/transition2_api.gif)
 
-### Example 3 (Setting parent-child components with transition)
+### Example Code 3 (Setting Parent and Child Components as Transitions)
 
-This example demonstrates configuring transitions for both parent and child components to achieve image appearance/disappearance effects.
+This example demonstrates how to achieve image appearance and disappearance by configuring transitions for both parent and child components.
 
 <!-- run -->
 
@@ -799,7 +975,7 @@ This example demonstrates configuring transitions for both parent and child comp
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 import ohos.resource_manager.AppResource
 
 @Entry
@@ -810,7 +986,7 @@ class EntryView {
     func build() {
         Column {
             Button(this.show)
-                .onClick {
+                .onClick({
                     evt =>
                     Hilog.info(0, "cangjie", "Hello Cangjie")
                     if (this.flag) {
@@ -819,7 +995,7 @@ class EntryView {
                         this.show = "show"
                     }
                     this.flag = !this.flag
-                }
+                })
                 .width(800.px)
                 .height(400.px)
 
@@ -844,7 +1020,7 @@ class EntryView {
                 }.transition(TransitionEffect
                     .OPACITY
                     .animation(AnimateParam(duration: 1000)))
-            }```
+            }
         }
     }
 }

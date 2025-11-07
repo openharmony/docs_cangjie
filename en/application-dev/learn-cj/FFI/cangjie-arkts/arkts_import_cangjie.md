@@ -1,18 +1,18 @@
 # Using Interoperability Code in ArkTS
 
-This chapter describes three methods for using interoperability code in ArkTS:
+This chapter introduces three methods for using interoperability code in ArkTS:
 
-- Loading Cangjie modules via `import` syntax: Supported from API version 18.
-- Loading Cangjie modules via the `loadNativeModule` interface: Supported from API version 18.
+- Loading Cangjie modules using the `import` syntax: Supported from API version 18.
+- Loading Cangjie modules using the `loadNativeModule` interface: Supported from API version 18.
 
-## Method 1: Loading Cangjie Modules via `import` Syntax
+## Method 1: Loading Cangjie Modules Using the `import` Syntax
 
 > **Note:**
 >
 > - This loading method is supported from API version 18. Minimum compatible version: OpenHarmony 5.1.0(18).
-> - The method for loading Cangjie modules via `import` syntax is consistent with loading native modules via `import`. For details, refer to: [Statically Loading Native Modules](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/arkts-utils/arkts-import-native-module.md).
+> - The method for loading Cangjie modules using the `import` syntax is consistent with loading native modules via `import`. For detailed information, refer to: [Statically Loading Native Modules](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/arkts-utils/arkts-import-native-module.md).
 
-Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `import` syntax and calling the `addNumber` interface:
+Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` using the `import` syntax and calling the `addNumber` interface:
 
 1. Create a Cangjie module in the ArkTS project. For details, refer to [Adding a Cangjie Module to an ArkTS Project](./add_cangjie_module.md).
 
@@ -29,7 +29,7 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `
         // Import the interoperability library
         import ohos.ark_interop.*
 
-        // Define the interoperability function. The parameter type must be (JSContext, JSCallInfo), and the return type must be JSValue.
+        // Define the interoperability function. The parameter type must be (JSContext, JSCallInfo), and the return type must be JSValue
         func addNumber(context: JSContext, callInfo: JSCallInfo): JSValue {
             // Get the argument list from JSCallInfo
             let arg0: JSValue = callInfo[0]
@@ -48,7 +48,7 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `
             // Return JSValue
             return result
         }
-        // The function must be registered to JSModule
+        // The function must be registered in JSModule
         let EXPORT_MODULE = JSModule.registerModule {
             runtime, exports =>
                 exports["addNumber"] = runtime.function(addNumber).toJSValue()
@@ -66,7 +66,7 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `
 
         > **Note:**
         >
-        > The following code does not need to be copied, as it is already configured in the project after creating the Cangjie module.
+        > The following code does not need to be copied; it is already configured in the project after creating the Cangjie module.
 
         ```json
         // entry/src/main/cangjie/types/libohos_app_cangjie_entry/oh-package.json5
@@ -78,11 +78,11 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `
         }
         ```
 
-3. Configure the dependency on the `.so` library corresponding to the Cangjie module in the `dependencies` field of the `oh-package.json5` file in the ArkTS module:
+3. Configure the dependency on the `.so` library of the Cangjie module in the `dependencies` field of the `oh-package.json5` file in the ArkTS module:
 
     > **Note:**
     >
-    > The following code does not need to be copied, as it is already configured in the project after creating the Cangjie module.
+    > The following code does not need to be copied; it is already configured in the project after creating the Cangjie module.
 
     ```json
     // entry/oh-package.json5
@@ -95,10 +95,10 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `
     }
     ```
 
-4. Use `import` syntax in ArkTS to directly import the Cangjie module and call the `addNumber` interface:
+4. Use the `import` syntax in ArkTS to directly import the Cangjie module and call the `addNumber` interface:
 
     ```typescript
-    // Import the Cangjie dynamic library. The library name must match the package name of the interoperability interface.
+    // Import the Cangjie dynamic library. The library name must match the package name of the interoperability interface
     import { addNumber } from "libohos_app_cangjie_entry.so";
     
     // Call the Cangjie interface
@@ -106,14 +106,14 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via `
     console.log(`1 + 2 = ${result}`);
     ```
 
-## Method 2: Loading Cangjie Modules via the `loadNativeModule` Interface
+## Method 2: Loading Cangjie Modules Using the `loadNativeModule` Interface
 
 > **Note:**
 >
 > - This loading method is supported from API version 18. Minimum compatible version: OpenHarmony 5.1.0(18).
-> - For detailed information about the `loadNativeModule` interface, refer to: [Dynamically Loading Native Modules in Synchronous Mode](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/arkts-utils/js-apis-load-native-module.md).
+> - For detailed information about the `loadNativeModule` interface, refer to: [Dynamically Loading Native Modules in Synchronous Mode](https://docs.openharmony.cn/pages/v5.1/zh-cn/application-dev/arkts-utils/js-apis-load-native-module.md)
 
-Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via the `loadNativeModule` interface and calling the `addNumber` function:
+Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` using the `loadNativeModule` interface and calling the `addNumber` function:
 
 1. Create a Cangjie module in the ArkTS project. For details, refer to [Adding a Cangjie Module to an ArkTS Project](./add_cangjie_module.md).
 
@@ -130,7 +130,7 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via t
         // Import the interoperability library
         import ohos.ark_interop.*
 
-        // Define the interoperability function. The parameter type must be (JSContext, JSCallInfo), and the return type must be JSValue.
+        // Define the interoperability function. The parameter type must be (JSContext, JSCallInfo), and the return type must be JSValue
         func addNumber(context: JSContext, callInfo: JSCallInfo): JSValue {
             // Get the argument list from JSCallInfo
             let arg0: JSValue = callInfo[0]
@@ -149,7 +149,7 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via t
             // Return JSValue
             return result
         }
-        // The function must be registered to JSModule
+        // The function must be registered in JSModule
         let EXPORT_MODULE = JSModule.registerModule {
             runtime, exports =>
                 exports["addNumber"] = runtime.function(addNumber).toJSValue()
@@ -167,7 +167,7 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via t
 
         > **Note:**
         >
-        > The following code does not need to be copied, as it is already configured in the project after creating the Cangjie module.
+        > The following code does not need to be copied; it is already configured in the project after creating the Cangjie module.
 
         ```json
         // entry/src/main/cangjie/types/libohos_app_cangjie_entry/oh-package.json5
@@ -179,11 +179,11 @@ Below is an example of loading the Cangjie module `ohos_app_cangjie_entry` via t
         }
         ```
 
-3. Configure the dependency on the `.so` library corresponding to the Cangjie module in the `dependencies` field of the `oh-package.json5` file in the ArkTS module:
+3. Configure the dependency on the `.so` library of the Cangjie module in the `dependencies` field of the `oh-package.json5` file in the ArkTS module:
 
     > **Note:**
     >
-    > The following code does not need to be copied, as it is already configured in the project after creating the Cangjie module.
+    > The following code does not need to be copied; it is already configured in the project after creating the Cangjie module.
 
     ```json
     // entry/oh-package.json5

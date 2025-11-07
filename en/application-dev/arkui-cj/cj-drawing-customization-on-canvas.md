@@ -1,12 +1,12 @@
 # Drawing Custom Graphics with Canvas
 
-Canvas provides a canvas component for custom graphic rendering. Developers can use the `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` objects to draw on the Canvas component, supporting basic shapes, text, images, and more.
+Canvas provides a canvas component for custom graphics rendering. Developers can use the `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` objects to draw on the Canvas component, supporting basic shapes, text, images, and more.
 
 ## Drawing Custom Graphics with Canvas Component
 
-- Use the [CanvasRenderingContext2D](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md) object to draw on the Canvas.
+- Use the [`CanvasRenderingContext2D`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md) object to draw on the Canvas.
 
-     <!-- run -->
+    <!-- run -->
 
   ```cangjie
   package ohos_app_cangjie_entry
@@ -17,13 +17,13 @@ Canvas provides a canvas component for custom graphic rendering. Developers can 
   @Entry
   @Component
   class EntryView {
-      // Configures parameters for the CanvasRenderingContext2D object, including antialiasing (true enables antialiasing).
+      // Configuration parameters for CanvasRenderingContext2D, including antialiasing (true enables antialiasing).
       var settings: RenderingContextSettings = RenderingContextSettings(antialias: true)
-      // Creates a CanvasRenderingContext2D object for drawing on the canvas.
+      // Creates a CanvasRenderingContext2D object for drawing via the canvas.
       var context: CanvasRenderingContext2D = CanvasRenderingContext2D(this.settings)
       func build() {
           Flex(direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center) {
-              // Invokes the CanvasRenderingContext2D object on the canvas.
+              // Invokes CanvasRenderingContext2D within the canvas.
               Canvas(this.context)
                   .width(100.percent)
                   .height(100.percent)
@@ -31,7 +31,7 @@ Canvas provides a canvas component for custom graphic rendering. Developers can 
                   .onReady(
                       {
                           =>
-                          // Drawing content can be added here.
+                          // Drawing operations can be performed here.
                           this.context.lineWidth = 0.6
                           this.context.strokeRect(50.0, 50.0, 200.0, 150.0);
                       }
@@ -45,7 +45,7 @@ Canvas provides a canvas component for custom graphic rendering. Developers can 
 
 ## Initializing the Canvas Component
 
-`onReady(() -> Unit)` is an event callback triggered when the Canvas component initializes or resizes. After this event is called, the exact width and height of the Canvas component can be obtained, allowing further use of `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` objects to call relevant APIs for graphic rendering.
+`onReady(() -> Unit)` is the event callback triggered when the Canvas component initializes or resizes. After this event, the Canvas component's definitive width and height can be obtained, enabling further use of `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` objects to call relevant APIs for graphics rendering.
 
  <!-- run -->
 
@@ -58,9 +58,9 @@ import ohos.arkui.state_macro_manage.*
 @Entry
 @Component
 class EntryView {
-    // Configures parameters for the CanvasRenderingContext2D object, including antialiasing (true enables antialiasing).
+    // Configuration parameters for CanvasRenderingContext2D, including antialiasing (true enables antialiasing).
     var settings: RenderingContextSettings = RenderingContextSettings(antialias: true)
-    // Creates a CanvasRenderingContext2D object for drawing on the canvas.
+    // Creates a CanvasRenderingContext2D object for drawing via the canvas.
     var context: CanvasRenderingContext2D = CanvasRenderingContext2D(this.settings)
     func build() {
         Canvas(this.context)
@@ -69,7 +69,7 @@ class EntryView {
         .backgroundColor(0XF5DC62)
         .onReady({
             =>
-            this.context.fillStyle(0X0097D4)
+            this.context.fillStyle = 0X0097D4
             this.context.fillRect(50.0, 50.0, 100.0, 100.0)
         })
     }
@@ -80,9 +80,9 @@ class EntryView {
 
 ## Canvas Component Drawing Methods
 
-After calling the Canvas component's lifecycle interface `onReady()`, developers can directly use the Canvas component for drawing. Alternatively, they can define a `Path2D` object separately to construct an ideal path and then use the Canvas component for rendering after `onReady()` is called.
+After invoking the Canvas component's lifecycle interface `onReady()`, developers can directly use the Canvas component for drawing. Alternatively, they can define a `Path2D` object separately to construct an ideal path and then use the Canvas component for rendering after `onReady()` is called.
 
-- Directly call relevant APIs using `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` objects for drawing.
+- Directly call relevant APIs via `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` objects for drawing.
 
      <!-- run -->
 
@@ -120,7 +120,7 @@ After calling the Canvas component's lifecycle interface `onReady()`, developers
 
   ![Canvas2](figures/Canvas2.jpg)
 
-- First define a `Path2D` object to construct the desired path, then use the `stroke` or `fill` methods of `CanvasRenderingContext2D` or `OffscreenCanvasRenderingContext2D` for drawing. Refer to `Path2D` for specific usage.
+- First, define a `Path2D` object separately to construct the desired path, then use the `stroke` or `fill` methods of `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` for drawing. For details, refer to [`Path2D`](../reference/arkui-cj/cj-canvas-drawing-path2d.md#class-path2d).
 
      <!-- run -->
 
@@ -159,11 +159,11 @@ After calling the Canvas component's lifecycle interface `onReady()`, developers
 
 ## Common Methods of Canvas Component
 
-The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects provide numerous properties and methods for drawing text, graphics, pixel manipulation, etc., forming the core of the Canvas component. Common interfaces include [fill](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-fill) (fills a closed path), [clip](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-clip) (sets the current path as a clipping path), [stroke](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-stroke) (performs stroke operations), etc. Additionally, properties like [fillStyle](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-fillstylecanvasgradient) (specifies fill color), [globalAlpha](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-globalalphafloat64) (sets transparency), and [strokeStyle](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-strokestylecanvasgradient) (sets stroke color) modify rendering styles. Below are some common use cases:
+The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects provide numerous properties and methods for drawing text, graphics, and pixel manipulation, serving as the core of the Canvas component. Common interfaces include [`fill`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-fill) (fills closed paths), [`clip`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-clip) (sets the current path as a clipping path), [`stroke`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-stroke) (performs stroke operations), etc. Additionally, properties like [`fillStyle`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-fillstylecanvasgradient) (specifies fill color), [`globalAlpha`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-globalalphafloat64) (sets transparency), and [`strokeStyle`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-strokestylecanvasgradient) (sets stroke color) modify rendering styles. Below are some common use cases:
 
 - Basic Shape Drawing.
 
-  Use interfaces like [arc](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-arcfloat64-float64-float64-float64-float64-bool) (draws an arc), [ellipse](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-ellipsefloat64-float64-float64-float64-float64-float64-float64-bool) (draws an ellipse), and [rect](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-rectfloat64-float64-float64-float64) (creates a rectangular path) to draw basic shapes.
+  Use [`arc`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-arcfloat64-float64-float64-float64-float64-bool) (draws arcs), [`ellipse`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-ellipsefloat64-float64-float64-float64-float64-float64-float64-bool) (draws ellipses), [`rect`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-rectfloat64-float64-float64-float64) (creates rectangular paths), etc., to draw basic shapes.
 
      <!-- run -->
 
@@ -210,7 +210,7 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
 
 - Text Drawing.
 
-  Use interfaces like [fillText](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-filltextstring-float64-float64) (fills text) and [strokeText](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-stroketextstring-float64-float64) (strokes text) for text rendering. The example sets the font to a bold 50-pixel "sans-serif" and uses `fillText` to draw "Hello World!" at (50, 100). It then sets `strokeStyle` to red, `lineWidth` to 0.7, and the same font to stroke the text outline at (50, 120).
+  Use [`fillText`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-filltextstring-float64-float64) (fills text) and [`strokeText`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-stroketextstring-float64-float64) (strokes text) for text rendering. The example sets the font to a bold 50-pixel "sans-serif" and fills "Hello World!" at (50, 100). It then sets `strokeStyle` to red, `lineWidth` to 0.7, and the same font to stroke "Hello World!" at (50, 120).
 
      <!-- run -->
 
@@ -235,12 +235,12 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
                   .onReady({
                       =>
                       // Text fill
-                      this.context.font(size: 50.px, weight: FontWeight.Bolder, family: "sans-serif")
+                      this.context.font = "FontStyle.Normal bolder 50.px sans-serif"
                       this.context.fillText("Hello World!", 50.0, 100.0)
                       // Text stroke
-                      this.context.strokeStyle(0Xff0000)
+                      this.context.strokeStyle = 0Xff0000
                       this.context.lineWidth = 0.7
-                      this.context.font(size: 50.px, weight: FontWeight.Bolder, family: "sans-serif")
+                      this.context.font = "FontStyle.Normal bolder 50.px sans-serif"
                       this.context.strokeText("Hello World!", 50.0, 120.0)
                       }
                   )
@@ -253,7 +253,7 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
 
 - Other Methods.
 
-  Canvas also provides other methods. Gradient-related methods include [createLinearGradient](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-createlineargradientfloat64-float64-float64-float64) (creates a linear gradient) and [createRadialGradient](../../../en/application-dev/reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-createradialgradientfloat64-float64-float64-float64-float64-float64) (creates a radial gradient).
+  Canvas also provides other methods. Gradient-related methods include [`createLinearGradient`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-createlineargradientfloat64-float64-float64-float64) (creates a linear gradient) and [`createRadialGradient`](../reference/arkui-cj/cj-canvas-drawing-canvasrenderingcontext2d.md#func-createradialgradientfloat64-float64-float64-float64-float64-float64) (creates a radial gradient).
 
      <!-- run -->
 
@@ -279,12 +279,12 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
                         =>
                         // Creates a radial gradient CanvasGradient object
                         let grad = this.context.createRadialGradient(200.0, 200.0, 50.0, 200.0, 200.0, 200.0)
-                        // Sets gradient stops for the CanvasGradient object, including offset and color
+                        // Sets gradient stops (offset and color)
                         grad.addColorStop(0.0, 0XE87361)
                         grad.addColorStop(0.5, 0XFFFFF0)
                         grad.addColorStop(1.0, 0XBDDB69)
-                        // Fills a rectangle with the CanvasGradient object
-                        this.context.fillStyle(grad)
+                        // Fills a rectangle with the gradient
+                        this.context.fillStyle = grad
                         this.context.fillRect(0.0, 0.0, 400.0, 400.0)
                     }
                 )
@@ -322,7 +322,7 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
                       {
                       =>
                           // Sets fill style to blue
-                          this.context.fillStyle(0X0097D4)
+                          this.context.fillStyle = 0X0097D4
                           // Draws a 200x200 rectangle with top-left corner at (50, 50)
                           this.context.fillRect(50.0, 50.0, 200.0, 200.0)
                           // Clears a 150x100 area with top-left corner at (70, 70)
@@ -352,7 +352,7 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
       private let settings: RenderingContextSettings = RenderingContextSettings(antialias: true)
       private let context: CanvasRenderingContext2D = CanvasRenderingContext2D(this.settings)
 
-      // Constructs a pentagon using Path2D interfaces
+      // Constructs a pentagon using Path2D methods
       var path: Path2D = Path2D()
       func build() {
           Flex(direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center) {
@@ -370,8 +370,8 @@ The `OffscreenCanvasRenderingContext2D` and `CanvasRenderingContext2D` objects p
                       path.lineTo(250.0, 150.0)
                       path.closePath()
                       // Sets fill color to blue
-                      this.context.fillStyle(0X0097D4)
-                      // Fills the pentagon described by Path2D on the canvas
+                      this.context.fillStyle = 0X0097D4
+                      // Fills the pentagon described by Path2D within the canvas
                       this.context.fill(path)
                       }
                   )

@@ -9,7 +9,7 @@ MAC (Message Authentication Code) provides a method for verifying the integrity 
 The following are the specifications supported by HMAC.  
 
 <!--Del-->  
-For OpenHarmony, vendor-adapted key management service specifications are categorized into mandatory and optional specifications. Mandatory specifications are algorithm specifications supported by all vendors. For optional specifications, vendors decide whether to implement them based on actual circumstances. If needed, please refer to the specific vendor's documentation to ensure compatibility before use.  
+For OpenHarmony, vendor-adapted key management service specifications are divided into mandatory and optional specifications. Mandatory specifications are algorithm specifications that all vendors must support. For optional specifications, vendors decide whether to implement them based on actual circumstances. If needed, please refer to the specific vendor's documentation to ensure compatibility before use.  
 
 **Developers are advised to use mandatory specifications for application development to ensure full platform compatibility.**  
 <!--DelEnd-->  

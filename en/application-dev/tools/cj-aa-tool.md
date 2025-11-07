@@ -1,12 +1,12 @@
 # aa Tool
 
-Ability assistant (abbreviated as aa) is a tool for launching applications and test cases, providing developers with basic application debugging and testing capabilities, such as starting application components, forcibly terminating processes, printing component-related information, etc.
+Ability Assistant (abbreviated as aa) is a tool for launching applications and test cases, providing developers with basic application debugging and testing capabilities, such as starting application components, forcibly terminating processes, printing component-related information, etc.
 
 ## Environment Requirements
 
-Before using this tool, developers need to first obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](https://docs.openharmony.cn/pages/v5.1/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and execute `hdc shell`.
+Before using this tool, developers need to first obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](https://docs.openharmony.cn/pages/v5.1/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and execute `hdc shell`.
 
-The command descriptions in this document are based on an interactive command environment. If directly executing `hdc shell [aa command]`, the aa command must be wrapped in `""` to ensure parameters are correctly recognized. Examples:
+All command descriptions in this document are based on an interactive command environment. If directly executing `hdc shell [aa command]`, the aa command must be wrapped in "" to ensure parameters are correctly recognized. Examples:
 
 ```bash
 # Launch command
@@ -20,14 +20,14 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 
 | Command | Description |
 |--------|--------|
-| -h/help | Help command. Used to query supported aa command information. |
-| start | Launch command. Used to start an application component, which can be a Stage model UIAbility or ServiceExtensionAbility component. The target component's exported tag in the configuration file must not be set to false. |
+| -h/help | Help command. Used to query supported command information. |
+| start | Launch command. Used to start an application component, which can be a UIAbility or ServiceExtensionAbility component in the Stage model. The exported tag in the component's configuration file must not be set to false. |
 | force-stop | Force-stop process command. Forcibly terminates a process by bundleName. |
 | test | Test framework launch command. Starts the test framework based on provided parameters. |
 | attach | Debug mode entry command. Puts a specified application into debug mode by bundleName. |
 | detach | Debug mode exit command. Takes a specified application out of debug mode by bundleName. |
-| appdebug | Debug wait command. Used to set/unset an application's debug wait state, and retrieve package names and persistent information of applications in debug wait state. Debug wait state only applies to debug-type applications. The appdebug set command only affects a single application; repeated settings will overwrite previous package names and persistent states. |
-| process | Application debugging/tuning command. Used for application debugging or tuning. IDEs use this command to integrate debugging and tuning tools. |
+| appdebug | Debug wait command. Used to set/unset an application's debug wait state, and retrieve package names and persistence information of applications in debug wait state. Debug wait state only applies to debug-type applications. The appdebug set command only affects a single application; when repeatedly set, the package name and persistence state will be overwritten with the latest settings. |
+| process | Application debugging/tuning command. Used for application debugging or tuning, integrated by IDEs with debugging and tuning tools. |
 
 ## Help Command (help)
 
@@ -36,19 +36,19 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 aa help
 ```
 
-## Start Command (start)
+## Launch Command (start)
 
-Launches an application component, which can be a Stage model UIAbility or ServiceExtensionAbility component. The target component's exported tag in the configuration file must not be set to false.
+Starts an application component, which can be a UIAbility or ServiceExtensionAbility component in the Stage model. The exported tag in the component's configuration file must not be set to false.
 
 ```bash
 # Explicitly launch Ability
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f case insensitive>] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # Implicitly launch Ability. If no parameters are provided, the launch will fail.
-aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f case insensitive>] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 ```
 
-**Start Command Parameter List**
+**Launch Command Parameter List**
 
 | Parameter | Description |
 | -------- |-------------------|
@@ -61,22 +61,23 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
 | -A | Optional, action. |
 | -e | Optional, entity. |
 | -t | Optional, type. |
-| --pi | Optional, integer key-value pair. |
-| --pb | Optional, boolean key-value pair. |
-| --ps | Optional, string key-value pair. |
+| --pi | Optional, integer-type key-value pair. |
+| --pb | Optional, boolean-type key-value pair. |
+| --ps | Optional, string-type key-value pair. |
 | --psn | Optional, empty string keyword. |
-| --wl | Optional, windowLeft (left margin in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing.|
-| --wt | Optional, windowTop (top margin in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing.|
-| --wh | Optional, windowHeight (height in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing.|
-| --ww | Optional, windowWidth (width in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing.|
-| -R | Optional, enables multi-thread error detection during debugging. Presence indicates enabled; absence indicates disabled.|
-| -S | Optional, enters application sandbox during debugging. Presence indicates enabled; absence indicates disabled. |
+| --wl | Optional, windowLeft (left margin in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing. |
+| --wt | Optional, windowTop (top margin in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing. |
+| --wh | Optional, windowHeight (height in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing. |
+| --ww | Optional, windowWidth (width in px).<br>**Constraint:**<br>Only effective when the 2-in-1 device is in developer mode and the launched application uses debug signing. |
+| -R | Optional, enables multi-thread error detection in debug mode. Presence indicates enabled; absence indicates disabled. |
+| -S | Optional, enters application sandbox in debug mode. Presence indicates enabled; absence indicates disabled. |
 | -D | Optional, debug mode. |
 | -p | Optional, tuning command. Customized by the caller. |
 
 **Return Value:**
 
-On successful launch: "start ability successfully." On failure: "error: failed to start ability." with corresponding error information.
+On successful launch: "start ability successfully."  
+On failed launch: "error: failed to start ability." with corresponding failure information.
 
 **Error Codes:**
 
@@ -102,15 +103,15 @@ On successful launch: "start ability successfully." On failure: "error: failed t
 
 **Example:**
 
-Example of implicitly launching an Ability.
+Implicit Ability launch example.
 
 > **Note:**
 >
-> This example only demonstrates partial field usage. For detailed Ability matching rules, refer to [Explicit Want vs. Implicit Want Matching Rules](../application-models/cj-explicit-implicit-want-mappings.md).
+> This example only demonstrates partial field usage. For detailed Ability matching rules, refer to [Explicit Want and Implicit Want Matching Rules](../application-models/cj-explicit-implicit-want-mappings.md).
 
 - **Target Application:**
 
-    Modify module.json5 configuration to configure uris for the target Ability.
+    Modify module.json5 configuration to add uris for the target Ability.
 
     ```json
     {
@@ -145,7 +146,7 @@ Example of implicitly launching an Ability.
         aa start -U myscheme://www.test.com:8080/path
         ```
 
-    - To include parameters, use:
+    - To include parameters:
 
         ```bash
         aa start -U myscheme://www.test.com:8080/path --pi paramNumber 1 --pb paramBoolean true --ps paramString teststring  --psn paramNullString
@@ -153,19 +154,20 @@ Example of implicitly launching an Ability.
 
         UIAbility parameter retrieval example:
 
-        <!--compile-->
+        <!-- compile -->
+
         ```cangjie
         import kit.AbilityKit.*
         import ohos.base.*
         import ohos.ability.*
 
-        class TargetAbility <:  Ability {
+        class TargetAbility <: UIAbility {
           public override func onCreate(want:Want, launchParam: LaunchParam): Unit {
-            hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-            let paramNumber = want.parameters.paramNumber
-            let paramBoolean = want.parameters.paramBoolean
-            let paramString = want.parameters.paramString
-            let paramNullString = want.parameters.paramNullString
+            Hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+            let paramNumber = want.parameters.get("paramNumber")
+            let paramBoolean = want.parameters.get("paramBoolean")
+            let paramString = want.parameters.get("paramString")
+            let paramNullString = want.parameters.get("paramNullString")
           }
         }
         ```
@@ -178,7 +180,7 @@ Example of implicitly launching an Ability.
         aa start -A ohos.want.action.viewData -U https://www.example.com
         ```
 
-## Force-stop Process Command (force-stop)
+## Force-Stop Process Command (force-stop)
 
 Forcibly terminates a process by bundleName.
 
@@ -188,7 +190,8 @@ aa force-stop <bundleName>
 
 **Return Value:**
 
-On successful termination: "force stop process successfully." On failure: "error: failed to force stop process."
+On successful termination: "force stop process successfully."  
+On failure: "error: failed to force stop process."
 
 **Error Codes:**
 
@@ -221,19 +224,20 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 | -h/--help | Help information. |
 | -b | Required, bundleName. |
 | -s unittest | Required, testRunner. |
-| -m | Optional, testRunner's moduleName.<br>**Note:** This optional parameter is only available in Stage model. |
-| -s class | Optional, specifies the test suite or test case to execute. |
-| -s level | Optional, specifies the test case level to execute. |
-| -s size | Optional, specifies the test case size to execute. |
-| -s testType | Optional, specifies the test case type to execute. |
-| -s timeout | Optional, test case execution timeout (in ms), default 5000. |
+| -m | Optional, testRunner's moduleName.<br>**Note:** Only applicable in Stage model. |
+| -s class | Optional, specifies test suite or test case to execute. |
+| -s level | Optional, specifies test case level. |
+| -s size | Optional, specifies test case size. |
+| -s testType | Optional, specifies test case type. |
+| -s timeout | Optional, test case execution timeout (ms), default 5000. |
 | -s \<any-key> | Optional, arbitrary key-value pair. |
-| -w | Optional, specifies test run duration (in ms). |
+| -w | Optional, specifies test run duration (ms). |
 | -D | Optional, debug mode. |
 
 **Return Value:**
 
-On successful launch: "user test started." On failure: "error: failed to start user test." with corresponding error information.
+On successful launch: "user test started."  
+On failure: "error: failed to start user test." with corresponding error information.
 
 **Error Codes:**
 
@@ -272,7 +276,8 @@ aa attach -b <bundleName>
 
 **Return Value:**
 
-On success: "attach app debug successfully." On invalid parameters: "fail: unknown option." with help information.
+On successful entry: "attach app debug successfully."  
+On invalid parameters: "fail: unknown option." with help information.
 
 **Error Codes:**
 
@@ -297,22 +302,25 @@ Takes a specified application out of debug mode by bundleName.
 
 ```bash
 aa detach -b <bundleName>
-```**Command Parameter List for Exiting Debug Mode**
+```
 
-| Parameter | Description              |
+**Debug Mode Exit Command Parameter List**
+
+| Parameter | Description |
 | -------- |-------------------|
-| -h/--help | Help information.             |
-| -b | Required parameter, bundleName.  |
+| -h/--help | Help information. |
+| -b | Required, bundleName. |
 
 **Return Value:**
 
-When the application successfully exits debug mode, it returns "detach app debug successfully."; when the provided parameters are invalid, it returns "fail: unknown option." and prints the help information.
+On successful exit: "detach app debug successfully."  
+On invalid parameters: "fail: unknown option." with help information.
 
 **Error Codes:**
 
 | Error Code ID | Error Message |
 | ------- | -------- |
-| 10105001 | Failed to connect to the ability service.|
+| 10105001 | Failed to connect to the ability service. |
 | 10106001 | The current device is not in developer mode. |
 | 10106002 | The target application does not support debug mode. |
 | 10103601 | The specified bundleName does not exist. |
@@ -321,31 +329,33 @@ When the application successfully exits debug mode, it returns "detach app debug
 **Example:**
 
 ```bash
-# Exit debug mode for the specified application via bundleName
+# Take specified application out of debug mode by bundleName
 aa detach -b com.example.myapplication
 ```
 
-## Wait for Debug Command (appdebug)
+## Debug Wait Command (appdebug)
 
-Used to set or unset the wait-for-debug state of an application, as well as to retrieve the package name and persistence information of applications in the wait-for-debug state. The wait-for-debug state only applies to debug-type applications. The appdebug set command only affects a single application. When repeatedly set, the application package name and persistence state will be replaced with the latest settings.
+Used to set/unset an application's debug wait state, and retrieve package names and persistence information of applications in debug wait state. Debug wait state only applies to debug-type applications. The appdebug set command only affects a single application; when repeatedly set, the package name and persistence state will be overwritten with the latest settings.
 
 ```bash
 aa appdebug -b <bundleName> [-p]
 ```
 
-**Wait for Debug Command Parameter List**
+**Debug Wait Command Parameter List**
 
 | Parameter | Sub-Parameter | Description |
 | -------- | -------- | -------- |
 | -h/--help | - | Help information. |
-| -b/--bundlename | bundleName | Set the wait-for-debug state for the specified application. No validation is performed on the package name legality during setup. |
-| -p/--persist | - | Optional parameter; persistence flag. Including this parameter means the application will remain in the wait-for-debug state persistently, effective even after device restarts or application reinstalls. Omitting this parameter means the wait-for-debug state will only take effect once before the device restarts. Must be used in combination with the -b parameter, e.g., `aa&nbsp;appdebug&nbsp;-b&nbsp;&lt;bundleName&gt;&nbsp;-p`. |
-| -c/--cancel | - | Cancel the wait-for-debug state. |
-| -g/--get | - | Retrieve the package name and persistence information of the application in the wait-for-debug state. |
+| -b/--bundlename | bundleName | Sets debug wait state for specified application. Does not validate package name legality. |
+| -p/--persist | - | Optional; persistence flag. When present, maintains debug wait state across device reboots and reinstalls; when absent, debug wait state only lasts until next device reboot. Must be used with -b, e.g., `aa appdebug -b <bundleName> -p`. |
+| -c/--cancel | - | Cancels debug wait state. |
+| -g/--get | - | Retrieves package names and persistence information of applications in debug wait state. |
 
 **Return Value:**
 
-When execution is successful, it returns "app debug successfully."; when execution fails, it returns "error: failed to app debug."; when the failure reason is non-developer mode, it returns "error: not developer mode."
+On success: "app debug successfully."  
+On failure: "error: failed to app debug."  
+When failure is due to non-developer mode: "error: not developer mode."
 
 **Error Codes:**
 
@@ -361,44 +371,46 @@ When execution is successful, it returns "app debug successfully."; when executi
 # Display help information
 aa appdebug -h
 
-# Set the wait-for-debug state for the specified application
+# Set debug wait state for specified application
 aa appdebug -b com.example.myapplication [-p]
 
-# Cancel the wait-for-debug state
+# Cancel debug wait state
 aa appdebug -c
 
-# Retrieve the package name and persistence information of the application in the wait-for-debug state
+# Retrieve package names and persistence information of applications in debug wait state
 # Example output: bundle name : com.example.publishsystem, persist : false
 aa appdebug -g
 ```
 
-## Application Debugging/Profiling Command (process)
+## Application Debugging/Tuning Command (process)
 
-Used to debug or profile an application. IDEs use this command to integrate debugging and profiling tools.
+Used for application debugging or tuning, integrated by IDEs with debugging and tuning tools.
 
 ```bash
-# Debug an application
+# Debug application
 aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-D <debug-cmd>] [-S]
 
-# Profile an application
+# Tune application
 aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-S]
 ```
 
-**Application Debugging/Profiling Command Parameter List**
+**Application Debugging/Tuning Command Parameter List**
 
 | Parameter | Description |
 | -------- | -------- |
 | -h/--help | Help information. |
-| -b | Required parameter, bundleName. |
-| -a | Required parameter, abilityName. |
-| -m | Optional parameter, moduleName. |
-| -p | Optional parameter, profiling command, mutually exclusive with -D. The command is user-defined. |
-| -D | Optional parameter, debugging command, mutually exclusive with -p. The command is user-defined. |
-| -S | Optional parameter, enter the application sandbox. |
+| -b | Required, bundleName. |
+| -a | Required, abilityName. |
+| -m | Optional, moduleName. |
+| -p | Optional, tuning command (mutually exclusive with -D). Customized by caller. |
+| -D | Optional, debugging command (mutually exclusive with -p). Customized by caller. |
+| -S | Optional, enters application sandbox. |
 
 **Return Value:**
 
-When execution is successful, it returns "start native process successfully."; when execution fails, it returns "error: failed to start native process."; when the provided parameters are invalid, it returns "error: option requires a value." and prints the help information.
+On success: "start native process successfully."  
+On failure: "error: failed to start native process."  
+On invalid parameters: "error: option requires a value." with help information.
 
 **Error Codes:**
 
@@ -411,425 +423,331 @@ When execution is successful, it returns "start native process successfully."; w
 **Examples:**
 
 ```bash
-# Debug an application
+# Debug application
 aa process -b com.example.myapplication -a EntryAbility -D debug_cmd [-S]
 
-# Profile an application
+# Tune application
 aa process -b com.example.myapplication -a EntryAbility -p perf-cmd [-S]
-```
-
-## AA Tool Error Codes
+```## aa Tool Error Codes
 
 ### 10103001 Target Ability Visibility Verification Failed
 
-**Error Message**
-
+**Error Message**  
 Failed to verify the visibility of the target ability.
 
-**Error Description**
+**Error Description**  
+The aa tool returns this error code when the visibility verification of the target ability fails.
 
-The AA tool returns this error code when the visibility verification of the target ability fails.
+**Possible Causes**  
+When the `exported` field in the [abilities tag](../cj-start/basic-knowledge/module-configuration-file.md#abilities标签) or [extensionAbilities tag](../cj-start/basic-knowledge/module-configuration-file.md#extensionabilities标签) of the target application's module.json5 configuration file is set to `false`, it indicates that the corresponding UIAbility component/ExtensionAbility component cannot be invoked by other applications or launched via aa tool commands.
 
-**Possible Causes**
-
-When the target application's `exported` field in the [abilities tag](../cj-start/basic-knowledge/module-configuration-file.md#abilities-tag) or [extensionAbilities tag](../cj-start/basic-knowledge/module-configuration-file.md#distributionfilter-tag) in the module.json5 configuration file is set to `false`, it means the corresponding UIAbility component/ExtensionAbility component cannot be invoked by other applications or launched via AA tool commands.
-
-**Resolution Steps**
-
-Check if the `exported` field for the corresponding Ability in the target application's module.json5 is set to `true`. If not, change it to `true` and retry.
+**Resolution Steps**  
+Check whether the `exported` configuration for the corresponding Ability field in the target application's module.json5 is set to `true`. If not, modify it to `true` and retry.
 
 ### 10104001 Specified Ability Does Not Exist
 
-**Error Message**
-
+**Error Message**  
 The specified ability does not exist.
 
-**Error Description**
+**Error Description**  
+The aa tool returns this error code when the specified ability name does not exist.
 
-The AA tool returns this error code when the specified ability name does not exist.
+**Possible Causes**  
+The specified Ability is not installed.
 
-**Possible Causes**
-
-The specified ability is not installed.
-
-**Resolution Steps**
-
-1. Verify the `abilityName` parameter in the `-a` option and the `bundleName` parameter in the `-b` option of the AA command.
-2. Check if the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully.
-
+**Resolution Steps**  
+1. Verify the correctness of the `abilityName` parameter in the `-a` option and the `bundleName` parameter in the `-b` option of the aa command.  
+2. Check whether the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully:  
     ```bash
     hdc shell bm dump -a
-    ```
-
-3. For multi-HAP applications, confirm if the HAP containing the Ability is installed. Use the following command to query the package information of the application. If the HAP and Ability are not found in the installed application, the HAP containing the Ability is not installed.
-
+    ```  
+3. For multi-HAP applications, confirm whether the HAP containing the Ability is installed. Use the following command to query the package information of the application. If the corresponding HAP and Ability are not found in the installed application, the HAP containing the Ability is not installed:  
     ```bash
     hdc shell bm dump -n package_name
-    ```
+    ```  
 
 ### 10105001 Ability Service Connection Failed
 
-**Error Message**
-
+**Error Message**  
 Failed to connect to the ability service.
 
-**Error Description**
+**Error Description**  
+Connection to the Ability service failed.
 
-Failed to connect to the Ability service.
-
-**Possible Causes**
-
+**Possible Causes**  
 The Ability service was disconnected during the interface call.
 
-**Resolution Steps**
-
-Try restarting the device and re-executing the command.
+**Resolution Steps**  
+Try restarting the device and re-executing the operation.
 
 ### 10105002 Failed to Obtain Ability Information
 
-**Error Message**
-
+**Error Message**  
 Failed to obtain ability information.
 
-**Error Description**
+**Error Description**  
+Failed to retrieve Ability information.
 
-Failed to obtain Ability information.
+**Possible Causes**  
+The AbilityInfo obtained via BMS during the generation of the Ability request is empty.
 
-**Possible Causes**
-
-The AbilityInfo obtained via BMS during the generation of the Ability request was empty.
-
-**Resolution Steps**
-
-Check if the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully.
-
+**Resolution Steps**  
+Check whether the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully:  
 ```bash
 hdc shell bm dump -a
 ```
 
 ### 10105003 App Service Connection Failed
 
-**Error Message**
-
+**Error Message**  
 Failed to connect to the app service.
 
-**Error Description**
+**Error Description**  
+App service connection failed.
 
-Failed to connect to the App service.
-
-**Possible Causes**
-
+**Possible Causes**  
 The App service was disconnected during the interface call.
 
-**Resolution Steps**
-
+**Resolution Steps**  
 Try restarting the device.
 
-### 10106001 Current Device Is Not in Developer Mode
+### 10106001 Current Device Not in Developer Mode
 
-**Error Message**
-
+**Error Message**  
 The current device is not in developer mode.
 
-**Error Description**
-
+**Error Description**  
 The current device is not in developer mode.
 
-**Possible Causes**
-
+**Possible Causes**  
 The current device is not in developer mode.
 
-**Resolution Steps**
-
-Enable developer mode in the settings.
+**Resolution Steps**  
+Enable developer mode in the device settings.
 
 ### 10106002 Target Application Does Not Support Debug Mode
 
-**Error Message**
-
+**Error Message**  
 The target application does not support debug mode.
 
-**Error Description**
-
+**Error Description**  
 The target application does not support debug mode.
 
-**Possible Causes**
-
+**Possible Causes**  
 The "type" parameter in the signing tool for the target application is not set to "debug".
 
-**Resolution Steps**
-
-Re-sign the application using a debug signing certificate, install the newly signed HAP, and then retry the command.
+**Resolution Steps**  
+Re-sign the application using a debug signing certificate. After installing the newly signed HAP, retry the command.
 
 ### 10100101 Failed to Obtain Application Information
 
-**Error Message**
-
+**Error Message**  
 Failed to obtain application information.
 
-**Error Description**
+**Error Description**  
+Abnormal App information retrieved from BMS.
 
-Abnormal App information queried from BMS.
+**Possible Causes**  
+The application name or package name in the App information retrieved from BMS is abnormal.
 
-**Possible Causes**
-
-The application name or package name in the App information queried from BMS is abnormal.
-
-**Resolution Steps**
-
-1. Verify the `abilityName` parameter in the `-a` option and the `bundleName` parameter in the `-b` option of the AA command.
-2. Check if the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully.
-
+**Resolution Steps**  
+1. Verify the correctness of the `abilityName` parameter in the `-a` option and the `bundleName` parameter in the `-b` option of the aa command.  
+2. Check whether the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully:  
     ```bash
     hdc shell bm dump -a
-    ```
-
-3. For multi-HAP applications, confirm if the HAP containing the Ability is installed. Use the following command to query the package information of the application. If the HAP and Ability are not found in the installed application, the HAP containing the Ability is not installed.
-
+    ```  
+3. For multi-HAP applications, confirm whether the HAP containing the Ability is installed. Use the following command to query the package information of the application. If the corresponding HAP and Ability are not found in the installed application, the HAP containing the Ability is not installed:  
     ```bash
     hdc shell bm dump -n package_name
-    ```
+    ```  
 
-### 10100102 AA Start Command Cannot Launch UIExtensionAbility
+### 10100102 aa start Command Cannot Launch UIExtensionAbility
 
-**Error Message**
-
+**Error Message**  
 The aa start command cannot be used to launch a UIExtensionAbility.
 
-**Error Description**The aa tool fails to launch UIExtensionAbility.
+**Error Description**  
+The aa tool cannot launch UIExtensionAbility.
 
-**Possible Causes**
+**Possible Causes**  
+The aa start command does not support launching UIExtensionAbility.
 
-The `aa start` command does not support launching UIExtensionAbility.
-
-**Resolution Steps**
-
-Verify whether the target Ability is a UIExtensionAbility. The `aa start` command cannot launch UIExtensionAbility.
+**Resolution Steps**  
+Confirm whether the target Ability is a UIExtensionAbility. The aa start command cannot launch UIExtensionAbility.
 
 ### 10103101 No Matching Application Found for Implicit Launch
 
-**Error Message**
-
+**Error Message**  
 Failed to find a matching application for implicit launch.
 
-**Error Description**
+**Error Description**  
+No matching Ability found during implicit launch.
 
-No matching Ability is found during an implicit launch.
+**Possible Causes**  
+- For implicit launches, the startup parameters may be incorrectly configured or the specified HAP package is not installed.  
+- For explicit launches, the command may specify `bundleName` without specifying `abilityName`.  
 
-**Possible Causes**
-
-- For implicit launches: Incorrect launch parameter configuration or the specified HAP package is not installed.
-- For explicit launches: The command specifies `bundleName` but omits `abilityName`.
-
-**Resolution Steps**
-
-- For implicit launches: Ensure the launch parameters are correctly configured and the package is installed.
-- For explicit launches: Verify that the `abilityName` parameter is correctly passed.
+**Resolution Steps**  
+- For implicit launches, ensure the startup parameters are correctly configured and the package is installed.  
+- For explicit launches, ensure the `abilityName` parameter is correctly passed.  
 
 ### 10103102 Invalid AppCloneIndex Value
 
-**Error Message**
-
+**Error Message**  
 The passed appCloneIndex is invalid.
 
-**Error Description**
+**Error Description**  
+This error code is returned when an invalid AppCloneIndex is passed.
 
-This error code is returned when an invalid `AppCloneIndex` is provided.
+**Possible Causes**  
+The AppCloneIndex parameter in the aa start command is invalid.
 
-**Possible Causes**
+**Resolution Steps**  
+Verify the validity of the AppCloneIndex.
 
-The `AppCloneIndex` parameter in the `aa start` command contains an invalid value.
+### 10106101 Previous Ability Not Fully Launched; Queued for Subsequent Launch
 
-**Resolution Steps**
-
-Confirm whether the `AppCloneIndex` is valid.
-
-### 10106101 Previous Ability Launch Incomplete; Current Ability Queued
-
-**Error Message**
-
+**Error Message**  
 The current ability will be placed in the queue to wait for the previous ability to finish launching.
 
-**Error Description**
+**Error Description**  
+Due to excessive Ability launch requests and limited system processing capacity, requests are queued and processed sequentially.
 
-Due to high system load, the requested Ability is queued and processed sequentially.
-
-**Possible Causes**
-
+**Possible Causes**  
 High system concurrency.
 
-**Resolution Steps**
-
+**Resolution Steps**  
 No action required. Wait for the launch to complete.
 
-### 10106102 Device Locked During Application Launch
+### 10106102 Device Screen Locked During Application Launch
 
-**Error Message**
-
+**Error Message**  
 The device screen is locked during the application launch.
 
-**Error Description**
+**Error Description**  
+The device screen is locked during application launch.
 
-The device is locked when attempting to launch the application.
-
-**Possible Causes**
-
+**Possible Causes**  
 The screen cannot be unlocked during application launch.
 
-**Resolution Steps**
-
+**Resolution Steps**  
 Unlock the screen and retry.
 
-### 10106103 Target Application Is an Expired Crowdtesting App
+### 10106103 Target Application Is an Expired Crowdtesting Application
 
-**Error Message**
-
+**Error Message**  
 The target application is an expired crowdtesting application.
 
-**Error Description**
+**Error Description**  
+This error code is returned when the target application is a crowdtesting application that has reached its testing deadline.
 
-This error code is returned when the target application is a crowdtesting app that has reached its expiration date.
+**Possible Causes**  
+The crowdtesting application has expired and cannot be opened.
 
-**Possible Causes**
+**Resolution Steps**  
+Check whether the crowdtesting application has expired. Expired crowdtesting applications cannot be launched.
 
-The crowdtesting app has expired and cannot be opened.
+### 10106105 Target Application Under Control
 
-**Resolution Steps**
-
-Check whether the app's crowdtesting period has expired. Expired crowdtesting apps cannot be launched.
-
-### 10106105 Target Application Is Restricted
-
-**Error Message**
-
+**Error Message**  
 The target application is under control.
 
-**Error Description**
+**Error Description**  
+This error code is returned when the target application is under control by the app market.
 
-This error code is returned when the target application is restricted by the app store.
+**Possible Causes**  
+The target application is suspected of malicious behavior and is prohibited from launching by the app market.
 
-**Possible Causes**
-
-The target application is suspected of malicious behavior and is restricted from launching.
-
-**Resolution Steps**
-
+**Resolution Steps**  
 Uninstall the application.
 
-### 10106106 Target Application Is Managed by EDM
+### 10106106 Target Application Managed by EDM
 
-**Error Message**
-
+**Error Message**  
 The target application is managed by EDM.
 
-**Error Description**
+**Error Description**  
+This error code is returned when the target application is under control by enterprise device management.
 
-This error code is returned when the target application is restricted by enterprise device management.
-
-**Possible Causes**
-
+**Possible Causes**  
 The target application is prohibited from launching by enterprise management services.
 
-**Resolution Steps**
-
-This device is enterprise-managed, and the target application is blocked from launching. Developers cannot resolve this issue.
+**Resolution Steps**  
+This device is an enterprise device, and the target application is set to prohibit launching. Developers cannot resolve this issue.
 
 ### 10106107 Current Device Does Not Support Window Options
 
-**Error Message**
-
+**Error Message**  
 The current device does not support using window options.
 
-**Error Description**
+**Error Description**  
+Window options are attempted but not supported by the device.
 
-Window options are unsupported on the current device.
+**Possible Causes**  
+The user specified WindowOptions in the aa start command, but the device does not support it.
 
-**Possible Causes**
-
-The `aa start` command specifies `WindowOptions`, but the device does not support them.
-
-**Resolution Steps**
-
-Remove the `WindowOptions` parameters (`wl`, `wt`, `wh`, `ww`) from the `aa start` command and retry.
+**Resolution Steps**  
+Remove the parameters representing WindowOptions (`wl`, `wt`, `wh`, `ww`) from the aa start command and retry.
 
 ### 10107102 Specified Process Permission Verification Failed
 
-**Error Message**
-
+**Error Message**  
 Permission verification failed for the specified process.
 
-**Error Description**
+**Error Description**  
+This error code is returned when permission verification for the specified process fails.
 
-This error code is returned when permission verification fails for the specified process.
+**Possible Causes**  
+Permission verification for the specified process failed.
 
-**Possible Causes**
-
-Permission verification failed for the specified process.
-
-**Resolution Steps**
-
-Verify whether the process permissions are correctly configured.
+**Resolution Steps**  
+Verify the permissions of the specified process.
 
 ### 10108101 Internal Error During Ability Launch
 
-**Error Message**
-
+**Error Message**  
 An internal error occurs while attempting to launch the ability.
 
-**Error Description**
+**Error Description**  
+This error code is returned when internal processing errors occur, such as memory allocation or multithreading issues.
 
-This error code is returned for internal processing errors such as memory allocation or multithreading exceptions.
+**Possible Causes**  
+General kernel errors, including: internal object is null, processing timeout, failure to retrieve application information from package management, failure to obtain system services, or reaching the maximum number of Ability instances.  
 
-**Possible Causes**
+**Resolution Steps**  
+Internal errors are system runtime errors that developers cannot resolve.
 
-Generic kernel errors, including: null internal objects, timeouts, failure to retrieve app information from package management, failure to obtain system services, or exceeding the maximum number of Ability instances.
+### 10103201 Target Ability Is Not a ServiceAbility Type
 
-**Resolution Steps**
-
-Internal errors occur during system operation and cannot be resolved by developers.
-
-### 10103201 Target Ability Is Not a ServiceAbility
-
-**Error Message**
-
+**Error Message**  
 The target ability is not of the ServiceAbility type.
 
-**Error Description**
+**Error Description**  
+The target Ability is not a ServiceAbility type.
 
-The target Ability is not a ServiceAbility.
+**Possible Causes**  
+When stopping a ServiceAbility via the aa stop command, the Ability corresponding to the `abilityName` parameter in the `-a` option is not a Service type.
 
-**Possible Causes**
-
-The `abilityName` parameter in the `aa stop` command does not correspond to a ServiceAbility.
-
-**Resolution Steps**
-
-Verify whether the `abilityName` parameter in the `aa stop` command refers to a ServiceAbility.
+**Resolution Steps**  
+Check whether the Ability corresponding to the `abilityName` parameter in the `-a` option is a ServiceAbility type.
 
 ### 10104002 Failed to Retrieve Specified Package Information
 
-**Error Message**
-
+**Error Message**  
 Failed to retrieve specified package information.
 
-**Error Description**
+**Error Description**  
+Failed to retrieve specified package information.
 
-Failed to retrieve information for the specified package.
-
-**Possible Causes**
-
+**Possible Causes**  
 The application corresponding to the specified package name is not installed.
 
-**Resolution Steps**
-
-1. Verify whether the package name is correct.
-2. Check whether the application corresponding to the `bundleName` is installed. Use the following command to list installed applications. If the `bundleName` is not in the results, the application is not installed.
-
+**Resolution Steps**  
+1. Verify the correctness of the package name.  
+2. Check whether the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully:  
     ```bash
     hdc shell bm dump -a
-    ```
-
-### 10106401 Failed to Terminate Process
+    ```### 10106401 Failed to Terminate Process
 
 **Error Message**
 
@@ -841,12 +759,12 @@ Failed to kill the process.
 
 **Possible Causes**
 
-1. The application specified in the `aa force-stop` command does not exist.
+1. The application specified by the `aa force-stop` command does not exist.
 2. Failed to connect to AppManagerService.
 
 **Resolution Steps**
 
-1. Check whether the application corresponding to the `bundleName` is installed. Use the following command to list installed applications. If the `bundleName` is not in the results, the application is not installed.
+1. Verify whether the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully.
 
     ```bash
     hdc shell bm dump -a
@@ -866,7 +784,7 @@ Persistent processes cannot be killed.
 
 **Possible Causes**
 
-The `bundleName` specified in the `aa force-stop` command corresponds to a persistent process.
+The `bundleName` specified by the `aa force-stop` command is a persistent process.
 
 **Resolution Steps**
 
@@ -880,49 +798,51 @@ An internal error occurs during the execution of the `aa test` command.
 
 **Error Description**
 
-This error code is returned for internal processing errors such as memory allocation or multithreading exceptions.
+This error code is returned when internal processing errors occur, such as memory allocation failures or multithreading exceptions.
 
 **Possible Causes**
 
-Generic kernel errors, including: null internal objects, timeouts, or failure to obtain system services.
+Generic kernel errors related to memory allocation or multithreading. Specific causes may include: null internal objects, processing timeouts, or failures to obtain system services.
 
 **Resolution Steps**
 
-Internal errors occur during system operation and cannot be resolved by developers.
+Internal errors are system runtime errors that cannot be resolved by developers.
 
-### 10108601 Internal Error During Debug Mode Entry/Exit
+### 10108601 Internal Error When Entering/Exiting Debug Mode
 
 **Error Message**
 
-An internal error occurs while attempting to enter/exit debug mode.**Error Description**
+An internal error occurs while attempting to enter/exit debug mode.
+
+**Error Description**
 
 This error code is returned when internal processing errors occur, such as memory allocation failures or multithreading exceptions.
 
 **Possible Causes**
 
-General kernel-level errors related to memory allocation or multithreading. Specific causes may include: null internal objects, processing timeouts, or failures to obtain system services.
+Generic kernel errors related to memory allocation or multithreading. Specific causes may include: null internal objects, processing timeouts, or failures to obtain system services.
 
 **Resolution Steps**
 
-Internal errors are system runtime errors that cannot be handled by developers.
+Internal errors are system runtime errors that cannot be resolved by developers.
 
 ### 10103601 Specified Bundle Name Does Not Exist
 
 **Error Message**
 
-The specified bundleName does not exist.
+The specified `bundleName` does not exist.
 
 **Error Description**
 
-This error code is returned when the user-specified bundle name cannot be found.
+This error code is returned when the user-specified `bundleName` is not found.
 
 **Possible Causes**
 
-The bundle name specified in the `aa attach/detach` command does not exist.
+The `bundleName` specified by the `aa attach/detach` command does not exist.
 
 **Resolution Steps**
 
-Verify whether the application corresponding to the specified bundleName is installed. Use the following command to query the list of installed applications. If the bundleName is not in the query results, the application was not successfully installed.
+Verify whether the application corresponding to the specified `bundleName` is installed. Use the following command to query the list of installed applications. If the `bundleName` is not in the query results, the application is not installed successfully.
 
 ```bash
 hdc shell bm dump -a
@@ -936,13 +856,13 @@ The target application is not a debug application.
 
 **Error Description**
 
-The target application is not configured as a debug application.
+The target application is not a debug application.
 
 **Possible Causes**
 
-The "type" parameter in the current signing tool is not set to "debug".
+The "type" parameter in the signing tool is not set to "debug."
 
 **Resolution Steps**
 
 Re-sign the application using a debug signing certificate. After installing the newly signed HAP, retry the command.  
-For guidance on signing tools and certificate generation, refer to: [Signing Tool Guide](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing).
+For guidance on signing tools and generating signing certificates, refer to: [Signing Tool Guide](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing).

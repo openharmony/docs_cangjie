@@ -8,14 +8,14 @@ This module describes the content and attributes of common events.
 import kit.BasicServicesKit.*
 ```
 
-## Usage Instructions
+## Usage Guidelines
 
-API sample code usage instructions:
+Instructions for API sample code usage:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code contains a "// index.cj" comment in the first line, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#cangjie-sample-code-instructions).
+For details about the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class CommonEventPublishData
 
@@ -44,7 +44,7 @@ public class CommonEventPublishData {
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var bundleName
 
@@ -52,15 +52,15 @@ public class CommonEventPublishData {
 public var bundleName: String
 ```
 
-**Function:** Indicates the subscriber package name. Only subscribers with this bundleName can receive the common event.
+**Function:** Indicates the subscriber package name. Only subscribers with the specified bundleName can receive this common event.
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var code
 
@@ -72,11 +72,11 @@ public var code: Int32
 
 **Type:** Int32
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var data
 
@@ -88,11 +88,11 @@ public var data: String
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var isOrdered
 
@@ -104,11 +104,11 @@ public var isOrdered: Bool
 
 **Type:** Bool
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var isSticky
 
@@ -120,11 +120,11 @@ public var isSticky: Bool
 
 **Type:** Bool
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var parameters
 
@@ -136,11 +136,11 @@ public var parameters: HashMap<String, ValueType>
 
 **Type:** HashMap\<String, ValueType>
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var subscriberPermissions
 
@@ -152,11 +152,11 @@ public var subscriberPermissions: Array<String>
 
 **Type:** Array\<String>
 
-**Read/Write:** Readable and Writable
+**Read/Write Attribute:** Readable and Writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, Int32, Array\<String>, Bool, Bool, HashMap\<String,ValueType>)
 
@@ -176,13 +176,13 @@ public init(
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| bundleName | String | No | "" | Indicates the subscriber package name. Only subscribers with this bundleName can receive the common event. |
+| bundleName | String | No | "" | Indicates the subscriber package name. Only subscribers with the specified bundleName can receive this common event. |
 | data | String | No | "" | Indicates the custom result data of the common event. |
 | code | Int32 | No | 0 | Indicates the result code of the common event. |
 | subscriberPermissions | Array\<String> | No | Array\<String>() | **Named parameter.** Indicates the permissions of subscribers. |

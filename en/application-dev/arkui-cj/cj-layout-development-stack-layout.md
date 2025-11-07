@@ -2,19 +2,19 @@
 
 ## Overview
 
-The Stack Layout (StackLayout) is used to reserve an area on the screen to display elements within components, providing a layout where elements can overlap. The Stack Layout achieves fixed positioning and layering through the [Stack](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-stack.md) container component. Child elements within the container are pushed onto the stack in sequence, with each subsequent child element covering the previous one. Child elements can be stacked and their positions can be set.
+The Stack Layout (StackLayout) is used to reserve an area on the screen to display elements within components, providing a layout where elements can overlap. The Stack layout achieves fixed positioning and layering through the [Stack](../reference/arkui-cj/cj-row-column-stack-stack.md) container component. Child elements within the container are pushed onto the stack sequentially, with each subsequent child element covering the previous one. Child elements can be stacked and their positions can be set.
 
-The Stack Layout offers strong capabilities for page layering and position positioning, making it suitable for scenarios such as advertisements and card stacking effects.
+The Stack layout offers strong capabilities for page layering and position positioning, making it suitable for scenarios such as advertisements and card stacking effects.
 
-As shown in Figure 1, the Stack serves as the container, and the order of child elements within the container is Item1 → Item2 → Item3.
+As shown in Figure 1, the Stack acts as a container, with the order of child elements inside the container being Item1 → Item2 → Item3.
 
-**Figure 1** Stack Layout
+**Figure 1** Stack Layout  
 
 ![stack-layout](figures/stack-layout.png)
 
 ## Development Layout
 
-The Stack component is a container component that can contain various child elements. By default, child elements are centered and stacked. Child elements are constrained within the Stack and can be styled and arranged.
+The Stack component serves as a container and can include various child elements. By default, child elements are centered and stacked. Child elements are constrained within the Stack and styled/arranged accordingly.
 
 <!-- run -->
 
@@ -53,11 +53,11 @@ class EntryView {
 
 ![stack-layout-sample](figures/stack-layout-sample.png)
 
-## Alignment
+## Alignment Methods
 
-The Stack component achieves relative movement of positions through the [alignContent parameter](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-stack.md#func-aligncontentalignment). As shown in Figure 2, nine alignment methods are supported.
+The Stack component enables relative positioning through the [alignContent parameter](../reference/arkui-cj/cj-row-column-stack-stack.md#func-aligncontentalignment). As shown in Figure 2, it supports nine alignment methods.
 
-**Figure 2** Alignment of Elements Within the Stack Container  
+**Figure 2** Alignment of Elements Within a Stack Container  
 
 ![alignContent1](figures/alignContent.png)
 
@@ -98,9 +98,9 @@ class EntryView {
 
 ## Z-Order Control
 
-The display hierarchy of sibling components within the Stack container can be altered using the zIndex property of [Z-Order Control](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-zorder.md). A higher zIndex value means a higher display hierarchy, meaning components with larger zIndex values will overlay those with smaller zIndex values.
+The display hierarchy of sibling components within a Stack container can be adjusted using the zIndex property of [Z-Order Control](../reference/arkui-cj/cj-universal-attribute-zorder.md). A higher zIndex value means a higher display layer, i.e., components with larger zIndex values will overlay those with smaller values.
 
-In a Stack Layout, if a subsequent child element's dimensions are larger than those of a preceding child element, the preceding child element will be completely hidden.
+In a Stack layout, if a subsequent child element has larger dimensions than a preceding one, the preceding child element will be completely hidden.
 
 <!-- run -->
 
@@ -146,7 +146,7 @@ class EntryView {
 
 ![z](figures/Z.png)
 
-In the above figure, the last child element (Element 3) has dimensions larger than all preceding child elements, so the first two elements are completely hidden. By modifying the zIndex properties of Child Element 1 and Child Element 2, these elements can be displayed.
+In the figure above, the last child element (Element 3) has larger dimensions than all preceding elements, so the first two elements are completely hidden. By adjusting the zIndex properties of Child Element 1 and Child Element 2, these elements can be displayed.
 
 <!-- run -->
 
@@ -190,9 +190,9 @@ class EntryView {
 
 ![z2](figures/z2.png)
 
-## Scenario Example
+## Example Scenario
 
-Using the Stack Layout to quickly build a page.
+Use the Stack layout to quickly build a page.
 
 <!-- run -->
 

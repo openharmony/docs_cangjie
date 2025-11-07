@@ -154,7 +154,7 @@ public enum TokenKind <: ToString {
                               /*  e.g. "'xx'"   */
     JSTRING_LITERAL|          /*  e.g. "J"xx""  */
     MULTILINE_STRING|         /*  e.g. """"aaa"""" */
-    MULTILINE_RAW_STRING|     /*  e.g. "#"aaa"#" */
+    MULTILINE_RAW_STRING|     /*  e.g. "#"aaa"#"   */
     BOOL_LITERAL|             /*  "true" or "false" */
     UNIT_LITERAL|             /*  "()"          */
     DOLLAR_IDENTIFIER|        /*  e.g. "$x"     */

@@ -16,10 +16,10 @@ ohos.permission.ACCESS_BLUETOOTH
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment on the first line, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#cangjie-sample-code-instructions).
+For the above sample project and configuration template, see [Cangjie Sample Code Instructions](../cj-development-intro.md#cangjie-sample-code-instructions).
 
 ## func createA2dpSrcProfile()
 
@@ -31,7 +31,7 @@ public func createA2dpSrcProfile(): A2dpSourceProfile
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -46,7 +46,6 @@ public func createA2dpSrcProfile(): A2dpSourceProfile
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.*
@@ -68,7 +67,7 @@ public class A2dpSourceProfile <: BaseProfile {}
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parent Type:**
 
@@ -82,17 +81,17 @@ public func getConnectedDevices(): Array<String>
 
 **Function:** Gets the list of connected devices.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Array\<String> | Returns the addresses of currently connected devices. For security considerations, the device address obtained here is a randomized MAC address. This address remains unchanged after successful pairing; however, it will change when a paired device is unpaired and rescanned or when the Bluetooth service is powered down. |
+| Array\<String> | Returns the addresses of currently connected devices. For security considerations, the device address obtained here is a randomized MAC address. This address remains unchanged after successful pairing. If a paired device is unpaired and rescanned or when the Bluetooth service is powered off, this randomized address will change. |
 
 **Exceptions:**
 
@@ -114,7 +113,6 @@ public func getConnectedDevices(): Array<String>
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.*
@@ -135,11 +133,11 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
 
 **Function:** Gets the connection state of a device profile.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -160,7 +158,6 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -174,7 +171,6 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.*
@@ -195,11 +191,11 @@ public func getPlayingState(deviceId: String): PlayingState
 
 **Function:** Gets the playback state of a device.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -220,7 +216,6 @@ public func getPlayingState(deviceId: String): PlayingState
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -234,7 +229,6 @@ public func getPlayingState(deviceId: String): PlayingState
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.*
@@ -255,11 +249,11 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 
 **Function:** Unsubscribes from all connection state change events.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -275,7 +269,6 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -285,7 +278,6 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.callback_invoke.*
@@ -317,11 +309,11 @@ public func off(eventType: ProfileCallbackType): Unit
 
 **Function:** Unsubscribes from all connection state change events.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -336,7 +328,6 @@ public func off(eventType: ProfileCallbackType): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -346,7 +337,6 @@ public func off(eventType: ProfileCallbackType): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.callback_invoke.*
@@ -378,11 +368,11 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
 
 **Function:** Subscribes to connection state change events. Uses Callback for asynchronous callbacks.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -398,7 +388,6 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -408,7 +397,6 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.callback_invoke.*
@@ -445,7 +433,7 @@ public class CodecInfo {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var codecBitsPerSample
 
@@ -457,11 +445,11 @@ public var codecBitsPerSample: CodecBitsPerSample
 
 **Type:** [CodecBitsPerSample](#enum-codecbitspersample)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var codecChannelMode
 
@@ -473,11 +461,11 @@ public var codecChannelMode: CodecChannelMode
 
 **Type:** [CodecChannelMode](#enum-codecchannelmode)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var codecSampleRate
 
@@ -489,11 +477,11 @@ public var codecSampleRate: CodecSampleRate
 
 **Type:** [CodecSampleRate](#enum-codecsamplerate)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var codecType
 
@@ -505,11 +493,11 @@ public var codecType: CodecType
 
 **Type:** [CodecType](#enum-codectype)
 
-**Access:** Read-write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ## enum CodecBitsPerSample
 
@@ -527,7 +515,7 @@ public enum CodecBitsPerSample <: Equatable<CodecBitsPerSample> & ToString {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -544,7 +532,7 @@ CodecBitsPerSample16
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecBitsPerSample24
 
@@ -556,7 +544,7 @@ CodecBitsPerSample24
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecBitsPerSample32
 
@@ -568,7 +556,7 @@ CodecBitsPerSample32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecBitsPerSampleNone
 
@@ -580,7 +568,7 @@ CodecBitsPerSampleNone
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CodecBitsPerSample)
 
@@ -592,7 +580,7 @@ public operator func !=(other: CodecBitsPerSample): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CodecBitsPerSample](#enum-codecbitspersample)|Yes|-|Number of bits per sample in Bluetooth codec.|
 
@@ -612,7 +600,7 @@ public operator func ==(other: CodecBitsPerSample): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CodecBitsPerSample](#enum-codecbitspersample)|Yes|-|Number of bits per sample in Bluetooth codec.|
 
@@ -620,7 +608,7 @@ public operator func ==(other: CodecBitsPerSample): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the number of bits per sample is the same, otherwise returns false.|
+|Bool|Returns true if the number of bits per sample is identical, otherwise returns false.|
 
 ### func toString()
 
@@ -651,7 +639,7 @@ public enum CodecChannelMode <: Equatable<CodecChannelMode> & ToString {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -668,7 +656,7 @@ CodecChannelModeMono
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecChannelModeNone
 
@@ -680,7 +668,7 @@ CodecChannelModeNone
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecChannelModeStereo
 
@@ -692,7 +680,7 @@ CodecChannelModeStereo
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CodecChannelMode)
 
@@ -700,19 +688,19 @@ CodecChannelModeStereo
 public operator func !=(other: CodecChannelMode): Bool
 ```
 
-**Description:** Determines inequality for the channel mode in Bluetooth codec.
+**Description:** Determines inequality for Bluetooth codec channel modes.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|other|[CodecChannelMode](#enum-codecchannelmode)|Yes|-|Channel mode in Bluetooth codec.|
+|other|[CodecChannelMode](#enum-codecchannelmode)|Yes|-|Bluetooth codec channel mode.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the channel mode differs, otherwise returns false.|
+|Bool|Returns true if channel modes differ, otherwise returns false.|
 
 ### func ==(CodecChannelMode)
 
@@ -720,19 +708,19 @@ public operator func !=(other: CodecChannelMode): Bool
 public operator func ==(other: CodecChannelMode): Bool
 ```
 
-**Description:** Determines equality for the channel mode in Bluetooth codec.
+**Description:** Determines equality for Bluetooth codec channel modes.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|other|[CodecChannelMode](#enum-codecchannelmode)|Yes|-|Channel mode in Bluetooth codec.|
+|other|[CodecChannelMode](#enum-codecchannelmode)|Yes|-|Bluetooth codec channel mode.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the channel mode is the same, otherwise returns false.|
+|Bool|Returns true if channel modes are identical, otherwise returns false.|
 
 ### func toString()
 
@@ -740,13 +728,13 @@ public operator func ==(other: CodecChannelMode): Bool
 public func toString(): String
 ```
 
-**Description:** Returns the string representation of the channel mode in Bluetooth codec.
+**Description:** Returns the string representation of Bluetooth codec channel mode.
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|String representation of the channel mode.|
+|String|String representation of channel mode.|
 
 ## enum CodecSampleRate
 
@@ -767,7 +755,7 @@ public enum CodecSampleRate <: Equatable<CodecSampleRate> & ToString {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -784,7 +772,7 @@ CodecSampleRate176400
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecSampleRate192000
 
@@ -796,7 +784,7 @@ CodecSampleRate192000
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecSampleRate44100
 
@@ -808,7 +796,7 @@ CodecSampleRate44100
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecSampleRate48000
 
@@ -820,7 +808,7 @@ CodecSampleRate48000
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecSampleRate88200
 
@@ -832,7 +820,7 @@ CodecSampleRate88200
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecSampleRate96000
 
@@ -844,7 +832,7 @@ CodecSampleRate96000
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecSampleRateNone
 
@@ -856,7 +844,7 @@ CodecSampleRateNone
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CodecSampleRate)
 
@@ -864,19 +852,19 @@ CodecSampleRateNone
 public operator func !=(other: CodecSampleRate): Bool
 ```
 
-**Description:** Determines inequality for the sample rate in Bluetooth codec.
+**Description:** Determines inequality for Bluetooth codec sample rates.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|other|[CodecSampleRate](#enum-codecsamplerate)|Yes|-|Sample rate in Bluetooth codec.|
+|other|[CodecSampleRate](#enum-codecsamplerate)|Yes|-|Bluetooth codec sample rate.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the sample rate differs, otherwise returns false.|
+|Bool|Returns true if sample rates differ, otherwise returns false.|
 
 ### func ==(CodecSampleRate)
 
@@ -884,19 +872,19 @@ public operator func !=(other: CodecSampleRate): Bool
 public operator func ==(other: CodecSampleRate): Bool
 ```
 
-**Description:** Determines equality for the sample rate in Bluetooth codec.
+**Description:** Determines equality for Bluetooth codec sample rates.
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|other|[CodecSampleRate](#enum-codecsamplerate)|Yes|-|Sample rate in Bluetooth codec.|
+|other|[CodecSampleRate](#enum-codecsamplerate)|Yes|-|Bluetooth codec sample rate.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the sample rate is the same, otherwise returns false.|
+|Bool|Returns true if sample rates are identical, otherwise returns false.|
 
 ### func toString()
 
@@ -904,13 +892,13 @@ public operator func ==(other: CodecSampleRate): Bool
 public func toString(): String
 ```
 
-**Description:** Returns the string representation of the sample rate in Bluetooth codec.
+**Description:** Returns the string representation of Bluetooth codec sample rate.
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|String representation of the sample rate.|
+|String|String representation of sample rate.|
 
 ```## enum CodecType
 
@@ -924,11 +912,11 @@ public enum CodecType <: Equatable<CodecType> & ToString {
 }
 ```
 
-**Function:** Bluetooth codec types.
+**Function:** Bluetooth codec type.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -941,11 +929,11 @@ public enum CodecType <: Equatable<CodecType> & ToString {
 CodecTypeAac
 ```
 
-**Function:** AAC.
+**Function:** AAC codec.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecTypeInvalid
 
@@ -957,7 +945,7 @@ CodecTypeInvalid
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecTypeL2hc
 
@@ -965,11 +953,11 @@ CodecTypeInvalid
 CodecTypeL2hc
 ```
 
-**Function:** L2HC.
+**Function:** L2HC codec.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CodecTypeSbc
 
@@ -977,11 +965,11 @@ CodecTypeL2hc
 CodecTypeSbc
 ```
 
-**Function:** SBC.
+**Function:** SBC codec.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(CodecType)
 
@@ -989,11 +977,11 @@ CodecTypeSbc
 public operator func !=(other: CodecType): Bool
 ```
 
-**Function:** Checks inequality between Bluetooth codec types.
+**Function:** Determines inequality between Bluetooth codec types.
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CodecType](#enum-codectype)|Yes|-|Bluetooth codec type.|
 
@@ -1009,11 +997,11 @@ public operator func !=(other: CodecType): Bool
 public operator func ==(other: CodecType): Bool
 ```
 
-**Function:** Checks equality between Bluetooth codec types.
+**Function:** Determines equality between Bluetooth codec types.
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[CodecType](#enum-codectype)|Yes|-|Bluetooth codec type.|
 
@@ -1029,7 +1017,7 @@ public operator func ==(other: CodecType): Bool
 public func toString(): String
 ```
 
-**Function:** Returns the string representation of a Bluetooth codec type.
+**Function:** Returns the string representation of the Bluetooth codec type.
 
 **Return Value:**
 
@@ -1047,11 +1035,11 @@ public enum PlayingState <: Equatable<PlayingState> & ToString {
 }
 ```
 
-**Function:** Bluetooth A2DP playback states.
+**Function:** Bluetooth A2DP playback state.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1068,7 +1056,7 @@ StateNotPlaying
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StatePlaying
 
@@ -1080,7 +1068,7 @@ StatePlaying
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PlayingState)
 
@@ -1088,11 +1076,11 @@ StatePlaying
 public operator func !=(other: PlayingState): Bool
 ```
 
-**Function:** Checks inequality between Bluetooth A2DP playback states.
+**Function:** Determines inequality between Bluetooth A2DP playback states.
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[PlayingState](#enum-playingstate)|Yes|-|Bluetooth A2DP playback state.|
 
@@ -1108,11 +1096,11 @@ public operator func !=(other: PlayingState): Bool
 public operator func ==(other: PlayingState): Bool
 ```
 
-**Function:** Checks equality between Bluetooth A2DP playback states.
+**Function:** Determines equality between Bluetooth A2DP playback states.
 
 **Parameters:**
 
-|Name|Type|Mandatory|Default Value|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[PlayingState](#enum-playingstate)|Yes|-|Bluetooth A2DP playback state.|
 
@@ -1128,7 +1116,7 @@ public operator func ==(other: PlayingState): Bool
 public func toString(): String
 ```
 
-**Function:** Returns the string representation of a Bluetooth A2DP playback state.
+**Function:** Returns the string representation of the Bluetooth A2DP playback state.
 
 **Return Value:**
 

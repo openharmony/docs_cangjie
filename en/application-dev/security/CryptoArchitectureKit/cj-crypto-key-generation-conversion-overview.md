@@ -1,15 +1,13 @@
-# Introduction to Key Generation and Conversion  
+# Key Generation Introduction
 
-The following scenarios frequently require key generation operations:  
+Key generation operations are commonly required in the following scenarios:
 
-1. Randomly generate a cryptographic library key object. This object can be used for subsequent operations such as encryption and decryption.  
+1. Randomly generating keys. The generated key object can be used for subsequent cryptographic operations such as encryption and decryption.
 
-2. Generate a cryptographic library key object based on specified data (i.e., converting external or stored binary data into a cryptographic library key object). This object can be used for subsequent operations such as encryption and decryption.  
+2. Generating keys from specified data (i.e., converting external or stored binary data into a key object). The generated key object can be used for subsequent cryptographic operations like encryption and decryption.
 
-3. Generate a specified cryptographic library key object based on key parameters. This object can be used for subsequent operations such as encryption and decryption.  
+3. Extracting binary data from keys for storage or transmission purposes.
 
-4. Obtain the binary data of a cryptographic library key object for storage or transmission.  
-
-5. For asymmetric keys, obtain the parameter attributes of the key object for storage or transmission.  
-
-Here, the key object `Key` includes symmetric keys (`SymKey`) and asymmetric keys (public key `PubKey` and private key `PriKey`), where the public and private keys together form a key pair (`KeyPair`).
+The key types include:
+- Symmetric keys (SymKey)
+- Asymmetric keys (public keys PubKey and private keys PriKey), where a public key and private key form a key pair (KeyPair). Currently, only symmetric keys (SymKey) are supported.

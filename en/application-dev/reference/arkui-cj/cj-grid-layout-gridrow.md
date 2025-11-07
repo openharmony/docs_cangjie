@@ -1,8 +1,8 @@
 # GridRow
 
-The grid layout provides a structured framework for organizing content, addressing dynamic layout challenges across multiple screen sizes and devices, while ensuring consistent module arrangement across different devices.
+The grid layout provides a structured regularity for layouts, addressing dynamic layout challenges across multiple sizes and devices, ensuring consistent module arrangement across different devices.
 
-The GridRow container component can only be used with GridCol subcomponents ([GridCol](./cj-grid-layout-gridcol.md)) in grid layout scenarios.
+The grid container component can only be used with grid child components ([GridCol](./cj-grid-layout-gridcol.md)) in grid layout scenarios.
 
 ## Import Module
 
@@ -10,168 +10,168 @@ The GridRow container component can only be used with GridCol subcomponents ([Gr
 import kit.ArkUI.*
 ```
 
-## Subcomponents
+## Child Components
 
 ([GridCol](./cj-grid-layout-gridcol.md)) is used in grid layout scenarios.
 
 ## Creating Components
 
-### init(Int32, Length, BreakPoints, GridRowDirection, () -> Unit)
+### init(?Int32, ?Length, ?BreakPoints, ?GridRowDirection, () -> Unit)
 
 ```cangjie
 public init(
-    columns!: Int32 = 12,
-    gutter!: Length = 0.vp,
-    breakpoints!: BreakPoints = BreakPoints(),
-    direction!: GridRowDirection = GridRowDirection.Row,
+    columns!: ?Int32,
+    gutter!: ?Length = None,
+    breakpoints!: ?BreakPoints = Option.None,
+    direction!: ?GridRowDirection = Option.None,
     child!: () -> Unit = {=>}
 )
 ```
 
-**Function:** Creates a GridRow container that can contain subcomponents.
+**Function:** Creates a GridRow container that can include child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| columns | Int32 | No | 12 | **Named parameter.** Sets the number of layout columns.<br>Must be a positive integer. Initial value: 12. |
-| gutter | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Grid layout spacing, where x represents the horizontal direction.<br>Initial value: 0. |
-| breakpoints | [BreakPoints](#class-breakpoints) | No | BreakPoints() | **Named parameter.** Breakpoint sequence and corresponding reference based on window or container size.<br>Initial value:<br>{<br>value: ["320vp", "600vp", "840vp"],reference: BreakpointsReference.WindowSize<br>} |
-| direction | [GridRowDirection](#enum-gridrowdirection) | No | GridRowDirection.Row | **Named parameter.** Grid layout arrangement direction. |
-| child | ()->Unit | No | { => } | **Named parameter.** Subcomponents of the GridRow container. |
+| columns | ?Int32 | Yes | - | **Named parameter.** Sets the number of layout columns.<br>Initial value: 12. |
+| gutter | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Spacing between grid layouts.<br>Initial value: 0.vp. |
+| breakpoints | ?[BreakPoints](#class-breakpoints) | No | Option.None | **Named parameter.** Breakpoint sequence for breakpoint values and corresponding references based on window or container size.<br>Initial value: BreakPoints(). |
+| direction | ?[GridRowDirection](#enum-gridrowdirection) | No | Option.None | **Named parameter.** Arrangement direction of the grid layout.<br>Initial value: GridRowDirection.Row. |
+| child | () -> Unit | No | {=>} | **Named parameter.** Child components of the GridRow container. |
 
-### init(GridRowColumnOption, Length, BreakPoints, GridRowDirection, () -> Unit)
+### init(?GridRowOptions, ?Length, ?BreakPoints, ?GridRowDirection, () -> Unit)
 
 ```cangjie
 public init(
-    columns!: GridRowColumnOption,
-    gutter!: Length = 0.vp,
-    breakpoints!: BreakPoints = BreakPoints(),
-    direction!: GridRowDirection = GridRowDirection.Row,
+    columns!: ?GridRowOptions = None,
+    gutter!: ?Length = None,
+    breakpoints!: ?BreakPoints = Option.None,
+    direction!: ?GridRowDirection = Option.None,
     child!: () -> Unit = {=>}
 )
 ```
 
-**Function:** Creates a GridRow container that can contain subcomponents.
+**Function:** Creates a GridRow container that can include child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| columns | [GridRowColumnOption](#class-gridrowcolumnoption) | Yes | - | **Named parameter.** Sets the number of layout columns. |
-| gutter | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Grid layout spacing, where x represents the horizontal direction.<br>Initial value: 0. |
-| breakpoints | [BreakPoints](#class-breakpoints) | No | BreakPoints() | **Named parameter.** Breakpoint sequence and corresponding reference based on window or container size.<br>Initial value:<br>{<br>value: ["320vp", "600vp", "840vp"],reference: BreakpointsReference.WindowSize<br>} |
-| direction | [GridRowDirection](#enum-gridrowdirection) | No | GridRowDirection.Row | **Named parameter.** Grid layout arrangement direction. |
-| child | ()->Unit | No | { => } | **Named parameter.** Subcomponents of the GridRow container. |
+| columns | ?[GridRowOptions](#class-gridrowoptions) | No | None | **Named parameter.** Sets the number of layout columns.<br>Initial value: GridRowOptions() |
+| gutter | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Spacing between grid layouts.<br>Initial value: 0.vp |
+| breakpoints | ?[BreakPoints](#class-breakpoints) | No | Option.None | **Named parameter.** Breakpoint sequence for breakpoint values and corresponding references based on window or container size.<br>Initial value: BreakPoints() |
+| direction | ?[GridRowDirection](#enum-gridrowdirection) | No | Option.None | **Named parameter.** Arrangement direction of the grid layout.<br>Initial value: GridRowDirection.Row |
+| child | () -> Unit | No | {=>} | **Named parameter.** Child components of the GridRow container. |
 
-### init(Int32, GutterOption, BreakPoints, GridRowDirection, () -> Unit)
+### init(?Int32, ?GutterOptions, ?BreakPoints, ?GridRowDirection, () -> Unit)
 
 ```cangjie
 public init(
-    columns!: Int32 = 12,
-    gutter!: GutterOption,
-    breakpoints!: BreakPoints = BreakPoints(),
-    direction!: GridRowDirection = GridRowDirection.Row,
+    columns!: ?Int32,
+    gutter!: ?GutterOptions,
+    breakpoints!: ?BreakPoints = Option.None,
+    direction!: ?GridRowDirection = Option.None,
     child!: () -> Unit = {=>}
 )
 ```
 
-**Function:** Creates a GridRow container that can contain subcomponents.
+**Function:** Creates a GridRow container that can include child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| columns | Int32 | No | 12 | **Named parameter.** Sets the number of layout columns.<br>Must be a positive integer. Initial value: 12. |
-| gutter | [GutterOption](#class-gutteroption) | Yes | - | **Named parameter.** Grid layout spacing, where x represents the horizontal direction. |
-| breakpoints | [BreakPoints](#class-breakpoints) | No | BreakPoints() | **Named parameter.** Breakpoint sequence and corresponding reference based on window or container size.<br>Initial value:<br>{<br>value: ["320vp", "600vp", "840vp"],reference: BreakpointsReference.WindowSize<br>} |
-| direction | [GridRowDirection](#enum-gridrowdirection) | No | GridRowDirection.Row | **Named parameter.** Grid layout arrangement direction. |
-| child | ()->Unit | No | { => } | **Named parameter.** Subcomponents of the GridRow container. |
+| columns | ?Int32 | Yes | - | **Named parameter.** Sets the number of layout columns.<br>Initial value: 12 |
+| gutter | ?[GutterOptions](#class-gutteroptions) | Yes | - | **Named parameter.** Spacing between grid layouts. |
+| breakpoints | ?[BreakPoints](#class-breakpoints) | No | Option.None | **Named parameter.** Breakpoint sequence for breakpoint values and corresponding references based on window or container size.<br>Initial value: BreakPoints() |
+| direction | ?[GridRowDirection](#enum-gridrowdirection) | No | Option.None | **Named parameter.** Arrangement direction of the grid layout.<br>Initial value: GridRowDirection.Row |
+| child | () -> Unit | No | {=>} | **Named parameter.** Child components of the GridRow container. |
 
-### init(GridRowColumnOption, GutterOption, BreakPoints, GridRowDirection, () -> Unit)
+### init(?GridRowOptions, ?GutterOptions, ?BreakPoints, ?GridRowDirection, () -> Unit)
 
 ```cangjie
 public init(
-    columns!: GridRowColumnOption,
-    gutter!: GutterOption,
-    breakpoints!: BreakPoints = BreakPoints(),
-    direction!: GridRowDirection = GridRowDirection.Row,
+    columns!: ?GridRowOptions = None,
+    gutter!: ?GutterOptions,
+    breakpoints!: ?BreakPoints = Option.None,
+    direction!: ?GridRowDirection = Option.None,
     child!: () -> Unit = {=>})
 ```
 
-**Function:** Creates a GridRow container that can contain subcomponents.
+**Function:** Creates a GridRow container that can include child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| columns | [GridRowColumnOption](#class-gridrowcolumnoption) | Yes | - | **Named parameter.** Sets the number of layout columns. |
-| gutter | [GutterOption](#class-gutteroption) | Yes | - | **Named parameter.** Grid layout spacing, where x represents the horizontal direction. |
-| breakpoints | [BreakPoints](#class-breakpoints) | No | BreakPoints() | **Named parameter.** Breakpoint sequence and corresponding reference based on window or container size.<br>Initial value:<br>{<br>value: ["320vp", "600vp", "840vp"],reference: BreakpointsReference.WindowSize<br>} |
-| direction | [GridRowDirection](#enum-gridrowdirection) | No | GridRowDirection.Row | **Named parameter.** Grid layout arrangement direction. |
-| child | ()->Unit | No | { => } | **Named parameter.** Subcomponents of the GridRow container. |
+| columns | ?[GridRowOptions](#class-gridrowoptions) | No | None | **Named parameter.** Sets the number of layout columns.<br>Initial value: GridRowOptions(). |
+| gutter | ?[GutterOptions](#class-gutteroptions) | Yes | - | **Named parameter.** Spacing between grid layouts. |
+| breakpoints | ?[BreakPoints](#class-breakpoints) | No | Option.None | **Named parameter.** Breakpoint sequence for breakpoint values and corresponding references based on window or container size.<br>Initial value: BreakPoints(). |
+| direction | ?[GridRowDirection](#enum-gridrowdirection) | No | Option.None | **Named parameter.** Arrangement direction of the grid layout.<br>Initial value: GridRowDirection.Row. |
+| child | () -> Unit | No | {=>} | **Named parameter.** Child components of the GridRow container. |
 
-## Universal Attributes/Events
+## Common Attributes/Events
 
-Universal Attributes: All supported except text styles.
+Common Attributes: All supported except text styles.
 
-Universal Events: All supported.
+Common Events: All supported.
 
 ## Component Attributes
 
-### func alignItems(ItemAlign)
+### func alignItems(?ItemAlign)
 
 ```cangjie
-public func alignItems(value: ItemAlign): This
+public func alignItems(value: ?ItemAlign): This
 ```
 
-**Function:** Sets the vertical main-axis alignment of GridCol within GridRow. GridCol can also set its own alignment via alignSelf([ItemAlign](./cj-common-types.md#enum-itemalign)). If both alignment methods are set, the GridCol's own setting takes precedence.
+**Function:** Sets the vertical main axis alignment of GridCol within GridRow. GridCol itself can also set its own alignment via alignSelf([ItemAlign](./cj-common-types.md#enum-itemalign)). If both alignment methods are set, the GridCol's own setting takes precedence.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [ItemAlign](./cj-common-types.md#enum-itemalign) | Yes | - | Vertical main-axis alignment of GridCol within GridRow.<br>Initial value: ItemAlign.Start<br>**Note:**<br>Supported enums: ItemAlign.Start, ItemAlign.Center, ItemAlign.End, ItemAlign.Stretch. |
+| value | ?[ItemAlign](./cj-common-types.md#enum-itemalign) | Yes | - | Vertical main axis alignment of GridCol within GridRow.<br>Initial value: ItemAlign.Start. |
 
 ## Component Events
 
-### func onBreakpointChange((String) -> Unit)
+### func onBreakpointChange(?(String) -> Unit)
 
 ```cangjie
-public func onBreakpointChange(callback: (String) -> Unit): This
+public func onBreakpointChange(callback: ?(String) -> Unit): This
 ```
 
 **Function:** Triggers a callback when the breakpoint changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| callback | (String)->Unit | Yes | - | Callback triggered when the breakpoint changes. Values: "xs", "sm", "md", "lg", "xl", "xxl". |
+| callback | ?(String)->Unit | Yes | - | Callback triggered when the breakpoint changes. Values: "xs", "sm", "md", "lg", "xl", "xxl".<br>Initial value: { res: String => }. |
 
 ## Basic Type Definitions
 
@@ -179,10 +179,10 @@ public func onBreakpointChange(callback: (String) -> Unit): This
 
 ```cangjie
 public class BreakPoints {
-    public var value: Array<Length>
-    public var reference: BreakpointsReference
-    public init(value!: Array<Length> = [320.vp, 600.vp, 840.vp],
-        reference!: BreakpointsReference = BreakpointsReference.WindowSize
+    public var value: ?Array<Length>
+    public var reference: ?BreakpointsReference
+    public init(value!: ?Array<Length> = None,
+        reference!: ?BreakpointsReference = None
     )
 }
 ```
@@ -191,45 +191,45 @@ public class BreakPoints {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var reference
 
 ```cangjie
-public var reference: BreakpointsReference
+public var reference: ?BreakpointsReference
 ```
 
 **Function:** Reference for breakpoint switching.
 
-**Type:** [BreakpointsReference](#enum-breakpointsreference)
+**Type:** ?[BreakpointsReference](#enum-breakpointsreference)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var value
 
 ```cangjie
-public var value: Array<Length>
+public var value: ?Array<Length>
 ```
 
 **Function:** Sets a monotonically increasing array of breakpoint positions.
 
-**Type:** Array\<[Length](../BasicServicesKit/cj-apis-base.md#interface-length)>
+**Type:** ?Array\<[Length](./cj-common-types.md#interface-length)>
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(Array\<Length>, BreakpointsReference)
+#### init(?Array\<Length>, ?BreakpointsReference)
 
 ```cangjie
-public init(value!: Array<Length> = [320.vp, 600.vp, 840.vp],
-    reference!: BreakpointsReference = BreakpointsReference.WindowSize
+public init(value!: ?Array<Length> = None,
+    reference!: ?BreakpointsReference = None
 )
 ```
 
@@ -237,191 +237,191 @@ public init(value!: Array<Length> = [320.vp, 600.vp, 840.vp],
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Array\<[Length](../BasicServicesKit/cj-apis-base.md#interface-length)> | No | [320.vp, 600.vp, 840.vp] | **Named parameter.** Monotonically increasing array of breakpoint positions. |
-| reference | [BreakpointsReference](#enum-breakpointsreference) | No | BreakpointsReference.WindowSize | **Named parameter.** Reference for breakpoint switching. |
+| value | ?Array\<[Length](./cj-common-types.md#interface-length)> | No | None | **Named parameter.** Sets a monotonically increasing array of breakpoint positions.<br>Initial value: [320.vp, 600.vp, 840.vp] |
+| reference | ?[BreakpointsReference](#enum-breakpointsreference) | No | None | **Named parameter.** Reference for breakpoint switching.<br>Initial value: BreakpointsReference.WindowSize |
 
-### class GridRowSizeOption
+### class GridRowSizeOptions
 
 ```cangjie
-public class GridRowSizeOption {
-    public var xs: Length
-    public var sm: Length
-    public var md: Length
-    public var lg: Length
-    public var xl: Length
-    public var xxl: Length
+public class GridRowSizeOptions {
+    public var xs: ?Length
+    public var sm: ?Length
+    public var md: ?Length
+    public var lg: ?Length
+    public var xl: ?Length
+    public var xxl: ?Length
     public init(
-        xs!: Length = 0.vp,
-        sm!: Length = 0.vp,
-        md!: Length = 0.vp,
-        lg!: Length = 0.vp,
-        xl!: Length = 0.vp,
-        xxl!: Length = 0.vp
+        xs!: ?Length = None,
+        sm!: ?Length = None,
+        md!: ?Length = None,
+        lg!: ?Length = None,
+        xl!: ?Length = None,
+        xxl!: ?Length = None
     )
-    public init(value: Length)
+    public init(value: ?Length)
 }
 ```
 
-**Function:** Defines gutter sizes for grids on different device width types.
+**Function:** Gutter size for grids on devices of different widths.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var lg
 
 ```cangjie
-public var lg: Length
+public var lg: ?Length
 ```
 
-**Function:** Large-width device type.
+**Function:** Large-width type devices.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var md
 
 ```cangjie
-public var md: Length
+public var md: ?Length
 ```
 
-**Function:** Medium-width device type.
+**Function:** Medium-width type devices.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var sm
 
 ```cangjie
-public var sm: Length
+public var sm: ?Length
 ```
 
-**Function:** Small-width device type.
+**Function:** Small-width type devices.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var xl
 
 ```cangjie
-public var xl: Length
+public var xl: ?Length
 ```
 
-**Function:** Extra-large-width device type.
+**Function:** Extra-large-width type devices.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var xs
 
 ```cangjie
-public var xs: Length
+public var xs: ?Length
 ```
 
-**Function:** Minimum-width device type.
+**Function:** Minimum-width type devices.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var xxl
 
 ```cangjie
-public var xxl: Length
+public var xxl: ?Length
 ```
 
-**Function:** Super-large-width device type.
+**Function:** Super-large-width type devices.
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(Length, Length, Length, Length, Length, Length)
+#### init(?Length, ?Length, ?Length, ?Length, ?Length, ?Length)
 
 ```cangjie
 public init(
-    xs!: Length = 0.vp,
-    sm!: Length = 0.vp,
-    md!: Length = 0.vp,
-    lg!: Length = 0.vp,
-    xl!: Length = 0.vp,
-    xxl!: Length = 0.vp
+    xs!: ?Length = None,
+    sm!: ?Length = None,
+    md!: ?Length = None,
+    lg!: ?Length = None,
+    xl!: ?Length = None,
+    xxl!: ?Length = None
 )
 ```
 
-**Function:** Constructs a GridRowColumnOption object.
+**Function:** Constructs a GridRowSizeOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| xs | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Number of columns occupied or offset by the grid subcomponent on xs-sized devices. |
-| sm | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Number of columns occupied or offset by the grid subcomponent on sm-sized devices. |
-| md | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Number of columns occupied or offset by the grid subcomponent on md-sized devices. |
-| lg | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Number of columns occupied or offset by the grid subcomponent on lg-sized devices. |
-| xl | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Number of columns occupied or offset by the grid subcomponent on xl-sized devices. |
-| xxl | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | **Named parameter.** Number of columns occupied or offset by the grid subcomponent on xxl-sized devices. |
+| xs | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Number of columns occupied or offset by grid child components on xs-sized devices.<br>Initial value: 0.vp |
+| sm | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Number of columns occupied or offset by grid child components on sm-sized devices.<br>Initial value: 0.vp |
+| md | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Number of columns occupied or offset by grid child components on md-sized devices.<br>Initial value: 0.vp |
+| lg | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Number of columns occupied or offset by grid child components on lg-sized devices.<br>Initial value: 0.vp |
+| xl | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Number of columns occupied or offset by grid child components on xl-sized devices.<br>Initial value: 0.vp |
+| xxl | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Number of columns occupied or offset by grid child components on xxl-sized devices.<br>Initial value: 0.vp |
 
-#### init(Length)
+#### init(?Length)
 
 ```cangjie
-public init(value: Length)
+public init(value: ?Length)
 ```
 
-**Function:** Constructs a GridRowColumnOption object.
+**Function:** Constructs a GridRowSizeOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 0.vp | Number of columns occupied or offset by the grid subcomponent on any device size. |### class GutterOption
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Number of columns occupied or offset by grid child components on devices of any grid size.<br>Initial value: 0.vp |### class GutterOptions
 
 ```cangjie
-public class GutterOption {
-    public init(x!: Length, y!: Length)
-    public init(x!: GridRowSizeOption, y!: GridRowSizeOption)
+public class GutterOptions {
+    public init(x!: ?Length = None, y!: ?Length = None)
+    public init(x!: ?GridRowSizeOptions, y!: ?GridRowSizeOptions)
 }
 ```
 
@@ -429,65 +429,65 @@ public class GutterOption {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(Length, Length)
+#### init(?Length, ?Length)
 
 ```cangjie
-public init(x!: Length, y!: Length)
+public init(x!: ?Length = None, y!: ?Length = None)
 ```
 
-**Function:** Constructs a GutterOption object.
+**Function:** Constructs a GutterOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|x|[Length](../BasicServicesKit/cj-apis-base.md#interface-length)|Yes|-|**Named parameter.** Spacing of grid subcomponents in the x-direction.|
-|y|[Length](../BasicServicesKit/cj-apis-base.md#interface-length)|Yes|-|**Named parameter.** Spacing of grid subcomponents in the y-direction.|
+| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Spacing of grid subcomponents in the x-direction.<br>Initial value: 0.vp |
+| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Spacing of grid subcomponents in the y-direction.<br>Initial value: 0.vp |
 
-#### init(GridRowSizeOption, GridRowSizeOption)
+#### init(?GridRowSizeOptions, ?GridRowSizeOptions)
 
 ```cangjie
-public init(x!: GridRowSizeOption, y!: GridRowSizeOption)
+public init(x!: ?GridRowSizeOptions, y!: ?GridRowSizeOptions)
 ```
 
-**Function:** Constructs a GutterOption object.
+**Function:** Constructs a GutterOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|x|[GridRowSizeOption](#class-gridrowsizeoption)|Yes|-|**Named parameter.** Spacing of grid subcomponents in the x-direction.|
-|y|[GridRowSizeOption](#class-gridrowsizeoption)|Yes|-|**Named parameter.** Spacing of grid subcomponents in the y-direction.|
+| x | ?[GridRowSizeOptions](#class-gridrowsizeoptions) | No | None | **Named parameter.** Spacing of grid subcomponents in the x-direction.<br>Initial value: GridRowSizeOptions() |
+| y | ?[GridRowSizeOptions](#class-gridrowsizeoptions) | No | None | **Named parameter.** Spacing of grid subcomponents in the y-direction.<br>Initial value: GridRowSizeOptions() |
 
-### class GridRowColumnOption
+### class GridRowOptions
 
 ```cangjie
-public class GridRowColumnOption {
-    public var xs: Int32
-    public var sm: Int32
-    public var md: Int32
-    public var lg: Int32
-    public var xl: Int32
-    public var xxl: Int32
+public class GridRowOptions {
+    public var xs: ?Int32
+    public var sm: ?Int32
+    public var md: ?Int32
+    public var lg: ?Int32
+    public var xl: ?Int32
+    public var xxl: ?Int32
     public init(
-        xs!: Int32 = 2,
-        sm!: Int32 = 4,
-        md!: Int32 = 8,
-        lg!: Int32 = 12,
-        xl!: Int32 = 12,
-        xxl!: Int32 = 12
+        xs!: ?Int32 = None,
+        sm!: ?Int32 = None,
+        md!: ?Int32 = None,
+        lg!: ?Int32 = None,
+        xl!: ?Int32 = None,
+        xxl!: ?Int32 = None
     )
-    public init(value: Int32)
+    public init(value: ?Int32)
 }
 ```
 
@@ -495,166 +495,169 @@ public class GridRowColumnOption {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var lg
 
 ```cangjie
-public var lg: Int32
+public var lg: ?Int32
 ```
 
 **Function:** **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with lg grid size.
 
-**Type:** Int32
+**Type:** ?Int32
 
-**Read-Write Capability:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var md
 
 ```cangjie
-public var md: Int32
+public var md: ?Int32
 ```
 
 **Function:** **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with md grid size.
 
-**Type:** Int32
+**Type:** ?Int32
 
-**Read-Write Capability:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var sm
 
 ```cangjie
-public var sm: Int32
+public var sm: ?Int32
 ```
 
 **Function:** **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with sm grid size.
 
-**Type:** Int32
+**Type:** ?Int32
 
-**Read-Write Capability:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var xl
 
 ```cangjie
-public var xl: Int32
+public var xl: ?Int32
 ```
 
 **Function:** **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xl grid size.
 
-**Type:** Int32
+**Type:** ?Int32
 
-**Read-Write Capability:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var xs
 
 ```cangjie
-public var xs: Int32
+public var xs: ?Int32
 ```
 
 **Function:** **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xs grid size.
 
-**Type:** Int32
+**Type:** ?Int32
 
-**Read-Write Capability:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var xxl
 
 ```cangjie
-public var xxl: Int32
+public var xxl: ?Int32
 ```
 
 **Function:** **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xxl grid size.
 
-**Type:** Int32
+**Type:** ?Int32
 
-**Read-Write Capability:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(Int32, Int32, Int32, Int32, Int32, Int32)
+#### init(?Int32, ?Int32, ?Int32, ?Int32, ?Int32, ?Int32)
 
 ```cangjie
 public init(
-    xs!: Int32 = 2,
-    sm!: Int32 = 4,
-    md!: Int32 = 8,
-    lg!: Int32 = 12,
-    xl!: Int32 = 12,
-    xxl!: Int32 = 12
+    xs!: ?Int32 = None,
+    sm!: ?Int32 = None,
+    md!: ?Int32 = None,
+    lg!: ?Int32 = None,
+    xl!: ?Int32 = None,
+    xxl!: ?Int32 = None
 )
 ```
 
-**Function:** Constructs a GridRowColumnOption object.
+**Function:** Constructs a GridRowOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|xs|Int32|No|2| **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xs grid size.|
-|sm|Int32|No|4| **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with sm grid size.|
-|md|Int32|No|8| **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with md grid size.|
-|lg|Int32|No|12| **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with lg grid size.|
-|xl|Int32|No|12| **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xl grid size.|
-|xxl|Int32|No|12| **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xxl grid size.|
+| xs | ?Int32 | No | None | **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xs grid size.<br>Initial value: 2 |
+| sm | ?Int32 | No | None | **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with sm grid size.<br>Initial value: 4 |
+| md | ?Int32 | No | None | **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with md grid size.<br>Initial value: 8 |
+| lg | ?Int32 | No | None | **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with lg grid size.<br>Initial value: 12 |
+| xl | ?Int32 | No | None | **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xl grid size.<br>Initial value: 12 |
+| xxl | ?Int32 | No | None | **Named parameter.** Number of columns occupied or offset by grid subcomponents on devices with xxl grid size.<br>Initial value: 12 |
 
-#### init(Int32)
+#### init(?Int32)
 
 ```cangjie
-public init(value: Int32)
+public init(value: ?Int32)
 ```
 
-**Function:** Constructs a GridRowColumnOption object.
+**Function:** Constructs a GridRowOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|value|Int32|Yes|-| Number of columns occupied or offset by grid subcomponents on devices of any grid size.|
+| value | ?Int32 | Yes | - | Number of columns occupied or offset by grid subcomponents on devices of any grid size.<br>Initial value: 12 |
 
 ### enum BreakpointsReference
 
 ```cangjie
-public enum BreakpointsReference {
+public enum BreakpointsReference <: Equatable<BreakpointsReference> {
     | WindowSize
     | ComponentSize
+    | ...
 }
 ```
 
-**Function:** Sets the reference to either the window or the container.
+**Function:** Sets the reference to either window size or container size.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Parent Type:** Equatable\<[BreakpointsReference](#enum-breakpointsreference)>
 
 #### ComponentSize
 
@@ -662,11 +665,11 @@ public enum BreakpointsReference {
 ComponentSize
 ```
 
-**Function:** Reference to the container.
+**Function:** Uses container size as reference.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### WindowSize
 
@@ -674,66 +677,67 @@ ComponentSize
 WindowSize
 ```
 
-**Function:** Reference to the window.
+**Function:** Uses window size as reference.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### func !=(BreakpointsReference)
+#### operator func !=(BreakpointsReference)
 
 ```cangjie
 public operator func !=(other: BreakpointsReference): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Function:** Compares whether two enum values are not equal.
 
-**System Capability:** SystemCapability.Ability.AbilityBase
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[BreakpointsReference](#enum-breakpointsreference)|Yes|-|Another enum value.|
+| other | [BreakpointsReference](#enum-breakpointsreference) | Yes | - | Another enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
 
-### func ==(BreakpointsReference)
+#### operator func ==(BreakpointsReference)
 
 ```cangjie
 public operator func ==(other: BreakpointsReference): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Function:** Compares whether two enum values are equal.
 
-**System Capability:** SystemCapability.Ability.AbilityBase
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[BreakpointsReference](#enum-breakpointsreference)|Yes|-|Another enum value.|
+| other | [BreakpointsReference](#enum-breakpointsreference) | Yes | - | Another enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Bool | Returns true if the two enum values are equal, otherwise returns false. |
 
 ### enum GridRowDirection
 
 ```cangjie
-public enum GridRowDirection {
+public enum GridRowDirection <: Equatable<GridRowDirection> {
     | Row
     | RowReverse
+    | ...
 }
 ```
 
@@ -741,7 +745,9 @@ public enum GridRowDirection {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Parent Type:** Equatable\<[GridRowDirection](#enum-gridrowdirection)>
 
 #### Row
 
@@ -749,11 +755,11 @@ public enum GridRowDirection {
 Row
 ```
 
-**Function:** Layout mode where the main axis aligns with the row direction.
+**Function:** Uses row direction as the main axis for layout mode.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### RowReverse
 
@@ -761,59 +767,59 @@ Row
 RowReverse
 ```
 
-**Function:** Layout in the opposite direction of Row.
+**Function:** Layouts in the opposite direction of Row.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### func !=(GridRowDirection)
+#### operator func !=(GridRowDirection)
 
 ```cangjie
 public operator func !=(other: GridRowDirection): Bool
 ```
 
-**Function:** Determines whether two enum values are not equal.
+**Function:** Compares whether two enum values are not equal.
 
-**System Capability:** SystemCapability.Ability.AbilityBase
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22.
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[GridRowDirection](#enum-gridrowdirection)|Yes|-|Another enum value.|
+| other | [GridRowDirection](#enum-gridrowdirection) | Yes | - | Another enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are not equal, otherwise returns false.|
+| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
 
-### func ==(GridRowDirection)
+#### operator func ==(GridRowDirection)
 
 ```cangjie
 public operator func ==(other: GridRowDirection): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Function:** Compares whether two enum values are equal.
 
-**System Capability:** SystemCapability.Ability.AbilityBase
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-|other|[GridRowDirection](#enum-gridrowdirection)|Yes|-|Another enum value.|
+| other | [GridRowDirection](#enum-gridrowdirection) | Yes | - | Another enum value to compare. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|## Sample Code
+| Bool | Returns true if the two enum values are equal, otherwise returns false. |## Sample Code
 
 <!-- run -->
 
@@ -831,12 +837,12 @@ class EntryView {
         Column {
             GridRow(
                 // Set the number of grid columns for different device width types.
-                // xs: minimum width device   sm: small width device    md: medium width device.
-                // lg: large width device     xl: extra large width device  xxl: super large width device.
-                columns: GridRowColumnOption(xs: 6, sm: 7, md: 8, lg: 9, xl: 10, xxl: 11),
-                // Set grid layout spacing, where x represents horizontal direction and y represents vertical direction.
-                gutter: GutterOption(x: 5.vp, y: 10.vp),
-                // Set the breakpoint sequence and corresponding reference based on window or container size.
+                // xs: minimum width devices   sm: small width devices    md: medium width devices.
+                // lg: large width devices     xl: extra large width devices  xxl: super large width devices.
+                columns: GridRowOptions(xs: 6, sm: 7, md: 8, lg: 9, xl: 10, xxl: 11),
+                // Set grid layout spacing, where x represents horizontal and y represents vertical direction.
+                gutter: GutterOptions(x: 5.vp, y: 10.vp),
+                // Set breakpoint values and corresponding references based on window or container size.
                 breakpoints: BreakPoints(
                     // Enable four breakpoints: xs, sm, md, lg
                     value: [200.vp, 300.vp, 400.vp], // Set a monotonically increasing array for breakpoint positions.
@@ -845,7 +851,7 @@ class EntryView {
                 // Set grid layout direction, arranged in row direction.
                 direction: GridRowDirection.Row
             ) {
-                // Render grids with colors corresponding to bgColors through loop
+                // Loop render grids with colors from bgColors
                 ForEach(
                     bgColors,
                     itemGeneratorFunc: {
@@ -863,14 +869,14 @@ class EntryView {
                 .width(100.percent)
                 .height(200)
                 .onBreakpointChange({bp => currentBp = bp})
-                .alignItems(ItemAlign.Center) // Set the vertical main axis alignment of GridCol within GridRow. Here set to center alignment.
+                .alignItems(ItemAlign.Center) // Set vertical main axis alignment for GridCol in GridRow. Here set to center alignment.
 
             GridRow(
-                // Set the number of layout columns to 5
+                // Set layout column count to 5
                 columns: 5,
-                // Set grid layout spacing, 5vp horizontally and 10vp vertically.
-                gutter: GutterOption(x: 5.vp, y: 10.vp),
-                // Set the breakpoint sequence and corresponding reference based on window or container size.
+                // Set grid layout spacing: 5vp horizontal, 10vp vertical.
+                gutter: GutterOptions(x: 5.vp, y: 10.vp),
+                // Set breakpoint values and corresponding references based on window or container size.
                 breakpoints: BreakPoints(
                     // Enable four breakpoints: xs, sm, md, lg
                     value: [400.vp, 600.vp, 800.vp], // Set a monotonically increasing array for breakpoint positions.
@@ -888,7 +894,7 @@ class EntryView {
                         }
                         .borderWidth(2.vp)
                         .borderColor(color)
-                        .span(GridColColumnOption(xs: 2, sm: 3, md: 4, lg: 5, xl: 6, xxl: 7))
+                        .span(GridColOptions(xs: 2, sm: 3, md: 4, lg: 5, xl: 6, xxl: 7))
                     }
                 )
             }

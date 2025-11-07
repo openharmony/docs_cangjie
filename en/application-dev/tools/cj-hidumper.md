@@ -4,8 +4,8 @@ HiDumper provides a unified system information retrieval tool for developers and
 
 ## Environment Requirements
 
-- Complete [environment preparation](./cj-hdc.md#environment-preparation) according to the hdc command-line tool guide.
-- Ensure normal device connection.
+- Complete the [environment setup](./cj-hdc.md#environment-preparation) according to the hdc command-line tool guide.
+- Ensure proper device connection.
 
 ## Command Line Instructions
 
@@ -18,22 +18,22 @@ HiDumper provides a unified system information retrieval tool for developers and
 | -c [base system] | Retrieve detailed information of "base" or "system" information clusters. |
 | -s | Retrieve detailed information of all system capabilities. |
 | -s [SA0 SA1] | Retrieve detailed information of one or multiple system capabilities. |
-| -s [SA] -a ["option"] | Execute specific options for a single system capability. SA represents the system capability name, and option denotes the supported options for that capability. Use -s [SA] -a ["-h"] to view all supported options for a single system capability. |
-| -e | Retrieve fault logs of crash history. |
-| --net [pid] | Retrieve network information. If a process pid is specified, only the network traffic usage of that process will be displayed. |
-| --storage [pid] | Retrieve storage information. If a process pid is specified, only the I/O information of that process will be displayed. |
+| -s [SA] -a ["option"] | Execute specific options for a system capability. SA denotes the system capability name, and option represents supported options for that capability. Use -s [SA] -a ["-h"] to list all supported options for a capability. |
+| -e | Retrieve fault logs from crash history. |
+| --net [pid] | Retrieve network information. If a process pid is specified, only displays network traffic usage for that process. |
+| --storage [pid] | Retrieve storage information. If a process pid is specified, only displays I/O information for that process. |
 | -p [pid] | Retrieve process information, including lists and details of processes and threads. |
-| --cpuusage [pid] | Retrieve CPU usage categorized by process and type; if a pid is specified, retrieve CPU usage information for that specific pid. |
-| --cpufreq | Retrieve the actual frequency of each CPU core. |
-| --mem [pid] | Retrieve total memory usage; if a pid is specified, retrieve memory usage for that specific pid. |
+| --cpuusage [pid] | Retrieve CPU usage categorized by process and type; if pid is specified, retrieves CPU usage for that specific pid. |
+| --cpufreq | Retrieve actual frequency for each CPU core. |
+| --mem [pid] | Retrieve total memory usage; if pid is specified, retrieves memory usage for that specific pid. |
 | --zip | Save command output to a compressed file in /data/log/hidumper. |
-| --ipc pid/-a --start-stat/stop-stat/stat | Collect IPC information of processes over a period. Use -a to collect IPC data for all processes, --start-stat to begin collection, --stat to retrieve collected data, and --stop-stat to end collection. |
-| --mem-smaps pid [-v] | Retrieve memory statistics for a pid, sourced from /proc/pid/smaps. Use -v for more detailed information. (Only available in debug versions) |
-| --mem-jsheap pid [-T tid] [--gc] [--leakobj] | pid is a required parameter. The command triggers GC and snapshot export for all threads. If a thread tid is specified, only that thread's GC and snapshot export are triggered; if --gc is specified, only GC is triggered without snapshot export; if --leakobj is specified, a list of leaked objects is retrieved. |
+| --ipc pid/-a --start-stat/stop-stat/stat | Collect IPC information for processes over a period. Use -a to collect IPC data for all processes, --start-stat to begin collection, --stat to retrieve statistics, and --stop-stat to end collection. |
+| --mem-smaps pid [-v] | Retrieve memory statistics for pid from /proc/pid/smaps. Use -v for more detailed information. (Debug version only) |
+| --mem-jsheap pid [-T tid] [--gc] [--leakobj] | pid is mandatory. Command triggers GC and snapshot export for all threads. If tid is specified, only triggers GC and snapshot for that thread; --gc triggers GC without snapshot; --leakobj retrieves a list of leaked objects. |
 
 ## Common Commands
 
-1. View help command.
+1. Display help command.
 
     ```shell
     hidumper -h
@@ -153,7 +153,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-6. Retrieve detailed information of all system capabilities. Command format:
+6. Retrieve detailed information of all system capabilities.
 
     ```shell
     hidumper -s
@@ -180,7 +180,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-7. Retrieve detailed information of one or multiple system capabilities. Command format:
+7. Retrieve detailed information of one or multiple system capabilities.
 
     ```shell
     hidumper -s [SA0]
@@ -228,9 +228,9 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-8. Execute specific options for a single system capability.
+8. Execute specific options for a system capability.
 
-    To get usage help for RenderService, use the following command:
+    Retrieve usage help for RenderService:
 
     ```shell
     hidumper -s RenderService -a "h"
@@ -272,7 +272,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     flushJankStatsRs|flush rs jank stats hisysevent
     ```
 
-    To retrieve the refresh frame rate of a specific surface, use the following command, which returns timestamps corresponding to the surface's refresh frames.
+    Retrieve frame refresh rate for a specific surface (returns timestamps of surface refresh frames):
 
     ```shell
     hidumper -s RenderService -a "surface_name fps"
@@ -291,14 +291,14 @@ HiDumper provides a unified system information retrieval tool for developers and
     -- The recently fps records info of screens:
     ```
 
-    Provides developers with the capability to prevent the device from automatically sleeping. The -t parameter prevents automatic sleep, while the -f parameter restores automatic sleep functionality or requires a device reboot to restore it.
+    Provides developers with the capability to prevent automatic screen timeout. Use -t to disable auto timeout, and -f to restore it (or restart the device).
 
     ```shell
     hidumper -s 3301 -a -t
     hidumper -s 3301 -a -f
     ```
 
-    **Usage Examples:**
+    **Example Usage:**
 
     ```shell
     $ hidumper -s 3301 -a -t
@@ -321,7 +321,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     hidumper -e
     ```
 
-    **Usage Example:**
+    **Example Usage:**
 
     ```shell
     $ hidumper -e
@@ -335,14 +335,14 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-10. Obtain network information; if a process PID is specified, only the network traffic usage information for that process will be retrieved.
+10. Retrieve network information; if a process pid is specified, only displays network traffic usage for that process.
 
     ```shell
     hidumper --net pid
     hidumper --net
     ```
 
-    **Usage Example:**
+    **Example Usage:**
 
     ```shell
     $ hidumper --net 1
@@ -366,14 +366,14 @@ HiDumper provides a unified system information retrieval tool for developers and
 
     ```
 
-11. Retrieve storage information. If a process PID is specified, only the I/O information for that process will be output.
+11. Retrieve storage information. If a process pid is specified, only displays I/O information for that process.
 
     ```shell
     hidumper --storage pid
     hidumper --storage
     ```
 
-    **Usage Example:**
+    **Example Usage:**
 
     ```shell
     $ hidumper --storage 1
@@ -397,30 +397,26 @@ HiDumper provides a unified system information retrieval tool for developers and
 
     cmd is: storaged -u -p
     ...
-    ```
-
-12. Obtain process information, including lists of processes and threads.
+    ```12. Retrieve process information, including lists of processes and threads.
 
     ```shell
     hidumper -p pid
     hidumper -p
     ```
 
-    **Note:**
-
     > **Note:**
     >
     > In release versions, this command only supports exporting process information for debug applications.
     >
-    > How to distinguish between debug/release versions:
+    > How to distinguish between debug and release versions:
     >
-    > Command 1: Execute `hdc shell "param get|grep const.debuggable"` and check if the output is 0 or 1.
+    > Command 1: Execute `hdc shell "param get|grep const.debuggable"` to check if the output is 0 or 1.
     >
-    > Command 2: Execute `hdc shell "param get|grep const.product.software.version"` and check if the current version contains the string "log".
+    > Command 2: Execute `hdc shell "param get|grep const.product.software.version"` to check if the current version contains the string "log".
     >
-    > Release version: Command 1 output is 0 and Command 2 does not contain the string "log".
+    > Release version: Command 1 output is 0, and Command 2 does not contain the "log" string.
     >
-    > Debug version: Any version that is not a release version is a debug version.
+    > Debug version: Any version that is not a release version is considered a debug version.
 
     **Usage Example:**
 
@@ -450,7 +446,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-13. Obtain CPU usage, categorized by process and type.
+13. Retrieve CPU usage, categorized by process and type.
 
     ```shell
     hidumper --cpuusage pid
@@ -484,7 +480,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-14. Obtain the actual frequency of each CPU core.
+14. Retrieve the actual frequency of each CPU core.
 
     ```shell
     hidumper --cpufreq
@@ -508,7 +504,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-15. Obtain memory information for all PIDs in the device.
+15. Retrieve memory information for all PIDs in the device.
 
     ```shell
     hidumper --mem
@@ -526,7 +522,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-    Obtain memory information for a specified PID.
+    Retrieve memory information for a specified PID.
 
     ```shell
     hidumper --mem pid
@@ -568,7 +564,7 @@ HiDumper provides a unified system information retrieval tool for developers and
                 Dma:0 kB
     ```
 
-    **The Graph field is calculated as: the memory size used by the process under the `/proc/process_dmabuf_info` node.**
+    **The Graph field is calculated by measuring the memory usage of the process under the `/proc/process_dmabuf_info` node.**
 
 16. Save command output to a compressed file in `/data/log/hidumper`.
 
@@ -583,7 +579,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     100%,[-],The result is:/data/log/hidumper/20241106-120444-166.zip
     ```
 
-17. Collect IPC information for a process over a period of time. Use `-a` to collect IPC data for all processes, or specify a PID to collect IPC data for that process. `--start-stat` begins collection, `--stat` retrieves collected data, and `--stop-stat` ends collection.
+17. Collect IPC information for processes over a period. Use `-a` to collect IPC data for all processes, or specify a PID to collect data for that process. `--start-stat` begins collection, `--stat` retrieves collected data, and `--stop-stat` ends collection.
 
     ```shell
     hidumper --ipc pid --start-stat
@@ -647,7 +643,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     ...
     ```
 
-18. Export detailed memory usage information for specified processes.
+18. Export detailed memory usage information for a specified process.
 
     ```shell
     hidumper --mem-smaps pid [-v]
@@ -655,9 +651,9 @@ HiDumper provides a unified system information retrieval tool for developers and
 
     > **Note:**
     >
-    > This command is only available in debug builds, not in release builds.
+    > This command is only available in debug versions and cannot be used in release versions.
     >
-    > How to distinguish debug/release builds: Refer to the instructions in `hidumper -p`.
+    > How to distinguish between debug and release versions: Refer to the explanation in `hidumper -p`.
 
     **Usage Example:**
 
@@ -709,7 +705,7 @@ HiDumper provides a unified system information retrieval tool for developers and
     --cpuusage [pid]            |dump cpu usage by processes and category; if PID is specified, dump category usage of specified pid
     ```
 
-19. Execute **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]** where pid is a mandatory parameter. This command triggers GC and snapshot exports for all threads. If a thread's tid is specified, only triggers GC and snapshot export for that thread; if --gc is specified, only triggers GC without snapshot export; if --leakobj is specified, retrieves the list of leaked objects. (Only available in debug builds)
+19. Execute **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**. The `pid` parameter is mandatory. This command triggers GC and snapshot exports for all threads. If a thread TID is specified, it triggers GC and snapshot exports only for that thread. If `--gc` is specified, it only triggers GC without exporting snapshots. If `--leakobj` is specified, it retrieves the list of leaked objects. (Only available in debug versions.)
 
     ```shell
     hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]
@@ -717,11 +713,11 @@ HiDumper provides a unified system information retrieval tool for developers and
 
     > **Note:**
     >
-    > In release builds, this command only supports exporting snapshot information for debug applications.
+    > In release versions, this command only supports exporting snapshot information for debug applications.
     >
-    > How to distinguish debug and release builds: Refer to the instructions in `hidumper -p`.
+    > How to distinguish between debug and release versions: Refer to the explanation in `hidumper -p`.
     >
-    > The exported jsheap files are typically located in /data/log/faultlog/temp or /data/log/reliability/resource_leak/memory_leak.
+    > The exported jsheap files are typically located in `/data/log/faultlog/temp` or `/data/log/reliability/resource_leak/memory_leak`.
 
     **Usage Example:**
 

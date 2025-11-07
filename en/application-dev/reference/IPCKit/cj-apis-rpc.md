@@ -1,8 +1,8 @@
 # ohos.rpc
 
-This module provides inter-process communication capabilities, including intra-device inter-process communication (IPC) and inter-device inter-process communication (RPC). The former is based on the Binder driver, while the latter is based on the soft bus driver.
+This module provides inter-process communication (IPC) capabilities, including intra-device IPC (based on Binder driver) and inter-device IPC (RPC, based on soft bus driver).
 
-## Importing the Module
+## Import Module
 
 ```cangjie
 import kit.IPCKit.*
@@ -10,12 +10,12 @@ import kit.IPCKit.*
 
 ## Usage Instructions
 
-API example code usage instructions:
+API sample code usage instructions:
 
-- If the first line of example code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the sample code contains a "// index.cj" comment in its first line, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Description](../cj-development-intro.md#Cangjie-Example-Code-Description).
+For details about the sample project and configuration template, see [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## interface Parcelable
 
@@ -28,16 +28,15 @@ public interface Parcelable {
 }
 ```
 
-**Description:** During inter-process communication (IPC), writes class objects to MessageSequence and restores them from MessageSequence.
+**Description:** During inter-process communication (IPC), serializes class objects into MessageSequence and deserializes them from MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func marshalling(MessageSequence)
 
 ```cangjie
-
 func marshalling(dataOut: MessageSequence): Bool
 ```
 
@@ -45,11 +44,11 @@ func marshalling(dataOut: MessageSequence): Bool
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | dataOut | [MessageSequence](#class-messagesequence) | Yes | - | The MessageSequence object to which the serializable object will be marshaled. |
 
@@ -62,7 +61,6 @@ func marshalling(dataOut: MessageSequence): Bool
 ### func unmarshalling(MessageSequence)
 
 ```cangjie
-
 func unmarshalling(dataIn: MessageSequence): Bool
 ```
 
@@ -70,11 +68,11 @@ func unmarshalling(dataIn: MessageSequence): Bool
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | dataIn | [MessageSequence](#class-messagesequence) | Yes | - | The MessageSequence object containing the marshaled serializable object. |
 
@@ -101,7 +99,7 @@ Shared memory is only applicable for cross-process communication within the same
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const PROT_EXEC
 
@@ -115,7 +113,7 @@ public static const PROT_EXEC: UInt32 = 4
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const PROT_NONE
 
@@ -129,7 +127,7 @@ public static const PROT_NONE: UInt32 = 0
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const PROT_READ
 
@@ -143,7 +141,7 @@ public static const PROT_READ: UInt32 = 1
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static const PROT_WRITE
 
@@ -157,27 +155,26 @@ public static const PROT_WRITE: UInt32 = 2
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static func create(String, Int32)
 
 ```cangjie
-
 public static func create(name: String, size: Int32): Ashmem
 ```
 
-**Description:** A static method that creates an Ashmem object by copying the file descriptor (fd) of an existing Ashmem object. Both Ashmem objects point to the same shared memory region.
+**Description:** Static method that creates an Ashmem object by copying the file descriptor (fd) of an existing Ashmem object. Both Ashmem objects point to the same shared memory region.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| name | String | Yes | - | The name used to query Ashmem information. |
-| size | Int32 | Yes | - | The size of the Ashmem in bytes. |
+| name | String | Yes | - | Name used to query Ashmem information. |
+| size | Int32 | Yes | - | Size of the Ashmem in bytes. |
 
 **Return Value:**
 
@@ -192,25 +189,42 @@ public static func create(name: String, size: Int32): Ashmem
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 401 | Parameter error. Possible causes:<br>1. Incorrect number of parameters;<br>2. The passed parameter is not an Ashmem object;<br>3. The Ashmem instance for obtaining packaging is empty. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### static func create(Ashmem)
 
 ```cangjie
-
 public static func create(ashmem: Ashmem): Ashmem
 ```
 
-**Description:** A static method that creates an Ashmem object by copying the file descriptor (fd) of an existing Ashmem object. Both Ashmem objects point to the same shared memory region.
+**Description:** Static method that creates an Ashmem object by copying the file descriptor (fd) of an existing Ashmem object. Both Ashmem objects point to the same shared memory region.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| ashmem | [Ashmem](#class-ashmem) | Yes | - | The existing Ashmem object. |
+| ashmem | [Ashmem](#class-ashmem) | Yes | - | Existing Ashmem object. |
 
 **Return Value:**
 
@@ -226,10 +240,28 @@ public static func create(ashmem: Ashmem): Ashmem
   | :---- | :--- |
   | 401 | Parameter error. Possible causes:<br>1. Incorrect number of parameters;<br>2. The passed parameter is not an Ashmem object;<br>3. The Ashmem instance for obtaining packaging is empty. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024) //static func create(String, Int32)
+    let ashmem2 = Ashmem.create(ashmem) //static func create(Ashmem)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func closeAshmem()
 
 ```cangjie
-
 public func closeAshmem(): Unit
 ```
 
@@ -237,12 +269,30 @@ public func closeAshmem(): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.closeAshmem()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getAshmemSize()
 
 ```cangjie
-
 public func getAshmemSize(): Int32
 ```
 
@@ -250,7 +300,7 @@ public func getAshmemSize(): Int32
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -258,40 +308,75 @@ public func getAshmemSize(): Int32
 |:----|:----|
 | Int32 | Returns the memory size of the Ashmem object. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.getAshmemSize()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func mapReadWriteAshmem()
 
 ```cangjie
-
 public func mapReadWriteAshmem(): Unit
 ```
 
-**Description:** Creates a readable and writable shared file mapping on the virtual address space of this process.
+**Description:** Creates a readable and writable shared file mapping in the virtual address space of this process.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :--- | :--- |
-  | 401 | Parameter error. Possible causes:<br>1. Incorrect number of parameters;<br>2. The parameter is not an instance of the Ashmem object. |
   | 1900001 | Failed to call mmap. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.mapReadWriteAshmem()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func mapReadonlyAshmem()
 
 ```cangjie
-
 public func mapReadonlyAshmem(): Unit
 ```
 
-**Description:** Creates a read-only shared file mapping on the virtual address space of this process.
+**Description:** Creates a read-only shared file mapping in the virtual address space of this process.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -301,38 +386,73 @@ public func mapReadonlyAshmem(): Unit
   | :---- | :--- |
   | 1900001 | Failed to call mmap. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.mapReadonlyAshmem()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func mapTypedAshmem(UInt32)
 
 ```cangjie
-
 public func mapTypedAshmem(mapType: UInt32): Unit
 ```
 
-**Description:** Creates a shared file mapping on the virtual address space of this process. The size of the mapped region is specified by this Ashmem object.
+**Description:** Creates a shared file mapping in the virtual address space of this process. The size of the mapped region is specified by this Ashmem object.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | mapType | UInt32 | Yes | - | Specifies the protection level of the mapped memory region. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :--- | :--- |
-  | 401 | Parameter error. Possible causes:<br>1. Incorrect number of parameters;<br>2. Parameter type mismatch;<br>3. The passed mapType exceeds the maximum protection level. |
   | 1900001 | Failed to call mmap. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.mapTypedAshmem(Ashmem.PROT_READ | Ashmem.PROT_WRITE)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readDataFromAshmem(Int64, Int64)
 
 ```cangjie
-
 public func readDataFromAshmem(size: Int64, offset: Int64): Array<Byte>
 ```
 
@@ -340,14 +460,14 @@ public func readDataFromAshmem(size: Int64, offset: Int64): Array<Byte>
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-|:---|:---|:---|:---|:--- |
-| size | Int64 | Yes | - | The size of the data to be read. |
-| offset | Int64 | Yes | - | The starting position of the data to be read in the memory region associated with this Ashmem object. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| size | Int64 | Yes | - | Size of the data to read. |
+| offset | Int64 | Yes | - | Starting position of the data to read in the memory region associated with this Ashmem object. |
 
 **Return Value:**
 
@@ -357,17 +477,34 @@ public func readDataFromAshmem(size: Int64, offset: Int64): Array<Byte>
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
   | 1900004 | Failed to read data from the shared memory. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.readDataFromAshmem(1, 0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func setProtectionType(UInt32)
 
 ```cangjie
-
 public func setProtectionType(protectionType: UInt32): Unit
 ```
 
@@ -375,27 +512,44 @@ public func setProtectionType(protectionType: UInt32): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-|:---|:---|:---|:---|:--- |
-| protectionType | UInt32 | Yes | - | The protection type to be set. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| protectionType | UInt32 | Yes | - | Protection type to set. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
   | 1900002 | Failed to call ioctl. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.setProtectionType(Ashmem.PROT_READ)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func unmapAshmem()
 
 ```cangjie
-
 public func unmapAshmem(): Unit
 ```
 
@@ -403,12 +557,30 @@ public func unmapAshmem(): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.unmapAshmem()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeDataToAshmem(Array\<Byte>, Int64, Int64)
 
 ```cangjie
-
 public func writeDataToAshmem(buf: Array<Byte>, size: Int64, offset: Int64): Unit
 ```
 
@@ -416,34 +588,48 @@ public func writeDataToAshmem(buf: Array<Byte>, size: Int64, offset: Int64): Uni
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-|:---|:---|:---|:---|:--- |
-| buf | Array\<Byte> | Yes | - | The data to be written to the Ashmem object. |
-| size | Int64 | Yes | - | The size of the data to be written. |
-| offset | Int64 | Yes | - | The starting position of the data to be written in the memory region associated with this Ashmem object. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| buf | Array\<Byte> | Yes | - | Data to write to the Ashmem object. |
+| size | Int64 | Yes | - | Size of the data to write. |
+| offset | Int64 | Yes | - | Starting position of the data to write in the memory region associated with this Ashmem object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. Failed to obtain arrayBuffer information. |
-  | 1900003 | Failed to write data to the shared memory. |## class MessageSequence
+  | 1900003 | Failed to write data to the shared memory. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ashmem = Ashmem.create("ashmem", 1024*1024)
+    ashmem.writeDataToAshm## class MessageSequence
 
 ```cangjie
 public class MessageSequence {}
 ```
 
-**Function:** During RPC or IPC processes, the sender can use the write methods provided by MessageSequence to write data to be sent into this object in a specific format. The receiver can use the read methods provided by MessageSequence to read data in specific formats from this object. Data formats include: basic types and arrays, IPC objects, interface descriptors, and custom serialized objects.
+**Description:** In RPC or IPC processes, the sender can use the write methods provided by MessageSequence to format and write data into this object. The receiver can use the read methods provided by MessageSequence to retrieve formatted data from the object. Supported data formats include: primitive types and arrays, IPC objects, interface descriptors, and custom serialized objects.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static func closeFileDescriptor(Int32)
 
@@ -451,15 +637,15 @@ public class MessageSequence {}
 public static func closeFileDescriptor(fd: Int32): Unit
 ```
 
-**Function:** Static method to close the given file descriptor.
+**Description:** Static method to close a given file descriptor.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | fd | Int32 | Yes | - | The file descriptor to be closed. |
 
@@ -471,17 +657,38 @@ public static func closeFileDescriptor(fd: Int32): Unit
   | :---- | :--- |
   | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import kit.CoreFileKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let filePath = "path/to/file"
+    let file = FileIo.open(filePath, mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
+    MessageSequence.closeFileDescriptor(file.fd)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### static func create()
 
 ```cangjie
 public static func create(): MessageSequence
 ```
 
-**Function:** Static method to create a MessageSequence object.
+**Description:** Static method to create a MessageSequence object.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -491,11 +698,29 @@ public static func create(): MessageSequence
 
 **Exceptions:**
 
-- BusinessException: For error codes, see the table below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 401 | Parameter error. Possible causes:<br>1. Incorrect number of parameters;<br>2. The passed parameter is not an Ahmem object;<br>3. The ashmem instance for obtaining packaging is empty. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### static func dupFileDescriptor(Int32)
 
@@ -503,15 +728,15 @@ public static func create(): MessageSequence
 public static func dupFileDescriptor(fd: Int32): Int32
 ```
 
-**Function:** Static method to duplicate the given file descriptor.
+**Description:** Static method to duplicate a given file descriptor.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | fd | Int32 | Yes | - | Represents an existing file descriptor. |
 
@@ -523,12 +748,32 @@ public static func dupFileDescriptor(fd: Int32): Int32
 
 **Exceptions:**
 
-- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
   | 1900013 | Failed to call dup. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import kit.CoreFileKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let filePath = "path/to/file"
+    let file = FileIo.open(filePath, mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
+    MessageSequence.dupFileDescriptor(file.fd)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func containFileDescriptors()
 
@@ -536,11 +781,11 @@ public static func dupFileDescriptor(fd: Int32): Int32
 public func containFileDescriptors(): Bool
 ```
 
-**Function:** Checks whether this MessageSequence object contains file descriptors.
+**Description:** Checks whether this MessageSequence object contains file descriptors.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -548,23 +793,61 @@ public func containFileDescriptors(): Bool
 |:----|:----|
 | Bool | true: Contains file descriptors; false: Does not contain file descriptors. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.containFileDescriptors()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func getCapacity()
 
 ```cangjie
 public func getCapacity(): UInt32
 ```
 
-**Function:** Gets the capacity size of the current MessageSequence object.
+**Description:** Gets the capacity size of the current MessageSequence object.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt32 | The capacity size of the obtained MessageSequence instance, in bytes. |
+| UInt32 | The capacity size of the MessageSequence instance, in bytes. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let result = data.getCapacity()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getRawDataCapacity()
 
@@ -572,17 +855,36 @@ public func getCapacity(): UInt32
 public func getRawDataCapacity(): UInt32
 ```
 
-**Function:** Gets the maximum raw data capacity that MessageSequence can hold.
+**Description:** Gets the maximum raw data capacity that MessageSequence can hold.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt32 | Returns the maximum raw data capacity that MessageSequence can hold, i.e., 128MB. |
+| UInt32 | Returns the maximum raw data capacity that MessageSequence can hold, which is 128MB. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.getRawDataCapacity()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getReadPosition()
 
@@ -590,11 +892,11 @@ public func getRawDataCapacity(): UInt32
 public func getReadPosition(): UInt32
 ```
 
-**Function:** Gets the read position of MessageSequence.
+**Description:** Gets the read position of the MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -602,23 +904,61 @@ public func getReadPosition(): UInt32
 |:----|:----|
 | UInt32 | Returns the current read position in the MessageSequence instance. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let pos = data.getReadPosition()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func getReadableBytes()
 
 ```cangjie
 public func getReadableBytes(): UInt32
 ```
 
-**Function:** Gets the readable byte space of MessageSequence.
+**Description:** Gets the readable byte space of the MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt32 | The readable byte space of the obtained MessageSequence instance, in bytes. |
+| UInt32 | The readable byte space of the MessageSequence instance, in bytes. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let bytes = data.getReadableBytes()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getSize()
 
@@ -626,17 +966,36 @@ public func getReadableBytes(): UInt32
 public func getSize(): UInt32
 ```
 
-**Function:** Gets the data size of the current MessageSequence object.
+**Description:** Gets the data size of the current MessageSequence object.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt32 | The data size of the obtained MessageSequence instance, in bytes. |
+| UInt32 | The data size of the MessageSequence instance, in bytes. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let size = data.getSize()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getWritableBytes()
 
@@ -644,29 +1003,46 @@ public func getSize(): UInt32
 public func getWritableBytes(): UInt32
 ```
 
-**Function:** Gets the writable byte space size of MessageSequence.
+**Description:** Gets the writable byte space size of the MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt32 | The writable byte space of the obtained MessageSequence instance, in bytes. |
+| UInt32 | The writable byte space of the MessageSequence instance, in bytes. |
 
-### func getWritePosition()
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let bytes = data.getWritableBytes()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getWritePosition()
 
 ```cangjie
 public func getWritePosition(): UInt32
 ```
 
-**Function:** Gets the write position of MessageSequence.
+**Function:** Gets the write position of the MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -674,17 +1050,36 @@ public func getWritePosition(): UInt32
 |:----|:----|
 | UInt32 | Returns the current write position in the MessageSequence instance. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let pos = data.getWritePosition()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readAshmem()
 
 ```cangjie
 public func readAshmem(): Ashmem
 ```
 
-**Function:** Reads an anonymous shared object from MessageSequence.
+**Function:** Reads an anonymous shared object from the MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -694,12 +1089,30 @@ public func readAshmem(): Ashmem
 
 **Exceptions:**
 
-- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Check param failed |
   | 1900004 | Failed to read data from the shared memory. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let ashMem = data.readAshmem()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readBoolean()
 
@@ -711,7 +1124,7 @@ public func readBoolean(): Bool
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -727,6 +1140,25 @@ public func readBoolean(): Bool
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readBoolean()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readBooleanArray()
 
 ```cangjie
@@ -737,7 +1169,7 @@ public func readBooleanArray(): Array<Bool>
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -753,6 +1185,25 @@ public func readBooleanArray(): Array<Bool>
   | :--- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readBooleanArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readByte()
 
 ```cangjie
@@ -763,7 +1214,7 @@ public func readByte(): Int8
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -779,6 +1230,25 @@ public func readByte(): Int8
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readByte()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readByteArray()
 
 ```cangjie
@@ -789,7 +1259,7 @@ public func readByteArray(): Array<Int8>
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -805,6 +1275,25 @@ public func readByteArray(): Array<Int8>
   | :--- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readByteArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readChar()
 
 ```cangjie
@@ -815,13 +1304,13 @@ public func readChar(): UInt8
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt8 | Returns the single character array. |
+| UInt8 | Returns the single character value. |
 
 **Exceptions:**
 
@@ -829,91 +1318,164 @@ public func readChar(): UInt8
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 1900010 | Failed to read data from the message sequence. |### func readCharArray()
+  | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readChar()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func readCharArray()
+
+```cangjie
 public func readCharArray(): Array<UInt8>
 ```
 
-**Function:** Reads a single character array from a MessageSequence instance.
+**Function:** Reads a single character array from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<UInt8> | Returns a single character array. |
+|:----|:----|
+| Array\<UInt8> | Returns the single character array. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readCharArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readDouble()
 
 ```cangjie
-
 public func readDouble(): Float64
 ```
 
-**Function:** Reads a double-precision floating-point value from a MessageSequence instance.
+**Function:** Reads a double-precision floating-point value from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Float64 | Returns a double-precision floating-point value. |
+|:----|:----|
+| Float64 | Returns the double-precision floating-point value. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readDouble()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readDoubleArray()
 
 ```cangjie
-
 public func readDoubleArray(): Array<Float64>
 ```
 
-**Function:** Reads all double-precision floating-point arrays from a MessageSequence instance.
+**Function:** Reads all double-precision floating-point arrays from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<Float64> | Returns a double-precision floating-point array. |
+|:----|:----|
+| Array\<Float64> | Returns the double-precision floating-point array. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: For detailed error codes, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
-### func readException()
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import std.collection.ArrayList
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readDoubleArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func readException()
+
+```cangjie
 public func readException(): Unit
 ```
 
@@ -921,20 +1483,38 @@ public func readException(): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readException()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readFileDescriptor()
 
 ```cangjie
-
 public func readFileDescriptor(): Int32
 ```
 
@@ -942,7 +1522,7 @@ public func readFileDescriptor(): Int32
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -952,24 +1532,42 @@ public func readFileDescriptor(): Int32
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readFileDescriptor()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readFloat()
 
 ```cangjie
-
 public func readFloat(): Float32
 ```
 
-**Function:** Reads a floating-point value from a MessageSequence instance.
+**Function:** Reads a floating-point value from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -979,51 +1577,87 @@ public func readFloat(): Float32
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readFloat()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readFloatArray()
 
 ```cangjie
-
 public func readFloatArray(): Array<Float32>
 ```
 
-**Function:** Reads a floating-point array from a MessageSequence instance.
+**Function:** Reads an array of floating-point values from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Array\<Float32> | Returns the floating-point array. |
+| Array\<Float32> | Returns the array of floating-point values. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readFloatArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readInt()
 
 ```cangjie
-
 public func readInt(): Int32
 ```
 
-**Function:** Reads an integer value from a MessageSequence instance.
+**Function:** Reads an integer value from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1033,78 +1667,132 @@ public func readInt(): Int32
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readInt()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readIntArray()
 
 ```cangjie
-
 public func readIntArray(): Array<Int32>
 ```
 
-**Function:** Reads an integer array from a MessageSequence instance.
+**Function:** Reads an array of integer values from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Array\<Int32> | Returns the integer array. |
+| Array\<Int32> | Returns the array of integer values. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readIntArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readInterfaceToken()
 
 ```cangjie
-
 public func readInterfaceToken(): String
 ```
 
-**Function:** Reads an interface descriptor from the MessageSequence object. The interface descriptors are read in the order they were written to the MessageSequence. Local objects can use this information to verify the current communication.
+**Function:** Reads an interface token from the MessageSequence object. The interface tokens are read in the order they were written to the MessageSequence. Local objects can use this information to verify the current communication.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| String | Returns the read interface descriptor. |
+| String | Returns the read interface token. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readInterfaceToken()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readLong()
 
 ```cangjie
-
 public func readLong(): Int64
 ```
 
-**Function:** Reads a long integer value from a MessageSequence instance.
+**Function:** Reads a long integer value from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1114,43 +1802,79 @@ public func readLong(): Int64
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readLong()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readLongArray()
 
 ```cangjie
-
 public func readLongArray(): Array<Int64>
 ```
 
-**Function:** Reads all long integer arrays from a MessageSequence instance.
+**Function:** Reads an array of long integer values from the MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 | :---- | :---- |
-| Array\<Int64> | Returns the integer array. |
+| Array\<Int64> | Returns the array of long integer values. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readLongArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readParcelable\<T>(T) where T \<: Parcelable
 
 ```cangjie
-
 public func readParcelable<T>(dataIn: T): Unit where T <: Parcelable
 ```
 
@@ -1158,102 +1882,207 @@ public func readParcelable<T>(dataIn: T): Unit where T <: Parcelable
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| dataIn | T | Yes | - | The object whose member variables need to be read from the MessageSequence. |
+| dataIn | T | Yes | - | The object into which member variables will be read from the MessageSequence. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters. |
   | 1900010 | Failed to read data from the message sequence. |
   | 1900012 | Failed to call the JS callback function. |
 
-### func readParcelableArray\<T>(Array\<T>) where T \<: Parcelable
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    // The following code can be added to dependency definitions
+    class MyParcelable <: Parcelable {
+        var num: Int32 = 0
+        var str: String = ''
+
+        init() {}
+
+        init(num: Int32, str: String) {
+            this.num = num
+            this.str = str
+        }
+        public func marshalling(messageSequence: MessageSequence): Bool {
+            messageSequence.writeInt(this.num)
+            messageSequence.writeString(this.str)
+            return true
+        }
+        public func unmarshalling(messageSequence: MessageSequence): Bool {
+            this.num = messageSequence.readInt()
+            this.str = messageSequence.readString()
+            return true
+        }
+    }
+
+    let parcelable = MyParcelable(1, "aaa")
+    let data = MessageSequence.create()
+    data.writeParcelable(parcelable)
+    let ret = MyParcelable()
+    data.readParcelable(ret)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func readParcelableArray\<T>(Array\<T>) where T \<: Parcelable
+
+```cangjie
 public func readParcelableArray<T>(parcelableArray: Array<T>): Unit where T <: Parcelable
 ```
 
-**Function:** Reads a serializable object array from the MessageSequence instance.
+**Function:** Reads an array of parcelable objects from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| parcelableArray | Array\<T> | Yes | - | The serializable object array to be read. |
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| parcelableArray | Array\<T> | Yes | - | The array of parcelable objects to be read. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The length of the array passed when reading is not equal to the length passed when writing to the array; 5. The element does not exist in the array. |
   | 1900010 | Failed to read data from the message sequence. |
   | 1900012 | Failed to call the JS callback function. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    // The following code can be added in dependency definitions
+    class MyParcelable <: Parcelable {
+        var num: Int32 = 0
+        var str: String = ''
+
+        init() {}
+
+        init(num: Int32, str: String) {
+            this.num = num
+            this.str = str
+        }
+        public func marshalling(messageSequence: MessageSequence): Bool {
+            messageSequence.writeInt(this.num)
+            messageSequence.writeString(this.str)
+            return true
+        }
+        public func unmarshalling(messageSequence: MessageSequence): Bool {
+            this.num = messageSequence.readInt()
+            this.str = messageSequence.readString()
+            return true
+        }
+    }
+
+    let parcelable = MyParcelable(1, "aaa")
+    let parcelable2 = MyParcelable(2, "bbb")
+    let parcelable3 = MyParcelable(3, "ccc")
+    let data = MessageSequence.create()
+    data.writeParcelableArray(parcelable, parcelable2, parcelable3)
+    let ret: Array<Parcelable> = [MyParcelable(0, ""), MyParcelable(0, ""), MyParcelable(0, "")]
+    data.readParcelableArray(ret)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readRawDataBuffer(Int64)
 
 ```cangjie
-
 public func readRawDataBuffer(size: Int64): Array<Byte>
 ```
 
-**Function:** Reads raw data from the MessageSequence.
+**Function:** Reads raw data from a MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
 | size | Int64 | Yes | - | The size of the raw data to be read. |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Array\<Byte> | Returns the raw data (in bytes). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900010 | Failed to read data from the message sequence. |### func readShort()
+  | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readRawDataBuffer(1)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func readShort()
+
+```cangjie
 public func readShort(): Int16
 ```
 
-**Function:** Reads a short integer value from the MessageSequence instance.
+**Function:** Reads a short integer value from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Int16 | Returns the short integer value. |
 
 **Exceptions:**
@@ -1264,23 +2093,41 @@ public func readShort(): Int16
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readShort()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readShortArray()
 
 ```cangjie
-
 public func readShortArray(): Array<Int16>
 ```
 
-**Function:** Reads an array of short integers from the MessageSequence instance.
+**Function:** Reads an array of short integers from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Array\<Int16> | The array of short integers to be read. |
 
 **Exceptions:**
@@ -1291,23 +2138,41 @@ public func readShortArray(): Array<Int16>
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readShortArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readString()
 
 ```cangjie
-
 public func readString(): String
 ```
 
-**Function:** Reads a string value from the MessageSequence instance.
+**Function:** Reads a string value from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | String | Returns the string value. |
 
 **Exceptions:**
@@ -1318,23 +2183,41 @@ public func readString(): String
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readString()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readStringArray()
 
 ```cangjie
-
 public func readStringArray(): Array<String>
 ```
 
-**Function:** Reads an array of strings from the MessageSequence instance.
+**Function:** Reads an array of strings from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
+|:----|:----|
 | Array\<String> | Returns the array of strings. |
 
 **Exceptions:**
@@ -1345,358 +2228,597 @@ public func readStringArray(): Array<String>
   | :---- | :--- |
   | 1900010 | Failed to read data from the message sequence. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readStringArray()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func readUInt16Array()
 
 ```cangjie
-
 public func readUInt16Array(): Array<UInt16>
 ```
 
-**Function:** Reads data of type Array\<UInt16> from the MessageSequence instance.
+**Function:** Reads data of type Array\<UInt16> from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<UInt16> | The data read. |
+|:----|:----|
+| Array\<UInt16> | The read data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. Incorrect obtained value of typeCode. |
   | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readUInt16Array()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readUInt32Array()
 
 ```cangjie
-
 public func readUInt32Array(): Array<UInt32>
 ```
 
-**Function:** Reads data of type Array\<UInt32> from the MessageSequence instance.
+**Function:** Reads data of type Array\<UInt32> from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<UInt32> | The data read. |
+|:----|:----|
+| Array\<UInt32> | The read data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. Incorrect obtained value of typeCode. |
   | 1900010 | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readUInt32Array()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func readUInt64Array()
 
 ```cangjie
-
 public func readUInt64Array(): Array<UInt64>
 ```
 
-**Function:** Reads data of type Array\<UInt64> from the MessageSequence instance.
+**Function:** Reads data of type Array\<UInt64> from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<UInt64> | The data read. |
+|:----|:----|
+| Array\<UInt64> | The read data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. Incorrect obtained value of typeCode. |
   | 1900010 | Failed to read data from the message sequence. |
 
-### func readUInt8Array()
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readUInt64Array()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func readUInt8Array()
+
+```cangjie
 public func readUInt8Array(): Array<UInt8>
 ```
 
-**Function:** Reads data of type Array\<UInt8> from the MessageSequence instance.
+**Function:** Reads data of type Array\<UInt8> from a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-| :---- | :---- |
-| Array\<UInt8> | The data read. |
+| Type         | Description       |
+| :----------- | :---------------- |
+| Array\<UInt8> | The read data.    |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. Incorrect obtained value of typeCode. |
-  | 1900010 | Failed to read data from the message sequence. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900010      | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.readUInt8Array()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func reclaim()
 
 ```cangjie
-
 public func reclaim(): Unit
 ```
 
-**Function:** Releases the MessageSequence object that is no longer in use.
+**Function:** Releases a MessageSequence object that is no longer in use.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.reclaim()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func rewindRead(UInt32)
 
 ```cangjie
-
 public func rewindRead(pos: UInt32): Unit
 ```
 
-**Function:** Resets the read position to the specified position.
+**Function:** Resets the read position to the specified offset.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| pos | UInt32 | Yes | - | The target position to start reading data. |
+| Parameter | Type  | Required | Default | Description                     |
+| :-------- | :---- | :------- | :------ | :------------------------------ |
+| pos       | UInt32 | Yes      | -       | The target position to start reading data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900010 | Failed to read data from the message sequence. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900010      | Failed to read data from the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.rewindRead(0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func rewindWrite(UInt32)
 
 ```cangjie
-
 public func rewindWrite(pos: UInt32): Unit
 ```
 
-**Function:** Resets the write position to the specified position.
+**Function:** Resets the write position to the specified offset.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| pos | UInt32 | Yes | - | The target position to start writing data. |
+| Parameter | Type  | Required | Default | Description                     |
+| :-------- | :---- | :------- | :------ | :------------------------------ |
+| pos       | UInt32 | Yes      | -       | The target position to start writing data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900009      | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.rewindWrite(0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func setCapacity(UInt32)
 
 ```cangjie
-
 public func setCapacity(size: UInt32): Unit
 ```
 
-**Function:** Sets the storage capacity of the MessageSequence object.
+**Function:** Sets the storage capacity of a MessageSequence object.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| size | UInt32 | Yes | - | The storage capacity of the MessageSequence instance, in bytes. |
+| Parameter | Type  | Required | Default | Description                     |
+| :-------- | :---- | :------- | :------ | :------------------------------ |
+| size      | UInt32 | Yes      | -       | The storage capacity of the MessageSequence instance, in bytes. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-  | 1900011 | Memory allocation failed. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900011      | Memory allocation failed.             |
+  | 1900009      | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.setCapacity(100)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func setSize(UInt32)
 
 ```cangjie
-
 public func setSize(size: UInt32): Unit
 ```
 
-**Function:** Sets the data size contained in the MessageSequence object.
+**Function:** Sets the data size contained in a MessageSequence object.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| size | UInt32 | Yes | - | The data size of the MessageSequence instance, in bytes. |
+| Parameter | Type  | Required | Default | Description                     |
+| :-------- | :---- | :------- | :------ | :------------------------------ |
+| size      | UInt32 | Yes      | -       | The data size of the MessageSequence instance, in bytes. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900009      | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.setSize(16)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeAshmem(Ashmem)
 
 ```cangjie
-
 public func writeAshmem(ashmem: Ashmem): Unit
 ```
 
-**Function:** Writes the specified anonymous shared object to this MessageSequence.
+**Function:** Writes the specified anonymous shared memory object to this MessageSequence.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| ashmem | [Ashmem](#class-ashmem) | Yes | - | The anonymous shared object to be written to the MessageSequence. |
+| Parameter | Type    | Required | Default | Description                     |
+| :-------- | :------ | :------- | :------ | :------------------------------ |
+| ashmem    | [Ashmem](#class-ashmem) | Yes      | -       | The anonymous shared memory object to write to the MessageSequence. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. The parameter is not an instance of the Ashmem object. |
-  | 1900003 | Failed to write data to the shared memory. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900003      | Failed to write data to the shared memory. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let ashmem = Ashmem.create("ashmem", 1024)
+    data.writeAshmem(ashmem)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeBoolean(Bool)
 
 ```cangjie
-
 public func writeBoolean(val: Bool): Unit
 ```
 
-**Function:** Writes a boolean value to the MessageSequence instance.
+**Function:** Writes a boolean value to a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| val | Bool | Yes | - | The boolean value to be written. |
+| Parameter | Type | Required | Default | Description                     |
+| :-------- | :--- | :------- | :------ | :------------------------------ |
+| val       | Bool | Yes      | -       | The boolean value to write.     |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900009      | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeBoolean(false)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeBooleanArray(Array\<Bool>)
 
 ```cangjie
-
 public func writeBooleanArray(booleanArray: Array<Bool>): Unit
 ```
 
-**Function:** Writes an array of boolean values to the MessageSequence instance.
+**Function:** Writes a boolean array to a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Mandatory | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| booleanArray | Array\<Bool> | Yes | - | The array of boolean values to be written. |
+| Parameter     | Type         | Required | Default | Description                     |
+| :------------ | :----------- | :------- | :------ | :------------------------------ |
+| booleanArray  | Array\<Bool> | Yes      | -       | The boolean array to write.     |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array. |
-  | 1900009 | Failed to write data to the message sequence. |### func writeByte(Int8)
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900009      | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeBooleanArray([false, true, false])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeByte(Int8)
+
+```cangjie
 public func writeByte(val: Int8): Unit
 ```
 
-**Function:** Writes a byte value to the MessageSequence instance.
+**Function:** Writes a byte value to a MessageSequence instance.
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| val | Int8 | Yes | - | The byte value to be written. |
+| Parameter | Type | Required | Default | Description                     |
+| :-------- | :--- | :------- | :------ | :------------------------------ |
+| val       | Int8 | Yes      | -       | The byte value to write.        |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes are listed below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
+  | Error Code ID | Error Message                          |
+  | :----------- | :------------------------------------- |
+  | 1900009      | Failed to write data to the message sequence. |
 
-### func writeByteArray(Array\<Int8>)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeByte(2)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func writeByteArray(Array\<Int8>)
+
+```cangjie
 public func writeByteArray(byteArray: Array<Int8>): Unit
 ```
 
@@ -1704,371 +2826,13 @@ public func writeByteArray(byteArray: Array<Int8>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | byteArray | Array\<Int8> | Yes | - | The byte array to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array; 5. Incorrect type of the element in the array. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeChar(UInt8)
-
-```cangjie
-
-public func writeChar(val: UInt8): Unit
-```
-
-**Function:** Writes a single character value to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| val | UInt8 | Yes | - | The single character value to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeCharArray(Array\<UInt8>)
-
-```cangjie
-
-public func writeCharArray(charArray: Array<UInt8>): Unit
-```
-
-**Function:** Writes a single character array to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| charArray | Array\<UInt8> | Yes | - | The single character array to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeDouble(Float64)
-
-```cangjie
-
-public func writeDouble(val: Float64): Unit
-```
-
-**Function:** Writes a double-precision floating-point value to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| val | Float64 | Yes | - | The double-precision floating-point value to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeDoubleArray(Array\<Float64>)
-
-```cangjie
-
-public func writeDoubleArray(doubleArray: Array<Float64>): Unit
-```
-
-**Function:** Writes a double-precision floating-point array to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| doubleArray | Array\<Float64> | Yes | - | The double-precision floating-point array to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array; 5. Incorrect type of the element in the array. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeFileDescriptor(Int32)
-
-```cangjie
-
-public func writeFileDescriptor(fd: Int32): Unit
-```
-
-**Function:** Writes a file descriptor to the MessageSequence.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| fd | Int32 | Yes | - | The file descriptor. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeFloat(Float32)
-
-```cangjie
-
-public func writeFloat(val: Float32): Unit
-```
-
-**Function:** Writes a floating-point value to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| val | Float32 | Yes | - | The floating-point value to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeFloatArray(Array\<Float32>)
-
-```cangjie
-
-public func writeFloatArray(floatArray: Array<Float32>): Unit
-```
-
-**Function:** Writes Array\<Float32> type data to the MessageSequence object.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| floatArray | Array\<Float32> | Yes | - | The data to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array; 5. Incorrect type of the element in the array. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeInt(Int32)
-
-```cangjie
-
-public func writeInt(val: Int32): Unit
-```
-
-**Function:** Writes an integer value to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| val | Int32 | Yes | - | The integer value to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeIntArray(Array\<Int32>)
-
-```cangjie
-
-public func writeIntArray(intArray: Array<Int32>): Unit
-```
-
-**Function:** Writes an integer array to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| intArray | Array\<Int32> | Yes | - | The integer array to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array; 5. Incorrect type of the element in the array. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeInterfaceToken(String)
-
-```cangjie
-
-public func writeInterfaceToken(token: String): Unit
-```
-
-**Function:** Writes an interface descriptor to the MessageSequence object. The remote object can use this information to validate the current communication.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| token | String | Yes | - | The string-type descriptor. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. The String length exceeds 40960 bytes; 4. The number of bytes copied to the buffer differs from the length of the obtained String. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeLong(Int64)
-
-```cangjie
-
-public func writeLong(val: Int64): Unit
-```
-
-**Function:** Writes a long integer value to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| val | Int64 | Yes | - | The long integer value to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeLongArray(Array\<Int64>)
-
-```cangjie
-
-public func writeLongArray(longArray: Array<Int64>): Unit
-```
-
-**Function:** Writes a long integer array to the MessageSequence instance.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| longArray | Array\<Int64> | Yes | - | The long integer array to be written. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array; 5. Incorrect type of the element in the array. |
-  | 1900009 | Failed to write data to the message sequence. |
-
-### func writeNoException()
-
-```cangjie
-
-public func writeNoException(): Unit
-```
-
-**Function:** Writes "no exception occurred" information to the MessageSequence.
-
-**System Capability:** SystemCapability.Communication.IPC.Core
-
-**Since:** 21
 
 **Exceptions:**
 
@@ -2076,10 +2840,610 @@ public func writeNoException(): Unit
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 1900009 | Failed to write data to the message sequence. |### func writeParcelable\<T>(T) where T \<: Parcelable
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeByteArray([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeChar(UInt8)
+
+```cangjie
+public func writeChar(val: UInt8): Unit
+```
+
+**Function:** Writes a single character value to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| val | UInt8 | Yes | - | The single character value to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeChar(97)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeCharArray(Array\<UInt8>)
+
+```cangjie
+public func writeCharArray(charArray: Array<UInt8>): Unit
+```
+
+**Function:** Writes a single character array to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| charArray | Array\<UInt8> | Yes | - | The single character array to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeCharArray([97, 98, 88])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeDouble(Float64)
+
+```cangjie
+public func writeDouble(val: Float64): Unit
+```
+
+**Function:** Writes a double-precision floating-point value to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| val | Float64 | Yes | - | The double-precision floating-point value to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeDouble(10.2)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeDoubleArray(Array\<Float64>)
+
+```cangjie
+public func writeDoubleArray(doubleArray: Array<Float64>): Unit
+```
+
+**Function:** Writes a double-precision floating-point array to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| doubleArray | Array\<Float64> | Yes | - | The double-precision floating-point array to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeDoubleArray([1.1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeFileDescriptor(Int32)
+
+```cangjie
+public func writeFileDescriptor(fd: Int32): Unit
+```
+
+**Function:** Writes a file descriptor to the MessageSequence.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| fd | Int32 | Yes | - | The file descriptor. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import kit.CoreFileKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    let filePath = "path/to/file"
+    let file = FileIo.open(filePath, mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
+    data.writeFileDescriptor(file.fd)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeFloat(Float32)
+
+```cangjie
+public func writeFloat(val: Float32): Unit
+```
+
+**Function:** Writes a floating-point value to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| val | Float32 | Yes | - | The floating-point value to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeFloat(1.2)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeFloatArray(Array\<Float32>)
+
+```cangjie
+public func writeFloatArray(floatArray: Array<Float32>): Unit
+```
+
+**Function:** Writes a floating-point array to the MessageSequence object.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| floatArray | Array\<Float32> | Yes | - | The data to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeFloatArray([1.1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeInt(Int32)
+
+```cangjie
+public func writeInt(val: Int32): Unit
+```
+
+**Function:** Writes an integer value to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| val | Int32 | Yes | - | The integer value to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeInt(10)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func writeIntArray(Array\<Int32>)
+
+```cangjie
+public func writeIntArray(intArray: Array<Int32>): Unit
+```
+
+**Function:** Writes an integer array to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| intArray | Array\<Int32> | Yes | - | The integer array to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeIntArray([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeInterfaceToken(String)
+
+```cangjie
+public func writeInterfaceToken(token: String): Unit
+```
+
+**Function:** Writes an interface descriptor to the MessageSequence object. The remote object can use this information to validate the communication.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| token | String | Yes | - | The string-type descriptor. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeInterfaceToken("aaa")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeLong(Int64)
+
+```cangjie
+public func writeLong(val: Int64): Unit
+```
+
+**Function:** Writes a long integer value to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| val | Int64 | Yes | - | The long integer value to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeLong(10000)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeLongArray(Array\<Int64>)
+
+```cangjie
+public func writeLongArray(longArray: Array<Int64>): Unit
+```
+
+**Function:** Writes a long integer array to the MessageSequence instance.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| longArray | Array\<Int64> | Yes | - | The long integer array to be written. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeLongArray([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeNoException()
+
+```cangjie
+public func writeNoException(): Unit
+```
+
+**Function:** Writes an "indication of no exception occurred" message to the MessageSequence.
+
+**System Capability:** SystemCapability.Communication.IPC.Core
+
+**Since:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeNoException()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func writeParcelable\<T>(T) where T \<: Parcelable
+
+```cangjie
 public func writeParcelable<T>(val: T): Unit where T <: Parcelable
 ```
 
@@ -2087,27 +3451,70 @@ public func writeParcelable<T>(val: T): Unit where T <: Parcelable
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | val | T | Yes | - | The serializable object to be written. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    // The following code can be added in dependency definitions
+    class MyParcelable <: Parcelable {
+        var num: Int32 = 0
+        var str: String = ''
+
+        init() {}
+
+        init(num: Int32, str: String) {
+            this.num = num
+            this.str = str
+        }
+        public func marshalling(messageSequence: MessageSequence): Bool {
+            messageSequence.writeInt(this.num)
+            messageSequence.writeString(this.str)
+            return true
+        }
+        public func unmarshalling(messageSequence: MessageSequence): Bool {
+            this.num = messageSequence.readInt()
+            this.str = messageSequence.readString()
+            return true
+        }
+    }
+
+    let parcelable = MyParcelable(1, "aaa")
+    let data = MessageSequence.create()
+    data.writeParcelable(parcelable)
+    let ret = MyParcelable()
+    data.readParcelable(ret)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeParcelableArray\<T>(Array\<T>) where T \<: Parcelable
 
 ```cangjie
-
 public func writeParcelableArray<T>(parcelableArray: Array<T>): Unit where T <: Parcelable
 ```
 
@@ -2115,27 +3522,72 @@ public func writeParcelableArray<T>(parcelableArray: Array<T>): Unit where T <: 
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | parcelableArray | Array\<T> | Yes | - | The array of serializable objects to be written. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    // The following code can be added in dependency definitions
+    class MyParcelable <: Parcelable {
+        var num: Int32 = 0
+        var str: String = ''
+
+        init() {}
+
+        init(num: Int32, str: String) {
+            this.num = num
+            this.str = str
+        }
+        public func marshalling(messageSequence: MessageSequence): Bool {
+            messageSequence.writeInt(this.num)
+            messageSequence.writeString(this.str)
+            return true
+        }
+        public func unmarshalling(messageSequence: MessageSequence): Bool {
+            this.num = messageSequence.readInt()
+            this.str = messageSequence.readString()
+            return true
+        }
+    }
+
+    let parcelable = MyParcelable(1, "aaa")
+    let parcelable2 = MyParcelable(2, "bbb")
+    let parcelable3 = MyParcelable(3, "ccc")
+    let data = MessageSequence.create()
+    data.writeParcelableArray(parcelable, parcelable2, parcelable3)
+    let ret: Array<Parcelable> = [MyParcelable(0, ""), MyParcelable(0, ""), MyParcelable(0, "")]
+    data.readParcelableArray(ret)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeRawDataBuffer(Array\<Byte>, Int64)
 
 ```cangjie
-
 public func writeRawDataBuffer(rawData: Array<Byte>, size: Int64): Unit
 ```
 
@@ -2143,28 +3595,43 @@ public func writeRawDataBuffer(rawData: Array<Byte>, size: Int64): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | rawData | Array\<Byte> | Yes | - | The raw data to be written. |
 | size | Int64 | Yes | - | The size of the raw data to be sent, in bytes. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. Failed to obtain array information; 4. Failed to obtain the transferred size; 5. The transferred size is less than or equal to 0; 6. The transferred size exceeds the byte length of rawData. |
   | 1900009 | Failed to write data to the message sequence. |
 
-### func writeShort(Int16)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeRawDataBuffer([1], 1)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func writeShort(Int16)
+
+```cangjie
 public func writeShort(val: Int16): Unit
 ```
 
@@ -2172,7 +3639,7 @@ public func writeShort(val: Int16): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -2182,17 +3649,34 @@ public func writeShort(val: Int16): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeShort(8)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeShortArray(Array\<Int16>)
 
 ```cangjie
-
 public func writeShortArray(shortArray: Array<Int16>): Unit
 ```
 
@@ -2200,7 +3684,7 @@ public func writeShortArray(shortArray: Array<Int16>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -2210,17 +3694,34 @@ public func writeShortArray(shortArray: Array<Int16>): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The element does not exist in the array; 5. Incorrect type of the element in the array. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeShortArray([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeString(String)
 
 ```cangjie
-
 public func writeString(val: String): Unit
 ```
 
@@ -2228,27 +3729,44 @@ public func writeString(val: String): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| val | String | Yes | - | The string value to be written, with a length less than 40960 bytes. |
+| val | String | Yes | - | The string value to be written. Its length should be less than 40960 bytes. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Incorrect number of parameters; 2. Parameter type mismatch; 3. The String length exceeds 40960 bytes; 4. The number of bytes copied to the buffer differs from the length of the obtained String. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeString('abc')
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeStringArray(Array\<String>)
 
 ```cangjie
-
 public func writeStringArray(stringArray: Array<String>): Unit
 ```
 
@@ -2256,27 +3774,44 @@ public func writeStringArray(stringArray: Array<String>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| stringArray | Array\<String> | Yes | - | The array of strings to be written, with each element's length less than 40960 bytes. |
+| stringArray | Array\<String> | Yes | - | The array of strings to be written. The length of each element in the array should be less than 40960 bytes. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. The String length exceeds 40960 bytes; 5. The number of bytes copied to the buffer differs from the length of the obtained String. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeStringArray(["abc", "def"])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeUInt16Array(Array\<UInt16>)
 
 ```cangjie
-
 public func writeUInt16Array(buf: Array<UInt16>): Unit
 ```
 
@@ -2284,7 +3819,7 @@ public func writeUInt16Array(buf: Array<UInt16>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -2294,17 +3829,34 @@ public func writeUInt16Array(buf: Array<UInt16>): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. Incorrect obtained value of typeCode; 5. Failed to obtain array information. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeUInt16Array([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeUInt32Array(Array\<UInt32>)
 
 ```cangjie
-
 public func writeUInt32Array(buf: Array<UInt32>): Unit
 ```
 
@@ -2312,7 +3864,7 @@ public func writeUInt32Array(buf: Array<UInt32>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -2322,17 +3874,34 @@ public func writeUInt32Array(buf: Array<UInt32>): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. Incorrect obtained value of typeCode; 5. Failed to obtain array information. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeUInt32Array([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeUInt64Array(Array\<UInt64>)
 
 ```cangjie
-
 public func writeUInt64Array(buf: Array<UInt64>): Unit
 ```
 
@@ -2340,7 +3909,7 @@ public func writeUInt64Array(buf: Array<UInt64>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -2350,17 +3919,34 @@ public func writeUInt64Array(buf: Array<UInt64>): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. Incorrect obtained value of typeCode; 5. Failed to obtain array information. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeUInt64Array([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func writeUInt8Array(Array\<UInt8>)
 
 ```cangjie
-
 public func writeUInt8Array(buf: Array<UInt8>): Unit
 ```
 
@@ -2368,7 +3954,7 @@ public func writeUInt8Array(buf: Array<UInt8>): Unit
 
 **System Capability:** SystemCapability.Communication.IPC.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -2378,9 +3964,27 @@ public func writeUInt8Array(buf: Array<UInt8>): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [RPC Error Codes](./cj-errorcode-rpc.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [RPC Error Codes](./cj-errorcode-rpc.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. The parameter is an empty array; 2. Incorrect number of parameters; 3. Parameter type mismatch; 4. Incorrect obtained value of typeCode; 5. Failed to obtain array information. |
   | 1900009 | Failed to write data to the message sequence. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.IPCKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data = MessageSequence.create()
+    data.writeUInt8Array([1])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```

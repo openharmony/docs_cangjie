@@ -1,6 +1,6 @@
 # PatternLock
 
-A pattern lock component that allows password input via a 3x3 grid pattern, used for password verification scenarios. The input state begins when a finger presses within the PatternLock component area and ends when the finger leaves the screen, completing the password input.
+A pattern lock component that allows password input via a 3x3 grid pattern, designed for password verification scenarios. The input state begins when a finger presses within the PatternLock component area and ends when the finger leaves the screen, completing the password input.
 
 ## Import Module
 
@@ -24,7 +24,7 @@ public init(controller!: ?PatternLockController = None)
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
@@ -40,169 +40,169 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func activeColor(ResourceColor)
+### func activeColor(?ResourceColor)
 
 ```cangjie
-public func activeColor(value: ResourceColor): This
+public func activeColor(value: ?ResourceColor): This
 ```
 
-**Function:** Sets the fill color of grid dots in the "active" state, where "active" refers to the state when a finger passes over a dot but has not yet selected it.
+**Function:** Sets the fill color of grid dots in the "active" state, where "active" refers to when a finger passes over a dot but has not yet selected it.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Fill color of grid dots in the "active" state.<br/>Initial value: 0xff182431. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The fill color of grid dots in the "active" state. Initial value: 0xFF182431. |
 
-### func autoReset(Bool)
+### func autoReset(?Bool)
 
 ```cangjie
-public func autoReset(value: Bool): This
+public func autoReset(value: ?Bool): This
 ```
 
-**Function:** Determines whether to reset the component state when pressing within the component area again after completing password input.
+**Function:** Sets whether to reset the component state when pressing within the component area again after completing password input.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to reset the component state when pressing within the component area again after completing password input. If true, pressing again will reset the component state (i.e., clear the previously entered password); if false, the component state will not be reset.<br/>Initial value: true. |
+| value | ?Bool | Yes | - | Whether to reset the component state when pressing within the component area again after completing password input. If true, pressing again will reset the component state (clearing the previously entered password); if false, the component state will not be reset. Initial value: true. |
 
-### func circleRadius(Length)
+### func circleRadius(?Length)
 
 ```cangjie
-public func circleRadius(value: Length): This
+public func circleRadius(value: ?Length): This
 ```
 
-**Function:** Sets the radius of dots in the grid. If set to 0 or a negative value, the initial value is used.
+**Function:** Sets the radius of the dots in the grid. If set to 0 or a negative value, the initial value is used.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Radius of dots in the grid.<br/>Initial value: 6.vp.<br/>Valid range: (0, sideLength/11]. Values less than or equal to 0 will use the initial value; values exceeding the maximum will use the maximum. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The radius of the dots in the grid. Initial value: 6.0.vp. |
 
-### func pathColor(ResourceColor)
+### func pathColor(?ResourceColor)
 
 ```cangjie
-public func pathColor(value: ResourceColor): This
+public func pathColor(value: ?ResourceColor): This
 ```
 
-**Function:** Sets the color of connecting lines.
+**Function:** Sets the color of the connecting lines.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Color of connecting lines.<br/>Initial value: 0x33182431. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The color of the connecting lines. Initial value: 0x33182431. |
 
-### func pathStrokeWidth(Length)
+### func pathStrokeWidth(?Length)
 
 ```cangjie
-public func pathStrokeWidth(value: Length): This
+public func pathStrokeWidth(value: ?Length): This
 ```
 
-**Function:** Sets the width of connecting lines. If set to 0 or a negative value, lines will not be displayed.
+**Function:** Sets the width of the connecting lines. If set to 0 or a negative value, the lines will not be displayed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Width of connecting lines.<br/>Initial value: 12.vp.<br/>Valid range: [0, sideLength/3]. Values exceeding the maximum will use the maximum. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The width of the connecting lines. Initial value: 12.0.vp. |
 
-### func regularColor(ResourceColor)
+### func regularColor(?ResourceColor)
 
 ```cangjie
-public func regularColor(value: ResourceColor): This
+public func regularColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the fill color of grid dots in the "unselected" state.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Fill color of grid dots in the "unselected" state.<br/>Initial value: 0xff182431. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The fill color of grid dots in the "unselected" state. Initial value: 0xFF182431. |
 
-### func selectedColor(ResourceColor)
+### func selectedColor(?ResourceColor)
 
 ```cangjie
-public func selectedColor(value: ResourceColor): This
+public func selectedColor(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the fill color of grid dots in the "selected" state.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Fill color of grid dots in the "selected" state.<br/>Initial value: 0xff182431. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The fill color of grid dots in the "selected" state. Initial value: 0xFF182431. |
 
-### func sideLength(Length)
+### func sideLength(?Length)
 
 ```cangjie
-public func sideLength(value: Length): This
+public func sideLength(value: ?Length): This
 ```
 
-**Function:** Sets the width and height of the component (width and height are equal). If set to 0 or a negative value, the component will not be displayed.
+**Function:** Sets the width and height of the component (width and height are the same). If set to 0 or a negative value, the component will not be displayed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Width and height of the component.<br/>Initial value: 288.vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The width and height of the component. Initial value: 288.0.vp. |
 
 ## Component Events
 
-### func onPatternComplete((Array\<Int32>) -> Unit)
+### func onPatternComplete(?(Array\<Int32>) -> Unit)
 
 ```cangjie
-public func onPatternComplete(callback: (Array<Int32>) -> Unit): This
+public func onPatternComplete(callback: ?(Array<Int32>) -> Unit): This
 ```
 
 **Function:** Triggers this event when password input is completed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | (Array\<Int32>)->Unit | Yes | - | Callback triggered when password input is completed. Callback parameter: An array of numbers corresponding to the sequence of selected grid dots, where the numbers represent the indices of the selected dots (dots in the first row are indexed 0, 1, 2 from left to right; the second row: 3, 4, 5; the third row: 6, 7, 8). |
+| callback | ?(Array\<Int32>) -> Unit | Yes | - | The callback triggered when password input is completed. Callback parameter: An array of numbers corresponding to the indices of the selected grid dots in order (dots in the first row from left to right are 0, 1, 2; the second row are 3, 4, 5; the third row are 6, 7, 8).<br>Initial value: { _ => }. |
 
 ## Basic Type Definitions
 
@@ -214,11 +214,11 @@ public class PatternLockController {
 }
 ```
 
-**Function:** Controller for the PatternLock component, used to reset the component state.
+**Function:** The controller for the PatternLock component, which can be used to reset the component state.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 #### init()
 
@@ -230,7 +230,7 @@ public init()
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 #### func reset()
 
@@ -242,7 +242,7 @@ public func reset(): Unit
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since Version:** 22
 
 ## Example Code
 

@@ -1,15 +1,21 @@
-# Introduction to Sensor Service Kit Development  
+# Introduction to Sensor Service Kit Development
 
-## Usage Scenarios  
+## Usage Scenarios
 
-Sensor Service Kit enables applications to obtain raw data from sensors and provides vibration control capabilities.  
+Sensor Service Kit enables applications to obtain raw data from sensors and provides vibration control capabilities.
 
-- The **Sensor** module is a device abstraction concept that allows applications to access underlying hardware sensors. Developers can subscribe to sensor data through the provided interfaces and customize corresponding algorithms based on the sensor data to develop various applications, such as compasses, fitness tracking, gaming, and more.  
+- The **Sensor** module is a device abstraction concept that allows applications to access underlying hardware sensors. Developers can subscribe to sensor data through the provided interfaces and develop various applications with customized algorithms based on the sensor data, such as compasses, fitness tracking, gaming, etc.
+- The **Vibrator** module maximizes the capabilities of motor devices by extending vibration services to achieve integrated vibration and interaction designs. It creates refined and sophisticated vibration experiences with differentiated effects, improving user interaction efficiency, usability, and overall experience while enhancing brand competitiveness.
 
-## Constraints and Limitations  
+## Constraints and Limitations
 
-### Sensor  
+### Sensor
 
-- To utilize sensor functionalities, the device must be equipped with the corresponding sensor hardware.  
-- For certain sensors, developers need to request appropriate permissions to access the respective sensor data.  
-- Sensor data subscription and unsubscription interfaces must be called in pairs. When sensor data is no longer required, developers must invoke the unsubscription interface to stop data reporting.
+- To use sensor functionalities, the device must be equipped with the corresponding sensor hardware.
+- For certain sensors, developers need to request appropriate permissions to access the corresponding sensor data.
+- Sensor data subscription and unsubscription interfaces must be called in pairs. When sensor data is no longer needed, developers must call the unsubscription interface to stop data reporting.
+
+### Vibrator
+
+- To use vibration functionalities, the device must be equipped with the corresponding hardware.
+- For motor control, developers need to request appropriate permissions to utilize the feature.

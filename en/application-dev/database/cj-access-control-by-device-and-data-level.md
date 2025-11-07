@@ -2,27 +2,27 @@
 
 ## Basic Concepts
 
-Distributed data management implements classified and hierarchical protection for data, providing access control mechanisms based on data security labels and device security levels.
+Distributed data management implements classified and hierarchical protection for data, providing an access control mechanism based on data security labels and device security levels.
 
-Higher data security labels and device security levels correspond to stricter encryption measures and access control policies, resulting in higher data security.
+The higher the data security label and device security level, the stricter the encryption measures and access control measures, resulting in higher data security.
 
 ### Data Security Labels
 
-According to data classification and hierarchical specifications, data can be divided into four security levels: S1, S2, S3, and S4.
+According to the data classification and hierarchical specification requirements, data can be divided into four security levels: S1, S2, S3, and S4.
 
 | Risk Level | Risk Criteria | Definition | Examples |
-| ---------- | ------------ | ---------- | -------- |
-| Critical | S4 | Special data types defined by industry laws and regulations, involving the most private information of individuals. Leakage, tampering, destruction, or loss may cause significant adverse impacts on individuals or organizations. | Political views, religious and philosophical beliefs, trade union membership, genetic data, biometric data, health and sexual life status, sexual orientation, or device authentication credentials, personal credit card and financial information. |
-| High | S3 | Leakage, tampering, destruction, or loss of data may cause severe adverse impacts on individuals or organizations. | Real-time precise location information, movement trajectories, etc. |
-| Medium | S2 | Leakage, tampering, destruction, or loss of data may cause serious adverse impacts on individuals or organizations. | Detailed communication addresses, names or nicknames, etc. |
-| Low | S1 | Leakage, tampering, destruction, or loss of data may cause limited adverse impacts on individuals or organizations. | Gender, nationality, user application records, etc. |
+| ---------- | ------------- | ---------- | -------- |
+| Critical | S4 | Special data types defined by industry laws and regulations, involving the most private information of individuals. Leakage, tampering, destruction, or deletion may cause significant adverse impacts on individuals or organizations. | Political views, religious and philosophical beliefs, trade union membership, genetic data, biometric information, health and sexual life status, sexual orientation, or device authentication credentials, personal credit card and other financial information. |
+| High | S3 | Leakage, tampering, destruction, or deletion of data may cause severe adverse impacts on individuals or organizations. | Real-time precise location information, movement trajectories, etc. |
+| Medium | S2 | Leakage, tampering, destruction, or deletion of data may cause serious adverse impacts on individuals or organizations. | Detailed communication addresses, names, nicknames, etc. |
+| Low | S1 | Leakage, tampering, destruction, or deletion of data may cause limited adverse impacts on individuals or organizations. | Gender, nationality, user application records, etc. |
 
 ### Device Security Levels
 
 <!--RP1-->
 Based on device security capabilities (e.g., whether it has TEE, secure storage chips, etc.), device security levels are divided into five levels: SL1, SL2, SL3, SL4, and SL5. For example, development boards like rk3568 and hi3516 are low-security SL1 devices, while tablets are high-security SL4 devices.
 
-During device networking, you can use the `hidumper -s 3511` command to check the device's security level. If no result is returned, you can manually start the corresponding process using `service_control start dslm_service` and then re-run the `hidumper` command. For example, the security level query for an rk3568 device is as follows:
+During device networking, you can use the `hidumper -s 3511` command to view the device's security level. If no result is returned, you can start the corresponding process with `service_control start dslm_service` and then use the `hidumper` command to query. For example, the security level query for an rk3568 device is as follows:
 <!--RP1End-->
 <!--Del-->
 ![zh-cn_image_0000001542496993](./figures/zh-cn_image_0000001542496993.png)
@@ -30,37 +30,37 @@ During device networking, you can use the `hidumper -s 3511` command to check th
 
 ## Cross-Device Synchronization Access Control Mechanism
 
-During cross-device data synchronization, data management enforces access control based on data security labels and device security levels. The rule is: Data can be synchronized from the local device to the peer device only if the local device's data security label does not exceed the peer device's security level; otherwise, synchronization is prohibited. The specific access control matrix is as follows:
+During cross-device data synchronization, data management performs access control based on data security labels and device security levels. The rule is: Data can be synchronized from the local device to the peer device only when the local device's data security label is not higher than the peer device's security level; otherwise, synchronization is prohibited. The specific access control matrix is as follows:
 
 | Device Security Level | Synchronizable Data Security Labels |
 | --------------------- | ----------------------------------- |
-| SL1 | S1 |
-| SL2 | S1~S2 |
-| SL3 | S1~S3 |
-| SL4 | S1~S4 |
-| SL5 | S1~S4 |
+| SL1                   | S1                                  |
+| SL2                   | S1~S2                               |
+| SL3                   | S1~S3                               |
+| SL4                   | S1~S4                               |
+| SL5                   | S1~S4                               |
 
 <!--RP2-->
-For example, development board devices like rk3568 and hi3516 have a security level of SL1. If a database with a data security label of S1 is created, its data can be synchronized among these devices. However, databases with labels S2-S4 cannot be synchronized among these devices.
+For example, for development board devices like rk3568 and hi3516 with a security level of SL1, if a database with a data security label of S1 is created, the data in this database can be synchronized among these devices. If the database label is S2-S4, synchronization among these devices is not allowed.
 <!--RP2End-->
 
-## Scenario Description
+## Scenario Introduction
 
-The access control mechanism of distributed databases ensures security during data storage and synchronization. When creating a database, the security label should be set appropriately based on data classification and hierarchical specifications to ensure consistency between the database content and its label.
+The access control mechanism of the distributed database ensures security capabilities during data storage and synchronization. When creating a database, the security label of the database should be set reasonably based on the data classification and hierarchical specification to ensure consistency between the database content and the data label.
 
 ## Implementing Data Classification with Key-Value Databases
 
-Key-value databases use the `securityLevel` parameter to set the database's security level. Below is an example of creating a database with security level S1.
+Key-value databases set the security level of the database through the `securityLevel` parameter. Here is an example of creating a database with a security level of S1.
 
-For specific interfaces and functionalities, refer to [Distributed Key-Value Database](../../../en/application-dev/reference/ArkData/cj-apis-distributed_kv_store.md).
+For specific interfaces and functions, refer to [Distributed Key-Value Database](../reference/ArkData/cj-apis-distributed_kv_store.md).
 
 > **Note:**
 >
-> In single-device usage scenarios, KV databases support upgrading the security level by modifying the `securityLevel` parameter during database opening. The following points should be noted for security level upgrades:
+> In single-device usage scenarios, the KV database supports modifying the `securityLevel` parameter to upgrade the security level. The following points should be noted for database security level upgrades:
 >
-> * This operation is not supported for databases requiring cross-device synchronization. Databases with different security levels cannot synchronize data. For databases requiring cross-device synchronization, it is recommended to create a new database with a higher security level.
-> * This operation requires closing the current database first, modifying the `securityLevel` parameter, and then reopening the database.
-> * This operation only supports upgrades, not downgrades. For example, S2->S3 is allowed, but S3->S2 is not.
+> * This operation is not supported for databases that require cross-device synchronization. Databases with different security levels cannot synchronize data. For databases requiring cross-device synchronization, it is recommended to create a new database with a higher security level.
+> * This operation requires closing the current database first, modifying the `securityLevel` parameter to reset the database's security level, and then reopening the database.
+> * This operation only supports upgrades, not downgrades. For example, upgrading from S2 to S3 is supported, but downgrading from S3 to S2 is not.
 
 1. Obtain the context.
 
@@ -92,7 +92,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     }
     ```
 
-2. Create a key-value database with security level S1.
+2. Create a key-value database with a security level of S1.
 
     <!-- compile -->
 
@@ -101,8 +101,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     import kit.ArkData.{DistributedKVStore, KVManagerConfig}
     import ohos.business_exception.BusinessException
     import kit.AbilityKit.getStageContext
-    import ohos.data.distributed_kv_store.Options as KVOptions
-    import ohos.data.distributed_kv_store.SecurityLevel as KVSecurityLevel
+    import ohos.data.distributed_kv_store.*
 
     try {
         let context = globalAbilityContext.getOrThrow()
@@ -112,7 +111,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
         Hilog.info(0, "cangjie", "Succeeded in creating KVManager.")
 
         let options = KVOptions(
-            KVSecurityLevel.S1, // Set security level to S1
+            KVSecurityLevel.S1, // Set the security level to S1
             createIfMissing: true,
             encrypt: true,
             backup: false,
@@ -129,9 +128,9 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
 
 ## Implementing Data Classification with Relational Databases
 
-Relational databases use the `securityLevel` parameter to set the database's security level. Below is an example of creating a database with security level S1.
+Relational databases set the security level of the database through the `securityLevel` parameter. Here is an example of creating a database with a security level of S1.
 
-For specific interfaces and functionalities, refer to [Relational Database](../../../en/application-dev/reference/ArkData/cj-apis-relational_store.md).
+For specific interfaces and functions, refer to [Relational Database](../reference/ArkData/cj-apis-relational_store.md).
 
 1. Obtain the context.
 
@@ -163,7 +162,7 @@ For specific interfaces and functionalities, refer to [Relational Database](../.
     }
     ```
 
-2. Create a relational database with security level S1.
+2. Create a relational database with a security level of S1.
 
     <!-- compile -->
 
@@ -171,12 +170,12 @@ For specific interfaces and functionalities, refer to [Relational Database](../.
     // xxx.cj
     import kit.ArkData.{StoreConfig, getRdbStore}
     import ohos.business_exception.BusinessException
-    import ohos.data.relational_store.SecurityLevel as RelationalStoreSecurityLevel
+    import ohos.data.relational_store.*
 
     try {
         let context = globalAbilityContext.getOrThrow()
         let storeConfig = StoreConfig(
-            RelationalStoreSecurityLevel.S1, // Set security level to S1
+            RelationalStoreSecurityLevel.S1, // Set the security level to S1
             name: "RdbTest.db",
         )
         let rdbStore = getRdbStore(context, storeConfig)

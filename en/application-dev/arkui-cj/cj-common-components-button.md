@@ -1,18 +1,18 @@
 # Button
 
-Button is a button component typically used to respond to user click actions. Its types include capsule button, circular button, and regular button. When used as a container, Button can incorporate child components to create buttons containing elements such as text and images. For specific usage, please refer to [Button](../../../en/application-dev/reference/arkui-cj/cj-button-picker-button.md).
+A Button is a button component typically used to respond to user click actions. It comes in various types including capsule buttons, circular buttons, and standard buttons. When used as a container, a Button can incorporate child components to create buttons containing elements such as text and images. For specific usage, please refer to [Button](../reference/arkui-cj/cj-button-picker-button.md).
 
 ## Creating a Button
 
 Buttons are created by calling interfaces, which can be done in two forms:
 
-- Creating a button without child components using label and [ButtonOptions](../../../en/application-dev/reference/arkui-cj/cj-button-picker-button.md#class-buttonoptions). Examples include shape and stateEffect in ButtonOptions.
+- Creating a button without child components by specifying a label and [ButtonOptions](../reference/arkui-cj/cj-button-picker-button.md#class-buttonoptions). Examples include the `shape` and `stateEffect` properties in ButtonOptions.
 
   ```cangjie
   init(label: String, options: ButtonOptions)
   ```
 
-  Here, label sets the button text, type sets the Button type, and the stateEffect property determines whether the click effect is enabled.
+  Here, `label` sets the button text, `type` defines the Button type, and the `stateEffect` property determines whether the Button has click feedback.
 
   ```cangjie
   Button('Ok', ButtonOptions(shape: ButtonType.Normal, stateEffect: true))
@@ -24,13 +24,13 @@ Buttons are created by calling interfaces, which can be done in two forms:
 
   ![Button](figures/Button.png)
 
-- Creating a button with child components using [ButtonOptions](../../../en/application-dev/reference/arkui-cj/cj-button-picker-button.md#class-buttonoptions). Examples include shape and stateEffect in ButtonOptions.
+- Creating a button with child components using [ButtonOptions](../reference/arkui-cj/cj-button-picker-button.md#class-buttonoptions). Examples include the `shape` and `stateEffect` properties in ButtonOptions.
 
   ```cangjie
   init(options: ButtonOptions, content: () -> Unit)
   ```
 
-  Only one child component is supported, which can be a basic component or a container component.
+  Only one child component is supported, which can be either a basic component or a container component.
 
   ```cangjie
   Button(ButtonOptions(shape: ButtonType.Normal, stateEffect: true)){
@@ -49,11 +49,11 @@ Buttons are created by calling interfaces, which can be done in two forms:
 
 ## Setting Button Types
 
-Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, configured via the shape property.
+Buttons have four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, configured via the `shape` property.
 
-- Capsule button (default type).
+- Capsule Button (default type).
 
-  The corners of this button type are automatically set to half the height and cannot be reconfigured via the borderRadius property.
+  The corners of this button type are automatically set to half the height, and cannot be reconfigured using the `borderRadius` property.
 
   ```cangjie
   Button('Disable', ButtonOptions(shape: ButtonType.Capsule, stateEffect: false))
@@ -64,9 +64,9 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
   ![Button3](figures/Button3.png)
 
-- Circular button.
+- Circular Button.
 
-  This button type is circular and does not support corner reconfiguration via borderRadius.
+  This button type is perfectly round and does not support corner reconfiguration via the `borderRadius` property.
 
   ```cangjie
   Button('Circle', ButtonOptions(shape: ButtonType.Circle, stateEffect: false))
@@ -77,9 +77,9 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
   ![Button4](figures/Button4.png)
 
-- Normal button.
+- Standard Button.
 
-  This button type has default corners of 0 and supports corner reconfiguration via borderRadius.
+  This button type has default square corners (radius 0) and supports corner customization via the [borderRadius](../reference/arkui-cj/cj-common-types.md#class-borderradiuses) property.
 
   ```cangjie
   Button('Ok', ButtonOptions(shape: ButtonType.Normal, stateEffect: true))
@@ -93,9 +93,9 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
 ## Customizing Styles
 
-- Setting border radius.
+- Setting Border Radius.
 
-  Use common properties to customize button styles. For example, set the button's border radius via the borderRadius property.
+  Use universal attributes to customize button styles. For example, configure the border radius via the [borderRadius](../reference/arkui-cj/cj-common-types.md#class-borderradiuses) property.
 
   ```cangjie
   Button('circle border', ButtonOptions(shape: ButtonType.Normal))
@@ -105,9 +105,9 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
   ![Button6](figures/Button6.png)
 
-- Setting text styles.
+- Setting Text Styles.
 
-  Add text styles to configure the display style of button text.
+  Apply text styles to customize the button's text display.
 
   ```cangjie
   Button('font style', ButtonOptions(shape: ButtonType.Normal))
@@ -117,9 +117,9 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
   ![Button7](figures/Button7.png)
 
-- Setting background color.
+- Setting Background Color.
 
-  Add the backgroundColor property to set the button's background color.
+  Use the [backgroundColor](../reference/arkui-cj/cj-universal-attribute-background.md#func-backgroundcolorresourcecolor) property to define the button's background color.
 
   ```cangjie
   Button('background color').backgroundColor(0xF55A42)
@@ -127,7 +127,7 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
   ![Button8](figures/Button8.png)
 
-- Creating functional buttons.
+- Creating Functional Buttons.
 
   Create a button for delete operations.
 
@@ -147,7 +147,7 @@ Button has four optional types: Capsule, Circle, Normal, and ROUNDED_RECTANGLE, 
 
 ## Adding Events
 
-The Button component is typically used to trigger certain actions. Bind the onClick event to define custom behaviors in response to click actions.
+Button components are typically used to trigger actions. You can bind the [onClick](../reference/arkui-cj/cj-universal-event-click.md#func-onclickclickevent---unit) event to define custom behaviors upon click.
 
 ```cangjie
   Button('Ok', ButtonOptions(shape: ButtonType.Normal, stateEffect: true))
@@ -158,7 +158,7 @@ The Button component is typically used to trigger certain actions. Bind the onCl
 
 ## Usage Examples
 
-- Submitting forms.
+- Form Submission.
 
   On user login/registration pages, use buttons for login or registration actions.
 
@@ -181,9 +181,9 @@ The Button component is typically used to trigger certain actions. Bind the onCl
               Button('Register')
                 .width(300)
                 .margin(top: 20)
-                .onClick{ evt =>
-                    // Actions to perform
-                    }
+                .onClick({ evt =>
+                    // Action to perform
+                    })
           }
           .padding(20)
       }
@@ -192,9 +192,9 @@ The Button component is typically used to trigger certain actions. Bind the onCl
 
   ![Button10](figures/Button10.png)
 
-- Floating button.
+- Floating Button.
 
-  In scrollable interfaces, the button remains floating during scrolling.
+  In scrollable interfaces, maintain a floating button that stays visible during scrolling.
 
      <!-- run -->
 
@@ -237,10 +237,10 @@ The Button component is typically used to trigger certain actions. Bind the onCl
               .height(60)
               .position(x: 80.percent, y: 600)
               .shadow(radius: 10.0)
-              .onClick {
+              .onClick ({
                   evt =>
-                  // Actions to perform
-              }
+                  // Action to perform
+              })
           }
           .width(100.percent)
           .height(100.percent)

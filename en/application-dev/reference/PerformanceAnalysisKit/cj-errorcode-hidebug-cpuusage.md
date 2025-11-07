@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> The following describes only the error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> This document only introduces error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 11400104 Abnormal CpuUsage Statistics
 
@@ -12,7 +12,7 @@ The status of the system CPU usage is abnormal.
 
 **Error Description:**
 
-The current status of cpuUsage is abnormal.
+The current state of cpuUsage is abnormal.
 
 **Possible Causes:**
 

@@ -4,7 +4,7 @@
 >
 > It is recommended to use the [Declarative Interoperability Macro](./interoperability_macro.md) approach for ArkTS to call Cangjie modules. Only use the "Cangjie-ArkTS Interoperability Library" method when the macro approach cannot meet developer requirements.
 
-Developing Cangjie interoperability modules:
+To develop a Cangjie interoperability module:
 
 1. Create a Cangjie module in an ArkTS project. For details, refer to [Adding a Cangjie Module to an ArkTS Project](./add_cangjie_module.md).
 
@@ -34,7 +34,7 @@ Developing Cangjie interoperability modules:
         // Return JSValue
         return result
     }
-    // Must register the function in JSModule
+    // Must register the function to JSModule
     let EXPORT_MODULE = JSModule.registerModule {
         runtime, exports =>
             exports["addNumber"] = runtime.function(addNumber).toJSValue()
@@ -61,11 +61,11 @@ Developing Cangjie interoperability modules:
 
 In the above process, the exported function defined on the Cangjie side uses the most basic Cangjie types through the interoperability library. For other types, refer to the chapters [Using ArkTS Data in Cangjie](./operating_ArkTS_data.md) and [Operating Cangjie Objects in ArkTS](./operating_cangjie_objects.md).
 
-> **Caution:**
+> **Warning:**
 >
 > Within the same Cangjie module (the same package and its sub-packages), the following rules must be followed to avoid symbol conflicts:
 >
-> - Functions, interfaces, and classes registered in JSModule using JSModule.registerModule, JSModule.registerClass, or JSModule.registerFunc must not have duplicate names.
+> - Functions, interfaces, and classes registered to JSModule using JSModule.registerModule, JSModule.registerClass, or JSModule.registerFunc must not have duplicate names.
 >
 >   Incorrect example:
 >
@@ -75,11 +75,11 @@ In the above process, the exported function defined on the Cangjie side uses the
 >   let EXPORT_MODULE = JSModule.registerModule {
 >      runtime, exports =>
 >         exports["addNumber"] = runtime.function(addFloat).toJSValue()
->         exports["addNumber"] = runtime.function(addInt).toJSValue() // Will overwrite the first registered function with the same name "addNumber"
+>         exports["addNumber"] = runtime.function(addInt).toJSValue() // Will overwrite the first registered function addNumber
 >   }
 >   ```
 >
-> - Functions, interfaces, and classes registered in JSModule using JSModule.registerModule, JSModule.registerClass, or JSModule.registerFunc must not have the same names as those decorated with `@Interop`.
+> - Functions, interfaces, and classes registered to JSModule using JSModule.registerModule, JSModule.registerClass, or JSModule.registerFunc must not have the same names as those decorated with `@Interop`.
 >
 >   Incorrect example:
 >
@@ -90,6 +90,6 @@ In the above process, the exported function defined on the Cangjie side uses the
 >   func addFloat() {}
 >   let EXPORT_MODULE = JSModule.registerModule {
 >       runtime, exports =>
->       exports["addNumber"] = runtime.function(addFloat).toJSValue() // Will overwrite the @Interop-decorated function with the same name "addNumber"
+>       exports["addNumber"] = runtime.function(addFloat).toJSValue() // Will overwrite the @Interop-decorated function addNumber
 >   }
 >   ```

@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> The following only introduces error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> The following describes only the module-specific error codes. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 12000001 Feature Not Supported
 
@@ -14,7 +14,7 @@ The ``${messageInfo}`` is not supported.
 
 The API is supported, but certain sub-features (functionalities) within the API are not supported, such as algorithm parameters.
 
-**Resolution Steps**
+**Resolution**
 
 Adjust the API parameters and use alternative supported parameters.
 
@@ -28,7 +28,7 @@ Failed to obtain the ``${messageInfo}``. It is not set in ParamSet.
 
 Missing relevant parameters when using the key.
 
-**Resolution Steps**
+**Resolution**
 
 1. Check the `errorMessage` to identify the missing key parameter.
 2. Add the corresponding correct key parameter.
@@ -43,7 +43,7 @@ Invalid ``${messageInfo}``.
 
 Invalid relevant parameters when using the key.
 
-**Resolution Steps**
+**Resolution**
 
 1. Check the `errorMessage` to identify the invalid key parameter name.
 2. Modify the corresponding key parameter.
@@ -52,7 +52,7 @@ Invalid relevant parameters when using the key.
 
 **Error Message**
 
-May be one of the following:
+One of the following may occur:
 
 - Insufficient storage space.
 - Invalid file size.
@@ -62,16 +62,16 @@ May be one of the following:
 
 File operation error.
 
-**Resolution Steps**
+**Resolution**
 
-1. Check if the disk space is full or if there are other file system anomalies.
-2. Clean up disk space.
+1. Check whether the disk space is full or if there are other file system anomalies.
+2. Free up disk space.
 
 ## 12000005 IPC Communication Error
 
 **Error Message**
 
-May be one of the following:
+One of the following may occur:
 
 - Failed to get messages from IPC.
 - IPC ``${messageInfo}``.
@@ -80,7 +80,7 @@ May be one of the following:
 
 Inter-process communication (IPC) error.
 
-**Resolution Steps**
+**Resolution**
 
 Check the error message to troubleshoot potential IPC communication issues.
 
@@ -92,12 +92,12 @@ Crypto engine error.
 
 **Possible Causes**
 
-This error code indicates a failure in cryptographic engine operations. Possible causes include:
+This error code indicates a cryptographic engine operation failure. Possible causes include:
 
 1. Encryption/decryption error in the cryptographic engine, possibly due to incorrect ciphertext data.
 2. Incorrect key parameters.
 
-**Resolution Steps**
+**Resolution**
 
 1. Verify the correctness of the ciphertext data.
 2. Check the encryption/decryption parameters for accuracy.
@@ -112,13 +112,13 @@ This credential is invalidated permanently.
 
 This error code indicates key access failure due to permanent invalidation. Possible causes include:
 
-1. The key has a user authentication access control attribute set to invalidate upon password reset, and device keys were cleared, causing key invalidation.
-2. The key has a user authentication access control attribute set to invalidate upon new biometric enrollment, and new fingerprints or facial data were added, causing key invalidation.
+1. The key was configured with a user authentication access control attribute that invalidates upon password clearance, leading to key invalidation.
+2. The key was configured with a user authentication access control attribute that invalidates upon new biometric enrollment (e.g., fingerprint or facial recognition), causing the key to fail.
 
-**Resolution Steps**
+**Resolution**
 
-1. Confirm the cause of authentication failure through logs.
-2. If correct parameters were used but invalidation control caused authentication failure, the key can no longer be used.
+1. Confirm the logs to determine which method caused the authentication failure.
+2. If correct parameters were used but invalidation control caused the failure, the key can no longer be used.
 
 ## 12000008 Key Access Failed - Key Authentication Failed
 
@@ -128,12 +128,12 @@ The authentication token verification failed.
 
 **Possible Causes**
 
-The key has a user authentication access control attribute set, and authentication failed due to incorrect `challenge` parameters.
+The key was configured with a user authentication access control attribute, and authentication failed due to incorrect `challenge` parameters.
 
-**Resolution Steps**
+**Resolution**
 
-1. Check if the `challenge` parameter for userIAM authentication is correctly assembled.
-2. If the `challenge` parameter is incorrect, modify the assembly method by generating the `challenge` via HUKS and passing it to userIAM for re-authentication.
+1. Check whether the `challenge` parameter assembly for userIAM authentication is correct.
+2. If the `challenge` parameter is incorrect, modify the assembly method. Use HUKS to generate the `challenge` assembly and pass it to userIAM for re-authentication.
 
 ## 12000009 Key Access Failed - Key Access Timeout
 
@@ -143,11 +143,11 @@ This authentication token timed out.
 
 **Possible Causes**
 
-The key has a user authentication access control attribute set, and authentication failed due to exceeding the `timeout` window.
+The key was configured with a user authentication access control attribute, and authentication failed due to the `timeout` window.
 
-**Resolution Steps**
+**Resolution**
 
-If the failure is due to `timeout`, re-trigger key initialization (`init`) and re-authenticate to ensure the authentication time and key initialization time are within the configured `timeout` window.
+If the failure is due to `timeout`, re-trigger the key `init` and re-authenticate to ensure the authentication time and key `init` time are within the configured `timeout` window.
 
 ## 12000010 Maximum Key Operation Sessions Reached
 
@@ -159,10 +159,10 @@ The number of key operation sessions has reached the limit.
 
 Too many callers (within the same application or across applications) are simultaneously using HUKS for key session operations, reaching the limit (15 sessions).
 
-**Resolution Steps**
+**Resolution**
 
-1. Check if the same application has multiple concurrent key session operations (`init`). If so, modify the code to avoid simultaneous calls.
-2. If not, other applications may be occupying sessions. Wait for them to release sessions before retrying.
+1. Check whether the same application has multiple concurrent key session operations (`init`). If so, modify the code to avoid simultaneous calls.
+2. If not, other applications may be making concurrent session calls. Wait for other applications to release sessions before retrying.
 
 ## 12000011 Target Object Does Not Exist
 
@@ -174,10 +174,10 @@ The entity does not exist.
 
 The key corresponding to the alias does not exist.
 
-**Resolution Steps**
+**Resolution**
 
-1. Check if the key alias is misspelled.
-2. Verify if the key corresponding to the alias was successfully generated.
+1. Check whether the key alias is misspelled.
+2. Verify whether the key corresponding to the alias was successfully generated.
 
 ## 12000012 External Error
 
@@ -189,11 +189,11 @@ System external error.
 
 External hardware errors, file errors, etc.
 
-**Resolution Steps**
+**Resolution**
 
 Report the error code and logs to the community for feedback.
 
-## 12000013 Credential Not Found When Binding Biometric Access Control to Key
+## 12000013 Credential Not Found When Setting Biometric Access Control for Key
 
 **Error Message**
 
@@ -201,26 +201,26 @@ The credential does not exist.
 
 **Possible Causes**
 
-When binding PIN, fingerprint, or facial recognition to a key, the relevant credential was not enrolled.
+When binding a key to PIN, fingerprint, or facial recognition, the relevant credential was not enrolled.
 
-**Resolution Steps**
+**Resolution**
 
-Enroll the relevant credential or change the binding credential type.
+Enroll the relevant credential or change the bound credential type.
 
 ## 12000014 Insufficient Memory
 
 **Error Message**
 
-May be one of the following:
+One of the following may occur:
 
 - Insufficient memory.
 - Malloc failed.
 
 **Possible Causes**
 
-System memory is insufficient.
+Insufficient system memory.
 
-**Resolution Steps**
+**Resolution**
 
 Developers should free up memory or restart the system.
 
@@ -234,7 +234,7 @@ Failed to obtain the ``${messageInfo}`` information via UserIAM.
 
 Other system services are not running.
 
-**Resolution Steps**
+**Resolution**
 
 Developers should wait and retry the operation after some time.
 
@@ -246,8 +246,8 @@ Device password is required but not set.
 
 **Possible Causes**
 
-The service restricts key usage to devices with a lock screen password set, but no lock screen password is configured.
+The service restricts key usage to devices with a lock screen password, but no password is set.
 
-**Resolution Steps**
+**Resolution**
 
 Set a lock screen password or modify the key usage restrictions.

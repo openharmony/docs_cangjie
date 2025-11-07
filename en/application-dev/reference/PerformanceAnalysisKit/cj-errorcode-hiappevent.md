@@ -18,7 +18,7 @@ When calling the write interface for application event logging, the system will 
 
 The application event logging function has been disabled.
 
-**Solution**
+**Resolution**
 
 Call the configuration interface to enable the logging function.
 
@@ -42,11 +42,11 @@ When calling the write interface for application event logging, the system will 
 **Possible Causes**
 
 The passed event domain name does not comply with the following rules:
-- The event domain name only contains digits, lowercase letters, and underscore characters.
-- The event domain name starts with a lowercase letter and does not end with an underscore.
-- The event domain name is not empty and its length does not exceed 16 characters.
+- The event domain name can only contain digits, lowercase letters, and underscore characters.
+- The event domain name must start with a lowercase letter and must not end with an underscore.
+- The event domain name must not be empty and its length must not exceed 16 characters.
 
-**Solution**
+**Resolution**
 
 Pass a valid event domain name.
 
@@ -63,11 +63,11 @@ When calling the write interface for application event logging, the system will 
 **Possible Causes**
 
 The passed event name does not comply with the following rules:
-- The event name only contains $ characters, digits, letters, and underscore characters.
+- The event name can only contain $ characters, digits, letters, and underscore characters.
 - The first character of the event name must be a letter or $ character, middle characters must be digits, letters, or underscores, and the last character must be a digit or letter.
-- The event name is not empty and its length does not exceed 48 characters.
+- The event name must not be empty and its length must not exceed 48 characters.
 
-**Solution**
+**Resolution**
 
 Pass a valid event name.
 
@@ -85,7 +85,7 @@ When calling the write interface for application event logging, additional event
 
 The number of passed event parameters exceeds 32.
 
-**Solution**
+**Resolution**
 
 Pass a valid number of event parameters.
 
@@ -103,7 +103,7 @@ When calling the write interface for application event logging, the system will 
 
 The string length in the passed event parameter value exceeds 8*1024 characters.
 
-**Solution**
+**Resolution**
 
 Pass an event parameter value with a valid string length.
 
@@ -120,11 +120,11 @@ When calling the write interface for application event logging, the system will 
 **Possible Causes**
 
 The passed event parameter name does not comply with the following rules:
-- The event parameter name only contains $ characters, digits, letters, and underscore characters.
+- The event parameter name can only contain $ characters, digits, letters, and underscore characters.
 - The first character of the event parameter name must be a letter or $ character, middle characters must be digits, letters, or underscores, and the last character must be a digit or letter.
-- The event parameter name is not empty and its length does not exceed 16 characters.
+- The event parameter name must not be empty and its length must not exceed 16 characters.
 
-**Solution**
+**Resolution**
 
 Pass a valid event parameter name.
 
@@ -142,7 +142,7 @@ When calling the write interface for application event logging, additional array
 
 The array length in the passed event parameter value exceeds 100.
 
-**Solution**
+**Resolution**
 
 Pass an event parameter value with a valid array length.
 
@@ -160,7 +160,7 @@ When calling the setEventParam interface to set custom event parameters, the sys
 
 The number of passed custom event parameters exceeds 64.
 
-**Solution**
+**Resolution**
 
 Pass a valid number of custom event parameters.
 
@@ -177,11 +177,11 @@ When calling the addWatcher interface for event subscription, the system will ig
 **Possible Causes**
 
 The passed watcher name does not comply with the following rules:
-- The watcher name only contains digits, lowercase letters, and underscore characters.
-- The watcher name starts with a lowercase letter and does not end with an underscore.
-- The watcher name is not empty and its length does not exceed 32 characters.
+- The watcher name can only contain digits, lowercase letters, and underscore characters.
+- The watcher name must start with a lowercase letter and must not end with an underscore.
+- The watcher name must not be empty and its length must not exceed 32 characters.
 
-**Solution**
+**Resolution**
 
 Pass a valid watcher name.
 
@@ -198,11 +198,11 @@ When calling the addWatcher interface for event subscription, the system will ig
 **Possible Causes**
 
 The passed filtering event domain name does not comply with the following rules:
-- The event domain name only contains digits, lowercase letters, and underscore characters.
-- The event domain name starts with a lowercase letter and does not end with an underscore.
-- The event domain name is not empty and its length does not exceed 32 characters.
+- The event domain name can only contain digits, lowercase letters, and underscore characters.
+- The event domain name must start with a lowercase letter and must not end with an underscore.
+- The event domain name must not be empty and its length must not exceed 32 characters.
 
-**Solution**
+**Resolution**
 
 Pass a valid filtering event domain name.
 
@@ -220,7 +220,7 @@ When calling the addWatcher interface for event subscription, the system will ig
 
 The row value in the passed callback trigger condition is negative.
 
-**Solution**
+**Resolution**
 
 Pass a natural number as the row value.
 
@@ -238,7 +238,7 @@ When calling the addWatcher interface for event subscription, the system will ig
 
 The size value in the passed callback trigger condition is negative.
 
-**Solution**
+**Resolution**
 
 Pass a natural number as the size value.
 
@@ -256,7 +256,7 @@ When calling the addWatcher interface for event subscription, the system will ig
 
 The timeout value in the passed callback trigger condition is negative.
 
-**Solution**
+**Resolution**
 
 Pass a natural number as the timeout value.
 
@@ -273,10 +273,10 @@ When calling the configure interface for logging configuration, the system will 
 **Possible Causes**
 
 The passed maximum storage quota value string does not comply with the following rules:
-- The quota value string only consists of digits and size unit characters (unit characters support [b|k|kb|m|mb|g|gb|t|tb], case-insensitive).
-- The quota value string must start with a digit, followed by an optional unit character (default unit is byte), or end with a unit character.
+- The quota value string can only consist of digits and size unit characters (unit characters support [b|k|kb|m|mb|g|gb|t|tb], case-insensitive).
+- The quota value string must start with a digit, followed optionally by no unit character (default unit is byte) or a unit character at the end.
 
-**Solution**
+**Resolution**
 
 Pass a valid maximum storage quota value string.
 
@@ -294,6 +294,6 @@ When calling the setSize interface to set the threshold for the size of each ret
 
 The passed event package size value is negative.
 
-**Solution**
+**Resolution**
 
 Pass a natural number as the event package size.

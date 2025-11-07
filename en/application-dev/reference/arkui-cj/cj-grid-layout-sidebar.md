@@ -14,30 +14,30 @@ Can contain child components.
 
 > **Note:**
 >
-> - Child component types: System components and custom components. Rendering control types are not supported ([if/else](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-ifelse.md), [ForEach](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-foreach.md), [LazyForEach](cj-state-rendering-lazyforeach.md)).
-> - Number of child components: Must and only contain 2 child components.
-> - When the number of child components is abnormal: For 3 or more child components, the first and second will be displayed. For 1 child component, the sidebar will be displayed, and the content area will be blank.
+> - Child component types: System components and custom components. Rendering control types are not supported ([if/else](../../arkui-cj/rendering_control/cj-rendering-control-ifelse.md), [ForEach](cj-state-rendering-foreach.md), [LazyForEach](cj-state-rendering-lazyforeach.md)).
+> - Number of child components: Must contain exactly 2 child components.
+> - Exception handling for child component count: If there are 3 or more child components, the first and second will be displayed. If there is only 1 child component, the sidebar will be displayed, and the content area will be blank.
 
 ## Creating the Component
 
-### init(SideBarContainerType, () -> Unit)
+### init(?SideBarContainerType, () -> Unit)
 
 ```cangjie
-public init(sideBarType!: SideBarContainerType = SideBarContainerType.Embed, child!: () -> Unit = {=>})
+public init(sideBarType!: ?SideBarContainerType = None, child!: () -> Unit = {=>})
 ```
 
 **Function:** Creates a sidebar container.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| sideBarType | [SideBarContainerType](./cj-common-types.md#enum-sidebarcontainertype) | No | SideBarContainerType.Embed | Sets the display type of the sidebar.<br/>Initial value: SideBarContainerType.Embed. |
-| child | () -> Unit | No | {=>} | Defines the sidebar and content area. |
+| sideBarType | ?[SideBarContainerType](./cj-common-types.md#enum-sidebarcontainertype) | No | None | **Named parameter.** Sets the display type of the sidebar.<br>Initial value: SideBarContainerType.Embed. |
+| child | () -> Unit | No | {=>} | **Named parameter.** Defines the sidebar and content area. |
 
 ## Common Attributes/Common Events
 
@@ -47,46 +47,46 @@ Common events: All supported.
 
 ## Component Attributes
 
-### func autoHide(Bool)
+### func autoHide(?Bool)
 
 ```cangjie
-public func autoHide(value: Bool): This
+public func autoHide(value: ?Bool): This
 ```
 
 **Function:** Sets whether the sidebar automatically hides when dragged to a width smaller than the minimum width.
 
 > **Note:**
 >
-> - Affected by the minSideBarWidth attribute method. If minSideBarWidth is not set, the initial value is used.
-> - Determines whether to auto-hide during dragging. Damping effect triggers hiding when the width is less than the minimum width (exceeds a certain distance).
+> - Affected by the [minSideBarWidth](#func-minsidebarwidthlength) attribute method. If [minSideBarWidth](#func-minsidebarwidthlength) is not set, the initial value is used.
+> - Determines whether to auto-hide during dragging. A damping effect is required to trigger hiding when the width is less than the minimum (exceeding a certain distance).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the sidebar automatically hides when dragged to a width smaller than the minimum width.<br>true: Auto-hides.<br>false: Does not auto-hide.<br>Initial value: true. |
+| value | ?Bool | Yes | - | Whether the sidebar automatically hides when dragged to a width smaller than the minimum width.<br>true: Auto-hides.<br>false: Does not auto-hide.<br>Initial value: true. |
 
-### func controlButton(ButtonStyle)
+### func controlButton(?ButtonStyle)
 
 ```cangjie
-public func controlButton(value: ButtonStyle): This
+public func controlButton(value: ?ButtonStyle): This
 ```
 
 **Function:** Sets the attributes of the sidebar control button.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [ButtonStyle](#class-buttonstyle) | Yes | - | The attributes of the sidebar control button. |
+| value | ?[ButtonStyle](./cj-button-picker-button.md#enum-buttontype) | Yes | - | Attributes of the sidebar control button. |
 
 ### func divider(?DividerStyle)
 
@@ -94,196 +94,196 @@ public func controlButton(value: ButtonStyle): This
 public func divider(value: ?DividerStyle): This
 ```
 
-**Function:** Sets the style of the divider.
+**Function:** Sets the style of the divider line.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | ?[DividerStyle](#class-dividerstyle) | Yes | - | **Named parameter.** The style of the divider. The divider is displayed by default. If the input is None, no action is taken, and the divider style remains consistent with the default. |
+| value | ?[DividerStyle](#class-dividerstyle) | Yes | - | Style of the divider line. The divider is displayed by default.<br>Initial value: DividerStyle(strokeWidth: 1.vp) |
 
-### func maxSideBarWidth(Length)
+### func maxSideBarWidth(?Length)
 
 ```cangjie
-public func maxSideBarWidth(value: Length): This
+public func maxSideBarWidth(value: ?Length): This
 ```
 
 **Function:** Sets the maximum width of the sidebar.
 
 > **Note:**
 >
-> - If set to a value less than 0, the default value is used. The value cannot exceed the width of the sidebar container itself; if it does, the width of the sidebar container is used.
-> - maxSideBarWidth takes precedence over the maxWidth of the sidebar child component. If maxSideBarWidth is not set, the default value has higher priority than the maxWidth of the sidebar child component.
+> - If set to a value less than 0, the default value is used. The value cannot exceed the width of the sidebar container itself; if it does, the container's width is used.
+> - maxSideBarWidth takes precedence over the child component's maxWidth. If maxSideBarWidth is not set, the default value takes precedence over the child component's maxWidth.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Sets the maximum width of the sidebar.<br>Initial value: 280.vp.<br>Unit: vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Sets the maximum width of the sidebar.<br>Unit: vp.<br>Initial value: 280.vp. |
 
-### func minContentWidth(Length)
+### func minContentWidth(?Length)
 
 ```cangjie
-public func minContentWidth(value: Length): This
+public func minContentWidth(value: ?Length): This
 ```
 
-**Function:** Sets the minimum width of the content area that can be displayed in the SideBarContainer component.
+**Function:** Sets the minimum displayable width of the SideBarContainer's content area.
 
 > **Note:**
 >
-> - If the minimum width is set to less than 0, the minimum width of the content area is 360.vp. If this attribute is not set, the content area can shrink to 0.
-> - In the Embed scenario, when increasing the component size, only the content area size increases.
-> - When decreasing the component size, the content area width is first reduced to minContentWidth. If the component size continues to decrease:
+> - If the minimum width is set to less than 0, the content area's minimum width is 360.vp. If this attribute is not set, the content area can shrink to 0.
+> - In Embed mode, increasing the component size only increases the content area's size.
+> - When reducing the component size, the content area's width is first reduced to minContentWidth. Further reduction maintains the content area's width at minContentWidth and reduces the sidebar's width first. When the sidebar's width reaches minSideBarWidth, further reduction:
 >
->     - If autoHide is false, the sidebar width remains at minSideBarWidth and the content area width remains at minContentWidth, but the content area will be truncated.
->     - If autoHide is true, the sidebar is hidden first, and then the content area width is reduced to minContentWidth. After that, the content area width remains unchanged, but the content area will be truncated.
+>     - If autoHide is false, the sidebar width remains at minSideBarWidth and the content area width at minContentWidth, but the content area will be truncated.
+>     - If autoHide is true, the sidebar is hidden first, and then the content area width is reduced to minContentWidth, after which the content area width remains unchanged but is truncated.
 >
-> - minContentWidth takes precedence over the maxSideBarWidth and sideBarWidth attributes of the sidebar. If minContentWidth is not set, the default value has lower priority than the set minSideBarWidth and maxSideBarWidth attributes.
+> - minContentWidth takes precedence over the sidebar's [maxSideBarWidth](#func-maxsidebarwidthlength) and [sideBarWidth](#func-sidebarwidthlength) attributes. If minContentWidth is not set, the default value has lower priority than [minSideBarWidth](#func-minsidebarwidthlength) and [maxSideBarWidth](#func-maxsidebarwidthlength).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The minimum width of the content area that can be displayed in the SideBarContainer component.<br>Initial value: 360.vp.<br>Unit: vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The minimum displayable width of the SideBarContainer's content area.<br>Unit: vp.<br>Initial value: 360.vp. |
 
-### func minSideBarWidth(Length)
+### func minSideBarWidth(?Length)
 
 ```cangjie
-public func minSideBarWidth(value: Length): This
+public func minSideBarWidth(value: ?Length): This
 ```
 
 **Function:** Sets the minimum width of the sidebar.
 
 > **Note:**
 >
-> - If set to a value less than 0, the default value is used. The value cannot exceed the width of the sidebar container itself; if it does, the width of the sidebar container is used.
-> - minSideBarWidth takes precedence over the minWidth of the sidebar child component. If minSideBarWidth is not set, the default value has higher priority than the minWidth of the sidebar child component.
+> - If set to a value less than 0, the default value is used. The value cannot exceed the width of the sidebar container itself; if it does, the container's width is used.
+> - minSideBarWidth takes precedence over the child component's minWidth. If minSideBarWidth is not set, the default value takes precedence over the child component's minWidth.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The minimum width of the sidebar.<br>Initial value: 240.vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The minimum width of the sidebar.<br>Initial value: 240.vp. |
 
-### func showControlButton(Bool)
+### func showControlButton(?Bool)
 
 ```cangjie
-public func showControlButton(value: Bool): This
+public func showControlButton(value: ?Bool): This
 ```
 
 **Function:** Sets whether to display the control button.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to display the control button.<br/>true: Displays the control button.<br/>false: Does not display the control button.<br/>Initial value: true. |
+| value | ?Bool | Yes | - | Whether to display the control button.<br>true: Displays the control button.<br>false: Does not display the control button.<br>Initial value: true. |
 
-### func showSideBar(Bool)
+### func showSideBar(?Bool)
 
 ```cangjie
-public func showSideBar(value: Bool): This
+public func showSideBar(value: ?Bool): This
 ```
 
 **Function:** Sets whether to display the sidebar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether to display the sidebar.<br/>true: Displays the sidebar.<br/>false: Does not display the sidebar.<br/>Initial value: true. |
+| value | ?Bool | Yes | - | Whether to display the sidebar.<br>true: Displays the sidebar.<br>false: Does not display the sidebar.<br>Initial value: true. |
 
-### func sideBarPosition(SideBarPosition)
+### func sideBarPosition(?SideBarPosition)
 
 ```cangjie
-public func sideBarPosition(value: SideBarPosition): This
+public func sideBarPosition(value: ?SideBarPosition): This
 ```
 
 **Function:** Sets the display position of the sidebar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [SideBarPosition](./cj-common-types.md#enum-sidebarposition) | Yes | - | The display position of the sidebar.<br>Initial value: SideBarPosition.Start. |
+| value | ?[SideBarPosition](./cj-common-types.md#enum-sidebarposition) | Yes | - | The display position of the sidebar.<br>Initial value: SideBarPosition.Start. |
 
-### func sideBarWidth(Length)
+### func sideBarWidth(?Length)
 
 ```cangjie
-public func sideBarWidth(value: Length): This
+public func sideBarWidth(value: ?Length): This
 ```
 
 **Function:** Sets the width of the sidebar.
 
 > **Note:**
 >
-> If set to a value less than 0, the default value is used. Restricted by the minimum and maximum widths; if outside the restricted range, the closest value is used.
+> If set to a value less than 0, the default value is used. Constrained by the minimum and maximum widths, the closest valid value is used if outside the range.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The width of the sidebar.<br>Initial value: 240.vp.<br>Unit: vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The width of the sidebar.<br>Unit: vp.<br>Initial value: 240.vp. |
 
 ## Component Events
 
-### func onChange((Bool) -> Unit)
+### func onChange(?(Bool) -> Unit)
 
 ```cangjie
-public func onChange(callback: (Bool) -> Unit): This
+public func onChange(callback: ?(Bool) -> Unit): This
 ```
 
-**Function:** Triggered when the sidebar state switches between shown and hidden.
+**Function:** Triggered when the sidebar's state changes between shown and hidden.
 
 > **Note:**
 >
 > This event is triggered under any of the following conditions:
 >
-> - When the showSideBar attribute value changes.
-> - When the showSideBar attribute adaptive behavior changes.
-> - When dragging the divider triggers autoHide.
+> - When the [showSideBar](#func-showsidebarbool) attribute value changes.
+> - When the [showSideBar](#func-showsidebarbool) attribute's adaptive behavior changes.
+> - When dragging the divider triggers [autoHide](#func-autohidebool).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| callback | (Bool)->Unit | Yes | - | Callback function. When the sidebar state changes from hidden to shown, the parameter value is true; when it changes from shown to hidden, the parameter value is false. |
+| callback | ?(Bool)->Unit | Yes | - | Callback function. When the sidebar changes from hidden to shown, the parameter is true; when it changes from shown to hidden, the parameter is false.<br>Initial value: { _ => }. |
 
 ## Basic Type Definitions
 
@@ -291,201 +291,201 @@ public func onChange(callback: (Bool) -> Unit): This
 
 ```cangjie
 public class ButtonIconOptions {
-    public var shown: ResourceStr
-    public var hidden: ResourceStr
-    public var switching: ResourceStr
-    public init(shown!: ResourceStr, hidden!: ResourceStr, switching!: ResourceStr = "")
+    public var shown: ?ResourceStr
+    public var hidden: ?ResourceStr
+    public var switching: ?ResourceStr
+    public init(shown!: ?ResourceStr, hidden!: ?ResourceStr, switching!: ?ResourceStr = None)
 }
 ```
 
-**Function:** Sets the icon of the sidebar control button.
+**Function:** Represents the icon type.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
-
-#### var hidden
-
-```cangjie
-public var hidden: ResourceStr
-```
-
-**Function:** Sets the icon of the control button when the sidebar is hidden.
-
-**Type:** [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr)
-
-**Read/Write Capability:** Readable and writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var shown
 
 ```cangjie
-public var shown: ResourceStr
+public var shown: ?ResourceStr
 ```
 
-**Function:** Sets the icon of the control button when the sidebar is shown.
+**Function:** The icon of the control button when the sidebar is shown.
 
-**Type:** [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr)
+**Type:** ?[ResourceStr](./cj-common-types.md#interface-resourcestr)
 
-**Read/Write Capability:** Readable and writable
+**Read/Write:** Readable and writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
+
+#### var hidden
+
+```cangjie
+public var hidden: ?ResourceStr
+```
+
+**Function:** The icon of the control button when the sidebar is hidden.
+
+**Type:** ?[ResourceStr](./cj-common-types.md#interface-resourcestr)
+
+**Read/Write:** Readable and writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
 
 #### var switching
 
 ```cangjie
-public var switching: ResourceStr
+public var switching: ?ResourceStr
 ```
 
-**Function:** Sets the icon of the control button when the sidebar state is switching between shown and hidden.
+**Function:** The icon of the control button during the transition between shown and hidden states.
 
-**Type:** [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr)
+**Type:** ?[ResourceStr](./cj-common-types.md#interface-resourcestr)
 
-**Read/Write Capability:** Readable and writable
+**Read/Write:** Readable and writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
-#### init(ResourceStr, ResourceStr, ResourceStr)
+#### init(?ResourceStr, ?ResourceStr, ?ResourceStr)
 
 ```cangjie
-public init(shown!: ResourceStr, hidden!: ResourceStr, switching!: ResourceStr = "")
+public init(shown!: ?ResourceStr, hidden!: ?ResourceStr, switching!: ?ResourceStr = None)
 ```
 
 **Function:** Constructs a ButtonIconOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| shown | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | Sets the icon of the control button when the sidebar is shown. |
-| hidden | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | Sets the icon of the control button when the sidebar is hidden. |
-| switching | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | Sets the icon of the control button when the sidebar state is switching between shown and hidden. |
+| shown | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | **Named parameter.** Sets the icon of the control button when the sidebar is shown. |
+| hidden | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | **Named parameter.** Sets the icon of the control button when the sidebar is hidden. |
+| switching | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Sets the icon of the control button during the transition between shown and hidden states.<br>Initial value: "" |
 
 ### class ButtonStyle
 
 ```cangjie
 public class ButtonStyle {
-    public var left: Float64
-    public var top: Float64
-    public var width: Float64
-    public var height: Float64
-    public var icons: ButtonIconOptions
+    public var left: ?Float64
+    public var top: ?Float64
+    public var width: ?Float64
+    public var height: ?Float64
+    public var icons: ?ButtonIconOptions
     public init(
-        left!: Float64 = 16.0,
-        top!: Float64 = 48.0,
-        width!: Float64 = 24.0,
-        height!: Float64 = 24.0,
-        icons!: ButtonIconOptions = ButtonIconOptions(shown: "", hidden: "")
+        left!: ?Float64 = None,
+        top!: ?Float64 = None,
+        width!: ?Float64 = None,
+        height!: ?Float64 = None,
+        icons!: ?ButtonIconOptions = None
     )
 }
 ```
 
-**Function:** The attribute type of the sidebar control button.
+**Function:** Represents the attributes of the sidebar control button.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
-
-#### var height
-
-```cangjie
-public var height: Float64
-```
-
-**Function:** **Named parameter.** Sets the height of the sidebar control button.<br>Unit: vp.
-
-**Type:** Float64
-
-**Read/Write Capability:** Readable and writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-#### var icons
-
-```cangjie
-public var icons: ButtonIconOptions
-```
-
-**Function:** **Named parameter.** Sets the icon of the sidebar control button.
-
-**Type:** [ButtonIconOptions](#class-buttoniconoptions)
-
-**Read/Write Capability:** Readable and writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var left
 
 ```cangjie
-public var left: Float64
+public var left: ?Float64
 ```
 
-**Function:** **Named parameter.** Sets the left margin of the sidebar control button from the container boundary.<br>Unit: vp.
+**Function:** Sets the left margin of the control button from the container's left boundary.<br>Unit: vp.
 
-**Type:** Float64
+**Type:** ?Float64
 
-**Read/Write Capability:** Readable and writable
+**Read/Write:** Readable and writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var top
 
 ```cangjie
-public var top: Float64
+public var top: ?Float64
 ```
 
-**Function:** **Named parameter.** Sets the top margin of the sidebar control button from the container boundary.<br>Unit: vp.
+**Function:** Sets the top margin of the control button from the container's top boundary.<br>Unit: vp.
 
-**Type:** Float64
+**Type:** ?Float64
 
-**Read/Write Capability:** Readable and writable
+**Read/Write:** Readable and writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var width
 
 ```cangjie
-public var width: Float64
+public var width: ?Float64
 ```
 
-**Function:** **Named parameter.** Sets the width of the sidebar control button.<br>Unit: vp.
+**Function:** Sets the width of the control button.<br>Unit: vp.
 
-**Type:** Float64
+**Type:** ?Float64
 
-**Read/Write Capability:** Readable and writable
+**Read/Write:** Readable and writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
-#### init(Float64, Float64, Float64, Float64, ButtonIconOptions)
+#### var height
+
+```cangjie
+public var height: ?Float64
+```
+
+**Function:** Sets the height of the control button.<br>Unit: vp.
+
+**Type:** ?Float64
+
+**Read/Write:** Readable and writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+#### var icons
+
+```cangjie
+public var icons: ?ButtonIconOptions
+```
+
+**Function:** Sets the icons of the control button.
+
+**Type:** ?[ButtonIconOptions](#class-buttoniconoptions)
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Read/Write:** Readable and writable
+
+**Initial Version:** 22
+
+#### init(?Float64, ?Float64, ?Float64, ?Float64, ?ButtonIconOptions)
 
 ```cangjie
 public init(
-    left!: Float64 = 16.0,
-    top!: Float64 = 48.0,
-    width!: Float64 = 24.0,
-    height!: Float64 = 24.0,
-    icons!: ButtonIconOptions = ButtonIconOptions(shown: "", hidden: "")
+    left!: ?Float64 = None,
+    top!: ?Float64 = None,
+    width!: ?Float64 = None,
+    height!: ?Float64 = None,
+    icons!: ?ButtonIconOptions = None
 )
 ```
 
@@ -493,16 +493,16 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| left | Float64 | No | 16.0 | **Named parameter.** Sets the left margin of the sidebar control button from the container boundary.<br>Unit: vp. |
-| top | Float64 | No | 48.0 | **Named parameter.** Sets the top margin of the sidebar control button from the container boundary.<br>Unit: vp. |
-| width | Float64 | No | 24.0 | **Named parameter.** Sets the width of the sidebar control button.<br>Unit: vp. |
-| height | Float## Example Code
+| left | ?Float64 | No | None | **Named parameter.** Sets the left margin of the control button from the container's left boundary.<br>Unit: vp.<br>Initial value: 16.0. |
+| top | ?Float64 | No | None | **Named parameter.** Sets the top margin of the control button from the container's top boundary.<br>Unit: vp.<br>Initial value: 48.0. |
+| width | ?Float64 | No | None | **Named parameter.** Sets the width of the control button.<br>Unit: vp.<br>Initial value: 24.0. |
+| height | ?Float64 | No | None | **Named parameter## Sample Code
 
 <!-- run -->
 
@@ -511,7 +511,8 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_management.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.AppResource
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component

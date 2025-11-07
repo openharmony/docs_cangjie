@@ -1,21 +1,21 @@
 # Toggle Button (Toggle)
 
-The Toggle component provides state button styles, checkbox styles, and switch styles, typically used for toggling between two states. For specific usage, please refer to [Toggle](../../../en/application-dev/reference/arkui-cj/cj-button-picker-toggle.md).
+The Toggle component provides state button styles, checkbox styles, and switch styles, typically used for switching between two states. For specific usage, please refer to [Toggle](../reference/arkui-cj/cj-button-picker-toggle.md).
 
 ## Creating a Toggle Button
 
-Toggle is created by calling the interface, with the following invocation format:
+Toggle is created by calling an interface with the following syntax:
 
 ```cangjie
 Toggle(toggleType: ToggleType, isOn!: Bool = false)
 ```
 
-Here, `ToggleType` represents the switch type, including `ButtonType`, `CheckboxType`, and `SwitchType`, while `isOn` indicates the state of the toggle button.
+Here, ToggleType represents the switch type, including ButtonType, CheckboxType, and SwitchType, while isOn indicates the state of the toggle button.
 
-There are two forms of interface invocation:
+The interface can be called in two forms:
 
 - Creating a Toggle without child components.
-  When `ToggleType` is `CheckboxType` or `SwitchType`, it is used to create a Toggle without child components:
+  When ToggleType is CheckboxType or SwitchType, it creates a Toggle without child components:
 
   ```cangjie
   Toggle(ToggleType.Checkbox, isOn: false)
@@ -33,7 +33,7 @@ There are two forms of interface invocation:
 
 - Creating a Toggle with child components.
 
-  When `ToggleType` is `ButtonType`, it can only contain one child component. If the child component has text settings, the corresponding text content will be displayed on the button.
+  When ToggleType is ButtonType, it can only contain one child component. If the child component has text settings, the corresponding text content will be displayed on the button.
 
   ```cangjie
   Toggle(ToggleType.Button, false) {
@@ -52,7 +52,7 @@ There are two forms of interface invocation:
 
 ## Customizing Styles
 
-- Use the `selectedColor` property to set the background color when the Toggle is selected and turned on.
+- Use the selectedColor property to set the background color when the Toggle is in the selected state.
 
   ```cangjie
   Toggle(ToggleType.Button, true) {
@@ -68,7 +68,7 @@ There are two forms of interface invocation:
 
   ![Toggle3](figures/Toggle3.png)
 
-- Use the `switchPointColor` property to set the color of the circular slider for the `SwitchType`. This only takes effect when `toggleType` is `ToggleType.Switch`.
+- Use the switchPointColor property to set the color of the circular slider for SwitchType. This only applies when toggleType is ToggleType.Switch.
 
   ```cangjie
   Toggle(ToggleType.Switch, isOn: false).switchPointColor(0xFEC0CD)
@@ -79,13 +79,13 @@ There are two forms of interface invocation:
 
 ## Adding Events
 
-In addition to supporting [Universal Events](../../../en/application-dev/reference/arkui-cj/cj-universal-event-click.md), Toggle can also trigger certain actions upon selection and deselection. You can bind the `onChange` event to respond to custom behaviors after these actions.
+In addition to supporting [Universal Events](../reference/arkui-cj/cj-universal-events.md), Toggle can also trigger certain actions upon selection or deselection. You can bind the onChange event to respond with custom behaviors.
 
 ```cangjie
 Toggle(ToggleType.Switch, isOn: false)
     .onChange {
         isOn => if (isOn) {
-            // Operations to be performed
+            // Actions to be performed
         }
     }
 ```
@@ -121,13 +121,13 @@ class EntryView {
                     .backgroundColor(0xFFFFFF)
                 Toggle(ToggleType.Switch)
                     .margin(left: 200, right: 10)
-                    .onChange {
+                    .onChange ({
                         isOn => if (isOn) {
                             getUIContext().getPromptAction().showToast(ShowToastOptions(message: 'Bluetooth is on.'))
                         } else {
                             getUIContext().getPromptAction().showToast(ShowToastOptions(message: 'Bluetooth is off.'))
                         }
-                    }
+                    })
             }.backgroundColor(0xFFFFFF)
         }
             .padding(10)

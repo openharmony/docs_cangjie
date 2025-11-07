@@ -1,29 +1,29 @@
 # Binding Full-Screen Modal Page (bindContentCover)
 
-[Full-screen modal page (bindContentCover)](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverboolunitcontentcoveroptions) is a popup interaction page in full-screen modal form that completely covers the underlying parent view. It is suitable for scenarios such as viewing large images or full-screen document review.
+[Full-screen modal page (bindContentCover)](../reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverboolunitcontentcoveroptions) is an interactive popup page in full-screen modal form that completely covers the underlying parent view. It is suitable for scenarios such as viewing large images or full-screen document browsing.
 
 ## Usage Constraints
 
-The full-screen modal page is essentially a popup component, with its interaction layer defaulting to the top level within the application.
+The full-screen modal page is essentially a popup component, with its interaction hierarchy defaulting to the top level within the application.
 
-During [Navigation](../../../en/application-dev/reference/arkui-cj/cj-navigation-switching-navigation.md) transitions, newly pushed pages cannot surpass the full-screen modal in hierarchy and will still appear beneath the modal page. For such scenarios, it is recommended to migrate the modal page content to the transition page. For example, in the aforementioned case, NavDestination can be used to replace the invoked modal page, with the newly pushed page hierarchy remaining below the full-screen modal.
+During [Navigation](../reference/arkui-cj/cj-navigation-switching-navigation.md) transitions, newly pushed pages cannot exceed the hierarchy of the full-screen modal, and their effects will still appear beneath the modal page. For such scenarios, it is recommended to migrate the modal page content to the transition page. For example, in the aforementioned case, NavDestination can be used to replace the invoked modal page, with the newly pushed page hierarchy positioned below the full-screen modal.
 
 ## Lifecycle
 
-The full-screen modal page provides lifecycle functions to notify the application of its lifecycle states. The lifecycle triggers occur in the following sequence: onWillAppear -> onAppear -> onWillDisappear -> onDisappear.
+The full-screen modal page provides lifecycle functions to notify the application about the lifecycle states of the popup. The lifecycle triggers occur in the following sequence: onWillAppear -> onAppear -> onWillDisappear -> onDisappear.
 
-| Name            | Type | Description                       |
+| Name            | Type | Description |
 | :----------------- | :------ | :---------------------------- |
-| onWillAppear    | () -> Unit | Callback function when the full-screen modal page is about to appear (before animation starts). |
-| onAppear    | () -> Unit | Callback function when the full-screen modal page has appeared (after animation ends).  |
-| onWillDisappear | () -> Unit | Callback function when the full-screen modal page is about to disappear (before animation starts). |
-| onDisappear |() -> Unit  | Callback function when the full-screen modal page has disappeared (after animation ends).     |
+| onWillAppear    | () -> Unit | Callback function triggered before the full-screen modal page appears (prior to animation start). |
+| onAppear    | () -> Unit | Callback function triggered after the full-screen modal page appears (post animation completion). |
+| onWillDisappear | () -> Unit | Callback function triggered before the full-screen modal page dismisses (prior to animation start). |
+| onDisappear | () -> Unit | Callback function triggered after the full-screen modal page dismisses (post animation completion). |
 
 ## Using bindContentCover to Build Full-Screen Modal Content Over Semi-Modal
 
-There exists a hierarchical interaction between full-screen and semi-modal popups. A subsequently invoked modal page can cover a previous modal page. If developers wish to achieve a full-screen transition that covers the semi-modal while keeping the semi-modal page visible after swiping to exit the full-screen page, combining bindSheet with bindContentCover can fulfill this scenario requirement.
+There exists a popup-style hierarchical interaction between full-screen and semi-modal pages. A subsequently invoked modal page can cover a previously displayed modal page. If developers wish to achieve full-screen transitions that overlay semi-modal pages while ensuring the semi-modal page remains visible after side-swiping to exit the full-screen page, combining bindSheet with bindContentCover can fulfill this scenario requirement.
 
-For details, refer to [Modal Transition](./cj-modal-transition.md#using-bindcontentcover-to-build-full-screen-modal-transition-effects) to learn about using bindContentCover to create full-screen modal transition effects.
+For details, refer to [Modal Transition](./cj-modal-transition.md#using-bindcontentcover-to-build-full-screen-modal-transition-effects) to learn about constructing full-screen modal transition effects using bindContentCover.
 
 ## Example Code
 
@@ -135,7 +135,7 @@ class EntryView {
         }
     }
     // Step 2: Define semi-modal display interface
-    // Build modal display interface via builder
+    // Construct modal display interface via builder
     @Builder
     public func MySheetBuilder(){
         Column(){
@@ -151,10 +151,10 @@ class EntryView {
                 .fontSize(18)
                 .onClick({
                     evt =>
-                    // Step 3: Invoke full-screen modal display interface via full-modal API, newly invoked modal panel defaults to top layer
+                    // Step 3: Invoke full-screen modal interface to display the modal panel, which by default appears at the topmost layer
                     this.isPresent = !this.isPresent
                 })
-                // Bind modal display interface MyContentCoverBuilder via full-modal API.
+                // Bind modal display interface MyContentCoverBuilder via full-screen modal interface
                 .bindContentCover(this.isPresent,MycontentCoverBulider,options: ContentCoverOptions(
                           modalTransition: ModalTransition.Default,backgroundColor: Color.White,onAppear: onAppear,onDisappear:onDisappear)
                     )

@@ -12,10 +12,10 @@ import kit.AbilityKit.*
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment in its first line, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the aforementioned sample project and configuration template, please refer to [Cangjie Sample Code Description](../cj-development-intro.md#Cangjie-Sample-Code-Description).
+For the aforementioned sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class Metadata
 
@@ -31,7 +31,7 @@ public class Metadata {
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 ### var name
 
@@ -43,11 +43,11 @@ public var name: String
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 ### var resource
 
@@ -59,11 +59,11 @@ public var resource: String
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 ### var value
 
@@ -75,8 +75,8 @@ public var value: String
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Initial Version:** 21
+**Initial Version:** 22

@@ -1,40 +1,39 @@
-# Launching File Handler Applications (startAbility)
+# Launching File Handling Applications (startAbility)
 
 ## Usage Scenario
 
-For instance, when a browser application downloads a PDF file, this interface can be invoked to select a file handler application to open the PDF. Developers need to specify the URI path ([uri](#Key Parameter Specifications)) and file format ([type](#Key Parameter Specifications)) in the request, enabling the system to either directly launch a file-opening application or display a selection dialog for users to choose an appropriate application. The visual effect is illustrated below.
+For example, when an application downloads a PDF file in a browser, this interface can be called to select a file handling application to open the PDF file. Developers need to set fields such as the URI path of the file to be opened ([uri](#Key Parameter Descriptions)) and the file format ([type](#Key Parameter Descriptions)) in the request, so that the system can recognize and directly launch the file opening application or display a selection dialog for the user to choose an appropriate application to open the file. The effect is illustrated in the following figure.
 
-Figure 1 Visual Demonstration
+Figure 1 Illustration of the Effect
 
 ![file-open](figures/file-open.jpeg)
 
-## Key Parameter Specifications
+## Key Parameter Descriptions
+Developers can achieve opening files by installed vertical domain applications by calling the [startAbility](../reference/AbilityKit/cj-apis-app-ability.md#func-startabilitywant) interface.
 
-## Implementation Steps
+**Table 1** Description of [Want](../reference/AbilityKit/cj-apis-app-ability.md#class-want) related parameters in the startAbility request
 
-**Table 1** Description of [Want](../../../en/application-dev/reference/AbilityKit/cj-apis-app-ability-want.md#class-want) Parameters in startAbility Requests
+| Parameter Name | Type   | Required | Description       |
+|----------------|--------|----------|------------------|
+| uri            | String | Yes      | Indicates the URI path of the file to be opened, typically used in conjunction with type.<br/>URI format: file:\/\/bundleName\/path<br/>- file: Identifier for the file URI.<br/>- bundleName: The owner of the file resource.<br/>- path: The path of the file resource within the application sandbox. |
+| type           | String | No       | Indicates the type of file to be opened. It is recommended to use [UTD types](../../database/cj-uniform-data-type-descriptors.md), such as: 'general.plain-text', 'general.image'. Currently, it is also compatible with [MIME type](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com), such as: 'text/xml', 'image/*', etc.<br/>**Note:** <br/>1. type is an optional field. If type is not provided, the system will attempt to determine the file type based on the URI suffix for matching. If type is provided, it must match the file type of the URI; otherwise, it may fail to match the appropriate application. The mapping between file suffixes and file types can be found in the [Uniform Type Descriptor (UTD) Preset List](../../database/cj-uniform-data-type-list.md).<br/>2. Passing \*/\* is not supported.|
+| parameters     | String | No       | Indicates custom parameters defined by the system and assigned by developers as needed. For file opening scenarios, refer to Table 2.                                                                                                                                                                                       |
+| flags          | UInt32 | No       | Indicates the handling method. For file opening scenarios, refer to Table 3.                                                                                                                                                                                       |
 
-| Parameter Name | Type   | Required | Description                                                                                                                                                                                   |
-|----------------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| uri            | String | Yes      | The URI path of the file to be opened, typically used in conjunction with `type`.<br/>URI format: `file://bundleName/path`<br/>- `file`: Identifier for file URIs.<br/>- `bundleName`: Owner of the file resource.<br/>- `path`: Path of the file resource within the application sandbox. |
-| type           | String | No       | The type of file to be opened. Currently compatible with [MIME type](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com), e.g., `text/xml`, `image/*`, etc.<br/>**Note:** <br/>1. `type` is optional. If not provided, the system attempts to infer the file type from the URI suffix. If provided, ensure it matches the file type in the URI; otherwise, the system may fail to find a suitable application.<br/>2. `*/*` is not supported. |
-| parameters     | String | No       | Custom parameters defined by the system and assigned by developers as needed. For file-opening scenarios, see Table 2.                                                                       |
-| flags          | UInt32 | No       | Processing method. For file-opening scenarios, see Table 3.                                                                                                                                  |
-
-**Table 2** Description of [parameters](../../../en/application-dev/reference/AbilityKit/cj-apis-app-ability-want_constant.md#class-params)  
+**Table 2** Description of [parameters](../reference/AbilityKit/cj-apis-app-ability.md#enum-params) related parameters
 
 | Parameter Name                              | Type    | Description                                                                                                                                                                |
-|---------------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ability.params.stream                       | String  | Indicates that the file URI should be authorized to the target party, used when the file to be opened has dependencies on other files (e.g., local HTML files relying on local resource files). The value must be a string array of file URIs. File URI format follows the `uri` parameter in Table 1. |
-| ohos.ability.params.showDefaultPicker       | Bool    | Whether to force-display a selection dialog for file-opening methods. Default is `false`.<br/>- `false`: The system decides whether to directly launch the file-opening app or display a dialog based on policies or default app settings.<br/>- `true`: Always display the dialog.                      |
-| showCaller                                  | Bool    | Whether the caller itself should participate in the matching process as a target application. Default is `false`.<br/>- `false`: Does not participate.<br/>- `true`: Participates.                                                      |
+|---------------------------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ability.params.stream                       | String  | Indicates that the file URI carried should be authorized to the target party, used for scenarios where the file to be opened depends on other files. For example, opening a local HTML file that depends on other local resource files. The corresponding value must be a string array of file URIs. The file URI can be obtained by referring to the uri parameter in Table 1. |
+| ohos.ability.params.showDefaultPicker       | Bool    | Indicates whether to forcibly display the file opening method selection dialog. The default is false.<br/>- false: The system policy or default application settings determine whether to directly launch the file opening application or display the dialog.<br/>- true: Always display the dialog.                                                                            |
+| showCaller                                  | Bool    | Indicates whether the caller itself should participate in the matching as one of the target applications. The default is false.<br/>- false: Does not participate in matching.<br/>- true: Participates in matching.                                                                            |
 
-**Table 3** Description of [flags](../../../en/application-dev/reference/AbilityKit/cj-apis-ability.md#class-flags)  
+**Table 3** Description of [flags](../reference/AbilityKit/cj-apis-app-ability.md#enum-flags) related parameters
 
-| Parameter Name                       | Value       | Description                       |
-|--------------------------------------|-------------|-----------------------------------|
-| Flags.FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001  | Grants read permission for the URI. |
-| Flags.FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002  | Grants write permission for the URI. |
+| Parameter Name                       | Value         | Description                       |
+|--------------------------------------|---------------|-----------------------------------|
+| FlagAuthReadUriPermission            | 0x00000001    | Authorization to perform read operations on the URI. |
+| FlagAuthWriteUriPermission           | 0x00000002    | Authorization to perform write operations on the URI. |
 
 ## Integration Steps
 
@@ -46,10 +45,11 @@ Figure 1 Visual Demonstration
 
     ```cangjie
 
-    import kit.AbilityKit.{UIAbility, Want, LaunchParam, Flags}
+    import kit.AbilityKit.{UIAbility, Want, LaunchParam, Flags, WantValueType}
     import kit.ArkUI.WindowStage
     import kit.CoreFileKit.FileUri
     import ohos.business_exception.BusinessException
+    import std.collection.HashMap
     ```
 
 2. Obtain the application file path.
@@ -58,50 +58,57 @@ Figure 1 Visual Demonstration
 
     ```cangjie
 
-    // Assuming the application bundleName is com.example.demo
+    // Assume the application bundleName is com.example.demo
     class MainAbility <: UIAbility {
         public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-            // Get the file sandbox path
+            // Obtain the file sandbox path
             let filePath = this
             .context
-            .filesDirectory + '/test1.txt'
-            // Convert sandbox path to URI
-            let uri = FileUri.getUriFromPath(filePath)
-            // The obtained URI will be "file://com.example.demo/data/storage/el2/base/files/test.txt"
+            .filesDir + '/test1.txt'
+            // Convert the sandbox path to a URI
+            let uri = FileUri(filePath).toString()
+            // The obtained URI is "file://com.example.demo/data/storage/el2/base/files/test.txt"
         }
         // ...
     }
     ```
 
-3. Construct request data.
+3. Construct the request data.
 
     <!-- compile -->
 
     ```cangjie
 
-    // Assuming the application bundleName is com.example.demo
+    // Assume the application bundleName is com.example.demo
     class MainAbility <: UIAbility {
         public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-            // Get the file sandbox path
+            // Obtain the file sandbox path
             let filePath = this
             .context
-            .filesDirectory + '/test1.txt'
-            // Convert sandbox path to URI
-            let uri = FileUri.getUriFromPath(filePath)
-            // Construct request data
+            .filesDir + '/test1.txt'
+            // Convert the sandbox path to a URI
+            let uri = FileUri(filePath).toString()
+            // Construct the request data
             let want = Want(
-                action: "ohos.want.action.viewData", // Fixed value for file opening scenarios, indicating data viewing operation
+                deviceId: "",
+                bundleName: "",
+                abilityName: "",
+                moduleName: "",
+                // Configure read/write permissions for the shared file, e.g., authorize the file opening application for read/write operations
+                flags: Flags.FlagAuthWriteUriPermission.getValue() | Flags.FlagAuthReadUriPermission.getValue(),
                 uri: uri,
-                `type`: 'general.plain-text', // Specifies the file type to be opened
-                // Configure read/write permissions for shared files, e.g., granting permissions to the file handler application
-                flags: Flags.FLAG_AUTH_WRITE_URI_PERMISSION | Flags.FLAG_AUTH_READ_URI_PERMISSION
+                action: "ohos.want.action.viewData", // Indicates the action to view data, fixed to this value for file opening scenarios
+                entities: [],
+                wantType: 'general.plain-text', // Indicates the type of file to be opened
+                parameters: HashMap<String, WantValueType>(),
+                fds: HashMap<String, Int32>()
             )
         }
         // ...
     }
     ```
 
-4. Invoke the launch interface.
+4. Call the interface to launch.
 
     <!-- compile -->
 
@@ -109,38 +116,45 @@ Figure 1 Visual Demonstration
 
     class MainAbility <: UIAbility {
         public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-            AppLog.info("MainAbility onWindowStageCreate.")
-            // Get the file sandbox path
+            Hilog.info(1, "info", "MainAbility onWindowStageCreate.")
+            // Obtain the file sandbox path
             let filePath = this
                 .context
-                .filesDirectory + '/test1.txt'
-            // Convert sandbox path to URI
-            let uri = FileUri.getUriFromPath(filePath)
-            // The obtained URI will be "file://com.example.demo/data/storage/el2/base/files/test1.txt"
-            // Construct request data
+                .filesDir + '/test1.txt'
+            // Convert the sandbox path to a URI
+            let uri = FileUri(filePath).toString()
+            // The obtained URI is "file://com.example.demo/data/storage/el2/base/files/test1.txt"
+            // Construct the request data
             let want = Want(
-                action: "ohos.want.action.viewData", // Fixed value for file opening scenarios, indicating data viewing operation
+                deviceId: "",
+                bundleName: "",
+                abilityName: "",
+                moduleName: "",
+                // Configure read/write permissions for the shared file, e.g., authorize the file opening application for read/write operations
+                flags: Flags.FlagAuthWriteUriPermission.getValue() | Flags.FlagAuthReadUriPermission.getValue(),
                 uri: uri,
-                `type`: 'general.plain-text', // Specifies the file type to be opened
-                // Configure read/write permissions for shared files, e.g., granting permissions to the file handler application
-                flags: Flags.FLAG_AUTH_WRITE_URI_PERMISSION | Flags.FLAG_AUTH_READ_URI_PERMISSION
+                action: "ohos.want.action.viewData", // Indicates the action to view data, fixed to this value for file opening scenarios
+                entities: [],
+                wantType: 'general.plain-text', // Indicates the type of file to be opened
+                parameters: HashMap<String, WantValueType>(),
+                fds: HashMap<String, Int32>()
             )
             try {
                 this
                     .context
                     .startAbility(want)
             } catch (e: BusinessException) {
-                AppLog.error("Failed to invoke startAbility, code: ${e.code}, message: ${e.message}")
+                Hilog.error(1, "info", "Failed to invoke startAbility, code: ${e.code}, message: ${e.message}")
             }
         }
     }
     ```
 
-### Target Application Implementation Steps
+### Target Party Integration Steps
 
-1. Declare file handling capability.
+1. Declare file opening capability.
 
-    Applications supporting file opening must declare this capability in the [module.json5](../cj-start/basic-knowledge/module-configuration-file.md) configuration file. The `uris` field specifies supported URI types (with `scheme` fixed as `file`), while `type` indicates supported file formats (refer to [MIME type list](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)). The example below demonstrates support for TXT files.
+    Applications that support opening files need to declare the file opening capability in the [module.json5](../cj-start/basic-knowledge/module-configuration-file.md) configuration file. The uris field indicates the type of URI to be received, where the scheme is fixed as file. The type field indicates the supported file types for opening (refer to [MIME type](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)). In the following example, the type is a txt file.
 
     ```json
     {
@@ -152,14 +166,14 @@ Figure 1 Visual Demonstration
             "skills": [
             {
                 "actions": [
-                "ohos.want.action.viewData" // Required: Declares data handling capability
+                "ohos.want.action.viewData" // Required, declares data handling capability
                 ],
                 "uris": [
                 {
-                    // Allows opening local files with URI starting with file:// protocol
-                    "scheme": "file", // Required: Declares file protocol type
-                    "type": "general.plain-text", // Required: Specifies supported file type
-                    "linkFeature": "FileOpen" // Required (case-sensitive): Indicates URI functionality for file opening
+                    // Allows opening local files identified by the file:// protocol in the URI
+                    "scheme": "file", // Required, declares the protocol type as file
+                    "type": "general.plain-text", // Required, indicates the supported file type for opening
+                    "linkFeature": "FileOpen" // Required and case-sensitive, indicates that the URI's function is file opening
                 }
                 // ...
                 ]
@@ -172,7 +186,7 @@ Figure 1 Visual Demonstration
     }
     ```
 
-2. Process target files.
+2. Application processes the file to be opened.
 
     <!-- compile -->
 
@@ -180,25 +194,23 @@ Figure 1 Visual Demonstration
 
     import kit.AbilityKit.{UIAbility, Want, LaunchParam}
     import kit.ArkUI.{WindowStage}
-    import kit.CoreFileKit.{FileFs, OpenMode}
+    import kit.CoreFileKit.{FileIo, OpenMode}
     import kit.ArkUI.BusinessException
 
     class MainAbility <: UIAbility {
         public override func onCreate(want: Want, launchParam: LaunchParam): Unit {
-            // Extract URI from want information
+            // Obtain the uri field from the want information
             let uri = want.uri
             if (uri == "") {
-                AppLog.error('uri is invalid')
+                Hilog.error(1, "info", 'uri is invalid')
                 return
             }
             try {
-                // Perform operations based on the target file URI. Example: Open URI synchronously to obtain file object
-                let file = FileFs.open(uri, mode: OpenMode
-                    .READ_WRITE
-                    .mode)
-                AppLog.info("Succeed to open file.")
+                // Perform corresponding operations based on the URI of the file to be opened. For example, open the URI in read-write mode to obtain the file object
+                let file = FileIo.open(uri, mode: OpenMode.READ_WRITE)
+                Hilog.info(1, "info", "Succeed to open file.")
             } catch (e: BusinessException) {
-                AppLog.error("Failed to open file openSync, code: ${e.code}, message: ${e.message}")
+                Hilog.error(1, "info", "Failed to open file openSync, code: ${e.code}, message: ${e.message}")
             }
         }
     }

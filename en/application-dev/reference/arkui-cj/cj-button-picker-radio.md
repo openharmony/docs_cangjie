@@ -1,6 +1,6 @@
 # Radio
 
-A radio button component that provides corresponding user interaction options.
+Radio button, providing corresponding user interaction options.
 
 ## Import Module
 
@@ -12,76 +12,76 @@ import kit.ArkUI.*
 
 None
 
-## Creating the Component
+## Creating Component
 
-### init(String, String)
+### init(?String, ?String)
 
 ```cangjie
-public init(value!: String, group!: String)
+public init(value!: ?String, group!: ?String)
 ```
 
 **Function:** Creates a radio button component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | String | Yes | - | **Named parameter.** The value of the current radio button. |
-| group | String | Yes | - | **Named parameter.** The group name to which the current radio button belongs. Only one radio button with the same group can be selected. |
+| value | ?String | Yes | - | **Named parameter.** The value of the current radio button.<br>Initial value: "". |
+| group | ?String | Yes | - | **Named parameter.** The group name to which the current radio button belongs. Only one radio button with the same group can be selected.<br>Initial value: "". |
 
-## Common Attributes/Common Events
+## Universal Attributes/Events
 
-Common Attributes: All supported.
+Universal attributes: All supported.
 
-Common Events: All supported.
+Universal events: All supported.
 
 ## Component Attributes
 
-### func checked(Bool)
+### func checked(?Bool)
 
 ```cangjie
-public func checked(value: Bool): This
+public func checked(value: ?Bool): This
 ```
 
 **Function:** The selected state of the radio button.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Sets the selected state of the radio button.<br>Initial value: false.<br/>**Note:**<br/>When value is true, it indicates a change from unselected to selected. When value is false, it indicates a change from selected to unselected. |
+| value | ?Bool | Yes | - | Sets the selected state of the radio button.<br>Initial value: false.<br>**Note:** When value is true, it means changing from unselected to selected. When value is false, it means changing from selected to unselected. |
 
 ## Component Events
 
-### func onChange((Bool) -> Unit)
+### func onChange(?(Bool) -> Unit)
 
 ```cangjie
-public func onChange(callback: (Bool) -> Unit): This
+public func onChange(callback: ?(Bool) -> Unit): This
 ```
 
 **Function:** Triggered when the selected state of the radio button changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| callback | (Bool)->Unit | Yes | - | The state of the radio button. |
+| callback | ?(Bool)->Unit | Yes | - | The state of the radio button.<br>Initial value: { _ => }. |
 
-## Example (Setting Background Color)
+## Example Code
 
-This example demonstrates customizing the background color of radio buttons by configuring `checkedBackgroundColor`.
+This example demonstrates customizing the background color of radio buttons by configuring checkedBackgroundColor.
 
 <!-- run -->
 

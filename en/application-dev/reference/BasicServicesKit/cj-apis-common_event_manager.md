@@ -2,7 +2,7 @@
 
 This module provides capabilities related to common events, including publishing common events, subscribing to common events, and unsubscribing from common events.
 
-## Import Module
+## Importing the Module
 
 ```cangjie
 import kit.BasicServicesKit.*
@@ -12,10 +12,10 @@ import kit.BasicServicesKit.*
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the sample code has a "// index.cj" comment on the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the example project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class CommonEventManager
 
@@ -23,11 +23,11 @@ For details about the example project and configuration template mentioned above
 public class CommonEventManager {}
 ```
 
-**Description:** This structure provides management capabilities for common events.
+**Function:** This structure provides common event management capabilities.
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static func createSubscriber(CommonEventSubscribeInfo)
 
@@ -35,17 +35,17 @@ public class CommonEventManager {}
 public static func createSubscriber(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
 ```
 
-**Description:** Creates a subscriber.
+**Function:** Creates a subscriber.
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| subscribeInfo | [CommonEventSubscribeInfo](./cj-apis-common_event_subscribe_info.md#class-commoneventsubscribeinfo) | Yes | - | Indicates subscription information. |
+| subscribeInfo | [CommonEventSubscribeInfo](./cj-apis-common_event_subscribe_info.md#class-commoneventsubscribeinfo) | Yes | - | Indicates the subscription information. |
 
 **Return Value:**
 
@@ -65,7 +65,7 @@ import kit.PerformanceAnalysisKit.Hilog
 import ohos.base.*
 import ohos.business_exception.*
 
-let subscriber: CommonEventSubscriber // Used to store the successfully created subscriber object for subsequent subscription and unsubscription actions
+let subscriber: CommonEventSubscriber // Used to save the successfully created subscriber object for subsequent subscription and unsubscription actions.
 let support = Support.COMMON_EVENT_ABILITY_ADDED
 // Subscriber information
 let subscribeInfo: CommonEventSubscribeInfo = CommonEventSubscribeInfo([support])
@@ -83,29 +83,29 @@ try {
 public static func publish(event: String, options!: CommonEventPublishData =  CommonEventPublishData()): Unit
 ```
 
-**Description:** Publishes a common event.
+**Function:** Publishes a common event.
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | event | String | Yes | - | Indicates the common event to be sent. |
 | options | [CommonEventPublishData](./cj-apis-common_event_publish_data.md#class-commoneventpublishdata) | No | CommonEventPublishData() | **Named parameter.** Indicates the properties of the published common event. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Event Error Codes](./cj-errorcode-common_event_service.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Event Error Codes](./cj-errorcode-common_event_service.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 1500003 | The common event sending frequency too high. |
-  | 1500007 | If error sending message to Common Event Service. |
-  | 1500008 | If Common Event Service does not complete initialization. |
-  | 1500009 | If error obtaining system parameters. |
+  | 1500003 | The common event sending frequency is too high. |
+  | 1500007 | Failed to send the message to the common event service. |
+  | 1500008 | Failed to initialize the common event service. |
+  | 1500009 | Failed to obtain system parameters. |
 
 **Example:**
 
@@ -137,29 +137,56 @@ try {
 public static func subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): Unit
 ```
 
-**Description:** Subscribes to a common event in callback mode.
+**Function:** Subscribes to a common event in callback mode.
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | subscriber | [CommonEventSubscriber](cj-apis-common_event_subscriber.md#class-commoneventsubscriber) | Yes | - | Indicates the subscriber object. |
 | callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[CommonEventData](cj-apis-common_event_data.md#class-commoneventdata)> | Yes | - | Indicates the callback function for receiving common event data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Event Error Codes](./cj-errorcode-common_event_service.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Event Error Codes](./cj-errorcode-common_event_service.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 801 | capability not supported |
-  | 1500007 | If error sending message to Common Event Service. |
-  | 1500008 | If Common Event Service does not complete initialization. |
-  | 1500010 | The count of subscriber exceed system specification. |
+  | 801 | Capability not supported. |
+  | 1500007 | Failed to send message to Common Event Service. |
+  | 1500008 | Common Event Service did not complete initialization. |
+  | 1500010 | The count of subscribers exceeds system specification. |
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.BasicServicesKit.*
+import ohos.base.*
+import ohos.business_exception.*
+import kit.PerformanceAnalysisKit.Hilog
+
+// Subscribe to event: screen on
+let events = [Support.COMMON_EVENT_SCREEN_ON]
+// Subscriber information
+let info = CommonEventSubscribeInfo(events)
+// Subscriber
+let sub = CommonEventManager.createSubscriber(info)
+// Unsubscribe
+try {
+    CommonEventManager.unsubscribe(sub)
+} catch (e: BusinessException) {
+    Hilog.error(0, "AppLogCj", "errorCode = ${e.code}, errorMsg = ${e.message}")
+}
+```
 
 ### static func unsubscribe(CommonEventSubscriber)
 
@@ -167,27 +194,27 @@ public static func subscribe(subscriber: CommonEventSubscriber, callback: AsyncC
 public static func unsubscribe(subscriber: CommonEventSubscriber): Unit
 ```
 
-**Description:** Unsubscribes from a common event.
+**Function:** Unsubscribes from a common event.
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | subscriber | [CommonEventSubscriber](cj-apis-common_event_subscriber.md#class-commoneventsubscriber) | Yes | - | Indicates the subscriber object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Event Error Codes](./cj-errorcode-common_event_service.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Event Error Codes](./cj-errorcode-common_event_service.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 801 | capability not supported |
-  | 1500007 | If error sending message to Common Event Service. |
-  | 1500008 | If Common Event Service does not complete initialization. |
+  | 801 | Capability not supported. |
+  | 1500007 | Failed to send message to Common Event Service. |
+  | 1500008 | Common Event Service did not complete initialization. |
 
 **Example:**
 
@@ -275,25 +302,33 @@ public class Support {
     public static const COMMON_EVENT_CLOSE_SYSTEM_DIALOGS: String = "usual.event.CLOSE_SYSTEM_DIALOGS"
     public static const COMMON_EVENT_DISK_EJECT: String = "usual.event.data.DISK_EJECT"
     public static const COMMON_EVENT_DISK_UNMOUNTABLE: String = "usual.event.data.DISK_UNMOUNTABLE"
-    public static const COMMON_EVENT_DISK_BAD_REMOVAL: String = "usual.event.data.DISK_BAD_REMOVAL"
-    public static const COMMON_EVENT_DISK_MOUNTED: String = "usual.event.data.DISK_MOUNTED"
-    public static const COMMON_EVENT_DISK_UNMOUNTED: String = "usual.event.data.DISK_UNMOUNTED"
-    public static const COMMON_EVENT_DISK_REMOVED: String = "usual.event.data.DISK_REMOVED"
-    public static const COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED: String = "usual.event.DEVICE_IDLE_MODE_CHANGED"
-    public static const COMMON_EVENT_DISCHARGING: String = "usual.event.DISCHARGING"
-    public static const COMMON_EVENT_DISTRIB### static const COMMON_EVENT_ABILITY_REMOVED
+    public static const COMMON_EVENT_DISK_BAD_REMOVAL: String = "usual.event.data.DISK_BAD### static const COMMON_EVENT_ABILITY_ADDED
 
 ```cangjie
-public static const COMMON_EVENT_ABILITY_REMOVED: String = "common.event.ABILITY_REMOVED"
+public static const COMMON_EVENT_ABILITY_ADDED: String = "common.event.ABILITY_ADDED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for ability removal.
+**Description:** (Reserved event, not currently supported) Indicates a common event for ability addition.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
+
+### static const COMMON_EVENT_ABILITY_REMOVED
+
+```cangjie
+public static const COMMON_EVENT_ABILITY_REMOVED: String = "common.event.ABILITY_REMOVED"
+```
+
+**Description:** (Reserved event, not currently supported) Indicates a common event for ability removal.
+
+**Type:** String
+
+**System Capability:** SystemCapability.Notification.CommonEvent
+
+**Since:** 22
 
 ### static const COMMON_EVENT_ABILITY_UPDATED
 
@@ -301,13 +336,13 @@ public static const COMMON_EVENT_ABILITY_REMOVED: String = "common.event.ABILITY
 public static const COMMON_EVENT_ABILITY_UPDATED: String = "common.event.ABILITY_UPDATED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for ability updates.
+**Description:** (Reserved event, not currently supported) Indicates a common event for ability update.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_ACCOUNT_DELETED
 
@@ -315,13 +350,13 @@ public static const COMMON_EVENT_ABILITY_UPDATED: String = "common.event.ABILITY
 public static const COMMON_EVENT_ACCOUNT_DELETED: String = "usual.event.data.ACCOUNT_DELETED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for account deletion.
+**Description:** (Reserved event, not currently supported) Indicates a common event for account deletion.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_AIRPLANE_MODE_CHANGED
 
@@ -329,13 +364,13 @@ public static const COMMON_EVENT_ACCOUNT_DELETED: String = "usual.event.data.ACC
 public static const COMMON_EVENT_AIRPLANE_MODE_CHANGED: String = "usual.event.AIRPLANE_MODE"
 ```
 
-**Description:** Indicates a common event for airplane mode changes on the device.
+**Description:** Indicates a common event for airplane mode change on the device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BATTERY_CHANGED
 
@@ -349,7 +384,7 @@ public static const COMMON_EVENT_BATTERY_CHANGED: String = "usual.event.BATTERY_
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BATTERY_LOW
 
@@ -363,7 +398,7 @@ public static const COMMON_EVENT_BATTERY_LOW: String = "usual.event.BATTERY_LOW"
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BATTERY_OKAY
 
@@ -371,13 +406,13 @@ public static const COMMON_EVENT_BATTERY_LOW: String = "usual.event.BATTERY_LOW"
 public static const COMMON_EVENT_BATTERY_OKAY: String = "usual.event.BATTERY_OKAY"
 ```
 
-**Description:** Indicates a common event for exiting low battery level state.
+**Description:** Indicates a common event when the battery exits low-level state.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE
 
@@ -385,13 +420,13 @@ public static const COMMON_EVENT_BATTERY_OKAY: String = "usual.event.BATTERY_OKA
 public static const COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE: String = "usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP sink audio state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP sink audio state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE
 
@@ -399,13 +434,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE: String =
 public static const COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE: String = "usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP sink connection state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP sink connection state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE
 
@@ -413,13 +448,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE: String
 public static const COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE: String = "usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP sink playback state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP sink playback state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE
 
@@ -427,13 +462,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE: String
 public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE: String = "usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP source AVRCP connection state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP source AVRCP connection state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE
 
@@ -441,13 +476,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE
 public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE: String = "usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP audio codec state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP audio codec state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE
 
@@ -455,13 +490,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE: String
 public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE: String = "usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP connection state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP source connection state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE
 
@@ -469,13 +504,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE: Stri
 public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE: String = "usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event when a device connected via Bluetooth A2DP becomes active.
+**Description:** (Reserved event, not currently supported) Indicates a common event when a device connected via Bluetooth A2DP becomes active.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE
 
@@ -483,13 +518,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE: Str
 public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE: String = "usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP playback state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP source playback state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE
 
@@ -497,13 +532,13 @@ public static const COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE: Stri
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE: String = "usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth hands-free call state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth hands-free call state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT
 
@@ -511,13 +546,13 @@ public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE: S
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT: String = "usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth hands-free audio gateway state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth hands-free audio gateway state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE
 
@@ -525,13 +560,13 @@ public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT: String
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE: String = "usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth hands-free audio state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth hands-free audio state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE
 
@@ -539,13 +574,13 @@ public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE: Str
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE: String = "usual.event.bluetooth.handsfreeunit.CONNECT_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth hands-free connection state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth hands-free connection state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE
 
@@ -553,13 +588,13 @@ public static const COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_CONNECT_STATE_UPDATE: S
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE: String = "usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth A2DP connection state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth A2DP connection state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
 
@@ -567,13 +602,13 @@ public static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE: Stri
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE: String = "usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth hands-free communication connection state changes.
+**Description:** (Reserved event, not currently supported) Indicates a common event for Bluetooth hands-free communication connection state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE
 
@@ -581,13 +616,13 @@ public static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE: St
 public static const COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE: String = "usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event when a device connected via Bluetooth hands-free becomes active.
+**Description:** (Reserved event, not currently supported) Indicates a common event when a device connected via Bluetooth hands-free becomes active.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED
 
@@ -601,7 +636,7 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED: String = "us
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
 
@@ -615,7 +650,7 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED: String = "usu
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE
 
@@ -623,13 +658,13 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED: String = "usu
 public static const COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE: String = "usual.event.bluetooth.host.NAME_UPDATE"
 ```
 
-**Description:** Indicates a common event for Bluetooth adapter name changes on the device.
+**Description:** Indicates a common event for Bluetooth adapter name change on the device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE
 
@@ -637,13 +672,13 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE: String = "usual.eve
 public static const COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE: String = "usual.event.bluetooth.hhost.REQ_DISABLE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user request to disable Bluetooth.
+**Description:** (Reserved event, not currently supported) Indicates a common event for user request to disable Bluetooth.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE
 
@@ -651,13 +686,13 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE: String = "usual.eve
 public static const COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE: String = "usual.event.bluetooth.host.REQ_DISCOVERABLE"
 ```
 
-**Description:** Indicates a common event for user request to enable Bluetooth discoverability.
+**Description:** Indicates a common event for user request to enable Bluetooth scanning.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
 
@@ -665,39 +700,39 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE: String = "usua
 public static const COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE: String = "usual.event.bluetooth.host.REQ_ENABLE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user request to enable Bluetooth.
+**Description:** (Reserved event, not currently supported) Indicates a common event for user request to enable Bluetooth.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
-
-### static const COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE
+**Since:** 22### static const COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE
 
 ```cangjie
 public static const COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE: String = "usual.event.bluetooth.host.SCAN_MODE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for Bluetooth scan mode changes on the device.
+**Description:** (Reserved event, not yet supported) Represents a common event for changes in device Bluetooth scan mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21### static const COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
+**Since:** 22
+
+### static const COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
 
 ```cangjie
 public static const COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE: String = "usual.event.bluetooth.host.STATE_UPDATE"
 ```
 
-**Description:** Represents a common event indicating that the Bluetooth adapter state has changed, such as Bluetooth being turned on or off.
+**Description:** Represents a common event for changes in Bluetooth adapter state, such as Bluetooth being turned on or off.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED
 
@@ -705,13 +740,13 @@ public static const COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE: String = "usual.ev
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED: String = "usual.event.bluetooth.remotedevice.ACL_CONNECTED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that a low-level (ACL) connection has been established with a remote Bluetooth device.
+**Description:** (Reserved event, not yet supported) Represents a common event for establishing a low-level (ACL) connection with a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED
 
@@ -719,13 +754,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED: String = 
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED: String = "usual.event.bluetooth.remotedevice.ACL_DISCONNECTED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that a low-level (ACL) connection has been disconnected from a remote Bluetooth device.
+**Description:** (Reserved event, not yet supported) Represents a common event for disconnection of a low-level (ACL) connection from a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE
 
@@ -733,13 +768,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED: String
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE: String = "usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the battery level of a remote Bluetooth device has been retrieved for the first time or changed since the last retrieval.
+**Description:** (Reserved event, not yet supported) Represents a common event for the first retrieval or change in battery level of a remote Bluetooth device since the last retrieval.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE
 
@@ -747,13 +782,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE: St
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE: String = "usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the battery level of a remote Bluetooth device has been retrieved for the first time or changed since the last retrieval.
+**Description:** (Reserved event, not yet supported) Represents a common event for the first retrieval or change in battery level of a remote Bluetooth device since the last retrieval.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL
 
@@ -761,13 +796,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE: Stri
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL: String = "usual.event.bluetooth.remotedevice.CONNECT_CANCEL"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the connection to a remote Bluetooth device has been canceled.
+**Description:** (Reserved event, not yet supported) Represents a common event for cancellation of connection with a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY
 
@@ -775,13 +810,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_CANCEL: String =
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY: String = "usual.event.bluetooth.remotedevice.CONNECT_REPLY"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating the response to a remote Bluetooth device connection request.
+**Description:** (Reserved event, not yet supported) Represents a common event for response to a remote Bluetooth device connection request.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ
 
@@ -789,13 +824,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REPLY: String = 
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ: String = "usual.event.bluetooth.remotedevice.CONNECT_REQ"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating a remote Bluetooth device connection request.
+**Description:** (Reserved event, not yet supported) Represents a common event for a remote Bluetooth device connection request.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED
 
@@ -803,13 +838,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CONNECT_REQ: String = "u
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED: String = "usual.event.bluetooth.remotedevice.DISCOVERED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that a remote Bluetooth device has been discovered.
+**Description:** (Reserved event, not yet supported) Represents a common event for discovery of a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE
 
@@ -817,13 +852,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED: String = "us
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE: String = "usual.event.bluetooth.remotedevice.NAME_UPDATE"
 ```
 
-**Description:** Represents a common event indicating that the friendly name of a remote Bluetooth device has been retrieved for the first time or changed since the last retrieval.
+**Description:** Represents a common event for the first retrieval or change in friendly name of a remote Bluetooth device since the last retrieval.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL
 
@@ -831,13 +866,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE: String = "u
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL: String = "usual.event.bluetooth.remotedevice.PAIRING_CANCEL"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that Bluetooth pairing has been canceled.
+**Description:** (Reserved event, not yet supported) Represents a common event for cancellation of Bluetooth pairing.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ
 
@@ -845,13 +880,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL: String =
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ: String = "usual.event.bluetooth.remotedevice.PAIRING_REQ"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating a remote Bluetooth device pairing request.
+**Description:** (Reserved event, not yet supported) Represents a common event for a remote Bluetooth device pairing request.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE
 
@@ -859,13 +894,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ: String = "u
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE: String = "usual.event.bluetooth.remotedevice.PAIR_STATE"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating a change in the connection state of a remote Bluetooth device.
+**Description:** (Reserved event, not yet supported) Represents a common event for changes in connection state of a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT
 
@@ -873,13 +908,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE: String = "us
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT: String = "usual.event.bluetooth.remotedevice.SDP_RESULT"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating the SDP state of a remote Bluetooth device.
+**Description:** (Reserved event, not yet supported) Represents a common event for SDP state of a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE
 
@@ -887,13 +922,13 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT: String = "us
 public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE: String = "usual.event.bluetooth.remotedevice.UUID_VALUE"
 ```
 
-**Description:** Represents a common event indicating the UUID connection state of a remote Bluetooth device.
+**Description:** Represents a common event for UUID connection state of a remote Bluetooth device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BOOT_COMPLETED
 
@@ -901,27 +936,27 @@ public static const COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE: String = "us
 public static const COMMON_EVENT_BOOT_COMPLETED: String = "usual.event.BOOT_COMPLETED"
 ```
 
-**Description:** Represents a common event indicating that the user has completed booting and the system has loaded.
+**Description:** Represents a common event for user completion of boot and system loading.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_BUNDLE_REMOVED
 
 ```cangjie
-public static const COMMON_EVENT_BUNDLE_REMOVED: String = "usual.event.BUNDLE_REMOVED"
+public static const COMMON_EVENT_B BUNDLE_REMOVED: String = "usual.event.BUNDLE_REMOVED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that an installed bundle has been uninstalled from the device, but the application data remains.
+**Description:** (Reserved event, not yet supported) Represents a common event for uninstallation of an installed bundle from the device while retaining application data.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_CALL_STATE_CHANGED
 
@@ -929,13 +964,13 @@ public static const COMMON_EVENT_BUNDLE_REMOVED: String = "usual.event.BUNDLE_RE
 public static const COMMON_EVENT_CALL_STATE_CHANGED: String = "usual.event.CALL_STATE_CHANGED"
 ```
 
-**Description:** Represents a common event indicating a call state update.
+**Description:** Represents a common event for call state updates.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED
 
@@ -943,13 +978,13 @@ public static const COMMON_EVENT_CALL_STATE_CHANGED: String = "usual.event.CALL_
 public static const COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED: String = "usual.event.CHARGE_IDLE_MODE_CHANGED"
 ```
 
-**Description:** Represents a common event indicating that the device has entered charging idle mode.
+**Description:** Represents a common event for device entering charging idle mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_CHARGING
 
@@ -957,13 +992,13 @@ public static const COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED: String = "usual.event
 public static const COMMON_EVENT_CHARGING: String = "usual.event.CHARGING"
 ```
 
-**Description:** Represents a common event indicating that the system has started charging the battery.
+**Description:** Represents a common event for system starting battery charging.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
 
@@ -971,13 +1006,13 @@ public static const COMMON_EVENT_CHARGING: String = "usual.event.CHARGING"
 public static const COMMON_EVENT_CLOSE_SYSTEM_DIALOGS: String = "usual.event.CLOSE_SYSTEM_DIALOGS"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the user has closed a temporary system dialog.
+**Description:** (Reserved event, not yet supported) Represents a common event for user closing temporary system dialogs.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_CONFIGURATION_CHANGED
 
@@ -985,13 +1020,13 @@ public static const COMMON_EVENT_CLOSE_SYSTEM_DIALOGS: String = "usual.event.CLO
 public static const COMMON_EVENT_CONFIGURATION_CHANGED: String = "usual.event.CONFIGURATION_CHANGED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the device state (e.g., orientation and locale) has changed.
+**Description:** (Reserved event, not yet supported) Represents a common event for changes in device state (e.g., orientation and locale).
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_CONNECTIVITY_CHANGE
 
@@ -999,13 +1034,13 @@ public static const COMMON_EVENT_CONFIGURATION_CHANGED: String = "usual.event.CO
 public static const COMMON_EVENT_CONNECTIVITY_CHANGE: String = "usual.event.CONNECTIVITY_CHANGE"
 ```
 
-**Description:** Represents a common event indicating a change in network connection state.
+**Description:** Represents a common event for network connection state changes.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DATE_CHANGED
 
@@ -1013,13 +1048,13 @@ public static const COMMON_EVENT_CONNECTIVITY_CHANGE: String = "usual.event.CONN
 public static const COMMON_EVENT_DATE_CHANGED: String = "usual.event.DATE_CHANGED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the system date has changed.
+**Description:** (Reserved event, not yet supported) Represents a common event for system date changes.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 
@@ -1027,13 +1062,13 @@ public static const COMMON_EVENT_DATE_CHANGED: String = "usual.event.DATE_CHANGE
 public static const COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED: String = "usual.event.DEVICE_IDLE_MODE_CHANGED"
 ```
 
-**Description:** Represents a common event indicating that the system standby idle mode has changed.
+**Description:** Represents a common event for changes in system standby idle mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISCHARGING
 
@@ -1041,13 +1076,13 @@ public static const COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED: String = "usual.event
 public static const COMMON_EVENT_DISCHARGING: String = "usual.event.DISCHARGING"
 ```
 
-**Description:** Represents a common event indicating that the system has stopped charging the battery.
+**Description:** Represents a common event for system stopping battery charging.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISK_BAD_REMOVAL
 
@@ -1055,13 +1090,13 @@ public static const COMMON_EVENT_DISCHARGING: String = "usual.event.DISCHARGING"
 public static const COMMON_EVENT_DISK_BAD_REMOVAL: String = "usual.event.data.DISK_BAD_REMOVAL"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the state of an external storage device has changed to removed while mounted.
+**Description:** (Reserved event, not yet supported) Represents a common event for external storage device state changing to removal while mounted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISK_EJECT
 
@@ -1069,39 +1104,39 @@ public static const COMMON_EVENT_DISK_BAD_REMOVAL: String = "usual.event.data.DI
 public static const COMMON_EVENT_DISK_EJECT: String = "usual.event.data.DISK_EJECT"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the user has expressed the intention to remove an external storage medium.
+**Description:** (Reserved event, not yet supported) Represents a common event for user indicating intent to remove external storage media.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
-
-### static const COMMON_EVENT_DISK_MOUNTED
+**Since:** 22### static const COMMON_EVENT_DISK_MOUNTED
 
 ```cangjie
 public static const COMMON_EVENT_DISK_MOUNTED: String = "usual.event.data.DISK_MOUNTED"
 ```
 
-**Description:** (Reserved event, not yet supported) Represents a common event indicating that the state of an external storage device has changed to mounted.
+**Function:** (Reserved event, not yet supported) Indicates a public event for external storage device status changing to mounted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21### static const COMMON_EVENT_DISK_REMOVED
+**Since:** 22
+
+### static const COMMON_EVENT_DISK_REMOVED
 
 ```cangjie
 public static const COMMON_EVENT_DISK_REMOVED: String = "usual.event.data.DISK_REMOVED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the state change of an external storage device to "removed".
+**Function:** (Reserved event, not yet supported) Indicates a public event for external storage device status changing to removed.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISK_UNMOUNTABLE
 
@@ -1109,13 +1144,13 @@ public static const COMMON_EVENT_DISK_REMOVED: String = "usual.event.data.DISK_R
 public static const COMMON_EVENT_DISK_UNMOUNTABLE: String = "usual.event.data.DISK_UNMOUNTABLE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the state change of an external storage device to "unmountable when inserted".
+**Function:** (Reserved event, not yet supported) Indicates a public event for external storage device status changing to unmountable when inserted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISK_UNMOUNTED
 
@@ -1123,13 +1158,13 @@ public static const COMMON_EVENT_DISK_UNMOUNTABLE: String = "usual.event.data.DI
 public static const COMMON_EVENT_DISK_UNMOUNTED: String = "usual.event.data.DISK_UNMOUNTED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the state change of an external storage device to "unmounted".
+**Function:** (Reserved event, not yet supported) Indicates a public event for external storage device status changing to unmounted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
 
@@ -1137,13 +1172,13 @@ public static const COMMON_EVENT_DISK_UNMOUNTED: String = "usual.event.data.DISK
 public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN: String = "common.event.DISTRIBUTED_ACCOUNT_LOGIN"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for successful distributed account login.
+**Function:** (Reserved event, not yet supported) Indicates a public event for successful distributed account login.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF
 
@@ -1151,13 +1186,13 @@ public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN: String = "common.eve
 public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF: String = "common.event.DISTRIBUTED_ACCOUNT_LOGOFF"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for distributed account logout.
+**Function:** (Reserved event, not yet supported) Indicates a public event for distributed account logout.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
 
@@ -1165,13 +1200,13 @@ public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF: String = "common.ev
 public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT: String = "common.event.DISTRIBUTED_ACCOUNT_LOGOUT"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for successful distributed account sign-out.
+**Function:** (Reserved event, not yet supported) Indicates a public event for successful distributed account sign-out.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 
@@ -1179,13 +1214,13 @@ public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT: String = "common.ev
 public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID: String = "common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for an invalid distributed account token.
+**Function:** (Reserved event, not yet supported) Indicates a public event for invalid distributed account token.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_DRIVE_MODE
 
@@ -1193,13 +1228,13 @@ public static const COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID: String = "co
 public static const COMMON_EVENT_DRIVE_MODE: String = "common.event.DRIVE_MODE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the system being in drive mode.
+**Function:** (Reserved event, not yet supported) Indicates a public event for system entering drive mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE
 
@@ -1207,13 +1242,13 @@ public static const COMMON_EVENT_DRIVE_MODE: String = "common.event.DRIVE_MODE"
 public static const COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE: String = "usual.event.EXTERNAL_APPLICATIONS_AVAILABLE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for applications installed on external storage becoming available to the system.
+**Function:** (Reserved event, not yet supported) Indicates a public event for applications installed on external storage becoming available to the system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE
 
@@ -1221,13 +1256,13 @@ public static const COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE: String = "usua
 public static const COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE: String = "usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for applications installed on external storage becoming unavailable to the system.
+**Function:** (Reserved event, not yet supported) Indicates a public event for applications installed on external storage becoming unavailable to the system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_FOUNDATION_READY
 
@@ -1235,13 +1270,13 @@ public static const COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE: String = "us
 public static const COMMON_EVENT_FOUNDATION_READY: String = "common.event.FOUNDATION_READY"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the foundation being ready.
+**Function:** (Reserved event, not yet supported) Indicates a public event for foundation being ready.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_HOME_MODE
 
@@ -1249,13 +1284,13 @@ public static const COMMON_EVENT_FOUNDATION_READY: String = "common.event.FOUNDA
 public static const COMMON_EVENT_HOME_MODE: String = "common.event.HOME_MODE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the system being in HOME mode.
+**Function:** (Reserved event, not yet supported) Indicates a public event for system entering HOME mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_HTTP_PROXY_CHANGE
 
@@ -1263,13 +1298,13 @@ public static const COMMON_EVENT_HOME_MODE: String = "common.event.HOME_MODE"
 public static const COMMON_EVENT_HTTP_PROXY_CHANGE: String = "usual.event.HTTP_PROXY_CHANGE"
 ```
 
-**Description:** Indicates a change in HTTP proxy configuration information.
+**Function:** Indicates changes in HTTP proxy configuration.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_ACTIVE
 
@@ -1277,13 +1312,13 @@ public static const COMMON_EVENT_HTTP_PROXY_CHANGE: String = "usual.event.HTTP_P
 public static const COMMON_EVENT_IVI_ACTIVE: String = "common.event.IVI_ACTIVE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the battery service being active.
+**Function:** (Reserved event, not yet supported) Indicates a public event for battery service being active.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_EXTREME_TEMPERATURE
 
@@ -1291,13 +1326,13 @@ public static const COMMON_EVENT_IVI_ACTIVE: String = "common.event.IVI_ACTIVE"
 public static const COMMON_EVENT_IVI_EXTREME_TEMPERATURE: String = "common.event.IVI_EXTREME_TEMPERATURE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for extremely high IVI temperature.
+**Function:** (Reserved event, not yet supported) Indicates a public event for IVI having extremely high temperature.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_HIGH_TEMPERATURE
 
@@ -1305,13 +1340,13 @@ public static const COMMON_EVENT_IVI_EXTREME_TEMPERATURE: String = "common.event
 public static const COMMON_EVENT_IVI_HIGH_TEMPERATURE: String = "common.event.IVI_HIGH_TEMPERATURE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for excessively high IVI temperature.
+**Function:** (Reserved event, not yet supported) Indicates a public event for IVI having excessively high temperature.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_LASTMODE_SAVE
 
@@ -1319,13 +1354,13 @@ public static const COMMON_EVENT_IVI_HIGH_TEMPERATURE: String = "common.event.IV
 public static const COMMON_EVENT_IVI_LASTMODE_SAVE: String = "common.event.IVI_LASTMODE_SAVE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for a third-party application saving its last mode.
+**Function:** (Reserved event, not yet supported) Indicates a public event for third-party applications saving their last mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_PAUSE
 
@@ -1333,13 +1368,13 @@ public static const COMMON_EVENT_IVI_LASTMODE_SAVE: String = "common.event.IVI_L
 public static const COMMON_EVENT_IVI_PAUSE: String = "common.event.IVI_PAUSE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for IVI entering sleep mode and notifying applications to stop playback.
+**Function:** (Reserved event, not yet supported) Indicates a public event for IVI entering sleep mode and notifying applications to stop playback.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_SLEEP
 
@@ -1347,13 +1382,13 @@ public static const COMMON_EVENT_IVI_PAUSE: String = "common.event.IVI_PAUSE"
 public static const COMMON_EVENT_IVI_SLEEP: String = "common.event.IVI_SLEEP"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the vehicle's In-Vehicle Infotainment (IVI) system entering sleep mode.
+**Function:** (Reserved event, not yet supported) Indicates a public event for vehicle's In-Vehicle Infotainment (IVI) system entering sleep mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_STANDBY
 
@@ -1361,13 +1396,13 @@ public static const COMMON_EVENT_IVI_SLEEP: String = "common.event.IVI_SLEEP"
 public static const COMMON_EVENT_IVI_STANDBY: String = "common.event.IVI_STANDBY"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for a third-party application pausing its current work.
+**Function:** (Reserved event, not yet supported) Indicates a public event for third-party applications pausing current work.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL
 
@@ -1375,13 +1410,13 @@ public static const COMMON_EVENT_IVI_STANDBY: String = "common.event.IVI_STANDBY
 public static const COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL: String = "common.event.IVI_TEMPERATURE_ABNORMAL"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the vehicle system having extreme temperature conditions.
+**Function:** (Reserved event, not yet supported) Indicates a public event for vehicle system having extreme temperature.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_TEMPERATURE_RECOVERY
 
@@ -1389,13 +1424,13 @@ public static const COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL: String = "common.even
 public static const COMMON_EVENT_IVI_TEMPERATURE_RECOVERY: String = "common.event.IVI_TEMPERATURE_RECOVERY"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the vehicle system temperature returning to normal.
+**Function:** (Reserved event, not yet supported) Indicates a public event for vehicle system temperature returning to normal.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_VOLTAGE_ABNORMAL
 
@@ -1403,13 +1438,13 @@ public static const COMMON_EVENT_IVI_TEMPERATURE_RECOVERY: String = "common.even
 public static const COMMON_EVENT_IVI_VOLTAGE_ABNORMAL: String = "common.event.IVI_VOLTAGE_ABNORMAL"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for abnormal voltage in the vehicle power system.
+**Function:** (Reserved event, not yet supported) Indicates a public event for abnormal voltage in vehicle power system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_IVI_VOLTAGE_RECOVERY
 
@@ -1417,13 +1452,13 @@ public static const COMMON_EVENT_IVI_VOLTAGE_ABNORMAL: String = "common.event.IV
 public static const COMMON_EVENT_IVI_VOLTAGE_RECOVERY: String = "common.event.IVI_VOLTAGE_RECOVERY"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the vehicle power system voltage returning to normal.
+**Function:** (Reserved event, not yet supported) Indicates a public event for vehicle power system voltage returning to normal.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_LOCALE_CHANGED
 
@@ -1431,13 +1466,13 @@ public static const COMMON_EVENT_IVI_VOLTAGE_RECOVERY: String = "common.event.IV
 public static const COMMON_EVENT_LOCALE_CHANGED: String = "usual.event.LOCALE_CHANGED"
 ```
 
-**Description:** Indicates a common event for device locale settings being changed.
+**Function:** Indicates a public event for device locale settings being changed.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_LOCATION_MODE_STATE_CHANGED
 
@@ -1445,13 +1480,13 @@ public static const COMMON_EVENT_LOCALE_CHANGED: String = "usual.event.LOCALE_CH
 public static const COMMON_EVENT_LOCATION_MODE_STATE_CHANGED: String = "usual.event.location.MODE_STATE_CHANGED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for the system location mode being changed.
+**Function:** (Reserved event, not yet supported) Indicates a public event for system location mode being changed.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_LOCKED_BOOT_COMPLETED
 
@@ -1459,13 +1494,13 @@ public static const COMMON_EVENT_LOCATION_MODE_STATE_CHANGED: String = "usual.ev
 public static const COMMON_EVENT_LOCKED_BOOT_COMPLETED: String = "usual.event.LOCKED_BOOT_COMPLETED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user completing boot, system being loaded, but screen remaining locked.
+**Function:** (Reserved event, not yet supported) Indicates a public event for user completing boot process with system loaded but screen still locked.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_MANAGE_PACKAGE_STORAGE
 
@@ -1473,39 +1508,39 @@ public static const COMMON_EVENT_LOCKED_BOOT_COMPLETED: String = "usual.event.LO
 public static const COMMON_EVENT_MANAGE_PACKAGE_STORAGE: String = "usual.event.MANAGE_PACKAGE_STORAGE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for insufficient device storage space.
+**Function:** (Reserved event, not yet supported) Indicates a public event for insufficient device storage space.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
-
-### static const COMMON_EVENT_MY_PACKAGE_REPLACED
+**Since:** 22### static const COMMON_EVENT_MY_PACKAGE_REPLACED
 
 ```cangjie
 public static const COMMON_EVENT_MY_PACKAGE_REPLACED: String = "usual.event.MY_PACKAGE_REPLACED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for a new version of an application package replacing the previous version.
+**Description:** (Reserved event, not currently supported) Indicates a common event where a new version of the application package has replaced the previous version.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21### static const COMMON_EVENT_MY_PACKAGE_SUSPENDED
+**Since:** 22
+
+### static const COMMON_EVENT_MY_PACKAGE_SUSPENDED
 
 ```cangjie
 public static const COMMON_EVENT_MY_PACKAGE_SUSPENDED: String = "usual.event.MY_PACKAGE_SUSPENDED"
 ```
 
-**Description:** Indicates a common event that the application package has been suspended.
+**Description:** Indicates a common event where an application package has been suspended.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_MY_PACKAGE_UNSUSPENDED
 
@@ -1513,13 +1548,13 @@ public static const COMMON_EVENT_MY_PACKAGE_SUSPENDED: String = "usual.event.MY_
 public static const COMMON_EVENT_MY_PACKAGE_UNSUSPENDED: String = "usual.event.MY_PACKAGE_UNSUSPENDED"
 ```
 
-**Description:** Indicates a common event that the application package has been unsuspended.
+**Description:** Indicates a common event where an application package has been unsuspended.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_NETWORK_STATE_CHANGED
 
@@ -1527,13 +1562,13 @@ public static const COMMON_EVENT_MY_PACKAGE_UNSUSPENDED: String = "usual.event.M
 public static const COMMON_EVENT_NETWORK_STATE_CHANGED: String = "usual.event.NETWORK_STATE_CHANGED"
 ```
 
-**Description:** Indicates a common event that the network state has been updated.
+**Description:** Indicates a common event where the network state has been updated.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
 
@@ -1541,13 +1576,13 @@ public static const COMMON_EVENT_NETWORK_STATE_CHANGED: String = "usual.event.NE
 public static const COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED: String = "usual.event.nfc.action.ADAPTER_STATE_CHANGED"
 ```
 
-**Description:** Indicates a common event that the NFC state of the device has changed.
+**Description:** Indicates a common event where the NFC state of the device has changed.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
 
@@ -1555,13 +1590,13 @@ public static const COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED: String = "usu
 public static const COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED: String = "usual.event.nfc.action.RF_FIELD_OFF_DETECTED"
 ```
 
-**Description:** Indicates a common event that the NFC field strength has been detected to be off.
+**Description:** Indicates a common event where the NFC field strength has been detected to be off.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
 
@@ -1569,13 +1604,13 @@ public static const COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED: String = "usu
 public static const COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED: String = "usual.event.nfc.action.RF_FIELD_ON_DETECTED"
 ```
 
-**Description:** Indicates a common event that the NFC field strength has been detected to be on.
+**Description:** Indicates a common event where the NFC field strength has been detected to be on.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_OFFICE_MODE
 
@@ -1583,13 +1618,13 @@ public static const COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED: String = "usua
 public static const COMMON_EVENT_OFFICE_MODE: String = "common.event.OFFICE_MODE"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that the system is in office mode.
+**Description:** (Reserved event, not currently supported) Indicates a common event where the system is in office mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGES_SUSPENDED
 
@@ -1597,13 +1632,13 @@ public static const COMMON_EVENT_OFFICE_MODE: String = "common.event.OFFICE_MODE
 public static const COMMON_EVENT_PACKAGES_SUSPENDED: String = "usual.event.PACKAGES_SUSPENDED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that application packages have been suspended.
+**Description:** (Reserved event, not currently supported) Indicates a common event where application packages have been suspended.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGES_UNSUSPENDED
 
@@ -1611,13 +1646,13 @@ public static const COMMON_EVENT_PACKAGES_SUSPENDED: String = "usual.event.PACKA
 public static const COMMON_EVENT_PACKAGES_UNSUSPENDED: String = "usual.event.PACKAGES_UNSUSPENDED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that application packages have been unsuspended.
+**Description:** (Reserved event, not currently supported) Indicates a common event where application packages have been unsuspended.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_ADDED
 
@@ -1625,13 +1660,13 @@ public static const COMMON_EVENT_PACKAGES_UNSUSPENDED: String = "usual.event.PAC
 public static const COMMON_EVENT_PACKAGE_ADDED: String = "usual.event.PACKAGE_ADDED"
 ```
 
-**Description:** Indicates a common event that a new application package has been installed on the device.
+**Description:** Indicates a common event where a new application package has been installed on the device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_CACHE_CLEARED
 
@@ -1639,13 +1674,13 @@ public static const COMMON_EVENT_PACKAGE_ADDED: String = "usual.event.PACKAGE_AD
 public static const COMMON_EVENT_PACKAGE_CACHE_CLEARED: String = "usual.event.PACKAGE_CACHE_CLEARED"
 ```
 
-**Description:** Indicates a common event that the user has cleared the cache data of an application package.
+**Description:** Indicates a common event where the user has cleared the cache data of an application package.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_CHANGED
 
@@ -1653,13 +1688,13 @@ public static const COMMON_EVENT_PACKAGE_CACHE_CLEARED: String = "usual.event.PA
 public static const COMMON_EVENT_PACKAGE_CHANGED: String = "usual.event.PACKAGE_CHANGED"
 ```
 
-**Description:** Indicates a common event that an application package has been changed (e.g., components in the package have been enabled or disabled).
+**Description:** Indicates a common event where an application package has been changed (e.g., components in the package have been enabled or disabled).
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_DATA_CLEARED
 
@@ -1667,13 +1702,13 @@ public static const COMMON_EVENT_PACKAGE_CHANGED: String = "usual.event.PACKAGE_
 public static const COMMON_EVENT_PACKAGE_DATA_CLEARED: String = "usual.event.PACKAGE_DATA_CLEARED"
 ```
 
-**Description:** Indicates a common event that the user has cleared the data of an application package.
+**Description:** Indicates a common event where the user has cleared the data of an application package.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_FIRST_LAUNCH
 
@@ -1681,13 +1716,13 @@ public static const COMMON_EVENT_PACKAGE_DATA_CLEARED: String = "usual.event.PAC
 public static const COMMON_EVENT_PACKAGE_FIRST_LAUNCH: String = "usual.event.PACKAGE_FIRST_LAUNCH"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that an installed application has been launched for the first time.
+**Description:** (Reserved event, not currently supported) Indicates a common event where an installed application has been launched for the first time.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_FULLY_REMOVED
 
@@ -1695,13 +1730,13 @@ public static const COMMON_EVENT_PACKAGE_FIRST_LAUNCH: String = "usual.event.PAC
 public static const COMMON_EVENT_PACKAGE_FULLY_REMOVED: String = "usual.event.PACKAGE_FULLY_REMOVED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that an installed application has been completely uninstalled from the device (including application data and code).
+**Description:** (Reserved event, not currently supported) Indicates a common event where an installed application has been completely uninstalled from the device (including application data and code).
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
 
@@ -1709,13 +1744,13 @@ public static const COMMON_EVENT_PACKAGE_FULLY_REMOVED: String = "usual.event.PA
 public static const COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION: String = "usual.event.PACKAGE_NEEDS_VERIFICATION"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that an application requires system verification.
+**Description:** (Reserved event, not currently supported) Indicates a common event where an application requires system verification.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_REMOVED
 
@@ -1723,13 +1758,13 @@ public static const COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION: String = "usual.eve
 public static const COMMON_EVENT_PACKAGE_REMOVED: String = "usual.event.PACKAGE_REMOVED"
 ```
 
-**Description:** Indicates a common event that an installed application has been uninstalled from the device, but the application data is retained.
+**Description:** Indicates a common event where an installed application has been uninstalled from the device, but the application data is retained.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_REPLACED
 
@@ -1737,13 +1772,13 @@ public static const COMMON_EVENT_PACKAGE_REMOVED: String = "usual.event.PACKAGE_
 public static const COMMON_EVENT_PACKAGE_REPLACED: String = "usual.event.PACKAGE_REPLACED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that a new version of an installed application package has replaced the old version on the device.
+**Description:** (Reserved event, not currently supported) Indicates a common event where a new version of an installed application package has replaced the old version on the device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_RESTARTED
 
@@ -1751,13 +1786,13 @@ public static const COMMON_EVENT_PACKAGE_REPLACED: String = "usual.event.PACKAGE
 public static const COMMON_EVENT_PACKAGE_RESTARTED: String = "usual.event.PACKAGE_RESTARTED"
 ```
 
-**Description:** Indicates a common event that the user has restarted an application package and killed all its processes.
+**Description:** Indicates a common event where the user has restarted an application package and killed all its processes.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_PACKAGE_VERIFIED
 
@@ -1765,13 +1800,13 @@ public static const COMMON_EVENT_PACKAGE_RESTARTED: String = "usual.event.PACKAG
 public static const COMMON_EVENT_PACKAGE_VERIFIED: String = "usual.event.PACKAGE_VERIFIED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event that an application has been verified by the system.
+**Description:** (Reserved event, not currently supported) Indicates a common event where an application has been verified by the system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_POWER_CONNECTED
 
@@ -1779,13 +1814,13 @@ public static const COMMON_EVENT_PACKAGE_VERIFIED: String = "usual.event.PACKAGE
 public static const COMMON_EVENT_POWER_CONNECTED: String = "usual.event.POWER_CONNECTED"
 ```
 
-**Description:** Indicates a common event that the device has been connected to an external power source.
+**Description:** Indicates a common event where the device has been connected to an external power source.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_POWER_DISCONNECTED
 
@@ -1793,13 +1828,13 @@ public static const COMMON_EVENT_POWER_CONNECTED: String = "usual.event.POWER_CO
 public static const COMMON_EVENT_POWER_DISCONNECTED: String = "usual.event.POWER_DISCONNECTED"
 ```
 
-**Description:** Indicates a common event that the device has been disconnected from an external power source.
+**Description:** Indicates a common event where the device has been disconnected from an external power source.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_POWER_SAVE_MODE_CHANGED
 
@@ -1807,13 +1842,13 @@ public static const COMMON_EVENT_POWER_DISCONNECTED: String = "usual.event.POWER
 public static const COMMON_EVENT_POWER_SAVE_MODE_CHANGED: String = "usual.event.POWER_SAVE_MODE_CHANGED"
 ```
 
-**Description:** Indicates a common event that the system power-saving mode has changed.
+**Description:** Indicates a common event where the system power-saving mode has changed.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_QUICK_FIX_APPLY_RESULT
 
@@ -1827,7 +1862,7 @@ public static const COMMON_EVENT_QUICK_FIX_APPLY_RESULT: String = "usual.event.Q
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_QUICK_FIX_REVOKE_RESULT
 
@@ -1835,13 +1870,13 @@ public static const COMMON_EVENT_QUICK_FIX_APPLY_RESULT: String = "usual.event.Q
 public static const COMMON_EVENT_QUICK_FIX_REVOKE_RESULT: String = "usual.event.QUICK_FIX_REVOKE_RESULT"
 ```
 
-**Description:** Indicates a common event for revoking a quick fix.
+**Description:** Indicates a common event for revoking a quick fix event.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SCREEN_LOCKED
 
@@ -1849,13 +1884,13 @@ public static const COMMON_EVENT_QUICK_FIX_REVOKE_RESULT: String = "usual.event.
 public static const COMMON_EVENT_SCREEN_LOCKED: String = "usual.event.SCREEN_LOCKED"
 ```
 
-**Description:** Indicates a common event that the screen has been locked.
+**Description:** Indicates a common event for screen lock.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SCREEN_OFF
 
@@ -1863,13 +1898,13 @@ public static const COMMON_EVENT_SCREEN_LOCKED: String = "usual.event.SCREEN_LOC
 public static const COMMON_EVENT_SCREEN_OFF: String = "usual.event.SCREEN_OFF"
 ```
 
-**Description:** Indicates a common event that the device screen has been turned off and the device is in sleep mode.
+**Description:** Indicates a common event where the device screen is turned off and the device is in sleep mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SCREEN_ON
 
@@ -1877,39 +1912,39 @@ public static const COMMON_EVENT_SCREEN_OFF: String = "usual.event.SCREEN_OFF"
 public static const COMMON_EVENT_SCREEN_ON: String = "usual.event.SCREEN_ON"
 ```
 
-**Description:** Indicates a common event that the device screen has been turned on and the device is in interactive mode.
+**Description:** Indicates a common event where the device screen is turned on and the device is in interactive mode.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
-
-### static const COMMON_EVENT_SCREEN_UNLOCKED
+**Since:** 22### static const COMMON_EVENT_SCREEN_UNLOCKED
 
 ```cangjie
 public static const COMMON_EVENT_SCREEN_UNLOCKED: String = "usual.event.SCREEN_UNLOCKED"
 ```
 
-**Description:** Indicates a common event that the screen has been unlocked.
+**Description:** Represents a common event for screen unlock.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21### static const COMMON_EVENT_SHUTDOWN
+**Since:** 22
+
+### static const COMMON_EVENT_SHUTDOWN
 
 ```cangjie
 public static const COMMON_EVENT_SHUTDOWN: String = "usual.event.SHUTDOWN"
 ```
 
-**Description:** Indicates a common event for device shutdown.
+**Description:** Represents a common event for device shutdown.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SIGNAL_INFO_CHANGED
 
@@ -1917,13 +1952,13 @@ public static const COMMON_EVENT_SHUTDOWN: String = "usual.event.SHUTDOWN"
 public static const COMMON_EVENT_SIGNAL_INFO_CHANGED: String = "usual.event.SIGNAL_INFO_CHANGED"
 ```
 
-**Description:** Indicates a common event for signal information updates.
+**Description:** Represents a common event for signal information update.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SIM_STATE_CHANGED
 
@@ -1931,13 +1966,13 @@ public static const COMMON_EVENT_SIGNAL_INFO_CHANGED: String = "usual.event.SIGN
 public static const COMMON_EVENT_SIM_STATE_CHANGED: String = "usual.event.SIM_STATE_CHANGED"
 ```
 
-**Description:** Indicates a common event for SIM card state updates.
+**Description:** Represents a common event for SIM card state update.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SLOT_CHANGE
 
@@ -1945,13 +1980,13 @@ public static const COMMON_EVENT_SIM_STATE_CHANGED: String = "usual.event.SIM_ST
 public static const COMMON_EVENT_SLOT_CHANGE: String = "usual.event.SLOT_CHANGE"
 ```
 
-**Description:** Indicates a common event for notification channel updates.
+**Description:** Represents a common event for notification channel update.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SPLIT_SCREEN
 
@@ -1959,13 +1994,13 @@ public static const COMMON_EVENT_SLOT_CHANGE: String = "usual.event.SLOT_CHANGE"
 public static const COMMON_EVENT_SPLIT_SCREEN: String = "common.event.SPLIT_SCREEN"
 ```
 
-**Description:** Indicates a common event for split-screen operations.
+**Description:** Represents a common event for split-screen operation.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_SPN_INFO_CHANGED
 
@@ -1973,13 +2008,13 @@ public static const COMMON_EVENT_SPLIT_SCREEN: String = "common.event.SPLIT_SCRE
 public static const COMMON_EVENT_SPN_INFO_CHANGED: String = "usual.event.SPN_INFO_CHANGED"
 ```
 
-**Description:** Indicates a common event for SPN display information updates.
+**Description:** Represents a common event for SPN display information update.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_THERMAL_LEVEL_CHANGED
 
@@ -1987,13 +2022,13 @@ public static const COMMON_EVENT_SPN_INFO_CHANGED: String = "usual.event.SPN_INF
 public static const COMMON_EVENT_THERMAL_LEVEL_CHANGED: String = "usual.event.THERMAL_LEVEL_CHANGED"
 ```
 
-**Description:** Indicates a common event for device thermal state changes.
+**Description:** Represents a common event for device thermal state.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_TIMEZONE_CHANGED
 
@@ -2001,13 +2036,13 @@ public static const COMMON_EVENT_THERMAL_LEVEL_CHANGED: String = "usual.event.TH
 public static const COMMON_EVENT_TIMEZONE_CHANGED: String = "usual.event.TIMEZONE_CHANGED"
 ```
 
-**Description:** Indicates a common event for system timezone changes.
+**Description:** Represents a common event for system timezone change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_TIME_CHANGED
 
@@ -2015,13 +2050,13 @@ public static const COMMON_EVENT_TIMEZONE_CHANGED: String = "usual.event.TIMEZON
 public static const COMMON_EVENT_TIME_CHANGED: String = "usual.event.TIME_CHANGED"
 ```
 
-**Description:** Indicates a common event for system time setting changes.
+**Description:** Represents a common event for system time setting.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_TIME_TICK
 
@@ -2029,13 +2064,13 @@ public static const COMMON_EVENT_TIME_CHANGED: String = "usual.event.TIME_CHANGE
 public static const COMMON_EVENT_TIME_TICK: String = "usual.event.TIME_TICK"
 ```
 
-**Description:** Indicates a common event for system time changes.
+**Description:** Represents a common event for system time change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_UID_REMOVED
 
@@ -2043,13 +2078,13 @@ public static const COMMON_EVENT_TIME_TICK: String = "usual.event.TIME_TICK"
 public static const COMMON_EVENT_UID_REMOVED: String = "usual.event.UID_REMOVED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user ID removal from the system.
+**Description:** (Reserved event, not yet supported) Represents a common event for user ID removal from the system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USB_ACCESSORY_ATTACHED
 
@@ -2057,13 +2092,13 @@ public static const COMMON_EVENT_UID_REMOVED: String = "usual.event.UID_REMOVED"
 public static const COMMON_EVENT_USB_ACCESSORY_ATTACHED: String = "usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for USB accessory connection.
+**Description:** (Reserved event, not yet supported) Represents a common event for USB accessory connection.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USB_ACCESSORY_DETACHED
 
@@ -2071,13 +2106,13 @@ public static const COMMON_EVENT_USB_ACCESSORY_ATTACHED: String = "usual.event.h
 public static const COMMON_EVENT_USB_ACCESSORY_DETACHED: String = "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for USB accessory detachment.
+**Description:** (Reserved event, not yet supported) Represents a common event for USB accessory detachment.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USB_DEVICE_ATTACHED
 
@@ -2085,13 +2120,13 @@ public static const COMMON_EVENT_USB_ACCESSORY_DETACHED: String = "usual.event.h
 public static const COMMON_EVENT_USB_DEVICE_ATTACHED: String = "usual.event.hardware.usb.action.USB_DEVICE_ATTACHED"
 ```
 
-**Description:** Indicates a common event for USB device mounting when the user device acts as a USB host.
+**Description:** Represents a common event for USB device mounting when the user device acts as a USB host.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USB_DEVICE_DETACHED
 
@@ -2099,13 +2134,13 @@ public static const COMMON_EVENT_USB_DEVICE_ATTACHED: String = "usual.event.hard
 public static const COMMON_EVENT_USB_DEVICE_DETACHED: String = "usual.event.hardware.usb.action.USB_DEVICE_DETACHED"
 ```
 
-**Description:** Indicates a common event for USB device detachment when the user device acts as a USB host.
+**Description:** Represents a common event for USB device detachment when the user device acts as a USB host.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USB_PORT_CHANGED
 
@@ -2113,13 +2148,13 @@ public static const COMMON_EVENT_USB_DEVICE_DETACHED: String = "usual.event.hard
 public static const COMMON_EVENT_USB_PORT_CHANGED: String = "usual.event.hardware.usb.action.USB_PORT_CHANGED"
 ```
 
-**Description:** Indicates a common event for USB port state changes on the user device.
+**Description:** Represents a common event for USB port state change on the user device.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USB_STATE
 
@@ -2127,13 +2162,13 @@ public static const COMMON_EVENT_USB_PORT_CHANGED: String = "usual.event.hardwar
 public static const COMMON_EVENT_USB_STATE: String = "usual.event.hardware.usb.action.USB_STATE"
 ```
 
-**Description:** Indicates a common event for USB device state changes.
+**Description:** Represents a common event for USB device state change.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_ADDED
 
@@ -2141,13 +2176,13 @@ public static const COMMON_EVENT_USB_STATE: String = "usual.event.hardware.usb.a
 public static const COMMON_EVENT_USER_ADDED: String = "usual.event.USER_ADDED"
 ```
 
-**Description:** Indicates a common event for user addition to the system.
+**Description:** Represents a common event for user addition to the system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_BACKGROUND
 
@@ -2155,13 +2190,13 @@ public static const COMMON_EVENT_USER_ADDED: String = "usual.event.USER_ADDED"
 public static const COMMON_EVENT_USER_BACKGROUND: String = "usual.event.USER_BACKGROUND"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for moving a user to the background.
+**Description:** (Reserved event, not yet supported) Represents a common event for user being moved to background.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_FOREGROUND
 
@@ -2169,13 +2204,13 @@ public static const COMMON_EVENT_USER_BACKGROUND: String = "usual.event.USER_BAC
 public static const COMMON_EVENT_USER_FOREGROUND: String = "usual.event.USER_FOREGROUND"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for bringing a user to the foreground.
+**Description:** (Reserved event, not yet supported) Represents a common event for user being moved to foreground.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_INFO_UPDATED
 
@@ -2183,13 +2218,13 @@ public static const COMMON_EVENT_USER_FOREGROUND: String = "usual.event.USER_FOR
 public static const COMMON_EVENT_USER_INFO_UPDATED: String = "usual.event.USER_INFO_UPDATED"
 ```
 
-**Description:** Indicates a common event for user information updates.
+**Description:** Represents a common event for user information update.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_REMOVED
 
@@ -2197,13 +2232,13 @@ public static const COMMON_EVENT_USER_INFO_UPDATED: String = "usual.event.USER_I
 public static const COMMON_EVENT_USER_REMOVED: String = "usual.event.USER_REMOVED"
 ```
 
-**Description:** Indicates a common event for user removal from the system.
+**Description:** Represents a common event for user removal from the system.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_STARTED
 
@@ -2211,13 +2246,13 @@ public static const COMMON_EVENT_USER_REMOVED: String = "usual.event.USER_REMOVE
 public static const COMMON_EVENT_USER_STARTED: String = "usual.event.USER_STARTED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user startup.
+**Description:** (Reserved event, not yet supported) Represents a common event for user startup.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_STARTING
 
@@ -2225,13 +2260,13 @@ public static const COMMON_EVENT_USER_STARTED: String = "usual.event.USER_STARTE
 public static const COMMON_EVENT_USER_STARTING: String = "usual.event.USER_STARTING"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user startup.
+**Description:** (Reserved event, not yet supported) Represents a common event for user startup.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_STOPPED
 
@@ -2239,13 +2274,13 @@ public static const COMMON_EVENT_USER_STARTING: String = "usual.event.USER_START
 public static const COMMON_EVENT_USER_STOPPED: String = "usual.event.USER_STOPPED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for user stoppage.
+**Description:** (Reserved event, not yet supported) Represents a common event for user stop.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_STOPPING
 
@@ -2253,13 +2288,13 @@ public static const COMMON_EVENT_USER_STOPPED: String = "usual.event.USER_STOPPE
 public static const COMMON_EVENT_USER_STOPPING: String = "usual.event.USER_STOPPING"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for stopping a user.
+**Description:** (Reserved event, not yet supported) Represents a common event for user being stopped.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_SWITCHED
 
@@ -2267,13 +2302,13 @@ public static const COMMON_EVENT_USER_STOPPING: String = "usual.event.USER_STOPP
 public static const COMMON_EVENT_USER_SWITCHED: String = "usual.event.USER_SWITCHED"
 ```
 
-**Description:** Indicates a common event for ongoing user switching.
+**Description:** Represents a common event for ongoing user switch.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_USER_UNLOCKED
 
@@ -2281,39 +2316,39 @@ public static const COMMON_EVENT_USER_SWITCHED: String = "usual.event.USER_SWITC
 public static const COMMON_EVENT_USER_UNLOCKED: String = "usual.event.USER_UNLOCKED"
 ```
 
-**Description:** Indicates a common event for unlocking credential-encrypted storage of the current user after device reboot.
+**Description:** Represents a common event for credential-encrypted storage unlock of the current user after device reboot.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
-
-### static const COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
+**Since:** 22### static const COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 
 ```cangjie
 public static const COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED: String = "usual.event.data.VISIBLE_ACCOUNTS_UPDATED"
 ```
 
-**Description:** (Reserved event, not yet supported) Indicates a common event for visible account changes.
+**Description:** (Reserved event, currently unsupported) Indicates a common event for account visibility changes.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21### static const COMMON_EVENT_VOLUME_BAD_REMOVAL
+**Since:** 22
+
+### static const COMMON_EVENT_VOLUME_BAD_REMOVAL
 
 ```cangjie
 public static const COMMON_EVENT_VOLUME_BAD_REMOVAL: String = "usual.event.data.VOLUME_BAD_REMOVAL"
 ```
 
-**Description:** Indicates a common event for external storage device status changing to "unmounted before safe removal".
+**Description:** Indicates a common event when external storage device status changes to removed while mounted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_VOLUME_EJECT
 
@@ -2327,7 +2362,7 @@ public static const COMMON_EVENT_VOLUME_EJECT: String = "usual.event.data.VOLUME
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_VOLUME_MOUNTED
 
@@ -2335,13 +2370,13 @@ public static const COMMON_EVENT_VOLUME_EJECT: String = "usual.event.data.VOLUME
 public static const COMMON_EVENT_VOLUME_MOUNTED: String = "usual.event.data.VOLUME_MOUNTED"
 ```
 
-**Description:** Indicates a common event for external storage device status changing to "mounted".
+**Description:** Indicates a common event when external storage device status changes to mounted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_VOLUME_REMOVED
 
@@ -2349,13 +2384,13 @@ public static const COMMON_EVENT_VOLUME_MOUNTED: String = "usual.event.data.VOLU
 public static const COMMON_EVENT_VOLUME_REMOVED: String = "usual.event.data.VOLUME_REMOVED"
 ```
 
-**Description:** Indicates a common event for external storage device status changing to "removed".
+**Description:** Indicates a common event when external storage device status changes to removed.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_VOLUME_UNMOUNTED
 
@@ -2363,13 +2398,13 @@ public static const COMMON_EVENT_VOLUME_REMOVED: String = "usual.event.data.VOLU
 public static const COMMON_EVENT_VOLUME_UNMOUNTED: String = "usual.event.data.VOLUME_UNMOUNTED"
 ```
 
-**Description:** Indicates a common event for external storage device status changing to "unmounted".
+**Description:** Indicates a common event when external storage device status changes to unmounted.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_AP_STA_JOIN
 
@@ -2383,7 +2418,7 @@ public static const COMMON_EVENT_WIFI_AP_STA_JOIN: String = "usual.event.wifi.WI
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_AP_STA_LEAVE
 
@@ -2397,7 +2432,7 @@ public static const COMMON_EVENT_WIFI_AP_STA_LEAVE: String = "usual.event.wifi.W
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_CONN_STATE
 
@@ -2411,7 +2446,7 @@ public static const COMMON_EVENT_WIFI_CONN_STATE: String = "usual.event.wifi.CON
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_HOTSPOT_STATE
 
@@ -2419,13 +2454,13 @@ public static const COMMON_EVENT_WIFI_CONN_STATE: String = "usual.event.wifi.CON
 public static const COMMON_EVENT_WIFI_HOTSPOT_STATE: String = "usual.event.wifi.HOTSPOT_STATE"
 ```
 
-**Description:** Indicates a common event for Wi-Fi hotspot state changes (enabled/disabled).
+**Description:** Indicates a common event for Wi-Fi hotspot state changes, such as enabled or disabled.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE
 
@@ -2439,7 +2474,7 @@ public static const COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE: String = "usual.event
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_P2P_CONN_STATE
 
@@ -2453,7 +2488,7 @@ public static const COMMON_EVENT_WIFI_P2P_CONN_STATE: String = "usual.event.wifi
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED
 
@@ -2467,7 +2502,7 @@ public static const COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED: String =
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED
 
@@ -2481,7 +2516,7 @@ public static const COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED: String = "usual.e
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED
 
@@ -2495,7 +2530,7 @@ public static const COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED: String 
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED
 
@@ -2509,7 +2544,7 @@ public static const COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED: String = "usual.e
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_P2P_STATE_CHANGED
 
@@ -2517,13 +2552,13 @@ public static const COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED: String = "usual.e
 public static const COMMON_EVENT_WIFI_P2P_STATE_CHANGED: String = "usual.event.wifi.p2p.STATE_CHANGE"
 ```
 
-**Description:** Indicates a common event when Wi-Fi P2P state (enabled/disabled) changes.
+**Description:** Indicates a common event for Wi-Fi P2P state changes (e.g., enabled/disabled).
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_POWER_STATE
 
@@ -2531,13 +2566,13 @@ public static const COMMON_EVENT_WIFI_P2P_STATE_CHANGED: String = "usual.event.w
 public static const COMMON_EVENT_WIFI_POWER_STATE: String = "usual.event.wifi.POWER_STATE"
 ```
 
-**Description:** Indicates a common event when Wi-Fi state (enabled/disabled) changes.
+**Description:** Indicates a common event for Wi-Fi state changes (e.g., enabled/disabled).
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_RSSI_VALUE
 
@@ -2551,7 +2586,7 @@ public static const COMMON_EVENT_WIFI_RSSI_VALUE: String = "usual.event.wifi.RSS
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### static const COMMON_EVENT_WIFI_SCAN_FINISHED
 
@@ -2559,10 +2594,10 @@ public static const COMMON_EVENT_WIFI_RSSI_VALUE: String = "usual.event.wifi.RSS
 public static const COMMON_EVENT_WIFI_SCAN_FINISHED: String = "usual.event.wifi.SCAN_FINISHED"
 ```
 
-**Description:** Indicates a common event when Wi-Fi access points have been scanned and confirmed available.
+**Description:** Indicates a common event when Wi-Fi access points have been scanned and verified as available.
 
 **Type:** String
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22

@@ -1,321 +1,321 @@
 # Package Management Subsystem Common Error Codes
 
-## 17700001 Specified bundleName Does Not Exist
+## 17700001 Specified bundleName does not exist
 
 **Error Message**  
 The specified bundle name is not found.
 
 **Error Description**  
-The bundleName passed when calling query interfaces does not exist.
+When calling query interfaces, the input bundleName does not exist.
 
 **Possible Causes**  
 1. Incorrect bundleName input.  
-2. The corresponding application is not installed in the system.  
+2. The corresponding application is not installed in the system.
 
 **Resolution Steps**  
 1. Verify the spelling of bundleName.  
-2. Confirm whether the corresponding application is installed.  
+2. Confirm whether the corresponding application is installed.
 
-## 17700002 Specified moduleName Does Not Exist  
+## 17700002 Specified moduleName does not exist
 
 **Error Message**  
-The specified module is not found.  
+The specified module is not found.
 
 **Error Description**  
-The moduleName passed when calling query or installation-free related interfaces does not exist.  
+When calling query or installation-free related interfaces, the input moduleName does not exist.
 
 **Possible Causes**  
 1. Incorrect moduleName input.  
-2. The corresponding module is not installed for the application in the system.  
+2. The corresponding application does not have this module installed.
 
 **Resolution Steps**  
 1. Verify the spelling of moduleName.  
-2. Confirm whether the corresponding module is installed for the application.  
+2. Confirm whether the corresponding application has this module installed.
 
-## 17700003 Specified abilityName Does Not Exist  
+## 17700003 Specified abilityName does not exist
 
 **Error Message**  
-The specified ability is not found.  
+The specified ability is not found.
 
 **Error Description**  
-The abilityName passed when calling query interfaces does not exist.  
+When calling query interfaces, the input abilityName does not exist.
 
 **Possible Causes**  
 1. Incorrect abilityName input.  
-2. The corresponding ability does not exist for the application in the system.  
+2. The corresponding application does not have an ability matching this abilityName.
 
 **Resolution Steps**  
 1. Verify the spelling of abilityName.  
-2. Confirm whether the corresponding ability exists for the application.  
+2. Confirm whether the corresponding application has an ability matching this abilityName.
 
-## 17700004 Specified User Does Not Exist  
+## 17700004 Specified user does not exist
 
 **Error Message**  
-The specified user ID is not found.  
+The specified user ID is not found.
 
 **Error Description**  
-The user passed when calling user-related interfaces does not exist.  
+When calling user-related interfaces, the input user does not exist.
 
 **Possible Causes**  
 1. Incorrect username input.  
-2. The user does not exist in the system.  
+2. The user does not exist in the system.
 
 **Resolution Steps**  
 1. Verify the spelling of the username.  
-2. Confirm whether the user exists in the system.  
+2. Confirm whether the user exists in the system.
 
-## 17700005 Specified appId Is an Empty String  
+## 17700005 Specified appId is an empty string
 
 **Error Message**  
-The specified app ID is an empty string.  
+The specified app ID is empty string.
 
 **Error Description**  
-The appId passed when calling appControl module interfaces is an empty string.  
+When calling interfaces in the appControl module, the input appId is an empty string.
 
 **Possible Causes**  
-The passed appId is an empty string.  
+The input appId is an empty string.
 
 **Resolution Steps**  
-Check whether appId is an empty string.  
+Check whether appId is an empty string.
 
-## 17700006 Queried Permission Does Not Exist  
+## 17700006 Queried permission does not exist
 
 **Error Message**  
-The specified permission is not found.  
+The specified permission is not found.
 
 **Error Description**  
-The permission passed when calling the getPermissionDef interface in the bundleManager module does not exist.  
+When calling the getPermissionDef interface in the bundleManager module, the input permission does not exist.
 
 **Possible Causes**  
 1. Incorrect permission name spelling.  
-2. The corresponding permission does not exist in the system.  
+2. The corresponding permission does not exist in the system.
 
 **Resolution Steps**  
 1. Verify the spelling of the permission.  
-2. Confirm whether the permission exists in the system.  
+2. Confirm whether the permission exists in the system.
 
-## 17700007 Invalid Device ID Input  
+## 17700007 Invalid device ID input
 
 **Error Message**  
-The specified device ID is not found.  
+The specified device ID is not found.
 
 **Error Description**  
-The device ID passed when calling distributedBundle module interfaces is invalid.  
+When calling interfaces in the distributedBundle module, the input device ID is invalid.
 
 **Possible Causes**  
 1. Incorrect deviceId spelling.  
-2. The deviceId does not exist.  
+2. The deviceId does not exist.
 
 **Resolution Steps**  
 1. Verify the spelling of deviceId.  
-2. Confirm whether the deviceId exists.  
+2. Confirm whether the deviceId exists.
 
-## 17700010 Application Installation Failed Due to File Parsing Failure  
+## 17700010 Application installation failed due to file parsing failure
 
 **Error Message**  
-Failed to install the HAP because the HAP fails to be parsed.  
+Failed to install the HAP because the HAP fails to be parsed.
 
 **Error Description**  
-The HAP passed when calling the install interface in the installer module failed to be parsed.  
+When calling the install interface in the installer module, the input HAP failed to be parsed.
 
 **Possible Causes**  
 1. The HAP format is not ZIP.  
 2. The HAP configuration file does not comply with JSON format.  
-3. The HAP configuration file lacks required fields.  
+3. The HAP configuration file lacks required fields.
 
 **Resolution Steps**  
 1. Confirm the HAP format is ZIP.  
-2. Ensure the HAP configuration file complies with JSON format.  
-3. Check for error prompts during HAP compilation in DevEco Studio—missing fields will trigger corresponding errors.  
+2. Confirm the HAP configuration file complies with JSON format.  
+3. Check whether DevEco Studio shows error prompts during HAP compilation - missing fields will trigger corresponding errors.
 
-## 17700011 Application Installation Failed Due to Signature Verification Failure  
+## 17700011 Application installation failed due to signature verification failure
 
 **Error Message**  
-Failed to install the HAP because the HAP signature fails to be verified.  
+Failed to install the HAP because the HAP signature fails to be verified.
 
 **Error Description**  
-Application installation failed due to signature verification failure when calling the install interface in the installer module.  
+When calling the install interface in the installer module, application installation failed due to signature verification failure.
 
 **Possible Causes**  
 1. The HAP is unsigned.  
 2. The HAP signature source is unreliable.  
-3. The signature of the upgraded HAP does not match the installed HAP.  
-4. Signatures of multiple HAPs are inconsistent.  
+3. The signature of the HAP to be upgraded does not match the installed HAP.  
+4. Signatures of multiple HAPs are inconsistent.
 
 **Resolution Steps**  
-1. Confirm the HAP is successfully signed.  
-2. Ensure the HAP signature certificate is obtained from the application market.  
-3. Verify the same certificate is used for signing multiple HAPs.  
-4. Confirm the signature certificate of the upgraded HAP matches the installed HAP.  
+1. Confirm whether the HAP is successfully signed.  
+2. Confirm the HAP signature certificate is obtained from the application market.  
+3. Confirm multiple HAPs use the same certificate for signing.  
+4. Confirm the upgrade HAP uses the same signature certificate as the installed HAP.
 
-## 17700012 Application Installation Failed Due to Invalid Path or Oversized File  
+## 17700012 Application installation failed due to invalid package path or oversized file
 
 **Error Message**  
-Failed to install the HAP because the HAP path is invalid or the HAP is too large.  
+Failed to install the HAP because the HAP path is invalid or the HAP is too large.
 
 **Error Description**  
-Application installation failed due to an invalid installation path or oversized file when calling the install interface in the installer module.  
+When calling the install interface in the installer module, application installation failed due to invalid package path or oversized file.
 
 **Possible Causes**  
-1. Incorrect input—the HAP file path does not exist.  
+1. Input error - the HAP file path does not exist.  
 2. The HAP path is inaccessible.  
-3. The HAP size exceeds the 4GB limit.  
+3. The HAP size exceeds the 4GB maximum limit.
 
 **Resolution Steps**  
-1. Confirm the HAP exists.  
-2. Check the HAP's executable permissions—ensure it is readable.  
-3. Verify the HAP size does not exceed 4GB.  
+1. Confirm whether the HAP exists.  
+2. Check the HAP's executable permissions (readable).  
+3. Check whether the HAP size exceeds 4GB.
 
-## 17700015 Application Installation Failed Due to Inconsistent HAP Configurations  
+## 17700015 Application installation failed due to inconsistent configuration information across multiple HAPs
 
 **Error Message**  
-Failed to install the HAPs because they have different configuration information.  
+Failed to install the HAPs because they have different configuration information.
 
 **Error Description**  
-Application installation failed due to inconsistent configuration information among multiple HAPs when calling the install interface in the installer module.  
+When calling the install interface in the installer module, application installation failed due to inconsistent configuration information across multiple HAPs.
 
 **Possible Causes**  
-Fields under the app tag in the configuration files of multiple HAPs are inconsistent.  
+Fields under the app tag in configuration files of multiple HAPs are inconsistent.
 
 **Resolution Steps**  
-Ensure fields under the app tag in multiple HAP configurations are consistent.  
+Confirm whether fields under the app tag in multiple HAP configuration files are consistent.
 
-## 17700016 Application Installation Failed Due to Insufficient Disk Space  
+## 17700016 Application installation failed due to insufficient system disk space
 
 **Error Message**  
-Failed to install the HAP because of insufficient system disk space.  
+Failed to install the HAP because of insufficient system disk space.
 
 **Error Description**  
-Application installation failed due to insufficient system disk space when calling the install interface in the installer module.  
+When calling the install interface in the installer module, application installation failed due to insufficient system disk space.
 
 **Possible Causes**  
-Insufficient system space.  
+Insufficient system space.
 
 **Resolution Steps**  
-Confirm sufficient system space is available.  
+Confirm whether the system has sufficient space.
 
-## 17700017 Application Installation Failed Due to Lower Version Number  
+## 17700017 Application installation failed because the new version is lower than the installed version
 
 **Error Message**  
-Failed to install the HAP since the version of the HAP to install is too early.  
+Failed to install the HAP since the version of the HAP to install is too early.
 
 **Error Description**  
-Application installation failed because the version number of the newly installed application is lower than the installed version when calling the install interface in the installer module.  
+When calling the install interface in the installer module, application installation failed because the new version is lower than the installed version.
 
 **Possible Causes**  
-The version number of the newly installed application is lower than the installed version.  
+The version of the application to be installed is lower than the installed version.
 
 **Resolution Steps**  
-Ensure the version number of the newly installed application is not lower than the installed version.  
+Confirm whether the new application version is not lower than the installed version of the same application.
 
-## 17700018 Installation Failed Due to Missing Dependent Module  
+## 17700018 Installation failed due to missing dependent module
 
 **Error Message**  
-Failed to install because the dependent module does not exist.  
+Failed to install because the dependent module does not exist.
 
 **Error Description**  
-The dependent module does not exist during HAP installation.  
+When installing HAP, the dependent module does not exist.
 
 **Possible Causes**  
-The dependent module is not installed.  
+The dependent module is not installed.
 
 **Resolution Steps**  
-Install the dependent module first.  
+Install the dependent module first.
 
-## 17700020 Preinstalled Application Cannot Be Uninstalled  
+## 17700020 Preinstalled application cannot be uninstalled
 
 **Error Message**  
-The preinstalled app cannot be uninstalled.  
+The preinstalled app cannot be uninstalled.
 
 **Error Description**  
-The preinstalled application cannot be uninstalled when calling the uninstall interface in the installer module.  
+When calling the uninstall interface in the installer module to uninstall a preinstalled application, the operation failed.
 
 **Possible Causes**  
 1. Incorrect bundleName spelling.  
-2. The corresponding preinstalled application cannot be uninstalled.  
+2. The corresponding preinstalled application cannot be uninstalled.
 
 **Resolution Steps**  
-1. Verify the bundleName spelling.  
-2. Confirm whether the preinstalled application can be uninstalled.  
+1. Confirm whether bundleName is spelled correctly.  
+2. Confirm whether the corresponding preinstalled application can be uninstalled.
 
-## 17700021 Specified UID Is Invalid  
+## 17700021 Specified uid is invalid
 
 **Error Message**  
-The specified uid is invalid.  
+The specified uid is invalid.
 
 **Error Description**  
-The specified UID is invalid when calling the getBundleNameByUid interface in the bundleManager module.  
+When calling the getBundleNameByUid interface in the bundleManager module, the specified uid is invalid.
 
 **Possible Causes**  
-1. Incorrect UID spelling.  
-2. The UID does not exist in the system.  
+1. Incorrect uid spelling.  
+2. The input uid does not exist in the system.
 
 **Resolution Steps**  
-1. Check the UID spelling.  
-2. Verify whether the UID exists in the system.  
+1. Verify the uid spelling.  
+2. Check whether the uid exists in the system.
 
-## 17700022 Invalid Input Source File for Parsing  
+## 17700022 Invalid input source file for parsing
 
 **Error Message**  
-The input source file is invalid.  
+The input source file is invalid.
 
 **Error Description**  
-The HAP path passed when calling the getBundleArchiveInfo interface in the bundleManager module is invalid.  
+When calling the getBundleArchiveInfo interface in the bundleManager module, the input HAP path is invalid.
 
 **Possible Causes**  
 1. The source file to be parsed does not exist.  
-2. The source file does not comply with ZIP format.  
+2. The source file to be parsed does not comply with ZIP format.
 
 **Resolution Steps**  
-1. Confirm the source file exists.  
-2. Ensure the source file complies with ZIP format.  
+1. Confirm whether the source file to be parsed exists.  
+2. Confirm whether the source file complies with ZIP format.
 
-## 17700023 Specified Default Application Does Not Exist  
+## 17700023 Specified default application does not exist
 
 **Error Message**  
-The specified default app does not exist.  
+The specified default app does not exist.
 
 **Error Description**  
-The specified default application does not exist when calling the getDefaultApplication interface in the defaultAppManager module.  
+When calling the getDefaultApplication interface in the defaultAppManager module, the specified default application does not exist.
 
 **Possible Causes**  
-The device has no default application configured.  
+The device has not set the corresponding default application.
 
 **Resolution Steps**  
-Confirm whether the device has a corresponding default application configured.  
+Confirm whether the device has set the corresponding default application.
 
-## 17700024 No Corresponding Configuration File Found  
+## 17700024 No corresponding configuration file found
 
 **Error Message**  
-The specified profile is not found in the HAP.  
+The specified profile is not found in the HAP.
 
 **Error Description**  
-No corresponding configuration file is found when calling profile file query interfaces.  
+When calling interfaces to query profile files, no corresponding configuration file was found.
 
 **Possible Causes**  
 1. The input metadata name does not exist in the configuration file.  
 2. The configuration file content is not in JSON format.  
-3. The queried profile type does not exist.  
+3. The queried profile type does not exist.
 
 **Resolution Steps**  
-1. Verify whether the metadata name exists in the ability or extensionAbility configuration.  
-2. Confirm the specified profile file content is in JSON format.  
-3. Check whether the application has a configuration file matching the queried profileType.  
+1. Confirm whether the metadata name exists in the ability or extensionAbility to be queried.  
+2. Confirm whether the specified profile file content is in JSON format.  
+3. Confirm whether the application has configuration files matching the queried profileType.
 
-## 17700025 Invalid Input Type  
+## 17700025 Invalid input type
 
 **Error Message**  
-The specified type is invalid.  
+The specified type is invalid.
 
 **Error Description**  
-The input type is invalid when calling interfaces in the defaultAppManager module.  
+When calling interfaces in the defaultAppManager module, the input type is invalid.
 
 **Possible Causes**  
 1. Incorrect type spelling.  
-2. The input type does not exist.  
+2. The input type does not exist.
 
 **Resolution Steps**  
-1. Verify the type spelling.  
+1. Confirm whether the input type is spelled correctly.  
 2. Confirm whether the input type exists.## 17700026 Specified Application Disabled
 
 **Error Message**
@@ -324,7 +324,7 @@ The specified bundle is disabled.
 
 **Error Description**
 
-When calling the API to query application information, the specified application is disabled.
+When calling the interface to query application information, the specified application is disabled.
 
 **Possible Causes**
 
@@ -342,17 +342,17 @@ The distributed service is not running.
 
 **Error Description**
 
-When calling APIs related to the distributedBundle module, the distributed service is not running.
+When calling interfaces related to the distributedBundle module, the distributed service is not running.
 
 **Possible Causes**
 
-The device is not connected to a network.
+The device is not networked.
 
 **Resolution Steps**
 
-Verify whether the device has successfully joined the network.
+Confirm whether the device has successfully joined the network.
 
-## 17700028 Input Ability Does Not Match Type
+## 17700028 Input Ability Does Not Match the Type
 
 **Error Message**
 
@@ -364,7 +364,7 @@ When calling the setDefaultApplication interface in the defaultAppManager module
 
 **Possible Causes**
 
-The input ability or type contains spelling errors.
+The input ability or type is misspelled.
 
 **Resolution Steps**
 
@@ -378,7 +378,7 @@ The specified ability is disabled.
 
 **Error Description**
 
-When calling the API to query ability information, the specified ability is disabled.
+When calling the interface to query ability information, the specified ability is disabled.
 
 **Possible Causes**
 
@@ -386,7 +386,7 @@ The specified ability is disabled.
 
 **Resolution Steps**
 
-Verify whether the specified ability is disabled. Use the bm tool command to query the corresponding application information.
+Check whether the specified ability is disabled. You can use the bm tool command to query the corresponding application information.
 
 ## 17700030 Specified Application Does Not Support Clearing Cache Files
 
@@ -404,8 +404,8 @@ The specified application is a system application and has the "AllowAppDataNotCl
 
 **Resolution Steps**
 
-1. Verify whether the specified application is a system application. Use the bm tool command to query the corresponding application information and check if isSystemApp is true.
-2. Verify whether the specified application has the "AllowAppDataNotCleared" field configured. Use the bm tool command to query the corresponding application information and check if userDataClearable is true.
+1. Confirm whether the specified application is a system application. Use the bm tool command to query the corresponding application information and check if isSystemApp is true.
+2. Confirm whether the specified application has the "AllowAppDataNotCleared" field configured. Use the bm tool command to query the corresponding application information and check if userDataClearable is true.
 
 ## 17700031 HAP Installation Failed Due to Overlay Feature Verification Failure
 
@@ -415,21 +415,21 @@ Failed to install the HAP because the overlay check of the HAP is failed.
 
 **Error Description**
 
-When installing an application with overlay features, the specified application or the overlay feature application is not a pre-installed application, or the target application/module is an overlay feature application/module.
+When installing an application with overlay features, the specified application or the overlay feature application to be installed is not a preset application, or the target application/module is an overlay feature application/module.
 
 **Possible Causes**
 
-1. When using inter-application overlay features, the overlay feature application must be a pre-installed application.
-2. When using inter-application overlay features, the target application must be a pre-installed application.
+1. When using inter-application overlay features, the overlay feature application must be a preset application.
+2. When using inter-application overlay features, the target application must be a preset application.
 3. When using inter-application overlay features, the target application cannot be an overlay feature application.
 4. The target module cannot be an overlay feature module.
 
 **Resolution Steps**
 
-1. Verify whether the overlay feature application is a pre-installed application.
-2. Verify whether the target application is a pre-installed application.
-3. Verify whether the target application is not an overlay feature application.
-4. Verify whether the target module is not an overlay feature module.
+1. Check whether the overlay feature application is a preset application.
+2. Check whether the target application is a preset application.
+3. Check whether the target application is not an overlay feature application.
+4. Check whether the target module is not an overlay feature module.
 
 ## 17700032 Specified Application Does Not Contain Overlay Feature Module
 
@@ -447,7 +447,7 @@ The specified application does not contain an overlay feature module.
 
 **Resolution Steps**
 
-Verify whether the specified application does not contain an overlay feature module.
+Check whether the specified application does not contain an overlay feature module.
 
 ## 17700033 Specified Module Is Not an Overlay Feature Module
 
@@ -465,7 +465,7 @@ The specified module is not an overlay feature module.
 
 **Resolution Steps**
 
-Verify whether the specified module is not an overlay feature module.
+Check whether the specified module is not an overlay feature module.
 
 ## 17700034 Specified Module Is an Overlay Feature Module
 
@@ -483,7 +483,7 @@ The specified module is an overlay feature module.
 
 **Resolution Steps**
 
-Verify whether the specified module is an overlay feature module.
+Check whether the specified module is an overlay feature module.
 
 ## 17700035 Specified Application Contains Only Overlay Feature Modules
 
@@ -501,7 +501,7 @@ The specified application contains only overlay feature modules.
 
 **Resolution Steps**
 
-Verify whether the specified application contains only overlay feature modules.
+Check whether the specified application contains only overlay feature modules.
 
 ## 17700036 HSP Installation Failed Due to Missing AllowAppShareLibrary Privilege
 
@@ -511,7 +511,7 @@ Failed to install the HSP because lacks appropriate permissions.
 
 **Error Description**
 
-The shared library has not applied for the AllowAppShareLibrary privilege, which may pose security and privacy risks. Installation is not allowed.
+The shared library has not applied for the AllowAppShareLibrary privilege, which may pose security and privacy risks and is not allowed for installation.
 
 **Possible Causes**
 
@@ -529,17 +529,17 @@ The version of shared bundle is dependent on other applications.
 
 **Error Description**
 
-When uninstalling a version of a shared library, the specified version of the shared library is dependent on other applications, causing the uninstallation to fail.
+When uninstalling a version of the shared library, the specified version of the shared library is dependent on other applications, resulting in uninstallation failure.
 
 **Possible Causes**
 
-1. The version being uninstalled is the highest version of the shared library, and the shared library is dependent on other applications.
-2. The version of the shared library was not specified during uninstallation, which would uninstall all versions of the shared library, and the shared library is dependent on other applications.
+1. The version being uninstalled is the highest version of the shared library, and this shared library is dependent on other applications.
+2. The version of the shared library is not specified during uninstallation, which would uninstall all versions of the shared library, and this shared library is dependent on other applications.
 
 **Resolution Steps**
 
-1. Verify whether the shared library being uninstalled is dependent on other applications.
-2. Verify whether the version being uninstalled is the highest version of the shared library.
+1. Check whether the shared library being uninstalled is dependent on other applications.
+2. Check whether the version being uninstalled is the highest version of the shared library.
 
 ## 17700038 Specified Shared Library Does Not Exist
 
@@ -553,15 +553,15 @@ When uninstalling a shared library, the specified shared library does not exist.
 
 **Possible Causes**
 
-1. The specified version to uninstall does not exist in the shared library being uninstalled.
-2. The specified shared library to uninstall does not exist on the device.
+1. The version specified for uninstallation does not exist in the shared library to be uninstalled.
+2. The shared library specified for uninstallation does not exist on the device.
 
 **Resolution Steps**
 
-1. Verify whether the shared library being uninstalled exists on the current device.
-2. Verify whether the version being uninstalled exists in the shared library being uninstalled.
+1. Check whether the shared library to be uninstalled exists on the current device.
+2. Check whether the version to be uninstalled exists in the shared library to be uninstalled.
 
-## 17700039 Inter-Application Shared Library Installation Not Allowed
+## 17700039 Installation of Inter-Application Shared Library Not Allowed
 
 **Error Message**
 
@@ -569,19 +569,19 @@ Failed to install because disallow install a shared bundle by hapFilePaths.
 
 **Error Description**
 
-When installing an application, the installation package provided is an inter-application shared library type.
+When installing an application, the installation package passed is of the inter-application shared library type.
 
 **Possible Causes**
 
-1. When using the bm tool to install an application, the -p parameter was used to specify the path of an inter-application shared library installation package.
-2. When using the install interface to install an application, the hapFilePaths parameter was used to specify the path of an inter-application shared library installation package.
+1. When using the bm tool to install an application, the -p parameter passed the installation path of an inter-application shared library.
+2. When using the install interface to install an application, the hapFilePaths parameter passed the installation path of an inter-application shared library.
 
 **Resolution Steps**
 
-1. Use the -s parameter to specify the path of the inter-application shared library installation package.
-2. Use the sharedBundleDirPaths field in the installParam parameter to specify the path of the inter-application shared library installation package.
+1. Use the -s parameter to specify the installation path of the inter-application shared library.
+2. Use the sharedBundleDirPaths field in the installParam parameter to specify the installation path of the inter-application shared library.
 
-## 17700040 Inter-Application Shared Library Uninstallation Not Allowed
+## 17700040 Uninstallation of Inter-Application Shared Library Not Allowed
 
 **Error Message**
 
@@ -589,19 +589,19 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 **Error Description**
 
-When uninstalling an application, the provided bundle name is for an inter-application shared library.
+When uninstalling an application, the package name passed is of an inter-application shared library.
 
 **Possible Causes**
 
-1. When using the bm tool to uninstall an application, the -n parameter was used to specify the bundle name of an inter-application shared library.
-2. When using the uninstall interface to uninstall an application, the bundleName parameter was used to specify the bundle name of an inter-application shared library.
+1. When using the bm tool to uninstall an application, the -n parameter passed the package name of an inter-application shared library.
+2. When using the uninstall interface to uninstall an application, the bundleName passed is the package name of an inter-application shared library.
 
 **Resolution Steps**
 
-1. Use the -s parameter to specify that the application to uninstall is a shared library.
-2. Use the bundleName and versionCode fields in the UninstallParam parameter to specify the bundle name and version of the shared library to uninstall.
+1. Use the -s parameter to specify that the application to be uninstalled is a shared library application.
+2. Use the bundleName and versionCode fields in the UninstallParam parameter to specify the package name and version of the shared library to be uninstalled.
 
-## 17700041 Enterprise Device Management Disallows Installation
+## 17700041 Enterprise Device Management Disallows Installation of the Application
 
 **Error Message**
 
@@ -659,7 +659,7 @@ When installing an application, the permission level of the non-system applicati
 1. Configure read and write permissions in the data proxy.
 2. Modify the read and write permissions and ensure their level is system_basic or system_core.
 
-## 17700044 Conflict Between Multi-Process Configuration in Installation Package and System Configuration
+## 17700044 Contradiction Between Multi-Process Configuration in Installation Package and System Configuration
 
 **Error Message**
 
@@ -667,18 +667,18 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 **Error Description**
 
-When installing an application, the configured isolationMode conflicts with the system configuration settings allowed by the system.
+When installing an application, the configured isolationMode contradicts the system configuration allowed by the system.
 
 **Possible Causes**
 
-1. When the device supports isolation mode (i.e., persist.bms.supportIsolationMode is true), the HAP's isolationMode is configured as nonisolationOnly.
-2. When the device does not support isolation mode (i.e., persist.bms.supportIsolationMode is false), the HAP's isolationMode is configured as isolationOnly.
+1. When the device supports isolation mode (i.e., persist.bms.supportIsolationMode is true), the HAP's configured isolationMode is nonisolationOnly.
+2. When the device does not support isolation mode (i.e., persist.bms.supportIsolationMode is false), the HAP's configured isolationMode is isolationOnly.
 
 **Resolution Steps**
 
-Configure the HAP's isolationMode field correctly according to the device's isolation mode.
+Correctly configure the HAP's isolationMode field according to the device's isolation mode.
 
-## 17700045 Enterprise Device Management Disallows Uninstallation
+## 17700045 Enterprise Device Management Disallows Uninstallation of the Application
 
 **Error Message**
 
@@ -696,7 +696,7 @@ Enterprise device management does not allow the uninstallation of the applicatio
 
 Check on the device whether the application is blocked from uninstallation by enterprise device management.
 
-## 17700047 Application Version to Update Is Not Greater Than Current Version
+## 17700047 Version to Be Updated Is Not Greater Than the Current Version
 
 **Error Message**
 
@@ -704,19 +704,17 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 
 **Error Description**
 
-When installing an application, the version of the application to update is not greater than the current version.
+When installing an application, the version to be updated is not greater than the current version.
 
 **Possible Causes**
 
-1. The version number of the application to install is less than or equal to the version number of the already installed application.
-2. The installFlag is set to NORMAL, in which case the version number of the application to update must be greater than the current installed version.
+1. The version number of the installation package is less than or equal to the version number of the installed application.
+2. The installFlag is set to NORMAL, in which case the version number of the application to be updated must be greater than the currently installed version.
 
 **Resolution Steps**
 
 1. Set the application's version number to be greater than the current version.
-2. If you want to update the application without upgrading the version number, set the installFlag to REPLACE_EXISTING.
-
-## 17700048 Code Signature Verification Failed
+2. If you want to update the application without upgrading the version number, set the installFlag to REPLACE_EXISTING.## 17700048 Code Signature Verification Failed
 
 **Error Message**
 
@@ -724,7 +722,7 @@ Failed to install the HAP because the code signature verification is failed.
 
 **Error Description**
 
-The code signature file verification failed during application installation.
+During application installation, the code signature file verification of the installation package failed.
 
 **Possible Causes**
 
@@ -738,7 +736,7 @@ The code signature file verification failed during application installation.
 2. Check whether the provided code signature file path is valid.
 3. Use a code signature file that matches the installation package.
 
-## 17700049 Bundle Name Mismatch During Application Self-Upgrade
+## 17700049 Mismatched Bundle Names During Application Self-Upgrade
 
 **Error Message**
 
@@ -773,7 +771,7 @@ The installation device is not an enterprise device.
 **Resolution Steps**
 
 1. Verify whether the installation device is an enterprise device.
-2. Check if the device parameter `const.bms.allowenterprisebundle` is set to `true`.
+2. Check whether the device parameter `const.bms.allowenterprisebundle` is set to `true`.
 
 ## 17700051 Caller Application Distribution Type Mismatch During Self-Upgrade
 
@@ -809,7 +807,7 @@ The application is a debug application, but the device is in non-developer mode.
 
 **Resolution Steps**
 
-Execute `hdc shell param get const.security.developermode.state`. If the result is `false`, the device cannot install debug applications.
+Execute `hdc shell param get const.security.developermode.state`. If the returned result is `false`, the device cannot install debug applications.
 
 ## 17700053 Non-AppGallery Call
 
@@ -829,7 +827,7 @@ The caller is not AppGallery.
 
 Verify whether the caller is AppGallery.
 
-## 17700054 Permission Verification Failed Causing Installation Failure
+## 17700054 Permission Verification Failure Causes Installation Failure
 
 **Error Message**
 
@@ -842,12 +840,12 @@ The application to be installed requested incorrect permissions, resulting in in
 **Possible Causes**
 
 1. A non-MDM application requested MDM-type permissions.
-2. The application's permission level is lower than the level of the requested permissions.
+2. The application's permission level is lower than the requested permission level.
 
 **Resolution Steps**
 
 1. Check whether MDM-type permissions were requested. MDM-type permissions are only available for applications of the MDM type.
-2. Verify whether the requested permission level is higher than the application's permission level. By default, applications have a `normal` level and can only use `normal`-level permissions. Using `system_basic` or `system_core`-level permissions will cause errors. Modify the `apl` level in the `UnsgnedDebugProfileTemplate.json` file to `system_basic` or `system_core`, then re-sign and package the application.
+2. Verify whether the requested permission level is higher than the application's permission level. Since the default application level is `normal`, only `normal`-level permissions can be used. If `system_basic` or `system_core`-level permissions are used, an error will occur. Modify the `apl` level in the `UnsgnedDebugProfileTemplate.json` file to `system_basic` or `system_core`, then re-sign and repackage the application.
 
 ## 17700055 Invalid Specified Link
 
@@ -893,7 +891,7 @@ Failed to verify abc.
 
 **Error Description**
 
-.abc file path verification failed.
+The .abc file path verification failed.
 
 **Possible Cause**
 
@@ -911,7 +909,7 @@ Failed to delete abc.
 
 **Error Description**
 
-.abc file deletion failed.
+The .abc file deletion failed.
 
 **Possible Cause**
 
@@ -920,4 +918,3 @@ The .abc file does not exist.
 **Resolution Steps**
 
 Provide a valid .abc file path.
-```

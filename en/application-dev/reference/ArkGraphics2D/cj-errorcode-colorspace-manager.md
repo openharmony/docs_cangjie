@@ -12,11 +12,11 @@ Parameter value is abnormal.
 
 **Error Description**
 
-This error code is reported when the parameter value does not meet the interface invocation requirements.
+This error code occurs when the parameter value does not meet the interface invocation requirements.
 
 **Possible Causes**
 
-An error will be reported if the parameter value exceeds the interface invocation range, such as an enumeration value exceeding the defined range.
+The error may be reported when the parameter value exceeds the invocation range of the interface, such as when an enumeration value exceeds the defined range.
 
 **Resolution Steps**
 

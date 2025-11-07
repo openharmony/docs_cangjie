@@ -14,15 +14,15 @@ Cangjie provides a UI development framework that offers developers essential cap
 
 ### Application Model
 
-The application model is an abstraction provided by OpenHarmony for developers, encapsulating the necessary capabilities for applications. It includes essential components and runtime mechanisms. With the application model, developers can build applications based on a unified framework, making development simpler and more efficient.
+The application model is an abstraction provided by OpenHarmony, offering developers the necessary capabilities for application development. It includes essential components and runtime mechanisms. With the application model, developers can build applications based on a unified framework, making development simpler and more efficient.
 
-Cangjie applications use the Stage model. In this model, classes like AbilityStage and WindowStage serve as the "stage" for application components and window management, hence the name Stage model. For details on Stage model development, refer to [Stage Model Development Overview](https://developerlf.hwcloudtest.cn/consumer/cn/doc/cangjie-guides/cj-stage-model-development-overview).
+Cangjie applications use the Stage model. In this model, classes like `AbilityStage` and `WindowStage` serve as the "stage" for application components and window management, hence the name Stage model.
 
-The quick start guide provides several development examples with different types of pages, all built on the Stage model to help developers understand the above concepts and the application development process.
+The Quick Start guide provides multiple development examples with different types of pages, all built on the Stage model to help developers understand the above concepts and the application development process.
 
-- [Build Your First Cangjie Application](./cj-quick-start-first-cangjie-app.md): Create a simple pure Cangjie application with page navigation/return functionality.
-- [Build Your First Cangjie and ArkTS Hybrid Application](./cj-quick-start-first-cangjie-hybrid-app.md): Create a simple hybrid application with page navigation/return functionality using both Cangjie and ArkTS.
-- [Incrementally Adopt Cangjie in an Existing ArkTS Project](./cj-quick-start-first-cangjie-hybrid-module.md): Based on a simple pure ArkTS application with page navigation/return functionality, introduce Cangjie to develop incremental features.
-- [Cangjie Calling ArkTS Third-Party Modules](./cj-quick-start-dts2cj-plugin-usage.md): Call ArkTS third-party library functions in Cangjie code.
+- [Build Your First Cangjie Application](./cj-quick-start-first-cangjie-app.md#build-your-first-cangjie-application): Create a simple pure Cangjie application with page navigation/return functionality.
+- [Build Your First Cangjie and ArkTS Hybrid Application](./cj-quick-start-first-cangjie-hybrid-app.md#build-your-first-cangjie-and-arkts-hybrid-application): Develop a simple hybrid application with Cangjie and ArkTS, featuring page navigation/return functionality.
+- [Incrementally Adopt Cangjie in an Existing ArkTS Project](./cj-quick-start-first-cangjie-hybrid-module.md#incrementally-adopt-cangjie-in-an-existing-arkts-project): Based on a simple pure ArkTS application with page navigation/return functionality, introduce Cangjie to develop incremental features.
+- [Calling ArkTS Third-Party Modules from Cangjie](./cj-quick-start-dts2cj-plugin-usage.md#calling-arkts-third-party-modules-from-cangjie): Invoke functionalities of ArkTS third-party libraries in Cangjie code.
 
-After understanding these basic concepts, proceed to [Build Your First Cangjie Application](cj-quick-start-first-cangjie-app.md) for further exploration and learning.
+After understanding these basic concepts, proceed to the next step by referring to [Build Your First Cangjie Application](cj-quick-start-first-cangjie-app.md#build-your-first-cangjie-application) for hands-on experience and learning.

@@ -21,9 +21,9 @@ ohos.permission.PRIVACY_WINDOW
 API sample code usage instructions:
 
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of a Cangjie template project.
-- If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of a Cangjie template project.
+- If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the aforementioned sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class AbilityStage
 
@@ -35,7 +35,7 @@ public open class AbilityStage {}
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop context
 
@@ -51,7 +51,26 @@ public mut prop context: AbilityStageContext
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    class MyAbilityStage <: AbilityStage {
+        public override func onCreate(): Unit {
+            let context = this.context
+        }
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### static func registerCreator(String, () -> AbilityStage)
 
@@ -63,14 +82,35 @@ public static func registerCreator(moduleName: String, creator: () -> AbilitySta
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | moduleName | String | Yes | - | Module name. |
-| creator | ()->[AbilityStage](#class-abilitystage) | Yes | - | The creator of AbilityStage. |
+| creator | ()->[AbilityStage](#class-abilitystage) | Yes | - | Creator of AbilityStage. |
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let ENTRY_STAGE_REGISTER_RESULT = AbilityStage.registerCreator("entry", () -> MyAbilityStage)
+
+    class MyAbilityStage <: AbilityStage {
+        public override func onCreate(): Unit {
+            let context = this.context
+        }
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func onCreate()
 
@@ -78,8 +118,27 @@ public static func registerCreator(moduleName: String, creator: () -> AbilitySta
 public open func onCreate(): Unit
 ```
 
-**Description:** Callback triggered when AbilityStage is created, used to execute initialization business logic operations.
+**Description:** Callback when AbilityStage is created, used to execute initialization business logic operations.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    class MyAbilityStage <: AbilityStage {
+        public override func onCreate(): Unit {
+            let context = this.context
+        }
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```

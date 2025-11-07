@@ -1,10 +1,10 @@
 # Page Transition (pageTransition)
 
-When switching routes, you can customize the transition effects for page entry and exit by defining them in the `pageTransition` function.
+When routing switches occur, custom page entrance and exit transition effects can be defined.
 
 > **Note:**
 >
-> For better transition effects, it is recommended to use the Navigation component and [Modal Transition](../../../en/application-dev/arkui-cj/cj-modal-transition.md).
+> For better transition effects, it is recommended to use the Navigation component and [Modal Transition](../../arkui-cj/cj-modal-transition.md).
 
 ## Import Module
 
@@ -18,61 +18,11 @@ import kit.ArkUI.*
 sealed abstract class CommonTransition {}
 ```
 
-**Function:** Base class for common page transition effects.
+**Function:** The common base class for page transition animations, providing a series of reusable animation effect methods.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### func opacity(Float64)
-
-```cangjie
-public func opacity(value: Float64): This
-```
-
-**Function:** Sets the starting opacity value for entry or the ending opacity value for exit.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type      | Required | Default | Description                                      |
-|:----------|:---------|:--------|:--------|:------------------------------------------------|
-| value     | Float64  | Yes     | -       | Starting opacity value for entry or ending opacity value for exit.<br>Range: [0.0, 1.0]. |
-
-### func scale(Float32, Float32, Float32, Length, Length)
-
-```cangjie
-public func scale(
-    x!: Float32 = 1.0,
-    y!: Float32 = 1.0,
-    z!: Float32 = 1.0,
-    centerX!: Length = 50.percent,
-    centerY!: Length = 50.percent
-): This
-```
-
-**Function:** Sets the scaling effect during page transitions.
-
-> **Note:**
->
-> The parameters represent the starting values for entry and ending values for exit.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type                                              | Required | Default        | Description                                                                 |
-|:----------|:-------------------------------------------------|:--------|:---------------|:----------------------------------------------------------------------------|
-| x         | Float32                                          | No      | 1.0            | **Named parameter.** Horizontal scaling factor (or shrinking ratio).        |
-| y         | Float32                                          | No      | 1.0            | **Named parameter.** Vertical scaling factor (or shrinking ratio).         |
-| z         | Float32                                          | No      | 1.0            | **Named parameter.** Depth scaling factor (or shrinking ratio).             |
-| centerX   | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No      | 50.percent     | **Named parameter.** X-axis scaling center point. Defaults to the page center.<br>(0, 0) represents the top-left corner of the page. |
-| centerY   | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No      | 50.percent     | **Named parameter.** Y-axis scaling center point. Defaults to the page center.<br>(0, 0) represents the top-left corner of the page. |
+**Initial Version:** 22
 
 ### func slide(SlideEffect)
 
@@ -80,140 +30,182 @@ public func scale(
 public func slide(value: SlideEffect): This
 ```
 
-**Function:** Sets the slide-in/slide-out effect during page transitions.
+**Function:** Sets the sliding effect during page transitions.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                               | Required | Default | Description                   |
-|:----------|:----------------------------------|:--------|:--------|:------------------------------|
-| value     | [SlideEffect](#enum-slideeffect)  | Yes     | -       | Slide-in/slide-out effect for page transitions. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| value | [SlideEffect](#enum-slideeffect) | Yes | - | The type of sliding effect. |
 
-### func translate(Length, Length, Length)
+### func translate(?Length, ?Length, ?Length)
 
 ```cangjie
-public func translate(x!: Length = 0.vp, y!: Length = 0.vp, z!: Length = 0.vp): This
+public func translate(x!: ?Length = None, y!: ?Length = None, z!: ?Length = None): This
 ```
 
 **Function:** Sets the translation effect during page transitions.
 
-> **Note:**
->
-> The parameters represent the starting values for entry and ending values for exit. If both `slide` and `translate` are set, `slide` takes precedence by default.
-
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                              | Required | Default | Description               |
-|:----------|:-------------------------------------------------|:--------|:--------|:--------------------------|
-| x         | [Length](../BasicServicesKit/cj-apis-base.md#interface-length)| No      | 0.vp    | **Named parameter.** X-axis translation distance. |
-| y         | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No      | 0.vp    | **Named parameter.** Y-axis translation distance. |
-| z         | [Length](../BasicServicesKit/cj-apis-base.md#interface-length)| No      | 0.vp    | **Named parameter.** Z-axis translation distance. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the x-axis. Initial value: 0.0vp |
+| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the y-axis. Initial value: 0.0vp |
+| z | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the z-axis. Initial value: 0.0vp |
+
+### func scale(?Float32, ?Float32, ?Float32, ?Length, ?Length)
+
+```cangjie
+public func scale(
+    x!: ?Float32 = None,
+    y!: ?Float32 = None,
+    z!: ?Float32 = None,
+    centerX!: ?Length = None,
+    centerY!: ?Length = None
+): This
+```
+
+**Function:** Sets the scaling effect during page transitions.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | ?Float32 | No | None | **Named parameter.** The scaling ratio on the x-axis. Initial value: 1.0 |
+| y | ?Float32 | No | None | **Named parameter.** The scaling ratio on the y-axis. Initial value: 1.0 |
+| z | ?Float32 | No | None | **Named parameter.** The scaling ratio on the z-axis. Initial value: 1.0 |
+| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The x-coordinate of the transformation center point. Initial value: 50.percent |
+| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The y-coordinate of the transformation center point. Initial value: 50.percent |
+
+### func opacity(Float64)
+
+```cangjie
+public func opacity(value: Float64): This
+```
+
+**Function:** Sets the opacity effect during page transitions.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| value | Float64 | Yes | - | The opacity value, ranging from [0, 1], where 0 means fully transparent and 1 means fully opaque. |
 
 ## class PageTransitionEnter
 
 ```cangjie
 public class PageTransitionEnter <: CommonTransition {
     public init(
-        routeType!: RouteType = RouteType.None,
-        duration!: Int32 = 1000,
-        curve!: Curve = Curve.Linear,
-        delay!: Int32 = 0
+        routeType!: ?RouteType = Option.None,
+        duration!: ?Int32 = None,
+        curve!: ?Curve = None,
+        delay!: ?Int32 = None
     )
 }
 ```
 
-**Function:** Custom entry animation type for the current page.
+**Function:** The custom entrance animation type for the current page.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parent Type:**
 
 - [CommonTransition](#class-commontransition)
 
-### init(RouteType, Int32, Curve, Int32)
+### init(?RouteType, ?Int32, ?Curve, ?Int32)
 
 ```cangjie
 public init(
-    routeType!: RouteType = RouteType.None,
-    duration!: Int32 = 1000,
-    curve!: Curve = Curve.Linear,
-    delay!: Int32 = 0
+    routeType!: ?RouteType = Option.None,
+    duration!: ?Int32 = None,
+    curve!: ?Curve = None,
+    delay!: ?Int32 = None
 )
 ```
 
-**Function:** Creates a custom entry animation object for the current page.
+**Function:** Creates a custom entrance animation object for the current page.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter  | Type                                       | Required | Default          | Description                                                                                                      |
-|:-----------|:------------------------------------------|:--------|:----------------|:-----------------------------------------------------------------------------------------------------------------|
-| routeType  | [RouteType](#enum-routetype)              | No      | RouteType.None  | **Named parameter.** Route type for which the transition effect applies.                                         |
-| duration   | Int32                                     | No      | 1000            | **Named parameter.** Animation duration.<br>Unit: milliseconds.<br>Range: [0, +∞).                              |
-| curve      | [Curve](./cj-common-types.md#enum-curve)  | No      | Curve.Linear    | **Named parameter.** Animation curve.                                                                            |
-| delay      | Int32                                     | No      | 0               | **Named parameter.** Animation delay duration.<br>Unit: milliseconds.<br>**Note:**<br>If no match is found, the system default page transition effect is used (may vary by device). To disable the default effect, set `duration` to 0. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| routeType | ?[RouteType](#enum-routetype) | No | Option.None | **Named parameter.** The route type for which the page transition effect is applied. |
+| duration | ?Int32 | No | None | **Named parameter.** The duration of the animation. Unit: milliseconds. Range: [0, +∞). |
+| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve. |
+| delay | ?Int32 | No | None | **Named parameter.** The delay time of the animation. Unit: milliseconds. |
 
-### func onEnter(PageTransitionCallback)
+### func onEnter(?PageTransitionCallback)
 
 ```cangjie
-public func onEnter(event: PageTransitionCallback)
+public func onEnter(event: ?PageTransitionCallback)
 ```
 
-**Function:** Frame-by-frame callback until the entry animation completes, with `progress` ranging from 0 to 1.
+**Function:** Frame-by-frame callback until the entrance animation ends, with progress changing from 0 to 1.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                                          | Required | Default | Description                                |
-|:----------|:-------------------------------------------------------------|:--------|:--------|:-------------------------------------------|
-| event     | [PageTransitionCallback](#type-pagetransitioncallback) | Yes     | -       | Frame-by-frame callback until the entry animation completes, with `progress` ranging from 0 to 1. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| event | ?[PageTransitionCallback](#type-pagetransitioncallback) | Yes | - | The frame-by-frame callback for the entrance animation until it ends, with progress changing from 0 to 1. |
 
 ## class PageTransitionExit
 
 ```cangjie
 public class PageTransitionExit <: CommonTransition {
     public init(
-        routeType!: RouteType = RouteType.None,
-        duration!: Int32 = 1000,
-        curve!: Curve = Curve.Linear,
-        delay!: Int32 = 0
+        routeType!: ?RouteType = Option.None,
+        duration!: ?Int32 = None,
+        curve!: ?Curve = None,
+        delay!: ?Int32 = None
     )
 }
 ```
 
-**Function:** Custom exit animation type for the current page.
+**Function:** The custom exit animation type for the current page.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parent Type:**
 
 - [CommonTransition](#class-commontransition)
 
-### init(RouteType, Int32, Curve, Int32)
+### init(?RouteType, ?Int32, ?Curve, ?Int32)
 
 ```cangjie
 public init(
-    routeType!: RouteType = RouteType.None,
-    duration!: Int32 = 1000,
-    curve!: Curve = Curve.Linear,
-    delay!: Int32 = 0
+    routeType!: ?RouteType = Option.None,
+    duration!: ?Int32 = None,
+    curve!: ?Curve = None,
+    delay!: ?Int32 = None
 )
 ```
 
@@ -221,50 +213,55 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter  | Type                                       | Required | Default          | Description                                                                                                      |
-|:-----------|:------------------------------------------|:--------|:----------------|:-----------------------------------------------------------------------------------------------------------------|
-| routeType  | [RouteType](#enum-routetype)              | No      | RouteType.None  | **Named parameter.** Route type for which the transition effect applies.                                         |
-| duration   | Int32                                     | No      | 1000            | **Named parameter.** Animation duration.<br>Unit: milliseconds.<br>Range: [0, +∞).                              |
-| curve      | [Curve](./cj-common-types.md#enum-curve)  | No      | Curve.Linear    | **Named parameter.** Animation curve.                                                                            |
-| delay      | Int32                                     | No      | 0               | **Named parameter.** Animation delay duration.<br>Unit: milliseconds.<br>**Note:**<br>If no match is found, the system default page transition effect is used (may vary by device). To disable the default effect, set `duration` to 0. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| routeType | ?[RouteType](#enum-routetype) | No | Option.None | **Named parameter.** The route type for which the page transition effect is applied. |
+| duration | ?Int32 | No | None | **Named parameter.** The duration of the animation. Unit: milliseconds. Range: [0, +∞). |
+| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve. |
+| delay | ?Int32 | No | None | **Named parameter.** The delay time of the animation. Unit: milliseconds. |
 
-### func onExit(PageTransitionCallback)
+### func onExit(?PageTransitionCallback)
 
 ```cangjie
-public func onExit(event: PageTransitionCallback)
+public func onExit(event: ?PageTransitionCallback)
 ```
 
-**Function:** Frame-by-frame callback until the exit animation completes, with `progress` ranging from 0 to 1.
+**Function:** Frame-by-frame callback until the exit animation ends, with progress changing from 0 to 1.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type      | Required | Default | Description                                |
-|:----------|:-------------------------------------------------------------|:--------|:--------|:-------------------------------------------|
-| event     | [PageTransitionCallback](#type-pagetransitioncallback) | Yes     | -       | Frame-by-frame callback until the exit animation completes, with `progress` ranging from 0 to 1. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| event | ?[PageTransitionCallback](#type-pagetransitioncallback) | Yes | - | The frame-by-frame callback for the exit animation until it ends, with progress changing from 0 to 1. |
 
 ## enum RouteType
 
 ```cangjie
-public enum RouteType {
+public enum RouteType <: Equatable<RouteType> {
     | None
     | Push
     | Pop
+    | ...
 }
 ```
 
-**Function:** Page route types.
+**Function:** The type of page routing.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
+
+**Parent Type:**
+
+- Equatable\<[RouteType](#enum-routetype)>
 
 ### None
 
@@ -272,23 +269,11 @@ public enum RouteType {
 None
 ```
 
-**Function:** Indicates the page is not redirected.
+**Function:** The page is not redirected.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-### Pop
-
-```cangjie
-Pop
-```
-
-**Function:** Redirects to a specified page.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+**Initial Version:** 22
 
 ### Push
 
@@ -300,36 +285,89 @@ Push
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
+
+### Pop
+
+```cangjie
+Pop
+```
+
+**Function:** Redirects to the specified page.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+### operator func !=(RouteType)
+
+```cangjie
+public operator func !=(other: RouteType): Bool
+```
+
+**Function:** Compares whether two enumeration values are not equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [RouteType](#enum-routetype) | Yes | - | The other enumeration value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enumeration values are not equal, otherwise returns false. |
+
+### operator func ==(RouteType)
+
+```cangjie
+public operator func ==(other: RouteType): Bool
+```
+
+**Function:** Compares whether two enumeration values are equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [RouteType](#enum-routetype) | Yes | - | The other enumeration value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
 
 ## enum SlideEffect
 
 ```cangjie
-public enum SlideEffect {
+public enum SlideEffect <: Equatable<SlideEffect> {
     | Left
     | Right
     | Top
     | Bottom
+    | ...
 }
 ```
 
-**Function:** Page slide effect types.
+**Function:** The type of page sliding effect.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
-### Bottom
+**Parent Type:**
 
-```cangjie
-Bottom
-```
-
-**Function:** For entry, slides in from the bottom; for exit, slides out to the bottom.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+- Equatable\<[SlideEffect](#enum-slideeffect)>
 
 ### Left
 
@@ -337,11 +375,11 @@ Bottom
 Left
 ```
 
-**Function:** For entry, slides in from the left; for exit, slides out to the left.
+**Function:** For entrance, it means sliding in from the left; for exit, it means sliding out to the left.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 ### Right
 
@@ -349,11 +387,11 @@ Left
 Right
 ```
 
-**Function:** For entry, slides in from the right; for exit, slides out to the right.
+**Function:** For entrance, it means sliding in from the right; for exit, it means sliding out to the right.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 ### Top
 
@@ -361,25 +399,85 @@ Right
 Top
 ```
 
-**Function:** For entry, slides in from the top; for exit, slides out to the top.
+**Function:** For entrance, it means sliding in from the top; for exit, it means sliding out to the top.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
-## type PageTransitionCallback
+### Bottom
+
+```cangjie
+Bottom
+```
+
+**Function:** For entrance, it means sliding in from the bottom; for exit, it means sliding out to the bottom.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+### operator func !=(SlideEffect)
+
+```cangjie
+public operator func !=(other: SlideEffect): Bool
+```
+
+**Function:** Compares whether two enumeration values are not equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [SlideEffect](#enum-slideeffect) | Yes | - | The other enumeration value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enumeration values are not equal, otherwise returns false. |
+
+### operator func ==(SlideEffect)
+
+```cangjie
+public operator func ==(other: SlideEffect): Bool
+```
+
+**Function:** Compares whether two enumeration values are equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [SlideEffect](#enum-slideeffect) | Yes | - | The other enumeration value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |## type PageTransitionCallback
 
 ```cangjie
 public type PageTransitionCallback = (RouteType, Float64) -> Unit
 ```
 
-**Function:** [PageTransitionCallback](#type-pagetransitioncallback) is an alias for [(RouteType, Float64) -> Unit](#type-pagetransitioncallback).
+**Function:** Callback for reporting page transition events.
+
+**Type:** (RouteType, Float64) -> Unit
 
 ## Example Code
 
-### Example Code 1 (Setting Entry/Exit Animations)
+### Example Code 1 (Configuring Exit/Enter Animations)
 
-Configure different entry and exit animations based on different route types.
+Configure different exit and enter animations through different transition types.
 
 <!-- run -->
 
@@ -388,7 +486,8 @@ Configure different entry and exit animations based on different route types.
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.ui_context.*
 
 @Entry
@@ -407,28 +506,28 @@ class EntryView {
         .height(100.percent)
         .scale(x: scale2, y: 1.0)
         .opacity(this.opacity2)
-        .onClick {
+        .onClick({
                 e => getUIContext().getRouter().pushUrl(url: "Page1")
-            }
+            })
     }
 
     protected func onTransition(): Unit {
-        PageTransitionEnter(duration: 1200, curve: Curve.Linear,).onEnter {
+        PageTransitionEnter(duration: 1200, curve: Curve.Linear,).onEnter({
             ty: RouteType, progress: Float64 => match (ty) {
                 case RouteType.Push | RouteType.Pop =>
                     scale2 = Float32(progress)
                     opacity2 = progress
                 case _ => ()
             }
-        }
-        PageTransitionExit(duration: 1200, curve: Curve.Ease, ).onExit {
+        })
+        PageTransitionExit(duration: 1200, curve: Curve.Ease, ).onExit({
             ty: RouteType, progress: Float64 => match (ty) {
                 case RouteType.Push =>
                     this.scale2 = Float32(1.0 - progress)
                     this.opacity2 = 1.0 - progress
                 case _ => ()
             }
-        }
+        })
     }
 }
 ```
@@ -440,7 +539,8 @@ class EntryView {
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.ui_context.*
 
 @Entry
@@ -459,35 +559,37 @@ class Page1 {
         .height(100.percent)
         .scale(x: scale1, y: 1.0)
         .opacity(opacity1)
-        .onClick {
+        .onClick({
                 e => getUIContext().getRouter().pushUrl(url: "EntryView")
-            }
+            })
     }
 
     protected func onTransition(): Unit {
-        PageTransitionEnter(duration: 1200, curve: Curve.Linear).onEnter {
+        PageTransitionEnter(duration: 1200, curve: Curve.Linear).onEnter({
             ty: RouteType, progress: Float64 => match (ty) {
                 case RouteType.Push | RouteType.Pop =>
                     scale1 = Float32(progress)
                     opacity1 = progress
                 case _ => ()
             }
-        }
-        PageTransitionExit(duration: 1200, curve: Curve.Ease).onExit {
+        })
+        PageTransitionExit(duration: 1200, curve: Curve.Ease).onExit({
             ty: RouteType, progress: Float64 => match (ty) {
                 case RouteType.Push =>
                     this.scale1 = Float32(1.0 - progress)
                     this.opacity1 = 1.0 - progress
                 case _ => ()
             }
-        }
+        })
     }
 }
 ```
 
-![page_transition](figures/pagetransition.gif)### Example Code 2 (Setting Exit Transition Slide Effect)
+![page_transition](figures/pagetransition.gif)
 
-Configure different exit transition slide effects by changing the system language layout mode to RTL.
+### Example Code 2 (Configuring Exit/Enter Slide Effects)
+
+Configure different exit/enter slide effects by changing the system language layout mode to RTL.
 
 <!-- run -->
 
@@ -496,7 +598,8 @@ Configure different exit transition slide effects by changing the system languag
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.ui_context.*
 
 @Entry
@@ -507,9 +610,9 @@ class EntryView {
 
     func build() {
         Column() {
-            Button("Page1").onClick {
+            Button("Page1").onClick({
                 e => getUIContext().getRouter().pushUrl(url: "Page1")
-            }
+            })
                 .width(200)
                 .height(60)
                 .fontSize(36)
@@ -539,7 +642,8 @@ class EntryView {
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 import ohos.arkui.ui_context.*
 
 @Entry
@@ -550,9 +654,9 @@ class Page1 {
 
     func build() {
         Column() {
-            Button("Page2").onClick {
+            Button("Page2").onClick({
                 e => getUIContext().getRouter().pushUrl(url: "EntryView")
-            }
+            })
                 .width(200)
                 .height(60)
                 .fontSize(36)

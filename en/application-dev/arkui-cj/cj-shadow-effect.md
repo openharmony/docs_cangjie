@@ -1,6 +1,6 @@
 # Shadow
 
-The shadow interface [shadow](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-imageeffect.md#func-shadowfloat64-resourcecolor-float64-float64) can add shadow effects to the current component. This interface supports two types of parameters, allowing developers to customize shadow effects by configuring [ShadowOptions](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md#class-shadowoptions). In ShadowOptions mode, when radius = 0 or the color's alpha value is 0, no shadow effect will be displayed.
+The shadow interface [shadow](../reference/arkui-cj/cj-universal-attribute-imageeffect.md#func-shadowfloat64-resourcecolor-float64-float64) can add shadow effects to the current component. This interface supports two types of parameters, allowing developers to configure [ShadowOptions](../reference/arkui-cj/cj-text-input-text.md#class-shadowoptions) for custom shadow effects. In ShadowOptions mode, when radius = 0 or the color's alpha value is 0, no shadow effect will be rendered.
 
 <!-- run -->
 

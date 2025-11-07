@@ -1,6 +1,6 @@
 # ohos.labels (General Interface Labels)
 
-Label descriptions. Labels include atomicservice (whether atomic service is supported), crossplatform (whether cross-platform is supported), deprecated (deprecated version), form (whether supported in forms), permission (required permissions), since (API level), stagemodelonly (whether only Stage model is supported), syscap (required system capabilities), etc.
+Label descriptions. Labels include atomicservice (whether atomic services are supported), crossplatform (whether cross-platform is supported), deprecated (deprecated versions), form (whether supported in forms), permission (required permissions), since (API level), stagemodelonly (whether only the Stage model is supported), syscap (required system capabilities), etc.
 
 ## Import Module
 
@@ -8,7 +8,7 @@ Label descriptions. Labels include atomicservice (whether atomic service is supp
 import ohos.labels.*
 ```
 
-## Usage Instructions
+## Usage Description
 
 This package is used to add label annotations to APIs in the form of annotations and provide explanations for the annotation information. Not recommended for user use.
 
@@ -69,6 +69,16 @@ operator func |(rhs: PermissionValue): PermissionValue
 |:----|:------|
 |[PermissionValue](#interface-permissionvalue)| Operation result. |
 
+## interface LevelValue
+
+```cangjie
+public interface LevelValue {}
+```
+
+**Function:** Used to represent the value of a level label.
+
+**Since:** 22
+
 ## class APILevel
 
 ```cangjie
@@ -89,7 +99,7 @@ public class APILevel {
 }
 ```
 
-**Function:** Definition of labels. Labels are used to annotate APIs. Labels include atomicservice (whether atomic service is supported), crossplatform (whether cross-platform is supported), deprecated (deprecated version), form (whether supported in forms), permission (required permissions), since (API level), stagemodelonly (whether only Stage model is supported), syscap (required system capabilities), etc.
+**Function:** Definition of labels. Labels are used to annotate APIs. Labels include atomicservice (whether atomic services are supported), crossplatform (whether cross-platform is supported), deprecated (deprecated versions), form (whether supported in forms), permission (required permissions), since (API level), stagemodelonly (whether only the Stage model is supported), syscap (required system capabilities), etc.
 
 **Since:** 22
 
@@ -99,11 +109,11 @@ public class APILevel {
 public let atomicservice: Bool
 ```
 
-**Function:** Whether the current API supports atomic service.
+**Function:** Whether the current API supports atomic services.
 
 **Type:** Bool
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -117,7 +127,7 @@ public let crossplatform: Bool
 
 **Type:** Bool
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -127,11 +137,11 @@ public let crossplatform: Bool
 public let deprecated: ?String
 ```
 
-**Function:** The deprecated version of the current API, default value is 0, indicating not deprecated.
+**Function:** The deprecated version of the current API, default is None, indicating not deprecated.
 
 **Type:** ?String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -145,7 +155,7 @@ public let form: Bool
 
 **Type:** Bool
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -159,7 +169,7 @@ public let permission:?PermissionValue
 
 **Type:** ?[PermissionValue](#interface-permissionvalue)
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -169,11 +179,11 @@ public let permission:?PermissionValue
 public let since: String
 ```
 
-**Function:** API starting level.
+**Function:** API starting version.
 
 **Type:** String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -187,7 +197,7 @@ public let syscap: String
 
 **Type:** String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -201,7 +211,7 @@ public let systemapi: Bool
 
 **Type:** Bool
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -215,7 +225,7 @@ public let throwexception: Bool
 
 **Type:** Bool
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -225,11 +235,11 @@ public let throwexception: Bool
 public let workerthread: Bool
 ```
 
-**Function:** Whether the current API is recommended for concurrent execution.
+**Function:** Whether the current API recommends concurrent execution.
 
 **Type:** Bool
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -249,16 +259,16 @@ public const init(since!: String, atomicservice!: Bool = false, crossplatform!: 
 
 |Parameter|Type|Required|Default| Description                 |
 |:---|:---|:---|:---|:-------------------|
-|since|String|Yes|-| Named parameter - API level.         |
-|atomicservice|Bool|No|false| Named parameter - whether atomic service is supported.     |
-|crossplatform|Bool|No|false| Named parameter - whether cross-platform is supported.      |
-|deprecated|?String|No|0| Named parameter - deprecated version.         |
-|form|Bool|No|false| Named parameter - whether forms are supported.    |
-|permission|?[PermissionValue](#interface-permissionvalue)|No|None| Named parameter - required permissions.      |
-|syscap|String|No|""| Named parameter - required system capabilities.      |
-|throwexception|Bool|No|""| Named parameter -  whether the current API throws exceptions  |
-|workerthread|Bool|No|""| Named parameter -   whether the current API is recommended for concurrent execution.   |
-|systemapi|Bool|No|""| Named parameter - whether the current API is for system applications only.     |
+|since|String|Yes|-| Named parameter API level.         |
+|atomicservice|Bool|No|false| Named parameter whether atomic services are supported.     |
+|crossplatform|Bool|No|false| Named parameter whether cross-platform is supported.      |
+|deprecated|?String|No|None| Named parameter deprecated version.         |
+|form|Bool|No|false| Named parameter whether forms are supported.    |
+|permission|?[PermissionValue](#interface-permissionvalue)|No|None| Named parameter whether required permissions are supported.      |
+|syscap|String|No|""| Named parameter system capabilities.      |
+|throwexception|Bool|No|""| Named parameter whether exceptions are thrown.      |
+|workerthread|Bool|No|""| Named parameter whether concurrent execution is recommended.      |
+|systemapi|Bool|No|""| Named parameter whether it is a system API.      |
 
 ## class PermissionAnd
 
@@ -284,11 +294,11 @@ public class PermissionAnd <: PermissionValue {
 public let lhs: PermissionValue
 ```
 
-**Function:** Left operand of the operator.
+**Function:** Left-hand operand.
 
 **Type:** PermissionValue
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -298,11 +308,11 @@ public let lhs: PermissionValue
 public let rhs: PermissionValue
 ```
 
-**Function:** Right operand of the operator.
+**Function:** Right-hand operand.
 
 **Type:** PermissionValue
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -391,11 +401,11 @@ public class PermissionOr <: PermissionValue {
 public let lhs: PermissionValue
 ```
 
-**Function:** Left operand of the operator.
+**Function:** Left-hand operand.
 
 **Type:** PermissionValue
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -405,11 +415,11 @@ public let lhs: PermissionValue
 public let rhs: PermissionValue
 ```
 
-**Function:** Right operand of the operator.
+**Function:** Right-hand operand.
 
 **Type:** PermissionValue
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **Since:** 22
 
@@ -436,7 +446,7 @@ public const init(lhs: PermissionValue, rhs: PermissionValue)
 public const override operator func &(rhs: PermissionValue): PermissionValue
 ```
 
-**Function:** Performs a logical "AND" operation with another permission set. Returns the result permission set after the "AND" operation.
+**Function:** Performs a logical "AND" operation with another permission set. Returns the resulting permission set after the "AND" operation.
 
 **Since:** 22
 
@@ -458,7 +468,7 @@ public const override operator func &(rhs: PermissionValue): PermissionValue
 public const override operator func |(rhs: PermissionValue): PermissionValue
 ```
 
-**Function:** Performs a logical "OR" operation with another permission set. Returns the result permission set after the "OR" operation.
+**Function:** Performs a logical "OR" operation with another permission set. Returns the resulting permission set after the "OR" operation.
 
 **Since:** 22
 
@@ -480,7 +490,7 @@ extend String <: PermissionValue {}
 
 **Functionality:** The following is an implementation that extends the PermissionValue interface, using strings to represent individual permissions.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parent Type:**
 
@@ -492,15 +502,15 @@ extend String <: PermissionValue {}
 public const operator func &(rhs: PermissionValue): PermissionValue
 ```
 
-**Functionality:** Performs a logical "AND" operation with another permission set. Returns the resulting permission set after the "AND" operation.
+**Functionality:** Performs a logical "AND" operation with another permission set. Returns the resulting permission set after the "AND" operation is completed.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|rhs|[PermissionValue](#interface-permissionvalue)|Yes|-|Another permission set for the "AND" operation.|
+|rhs|[PermissionValue](#interface-permissionvalue)|Yes|-|The other permission set for the "AND" operation.|
 
 **Return Value:**
 
@@ -514,15 +524,15 @@ public const operator func &(rhs: PermissionValue): PermissionValue
 public const operator func |(rhs: PermissionValue): PermissionValue
 ```
 
-**Functionality:** Performs a logical "OR" operation with another permission set and returns the resulting permission set after the operation.
+**Functionality:** Performs a logical "OR" operation with another permission set and returns the resulting permission set after the "OR" operation is completed.
 
-**Since:** 22
+**Initial Version:** 22
 
 **Parameters:**
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|rhs|[PermissionValue](#interface-permissionvalue)|Yes|-|Another permission set for the "OR" operation.|
+|rhs|[PermissionValue](#interface-permissionvalue)|Yes|-|The other permission set for the "OR" operation.|
 
 **Return Value:**
 

@@ -1,17 +1,17 @@
-# Building Your First Cangjie & ArkTS Hybrid Application
+# Building Your First Cangjie and ArkTS Hybrid Application
 
 > **Note:**
 >
 > To ensure optimal performance, this document uses **DevEco Studio 5.0.2 Release** and **DevEco Studio-Cangjie Plugin 5.0.7.100 Beta1** as examples. Click [here](https://developer.huawei.com/consumer/cn/download/) to download the latest versions.
 
-This guide is intended for OpenHarmony application developers with basic knowledge of Cangjie language, ArkTS language, and UI frameworks. By building a simple hybrid application with page navigation functionality (as shown below), you'll quickly understand the main files in the project directory and familiarize yourself with the hybrid development workflow.
+This documentation is intended for OpenHarmony application developers with basic knowledge of Cangjie language, ArkTS language, and UI frameworks. By building a simple hybrid application with page navigation/return functionality (as shown below), you'll quickly understand the main files in the project directory and familiarize yourself with the hybrid application development workflow.
 
 ![hybridExampleRunning](../../figures/hybridExampleRunning.png)
 
-## Creating a Cangjie & ArkTS Hybrid Project
+## Creating a Cangjie and ArkTS Hybrid Project
 
-1. If opening **DevEco Studio** for the first time, click **Create Project**. If a project is already open, select **File** > **New** > **Create Project** from the menu bar.
-2. Choose **Application** development, select the **[Cangjie] Hybrid Ability** template, then click **Next** to proceed with configuration.
+1. If opening **DevEco Studio** for the first time, click **Create Project** to create a new project. If a project is already open, select **File** > **New** > **Create Project** from the menu bar.
+2. Choose **Application** development, select the **[Cangjie] Hybrid Ability** template, and click **Next** to proceed with configuration.
 
    > **Note:**
    >
@@ -19,7 +19,7 @@ This guide is intended for OpenHarmony application developers with basic knowled
 
    ![buildChooseCangjieHybridTemplate](../../figures/buildChooseCangjieHybridTemplate.png)
 
-3. On the project configuration page, keep default parameter settings.
+3. On the project configuration page, keep the default parameters.
 
    > **Note:**
    >
@@ -27,11 +27,11 @@ This guide is intended for OpenHarmony application developers with basic knowled
 
    ![buildConfigCangjieHybridTyplate](../../figures/buildConfigCangjieHybridTemplate.png)
 
-4. Click **Finish**. DevEco Studio will automatically generate sample code and related resources. Wait for project creation to complete.
+4. Click **Finish**. DevEco Studio will automatically generate sample code and related resources. Wait for the project creation to complete.
 
-## Cangjie & ArkTS Hybrid Project Directory Structure
+## Cangjie and ArkTS Hybrid Project Directory Structure
 
-The directory structure of a Cangjie & ArkTS hybrid project is as follows:
+The directory structure of a Cangjie and ArkTS hybrid project is as follows:
 
 ```text
 Project_name
@@ -81,38 +81,38 @@ Project_name
 └── oh-package-lock.json5
 ```
 
-Key file information:
+Key files include:
 
-- **AppScope > app.json5**: Global application configuration.
-- **entry**: OpenHarmony project module that compiles into a HAP package.
-    - **src > har**: Contains HAR modules for Cangjie-ArkTS interoperability.
-    - **src > main > cangjie**: Stores Cangjie source code.
-    - **src > main > cangjie > types**: Interoperability dependency libraries.
-    - **src > main > ets**: Stores ArkTS source code.
+- **AppScope > app.json5**: Global configuration for the application.
+- **entry**: OpenHarmony project module, compiled into a HAP package.
+    - **src > har**: HAR module for Cangjie and ArkTS interoperability.
+    - **src > main > cangjie**: Cangjie source code.
+    - **src > main > cangjie > types**: Dependency libraries for Cangjie and ArkTS interoperability.
+    - **src > main > ets**: ArkTS source code.
     - **src > main > ets > entryability**: Application/service entry point.
-    - **src > main > ets > entrybackupability**: Backup/restore capabilities.
+    - **src > main > ets > entrybackupability**: Backup and recovery capabilities.
     - **src > main > ets > pages**: Application/service pages.
     - **src > main > resources**: Resource files (graphics, multimedia, strings, layouts). See [Resource Classification and Access](../ide-resource-categories-and-access.md#资源分类与访问).
-    - **src > main > module.json5**: Module configuration including HAP settings.
-    - **build-profile.json5**: Module build configuration.
-    - **cjpm.toml**: Cangjie package management configuration.
-    - **hvigorfile.ts**: Module-level build scripts.
-    - **oh-package.json5**: Package dependencies and metadata.
-- **hvigor**:
-    - **cangjie-build-support-x.y.z.tgz**: Cangjie-specific build packages.
+    - **src > main > module.json5**: Module configuration, including HAP settings and device-specific configurations.
+    - **build-profile.json5**: Module build configuration (build options, targets).
+    - **cjpm.toml**: Cangjie package management configuration (build options, dependencies).
+    - **hvigorfile.ts**: Module-level build script.
+    - **oh-package.json5**: Package metadata (name, version, entry file, dependencies).
+- **hvigor**: Contains hvigor configurations.
+    - **cangjie-build-support-x.y.z.tgz**: Cangjie-specific hvigor task package.
     - **hvigor-config.json5**: Global hvigor configuration.
-- **oh_modules**: Third-party library dependencies.
-- **build-profile.json5**: Application-level build configuration.
-- **hvigorfile.ts**: Application-level build scripts.
-- **oh-package.json5**: Global dependency management.
+- **oh_modules**: Third-party dependencies.
+- **build-profile.json5**: Application-level configuration (signing, product settings).
+- **hvigorfile.ts**: Application-level build script.
+- **oh-package.json5**: Global configurations (dependency overrides, parameterization).
 
-## Building the First Page (Pure ArkTS)
+## Building the First Page (Pure ArkTS Page)
 
 1. Using Text Components
 
-   After project synchronization, navigate to **entry > src > main > ets > pages** and open **Index.ets** to begin page development.
+   After project synchronization, navigate to **entry > src > main > ets > pages** and open **Index.ets** to edit the page.
 
-   For this navigation demo, we'll use Row and Column components for layout. For complex alignment scenarios, consider RelativeContainer.
+   For this example, we'll use Row and Column components for layout. For complex alignment scenarios, consider using RelativeContainer.
 
    **Index.ets** example:
 
@@ -155,7 +155,7 @@ Key file information:
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-           // Add navigation button
+           // Add button for navigation
            Button() {
              Text('Next')
                .fontSize(30)
@@ -176,32 +176,45 @@ Key file information:
    }
    ```
 
-## Building the Second Page (Hybrid ArkTS & Cangjie)
+## Building the Second Page (ArkTS and Cangjie Hybrid Page)
 
 > **Note:**
 >
-> In hybrid development, Cangjie pages aren't full lifecycle pages but components embedded within ArkTS containers. Detailed hybrid UI development is covered in [Hybrid Development V2](https://developer.huawei.com/consumer/cn/doc/cangjie-references-V5/cj_appendix-hybrid-v2-V5).
+> In hybrid development, Cangjie pages aren't full lifecycle pages but are embedded as components within ArkTS pages. An ArkTS @Entry page serves as the container.
+>
+> For detailed hybrid UI development, see [Hybrid Development V2](https://developer.huawei.com/consumer/cn/doc/cangjie-references-V5/cj_appendix-hybrid-v2-V5).
 
-1. Creating the Cangjie Page
+1. Creating a Cangjie Page
 
-   - Right-click **entry > src > main > cangjie**, select **New -> Cangjie HybridComponent File**. Name it **Second**, select **Cangjie** and **With ArkTS Wrapper** options:
+   - Right-click **entry > src > main > cangjie**, select **New -> Cangjie HybridComponent File**, name it **Second**, select **Cangjie** and **With ArkTS Wrapper** options:
 
      ![inputPageName](../../figures/inputPageName.png)
 
-   - After creation, the directory structure updates automatically:
+   - Click **OK**. The directory structure will update:
 
      ```text
       entry
+      ├── .preview
+      ├── build
+      ├── libs
+      ├── oh_modules
       └── src
            └── main
                 ├── cangjie
-                │    ├── second.cj
-                └── ets
-                     └── pages
-                          └── second.ets
+                │    ├── types
+                │    ├── index.cj
+                │    └── second.cj
+                ├── ets
+                │    ├── entryability
+                │    ├── entrybackupability
+                │    └── pages
+                │         ├── Index.ets
+                │         └── second.ets
+                ├── resources
+                └── module.json5
      ```
 
-   - Add UI components to **second.cj**:
+   - Add components to **second.cj**:
 
      ```cangjie
      // second.cj
@@ -245,31 +258,36 @@ Key file information:
 
 2. Creating the ArkTS Container
 
-   Embed the Cangjie component in ArkTS (**second.ets**):
+   - Embed the Cangjie page in ArkTS (**second.ets**):
 
-   ```typescript
-   // second.ets
-   import { CJHybridComponentV2 } from '@cangjie/cjhybridview';
+     ```typescript
+     // second.ets
+     import { CJHybridComponentV2 } from '@cangjie/cjhybridview';
 
-   @Entry
-   @Component
-   struct Second {
-     build() {
-       Row() {
-         CJHybridComponentV2({
-           library: "ohos_app_cangjie_entry",
-           component: "Second"
-         })
+     @Entry
+     @Component
+     struct Second {
+       build() {
+         Row() {
+           // Embed Cangjie page component
+           CJHybridComponentV2({
+             library: "ohos_app_cangjie_entry", // Cangjie package name
+             component: "Second"                // Cangjie class name
+           })
+         }
+         .height('100%')
+         .width('100%')
        }
-       .height('100%')
-       .width('100%')
      }
-   }
-   ```
+     ```
+
+   > **Note:**
+   >
+   > Developers must implement the ArkTS container code.
 
 3. Configuring Page Routing
 
-   Update **main_pages.json**:
+   The route is automatically added to **main_pages.json**:
 
    ```json
    {
@@ -282,11 +300,11 @@ Key file information:
 
 ## Implementing Page Navigation
 
-Use the router module for page navigation between ArkTS and hybrid pages.
+Page navigation uses the router module to find target pages via URLs.
 
-1. First Page Navigation
+1. Navigating from ArkTS to Hybrid Page
 
-   Updated **Index.ets** with router implementation:
+   Add onClick event to the button in **Index.ets**:
 
    ```typescript
    // Index.ets
@@ -310,15 +328,18 @@ Use the router module for page navigation between ArkTS and hybrid pages.
                .fontWeight(FontWeight.Bold)
            }
            .type(ButtonType.Capsule)
-           .margin({ top: 20 })
+           .margin({
+             top: 20
+           })
            .backgroundColor('#0D9FFB')
            .width('40%')
            .height('5%')
            .onClick(() => {
+             console.info(`Succeeded in clicking the 'Next' button.`)
              router.pushUrl({ url: 'pages/second' }).then(() => {
-               console.info('Navigation successful')
+               console.info('Succeeded in jumping to the second page.')
              }).catch((err: BusinessError) => {
-               console.error(`Navigation failed: ${err.code}, ${err.message}`)
+               console.error(`Failed to jump to the second page. Code is ${err.code}, message is $   {err.message}`)
              })
            })
          }
@@ -329,11 +350,11 @@ Use the router module for page navigation between ArkTS and hybrid pages.
    }
    ```
 
-2. Hybrid Page Navigation Back
+2. Returning from Hybrid to ArkTS Page
 
-   Implement interoperability between Cangjie and ArkTS for navigation:
+   Since Cangjie and ArkTS routers aren't directly compatible, we register an ArkTS callback in Cangjie:
 
-   - Register router functions in **index.cj**:
+   - Add interoperability code to **index.cj**:
 
      ```cangjie
      // index.cj
@@ -349,7 +370,7 @@ Use the router module for page navigation between ArkTS and hybrid pages.
      @Interop[ArkTS]
      public func registerJSFunc(name: String, fn: ()->Unit): Unit {
          if (globalJSFunction.contains(name)) {
-             AppLog.error("Function ${name} already registered")
+             Hilog.error(1, "info", "registerJSFunc failed(err: func ${name} already exists)")
              return
          }
          globalJSFunction.add(name, fn)
@@ -361,9 +382,9 @@ Use the router module for page navigation between ArkTS and hybrid pages.
      }
      ```
 
-   - Generate .d.ts interfaces (right-click **Generate... > Cangjie-ArkTS Interop API**)
+   - Generate .d.ts interface files (right-click **Generate... > Cangjie-ArkTS Interop API**).
 
-   - Updated **second.ets** with router registration:
+   - Register the callback in **second.ets**:
 
      ```typescript
      // second.ets
@@ -379,10 +400,11 @@ Use the router module for page navigation between ArkTS and hybrid pages.
          cjlib.registerJSFunc('SecondPageRouterBack', () => {
            try {
              router.back()
+             console.info('Succeeded in returning to the first page.')
            } catch (err) {
              let code = (err as BusinessError).code;
              let message = (err as BusinessError).message;
-             console.error(`Back failed: ${code}, ${message}`)
+             console.error(`Failed to return to the first page. Code is ${code}, message is $   {message}`)
            }
          })
        }
@@ -404,36 +426,61 @@ Use the router module for page navigation between ArkTS and hybrid pages.
      }
      ```
 
-   - Final **second.cj** with back button implementation:
+   - Call the callback in **second.cj**:
 
      ```cangjie
      // second.cj
      package ohos_app_cangjie_entry
 
+     import ohos.base.*
+     import ohos.arkui.component.*
+     import ohos.hybrid_base.*
+     import ohos.arkui.state_macro_manage.*
+     import ohos.arkui.state_management.*
+
      @HybridComponentEntry
      @Component
      class Second {
-         // ...previous UI code...
+         @State var msg: String = "Hello Cangjie"
 
-         Button() {
-             Text("Back")
-         }
-         // ...button styling...
-         .onClick {
-             let optFn = globalJSFunction.get("SecondPageRouterBack")
-             if (let Some(fn) <- optFn) {
-                 fn()
-             } else {
-                 AppLog.error("Back function not registered")
+         public func build() {
+             Row() {
+                 Column() {
+                     Text(this.msg)
+                         .fontSize(50)
+                         .fontWeight(FontWeight.Bold)
+
+                     Button() {
+                         Text("Back")
+                             .fontSize(30)
+                             .fontWeight(FontWeight.Bold)
+                     }
+                     .shape(ShapeType.Capsule)
+                     .margin(top: 20)
+                     .backgroundColor(Color(0x0D9FFB))
+                     .width(40.percent)
+                     .height(5.percent)
+                     .onClick ({
+                         Hilog.info(1, "info", "Succeeded in clicking the 'Back' button.")
+                         let optFn = globalJSFunction.get("SecondPageRouterBack")
+                         if (let Some(fn) <- optFn) {
+                             fn()
+                         } else {
+                             Hilog.error(1, "info", "Failed to return to the first page. callback not exists")
+                         }
+                     })
+                 }
+                 .width(100.percent)
              }
+             .height(100.percent)
          }
      }
-     ```## Running the Application on a Physical Device or Emulator
+     ```## Running the Application on a Real Device or Emulator
 
-### Using a Local Physical Device
+### Using a Local Real Device
 
-1. Connect a physical device with the OpenHarmony system to your computer.
-2. After the device is successfully connected, navigate to **File > Project Structure > Project > Signing Configs**, check **Support OpenHarmony** and **Automatically generate signature**, then click **Sign In** as prompted on the interface to log in with your user account. Wait for the automatic signing to complete, and click **OK**. The process is illustrated below:
+1. Connect a real device with the OpenHarmony system to your computer.
+2. After the device is successfully connected, click **File > Project Structure > Project > Signing Configs**, check **Support OpenHarmony** and **Automatically generate signature**, then click **Sign In** as prompted on the interface to log in with your user account. Wait for the automatic signing to complete, then click **OK**. The process is illustrated below:
 
     ![buildSign](../../figures/buildSign.png)
 
@@ -445,9 +492,9 @@ Use the router module for page navigation between ArkTS and hybrid pages.
 
 OpenHarmony applications/services written in the Cangjie language can run on the emulator (Emulator) provided by DevEco Studio.
 
-1. Create a Phone-type emulator device and select it from the device list in the top-right corner of DevEco Studio.
+1. Create an emulator device of the Phone type and select this device from the device list in the top-right corner of DevEco Studio.
 
-2. By default, Cangjie projects are compiled for the **arm64-v8a** architecture. Therefore, when using an **x86 emulator** (when the current development environment is **Windows/x86_64** or **MacOS/x86_64**), the Cangjie project and third-party libraries need to be compiled for the x86_64 version. In the **build-profile.json5** configuration file of the Cangjie module, add **x86_64** to the value of **cangjieOptions/abiFilters**. The specific compilation configuration is as follows:
+2. The default compilation architecture for Cangjie projects is **arm64-v8a**. Therefore, when using an **x86 emulator** (when the current development environment is **Windows/x86_64** or **MacOS/x86_64**), the Cangjie project and third-party libraries need to compile the x86_64 version of the .so file. In the **build-profile.json5** configuration file of the Cangjie module, add **x86_64** to the value of **cangjieOptions/abiFilters**. The specific compilation configuration is as follows:
 
     ```json
     "buildOption": { // Configuration used during the project build process
@@ -458,6 +505,6 @@ OpenHarmony applications/services written in the Cangjie language can run on the
     }
     ```
 
-3. In the toolbar at the top-right corner of the editing window, click the ![runButton](../../figures/runButton.png) button to run the application. The result is the same as running on a physical device.
+3. In the toolbar at the top-right corner of the editing window, click the ![runButton](../../figures/runButton.png) button to run the application. The result is the same as running on a real device.
 
 Congratulations! You have successfully built your first hybrid application using Cangjie and ArkTS.

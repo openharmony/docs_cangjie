@@ -1,6 +1,6 @@
 # Lock Screen Sensitive Data Management Error Codes
 
-## 29300001 Invalid Input Parameter
+## 29300001 Invalid Parameter
 
 **Error Message**
 
@@ -30,14 +30,14 @@ This error code indicates abnormal operation of system services.
 
 **Possible Causes**
 
-1. The lock screen sensitive data management service failed to start normally.
+1. The lock screen sensitive data management service failed to start properly.
 2. IPC data read/write operation failed.
 
 **Resolution Steps**
 
 Internal system service exception occurred. Please retry later or restart the device.
 
-## 29300003 Application Has Not Enabled Lock Screen Data Protection
+## 29300003 Application Lock Screen Data Protection Not Enabled
 
 **Error Message**
 
@@ -49,8 +49,8 @@ The application has not enabled lock screen sensitive data protection functional
 
 **Possible Causes**
 
-1. The application did not configure ohos.permission.PROTECT_SCREEN_LOCK_DATA permission in requestpermissions to enable lock screen sensitive data protection.
-2. Current hardware does not support lock screen sensitive data protection functionality.
+1. The application hasn't configured ohos.permission.PROTECT_SCREEN_LOCK_DATA permission in requestpermissions to enable lock screen sensitive data protection.
+2. Current hardware doesn't support lock screen sensitive data protection functionality.
 
 **Resolution Steps**
 
@@ -72,9 +72,9 @@ Lock screen sensitive data access permission has been released.
 
 **Resolution Steps**
 
-Sensitive data cannot be accessed under lock screen. If needed, prompt the user to unlock the screen first. Sensitive data will become available after unlocking.
+Sensitive data cannot be accessed under lock screen. If needed, prompt the user to unlock the screen again. Sensitive data will become available after unlocking.
 
-## 29300005 Lock Screen Data Access Permission Not Requested
+## 29300005 Lock Screen Sensitive Data Access Permission Not Requested
 
 **Error Message**
 
@@ -82,12 +82,12 @@ File access was not acquired.
 
 **Error Description**
 
-Attempted to call the cancel interface for sensitive data access permissions under lock screen without first requesting the permission.
+Attempted to cancel lock screen sensitive data access permission without having requested it first.
 
 **Possible Causes**
 
-This error code indicates that lock screen sensitive data access permission was not requested prior to release.
+This error code indicates that lock screen sensitive data access permission wasn't requested before attempting to release it.
 
 **Resolution Steps**
 
-Check whether the current interface is properly paired. Always request lock screen sensitive data access permission before releasing it.
+Check whether the current interface is used in conjunction with others. Please request lock screen sensitive data access permission before releasing it.

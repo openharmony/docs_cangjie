@@ -12,10 +12,10 @@ import kit.BasicServicesKit.*
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the above sample project and configuration template, see [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class CommonEventData
 
@@ -33,7 +33,7 @@ public class CommonEventData {
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var bundleName
 
@@ -41,15 +41,15 @@ public class CommonEventData {
 public var bundleName: String
 ```
 
-**Function:** Indicates the package name, currently empty by default.
+**Function:** Indicates the package name, which is empty by default.
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Attribute:** Readable and writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var code
 
@@ -61,11 +61,11 @@ public var code: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Attribute:** Readable and writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var data
 
@@ -77,11 +77,11 @@ public var data: String
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Attribute:** Readable and writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var event
 
@@ -93,11 +93,11 @@ public var event: String
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Attribute:** Readable and writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22
 
 ### var parameters
 
@@ -109,8 +109,8 @@ public var parameters: HashMap<String, ValueType>
 
 **Type:** HashMap\<String, ValueType>
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write Attribute:** Readable and writable
 
 **System Capability:** SystemCapability.Notification.CommonEvent
 
-**Since:** 21
+**Since:** 22

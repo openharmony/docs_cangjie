@@ -2,72 +2,72 @@
 
 ## Introduction
 
-Network Connection Management provides fundamental capabilities for managing networks, including priority management of multiple network connections (WiFi, cellular, Ethernet, etc.), network quality assessment, subscription to default or specified network connection status changes, querying network connection information, DNS resolution, and other functionalities.
+Network Connection Management provides fundamental capabilities for managing networks, including priority management for multiple network connections (WiFi, cellular, Ethernet, etc.), network quality assessment, subscription to default or specified network connection status changes, querying network connection information, DNS resolution, and other functionalities.
 
 ## Basic Concepts
 
 - **Network Producer**: The provider of data networks, such as WiFi, cellular, Ethernet, etc.
 - **Network Consumer**: The user of data networks, such as applications or system services.
-- **Network Probing**: Detects network validity to avoid switching from an available network to an unavailable one. Includes binding network probing, DNS probing, HTTP probing, and HTTPS probing.
+- **Network Probing**: Detects network validity to avoid switching from an available network to an unavailable one. Includes bound network probing, DNS probing, HTTP probing, and HTTPS probing.
 - **Network Optimization**: Selects the optimal network when multiple networks coexist. Triggered when network status, network information, or scoring changes.
 
 ## Constraints
 
 Development Language: Cangjie
 
-## Scenarios
+## Scenario Overview
 
-Typical scenarios for Network Connection Management are as follows:
+Typical scenarios for Network Connection Management include:
 
 - Receiving notifications for specified network status changes.
 - Retrieving all registered networks.
-- Querying network connection information based on the data network.
+- Querying network connection information based on data networks.
 - Resolving domain names using the corresponding network to obtain all IP addresses.
 
 Specific development methods are described below.
 
 ## Interface Description
 
-For the complete Cangjie API documentation and sample code, refer to [Network Connection Management](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md).
+For the complete Cangjie API documentation and example code, refer to [Network Connection Management](../reference/NetworkKit/cj-apis-net-connection.md).
 
-| Interface Name                                                                                | Description                                                                                                                                                            |
+| Interface Name                                                                                 | Description                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `getDefaultNet(): NetHandle`                                                                  | Retrieves a NetHandle object containing the netId of the default network.                                                                                        |
-| `getAppNet(): NetHandle`                                                                      | Retrieves a NetHandle object containing the netId of the network bound to the App.                                                                               |
-| `setAppNet(netHandle: NetHandle): Unit`                                                       | Binds the App to the specified network. The bound App can only access external networks through the specified network.                                           |
-| `getDefaultNetSync(): NetHandle;`                                                             | Retrieves the default active data network synchronously. Use `getNetCapabilities` to obtain network type and capabilities.                                       |
-| `hasDefaultNet(): Bool`                                                                       | Checks whether the default data network is active.                                                                                                               |
-| `getAllNets(): Array<NetHandle>`                                                              | Retrieves a list of NetHandle objects for all connected networks.                                                                                               |
-| `getConnectionProperties(netHandle: NetHandle): ConnectionProperties`                         | Queries the connection information of the network corresponding to the netHandle.                                                                               |
-| `getNetCapabilities(netHandle: NetHandle): NetCapabilities`                                  | Retrieves the capability information of the network corresponding to the netHandle.                                                                              |
-| `isDefaultNetMetered(): Bool`                                                                 | Checks whether data traffic on the current network is metered. Uses a callback for asynchronous operation.                                                       |
-| `reportNetConnected(netHandle: NetHandle): Unit`                                              | Reports to network management that the network is available. Indicates a discrepancy between the app's and network management's view of network availability.    |
+| `getDefaultNet(): NetHandle`                                                                  | Retrieves a `NetHandle` object containing the `netId` of the default network.                                                                                  |
+| `getAppNet(): NetHandle`                                                                      | Retrieves a `NetHandle` object containing the `netId` of the network bound to the app.                                                                          |
+| `setAppNet(netHandle: NetHandle): Unit`                                                       | Binds the app to the specified network. The bound app can only access external networks through the specified network.                                          |
+| `getDefaultNetSync(): NetHandle`                                                              | Retrieves the default active data network synchronously. Use `getNetCapabilities` to obtain network type and capabilities.                                      |
+| `hasDefaultNet(): Bool`                                                                       | Checks whether the default data network is active.                                                                                                              |
+| `getAllNets(): Array<NetHandle>`                                                              | Retrieves a list of `NetHandle` objects for all connected networks.                                                                                            |
+| `getConnectionProperties(netHandle: NetHandle): ConnectionProperties`                         | Queries the connection information of the network corresponding to `netHandle`.                                                                                |
+| `getNetCapabilities(netHandle: NetHandle): NetCapabilities`                                   | Retrieves the capability information of the network corresponding to `netHandle`.                                                                              |
+| `isDefaultNetMetered(): Bool`                                                                 | Checks whether data traffic on the current network is metered (asynchronous callback method).                                                                   |
+| `reportNetConnected(netHandle: NetHandle): Unit`                                              | Reports to network management that the network is available. Indicates a discrepancy between the app's and network management's view of network availability.   |
 | `reportNetDisconnected(netHandle: NetHandle): Unit`                                           | Reports to network management that the network is unavailable. Indicates a discrepancy between the app's and network management's view of network availability. |
-| `getAddressesByName(host: String): Array<NetAddress>`                                         | Resolves a domain name using the corresponding network to obtain all IP addresses.                                                                               |
-| `createNetConnection(netSpecifier!: ?NetSpecifier = None, timeout!: UInt32 = 0): NetConnection` | Returns a NetConnection object. `netSpecifier` specifies the characteristics of the network of interest. `timeout` is in milliseconds.                          |
-| `getAddressByName(host: String): NetAddress`                                                  | Resolves a domain name using the corresponding network to obtain one IP address. Uses a callback.                                                               |
-| `onNetAvailable(callback: (NetHandle) -> Unit): Unit`                                         | Subscribes to network availability events.                                                                                                                      |
-| `onNetCapabilitiesChange(callback: (NetCapabilityInfo) -> Unit): Unit`                       | Subscribes to network capability change events.                                                                                                                 |
-| `onNetConnectionPropertiesChange(callback: (NetHandle, ConnectionProperties) -> Unit): Unit`  | Subscribes to network connection property change events.                                                                                                         |
-| `onNetBlockStatusChange(callback: (NetHandle, Bool) -> Unit): Unit`                          | Subscribes to network block status events. Uses a callback for asynchronous operation.                                                                          |
+| `getAddressesByName(host: String): Array<NetAddress>`                                         | Resolves a domain name using the corresponding network to obtain all IP addresses.                                                                              |
+| `createNetConnection(netSpecifier!: ?NetSpecifier = None, timeout!: UInt32 = 0): NetConnection` | Returns a `NetConnection` object. `netSpecifier` specifies the characteristics of the network to monitor. `timeout` is in milliseconds.                       |
+| `getAddressByName(host: String): NetAddress`                                                   | Resolves a domain name using the corresponding network to obtain one IP address (callback method).                                                              |
+| `onNetAvailable(callback: (NetHandle) -> Unit): Unit`                                          | Subscribes to network availability events.                                                                                                                      |
+| `onNetCapabilitiesChange(callback: (NetCapabilityInfo) -> Unit): Unit`                         | Subscribes to network capability change events.                                                                                                                 |
+| `onNetConnectionPropertiesChange(callback: (NetHandle, ConnectionProperties) -> Unit): Unit`  | Subscribes to network connection property change events.                                                                                                        |
+| `onNetBlockStatusChange(callback: (NetHandle, Bool) -> Unit): Unit`                           | Subscribes to network block status events (asynchronous callback method).                                                                                      |
 | `onNetLost(callback: (NetHandle) -> Unit): Unit`                                              | Subscribes to network loss events.                                                                                                                              |
 | `onNetUnavailable(callback: () -> Unit): Unit`                                                | Subscribes to network unavailability events.                                                                                                                    |
 | `register(): Unit`                                                                            | Subscribes to notifications for specified network status changes.                                                                                              |
-| `unregister(): Unit`                                                                          | Unsubscribes from notifications for default network status changes.                                                                                            |
+| `unregister(): Unit`                                                                          | Unsubscribes from notifications for default network status changes.                                                                                             |
 
 ## Receiving Notifications for Specified Network Status Changes
 
-1. Declare the required permission: `ohos.permission.GET_NETWORK_INFO`. This is a normal-level permission. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission by referring to [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
+1. Declare the required permission: `ohos.permission.GET_NETWORK_INFO`. This is a normal-level permission. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission as described in [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
 
 2. Import `connection` from `@kit.NetworkKit`.
 
-3. Call the [`createNetConnection`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-createnetconnectionnetspecifier-uint32) method, specifying network capabilities, network type, and timeout (optional; if not provided, defaults to the default network). This creates a NetConnection object.
+3. Call [`createNetConnection`](../reference/NetworkKit/cj-apis-net-connection.md#func-createnetconnectionnetspecifier-uint32) to specify network capabilities, type, and timeout (optional; if not provided, the default network is used). This creates a `NetConnection` object.
 
-4. Call the [`register()`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-register) method to subscribe to notifications for specified network status changes.
+4. Call the [`register()`](../reference/NetworkKit/cj-apis-net-connection.md#func-register) method to subscribe to notifications for the specified network status changes.
 
-5. When the network becomes available, the `netAvailable` event callback is triggered; when unavailable, the `netUnavailable` callback is triggered.
+5. When the network becomes available, the `netAvailable` event callback is triggered; when unavailable, the `netUnavailable` event callback is triggered.
 
-6. When the network is no longer needed, call the [`unregister()`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-unregister) method to unsubscribe.
+6. Call [`unregister()`](../reference/NetworkKit/cj-apis-net-connection.md#func-unregister) to unsubscribe when the network is no longer needed.
 
 <!-- compile -->
 
@@ -79,6 +79,7 @@ import kit.CoreFileKit.*
 import kit.AbilityKit.*
 import kit.NetworkKit.*
 import ohos.base.*
+import ohos.callback_invoke.*
 
 func loggerInfo(str: String) {
     Hilog.info(0, "CangjieTest", str)
@@ -126,7 +127,7 @@ func test() {
     let netUnAvailableCallBack = NetUnavailableCb({=> loggerInfo("net is unavailable")})
     conn.on(NetConnectionEvent.NetUnavailable, netUnAvailableCallBack)
 
-    // When the network is no longer needed, unsubscribe by calling unregister().
+    // Call unregister() to unsubscribe when the network is no longer needed.
     conn.unregister()
 }
 ```
@@ -136,13 +137,13 @@ func test() {
 The default network may change based on current network status and quality, such as:
 
 1. Switching from WiFi to cellular when WiFi signal is weak.
-2. Switching from cellular to WiFi when cellular performance is poor.
+2. Switching from cellular to WiFi when cellular network quality is poor.
 3. Switching to cellular after WiFi is turned off.
 4. Switching to WiFi after cellular is turned off.
 5. Switching to another WiFi when the current WiFi signal is weak (cross-network scenario).
-6. Switching to another cellular network when the current cellular performance is poor (cross-network scenario).
+6. Switching to another cellular network when the current cellular quality is poor (cross-network scenario).
 
-This section describes how to monitor default network changes and quickly migrate application traffic to the new default network.
+This section describes how to monitor default network changes and ensure application traffic quickly migrates to the new default network.
 
 ### Monitoring Default Network Changes
 
@@ -155,6 +156,7 @@ import kit.CoreFileKit.*
 import kit.AbilityKit.*
 import kit.NetworkKit.*
 import ohos.base.*
+import ohos.callback_invoke.*
 
 func loggerInfo(str: String) {
     Hilog.info(0, "CangjieTest", str)
@@ -179,11 +181,11 @@ func test() {
 
 ## Retrieving All Registered Networks
 
-1. Declare the required permission: `ohos.permission.GET_NETWORK_INFO`. This is a normal-level permission. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission by referring to [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
+1. Declare the required permission: `ohos.permission.GET_NETWORK_INFO`. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission as described in [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
 
 2. Import `connection` from `kit.NetworkKit`.
 
-3. Call the [`getAllNets`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-getallnets) method to retrieve a list of all connected networks.
+3. Call [`getAllNets`](../reference/NetworkKit/cj-apis-net-connection.md#func-getallnets) to retrieve a list of all connected networks.
 
 <!-- compile -->
 
@@ -196,17 +198,17 @@ import ohos.base.*
 let nets = getAllNets()
 ```
 
-## Querying Network Capabilities and Connection Information Based on Data Network
+## Querying Network Capabilities and Connection Information Based on Data Networks
 
-1. Declare the required permission: `ohos.permission.GET_NETWORK_INFO`. This is a normal-level permission. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission by referring to [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
+1. Declare the required permission: `ohos.permission.GET_NETWORK_INFO`. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission as described in [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
 
 2. Import `connection` from `kit.NetworkKit`.
 
-3. Call [`getDefaultNet`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-getdefaultnet) to retrieve the default data network (`NetHandle`), or call [`getAllNets`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-getallnets) to retrieve a list of all connected networks (`Array<NetHandle>`).
+3. Call [`getDefaultNet`](../reference/NetworkKit/cj-apis-net-connection.md#func-getdefaultnet) to retrieve the default data network (`NetHandle`), or call [`getAllNets`](../reference/NetworkKit/cj-apis-net-connection.md#func-getallnets) to retrieve a list of all connected networks (`Array<NetHandle>`).
 
-4. Call [`getNetCapabilities`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-getnetcapabilitiesnethandle) to retrieve the capability information of the network corresponding to the `NetHandle`. Capabilities include network type (cellular, WiFi, Ethernet) and specific network capabilities.
+4. Call [`getNetCapabilities`](../reference/NetworkKit/cj-apis-net-connection.md#func-getnetcapabilitiesnethandle) to obtain the capability information of the network corresponding to `NetHandle`. This includes network type (cellular, WiFi, Ethernet, etc.) and specific capabilities.
 
-5. Call [`getConnectionProperties`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-getconnectionpropertiesnethandle) to retrieve the connection information of the network corresponding to the `NetHandle`.
+5. Call [`getConnectionProperties`](../reference/NetworkKit/cj-apis-net-connection.md#func-getconnectionpropertiesnethandle) to obtain the connection information of the network corresponding to `NetHandle`.
 
 <!-- compile -->
 
@@ -251,7 +253,7 @@ extend NetBearType {
 }
 
 func test() {
-    // Retrieve the default data network (NetHandle).
+    // Call getDefaultNet to retrieve the default data network (NetHandle).
     let netHandle = getDefaultNet()
     if (netHandle.netId == 0) {
         // If no default network exists, the netId of the retrieved NetHandle is 0 (abnormal case requiring additional handling).
@@ -282,10 +284,10 @@ func test() {
             // Indicates network traffic is not metered.
             loggerInfo("NetCapabilityNotMetered")
         } else if (item == NetCapabilityInternet) {
-            // Indicates the network should have Internet access capability, set by the network provider.
+            // Indicates the network should have Internet access capability (set by the network provider).
             loggerInfo("NetCapabilityInternet")
         } else if (item == NetCapabilityNotVpn) {
-            // Indicates the network does not use a VPN (Virtual Private Network).
+            // Indicates the network does not use a VPN.
             loggerInfo("NetCapabilityNotVpn")
         } else if (item == NetCapabilityValidated) {
             // Indicates the network's Internet access capability has been successfully validated by network management.
@@ -293,10 +295,10 @@ func test() {
         }
     }
 
-    // Retrieve connection information for the network corresponding to netHandle. Includes link and routing information.
+    // Retrieve connection information for the network corresponding to netHandle (includes link and routing info).
     let props = getConnectionProperties(netHandle)
 
-    // Retrieve a list of all connected networks (Array<NetHandle>).
+    // Call getAllNets to retrieve a list of all connected networks (Array<NetHandle>).
     let allNets = getAllNets()
 
     for (item in allNets) {
@@ -308,11 +310,11 @@ func test() {
 
 ## Resolving Domain Names Using the Corresponding Network to Obtain All IP Addresses
 
-1. Declare the required permission: `ohos.permission.INTERNET`. This is a normal-level permission. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission by referring to [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
+1. Declare the required permission: `ohos.permission.INTERNET`. Ensure compliance with [Basic Principles of Permission Usage](../security/AccessToken/cj-app-permission-mgmt-overview.md#basic-principles-of-permission-usage) before applying. Then, declare the permission as described in [Access Control - Declaring Permissions](../security/AccessToken/cj-declare-permissions.md).
 
 2. Import `connection` from `kit.NetworkKit`.
 
-3. Call the [`getAddressesByName`](../../../en/application-dev/reference/NetworkKit/cj-apis-net-connection.md#func-getaddressesbynamestring) method to resolve a hostname using the default network and retrieve all IP addresses.
+3. Call [`getAddressesByName`](../reference/NetworkKit/cj-apis-net-connection.md#func-getaddressesbynamestring) to resolve a hostname using the default network and obtain all IP addresses.
 
 <!-- compile -->
 
@@ -329,7 +331,7 @@ func loggerInfo(str: String) {
     Hilog.info(0, "CangjieTest", str)
 }
 
-// Resolve a hostname using the default network to retrieve all IP addresses.
+// Resolve a hostname using the default network to obtain all IP addresses.
 func test() {
     let addrs: Array<NetAddress> = getAddressesByName("xxxx")
     loggerInfo("Succeeded to get data")

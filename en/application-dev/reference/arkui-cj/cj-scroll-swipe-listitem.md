@@ -12,7 +12,7 @@ import kit.ArkUI.*
 
 Can contain a single child component.
 
-## Creating Component
+## Creating the Component
 
 ### init(() -> Unit)
 
@@ -24,13 +24,13 @@ public init(child: () -> Unit)
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| child | ()->Unit | Yes | - | The child component within the ListItem container. |
+| child | () -> Unit | Yes | - | The child component of ListItem within the container. |
 
 ## Common Attributes/Common Events
 
@@ -40,32 +40,32 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func selectable(Bool)
+### func selectable(?Bool)
 
 ```cangjie
-public func selectable(value: Bool): This
+public func selectable(value: ?Bool): This
 ```
 
-**Function:** Sets whether the current ListItem element is editable. In edit mode, list items can be deleted or moved.
+**Function:** Sets whether the current ListItem element is selectable.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the ListItem element is editable.<br/>Default: false. |
+| value | ?Bool | Yes | - | Whether the ListItem element is selectable.<br>Initial value: true. |
 
-### func swipeAction(CustomBuilder, CustomBuilder, SwipeEdgeEffect, (Float64) -> Unit)
+### func swipeAction(?CustomBuilder, ?CustomBuilder, ?SwipeEdgeEffect, ?(Float64) -> Unit)
 
 ```cangjie
 public func swipeAction(
-    start!: CustomBuilder = {=>},
-    end!: CustomBuilder = {=>},
-    edgeEffect!: SwipeEdgeEffect = SwipeEdgeEffect.Spring,
-    onOffsetChange!: (Float64) -> Unit = {_: Float64 =>}
+    start!: ?CustomBuilder = None,
+    end!: ?CustomBuilder = None,
+    edgeEffect!: ?SwipeEdgeEffect = Option.None,
+    onOffsetChange!: ?(Float64) -> Unit = None
 ): This
 ```
 
@@ -73,36 +73,36 @@ public func swipeAction(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| start | [CustomBuilder](./cj-common-types.md#type-custombuilder) | No | { => } | **Named parameter.** The component on the left side of the item when ListItem is swiped right (when List is vertically oriented) or the component above the item when ListItem is swiped down (when List is horizontally oriented). Use with [@Builder](../../../en/application-dev/arkui-cj/paradigm/cj-macro-builder.md) and bind method. |
-| end | [CustomBuilder](./cj-common-types.md#type-custombuilder) | No | { => } | **Named parameter.** The component on the right side of the item when ListItem is swiped left (when List is vertically oriented) or the component below the item when ListItem is swiped up (when List is horizontally oriented). Use with [@Builder](../../../en/application-dev/arkui-cj/paradigm/cj-macro-builder.md) and bind method. |
-| edgeEffect | [SwipeEdgeEffect](./cj-common-types.md#enum-swipeedgeeffect) | No | SwipeEdgeEffect.Spring | **Named parameter.** The swipe effect. |
-| onOffsetChange | (Float64)->Unit | No | { _: Float64 => } | **Named parameter.** Called when the swipe operation offset changes.<br/> **Note:**<br/>Triggered when the position of the list item changes during left/right swipe (when list orientation is vertical) or up/down swipe (when list orientation is horizontal), measured in vp units. |
+| start | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | No | None | **Named parameter.** The component on the left side of the item when ListItem is swiped right (for vertical List layout) or the component above the item when ListItem is swiped down (for horizontal List layout).<br>Initial value: {=>}. |
+| end | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | No | None | **Named parameter.** The component on the right side of the item when ListItem is swiped left (for vertical List layout) or the component below the item when ListItem is swiped up (for horizontal List layout).<br>Initial value: {=>}. |
+| edgeEffect | ?[SwipeEdgeEffect](./cj-common-types.md#enum-swipeedgeeffect) | No | Option.None | **Named parameter.** The swipe effect.<br>Initial value: SwipeEdgeEffect.Spring. |
+| onOffsetChange | ?(Float64) -> Unit | No | None | **Named parameter.** Called when the swipe operation offset changes.<br>Initial value: {_: Float64 =>}. |
 
 ## Component Events
 
-### func onSelect((Bool) -> Unit)
+### func onSelect(?(Bool) -> Unit)
 
 ```cangjie
-public func onSelect(event: (Bool) -> Unit): This
+public func onSelect(event: ?(Bool) -> Unit): This
 ```
 
-**Function:** Triggered when the selection state of the ListItem element changes via mouse selection.
+**Function:** Triggered when the selection state of the ListItem element changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| event | (Bool)->Unit | Yes | - | Callback triggered when the selection state of the ListItem element changes via mouse selection. Selected when entering the mouse selection range (true), deselected when exiting the mouse selection range (false). |
+| event | ?(Bool) -> Unit | Yes | - | Callback function when the selection state changes.<br>Initial value: { res: Bool => }. |
 
 ## Example Code
 
@@ -145,4 +145,4 @@ class EntryView {
 }
 ```
 
-![list1](figures/list1.gif)
+![list1](figures/listItem1.gif)

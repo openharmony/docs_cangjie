@@ -28,15 +28,15 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| range | Array\<String> | Yes | - | **Named parameter.** The data selection list for the picker. Cannot be set as an empty array. If set as empty, nothing will be displayed; if dynamically changed to empty, the current valid values will remain displayed. |
-| selected | ?UInt32 | No | Option.None | **Named parameter.** Sets the index of the default selected item in the array.<br>Initial value: 0. |
-| value | ?String | No | Option.None | **Named parameter.** Sets the value of the default selected item, with lower priority than `selected`.<br>Initial value: First element value.<br>**Note:**<br>This value is only effective when displaying a text list. It is invalid when displaying an image list or an image-plus-text list. |
+| range | Array\<String> | Yes | - | **Named parameter.** The data selection list for the picker. |
+| selected | ?UInt32 | No | Option.None | **Named parameter.** Sets the index value of the default selected item in the array.<br>Initial value: 0. |
+| value | ?String | No | Option.None | **Named parameter.** Sets the value of the default selected item, with lower priority than `selected`.<br>Initial value: First element value.<br>**Note:** This value is only valid when displaying a text list. It is invalid when displaying an image list or an image plus text list. |
 
 ## Common Attributes/Common Events
 
@@ -46,67 +46,79 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func canLoop(Bool)
+### func canLoop(?Bool)
 
 ```cangjie
-public func canLoop(value: Bool): This
+public func canLoop(value: ?Bool): This
 ```
 
-**Function:** Sets whether the picker can loop scroll.
+**Function:** Sets whether the picker can scroll infinitely.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the picker can loop scroll.<br>true: Can loop; false: Cannot loop.<br>Initial value: true. |
+| value | ?Bool | Yes | - | Whether infinite scrolling is enabled.<br>true: Enabled, false: Disabled.<br>Initial value: true. |
 
-### func defaultPickerItemHeight(Length)
+### func defaultPickerItemHeight(?Length)
 
 ```cangjie
-public func defaultPickerItemHeight(value: Length): This
+public func defaultPickerItemHeight(value: ?Length): This
 ```
 
 **Function:** Sets the height of each picker item.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The height of each picker item. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | The height of each picker item. |
 
 ## Component Events
 
-### func onChange(OnTextPickerChangeCallback)
+### func onChange(?OnTextPickerChangeCallback)
 
 ```cangjie
-public func onChange(callback: OnTextPickerChangeCallback): This
+public func onChange(callback: ?OnTextPickerChangeCallback): This
 ```
 
-**Function:** Triggers this callback when sliding to select text content in the TextPicker. When displaying a text or image-plus-text list, the `value` parameter is the text value of the selected item. When displaying an image list, the `value` parameter is empty.
+**Function:** Triggered when the picker selection changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| callback | OnTextPickerChangeCallback | Yes | - | The text and index value of the currently selected item. |
+| callback | ?[OnTextPickerChangeCallback](#type-ontextpickerchangecallback) | Yes | - | Callback function when the picker selection changes.<br>Initial value: { _, _ => }. |
+
+## Basic Type Definitions
+
+### type OnTextPickerChangeCallback
+
+```cangjie
+public type OnTextPickerChangeCallback = (String, UInt32) -> Unit
+```
+
+**Function:** Callback for the TextPicker item selection event.
+
+**Type:** (String, UInt32) -> Unit
 
 ## Example Code
 
 ### Example 1 (Setting the Number of Picker Columns)
 
-This example demonstrates how to implement a single-column or multi-column text picker by configuring `range`.
+This example demonstrates how to configure `range` to implement a single-column or multi-column text picker.
 
 <!-- run -->
 
@@ -115,7 +127,7 @@ This example demonstrates how to implement a single-column or multi-column text 
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 
 func loggerInfo(str: String) {
     Hilog.info(0, "CangjieTest", str)
@@ -141,4 +153,4 @@ class EntryView {
 }
 ```
 
-![textpicker](figures/textpicker.png)
+![textpicker](figures/textpicker.gif)

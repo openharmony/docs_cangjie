@@ -2,7 +2,7 @@
 
 The hilog logging system enables applications/services to output log content with specified levels, tags, and format strings, helping developers understand the operational status of applications/services and debug programs more effectively.
 
-## Importing the Module
+## Import Module
 
 ```cangjie
 import kit.PerformanceAnalysisKit.*
@@ -15,7 +15,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Description](../cj-development-intro.md#cangjie-sample-code-instructions).
+For details about the above sample project and configuration template, refer to [Cangjie Sample Code Description](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class Hilog
 
@@ -23,11 +23,11 @@ For details about the aforementioned sample project and configuration template, 
 public class Hilog {}
 ```
 
-**Description:** The logging system object, which enables applications/services to output log content with specified levels, tags, and format strings. Provides logging methods for different levels: DEBUG, INFO, WARNING, ERROR, and FATAL.
+**Description:** The logging system object that enables applications/services to output log content with specified levels, tags, and format strings. Provides logging methods for different levels: DEBUG, INFO, WARNING, ERROR, and FATAL.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 ### static func debug(UInt32, String, String, Array\<String>)
 
@@ -35,13 +35,13 @@ public class Hilog {}
 public static func debug(domain: UInt32, tag: String, format: String, args: Array<String>): Unit
 ```
 
-**Description:** Prints logs at the DEBUG level.
+**Description:** Prints DEBUG-level logs.
 
 DEBUG-level logs are not printed by default in official release versions. They are only printed in debug versions or when the debug switch is enabled.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ DEBUG-level logs are not printed by default in official release versions. They a
 | domain | UInt32 | Yes | - | The domain identifier for the log, ranging from 0x0 to 0xFFFF.<br/>Developers are advised to customize the division as needed within the application. |
 | tag | String | Yes | - | The log tag, which can be any string. It is recommended to identify the calling class or business behavior. |
 | format | String | Yes | - | The format string for log output. |
-| args | Array\<String> | Yes | - | The parameters for the format string. |
+| args | Array\<String> | Yes | - | Arguments for the format string. |
 
 **Example:**
 
@@ -61,8 +61,13 @@ DEBUG-level logs are not printed by default in official release versions. They a
 
 import ohos.base.*
 import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
 
-Hilog.debug(0, "testTag", "Debug: Hello world!")
+try {
+    Hilog.debug(0, "testTag", "Debug: Hello world!")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### static func error(UInt32, String, String, Array\<String>)
@@ -71,11 +76,11 @@ Hilog.debug(0, "testTag", "Debug: Hello world!")
 public static func error(domain: UInt32, tag: String, format: String, args: Array<String>): Unit
 ```
 
-**Description:** Prints logs at the ERROR level.
+**Description:** Prints ERROR-level logs.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -84,7 +89,7 @@ public static func error(domain: UInt32, tag: String, format: String, args: Arra
 | domain | UInt32 | Yes | - | The domain identifier for the log, ranging from 0x0 to 0xFFFF.<br/>Developers are advised to customize the division as needed within the application. |
 | tag | String | Yes | - | The log tag, which can be any string. It is recommended to identify the calling class or business behavior. |
 | format | String | Yes | - | The format string for log output. |
-| args | Array\<String> | Yes | - | The parameters for the format string. |
+| args | Array\<String> | Yes | - | Arguments for the format string. |
 
 **Example:**
 
@@ -95,8 +100,13 @@ public static func error(domain: UInt32, tag: String, format: String, args: Arra
 
 import ohos.base.*
 import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
 
-Hilog.error(0, "testTag", "Error: Hello world!")
+try {
+    Hilog.error(0, "testTag", "Error: Hello world!")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### static func fatal(UInt32, String, String, Array\<String>)
@@ -105,11 +115,11 @@ Hilog.error(0, "testTag", "Error: Hello world!")
 public static func fatal(domain: UInt32, tag: String, format: String, args: Array<String>): Unit
 ```
 
-**Description:** Prints logs at the FATAL level.
+**Description:** Prints FATAL-level logs.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -118,7 +128,7 @@ public static func fatal(domain: UInt32, tag: String, format: String, args: Arra
 | domain | UInt32 | Yes | - | The domain identifier for the log, ranging from 0x0 to 0xFFFF.<br/>Developers are advised to customize the division as needed within the application. |
 | tag | String | Yes | - | The log tag, which can be any string. It is recommended to identify the calling class or business behavior. |
 | format | String | Yes | - | The format string for log output. |
-| args | Array\<String> | Yes | - | The parameters for the format string. |
+| args | Array\<String> | Yes | - | Arguments for the format string. |
 
 **Example:**
 
@@ -129,8 +139,13 @@ public static func fatal(domain: UInt32, tag: String, format: String, args: Arra
 
 import ohos.base.*
 import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
 
-Hilog.fatal(0, "testTag", "Fatal: Hello world!")
+try {
+    Hilog.fatal(0, "testTag", "Fatal: Hello world!")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### static func info(UInt32, String, String, Array\<String>)
@@ -139,11 +154,11 @@ Hilog.fatal(0, "testTag", "Fatal: Hello world!")
 public static func info(domain: UInt32, tag: String, format: String, args: Array<String>): Unit
 ```
 
-**Description:** Prints logs at the INFO level.
+**Description:** Prints INFO-level logs.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -152,7 +167,7 @@ public static func info(domain: UInt32, tag: String, format: String, args: Array
 | domain | UInt32 | Yes | - | The domain identifier for the log, ranging from 0x0 to 0xFFFF.<br/>Developers are advised to customize the division as needed within the application. |
 | tag | String | Yes | - | The log tag, which can be any string. It is recommended to identify the calling class or business behavior. |
 | format | String | Yes | - | The format string for log output. |
-| args | Array\<String> | Yes | - | The parameters for the format string. |
+| args | Array\<String> | Yes | - | Arguments for the format string. |
 
 **Example:**
 
@@ -163,8 +178,13 @@ public static func info(domain: UInt32, tag: String, format: String, args: Array
 
 import ohos.base.*
 import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
 
-Hilog.info(0, "testTag", "Info: Hello world!")
+try {
+    Hilog.info(0, "testTag", "Info: Hello world!")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### static func isLoggable(UInt32, String, LogLevel)
@@ -177,7 +197,7 @@ public static func isLoggable(domain: UInt32, tag: String, level: LogLevel): Boo
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -202,8 +222,13 @@ public static func isLoggable(domain: UInt32, tag: String, level: LogLevel): Boo
 
 import ohos.base.*
 import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
 
-Hilog.isLoggable(0, "testTag", LogLevel.Debug)
+try {
+    Hilog.isLoggable(0, "testTag", LogLevel.Debug)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### static func warn(UInt32, String, String, Array\<String>)
@@ -212,11 +237,11 @@ Hilog.isLoggable(0, "testTag", LogLevel.Debug)
 public static func warn(domain: UInt32, tag: String, format: String, args: Array<String>): Unit
 ```
 
-**Description:** Prints logs at the WARN level.
+**Description:** Prints WARN-level logs.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -225,7 +250,7 @@ public static func warn(domain: UInt32, tag: String, format: String, args: Array
 | domain | UInt32 | Yes | - | The domain identifier for the log, ranging from 0x0 to 0xFFFF.<br/>Developers are advised to customize the division as needed within the application. |
 | tag | String | Yes | - | The log tag, which can be any string. It is recommended to identify the calling class or business behavior. |
 | format | String | Yes | - | The format string for log output. |
-| args | Array\<String> | Yes | - | The parameters for the format string. |
+| args | Array\<String> | Yes | - | Arguments for the format string. |
 
 **Example:**
 
@@ -236,8 +261,13 @@ public static func warn(domain: UInt32, tag: String, format: String, args: Array
 
 import ohos.base.*
 import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
 
-Hilog.warn(0, "testTag", "Warn: Hello world!")
+try {
+    Hilog.warn(0, "testTag", "Warn: Hello world!")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## enum LogLevel
@@ -257,7 +287,7 @@ public enum LogLevel {
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 ### Debug
 
@@ -265,11 +295,11 @@ public enum LogLevel {
 Debug
 ```
 
-**Description:** Detailed process records. Logs at this level allow for more detailed analysis of business processes and issue localization.
+**Description:** Detailed process records. DEBUG-level logs allow for more detailed analysis of business processes and problem localization.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 ### Error
 
@@ -277,11 +307,11 @@ Debug
 Error
 ```
 
-**Description:** Indicates that an error has occurred in the application, affecting normal functionality or user experience. The error can be recovered from, but the recovery cost is high, such as data reset.
+**Description:** Indicates that an error has occurred in the application, affecting normal functionality or user experience. The error can be recovered but at a high cost, such as data reset.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 ### Fatal
 
@@ -289,11 +319,11 @@ Error
 Fatal
 ```
 
-**Description:** Indicates a critical fatal exception, signaling that the application is about to crash and the fault cannot be recovered from.
+**Description:** Indicates a critical fatal exception, meaning the application is about to crash and the failure cannot be recovered.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 ### Info
 
@@ -303,13 +333,13 @@ Info
 
 **Description:** Used to record key business process nodes, enabling the reconstruction of the main operational flow of the business.
 
-Also used to record expected abnormal conditions, such as no network signal or login failure.
+Also used to record expected abnormal situations, such as no network signal or login failure.
 
-These logs should be recorded by the dominant module within the business to avoid duplicate logging across multiple called modules or low-level functions.
+These logs should be recorded by the dominant module within the business to avoid duplicate logging in multiple called modules or low-level functions.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22
 
 ### Warning
 
@@ -317,8 +347,8 @@ These logs should be recorded by the dominant module within the business to avoi
 Warning
 ```
 
-**Description:** Used to record more severe unexpected conditions that have minimal impact on users. The application can recover automatically or through simple user actions.
+**Description:** Used to record relatively severe unexpected situations that have minimal impact on users. The application can recover automatically or through simple operations.
 
 **System Capability:** SystemCapability.HiviewDFX.HiLog
 
-**Since:** 21
+**Since:** 22

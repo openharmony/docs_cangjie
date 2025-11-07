@@ -24,7 +24,7 @@ public init()
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ## Universal Attributes/Events
 
@@ -34,77 +34,77 @@ Universal events: All supported.
 
 ## Component Attributes
 
-### func color(ResourceColor)
+### func color(?ResourceColor)
 
 ```cangjie
-public func color(value: ResourceColor): This
+public func color(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the color of the divider line.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name   | Type                                       | Required | Default | Description     |
-|:----- |:---------------------------------------- |:--- |:--- |:------ |
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes   | -   | The color of the divider line. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The color of the divider line. Initial value: 0x33182431 |
 
-### func lineCap(LineCapStyle)
+### func lineCap(?LineCapStyle)
 
 ```cangjie
-public func lineCap(value: LineCapStyle): This
+public func lineCap(value: ?LineCapStyle): This
 ```
 
-**Function:** Sets the end cap style of the divider line in the current container.
+**Function:** Sets the endpoint style of the divider line in the current container.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name   | Type                                                                   | Required | Default | Description         |
-|:----- |:-------------------------------------------------------------------- |:--- |:--- |:---------- |
-| value | [LineCapStyle](./cj-common-types.md#enum-linecapstyle) | Yes   | -   | The end cap style of the divider line. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| value | ?[LineCapStyle](./cj-common-types.md#enum-linecapstyle) | Yes | - | The endpoint style of the divider line. Initial value: LineCapStyle.Butt |
 
-### func strokeWidth(Length)
+### func strokeWidth(?Length)
 
 ```cangjie
-public func strokeWidth(value: Length): This
+public func strokeWidth(value: ?Length): This
 ```
 
 **Function:** Sets the width of the divider line in the current container.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name   | Type       | Required | Default | Description                                                                                                                                       |
-|:----- |:-------- |:--- |:--- |:---------------------------------------------------------------------------------------------------------------------------------------- |
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes   | -   | The width of the divider line. When pixel units are not specified, the default unit is vp. Percentage settings are not supported. The width of the divider line does not support percentage settings. Priority is lower than the universal attribute [height](./cj-universal-attribute-size.md#func-heightlength). When exceeding the size set by universal attributes, it will be clipped according to the universal attributes. On some devices, there may be issues where the divider line does not display after rounding to 1 pixel. It is recommended to use 2 pixels. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| value | ?[Length](./cj-common-types.md#interface-length)| Yes | - | The width of the divider line. If no pixel unit is specified, the default unit is vp. Percentage settings are not supported. The width of the divider line does not support percentage settings. Priority is lower than the universal attribute [height](./cj-universal-attribute-size.md#func-heightlength). When the size exceeds the universal attribute setting, it will be clipped according to the universal attribute. On some devices, there may be issues where the divider line does not display after rounding to 1 pixel; it is recommended to use 2 pixels. Initial value: 1.0.px |
 
-### func vertical(Bool)
+### func vertical(?Bool)
 
 ```cangjie
-public func vertical(value: Bool): This
+public func vertical(value: ?Bool): This
 ```
 
 **Function:** Sets the direction of the divider line.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name   | Type   | Required | Default | Description        |
-|:----- |:---- |:--- |:--- |:--------- |
-| value | Bool | Yes   | -   | Sets the direction of the divider line. |
+| Name | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| value | ?Bool | Yes | - | Sets the direction of the divider line. Initial value: false |
 
 ## Example Code
 

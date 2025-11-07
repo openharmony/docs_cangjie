@@ -1,46 +1,46 @@
-# Modal Transition
+# Modal Transition  
 
-Modal transition is a type of transition where a new interface overlays the old one without the old interface disappearing.
+Modal transition is a type of transition where a new interface overlays the old one without the old interface disappearing.  
 
-**Table 1** Modal Transition Interfaces
+**Table 1** Modal Transition Interfaces  
 
-| Interface                                       | Description                | Usage Scenarios                                     |
+| Interface                                       | Description                | Use Case                                     |
 |:---------------------------------------- |:----------------- |:---------------------------------------- |
-| [bindContentCover](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-bindcontentcover.md) | Displays a full-screen modal component.        | Used for custom full-screen modal display interfaces. Combined with transition animations and shared element animations, it can achieve complex transition effects, such as clicking a thumbnail to view a larger image. |
-| [bindSheet](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-sheettransition.md#func-bindsheetbool----unit-sheetoptions) | Displays a semi-modal component.          | Used for semi-modal display interfaces, such as share dialogs.                          |
-| [bindMenu](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-menu.md#func-bindmenu---unit) | Displays a menu that pops up when the component is clicked.     | Scenarios requiring menu functionality, such as the "+" button in general applications.                 |
-| [bindContextMenu](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-menu.md#func-bindcontextmenu---unit-responsetype) | Displays a menu that pops up on long press or right-click. | Floating effect on long press, typically used with drag-and-drop frameworks, such as long-pressing desktop icons to float.             |
-| [bindPopup](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-popup.md#func-bindpopupbool-custompopupoptions) | Displays a Popup dialog.        | Popup dialog scenarios, such as temporary explanations for a component after clicking.               |
-| [if](./rendering_control/cj-rendering-control-ifelse.md)                                       | Adds or removes components via `if`.      | Used to temporarily display an interface under certain conditions. The back navigation for this method needs to be implemented by developers through interface monitoring.  |
+| [bindContentCover](../reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverbool-custombuilder-contentcoveroptions) | Displays a full-screen modal component.        | Used for custom full-screen modal interfaces, combined with transition animations and shared element animations to achieve complex transition effects, such as clicking a thumbnail to view a larger image. |
+| [bindSheet](../reference/arkui-cj/cj-universal-attribute-sheettransition.md#func-bindsheetbool----unit-sheetoptions) | Displays a semi-modal component.          | Used for semi-modal interfaces, such as a share dialog.                          |
+| [bindMenu](../reference/arkui-cj/cj-universal-attribute-menu.md#func-bindmenu---unit) | Displays a menu, which pops up when the component is clicked.     | Scenarios requiring a menu, such as the "+" button in general applications.                 |
+| [bindContextMenu](../reference/arkui-cj/cj-universal-attribute-menu.md#func-bindcontextmenu---unit-responsetype) | Displays a menu, which pops up after a long press or right-click. | Floating effect on long press, typically used in combination with drag-and-drop frameworks, such as long-pressing a desktop icon to float it.             |
+| [bindPopup](../reference/arkui-cj/cj-universal-attribute-popup.md#func-bindpopupbool-custompopupoptions) | Displays a Popup dialog.        | Popup dialog scenarios, such as providing temporary explanations for a component after clicking.               |
+| [if](./rendering_control/cj-rendering-control-ifelse.md)                                       | Adds or removes components via `if`.      | Used to temporarily display an interface under certain conditions. The back navigation for this method must be implemented by the developer through event listeners.  |
 
-## Building Full-Screen Modal Transition Effects with bindContentCover
+## Building Full-Screen Modal Transition Effects with `bindContentCover`  
 
-The [bindContentCover](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-bindcontentcover.md) interface is used to bind a full-screen modal page to a component. Transition effects can be added during the appearance and disappearance of the component by setting the `ModalTransition` parameter. The steps to build a full-screen modal transition effect using `bindContentCover` are as follows:
+The [bindContentCover](../reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverbool-custombuilder-contentcoveroptions) interface is used to bind a full-screen modal page to a component. Transition effects can be added during the appearance and disappearance of the component by setting the `ModalTransition` parameter. Below is an example of the steps to build a full-screen modal transition effect using `bindContentCover`:  
 
-- Define the full-screen modal transition effect [bindContentCover](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-bindcontentcover.md).
+- Define the full-screen modal transition effect [bindContentCover](../reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverbool-custombuilder-contentcoveroptions).  
 
-- Define the modal display interface.
+- Define the modal display interface.  
 
    ```cangjie
-   // Build the modal display interface via @Builder
+   // Use @Builder to construct the modal display interface
    @Builder
    func MyBuilder() {
      Column {
        Text("my model view")
      }
-     // Add transition effects for appearance/disappearance. The transition must be applied to the first component under the builder.
+     // Add transition animation for appearance/disappearance effects. The transition must be applied to the first component under the builder.
      .transition(TransitionEffect.translate(TranslateOptions(y: 1000)).animation(AnimateParam(curve: Curve.Smooth)))
    }
    ```
 
-- Invoke the modal display interface via the modal interface and achieve corresponding animation effects through transition or shared element animations.
+- Trigger the modal display interface via the modal interface and implement the corresponding animation effects through transition or shared element animations.  
 
    ```cangjie
    // Modal transition control variable
    @State var isPresent: Bool = false
 
    Button("Click to present model view")
-     // Bind the modal display interface via the selected modal interface. ModalTransition is a built-in ContentCover transition animation type. Here, None is selected to indicate no default system animation. The state variable is controlled via onDisappear.
+     // Bind the modal display interface via the selected modal interface. ModalTransition is a built-in ContentCover transition animation type. Here, "None" means the system does not add default animations. The state variable is controlled via onDisappear.
      .bindContentCover(this.isPresent, this.MyBuilder, options: ContentCoverOptions(
                modalTransition: ModalTransition.Default,
                onDisappear: {
@@ -55,7 +55,7 @@ The [bindContentCover](../../../en/application-dev/reference/arkui-cj/cj-univers
      })
    ```
 
-The complete example code and effect are as follows.
+The complete example code and effect are as follows.  
 
  <!-- run -->
 
@@ -243,13 +243,13 @@ class EntryView {
 }
 ```
 
-![bindContentCover](./figures/bindContentCover.gif)
+![bindContentCover](./figures/bindContentCover.gif)  
 
-## Building Semi-Modal Transition Effects with bindSheet
+## Building Semi-Modal Transition Effects with `bindSheet`  
 
-The [bindSheet](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-sheettransition.md#func-bindsheetbool----unit-sheetoptions) attribute binds a semi-modal page to a component. The size of the semi-modal can be determined by setting custom or default built-in heights during the component's appearance. The steps to build semi-modal transition effects are essentially the same as those for building full-screen modal transition effects using [bindContentCover](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-bindcontentcover.md).
+The [bindSheet](../reference/arkui-cj/cj-universal-attribute-sheettransition.md#func-bindsheetbool-custombuilder-sheetoptions) attribute can bind a semi-modal page to a component. The size of the semi-modal can be determined by setting a custom or default built-in height during the component's appearance. The steps to build semi-modal transition effects are essentially the same as those for building full-screen modal transition effects using [bindContentCover](../reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverbool-custombuilder-contentcoveroptions).  
 
-The complete example and effect are as follows.
+The complete example and effect are as follows.  
 
  <!-- run -->
 
@@ -347,11 +347,11 @@ class EntryView {
 }
 ```
 
-![bindSheet](./figures/bindSheet.gif)
+![bindSheet](./figures/bindSheet.gif)  
 
-## Implementing Menu Popup Effects with bindMenu
+## Implementing Menu Popup Effects with `bindMenu`  
 
-[bindMenu](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-menu.md#func-bindmenuarraymenuelement-menuoptions) binds a popup menu to a component, triggered by clicking. The complete example and effect are as follows.
+[bindMenu](../reference/arkui-cj/cj-universal-attribute-menu.md#func-bindmenuarraymenuelement-menuoptions) binds a popup menu to a component, triggered by clicking. The complete example and effect are as follows.  
 
  <!-- run -->
 
@@ -385,11 +385,11 @@ class EntryView {
 }
 ```
 
-![bindMenu](./figures/bindMenu.gif)
+![bindMenu](./figures/bindMenu.gif)  
 
-## Implementing Menu Popup Effects with bindContextMenu
+## Implementing Menu Popup Effects with `bindContextMenu`  
 
-[bindContextMenu](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-menu.md#func-bindcontextmenu---unit-responsetype-contextmenuoptions) binds a popup menu to a component, triggered by long press or right-click. The complete example and effect are as follows.
+[bindContextMenu](../reference/arkui-cj/cj-universal-attribute-menu.md#func-bindcontextmenu---unit-responsetype-contextmenuoptions) binds a popup menu to a component, triggered by a long press or right-click. The complete example and effect are as follows.  
 
  <!-- run -->
 
@@ -459,9 +459,9 @@ class EntryView {
 }
 ```
 
-![bindContextMenu1](figures/chakantupian.jpg)## Implementing Bubble Popup Effects Using bindPopUp
+![bindContextMenu1](figures/chakantupian.jpg)## Implementing Bubble Popup Effect Using bindPopUp
 
-The [bindpopup](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-popup.md) attribute can bind a popup to a component and configure its content, interaction logic, and display state.
+The [bindpopup](../reference/arkui-cj/cj-universal-attribute-popup.md) attribute can bind a popup to a component and configure its content, interaction logic, and display state.
 
 Complete example and code are provided below.
 
@@ -510,7 +510,6 @@ class EntryView {
                     CustomPopupOptions(
                         builder: bind(popupBuilder, this),
                         placement: Placement.Top,
-                        maskColor: Color(0x33000000),
                         popupColor: Color(0xf56c6c),
                         enableArrow: true,
                         autoCancel: true,
@@ -532,9 +531,9 @@ class EntryView {
 
 ![bindPopUp](./figures/bindPopUp.gif)
 
-## Implementing Modal Transitions Using if
+## Implementing Modal Transition Using if
 
-The aforementioned modal transition interfaces require binding to other components and triggering the modal interface by monitoring state variable changes. Alternatively, modal transitions can be achieved through the if paradigm by adding/removing components.
+The aforementioned modal transition interfaces require binding to other components and triggering the modal interface by monitoring state variable changes. Alternatively, the if paradigm can be used to achieve modal transition effects by adding/removing components.
 
 Complete example and code are provided below.
 
@@ -550,8 +549,8 @@ import ohos.arkui.state_macro_manage.*
 @Entry
 @Component
 class EntryView {
-    private var listArr: Array<String> = ["WLAN", "Bluetooth", "Personal Hotspot", "Connections & Sharing"]
-    private var shareArr: Array<String> = ["Screen Cast", "Printing", "VPN", "Private DNS", "NFC"]
+    private var listArr: Array<String> = ["WLAN", "Bluetooth", "Personal Hotspot", "Connection & Sharing"]
+    private var shareArr: Array<String> = ["Screen Casting", "Printing", "VPN", "Private DNS", "NFC"]
     @State
     var isShowShare: Bool = false
     private func shareFunc(): Unit {
@@ -658,7 +657,7 @@ class EntryView {
                             .onClick({
                                 evt => this.shareFunc()
                             })
-                            Text("Connections & Sharing")
+                            Text("Connection & Sharing")
                                 .fontSize(28.vp)
                                 .fontColor(0x333333)
                         }.padding(top: 30.vp)

@@ -1,64 +1,73 @@
 # Generating Keys (Cangjie)
 
-Taking the generation of DH keys as an example, this section demonstrates how to generate random keys. For specific usage scenarios and supported algorithm specifications, please refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
+Taking the generation of DH keys as an example, this section describes how to generate random keys. For specific scenarios and supported algorithm specifications, refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
 
 > **Note:**
 >
-> Key aliases must not contain sensitive information such as personal data.
+> Sensitive information such as personal data is prohibited in key aliases.
 
-## Development Procedure
+## Development Steps
 
 1. Specify the key alias `keyAlias` to be generated.
 
-    - The maximum length of a key alias is 128 bytes. It is recommended to avoid including sensitive terms such as personal information.
+    - The maximum length of a key alias is 128 bytes. It is recommended to avoid sensitive terms such as personal information.
     - For keys generated across different services, HUKS will isolate storage paths based on service identity information, preventing conflicts due to identical key names in different services.
 
-2. Initialize the key property set. Encapsulate key properties via [HuksParam](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksparam), combine them into an Array to form the key property set, and assign it to the `properties` field in [HuksOptions](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksoptions).
+2. Initialize the key property set. Encapsulate key properties via [HuksParam](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksparam), combine them into a property set using an Array, and assign them to the `properties` field in [HuksOptions](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-huksoptions).
 
-    The key property set must include [HuksKeyAlg](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-hukskeyalg), [HuksKeySize](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-hukskeysize), and [HuksKeyPurpose](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-hukskeypurpose) properties, i.e., mandatory tags: `HUKS_TAG_ALGORITHM`, `HUKS_TAG_PURPOSE`, and `HUKS_TAG_KEY_SIZE`. Note: A key can only have one type of `PURPOSE`, and the purpose specified during key generation must match the usage method; otherwise, exceptions may occur. For details, refer to [Key Purpose](./cj-huks-key-generation-overview.md#key-purpose).
+    The key property set must include the [HuksKeyAlg](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-hukskeyalg), [HuksKeySize](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-hukskeysize), and [HuksKeyPurpose](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#class-hukskeypurpose) attributes, i.e., the mandatory tags: `HUKS_TAG_ALGORITHM`, `HUKS_TAG_PURPOSE`, and `HUKS_TAG_KEY_SIZE`. Note: A key can only have one type of PURPOSE, and the purpose specified during key generation must match the usage method; otherwise, exceptions may occur.
 
-3. Call [generateKeyItem](../../../../en/application-dev/reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-generatekeyitemstring-huksoptions), passing the key alias and key property set to generate the key.
+3. Call [generateKeyItem](../../reference/UniversalKeystoreKit/cj-apis-security_huks.md#func-generatekeyitemstring-huksoptions), passing the key alias and key property set to generate the key.
 
 > **Note:**
 >
-> If a service calls HUKS to generate a key again using the same alias, HUKS will generate a new key and directly overwrite the historical key file.
+> If a service calls HUKS again with the same alias to generate a key, HUKS will generate a new key and directly overwrite the historical key file.
 
 ## Example
 
-<!--compile-->
+<!-- compile -->
+
 ```cangjie
-/* Example: Generating a DH Key */
+/* Example of generating a DH key */
+import kit.PerformanceAnalysisKit.Hilog
+import kit.BasicServicesKit.*
+import kit.CoreFileKit.*
+import kit.AbilityKit.*
 import kit.UniversalKeystoreKit.*
 
-/* 1. Define the key alias */
+func loggerInfo(str: String) {
+    Hilog.info(0, "CangjieTest", str)
+}
+
+/* 1. Determine the key alias */
 let keyAlias = 'dh_key'
 /* 2. Initialize the key property set */
 let properties1: Array<HuksParam> = [
   HuksParam(
     HuksTag.HUKS_TAG_ALGORITHM,
-    HuksKeyAlg.HUKS_ALG_DH
+    HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_DH)
   ),
   HuksParam(
     HuksTag.HUKS_TAG_PURPOSE,
-    HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+    HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE)
   ),
   HuksParam(
     HuksTag.HUKS_TAG_KEY_SIZE,
-    HuksKeySize.HUKS_DH_KEY_SIZE_2048
+    HuksParamValue.Uint32Value(HuksKeySize.HUKS_DH_KEY_SIZE_2048)
   )
 ]
 let huksOptions: HuksOptions = HuksOptions(
-  properties1,
-  None
+  properties: properties1,
+  inData: Bytes()
 )
 
 /* 3. Generate the key */
 func publicGenKeyFunc(keyAlias: String, huksOptions: HuksOptions) {
-  AppLog.info("enter generateKeyItem")
+  loggerInfo("enter generateKeyItem")
   try {
     generateKeyItem(keyAlias, huksOptions)
   } catch (e: Exception) {
-    AppLog.error("generateKeyItem input arg invalid, ${e}")
+    loggerInfo("generateKeyItem input arg invalid, ${e}")
   }
 }
 

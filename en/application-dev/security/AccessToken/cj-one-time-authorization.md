@@ -1,17 +1,24 @@
 # Requesting One-Time Authorization from Users
 
-Based on the principle of minimal authorization to prevent applications from obtaining and misusing user data, a new "Allow this time" authorization option has been added to the pop-up dialog when requesting sensitive permissions from users.
+Based on the principle of minimal authorization to prevent applications from obtaining and misusing user data, a new "Allow this time" authorization option has been added to the pop-up window when requesting sensitive permissions from users.
 
-Developers do not need additional configurations when developing applications. They can still call `requestPermissionsFromUser()` [Request User Authorization](./cj-request-user-authorization.md). The system will display the corresponding pop-up dialog based on the [supported permissions](#supported-scope) of this feature.
+When developing applications, developers do not need additional configurations. They can still call `requestPermissionsFromUser()` [Request User Authorization](./cj-request-user-authorization.md). The system will display the corresponding pop-up window based on the [supported permissions](#supported-scope) of this capability.
 
-The authorization pop-up dialog is shown below:
+The authorization pop-up window is shown below:
+
+<!--RP1-->
+![allow-this-time](figures/allow-this-time.png)
+
+The options in Settings are shown below:
+
+![setting-allow-this](figures/setting-allow-this.png)
 
 Path: Settings > Privacy > Permission Management > Applications > Target Application > Location
 <!--RP1End-->
 
 ## Supported Scope
 
-Currently, only the following permissions are supported. When an application requests these permissions from users, the "Allow this time" authorization option will appear in the pop-up dialog, and the "Ask every time" authorization option will appear when modifying permissions in Settings.
+Currently, only the following permissions are supported. When an application requests these permissions from users, the pop-up window will display the "Allow this time" authorization option, and the "Ask every time" authorization option will appear when modifying permissions in Settings.
 
 - Clipboard: ["ohos.permission.READ_PASTEBOARD"](./cj-restricted-permissions.md#ohospermissionread_pasteboard)
 - Approximate Location: ["ohos.permission.APPROXIMATELY_LOCATION"](./cj-permissions-for-all-user.md#ohospermissionapproximately_location)

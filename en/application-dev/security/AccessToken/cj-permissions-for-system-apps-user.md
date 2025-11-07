@@ -4,9 +4,9 @@ Before applying for target permissions, developers are advised to first understa
 
 > **Note:**
 >
-> - The following permissions are only available to applications with an APL level of system_basic or higher, and are not available to applications with an APL level of normal.
-> - The authorization method for the following permissions is user_grant (user authorization).
-> - The following permissions can be applied for across levels via [Access Control List (ACL)](./cj-app-permission-mgmt-overview.md#basic-concepts-in-permission-mechanism).
+> - The following permissions are only available to applications with an APL level of `system_basic` or higher, and are not available to applications with an APL level of `normal`.
+> - The authorization method for the following permissions is `user_grant` (user authorization).
+> - The following permissions can be applied for across levels via [Access Control List (ACL)](./cj-app-permission-mgmt-overview.md#权限机制中的基本概念).
 
 For the application process, refer to [Choosing the Permission Application Method](./cj-determine-application-mode.md).
 

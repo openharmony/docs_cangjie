@@ -1,13 +1,13 @@
 # ohos.data.distributed_kv_store
 
-The distributed key-value database provides applications with distributed collaboration capabilities for databases across different devices. By calling various interfaces of the distributed key-value database, applications can save data to the distributed key-value database and perform operations such as addition, deletion, modification, query, and synchronization on the data in the distributed key-value database.
+The distributed key-value database provides applications with distributed collaboration capabilities across different devices. By calling various interfaces of the distributed key-value database, applications can save data to the database and perform operations such as addition, deletion, modification, query, and synchronization on the data.
 
-This module provides the following common functionalities related to the distributed key-value database:
+This module offers the following common functionalities related to distributed key-value databases:
 
 - [KVManager](#class-kvmanager): A distributed key-value database management instance used to obtain database-related information.
-- [KVStoreResultSet](#class-kvstoreresultset): Provides methods for obtaining database result sets, including querying and moving data reading positions.
+- [KVStoreResultSet](#class-kvstoreresultset): Provides methods for obtaining database result sets, including querying and moving data read positions.
 - [Query](#class-query): Uses predicates to represent database queries, providing methods to create Query instances, query data in the database, and add predicates.
-- [SingleKVStore](#class-singlekvstore): A single-version distributed key-value database that does not distinguish data by device. Modifications to the same key by different devices will overwrite each other. It provides methods for querying and synchronizing data.
+- [SingleKVStore](#class-singlekvstore): A single-version distributed key-value database that does not distinguish between data ownership by devices. Modifications to the same key by different devices will overwrite each other. It provides methods for querying and synchronizing data.
 - [DeviceKVStore](#class-devicekvstore): A device collaboration database that inherits from [SingleKVStore](#class-singlekvstore). It distinguishes data by device dimension, avoiding conflicts, and supports methods for querying and synchronizing data by device dimension.
 
 ## Import Module
@@ -20,14 +20,14 @@ import kit.ArkData.*
 
 ohos.permission.DISTRIBUTED_DATASYNC
 
-## Usage Guidelines
+## Usage Instructions
 
-API sample code usage guidelines:
+API example code usage instructions:
 
-- If the first line of the sample code has a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of the example code has a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the example project and configuration template, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class Constants
 
@@ -46,7 +46,7 @@ public class Constants {
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static let MAX_BATCH_SIZE
 
@@ -54,13 +54,13 @@ public class Constants {
 public static let MAX_BATCH_SIZE: Int32 = 128
 ```
 
-**Function:** Maximum number of batch operations.
+**Function:** The maximum number of batch operations.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static let MAX_KEY_LENGTH
 
@@ -68,13 +68,13 @@ public static let MAX_BATCH_SIZE: Int32 = 128
 public static let MAX_KEY_LENGTH: Int32 = 1024
 ```
 
-**Function:** Maximum allowed length of a key in the database, in bytes. If there are duplicate symbols, it is recommended to use the alias: KV_MAX_KEY_LENGTH.
+**Function:** The maximum allowed length of a key in the database, in bytes. If there are duplicate symbols, it is recommended to use the alias: KV_MAX_KEY_LENGTH.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static let MAX_KEY_LENGTH_DEVICE
 
@@ -82,13 +82,13 @@ public static let MAX_KEY_LENGTH: Int32 = 1024
 public static let MAX_KEY_LENGTH_DEVICE: Int32 = 896
 ```
 
-**Function:** Maximum allowed length of a key in the device collaboration database, in bytes.
+**Function:** The maximum allowed length of a key in the device collaboration database, in bytes.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static let MAX_QUERY_LENGTH
 
@@ -96,13 +96,13 @@ public static let MAX_KEY_LENGTH_DEVICE: Int32 = 896
 public static let MAX_QUERY_LENGTH: Int32 = 512000
 ```
 
-**Function:** Maximum query length, in bytes.
+**Function:** The maximum query length, in bytes.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static let MAX_STORE_ID_LENGTH
 
@@ -110,13 +110,13 @@ public static let MAX_QUERY_LENGTH: Int32 = 512000
 public static let MAX_STORE_ID_LENGTH: Int32 = 128
 ```
 
-**Function:** Maximum allowed length of a database identifier, in bytes.
+**Function:** The maximum allowed length of a database identifier, in bytes.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### static let MAX_VALUE_LENGTH
 
@@ -124,13 +124,13 @@ public static let MAX_STORE_ID_LENGTH: Int32 = 128
 public static let MAX_VALUE_LENGTH: Int32 = 4194303
 ```
 
-**Function:** Maximum allowed length of a value in the database, in bytes. It is recommended to use the alias: KV_MAX_VALUE_LENGTH.
+**Function:** The maximum allowed length of a value in the database, in bytes. It is recommended to use the alias: KV_MAX_VALUE_LENGTH.
 
 **Type:** Int32
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class DeviceKVStore
 
@@ -140,15 +140,15 @@ public class DeviceKVStore <: SingleKVStore {}
 
 **Function:** A device collaboration database that inherits from SingleKVStore, providing methods for querying and synchronizing data.
 
-The device collaboration database distinguishes data by device dimension. Each device can only write and modify its own data. Data from other devices is read-only and cannot be modified.
+The device collaboration database distinguishes data by device dimension. Each device can only write and modify its own data, while data from other devices is read-only and cannot be modified.
 
-For example, the device collaboration database can be used to implement image sharing between devices. You can view images from other devices but cannot modify or delete them.
+For example, the device collaboration database can be used to implement photo sharing between devices, allowing users to view photos from other devices but not modify or delete them.
 
-Before calling the methods of DeviceKVStore, you need to first create a DeviceKVStore instance.
+Before calling methods of DeviceKVStore, a DeviceKVStore instance must be created.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -157,217 +157,329 @@ Before calling the methods of DeviceKVStore, you need to first create a DeviceKV
 ### func get(String)
 
 ```cangjie
-
-public func get(key: String): ValueType
+public func get(key: String): KVValueType
 ```
 
 **Function:** Gets the value of the specified key for the current device.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | key | String | Yes | - | The key of the data to query. It cannot be empty and its length must not exceed [MAX_KEY_LENGTH_DEVICE](#static-let-max_key_length_device). |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [ValueType](#enum-valuetype) | Returns the value obtained from the query. |
+| :---- | :---- |
+| [KVValueType](#enum-kvvaluetype) | Returns the queried value. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 15100003 | Database corrupted. |
   | 15100004 | Not found. |
   | 15100005 | Database or result set already closed. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let manager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // The Context application context needs to be obtained. For details, refer to the usage instructions in this document.
+    let store = (manager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    store.get("key")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func getEntries(String)
 
 ```cangjie
-
 public func getEntries(keyPrefix: String): Array<Entry>
 ```
 
-**Function:** Gets a list of key-value pairs that match the specified key prefix for the current device.
+**Function:** Gets a list of key-value pairs matching the specified Query object for the current device.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | keyPrefix | String | Yes | - | The key prefix to match. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Array\<[Entry](#class-entry)> | Returns a list of key-value pairs that match the specified prefix. |
+| :---- | :---- |
+| Array\<[Entry](#class-entry)> | Returns a list of key-value pairs matching the specified prefix. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let manager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // The Context application context needs to be obtained. For details, refer to the usage instructions in this document.
+    let store = (manager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    store.getEntries("key")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getEntries(Query)
 
 ```cangjie
-
 public func getEntries(query: Query): Array<Entry>
 ```
 
-**Function:** Gets a list of key-value pairs that match the specified Query object for the current device.
+**Function:** Gets a list of key-value pairs matching the specified Query object for the current device.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| query | [Query](#class-query) | Yes | - | The query object to match. |
+| :--- | :--- | :--- | :--- | :--- |
+| query | [Query](#class-query) | Yes | - | The key prefix to match. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Array\<[Entry](#class-entry)> | Returns a list of key-value pairs that match the specified Query object. |
+| :---- | :---- |
+| Array\<[Entry](#class-entry)> | Returns a list of key-value pairs matching the specified Query object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let manager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // The Context application context needs to be obtained. For details, refer to the usage instructions in this document.
+    let store = (manager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    store.getEntries(Query())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getResultSet(String)
 
 ```cangjie
-
 public func getResultSet(keyPrefix: String): KVStoreResultSet
 ```
 
-**Function:** Gets a KVStoreResultSet object that matches the specified key prefix for the current device.
+**Function:** Gets a KVStoreResultSet object matching the specified Query object for the current device.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | keyPrefix | String | Yes | - | The key prefix to match. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [KVStoreResultSet](#class-kvstoreresultset) | Returns a KVStoreResultSet object that matches the specified key prefix. |
+| :---- | :---- |
+| [KVStoreResultSet](#class-kvstoreresultset) | Gets a KVStoreResultSet object matching the specified Query object for the current device. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 15100001 | Over max limits. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let manager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // The Context application context needs to be obtained. For details, refer to the usage instructions in this document.
+    let store = (manager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    store.getResultSet("key")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getResultSet(Query)
 
 ```cangjie
-
 public func getResultSet(query: Query): KVStoreResultSet
 ```
 
-**Function:** Gets a KVStoreResultSet object that matches the specified Query object for the current device.
+**Function:** Gets a KVStoreResultSet object matching the specified Query object for the current device.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | query | [Query](#class-query) | Yes | - | The query object. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| [KVStoreResultSet](#class-kvstoreresultset) | Returns a KVStoreResultSet object that matches the specified Query object. |
+| :---- | :---- |
+| [KVStoreResultSet](#class-kvstoreresultset) | Gets a KVStoreResultSet object matching the specified Query object for the current device. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 15100001 | Over max limits. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let manager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // The Context application context needs to be obtained. For details, refer to the usage instructions in this document.
+    let store = (manager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    store.getResultSet(Query())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func getResultSize(Query)
 
 ```cangjie
-
 public func getResultSize(query: Query): Int32
 ```
 
-**Function:** Gets the number of results that match the specified Query object for the current device.
+**Function:** Gets the number of results matching the specified Query object for the current device.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | query | [Query](#class-query) | Yes | - | The query object. |
 
 **Return Value:**
 
 | Type | Description |
-|:----|:----|
-| Int32 | Returns the number of results that match the specified Query object. |
+| :---- | :---- |
+| Int32 | Gets the number of results matching the specified Query object for the current device. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
 
-## class DistributedKVStore
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let manager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // The Context application context needs to be obtained. For details, refer to the usage instructions in this document.
+    let store = (manager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    store.getResultSize(Query())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class DistributedKVStore
 
 ```cangjie
 public class DistributedKVStore {}
@@ -377,12 +489,11 @@ public class DistributedKVStore {}
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### static func createKVManager(KVManagerConfig)
 
 ```cangjie
-
 public static func createKVManager(config: KVManagerConfig): KVManager
 ```
 
@@ -390,11 +501,11 @@ public static func createKVManager(config: KVManagerConfig): KVManager
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | config | [KVManagerConfig](#class-kvmanagerconfig) | Yes | - | Provides configuration information for the KVManager instance, including the caller's package name and user information. |
 
@@ -404,28 +515,40 @@ public static func createKVManager(config: KVManagerConfig): KVManager
 |:----|:----|
 | [KVManager](#class-kvmanager) | Returns the created KVManager object instance. |
 
-**Exceptions:**
+**Example:**
 
-- IllegalArgumentException:
+<!-- compile -->
 
-  | Error Message | Possible Causes | Handling Steps |
-  | :---- | :--- | :--- |
-  | The context type is not supported. Only support UIAbilityContext. | todo | todo |## class Entry
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "com.example.myapplication")) // Context application context needs to be obtained, see usage instructions in this document
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+## class Entry
 
 ```cangjie
 public class Entry {
     public var key: String
-    public var value: ValueType
+    public var value: KVValueType
 
-    public init(key: String, value: ValueType)
+    public init(key: String, value: KVValueType)
 }
 ```
 
-**Function:** Key-value pair stored in the database.
+**Function:** Key-value pairs stored in the database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var key
 
@@ -437,46 +560,46 @@ public var key: String
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var value
 
 ```cangjie
-public var value: ValueType
+public var value: KVValueType
 ```
 
 **Function:** Value object.
 
-**Type:** [ValueType](#enum-valuetype)
+**Type:** [KVValueType](#enum-kvvaluetype)
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
-### init(String, ValueType)
+### init(String, KVValueType)
 
 ```cangjie
-public init(key: String, value: ValueType)
+public init(key: String, value: KVValueType)
 ```
 
-**Function:** Constructor for creating an Entry instance.
+**Function:** Constructor used to create an Entry instance.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | key | String | Yes | - | Key value. |
-| value | [ValueType](#enum-valuetype) | Yes | - | Value object. |
+| value | [KVValueType](#enum-kvvaluetype) | Yes | - | Value object. |
 
 ## class FieldNode
 
@@ -490,11 +613,11 @@ public class FieldNode {
 }
 ```
 
-**Function:** Represents a node in a Schema instance, providing methods to define values stored in the database.
+**Function:** Represents a node of a Schema instance, providing methods to define values stored in the database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var default
 
@@ -502,15 +625,15 @@ public class FieldNode {
 public var default: String
 ```
 
-**Function:** Default value of the FieldNode.
+**Function:** Represents the default value of the FieldNode.
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var nodeType
 
@@ -518,15 +641,15 @@ public var default: String
 public var nodeType: Int32
 ```
 
-**Function:** Data type corresponding to the specified node.
+**Function:** Represents the data type corresponding to the specified node.
 
 **Type:** Int32
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var nullable
 
@@ -538,11 +661,11 @@ public var nullable: Bool
 
 **Type:** Bool
 
-**Read-Write Attribute:** Readable and Writable
+**Read/Write Capability:** Readable and Writable
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, Bool, String, Int32)
 
@@ -554,16 +677,16 @@ public init(name: String, nullable: Bool, default: String, nodeType: Int32)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | name | String | Yes | - | Value of the FieldNode. |
-| nullable | Bool | Yes | - | Indicates whether the database field can be null. `true` means the node data can be null, `false` means it cannot. |
-| default | String | Yes | - | Default value of the FieldNode. |
-| nodeType | Int32 | Yes | - | Data type corresponding to the specified node, which takes the enumeration value of ValueType. BYTE_ARRAY is not supported yet; using this type will cause getKVStore to fail. |
+| nullable | Bool | Yes | - | Indicates whether the database field can be null. true means this node data can be null, false means this node data cannot be null. |
+| default | String | Yes | - | Represents the default value of the FieldNode. |
+| nodeType | Int32 | Yes | - | Represents the data type corresponding to the specified node, taking the enumeration value corresponding to KVValueType. BYTE_ARRAY is not supported yet; using this type will cause getKVStore to fail. |
 
 ## class KVManager
 
@@ -571,11 +694,11 @@ public init(name: String, nullable: Bool, default: String, nodeType: Int32)
 public class KVManager {}
 ```
 
-**Function:** Distributed key-value database management instance, used to obtain information about distributed key-value databases. Before calling KVManager methods, you need to first create a KVManager instance via [createKVManager](#static-func-createkvmanagerkvmanagerconfig).
+**Function:** Distributed key-value database management instance, used to obtain information related to distributed key-value databases. Before calling methods of KVManager, you need to first build a KVManager instance via [createKVManager](#static-func-createkvmanagerkvmanagerconfig).
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func closeKVStore(String, String)
 
@@ -583,26 +706,45 @@ public class KVManager {}
 public func closeKVStore(appId: String, storeId: String): Unit
 ```
 
-**Function:** Closes the specified distributed key-value database based on the storeId.
+**Function:** Closes the specified distributed key-value database by the value of storeId.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| appId | String | Yes | - | Package name of the database caller. |
+| appId | String | Yes | - | Package name of the called database. |
 | storeId | String | Yes | - | Unique identifier of the database to be closed, with a length not exceeding [MAX_STORE_ID_LENGTH](#static-let-max_store_id_length). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are as follows. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed. |
+  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;<br>2.Parameter verification failed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "com.example.myapplication")) // Context application context needs to be obtained, see usage instructions in this document
+    kvManager.closeKVStore("com.example.myapplication", "myStore")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func deleteKVStore(String, String)
 
@@ -610,27 +752,45 @@ public func closeKVStore(appId: String, storeId: String): Unit
 public func deleteKVStore(appId: String, storeId: String): Unit
 ```
 
-**Function:** Deletes the specified distributed key-value database based on the storeId.
+**Function:** Deletes the specified distributed key-value database by the value of storeId.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| appId | String | Yes | - | Package name of the database caller. |
+| appId | String | Yes | - | Package name of the called database. |
 | storeId | String | Yes | - | Unique identifier of the database to be deleted, with a length not exceeding [MAX_STORE_ID_LENGTH](#static-let-max_store_id_length). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are as follows. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed. |
   | 15100004 | Not found. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "com.example.myapplication")) // Context application context needs to be obtained, see usage instructions in this document
+    kvManager.deleteKVStore("com.example.myapplication", "myStore")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getAllKVStoreId(String)
 
@@ -638,65 +798,83 @@ public func deleteKVStore(appId: String, storeId: String): Unit
 public func getAllKVStoreId(appId: String): Array<String>
 ```
 
-**Function:** Retrieves the storeIds of all created distributed key-value databases that have not been deleted via [deleteKVStore](#func-deletekvstorestring-string).
+**Function:** Gets the storeId of all created distributed key-value databases that have not been deleted by calling the [deleteKVStore](#func-deletekvstorestring-string) method.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| appId | String | Yes | - | Package name of the database caller. |
+| appId | String | Yes | - | Package name of the called database. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Array\<String> | Returns the storeIds of all created distributed key-value databases. |
+| Array\<String> | Returns the storeId of all created distributed key-value databases. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are as follows. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed. |
+  | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;<br>2.Parameter verification failed. |
 
-### func getKVStore\<T>(String, Options) where T \<: SingleKVStore
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
-public func getKVStore<T>(storeId: String, options: Options): T where T <: SingleKVStore
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "com.example.myapplication")) // Context application context needs to be obtained, see usage instructions in this document
+    kvManager.getAllKVStoreId("com.example.myapplication")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
-**Function:** Creates and retrieves a distributed key-value database by specifying Options and storeId.
+### func getKVStore\<T>(String, KVOptions) where T \<: SingleKVStore
+
+```cangjie
+public func getKVStore<T>(storeId: String, options: KVOptions): T where T <: SingleKVStore
+```
+
+**Function:** Creates and obtains a distributed key-value database by specifying Options and storeId.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | storeId | String | Yes | - | Unique identifier of the database, with a length not exceeding [MAX_STORE_ID_LENGTH](#static-let-max_store_id_length). |
-| options | [Options](#class-options) | Yes | - | Configuration information for creating a distributed key-value instance. |
+| options | [KVOptions](#class-kvoptions) | Yes | - | Configuration information for creating a distributed key-value instance. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| T | KVStore object. A single-version distributed key-value database that does not distinguish between data sources, providing methods for querying and synchronizing data. |
+| T | KVStore object. Single-version distributed key-value database, which does not distinguish data by device and provides methods for querying and synchronizing data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are as follows. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-  | 15100002 | Open an existing database with changed options. |
+  | 15100002 | Open existed database with changed options. |
   | 15100003 | Database corrupted. |
 
 - IllegalArgumentException:
@@ -705,7 +883,31 @@ public func getKVStore<T>(storeId: String, options: Options): T where T <: Singl
   | :---- | :--- | :--- |
   | The type is not supported yet. | todo | todo |
 
-## class KVManagerConfig
+  **Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "com.example.myapplication")) // Context application context needs to be obtained, see usage instructions in this document
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let kvStore = kvManager.getKVStore("myStoreId", opt)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class KVManagerConfig
 
 ```cangjie
 public class KVManagerConfig {
@@ -716,11 +918,11 @@ public class KVManagerConfig {
 }
 ```
 
-**Function:** Provides configuration information for the KVManager instance, including the caller's package name and application context.
+**Description:** Provides configuration information for KVManager instances, including the caller's package name and application context.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var bundleName
 
@@ -728,15 +930,15 @@ public class KVManagerConfig {
 public var bundleName: String
 ```
 
-**Function:** Caller's package name.
+**Description:** The package name of the caller.
 
 **Type:** String
 
-**Read-Write Attribute:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var context
 
@@ -744,15 +946,15 @@ public var bundleName: String
 public var context: BaseContext
 ```
 
-**Function:** Application context.
+**Description:** The application context.
 
 **Type:** [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext)
 
-**Read-Write Attribute:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(BaseContext, String)
 
@@ -760,18 +962,18 @@ public var context: BaseContext
 public init(context: BaseContext, bundleName: String)
 ```
 
-**Function:** Constructor for creating a KVManagerConfig instance.
+**Description:** Constructor for creating a KVManagerConfig instance.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext) | Yes | - | Application context. |
-| bundleName | String | Yes | - | Caller's package name. |
+| context | [BaseContext](../AbilityKit/cj-apis-app-ability.md#class-basecontext) | Yes | - | The application context. |
+| bundleName | String | Yes | - | The package name of the caller. |
 
 ## class KVStoreResultSet
 
@@ -779,11 +981,11 @@ public init(context: BaseContext, bundleName: String)
 public class KVStoreResultSet {}
 ```
 
-**Function:** Provides methods for obtaining database result sets, including querying and moving data read positions. The maximum number of open result sets is 8.
+**Description:** Provides methods for obtaining database result sets, including querying and moving data reading positions. The maximum number of open result sets is 8.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getCount()
 
@@ -791,37 +993,61 @@ public class KVStoreResultSet {}
 public func getCount(): Int32
 ```
 
-**Function:** Retrieves the total number of rows in the result set.
+**Description:** Gets the total number of rows in the result set.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Int32 | Returns the total number of rows of data. |## class Options
+| Int32 | Returns the total number of rows of data. |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
-public class Options {
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context needs to be obtained. See usage instructions for details.
+    let store = (kvManager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+    store.put("key", KVValueType.StringValue("value"))
+    var resultSet = store.getResultSet("key")
+    resultSet.getCount()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+## class KVOptions
+
+```cangjie
+public class KVOptions {
     public var createIfMissing: Bool
     public var encrypt: Bool
     public var backup: Bool
     public var autoSync: Bool
-    public var securityLevel: SecurityLevel
+    public var securityLevel: KVSecurityLevel
     public var schema:?Schema
 
-    public init(securityLevel: SecurityLevel, createIfMissing!: Bool = true, encrypt!: Bool = false,
+    public init(securityLevel: KVSecurityLevel, createIfMissing!: Bool = true, encrypt!: Bool = false,
         backup!: Bool = true, autoSync!: Bool = false, schema!: ?Schema = None)
 }
 ```
 
-**Description:** Provides configuration information for database creation.
+**Description:** Provides configuration information for creating a database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var autoSync
 
@@ -829,15 +1055,15 @@ public class Options {
 public var autoSync: Bool
 ```
 
-**Description:** Sets whether database files are automatically synchronized. Default is false (manual synchronization).
+**Description:** Sets whether the database file is automatically synchronized. The default is false, meaning manual synchronization.
 
 **Type:** Bool
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var backup
 
@@ -845,15 +1071,15 @@ public var autoSync: Bool
 public var backup: Bool
 ```
 
-**Description:** Sets whether database files are backed up. Default is true (backup enabled).
+**Description:** Sets whether the database file is backed up. The default is true, meaning backup is enabled.
 
 **Type:** Bool
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var createIfMissing
 
@@ -861,15 +1087,15 @@ public var backup: Bool
 public var createIfMissing: Bool
 ```
 
-**Description:** Determines whether to create a database if the file doesn't exist. Default is true (create if missing).
+**Description:** Sets whether to create a database if the database file does not exist. The default is true, meaning creation is enabled.
 
 **Type:** Bool
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var encrypt
 
@@ -877,15 +1103,15 @@ public var createIfMissing: Bool
 public var encrypt: Bool
 ```
 
-**Description:** Sets whether database files are encrypted. Default is false (no encryption).
+**Description:** Sets whether the database file is encrypted. The default is false, meaning encryption is disabled.
 
 **Type:** Bool
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var schema
 
@@ -893,36 +1119,36 @@ public var encrypt: Bool
 public var schema:?Schema
 ```
 
-**Description:** Schema()|Defines the structure of values stored in the database. Default is undefined (no Schema used).
+**Description:** Schema()|Sets the definition of values stored in the database. The default is undefined, meaning no Schema is used.
 
 **Type:** ?[Schema](#class-schema)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var securityLevel
 
 ```cangjie
-public var securityLevel: SecurityLevel
+public var securityLevel: KVSecurityLevel
 ```
 
 **Description:** Sets the security level of the database.
 
-**Type:** [SecurityLevel](#enum-securitylevel)
+**Type:** [KVSecurityLevel](#enum-kvsecuritylevel)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
-### init(SecurityLevel, Bool, Bool, Bool, Bool, ?Schema)
+### init(KVSecurityLevel, Bool, Bool, Bool, Bool, ?Schema)
 
 ```cangjie
-public init(securityLevel: SecurityLevel, createIfMissing!: Bool = true, encrypt!: Bool = false,
+public init(securityLevel: KVSecurityLevel, createIfMissing!: Bool = true, encrypt!: Bool = false,
     backup!: Bool = true, autoSync!: Bool = false, schema!: ?Schema = None)
 ```
 
@@ -930,32 +1156,33 @@ public init(securityLevel: SecurityLevel, createIfMissing!: Bool = true, encrypt
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| securityLevel | [SecurityLevel](#enum-securitylevel) | Yes | - | Sets the security level of the database.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
-| createIfMissing | Bool | No | true | Determines whether to create a database if the file doesn't exist. Default is true.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
-| encrypt | Bool | No | false | Sets whether database files are encrypted. Default is false.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
-| backup | Bool | No | true | Sets whether database files are backed up. Default is true.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync | Bool | No | false | Sets whether database files are automatically synchronized. Default is false.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core<br>**Required Permission:** ohos.permission.DISTRIBUTED_DATASYNC |
-| schema | ?[Schema](#class-schema) | No | None | Defines the structure of values stored in the database. Default is undefined.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| securityLevel | [KVSecurityLevel](#enum-kvsecuritylevel) | Yes | - | Sets the security level of the database.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
+| createIfMissing | Bool | No | true | Sets whether to create a database if the database file does not exist. The default is true, meaning creation is enabled.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
+| encrypt | Bool | No | false | Sets whether the database file is encrypted. The default is false, meaning encryption is disabled.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
+| backup | Bool | No | true | Sets whether the database file is backed up. The default is true, meaning backup is enabled. <br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core |
+| autoSync | Bool | No | false | Sets whether the database file is automatically synchronized. The default is false, meaning manual synchronization.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core<br>**Required Permission:** ohos.permission.DISTRIBUTED_DATASYNC |
+| schema | ?[Schema](#class-schema) | No | None | Sets the definition of values stored in the database. The default is undefined, meaning no Schema is used.<br>**System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 ## class Query
 
 ```cangjie
 public class Query {
+
     public init()
 }
 ```
 
-**Description:** Represents database queries using predicates, providing methods to create Query instances, query data, and add predicates. A Query object can contain up to 256 predicates.
+**Description:** Uses predicates to represent database queries, providing methods to create Query instances, query data in the database, and add predicates. The maximum number of predicates in a Query object is 256.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init()
 
@@ -967,7 +1194,7 @@ public init()
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class Schema
 
@@ -982,11 +1209,11 @@ public class Schema {
 }
 ```
 
-**Description:** Represents database schemas. Schema objects can be created and placed in [KVOptions](#class-options) when creating or opening a database.
+**Description:** Represents a database schema. Schema objects can be created when creating or opening a database and placed in [KVOptions](#class-kvoptions).
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var indexes
 
@@ -998,11 +1225,11 @@ public var indexes: Array<String>
 
 **Type:** Array\<String>
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var mode
 
@@ -1014,11 +1241,11 @@ public var mode: Int32
 
 **Type:** Int32
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var root
 
@@ -1026,15 +1253,15 @@ public var mode: Int32
 public var root: FieldNode
 ```
 
-**Description:** Represents the root object of JSON.
+**Description:** Represents the JSON root object.
 
 **Type:** [FieldNode](#class-fieldnode)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### var skip
 
@@ -1046,11 +1273,11 @@ public var skip: Int32
 
 **Type:** Int32
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 ### init(FieldNode, Array\<String>, Int32, Int32)
 
@@ -1058,17 +1285,17 @@ public var skip: Int32
 public init(root: FieldNode, indexes: Array<String>, mode: Int32, skip: Int32)
 ```
 
-**Description:** Represents database schemas. Schema objects can be created and placed in [KVOptions](#class-options) when creating or opening a database.
+**Description:** Represents a database schema. Schema objects can be created when creating or opening a database and placed in [KVOptions](#class-kvoptions).
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| root | [FieldNode](#class-fieldnode) | Yes | - | Represents the root object of JSON. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| root | [FieldNode](#class-fieldnode) | Yes | - | Represents the JSON root object. |
 | indexes | Array\<String> | Yes | - | Represents an array of JSON-type strings. |
 | mode | Int32 | Yes | - | Represents the mode of the Schema. |
 | skip | Int32 | Yes | - | The skip size of the Schema. |
@@ -1079,38 +1306,62 @@ public init(root: FieldNode, indexes: Array<String>, mode: Int32, skip: Int32)
 public open class SingleKVStore {}
 ```
 
-**Description:** SingleKVStore database instance, providing methods to add, delete, and subscribe to data changes, as well as subscribe to data synchronization completion.
+**Description:** SingleKVStore database instance, providing methods to add data, delete data, subscribe to data changes, and subscribe to data synchronization completion.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
-
-### func backup(String)
+**Since:** 22### func backup(String)
 
 ```cangjie
 public open func backup(file: String): Unit
 ```
 
-**Description:** Backs up the database with the specified name.
+**Function:** Backs up the database with the specified name.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| file | String | Yes | - | The specified name for the backup file. Cannot be empty and must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| file | String | Yes | - | Specified name for backing up the database. Cannot be empty and length must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Parameter verification failed. |
   | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    singleKVStore.backup("myBackupfile")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func commit()
 
@@ -1118,19 +1369,46 @@ public open func backup(file: String): Unit
 public open func commit(): Unit
 ```
 
-**Description:** Commits a transaction in the SingleKVStore database.
+**Function:** Commits a transaction in the SingleKVStore database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    singleKVStore.commit()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func delete(String)
 
@@ -1138,28 +1416,54 @@ public open func commit(): Unit
 public open func delete(key: String): Unit
 ```
 
-**Description:** Deletes data with the specified key from the database.
+**Function:** Deletes data with the specified key from the database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| key | String | Yes | - | The key of the data to be deleted. Cannot be empty and must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| key | String | Yes | - | Key of the data to be deleted. Cannot be empty and length must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
   | 14800047 | The WAL file size exceeds the default limit. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    singleKVStore.delete("myKey")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func deleteBatch(Array\<String>)
 
@@ -1167,28 +1471,54 @@ public open func delete(key: String): Unit
 public open func deleteBatch(keys: Array<String>): Unit
 ```
 
-**Description:** Batch deletes key-value pairs from the SingleKVStore database.
+**Function:** Batch deletes key-value pairs from the SingleKVStore database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| keys | Array\<String> | Yes | - | The keys of the key-value pairs to be batch deleted. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| keys | Array\<String> | Yes | - | Key-value pairs to be batch deleted. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
   | 14800047 | The WAL file size exceeds the default limit. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let deviceKVStore = (kvManager.getKVStore("myStoreId", opt) as DeviceKVStore).getOrThrow()
+    deviceKVStore.deleteBatch(["myBackupfile", "BK002"])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func enableSync(Bool)
 
@@ -1196,90 +1526,163 @@ public open func deleteBatch(keys: Array<String>): Unit
 public open func enableSync(enabled: Bool): Unit
 ```
 
-**Description:** Sets whether synchronization is enabled.
+**Function:** Sets whether to enable synchronization.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| enabled | Bool | Yes | - | Determines whether synchronization is enabled. true enables synchronization, false disables it. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| enabled | Bool | Yes | - | Whether to enable synchronization. `true` enables synchronization; `false` disables it. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import std.collection.ArrayList
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    singleKVStore.enableSync(true)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func get(String)
 
 ```cangjie
-public open func get(key: String): ValueType
+public open func get(key: String): KVValueType
 ```
 
-**Description:** Retrieves the value associated with the specified key.
+**Function:** Gets the value of the specified key.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| key | String | Yes | - | The key of the data to be queried. Cannot be empty and must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| key | String | Yes | - | Key of the data to be queried. Cannot be empty and length must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| [ValueType](#enum-valuetype) | Returns the queried value. |
+|:----|:----|
+| [KVValueType](#enum-kvvaluetype) | Returns the queried value. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 15100003 | Database corrupted. |
   | 15100004 | Not found. |
   | 15100005 | Database or result set already closed. |
 
-### func put(String, ValueType)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
-public open func put(key: String, value: ValueType): Unit
+// index.cj
+
+import kit.ArkData.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+let kvManager = DistributedKVStore.createKVManager(KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+let kvStore = (kvManager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+try {
+    let value = kvStore.get("myKey")
+    match (value) {
+        case StringValue(v) => Hilog.info(0, "test", "The obtained value is a String: ${v}", "")
+        case Integer(v) => Hilog.info(0, "test", "The obtained value is a Int32: ${v}", "")
+        case Double(v) => Hilog.info(0, "test", "The obtained value is a Float64: ${v}", "")
+        case _ => Hilog.info(0, "test", "The obtained value is of another type.", "")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "get failed.", "")
+}
 ```
 
-**Description:** Adds a key-value pair of the specified type to the database.
+### func put(String, KVValueType)
+
+```cangjie
+public open func put(key: String, value: KVValueType): Unit
+```
+
+**Function:** Adds a key-value pair of the specified type to the database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| key | String | Yes | - | The key of the data to be added. Cannot be empty and must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
-| value | [ValueType](#enum-valuetype) | Yes | - | The value of the data to be added. Supports Array\<UInt8>, String, Int32, Bool, Float32, Float64. The length of Array\<UInt8> and String must not exceed [MAX_VALUE_LENGTH](#static-let-max_value_length). |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| key | String | Yes | - | Key of the data to be added. Cannot be empty and length must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
+| value | [KVValueType](#enum-kvvaluetype) | Yes | - | Value of the data to be added. Supports Array\<UInt8>, String, Int32, Bool, Float32, Float64. The length of Array\<UInt8> and String must not exceed [MAX_VALUE_LENGTH](#static-let-max_value_length). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md) and [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
   | 14800047 | The WAL file size exceeds the default limit. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+let kvManager = DistributedKVStore.createKVManager(
+    KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+let kvStore = (kvManager.getKVStore("test", KVOptions(KVSecurityLevel.S1)) as DeviceKVStore).getOrThrow()
+try {
+    kvStore.put("myKey", StringValue("myValue"))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "put failed.", "")
+}
+```
 
 ### func putBatch(Array\<Entry>)
 
@@ -1287,28 +1690,61 @@ public open func put(key: String, value: ValueType): Unit
 public open func putBatch(entries: Array<Entry>): Unit
 ```
 
-**Description:** Batch inserts key-value pairs into the SingleKVStore database.
+**Function:** Batch inserts key-value pairs into the SingleKVStore database.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| entries | Array\<[Entry](#class-entry)> | Yes | - | The key-value pairs to be batch inserted. The maximum data size for an entries object is 512M. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| entries | Array\<[Entry](#class-entry)> | Yes | - | Key-value pairs to be batch inserted. The maximum data volume allowed in a single entries object is 512M. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md) and [Relational Database Error Codes](./cj-errorcode-data-rdb.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types. |
   | 15100003 | Database corrupted. |
   | 15100005 | Database or result set already closed. |
   | 14800047 | The WAL file size exceeds the default limit. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import std.collection.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(
+        KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    let entries = ArrayList<Entry>()
+    for (i in 0..10) {
+        let entry = Entry("batch_test_string_key${i}", StringValue("batch_test_string_value"))
+        entries.add(entry)
+    }
+    singleKVStore.putBatch(entries.toArray())
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func restore(String)
 
@@ -1316,24 +1752,118 @@ public open func putBatch(entries: Array<Entry>): Unit
 public open func restore(file: String): Unit
 ```
 
-**Description:** Restores the database from the specified database file.
+**Function:** Restores the database from the specified database file.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| file | String | Yes | - | The specified database file name. Cannot be empty and must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| file | String | Yes | - | Specified database file name. Cannot be empty and length must not exceed [MAX_KEY_LENGTH](#static-let-max_key_length). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Distributed Key-Value Store Error Codes](./cj-errorcode-distributed_kv_store.md) and## enum SecurityLevel
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
-public enum SecurityLevel {
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(
+        KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    singleKVStore.restore("myBackupfile")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func rollback()
+
+```cangjie
+public open func rollback(): Unit
+```
+
+**Function:** Rolls back a transaction in the SingleKVStore database.
+
+**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
+
+**Initial Version:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Distributed Key-Value Database Error Codes](./cj-errorcode-distributed_kv_store.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 15100005 | Database or result set already closed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let kvManager = DistributedKVStore.createKVManager(
+        KVManagerConfig(Global.getStageContext(), "test_kvstore")) // Context application context required. See usage instructions for details.
+    let opt = KVOptions(
+        KVSecurityLevel.S4,
+        createIfMissing: true,
+        encrypt: false,
+        backup: true,
+        autoSync: false,
+    )
+    let singleKVStore = kvManager.getKVStore("myStoreId", opt)
+    singleKVStore.rollback()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func setSyncParam(UInt32)
+
+```cangjie
+public open func setSyncParam(defaultAllowedDelayMs: UInt32): Unit
+```
+
+**Function:** Sets the default allowed delay for database synchronization.
+
+**System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
+
+**Initial Version:** 22
+
+**## enum KVSecurityLevel
+
+```cangjie
+public enum KVSecurityLevel {
     | S1
     | S2
     | S3
@@ -1342,11 +1872,11 @@ public enum SecurityLevel {
 }
 ```
 
-**Function:** Enumeration of database security levels.
+**Function:** Enumeration for database security levels.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### S1
 
@@ -1358,7 +1888,7 @@ S1
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### S2
 
@@ -1366,11 +1896,11 @@ S1
 S2
 ```
 
-**Function:** Indicates the database security level is medium. Data leakage, tampering, destruction, or loss may cause serious adverse impacts on individuals or organizations. Examples include detailed personal communication addresses, names/nicknames, etc.
+**Function:** Indicates the database security level is medium. Data leakage, tampering, destruction, or loss may cause significant adverse impacts on individuals or organizations. Examples include detailed personal communication addresses, names/nicknames, etc.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### S3
 
@@ -1382,7 +1912,7 @@ S3
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### S4
 
@@ -1390,16 +1920,16 @@ S3
 S4
 ```
 
-**Function:** Indicates the database security level is critical, covering special data types defined by industry laws and regulations that involve the most private information of individuals. Any leakage, tampering, destruction, or loss may cause significant adverse impacts on individuals or organizations. Examples include political views, religion, philosophical beliefs, trade union membership, genetic data, biometric information, health and sexual life status, sexual orientation, device authentication credentials, personal credit card/financial information, etc.
+**Function:** Indicates the database security level is critical, covering special data types defined by industry laws and regulations that involve the most private aspects of individuals. Data leakage, tampering, destruction, or loss may cause major adverse impacts. Examples include political views, religion, philosophical beliefs, trade union membership, genetic data, biometric information, health and sexual life status, sexual orientation, device authentication credentials, personal credit card/financial information, etc.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
-## enum ValueType
+## enum KVValueType
 
 ```cangjie
-public enum ValueType {
+public enum KVValueType {
     | StringValue(String)
     | Integer(Int32)
     | Float(Float32)
@@ -1410,11 +1940,11 @@ public enum ValueType {
 }
 ```
 
-**Function:** Enumeration of data types.
+**Function:** Enumeration for data types.
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Boolean(Bool)
 
@@ -1426,7 +1956,7 @@ Boolean(Bool)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ByteArray(Array\<Byte>)
 
@@ -1438,7 +1968,7 @@ ByteArray(Array<Byte>)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Double(Float64)
 
@@ -1450,7 +1980,7 @@ Double(Float64)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Float(Float32)
 
@@ -1462,7 +1992,7 @@ Float(Float32)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Integer(Int32)
 
@@ -1474,7 +2004,7 @@ Integer(Int32)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StringValue(String)
 
@@ -1486,4 +2016,4 @@ StringValue(String)
 
 **System Capability:** SystemCapability.DistributedDataManager.KVStore.Core
 
-**Since:** 21
+**Since:** 22

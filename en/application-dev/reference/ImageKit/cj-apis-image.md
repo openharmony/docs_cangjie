@@ -1,6 +1,6 @@
 # ohos.multimedia.image (Image Processing)
 
-This module provides image processing capabilities, including creating PixelMap through attributes, reading image pixel data, and reading image data within a specified region.
+This module provides image processing capabilities, including creating PixelMap through properties, reading image pixel data, and extracting image data within specified regions.
 
 ## Importing the Module
 
@@ -10,13 +10,13 @@ import kit.ImageKit.*
 
 ## Usage Instructions
 
-API example code usage instructions:
+API sample code usage instructions:
 
-- If the first line of example code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
-- When running example code, first construct the correct image source through [createImageSource](#func-createimagesourcestring-sourceoptions), which supports building image sources from raw arrays, URIs, file descriptors, etc.
+- If the sample code begins with a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration must be done in the "main_ability.cj" file of the Cangjie template project.
+- When running sample code, first construct the correct image source through [createImageSource](#func-createimagesourcestring-sourceoptions), which supports building image sources from raw arrays, URIs, file descriptors, etc.
 
-For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## func createImagePacker()
 
@@ -24,17 +24,17 @@ For details about the example project and configuration template mentioned above
 public func createImagePacker(): ImagePacker
 ```
 
-**Function:** Creates an ImagePacker instance.
+**Description:** Creates an ImagePacker instance.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImagePacker](#class-imagepacker)| Returns an ImagePacker instance. |
+|[ImagePacker](#class-imagepacker)|Returns an ImagePacker instance.|
 
 **Example:**
 
@@ -44,8 +44,14 @@ public func createImagePacker(): ImagePacker
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let imagePacker : ImagePacker = createImagePacker()
+try {
+    let imagePacker : ImagePacker = createImagePacker()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func createImageReceiver(Size, ImageFormat, Int32)
@@ -54,33 +60,34 @@ let imagePacker : ImagePacker = createImagePacker()
 public func createImageReceiver(size: Size, format: ImageFormat, capacity: Int32): ImageReceiver
 ```
 
-**Function:** Creates an ImageReceiver instance by specifying width, height, image format, and capacity.
+**Description:** Creates an ImageReceiver instance with specified width, height, image format, and capacity.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| size | [Size](#class-size) | Yes | - | The default size of the image. |
-| format | [ImageFormat](#enum-imageformat) | Yes | - | The image format, which can be one of the [ImageFormat](#enum-imageformat) constants (currently only ImageFormat:JPEG is supported). |
-| capacity | Int32 | Yes | - | The maximum number of images that can be accessed simultaneously. |
+|size|[Size](#class-size)|Yes|-|Default size of the image.|
+|format|[ImageFormat](#enum-imageformat)|Yes|-|Image format, using constants from [ImageFormat](#enum-imageformat) (currently only ImageFormat:JPEG is supported).|
+|capacity|Int32|Yes|-|Maximum number of images that can be accessed simultaneously.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageReceiver](#class-imagereceiver)| If the operation is successful, returns an ImageReceiver instance. |
+|[ImageReceiver](#class-imagereceiver)|Returns an ImageReceiver instance if the operation succeeds.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes as shown below. For details, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; |
+  | 62980104 | Failed to initialize the internal object. |
+  | 62980115 | Parameter error. Possible causes: 1. Mandatory parameters are unspecified; 2. Incorrect parameter types. |
 
 **Example:**
 
@@ -90,9 +97,15 @@ public func createImageReceiver(size: Size, format: ImageFormat, capacity: Int32
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let size = Size(8, 8192)
-let receiver:ImageReceiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+try {
+    let size = Size(8, 8192)
+    let receiver:ImageReceiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func createImageSource(String)
@@ -101,23 +114,42 @@ let receiver:ImageReceiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
 public func createImageSource(uri: String): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in a URI.
+**Description:** Creates an image source instance from the specified URI.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| uri | String | Yes | - | The image path, currently only supports application sandbox paths. <br>Supported formats include: .jpg, .png, .gif, .bmp, .webp, RAW, [SVG](#svg标签说明). |
+|uri|String|Yes|-|Image path, currently only supports application sandbox paths.</br>Supported formats include: .jpg .png .gif .bmp .webp RAW [SVG](#SVG-Tag-Description). |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let path: String = "../test.jpg"
+    let imageSourceApi: ImageSource = createImageSource(path)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func createImageSource(String, SourceOptions)
 
@@ -125,24 +157,43 @@ public func createImageSource(uri: String): ImageSource
 public func createImageSource(uri: String, options: SourceOptions): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in a URI.
+**Description:** Creates an image source instance from the specified URI.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| uri | String | Yes | - | The image path, currently only supports application sandbox paths. <br>Supported formats include: .jpg, .png, .gif, .bmp, .webp, RAW, [SVG](#svg标签说明). |
-| options | [SourceOptions](#class-sourceoptions) | Yes | - | Image attributes, including image sequence number and default attribute values. |
+|uri|String|Yes|-|Image path, currently only supports application sandbox paths.</br>Supported formats include: .jpg .png .gif .bmp .webp RAW [SVG](#SVG-Tag-Description).|
+|options|[SourceOptions](#class-sourceoptions)|Yes|-|Image properties, including image index and default property values.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSource: ImageSource = createImageSource("test.png", sourceOptions)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func createImageSource(Int32)
 
@@ -150,23 +201,41 @@ public func createImageSource(uri: String, options: SourceOptions): ImageSource
 public func createImageSource(fd: Int32): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in a file descriptor.
+**Description:** Creates an image source instance from a file descriptor.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| fd | Int32 | Yes | - | The file descriptor fd. |
+|fd|Int32|Yes|-|File descriptor fd.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let imageSourceApi : ImageSource = createImageSource(0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func createImageSource(Int32, SourceOptions)
 
@@ -174,24 +243,43 @@ public func createImageSource(fd: Int32): ImageSource
 public func createImageSource(fd: Int32, options: SourceOptions): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in a file descriptor.
+**Description:** Creates an image source instance from a file descriptor.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| fd | Int32 | Yes | - | The image file descriptor. |
-| options | [SourceOptions](#class-sourceoptions) | Yes | - | Image attributes, including image sequence number and default attribute values. |
+|fd|Int32|Yes|-|Image file descriptor.|
+|options|[SourceOptions](#class-sourceoptions)|Yes|-|Image properties, including image index and default property values.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSource: ImageSource = createImageSource(0, sourceOptions)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func createImageSource(Array\<UInt8>)
 
@@ -199,23 +287,42 @@ public func createImageSource(fd: Int32, options: SourceOptions): ImageSource
 public func createImageSource(buf: Array<UInt8>): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in a buffer.
+**Description:** Creates an image source instance from a buffer.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| buf | Array\<UInt8> | Yes | - | The image buffer array. |
+|buf|Array\<UInt8>|Yes|-|Image buffer array.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let buf: Array<UInt8> = Array<UInt8>(96, repeat: 0) //96 is the required pixel buffer size, calculated as: height * width *4
+    let imageSourceApi: ImageSource = createImageSource(buf)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func createImageSource(Array\<UInt8>, SourceOptions)
 
@@ -223,24 +330,44 @@ public func createImageSource(buf: Array<UInt8>): ImageSource
 public func createImageSource(buf: Array<UInt8>, options: SourceOptions): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in a buffer.
+**Description:** Creates an image source instance from a buffer.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| buf | Array\<UInt8> | Yes | - | The image buffer array. |
-| options | [SourceOptions](#class-sourceoptions) | Yes | - | Image attributes, including image sequence number and default attribute values. |
+|buf|Array\<UInt8>|Yes|-|Image buffer array.|
+|options|[SourceOptions](#class-sourceoptions)|Yes|-|Image properties, including image index and default property values.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func createImageSource(RawFileDescriptor, SourceOptions)
 
@@ -248,57 +375,96 @@ public func createImageSource(buf: Array<UInt8>, options: SourceOptions): ImageS
 public func createImageSource(rawfile: RawFileDescriptor, options!: SourceOptions = SourceOptions(0)): ImageSource
 ```
 
-**Function:** Creates an image source instance by passing in the RawFileDescriptor of an image resource file.
+**Description:** Creates an image source instance from the RawFileDescriptor of an image resource file.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| rawfile | [RawFileDescriptor](../LocalizationKit/cj-apis-raw_file_descriptor.md#class-rawfiledescriptor) | Yes | - | The RawFileDescriptor of the image resource file. |
-| options | [SourceOptions](#class-sourceoptions) | No | SourceOptions(0) | **Named parameter.** Image attributes, including pixel density, pixel format, and image size. |
+|rawfile|[RawFileDescriptor](../LocalizationKit/cj-apis-raw_file_descriptor.md#class-rawfiledescriptor)|Yes|-|RawFileDescriptor of the image resource file.|
+|options|[SourceOptions](#class-sourceoptions)|No|SourceOptions(0)| **Named parameter.** Image properties, including pixel density, pixel format, and image dimensions.|
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[ImageSource](#class-imagesource)| Returns an ImageSource class instance. |
+|[ImageSource](#class-imagesource)|Returns an ImageSource instance.|
 
-## func createPixelMap(Array\<UInt8>, InitializationOptions)
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import ohos.resource_manager.ResourceManager
+
+let resourceManager = Global.getResourceManager() // Requires obtaining the Context application context. See Usage Instructions above.
+try {
+    let rawfd = resourceManager.getRawFd("test.png")
+    createImageSource(rawfd)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "error code: ${e.code}, message: ${e.message}.", "")
+}
+```## func createPixelMap(Array\<UInt8>, InitializationOptions)
 
 ```cangjie
 public func createPixelMap(colors: Array<UInt8>, options: InitializationOptions): PixelMap
 ```
 
-**Function:** Creates a PixelMap by specifying attributes. By default, data is processed in BGRA_8888 format, and currently only BGRA_8888 format is supported.
+**Function:** Creates a PixelMap with specified attributes, defaulting to BGRA_8888 format for data processing. Currently only BGRA_8888 format is supported.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| colors | Array\<UInt8> | Yes | - | The color array in BGRA_8888 format. |
+| colors | Array\<UInt8> | Yes | - | Color array in BGRA_8888 format. |
 | options | [InitializationOptions](#class-initializationoptions) | Yes | - | Attributes for creating the pixel, including transparency, size, thumbnail value, pixel format, and editability. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-|[PixelMap](#class-pixelmap)| Returns a PixelMap. <br>If the created pixelmap size exceeds the original image size, the original pixelmap size is returned. |
+| [PixelMap](#class-pixelmap) | Returns the PixelMap.<br>If the created pixelmap size exceeds the original image size, returns the original pixelmap size. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+  | 62980104 | Failed to initialize the internal object. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let color: Array<UInt8> = Array<UInt8>(96, repeat: 0) //96 is the required pixel buffer size, calculated as: height * width *4
+    let opts: InitializationOptions = InitializationOptions(Size(4, 6))
+    let pixelMap = createPixelMap(color, opts)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## class Component
 
@@ -311,11 +477,11 @@ public class Component {
 }
 ```
 
-**Function:** Describes the color components of an image.
+**Function:** Describes image color components.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### let byteBuffer
 
@@ -323,15 +489,15 @@ public class Component {
 public let byteBuffer: Array<UInt8>
 ```
 
-**Function:** The component buffer.
+**Function:** Component buffer.
 
 **Type:** Array\<UInt8>
 
-**Read/Write Permission:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### let componentType
 
@@ -339,15 +505,15 @@ public let byteBuffer: Array<UInt8>
 public let componentType: ComponentType
 ```
 
-**Function:** The component type.
+**Function:** Component type.
 
 **Type:** [ComponentType](#enum-componenttype)
 
-**Read/Write Permission:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### let pixelStride
 
@@ -355,15 +521,15 @@ public let componentType: ComponentType
 public let pixelStride: Int32
 ```
 
-**Function:** The pixel stride.
+**Function:** Pixel stride.
 
 **Type:** Int32
 
-**Read/Write Permission:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ### let rowStride
 
@@ -371,15 +537,15 @@ public let pixelStride: Int32
 public let rowStride: Int32
 ```
 
-**Function:** The row stride.
+**Function:** Row stride.
 
 **Type:** Int32
 
-**Read/Write Permission:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 ## class DecodingOptions
 
@@ -406,7 +572,7 @@ public class DecodingOptions {
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var desiredColorSpace
 
@@ -414,15 +580,15 @@ public class DecodingOptions {
 public var desiredColorSpace:?ColorSpaceManager
 ```
 
-**Function:** The target color space.
+**Function:** Target color space.
 
 **Type:** ?[ColorSpaceManager](../ArkGraphics2D/cj-apis-color_manager.md#class-colorspacemanager)
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var desiredDynamicRange
 
@@ -430,17 +596,17 @@ public var desiredColorSpace:?ColorSpaceManager
 public var desiredDynamicRange: DecodingDynamicRange
 ```
 
-**Function:** The target dynamic range, with SDR as the default value.
+**Function:** Target dynamic range, default is SDR.
 
-If the platform does not support HDR, the setting is invalid, and the content will be decoded as SDR by default.
+If the platform does not support HDR, this setting is invalid and will default to decoding SDR content.
 
 **Type:** [DecodingDynamicRange](#enum-decodingdynamicrange)
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var desiredPixelFormat
 
@@ -448,15 +614,15 @@ If the platform does not support HDR, the setting is invalid, and the content wi
 public var desiredPixelFormat: PixelMapFormat
 ```
 
-**Function:** The decoded pixel format.
+**Function:** Decoded pixel format.
 
 **Type:** [PixelMapFormat](#enum-pixelmapformat)
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var desiredRegion
 
@@ -464,15 +630,15 @@ public var desiredPixelFormat: PixelMapFormat
 public var desiredRegion: Region
 ```
 
-**Function:** The decoding region.
+**Function:** Decoding region.
 
 **Type:** [Region](#class-region)
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var desiredSize
 
@@ -480,15 +646,15 @@ public var desiredRegion: Region
 public var desiredSize: Size
 ```
 
-**Function:** The desired output size.
+**Function:** Desired output size.
 
 **Type:** [Size](#class-size)
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var editable
 
@@ -496,15 +662,15 @@ public var desiredSize: Size
 public var editable: Bool
 ```
 
-**Function:** Whether the image is editable. When set to false, the image cannot be edited further, and operations such as crop will fail.
+**Function:** Editability. When set to false, the image cannot be further edited (e.g., crop operations will fail).
 
 **Type:** Bool
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var fitDensity
 
@@ -512,15 +678,15 @@ public var editable: Bool
 public var fitDensity: Int32
 ```
 
-**Function:** The image pixel density, in ppi.
+**Function:** Image pixel density in ppi.
 
 **Type:** Int32
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var index
 
@@ -528,15 +694,15 @@ public var fitDensity: Int32
 public var index: UInt32
 ```
 
-**Function:** The sequence number of the decoded image.
+**Function:** Decoding image index.
 
 **Type:** UInt32
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var rotate
 
@@ -544,15 +710,15 @@ public var index: UInt32
 public var rotate: UInt32
 ```
 
-**Function:** The rotation angle.
+**Function:** Rotation angle.
 
 **Type:** UInt32
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### var sampleSize
 
@@ -560,15 +726,15 @@ public var rotate: UInt32
 public var sampleSize: UInt32
 ```
 
-**Function:** The thumbnail sampling size, currently only 1 is supported.
+**Function:** Thumbnail sampling size, currently only supports 1.
 
 **Type:** UInt32
 
-**Read/Write Permission:** Read/Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 ### init(UInt32, UInt32, Bool, Size, Region, PixelMapFormat, UInt32, Int32, ?ColorSpaceManager, DecodingDynamicRange)
 
@@ -583,15 +749,24 @@ public init(sampleSize!: UInt32 = 1, rotate!: UInt32 = 0, editable!: Bool = fals
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| sampleSize | UInt32 | No | 1 | **Named parameter.** The thumbnail sampling size, currently only 1 is supported. |
-| rotate | UInt32 | No | 0 | **Named parameter.** The rotation angle. |
-| editable | Bool | No | false | **Named parameter.** Whether the image is editable. When set to false, the image cannot## class Image
+| sampleSize | UInt32 | No | 1 | **Named parameter.** Thumbnail sampling size, currently only supports 1. |
+| rotate | UInt32 | No | 0 | **Named parameter.** Rotation angle. |
+| editable | Bool | No | false | **Named parameter.** Editability. When set to false, the image cannot be further edited (e.g., crop operations will fail). |
+| desiredSize | [Size](#class-size) | No | Size(0, 0) | **Named parameter.** Desired output size. |
+| desiredRegion | [Region](#class-region) | No | Region(Size(0, 0), 0, 0) | **Named parameter.** Decoding region. |
+| desiredPixelFormat | [PixelMapFormat](#enum-pixelmapformat) | No | Unknown | **Named parameter.** Decoded pixel format. |
+| index | UInt32 | No | 0 | **Named parameter.** Decoding image index. |
+| fitDensity | Int32 | No | 0 | **Named parameter.** Image pixel density in ppi. |
+| desiredColorSpace | ?[ColorSpaceManager](../ArkGraphics2D/cj-apis-color_manager.md#class-colorspacemanager) | No | None | **Named parameter.** Target color space. |
+| desiredDynamicRange | [DecodingDynamicRange](#enum-decodingdynamicrange) | No | Sdr | **Named parameter.** Target dynamic range.<br>If the platform does not support HDR, this setting is invalid and will default to decoding SDR content. |
+
+## class Image
 
 ```cangjie
 public class Image {}
@@ -601,7 +776,7 @@ public class Image {}
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop clipRect
 
@@ -609,7 +784,7 @@ public class Image {}
 public prop clipRect: Region
 ```
 
-**Function:** The region of the image to be cropped.
+**Function:** Image region to be cropped.
 
 **Type:** [Region](#class-region)
 
@@ -617,7 +792,7 @@ public prop clipRect: Region
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop format
 
@@ -625,7 +800,7 @@ public prop clipRect: Region
 public prop format: Int32
 ```
 
-**Function:** The image format, refer to [PixelMapFormat](#enum-pixelmapformat).
+**Function:** Image format, refer to [PixelMapFormat](#enum-pixelmapformat).
 
 **Type:** Int32
 
@@ -633,7 +808,7 @@ public prop format: Int32
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop size
 
@@ -641,7 +816,7 @@ public prop format: Int32
 public prop size: Size
 ```
 
-**Function:** The size of the image.
+**Function:** Image size.
 
 **Type:** [Size](#class-size)
 
@@ -649,7 +824,7 @@ public prop size: Size
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func getComponent(ComponentType)
 
@@ -657,23 +832,44 @@ public prop size: Size
 public func getComponent(componentType: ComponentType): Component
 ```
 
-**Function:** Retrieves the component buffer from the image based on the specified component type and returns the result.
+**Function:** Retrieves the component buffer from the image based on the component type and returns the result.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| componentType | [ComponentType](#enum-componenttype) | Yes | - | The component type of the image. |
+| componentType | [ComponentType](#enum-componenttype) | Yes | - | Image component type. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
 | [Component](#class-component) | Returns the component buffer. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let size = Size(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let img = receiver.readNextImage()
+    let component : Component = img.getComponent(ComponentType.Jpeg)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func release()
 
@@ -685,9 +881,28 @@ public func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
-## class ImageInfo
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let size = Size(8, 8192)
+    let receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let img = receiver.readNextImage()
+    img.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class ImageInfo
 
 ```cangjie
 public class ImageInfo {
@@ -701,11 +916,11 @@ public class ImageInfo {
 }
 ```
 
-**Function:** Represents image information.
+**Description:** Represents image information.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var alphaType
 
@@ -713,7 +928,7 @@ public class ImageInfo {
 public var alphaType: AlphaType
 ```
 
-**Function:** Transparency.
+**Description:** Alpha transparency.
 
 **Type:** [AlphaType](#enum-alphatype)
 
@@ -721,7 +936,7 @@ public var alphaType: AlphaType
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var density
 
@@ -729,7 +944,7 @@ public var alphaType: AlphaType
 public var density: Int32
 ```
 
-**Function:** Pixel density, in ppi.
+**Description:** Pixel density in ppi (pixels per inch).
 
 **Type:** Int32
 
@@ -737,7 +952,7 @@ public var density: Int32
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var isHdr
 
@@ -745,7 +960,7 @@ public var density: Int32
 public var isHdr: Bool
 ```
 
-**Function:** Indicates whether the image is High Dynamic Range (HDR). For [ImageSource](#class-imagesource), it indicates whether the source image is HDR; for [PixelMap](#class-pixelmap), it indicates whether the decoded pixelmap is HDR.
+**Description:** Indicates whether the image is High Dynamic Range (HDR). For [ImageSource](#class-imagesource), it indicates whether the source image is HDR; for [PixelMap](#class-pixelmap), it indicates whether the decoded pixelmap is HDR.
 
 **Type:** Bool
 
@@ -753,7 +968,7 @@ public var isHdr: Bool
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var mimeType
 
@@ -761,7 +976,7 @@ public var isHdr: Bool
 public var mimeType: String
 ```
 
-**Function:** The actual format of the image (MIME type).
+**Description:** The actual image format (MIME type).
 
 **Type:** String
 
@@ -769,7 +984,7 @@ public var mimeType: String
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var pixelFormat
 
@@ -777,7 +992,7 @@ public var mimeType: String
 public var pixelFormat: PixelMapFormat
 ```
 
-**Function:** Pixel format.
+**Description:** Pixel format.
 
 **Type:** [PixelMapFormat](#enum-pixelmapformat)
 
@@ -785,7 +1000,7 @@ public var pixelFormat: PixelMapFormat
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var size
 
@@ -793,7 +1008,7 @@ public var pixelFormat: PixelMapFormat
 public var size: Size
 ```
 
-**Function:** The size of the image.
+**Description:** Image dimensions.
 
 **Type:** [Size](#class-size)
 
@@ -801,7 +1016,7 @@ public var size: Size
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var stride
 
@@ -809,7 +1024,7 @@ public var size: Size
 public var stride: Int32
 ```
 
-**Function:** Stride, the space occupied by each row of pixels in memory. stride >= region.size.width*4.
+**Description:** Stride, the space occupied by each row of pixels in memory. stride >= region.size.width*4.
 
 **Type:** Int32
 
@@ -817,7 +1032,7 @@ public var stride: Int32
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class ImagePacker
 
@@ -825,11 +1040,11 @@ public var stride: Int32
 public class ImagePacker {}
 ```
 
-**Function:** The image packer class, used for image compression and packaging. Before calling methods of ImagePacker, an ImagePacker instance must be created via [createImagePacker](#func-createimagepacker). Currently supported formats include: jpeg, webp, png.
+**Description:** Image packer class for image compression and packaging. Before calling ImagePacker methods, an ImagePacker instance must be created via [createImagePacker](#func-createimagepacker). Currently supported formats: jpeg, webp, png.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### prop supportedFormats
 
@@ -837,7 +1052,7 @@ public class ImagePacker {}
 public prop supportedFormats: Array<String>
 ```
 
-**Function:** The supported formats for image packing: jpeg, webp, png.
+**Description:** Supported image packaging formats: jpeg, webp, png.
 
 **Type:** Array\<String>
 
@@ -845,7 +1060,7 @@ public prop supportedFormats: Array<String>
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### func packToData(ImageSource, PackingOption)
 
@@ -853,36 +1068,35 @@ public prop supportedFormats: Array<String>
 public func packToData(source: ImageSource, options: PackingOption): Array<UInt8>
 ```
 
-**Function:** Compresses or re-encodes an image.
+**Description:** Compresses or re-encodes an image.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| source | [ImageSource](#class-imagesource) | Yes | - | The image source to be packed. |
-| options | [PackingOption](#class-packingoption) | Yes | - | Sets the packing parameters. |
+| source | [ImageSource](#class-imagesource) | Yes | - | The image source to package. |
+| options | [PackingOption](#class-packingoption) | Yes | - | Packaging parameters. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Array\<UInt8> | Used to obtain the compressed or packed data. |
+| Array\<UInt8> | Returns compressed or packaged data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Error codes as follows, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the parameter is invalid. |
   | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
   | 62980172 | Failed to encode icc. |
@@ -897,14 +1111,20 @@ public func packToData(source: ImageSource, options: PackingOption): Array<UInt8
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSource: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source, refer to the usage instructions in this document.
-var imagePacker = createImagePacker()
-let supportedFormats = imagePacker.supportedFormats
-let packingOption = PackingOption("image/jpeg", 98)
-let packRes = imagePacker.packToData(imageSource, packingOption)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSource: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source as per usage instructions.
+    var imagePacker = createImagePacker()
+    let supportedFormats = imagePacker.supportedFormats
+    let packingOption = PackingOption("image/jpeg", 98)
+    let packRes = imagePacker.packToData(imageSource, packingOption)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func packToData(PixelMap, PackingOption)
@@ -913,36 +1133,35 @@ let packRes = imagePacker.packToData(imageSource, packingOption)
 public func packToData(source: PixelMap, options: PackingOption): Array<UInt8>
 ```
 
-**Function:** Compresses or re-encodes an image.
+**Description:** Compresses or re-encodes an image.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| source | [PixelMap](#class-pixelmap) | Yes | - | The image source to be packed. |
-| options | [PackingOption](#class-packingoption) | Yes | - | Sets the packing parameters. |
+| source | [PixelMap](#class-pixelmap) | Yes | - | The image source to package. |
+| options | [PackingOption](#class-packingoption) | Yes | - | Packaging parameters. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Array\<UInt8> | Used to obtain the compressed or packed data. |
+| Array\<UInt8> | Returns compressed or packaged data. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Error codes as follows, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the parameter is invalid. |
   | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
   | 62980172 | Failed to encode icc. |
@@ -956,14 +1175,20 @@ public func packToData(source: PixelMap, options: PackingOption): Array<UInt8>
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-var colors: Array<UInt8> = [80, 2, 4, 8, 40, 2, 4, 8]
-var pm = createPixelMap(colors,
-    InitializationOptions(Size(2, 1), scaleMode: ScaleMode.CenterCrop))
-var imagePacker = createImagePacker()
-let supportedFormats = imagePacker.supportedFormats
-let packingOption = PackingOption("image/jpeg", 98)
-let packRes = imagePacker.packToData(pm, packingOption)
+try {
+    var colors: Array<UInt8> = [80, 2, 4, 8, 40, 2, 4, 8]
+    var pm = createPixelMap(colors,
+        InitializationOptions(Size(2, 1), scaleMode: ScaleMode.CenterCrop))
+    var imagePacker = createImagePacker()
+    let supportedFormats = imagePacker.supportedFormats
+    let packingOption = PackingOption("image/jpeg", 98)
+    let packRes = imagePacker.packToData(pm, packingOption)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func packToFile(ImageSource, Int32, PackingOption)
@@ -972,30 +1197,30 @@ let packRes = imagePacker.packToData(pm, packingOption)
 public func packToFile(source: ImageSource, fd: Int32, options: PackingOption): Unit
 ```
 
-**Function:** Encodes the Picture directly into a file with specified encoding parameters.
+**Description:** Encodes an image directly into a file with specified parameters.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| source | [ImageSource](#class-imagesource) | Yes | - | The Picture resource to be encoded. |
+| source | [ImageSource](#class-imagesource) | Yes | - | The image source to encode. |
 | fd | Int32 | Yes | - | File descriptor. |
-| options | [PackingOption](#class-packingoption) | Yes | - | Sets the packing parameters. |
+| options | [PackingOption](#class-packingoption) | Yes | - | Packaging parameters. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Error codes as follows, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted. |
   | 62980115 | Invalid input parameter. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
@@ -1012,16 +1237,22 @@ public func packToFile(source: ImageSource, fd: Int32, options: PackingOption): 
 
 import kit.ImageKit.*
 import kit.CoreFileKit.{FileIo, OpenMode}
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSource: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source, refer to the usage instructions in this document.
-var fd: Int32 = 0
-let filePath = "data/storage/el1/base/xxx.txt"
-let file = FileIo.open(filePath,mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
-let packingOption = PackingOption("image/jpeg", 98)
-let imagePacker = createImagePacker()
-imagePacker.packToFile(imageSource, fd, packingOption)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSource: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source as per usage instructions.
+    var fd: Int32 = 0
+    let filePath = "data/storage/el1/base/xxx.txt"
+    let file = FileIo.open(filePath,mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
+    let packingOption = PackingOption("image/jpeg", 98)
+    let imagePacker = createImagePacker()
+    imagePacker.packToFile(imageSource, fd, packingOption)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func packToFile(PixelMap, Int32, PackingOption)
@@ -1030,30 +1261,30 @@ imagePacker.packToFile(imageSource, fd, packingOption)
 public func packToFile(source: PixelMap, fd: Int32, options: PackingOption): Unit
 ```
 
-**Function:** Encodes the Picture directly into a file with specified encoding parameters.
+**Description:** Encodes an image directly into a file with specified parameters.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| source | [PixelMap](#class-pixelmap) | Yes | - | The Picture resource to be encoded. |
+| source | [PixelMap](#class-pixelmap) | Yes | - | The image source to encode. |
 | fd | Int32 | Yes | - | File descriptor. |
-| options | [PackingOption](#class-packingoption) | Yes | - | Sets the packing parameters. |
+| options | [PackingOption](#class-packingoption) | Yes | - | Packaging parameters. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Error codes as follows, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980101 | The image data is abnormal. |
   | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
-  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted. |
+  | 62980113 | Unknown image format.The image data provided is not in a recognized or supported format, or it may be corrupted. |
   | 62980115 | Invalid input parameter. |
   | 62980119 | Failed to encode the image. |
   | 62980120 | Add pixelmap out of range. |
@@ -1069,19 +1300,25 @@ public func packToFile(source: PixelMap, fd: Int32, options: PackingOption): Uni
 
 import kit.ImageKit.*
 import kit.CoreFileKit.{FileIo, OpenMode}
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let color: Array<UInt8> = Array<UInt8>(96, repeat: 0) //96 is the size of the pixel buffer to be created, calculated as: height * width *4
-let opts: InitializationOptions = InitializationOptions(
-    Size(4, 6),
-    editable: true,
-    pixelFormat: PixelMapFormat.Rgba8888)
-let pixelMap = createPixelMap(color, opts)
-var fd: Int32 = 0
-let filePath = "data/storage/el1/base/xxx.txt"
-let file = FileIo.open(filePath,mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
-let packingOption = PackingOption("image/jpeg", 98)
-let imagePacker = createImagePacker()
-imagePacker.packToFile(pixelMap, fd, packingOption)
+try {
+    let color: Array<UInt8> = Array<UInt8>(96, repeat: 0) //96 is the required pixel buffer size, calculated as: height * width *4
+    let opts: InitializationOptions = InitializationOptions(
+        Size(4, 6),
+        editable: true,
+        pixelFormat: PixelMapFormat.Rgba8888)
+    let pixelMap = createPixelMap(color, opts)
+    var fd: Int32 = 0
+    let filePath = "data/storage/el1/base/xxx.txt"
+    let file = FileIo.open(filePath,mode: (OpenMode.CREATE | OpenMode.READ_WRITE))
+    let packingOption = PackingOption("image/jpeg", 98)
+    let imagePacker = createImagePacker()
+    imagePacker.packToFile(pixelMap, fd, packingOption)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -1090,11 +1327,11 @@ imagePacker.packToFile(pixelMap, fd, packingOption)
 public func release(): Unit
 ```
 
-**Function:** Releases the image packer instance.
+**Description:** Releases the image packer instance.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -1104,12 +1341,16 @@ public func release(): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let imagePacker = createImagePacker()
-imagePacker.release()
-```
-
-## class ImagePropertyOptions
+try {
+    let imagePacker = createImagePacker()
+    imagePacker.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class ImagePropertyOptions
 
 ```cangjie
 public class ImagePropertyOptions {
@@ -1119,11 +1360,11 @@ public class ImagePropertyOptions {
 }
 ```
 
-**Function:** Represents the index for querying image properties.
+**Description:** Represents the index for querying image properties.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 ### var defaultValue
 
@@ -1131,15 +1372,15 @@ public class ImagePropertyOptions {
 public var defaultValue: String
 ```
 
-**Function:** Default property value.
+**Description:** Default property value.
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 ### var index
 
@@ -1147,26 +1388,27 @@ public var defaultValue: String
 public var index: UInt32
 ```
 
-**Function:** Image sequence number.
+**Description:** Image sequence number.
 
 **Type:** UInt32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 ### init(UInt32, String)
 
 ```cangjie
 public init(index!: UInt32 = 0, defaultValue!: String = "")
 ```
-**Function:** Creates an ImagePropertyOptions object.
+
+**Description:** Creates an ImagePropertyOptions object.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1181,13 +1423,13 @@ public init(index!: UInt32 = 0, defaultValue!: String = "")
 public class ImageReceiver {}
 ```
 
-**Function:** Image receiver class, used to obtain component surface ID, receive the latest image, read the next image, and release the ImageReceiver instance.
+**Description:** Image receiver class, used to obtain component surface ID, receive the latest image, read the next image, and release the ImageReceiver instance.
 
 An ImageReceiver instance must be created before calling the following methods.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### prop capacity
 
@@ -1195,15 +1437,15 @@ An ImageReceiver instance must be created before calling the following methods.
 public prop capacity: Int32
 ```
 
-**Function:** Number of images that can be accessed simultaneously.
+**Description:** Number of images that can be accessed simultaneously.
 
 **Type:** Int32
 
-**Read/Write Permission:** Read-only
+**Read/Write:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### prop format
 
@@ -1211,15 +1453,15 @@ public prop capacity: Int32
 public prop format: ImageFormat
 ```
 
-**Function:** Image format.
+**Description:** Image format.
 
 **Type:** [ImageFormat](#enum-imageformat)
 
-**Read/Write Permission:** Read-only
+**Read/Write:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### prop size
 
@@ -1227,15 +1469,15 @@ public prop format: ImageFormat
 public prop size: Size
 ```
 
-**Function:** Image size.
+**Description:** Image size.
 
 **Type:** [Size](#class-size)
 
-**Read/Write Permission:** Read-only
+**Read/Write:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### func getReceivingSurfaceId()
 
@@ -1243,11 +1485,11 @@ public prop size: Size
 public func getReceivingSurfaceId(): String
 ```
 
-**Function:** Used to obtain a surface ID for Camera or other components.
+**Description:** Used to obtain a surface ID for Camera or other components.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -1263,10 +1505,16 @@ public func getReceivingSurfaceId(): String
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let size = Size(8, 8192)
-var receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-let id: String = receiver.getReceivingSurfaceId()
+try {
+    let size = Size(8, 8192)
+    var receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    let id: String = receiver.getReceivingSurfaceId()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -1275,11 +1523,11 @@ let id: String = receiver.getReceivingSurfaceId()
 public func release(): Unit
 ```
 
-**Function:** Releases the current image receiver class.
+**Description:** Releases the current image receiver instance.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -1289,11 +1537,90 @@ public func release(): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let size = Size(8, 8192)
-var receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
-receiver.release()
+try {
+    let size = Size(8, 8192)
+    var receiver = createImageReceiver(size, ImageFormat.Jpeg, 8)
+    receiver.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
+
+### func readLatestImage()
+
+```cangjie
+public func readLatestImage(): Image
+```
+
+**Description:** Reads the latest image from ImageReceiver.
+
+**System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
+
+**Since:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [Image](#class-image) | Returns an Image instance. |
+
+### func readNextImage()
+
+```cangjie
+public func readNextImage(): Image
+```
+
+**Description:** Reads the next image from ImageReceiver.
+
+**System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
+
+**Since:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| [Image](#class-image) | Returns an Image instance. |
+
+### func on(ReceiveType, Callback0Argument)
+
+```cangjie
+public func on(eventType: ReceiveType, callback: Callback0Argument): Unit
+```
+
+**Description:** Registers a callback when receiving an image.
+
+**System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| eventType | [ReceiveType](#enum-receivetype) | Yes | - | Type of the registered event. |
+| callback | [Callback0Argument](../arkinterop/cj-api-callback_invoke.md#class-callback0argument) | Yes | - | Callback function object. |
+
+### func off(ReceiveType)
+
+```cangjie
+public func off(eventType: ReceiveType): Unit
+```
+
+**Description:** Removes the registered callback when releasing the buffer.
+
+**System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| eventType | [ReceiveType](#enum-receivetype) | Yes | - | Type of the registered event. |
 
 ## class ImageSource
 
@@ -1301,11 +1628,11 @@ receiver.release()
 public class ImageSource {}
 ```
 
-**Function:** Image source class, used to obtain image-related information. Before calling ImageSource methods, an ImageSource instance must be created via createImageSource.
+**Description:** Image source class, used to obtain image-related information. Before calling ImageSource methods, an ImageSource instance must be created via createImageSource.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 ### prop supportedFormats
 
@@ -1313,15 +1640,15 @@ public class ImageSource {}
 public prop supportedFormats: Array<String>
 ```
 
-**Function:** Supported image formats, including: png, jpeg, bmp, gif, webp, RAW.
+**Description:** Supported image formats, including: png, jpeg, bmp, gif, webp, RAW.
 
 **Type:** Array\<String>
 
-**Read/Write Permission:** Read-only
+**Read/Write:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 ### func createPixelMap(DecodingOptions)
 
@@ -1329,11 +1656,11 @@ public prop supportedFormats: Array<String>
 public func createPixelMap(options!: DecodingOptions = DecodingOptions()): PixelMap
 ```
 
-**Function:** Creates a PixelMap object through image decoding parameters.
+**Description:** Creates a PixelMap object with image decoding parameters.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1356,21 +1683,27 @@ public func createPixelMap(options!: DecodingOptions = DecodingOptions()): Pixel
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-let option = DecodingOptions(
-    sampleSize: 1,
-    rotate: 10,
-    editable: true,
-    desiredSize: Size(3, 4),
-    desiredRegion: Region(Size(3, 4), 0, 0),
-    desiredPixelFormat: PixelMapFormat.Rgba8888,
-    index: 0,
-    fitDensity: 20
-)
-let pixelMap = imageSourceApi.createPixelMap(options: option)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
+    let option = DecodingOptions(
+        sampleSize: 1,
+        rotate: 10,
+        editable: true,
+        desiredSize: Size(3, 4),
+        desiredRegion: Region(Size(3, 4), 0, 0),
+        desiredPixelFormat: PixelMapFormat.Rgba8888,
+        index: 0,
+        fitDensity: 20
+    )
+    let pixelMap = imageSourceApi.createPixelMap(options: option)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func createPixelMapList(DecodingOptions)
@@ -1379,11 +1712,11 @@ let pixelMap = imageSourceApi.createPixelMap(options: option)
 public func createPixelMapList(options!: DecodingOptions = DecodingOptions()): Array<PixelMap>
 ```
 
-**Function:** Creates an array of PixelMap objects through image decoding parameters.
+**Description:** Creates an array of PixelMap objects with image decoding parameters.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -1403,7 +1736,7 @@ public func createPixelMapList(options!: DecodingOptions = DecodingOptions()): A
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 62980096 | The operation failed. Possible causes: 1.Image upload exception. 2.Decoding process exception. 3.Insufficient memory. |
+  | 62980096 | The operation failed. Possible cause: 1.Image upload exception.2. Decoding process exception. 3. Insufficient memory. |
   | 62980099 | The shared memory data is abnormal. |
   | 62980101 | The image data is abnormal. |
   | 62980103 | The image data is not supported. |
@@ -1417,96 +1750,68 @@ public func createPixelMapList(options!: DecodingOptions = DecodingOptions()): A
   | 62980173 | The DMA memory does not exist. |
   | 62980174 | The DMA memory data is abnormal. |
 
-### func getDelayTimeList()
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
+    let option = DecodingOptions(
+        sampleSize: 1,
+        rotate: 10,
+        editable: true,
+        desiredSize: Size(3, 4),
+        desiredRegion: Region(Size(3, 4), 0, 0),
+        desiredPixelFormat: PixelMapFormat.Rgba8888,
+        index: 0,
+        fitDensity: 20
+    )
+    let pixelMap = imageSourceApi.createPixelMapList(options: option)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getDelayTimeList()
 
 ```cangjie
 public func getDelayTimeList(): Array<Int32>
 ```
 
-**Function:** Obtains an array of image delay times. This interface is only applicable to GIF images.
+**Function:** Retrieves the array of image delay times. This interface is only applicable to GIF images.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Array\<Int32> | Returns an array of delay times. |
+| Type          | Description                     |
+| ------------- | ------------------------------- |
+| Array\<Int32> | Returns the array of delay times. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 62980096 | The operation failed. Possible causes: 1.Image upload exception. 2.Decoding process exception. 3.Insufficient memory. |
-  | 62980110 | The image source data is incorrect. |
-  | 62980111 | The image source data is incomplete. |
-  | 62980115 | Invalid image parameter. |
-  | 62980116 | Failed to decode the image. |
-  | 62980118 | Failed to create the image plugin. |
-  | 62980122 | Failed to decode the image header. |
-  | 62980149 | Invalid MIME type for the image source. |
-
-### func getFrameCount()
-
-```cangjie
-public func getFrameCount(): UInt32
-```
-
-**Function:** Obtains the number of image frames.
-
-**System Capability:** SystemCapability.Multimedia.Image.ImageSource
-
-**Since:** 21
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| UInt32 | Returns the number of image frames. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, see [Image Error Codes](./cj-errorcode-image.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 62980096 | The operation failed. Possible causes: 1.Image upload exception. 2.Decoding process exception. 3.Insufficient memory. |
-  | 62980111 | The image source data is incomplete. |
-  | 62980112 | The image format does not match. |
-  | 62980113 | Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted. |
-  | 62980115 | Invalid image parameter. |
-  | 62980116 | Failed to decode the image. |
-  | 62980118 | Failed to create the image plugin. |
-  | 62980122 | Failed to decode the image header. |
-  | 62980137 | Invalid media operation. |
-
-### func getImageInfo(UInt32)
-
-```cangjie
-public func getImageInfo(index!: UInt32 = 0): ImageInfo
-```
-
-**Function:** Obtains image information.
-
-**System Capability:** SystemCapability.Multimedia.Image.ImageSource
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| index | UInt32 | No | 0 | **Named parameter.** Sequence number when creating the image source. Defaults to 0 if not specified. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| [ImageInfo](#class-imageinfo) | Returns the obtained image information. |
+  | ------------- | ------------- |
+  | 62980096      | The operation failed. Possible causes: 1. Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
+  | 62980110      | The image source data is incorrect. |
+  | 62980111      | The image source data is incomplete. |
+  | 62980115      | Invalid image parameter. |
+  | 62980116      | Failed to decode the image. |
+  | 62980118      | Failed to create the image plugin. |
+  | 62980122      | Failed to decode the image header. |
+  | 62980149      | Invalid MIME type for the image source. |
 
 **Example:**
 
@@ -1517,11 +1822,119 @@ public func getImageInfo(index!: UInt32 = 0): ImageInfo
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-imageSourceApi.getImageInfo(index : 0)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let list = imageSourceApi.getDelayTimeList()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getFrameCount()
+
+```cangjie
+public func getFrameCount(): UInt32
+```
+
+**Function:** Retrieves the number of image frames.
+
+**System Capability:** SystemCapability.Multimedia.Image.ImageSource
+
+**Since:** 22
+
+**Return Value:**
+
+| Type   | Description               |
+| ------ | ------------------------- |
+| UInt32 | Returns the number of image frames. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Image Error Codes](./cj-errorcode-image.md).
+
+  | Error Code ID | Error Message |
+  | ------------- | ------------- |
+  | 62980096      | The operation failed. Possible causes: 1. Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
+  | 62980111      | The image source data is incomplete. |
+  | 62980112      | The image format does not match. |
+  | 62980113      | Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted. |
+  | 62980115      | Invalid image parameter. |
+  | 62980116      | Failed to decode the image. |
+  | 62980118      | Failed to create the image plugin. |
+  | 62980122      | Failed to decode the image header. |
+  | 62980137      | Invalid media operation. |
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let count = imageSourceApi.getFrameCount()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getImageInfo(UInt32)
+
+```cangjie
+public func getImageInfo(index!: UInt32 = 0): ImageInfo
+```
+
+**Function:** Retrieves image information.
+
+**System Capability:** SystemCapability.Multimedia.Image.ImageSource
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type  | Required | Default | Description |
+| --------- | ----- | -------- | ------- | ----------- |
+| index     | UInt32 | No       | 0       | **Named parameter.** The sequence number when creating the image source. Defaults to 0 if not specified. |
+
+**Return Value:**
+
+| Type                     | Description                     |
+| ------------------------ | ------------------------------- |
+| [ImageInfo](#class-imageinfo) | Returns the retrieved image information. |
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    imageSourceApi.getImageInfo(index : 0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getImageProperty(PropertyKey, ImagePropertyOptions)
@@ -1530,43 +1943,42 @@ imageSourceApi.getImageInfo(index : 0)
 public func getImageProperty(key: PropertyKey, options!: ImagePropertyOptions = ImagePropertyOptions()): String
 ```
 
-**Function:** Obtains the value of the specified property key for the image at the given index. Only supports JPEG files with EXIF information.
+**Function:** Retrieves the value of the specified property key for the image at the given index. Only supports JPEG files with EXIF information.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| key | [PropertyKey](#enum-propertykey) | Yes | - | Image property name. |
-| options | [ImagePropertyOptions](#class-imagepropertyoptions) | No | ImagePropertyOptions() | **Named parameter.** Image properties, including image sequence number and default property value. |
+| Parameter | Type                                | Required | Default               | Description |
+| --------- | ----------------------------------- | -------- | --------------------- | ----------- |
+| key       | [PropertyKey](#enum-propertykey)    | Yes      | -                     | The image property name. |
+| options   | [ImagePropertyOptions](#class-imagepropertyoptions) | No       | ImagePropertyOptions() | **Named parameter.** Image properties, including the image sequence number and default property value. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| String | Returns the image property value. Returns the default property value if failed to obtain. |
+| Type   | Description                                     |
+| ------ | ----------------------------------------------- |
+| String | Returns the image property value. If retrieval fails, returns the default property value. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed; |
-  | 62980096 | The operation failed. Possible causes: 1.Image upload exception. 2.Decoding process exception. 3.Insufficient memory. |
-  | 62980103 | The image data is not supported. |
-  | 62980110 | The image source data is incorrect. |
-  | 62980111 | The image source data is incomplete. |
-  | 62980112 | The image format does not match. |
-  | 62980113 | Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted. |
-  | 62980115 | Invalid image parameter. |
-  | 62980118 | Failed to create the image plugin. |
-  | 62980122 | Failed to decode the image header. |
-  | 62980123 | The image does not support EXIF decoding. |
-  | 62980135 | The EXIF value is invalid. |
+  | ------------- | ------------- |
+  | 62980096      | The operation failed. Possible causes: 1. Image upload exception. 2. Decoding process exception. 3. Insufficient memory. |
+  | 62980103      | The image data is not supported. |
+  | 62980110      | The image source data is incorrect. |
+  | 62980111      | The image source data is incomplete. |
+  | 62980112      | The image format does not match. |
+  | 62980113      | Unknown image format. The image data provided is not in a recognized or supported format, or it may be corrupted. |
+  | 62980115      | Invalid image parameter. |
+  | 62980118      | Failed to create the image plugin. |
+  | 62980122      | Failed to decode the image header. |
+  | 62980123      | The image does not support EXIF decoding. |
+  | 62980135      | The EXIF value is invalid. |
 
 **Example:**
 
@@ -1577,11 +1989,17 @@ public func getImageProperty(key: PropertyKey, options!: ImagePropertyOptions = 
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-imageSourceApi.getImageProperty(PropertyKey.ImageLength)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    imageSourceApi.getImageProperty(PropertyKey.ImageLength)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func modifyImageProperty(PropertyKey, String)
@@ -1590,30 +2008,51 @@ imageSourceApi.getImageProperty(PropertyKey.ImageLength)
 public func modifyImageProperty(key: PropertyKey, value: String): Unit
 ```
 
-**Function:** Modifies the value of an image property through the specified key. Only supports JPEG files with EXIF information.
+**Function:** Modifies the value of the specified image property key. Only supports JPEG files with EXIF information.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| key | [PropertyKey](#enum-propertykey) | Yes | - | Image property name. |
-| value | String | Yes | - | Property value. |
+| Parameter | Type                             | Required | Default | Description |
+| --------- | -------------------------------- | -------- | ------- | ----------- |
+| key       | [PropertyKey](#enum-propertykey) | Yes      | -       | The image property name. |
+| value     | String                           | Yes      | -       | The property value. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; |
-  | 62980123 | The image does not support EXIF decoding. |
-  | 62980133 | The EXIF data is out of range. |
-  | 62980135 | The EXIF value is invalid. |
-  | 62980146 | The EXIF data failed to be written to the file. |
+  | ------------- | ------------- |
+  | 62980123      | The image does not support EXIF decoding. |
+  | 62980133      | The EXIF data is out of range. |
+  | 62980135      | The EXIF value is invalid. |
+  | 62980146      | The EXIF data failed to be written to the file. |
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    imageSourceApi.modifyImageProperty(PropertyKey.ImageLength, "200")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func release()
 
@@ -1625,7 +2064,7 @@ public func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -1635,11 +2074,17 @@ public func release(): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-imageSourceApi.release()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    imageSourceApi.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func updateData(Array\<UInt8>, Bool, UInt32, UInt32)
@@ -1652,16 +2097,16 @@ public func updateData(buf: Array<UInt8>, isFinished: Bool, offset: UInt32, leng
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageSource
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| buf | Array\<UInt8> | Yes | - | Incremental data. |
-| isFinished | Bool | Yes | - | Whether the update is complete. |
-| offset | UInt32 | Yes | - | Offset. |
-| length | UInt32 | Yes | - | Array length. |
+| Parameter  | Type          | Required | Default | Description |
+| ---------- | ------------- | -------- | ------- | ----------- |
+| buf        | Array\<UInt8> | Yes      | -       | Incremental data. |
+| isFinished | Bool          | Yes      | -       | Whether the update is complete. |
+| offset     | UInt32        | Yes      | -       | Offset. |
+| length     | UInt32        | Yes      | -       | Array length. |
 
 **Example:**
 
@@ -1672,17 +2117,31 @@ public func updateData(buf: Array<UInt8>, isFinished: Bool, offset: UInt32, leng
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-let testPng = Array<UInt8>(16500, repeat: 0)
-let bufferSize = 5000
-var offset = 0
-var isFinished = false
-while (offset < testPng.size) {
-    var oneStep = testPng.slice(offset, min(bufferSize, testPng.size - offset))
-   ## class InitializationOptions
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let testPng = Array<UInt8>(16500, repeat: 0)
+    let bufferSize = 5000
+    var offset = 0
+    var isFinished = false
+    while (offset < testPng.size) {
+        var oneStep = testPng.slice(offset, min(bufferSize, testPng.size - offset))
+        if (oneStep.size < bufferSize) {
+            isFinished = true
+        }
+        imageSourceApi.updateData(oneStep, isFinished, 0, UInt32(oneStep.size))
+        offset = offset + oneStep.size
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+## class InitializationOptions
 
 ```cangjie
 public class InitializationOptions {
@@ -1701,7 +2160,7 @@ public class InitializationOptions {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var alphaType
 
@@ -1713,11 +2172,11 @@ public var alphaType: AlphaType
 
 **Type:** [AlphaType](#enum-alphatype)
 
-**Access:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var editable
 
@@ -1729,11 +2188,11 @@ public var editable: Bool
 
 **Type:** Bool
 
-**Access:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var pixelFormat
 
@@ -1745,11 +2204,11 @@ public var pixelFormat: PixelMapFormat
 
 **Type:** [PixelMapFormat](#enum-pixelmapformat)
 
-**Access:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var scaleMode
 
@@ -1761,11 +2220,11 @@ public var scaleMode: ScaleMode
 
 **Type:** [ScaleMode](#enum-scalemode)
 
-**Access:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var size
 
@@ -1773,15 +2232,15 @@ public var scaleMode: ScaleMode
 public var size: Size
 ```
 
-**Function:** Size of the created image.
+**Function:** Image creation size.
 
 **Type:** [Size](#class-size)
 
-**Access:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var srcPixelFormat
 
@@ -1789,15 +2248,15 @@ public var size: Size
 public var srcPixelFormat: PixelMapFormat
 ```
 
-**Function:** Pixel format of the input buffer data. Default value is BGRA_8888.
+**Function:** The pixel format of the input buffer data. Default is BGRA_8888.
 
 **Type:** [PixelMapFormat](#enum-pixelmapformat)
 
-**Access:** Read-Write
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Size, AlphaType, Bool, PixelMapFormat, PixelMapFormat, ScaleMode)
 
@@ -1810,20 +2269,18 @@ public init(size: Size, alphaType!: AlphaType = AlphaType.Premul, editable!: Boo
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| size | [Size](#class-size) | Yes | - | **Named parameter.** Size of the created image. |
-| alphaType | [AlphaType](#enum-alphatype) | No | AlphaType.Premul | **Named parameter.** Transparency. |
-| editable | Bool | No | false | **Named parameter.** Whether it is editable. |
-| srcPixelFormat | [PixelMapFormat](#enum-pixelmapformat) | No | PixelMapFormat.Bgra8888 | **Named parameter.** Pixel format of the input buffer data. |
-| pixelFormat | [PixelMapFormat](#enum-pixelmapformat) | No | PixelMapFormat.Bgra8888 | **Named parameter.** Pixel format. |
-| scaleMode | [ScaleMode](#enum-scalemode) | No | ScaleMode.FitTargetSize | **Named parameter.** Scaling mode. |
-
-## class PackingOption
+| Parameter      | Type                          | Required | Default                  | Description |
+| -------------- | ----------------------------- | -------- | ------------------------ | ----------- |
+| size           | [Size](#class-size)           | Yes      | -                        | **Named parameter.** Image creation size. |
+| alphaType      | [AlphaType](#enum-alphatype)  | No       | AlphaType.Premul         | **Named parameter.** Transparency. |
+| editable       | Bool                          | No       | false                    | **Named parameter.** Whether it is editable. |
+| srcPixelFormat | [PixelMapFormat](#enum-pixelmapformat) | No       | PixelMapFormat.Bgra8888  | **Named parameter.** The pixel format of the input buffer data. |
+| pixelFormat    | [PixelMapFormat](#enum-pixelmapformat) | No       | PixelMapFormat.Bgra8888  | **Named parameter.** Pixel format. |
+| scaleMode      | [ScaleMode](#enum-scalemode)  | No       | ScaleMode.FitTargetSize  | **Named parameter.** Scaling mode. |## class PackingOption
 
 ```cangjie
 public class PackingOption {
@@ -1841,7 +2298,7 @@ public class PackingOption {
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### var bufferSize
 
@@ -1849,15 +2306,15 @@ public class PackingOption {
 public var bufferSize: UInt64
 ```
 
-**Function:** Size of the buffer for receiving encoded data, in bytes. If not set, defaults to 25MB. If the encoded image exceeds 25MB, this parameter must be specified. bufferSize must be larger than the size of the encoded image. This parameter does not apply to [packToFile](#func-packtofileimagesource-int32-packingoption).
+**Function:** Size of the buffer for receiving encoded data, in bytes. Defaults to 25MB if not specified. If the encoded image exceeds 25MB, this size must be specified. bufferSize must be larger than the size of the encoded image. This parameter does not apply when using [packToFile](#func-packtofileimagesource-int32-packingoption).
 
 **Type:** UInt64
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### var desiredDynamicRange
 
@@ -1865,15 +2322,15 @@ public var bufferSize: UInt64
 public var desiredDynamicRange: PackingDynamicRange
 ```
 
-**Function:** Target dynamic range. Default is SDR.
+**Function:** Target dynamic range. Default value is SDR.
 
 **Type:** [PackingDynamicRange](#enum-packingdynamicrange)
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### var format
 
@@ -1885,11 +2342,11 @@ public var format: String
 
 **Type:** String
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### var needsPackProperties
 
@@ -1897,15 +2354,15 @@ public var format: String
 public var needsPackProperties: Bool
 ```
 
-**Function:** Whether to encode image property information, such as EXIF. Default is false.
+**Function:** Whether to encode image property information, such as EXIF. Default value is false.
 
 **Type:** Bool
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### var quality
 
@@ -1913,15 +2370,15 @@ public var needsPackProperties: Bool
 public var quality: UInt8
 ```
 
-**Function:** Parameter for setting output image quality in JPEG encoding, ranging from 0-100. 0 is the lowest quality, 100 is the highest. Higher quality results in larger file sizes.
+**Function:** Parameter for setting output image quality in JPEG encoding, ranging from 0-100. 0 represents the lowest quality, 100 represents the highest quality. Higher quality results in larger image file sizes.
 
 **Type:** UInt8
 
-**Access:** Read-Write
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, UInt8, UInt64, PackingDynamicRange, Bool)
 
@@ -1934,15 +2391,15 @@ public init(format: String, quality: UInt8, bufferSize!: UInt64 = 0,
 
 **System Capability:** SystemCapability.Multimedia.Image.ImagePacker
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | format | String | Yes | - | Target format.</br>Currently supports "image/jpeg", "image/webp", "image/png", and "image/heif" (availability varies by hardware device). |
-| quality | UInt8 | Yes | - | Parameter for setting output image quality in JPEG encoding, ranging from 0-100. 0 is the lowest quality, 100 is the highest. Higher quality results in larger file sizes. |
-| bufferSize | UInt64 | No | 0 | **Named parameter.** Size of the buffer for receiving encoded data, in bytes. If not set, defaults to 25MB. If the encoded image exceeds 25MB, this parameter must be specified. bufferSize must be larger than the size of the encoded image. This parameter does not apply to [packToFile](#func-packtofileimagesource-int32-packingoption). |
+| quality | UInt8 | Yes | - | Parameter for setting output image quality in JPEG encoding, ranging from 0-100. 0 represents the lowest quality, 100 represents the highest quality. Higher quality results in larger image file sizes. |
+| bufferSize | UInt64 | No | 0 | **Named parameter.** Size of the buffer for receiving encoded data, in bytes. Defaults to 25MB if not specified. If the encoded image exceeds 25MB, this size must be specified. bufferSize must be larger than the size of the encoded image. This parameter does not apply when using [packToFile](#func-packtofileimagesource-int32-packingoption). |
 | desiredDynamicRange | [PackingDynamicRange](#enum-packingdynamicrange) | No | Sdr | **Named parameter.** Target dynamic range. |
 | needsPackProperties | Bool | No | false | **Named parameter.** Whether to encode image property information, such as EXIF. |
 
@@ -1952,15 +2409,15 @@ public init(format: String, quality: UInt8, bufferSize!: UInt64 = 0,
 public class PixelMap {}
 ```
 
-**Function:** Image pixel class for reading or writing image data and obtaining image information. Before calling PixelMap methods, a PixelMap instance must be created via [createPixelMap](#func-createpixelmaparrayuint8-initializationoptions). Currently, the maximum serialized size of pixelmap is 128MB; exceeding this will cause display failure. Size is calculated as (width * height * bytes per pixel).
+**Function:** Image pixel class for reading or writing image data and obtaining image information. Before calling PixelMap methods, a PixelMap instance must be created via [createPixelMap](#func-createpixelmaparrayuint8-initializationoptions). Currently, the maximum serialized size of pixelmap is 128MB; exceeding this limit will cause display failure. Size is calculated as (width * height * bytes per pixel).
 
-PixelMap supports cross-thread calls via Worker. After PixelMap is transferred across threads via Worker, all interfaces of the original thread's PixelMap cannot be called; otherwise, error 501 (server does not support the functionality required to fulfill the request) will occur.
+PixelMap supports cross-thread calls via Worker. After PixelMap is transferred across threads via Worker, all interfaces of the original PixelMap cannot be called; otherwise, error 501 (server does not support the requested functionality) will occur.
 
 Before calling PixelMap methods, a PixelMap object must be created via [createPixelMap](#func-createpixelmaparrayuint8-initializationoptions).
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop isEditable
 
@@ -1972,11 +2429,11 @@ public prop isEditable: Bool
 
 **Type:** Bool
 
-**Access:** Read-Only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### prop isStrideAlignment
 
@@ -1988,11 +2445,11 @@ public prop isStrideAlignment: Bool
 
 **Type:** Bool
 
-**Access:** Read-Only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func applyColorSpace(ColorSpaceManager)
 
@@ -2004,7 +2461,7 @@ public func applyColorSpace(targetColorSpace: ColorSpaceManager): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2014,14 +2471,38 @@ public func applyColorSpace(targetColorSpace: ColorSpaceManager): Unit
 
 **Exceptions:**
 
-- BusinessException: Error codes as shown below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Corresponding error codes are listed below, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | The parameter check failed. |
   | 62980104 | Failed to initialize the internal object. |
   | 62980108 | Failed to convert the color space. |
   | 62980115 | Invalid image parameter. |
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import kit.ArkGraphics2D.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source, refer to usage instructions.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let colorSpaceManager = create(Srgb)
+    pixelMap.applyColorSpace(colorSpaceManager)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func createAlphaPixelmap()
 
@@ -2033,7 +2514,7 @@ public func createAlphaPixelmap(): PixelMap
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -2050,12 +2531,18 @@ public func createAlphaPixelmap(): PixelMap
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-let pixelMap = imageSourceApi.createPixelMap()
-let alphaPixelmap = pixelMap.createAlphaPixelmap()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source, refer to usage instructions.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let alphaPixelmap = pixelMap.createAlphaPixelmap()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func crop(Region)
@@ -2068,7 +2555,7 @@ public func crop(region: Region): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2085,28 +2572,36 @@ public func crop(region: Region): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source as per usage instructions.
-let pixelMap = imageSourceApi.createPixelMap()
-let region: Region = Region(Size(100, 100), 0, 0)
-pixelMap.crop(region)
-```### func flip(Bool, Bool)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source, refer to usage instructions.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let region: Region = Region(Size(100, 100), 0, 0)
+    pixelMap.crop(region)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func flip(Bool, Bool)
 
 ```cangjie
 public func flip(horizontal: Bool, vertical: Bool): Unit
 ```
 
-**Function:** Flips the image based on input conditions.
+**Function:** Flips the image based on the input conditions.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | horizontal | Bool | Yes | - | Horizontal flip. |
 | vertical | Bool | Yes | - | Vertical flip. |
@@ -2120,14 +2615,20 @@ public func flip(horizontal: Bool, vertical: Bool): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let horizontal: Bool = true
-let vertical: Bool = false
-pixelMap.flip(horizontal, vertical)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source, refer to usage instructions.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let horizontal: Bool = true
+    let vertical: Bool = false
+    pixelMap.flip(horizontal, vertical)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getBytesNumberPerRow()
@@ -2136,17 +2637,17 @@ pixelMap.flip(horizontal, vertical)
 public func getBytesNumberPerRow(): UInt32
 ```
 
-**Function:** Gets the number of bytes per row of the image pixels.
+**Function:** Gets the number of bytes per row of image pixels.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| UInt32 | The number of bytes per row of the image pixels. |
+| UInt32 | Number of bytes per row of image pixels. |
 
 **Example:**
 
@@ -2157,12 +2658,18 @@ public func getBytesNumberPerRow(): UInt32
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let rowCount : UInt32 = pixelMap.getBytesNumberPerRow()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source, refer to usage instructions.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let rowCount : UInt32 = pixelMap.getBytesNumberPerRow()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getColorSpace()
@@ -2175,41 +2682,23 @@ public func getColorSpace(): ColorSpaceManager
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [ColorSpaceManager](../ArkGraphics2D/cj-apis-color_manager.md#class-colorspacemanager) | The wide color gamut information of the image. |
+| [ColorSpaceManager](../ArkGraphics2D/cj-apis-color_manager.md#class-colorspacemanager) | Wide color gamut information of the image. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: Corresponding error codes are listed below, see [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 62980101 | If the image data is abnormal. |
-  | 62980103 | If the image data is unsupported. |
-  | 62980115 | If the image parameter is invalid. |
-
-### func getDensity()
-
-```cangjie
-public func getDensity(): Int32
-```
-
-**Function:** Gets the density of the current image pixels.
-
-**System Capability:** SystemCapability.Multimedia.Image.Core
-
-**Since:** 21
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Int32 | The density of the image pixels. |
+  | 62980101 | If the image data abnormal. |
+  | 62980103 | If the image data unsupport. |
+  | 62980115 | If the image parameter invalid. |
 
 **Example:**
 
@@ -2220,12 +2709,58 @@ public func getDensity(): Int32
 // index.cj
 
 import kit.ImageKit.*
+import kit.ArkGraphics2D.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let getDensity : Int32 = pixelMap.getDensity()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with correct image source, refer to usage instructions.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let colorSpaceManager = pixelMap.getColorSpace()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getDensity()
+
+```cangjie
+public func getDensity(): Int32
+```
+
+**Function:** Gets the pixel density of the current image.
+
+**System Capability:** SystemCapability.Multimedia.Image.Core
+
+**Since:** 22
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Int32|The pixel density of the image.|
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let getDensity : Int32 = pixelMap.getDensity()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getImageInfo()
@@ -2238,13 +2773,13 @@ public func getImageInfo(): ImageInfo
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| [ImageInfo](#class-imageinfo) | Used to get the pixel information of the image. Returns an error message on failure. |
+|[ImageInfo](#class-imageinfo)|Used to obtain the pixel information of the image. Returns an error message if the operation fails.|
 
 **Example:**
 
@@ -2255,12 +2790,18 @@ public func getImageInfo(): ImageInfo
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-pixelMap.getImageInfo()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    pixelMap.getImageInfo()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getPixelBytesNumber()
@@ -2273,13 +2814,13 @@ public func getPixelBytesNumber(): UInt32
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| UInt32 | The total number of bytes of the image pixels. |
+|UInt32|The total number of bytes of the image pixels.|
 
 **Example:**
 
@@ -2290,12 +2831,18 @@ public func getPixelBytesNumber(): UInt32
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let pixelBytesNumber : UInt32 = pixelMap.getPixelBytesNumber()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let pixelBytesNumber : UInt32 = pixelMap.getPixelBytesNumber()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func opacity(Float32)
@@ -2308,13 +2855,13 @@ public func opacity(rate: Float32): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| rate | Float32 | Yes | - | The value of the transparency ratio. |
+|rate|Float32|Yes|-|The value of the transparency ratio.|
 
 **Example:**
 
@@ -2325,13 +2872,19 @@ public func opacity(rate: Float32): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let rate: Float32 = 0.5
-pixelMap.opacity(rate)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let rate: Float32 = 0.5
+    pixelMap.opacity(rate)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func readPixels(PositionArea)
@@ -2344,13 +2897,13 @@ public func readPixels(area: PositionArea): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| area | [PositionArea](#class-positionarea) | Yes | - | The area size. Reads based on the area. |
+|area|[PositionArea](#class-positionarea)|Yes|-|The area size. The data is read based on the area.|
 
 **Example:**
 
@@ -2361,18 +2914,24 @@ public func readPixels(area: PositionArea): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let area: PositionArea = PositionArea(
-    Array<UInt8>(8, repeat: 0),
-    0,
-    8,
-    Region(Size(1, 2), 0, 0)
-)
-pixelMap.readPixels(area)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let area: PositionArea = PositionArea(
+        Array<UInt8>(8, repeat: 0),
+        0,
+        8,
+        Region(Size(1, 2), 0, 0)
+    )
+    pixelMap.readPixels(area)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func readPixelsToBuffer(Array\<UInt8>)
@@ -2381,17 +2940,17 @@ pixelMap.readPixels(area)
 public func readPixelsToBuffer(dst: Array<UInt8>): Unit
 ```
 
-**Function:** Reads the image pixel data and writes the result into an Array\<UInt8>. If the pixelmap is created with the BGRA_8888 format, the read pixel data will be consistent with the original data.
+**Function:** Reads the image pixel data and writes the result into an Array\<UInt8>. If the PixelMap is created in BGRA_8888 format, the read pixel data will be consistent with the original data.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| dst | Array\<UInt8> | Yes | - | The buffer where the image pixel data will be written after the function executes. The buffer size is obtained via the [getPixelBytesNumber](#func-getpixelbytesnumber) interface. |
+|dst|Array\<UInt8>|Yes|-|The buffer to which the image pixel data is written after the function is executed. The buffer size can be obtained using the [getPixelBytesNumber](#func-getpixelbytesnumber) interface.|
 
 **Example:**
 
@@ -2402,13 +2961,19 @@ public func readPixelsToBuffer(dst: Array<UInt8>): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let readBuffer: Array<UInt8> = Array<UInt8>(96, repeat: 0) //96 is the required pixel buffer size, calculated as: height * width *4
-pixelMap.readPixelsToBuffer(readBuffer)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let readBuffer: Array<UInt8> = Array<UInt8>(96, repeat: 0) //96 is the size of the pixel buffer to be created, calculated as: height * width *4
+    pixelMap.readPixelsToBuffer(readBuffer)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func release()
@@ -2421,7 +2986,7 @@ public func release(): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Example:**
 
@@ -2432,12 +2997,18 @@ public func release(): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-pixelMap.release()
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    pixelMap.release()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func rotate(Float32)
@@ -2446,17 +3017,17 @@ pixelMap.release()
 public func rotate(angle: Float32): Unit
 ```
 
-**Function:** Rotates the image based on the input angle.
+**Function:** Rotates the image by the specified angle.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| angle | Float32 | Yes | - | The rotation angle of the image. |
+|angle|Float32|Yes|-|The rotation angle of the image.|
 
 **Example:**
 
@@ -2467,13 +3038,19 @@ public func rotate(angle: Float32): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let angle: Float32 = 90.0
-pixelMap.rotate(angle)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let angle: Float32 = 90.0
+    pixelMap.rotate(angle)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func scale(Float32, Float32)
@@ -2482,18 +3059,41 @@ pixelMap.rotate(angle)
 public func scale(x: Float32, y: Float32): Unit
 ```
 
-**Function:** Scales the image based on the input width and height.
+**Function:** Scales the image based on the specified width and height.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| x | Float32 | Yes | - | The scaling factor for width. |
-| y | Float32 | Yes | - | The scaling factor for height. |
+|x|Float32|Yes|-|The scaling factor for the width.|
+|y|Float32|Yes|-|The scaling factor for the height.|
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    pixelMap.scale(1.0, 1.0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func setColorSpace(ColorSpaceManager)
 
@@ -2505,41 +3105,22 @@ public func setColorSpace(colorSpace: ColorSpaceManager): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| colorSpace | [ColorSpaceManager](../ArkGraphics2D/cj-apis-color_manager.md#class-colorspacemanager) | Yes | - | The wide color gamut information of the image. |
+|colorSpace|[ColorSpaceManager](../ArkGraphics2D/cj-apis-color_manager.md#class-colorspacemanager)|Yes|-|The wide color gamut information of the image.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
+- BusinessException: The error codes are as follows. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Image Error Codes](./cj-errorcode-image.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 62980111 | The image source data is incomplete. |
-  | 62980115 | If the image parameter is invalid. |
-
-### func translate(Float32, Float32)
-
-```cangjie
-public func translate(x: Float32, y: Float32): Unit
-```
-
-**Function:** Transforms the position of the image based on the input coordinates.
-
-**System Capability:** SystemCapability.Multimedia.Image.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| x | Float32 | Yes | - | The horizontal coordinate of the area. |
-| y | Float32 | Yes | - | The vertical coordinate of the area. |
+  | 62980115 | If the image parameter invalid. |
 
 **Example:**
 
@@ -2550,14 +3131,64 @@ public func translate(x: Float32, y: Float32): Unit
 // index.cj
 
 import kit.ImageKit.*
+import kit.ArkGraphics2D.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let translateX: Float32 = 50.0
-let translateY: Float32 = 10.0
-pixelMap.translate(translateX, translateY)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let colorSpaceManager = create(Srgb)
+    pixelMap.setColorSpace(colorSpaceManager)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func translate(Float32, Float32)
+
+```cangjie
+public func translate(x: Float32, y: Float32): Unit
+```
+
+**Function:** Translates the image based on the specified coordinates.
+
+**System Capability:** SystemCapability.Multimedia.Image.Core
+
+**Since:** 22
+
+**Parameters:**
+
+|Parameter|Type|Mandatory|Default Value|Description|
+|:---|:---|:---|:---|:---|
+|x|Float32|Yes|-|The x-coordinate of the area.|
+|y|Float32|Yes|-|The y-coordinate of the area.|
+
+**Example:**
+
+<!-- compile only -->
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let translateX: Float32 = 50.0
+    let translateY: Float32 = 10.0
+    pixelMap.translate(translateX, translateY)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func writeBufferToPixels(Array\<UInt8>)
@@ -2570,13 +3201,13 @@ public func writeBufferToPixels(src: Array<UInt8>): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| src | Array\<UInt8> | Yes | - | The image pixel data. |
+|src|Array\<UInt8>|Yes|-|The image pixel data.|
 
 **Example:**
 
@@ -2587,13 +3218,19 @@ public func writeBufferToPixels(src: Array<UInt8>): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let color: Array<UInt8> = Array<UInt8>(96, {i => UInt8(i)}) //96 is the required pixel buffer size, calculated as: height * width *4
-pixelMap.writeBufferToPixels(color)
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let color: Array<UInt8> = Array<UInt8>(96, {i => UInt8(i)}) //96 is the size of the pixel buffer to be created, calculated as: height * width *4
+    pixelMap.writeBufferToPixels(color)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func writePixels(PositionArea)
@@ -2606,13 +3243,13 @@ public func writePixels(area: PositionArea): Unit
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+|Parameter|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-| area | [PositionArea](#class-positionarea) | Yes | - | The area to write into. |
+|area|[PositionArea](#class-positionarea)|Yes|-|The area into which the PixelMap is written.|
 
 **Example:**
 
@@ -2623,19 +3260,26 @@ public func writePixels(area: PositionArea): Unit
 // index.cj
 
 import kit.ImageKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
-let sourceOptions: SourceOptions = SourceOptions(120)
-let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
-let pixelMap = imageSourceApi.createPixelMap()
-let area: PositionArea = PositionArea(
-    Array<UInt8>(8, {i => UInt8(i)}),
-    0,
-    8,
-    Region(Size(1, 2), 0, 0)
-)
-pixelMap.writePixels(area)
-```## class PositionArea
+try {
+    let data: Array<UInt8> = Array<UInt8>(112, repeat: 0)
+    let sourceOptions: SourceOptions = SourceOptions(120)
+    let imageSourceApi: ImageSource = createImageSource(data, sourceOptions)  // Replace with the correct image source. Refer to the usage instructions in this document.
+    let pixelMap = imageSourceApi.createPixelMap()
+    let area: PositionArea = PositionArea(
+        Array<UInt8>(8, {i => UInt8(i)}),
+        0,
+        8,
+        Region(Size(1, 2), 0, 0)
+    )
+    pixelMap.writePixels(area)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+``````markdown
+## class PositionArea
 
 ```cangjie
 public class PositionArea {
@@ -2651,7 +3295,7 @@ public class PositionArea {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -2659,15 +3303,15 @@ public class PositionArea {
 public var offset: UInt32
 ```
 
-**Function:** Offset.
+**Function:** Offset value.
 
 **Type:** UInt32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var pixels
 
@@ -2679,11 +3323,11 @@ public var pixels: Array<UInt8>
 
 **Type:** Array\<UInt8>
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var region
 
@@ -2695,11 +3339,11 @@ public var region: Region
 
 **Type:** [Region](#class-region)
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var stride
 
@@ -2711,11 +3355,11 @@ public var stride: UInt32
 
 **Type:** UInt32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Array\<UInt8>, UInt32, UInt32, Region)
 
@@ -2727,14 +3371,14 @@ public init(pixels: Array<UInt8>, offset: UInt32, stride: UInt32, region: Region
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | pixels | Array\<UInt8> | Yes | - | Pixels. |
-| offset | UInt32 | Yes | - | Offset. |
+| offset | UInt32 | Yes | - | Offset value. |
 | stride | UInt32 | Yes | - | Stride, the space occupied by each row of pixels in memory. stride >= region.size.width*4. |
 | region | [Region](#class-region) | Yes | - | Region for read/write operations. The sum of the region width and X-coordinate must not exceed the original image width, and the sum of the region height and Y-coordinate must not exceed the original image height. |
 
@@ -2753,7 +3397,7 @@ public class Region {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var size
 
@@ -2765,11 +3409,11 @@ public var size: Size
 
 **Type:** [Size](#class-size)
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var x
 
@@ -2781,11 +3425,11 @@ public var x: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var y
 
@@ -2797,11 +3441,11 @@ public var y: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Size, Int32, Int32)
 
@@ -2813,11 +3457,11 @@ public init(size: Size, x: Int32, y: Int32)
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | size | [Size](#class-size) | Yes | - | Region size. |
 | x | Int32 | Yes | - | X-coordinate of the region. |
@@ -2837,7 +3481,7 @@ public class Size {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var height
 
@@ -2849,11 +3493,11 @@ public var height: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var width
 
@@ -2865,11 +3509,11 @@ public var width: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, Int32)
 
@@ -2881,11 +3525,11 @@ public init(height: Int32, width: Int32)
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | height | Int32 | Yes | - | Height of the output image. |
 | width | Int32 | Yes | - | Width of the output image. |
@@ -2905,7 +3549,7 @@ public class SourceOptions {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var sourceDensity
 
@@ -2915,17 +3559,17 @@ public var sourceDensity: Int32
 
 **Function:** Pixel density of the image resource, in DPI.
 
-When the desiredSize in [DecodingOptions](#class-decodingoptions) is not set, and both SourceOptions.sourceDensity and DecodingOptions.fitDensity are non-zero, the decoded output pixelmap will be scaled.
+When the desiredSize parameter in [DecodingOptions](#class-decodingoptions) is not set, and both SourceOptions.sourceDensity and DecodingOptions.fitDensity are non-zero, the decoded output pixelmap will be scaled.
 
-The scaled width is calculated as follows (same for height): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity.
+The scaled width is calculated as follows (height is similar): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity.
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var sourcePixelFormat
 
@@ -2937,11 +3581,11 @@ public var sourcePixelFormat: PixelMapFormat
 
 **Type:** [PixelMapFormat](#enum-pixelmapformat)
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var sourceSize
 
@@ -2953,11 +3597,11 @@ public var sourceSize: Size
 
 **Type:** [Size](#class-size)
 
-**Read/Write Permission:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, PixelMapFormat, Size)
 
@@ -2969,13 +3613,13 @@ public init(sourceDensity: Int32, sourcePixelFormat!: PixelMapFormat = PixelMapF
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| sourceDensity | Int32 | Yes | - | Pixel density of the image resource, in DPI.<br>When the desiredSize in [DecodingOptions](#class-decodingoptions) is not set, and both SourceOptions.sourceDensity and DecodingOptions.fitDensity are non-zero, the decoded output pixelmap will be scaled.<br>The scaled width is calculated as follows (same for height): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity. |
+| sourceDensity | Int32 | Yes | - | Pixel density of the image resource, in DPI.<br>When the desiredSize parameter in [DecodingOptions](#class-decodingoptions) is not set, and both SourceOptions.sourceDensity and DecodingOptions.fitDensity are non-zero, the decoded output pixelmap will be scaled.<br>The scaled width is calculated as follows (height is similar): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity. |
 | sourcePixelFormat | [PixelMapFormat](#enum-pixelmapformat) | No | PixelMapFormat.Unknown | **Named parameter** Pixel format of the image, default is UNKNOWN. |
 | sourceSize | [Size](#class-size) | No | Size(0, 0) | **Named parameter** Pixel size of the image, default is empty. |
 
@@ -2995,7 +3639,7 @@ public enum AlphaType <: Equatable<AlphaType> & ToString {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3012,7 +3656,7 @@ Opaque
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Premul
 
@@ -3024,7 +3668,7 @@ Premul
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### UnPremul
 
@@ -3036,7 +3680,7 @@ UnPremul
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unknown
 
@@ -3048,7 +3692,7 @@ Unknown
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(AlphaType)
 
@@ -3056,11 +3700,11 @@ Unknown
 public operator func !=(other: AlphaType): Bool
 ```
 
-**Function:** Determines if two enum values are not equal.
+**Function:** Determines whether two enum values are not equal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | other | [AlphaType](#enum-alphatype) | Yes | - | Another enum value. |
 
@@ -3068,7 +3712,7 @@ public operator func !=(other: AlphaType): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are not equal, otherwise false. |
+| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
 
 ### func ==(AlphaType)
 
@@ -3076,11 +3720,11 @@ public operator func !=(other: AlphaType): Bool
 public operator func ==(other: AlphaType): Bool
 ```
 
-**Function:** Determines if two enum values are equal.
+**Function:** Determines whether two enum values are equal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | other | [AlphaType](#enum-alphatype) | Yes | - | Another enum value. |
 
@@ -3088,7 +3732,7 @@ public operator func ==(other: AlphaType): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise false. |
+| Bool | Returns true if the two enum values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -3102,7 +3746,8 @@ public func toString(): String
 
 | Type | Description |
 |:----|:----|
-| String | Description of the enum. |## enum ComponentType
+| String | Description of the enum. |
+```## enum ComponentType
 
 ```cangjie
 public enum ComponentType <: Equatable<ComponentType> & ToString {
@@ -3114,11 +3759,11 @@ public enum ComponentType <: Equatable<ComponentType> & ToString {
 }
 ```
 
-**Function:** Image component type.
+**Description:** The component type of an image.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3131,11 +3776,11 @@ public enum ComponentType <: Equatable<ComponentType> & ToString {
 Jpeg
 ```
 
-**Function:** JPEG type.
+**Description:** JPEG type.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### YuvU
 
@@ -3143,11 +3788,11 @@ Jpeg
 YuvU
 ```
 
-**Function:** Chrominance information.
+**Description:** Chrominance information.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### YuvV
 
@@ -3155,11 +3800,11 @@ YuvU
 YuvV
 ```
 
-**Function:** Chrominance information.
+**Description:** Chrominance information.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### YuvY
 
@@ -3167,11 +3812,11 @@ YuvV
 YuvY
 ```
 
-**Function:** Luminance information.
+**Description:** Luminance information.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ComponentType)
 
@@ -3179,19 +3824,19 @@ YuvY
 public operator func !=(other: ComponentType): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [ComponentType](#enum-componenttype) | Yes | - | Another enum value. |
+| other | [ComponentType](#enum-componenttype) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are unequal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are unequal, otherwise returns false. |
 
 ### func ==(ComponentType)
 
@@ -3199,19 +3844,19 @@ public operator func !=(other: ComponentType): Bool
 public operator func ==(other: ComponentType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [ComponentType](#enum-componenttype) | Yes | - | Another enum value. |
+| other | [ComponentType](#enum-componenttype) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -3219,13 +3864,13 @@ public operator func ==(other: ComponentType): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Gets the value of the enumeration.
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Description of the enum. |
+| String | The description of the enumeration. |
 
 ## enum DecodingDynamicRange
 
@@ -3238,11 +3883,11 @@ public enum DecodingDynamicRange <: Equatable<DecodingDynamicRange> & ToString {
 }
 ```
 
-**Function:** Describes the expected dynamic range of the image during decoding.
+**Description:** Describes the expected dynamic range of an image during decoding.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3255,11 +3900,11 @@ public enum DecodingDynamicRange <: Equatable<DecodingDynamicRange> & ToString {
 Auto
 ```
 
-**Function:** Adaptive processing based on image information. If the image itself is HDR, it will be decoded as HDR content; otherwise, it will be decoded as SDR content.
+**Description:** Adaptive processing based on image information. If the image itself is HDR, it will be decoded as HDR content; otherwise, it will be decoded as SDR content.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Hdr
 
@@ -3267,11 +3912,11 @@ Auto
 Hdr
 ```
 
-**Function:** Processes the image as high dynamic range.
+**Description:** Processes the image as high dynamic range content.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Sdr
 
@@ -3279,11 +3924,11 @@ Hdr
 Sdr
 ```
 
-**Function:** Processes the image as standard dynamic range.
+**Description:** Processes the image as standard dynamic range content.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(DecodingDynamicRange)
 
@@ -3291,19 +3936,19 @@ Sdr
 public operator func !=(other: DecodingDynamicRange): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [DecodingDynamicRange](#enum-decodingdynamicrange) | Yes | - | Another enum value. |
+| other | [DecodingDynamicRange](#enum-decodingdynamicrange) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are unequal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are unequal, otherwise returns false. |
 
 ### func ==(DecodingDynamicRange)
 
@@ -3311,19 +3956,19 @@ public operator func !=(other: DecodingDynamicRange): Bool
 public operator func ==(other: DecodingDynamicRange): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [DecodingDynamicRange](#enum-decodingdynamicrange) | Yes | - | Another enum value. |
+| other | [DecodingDynamicRange](#enum-decodingdynamicrange) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -3331,13 +3976,13 @@ public operator func ==(other: DecodingDynamicRange): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Gets the value of the enumeration.
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Description of the enum. |
+| String | The description of the enumeration. |
 
 ## enum ImageFormat
 
@@ -3349,11 +3994,11 @@ public enum ImageFormat <: Equatable<ImageFormat> & ToString {
 }
 ```
 
-**Function:** Image format.
+**Description:** Image format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3366,11 +4011,11 @@ public enum ImageFormat <: Equatable<ImageFormat> & ToString {
 Jpeg
 ```
 
-**Function:** JPEG encoding format.
+**Description:** JPEG encoding format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Ycbcr422Sp
 
@@ -3378,11 +4023,11 @@ Jpeg
 Ycbcr422Sp
 ```
 
-**Function:** YCBCR422 semi-planar format.
+**Description:** YCBCR422 semi-planar format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ImageFormat)
 
@@ -3390,19 +4035,19 @@ Ycbcr422Sp
 public operator func !=(other: ImageFormat): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [ImageFormat](#enum-imageformat) | Yes | - | Another enum value. |
+| other | [ImageFormat](#enum-imageformat) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are unequal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are unequal, otherwise returns false. |
 
 ### func ==(ImageFormat)
 
@@ -3410,19 +4055,19 @@ public operator func !=(other: ImageFormat): Bool
 public operator func ==(other: ImageFormat): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [ImageFormat](#enum-imageformat) | Yes | - | Another enum value. |
+| other | [ImageFormat](#enum-imageformat) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -3430,13 +4075,13 @@ public operator func ==(other: ImageFormat): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Gets the value of the enumeration.
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Description of the enum. |
+| String | The description of the enumeration. |
 
 ## enum PackingDynamicRange
 
@@ -3448,11 +4093,11 @@ public enum PackingDynamicRange <: Equatable<PackingDynamicRange> & ToString {
 }
 ```
 
-**Function:** Describes the expected dynamic range of the image during encoding.
+**Description:** Describes the expected dynamic range of an image during encoding.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3465,11 +4110,11 @@ public enum PackingDynamicRange <: Equatable<PackingDynamicRange> & ToString {
 Auto
 ```
 
-**Function:** Adaptive processing based on [pixelmap](#class-pixelmap) content. If the pixelmap itself is HDR, it will be encoded as HDR content; otherwise, it will be encoded as SDR content.
+**Description:** Adaptive processing based on [pixelmap](#class-pixelmap) content. If the pixelmap itself is HDR, it will be encoded as HDR content; otherwise, it will be encoded as SDR content.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Sdr
 
@@ -3477,11 +4122,11 @@ Auto
 Sdr
 ```
 
-**Function:** Processes the image as standard dynamic range.
+**Description:** Processes the image as standard dynamic range content.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PackingDynamicRange)
 
@@ -3489,19 +4134,19 @@ Sdr
 public operator func !=(other: PackingDynamicRange): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [PackingDynamicRange](#enum-packingdynamicrange) | Yes | - | Another enum value. |
+| other | [PackingDynamicRange](#enum-packingdynamicrange) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are unequal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are unequal, otherwise returns false. |
 
 ### func ==(PackingDynamicRange)
 
@@ -3509,19 +4154,19 @@ public operator func !=(other: PackingDynamicRange): Bool
 public operator func ==(other: PackingDynamicRange): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [PackingDynamicRange](#enum-packingdynamicrange) | Yes | - | Another enum value. |
+| other | [PackingDynamicRange](#enum-packingdynamicrange) | Yes | - | Another enumeration value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enum values are equal, otherwise returns false. |
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -3529,13 +4174,13 @@ public operator func ==(other: PackingDynamicRange): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Gets the value of the enumeration.
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Description of the enum. |## enum PixelMapFormat
+| String | The description of the enumeration. |## enum PixelMapFormat
 
 ```cangjie
 public enum PixelMapFormat <: Equatable<PixelMapFormat> & ToString {
@@ -3559,7 +4204,7 @@ public enum PixelMapFormat <: Equatable<PixelMapFormat> & ToString {
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3572,11 +4217,11 @@ public enum PixelMapFormat <: Equatable<PixelMapFormat> & ToString {
 Alpha8
 ```
 
-**Description:** Format ALPHA_8.
+**Description:** ALPHA_8 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Bgra8888
 
@@ -3584,11 +4229,11 @@ Alpha8
 Bgra8888
 ```
 
-**Description:** Format BGRA_8888.
+**Description:** BGRA_8888 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Nv12
 
@@ -3596,11 +4241,11 @@ Bgra8888
 Nv12
 ```
 
-**Description:** Format NV12.
+**Description:** NV12 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Nv21
 
@@ -3608,11 +4253,11 @@ Nv12
 Nv21
 ```
 
-**Description:** Format NV21.
+**Description:** NV21 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rgb565
 
@@ -3620,11 +4265,11 @@ Nv21
 Rgb565
 ```
 
-**Description:** Format RGB_565.
+**Description:** RGB_565 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rgb888
 
@@ -3632,11 +4277,11 @@ Rgb565
 Rgb888
 ```
 
-**Description:** Format RGB_888.
+**Description:** RGB_888 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rgba1010102
 
@@ -3644,11 +4289,11 @@ Rgb888
 Rgba1010102
 ```
 
-**Description:** Format RGBA_1010102.
+**Description:** RGBA_1010102 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Rgba8888
 
@@ -3656,11 +4301,11 @@ Rgba1010102
 Rgba8888
 ```
 
-**Description:** Format RGBA_8888.
+**Description:** RGBA_8888 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### RgbaF16
 
@@ -3668,11 +4313,11 @@ Rgba8888
 RgbaF16
 ```
 
-**Description:** Format RGBA_F16.
+**Description:** RGBA_F16 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Unknown
 
@@ -3684,7 +4329,7 @@ Unknown
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### YcbcrP010
 
@@ -3692,11 +4337,11 @@ Unknown
 YcbcrP010
 ```
 
-**Description:** Format YCBCR_P010.
+**Description:** YCBCR_P010 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### YcrcbP010
 
@@ -3704,11 +4349,11 @@ YcbcrP010
 YcrcbP010
 ```
 
-**Description:** Format YCRCB_P010.
+**Description:** YCRCB_P010 format.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PixelMapFormat)
 
@@ -3823,11 +4468,11 @@ public enum PropertyKey <: ToString & Equatable<PropertyKey> {
 }
 ```
 
-**Description:** EXIF (Exchangeable Image File Format) image information.
+**Description:** Exchangeable image file format (Exif) information.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -3844,7 +4489,7 @@ ApertureValue
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BitsPerSample
 
@@ -3856,7 +4501,7 @@ BitsPerSample
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CaptureMode
 
@@ -3868,7 +4513,7 @@ CaptureMode
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### DateTime
 
@@ -3880,7 +4525,7 @@ DateTime
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### DateTimeOriginal
 
@@ -3888,11 +4533,11 @@ DateTime
 DateTimeOriginal
 ```
 
-**Description:** Shooting time, e.g., 2022:09:06 15:48:00.
+**Description:** Shooting time, for example, 2022:09:06 15:48:00.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ExposureBiasValue
 
@@ -3904,7 +4549,7 @@ ExposureBiasValue
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ExposureTime
 
@@ -3912,11 +4557,11 @@ ExposureBiasValue
 ExposureTime
 ```
 
-**Description:** Exposure time, e.g., 1/33 sec.
+**Description:** Exposure time, for example, 1/33 sec.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FNumber
 
@@ -3924,11 +4569,11 @@ ExposureTime
 FNumber
 ```
 
-**Description:** Aperture value, e.g., f/1.8.
+**Description:** Aperture value, for example, f/1.8.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FaceCount
 
@@ -3940,17 +4585,17 @@ FaceCount
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21### Flash
+**Since:** 22### Flash
 
 ```cangjie
 Flash
 ```
 
-**Function:** Flashlight, records the flash status.
+**Function:** Flash, records flash status.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocalLength
 
@@ -3962,7 +4607,7 @@ FocalLength
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocalLengthIn35mmFilm
 
@@ -3974,7 +4619,7 @@ FocalLengthIn35mmFilm
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FocusMode
 
@@ -3986,7 +4631,7 @@ FocusMode
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### GpsDateStamp
 
@@ -3998,7 +4643,7 @@ GpsDateStamp
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### GpsLatitude
 
@@ -4006,11 +4651,11 @@ GpsDateStamp
 GpsLatitude
 ```
 
-**Function:** Image latitude. When modifying, input should follow "degrees,minutes,seconds" format, e.g., "39,54,7.542".
+**Function:** Image latitude. When modifying, it should be passed in "degrees, minutes, seconds" format, e.g., "39,54,7.542".
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### GpsLatitudeRef
 
@@ -4022,7 +4667,7 @@ GpsLatitudeRef
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### GpsLongitude
 
@@ -4030,11 +4675,11 @@ GpsLatitudeRef
 GpsLongitude
 ```
 
-**Function:** Image longitude. When modifying, input should follow "degrees,minutes,seconds" format, e.g., "116,19,42.16".
+**Function:** Image longitude. When modifying, it should be passed in "degrees, minutes, seconds" format, e.g., "116,19,42.16".
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### GpsLongitudeRef
 
@@ -4046,7 +4691,7 @@ GpsLongitudeRef
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### GpsTimeStamp
 
@@ -4058,7 +4703,7 @@ GpsTimeStamp
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### IsoSpeed
 
@@ -4070,7 +4715,7 @@ IsoSpeed
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### IsoSpeedRatings
 
@@ -4082,7 +4727,7 @@ IsoSpeedRatings
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ImageDescription
 
@@ -4094,7 +4739,7 @@ ImageDescription
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ImageLength
 
@@ -4106,7 +4751,7 @@ ImageLength
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ImageWidth
 
@@ -4118,7 +4763,7 @@ ImageWidth
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### LightSource
 
@@ -4130,7 +4775,7 @@ LightSource
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Make
 
@@ -4142,7 +4787,7 @@ Make
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### MeteringMode
 
@@ -4154,7 +4799,7 @@ MeteringMode
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Model
 
@@ -4166,7 +4811,7 @@ Model
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Orientation
 
@@ -4178,7 +4823,7 @@ Orientation
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PhotoMode
 
@@ -4186,11 +4831,11 @@ Orientation
 PhotoMode
 ```
 
-**Function:** Photo capture mode.
+**Function:** Photo mode.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PhysicalAperture
 
@@ -4198,11 +4843,11 @@ PhotoMode
 PhysicalAperture
 ```
 
-**Function:** Physical aperture, lens opening size.
+**Function:** Physical aperture, f-number.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PitchAngle
 
@@ -4214,7 +4859,7 @@ PitchAngle
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PixelXDimension
 
@@ -4226,7 +4871,7 @@ PixelXDimension
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PixelYDimension
 
@@ -4238,7 +4883,7 @@ PixelYDimension
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### RecommendedExposureIndex
 
@@ -4250,7 +4895,7 @@ RecommendedExposureIndex
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### RollAngle
 
@@ -4262,7 +4907,7 @@ RollAngle
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneBeachConf
 
@@ -4274,7 +4919,7 @@ SceneBeachConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneBlueSkyConf
 
@@ -4286,7 +4931,7 @@ SceneBlueSkyConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneFlowersConf
 
@@ -4298,7 +4943,7 @@ SceneFlowersConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneFoodConf
 
@@ -4310,7 +4955,7 @@ SceneFoodConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneGreenPlantConf
 
@@ -4322,7 +4967,7 @@ SceneGreenPlantConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneNightConf
 
@@ -4334,7 +4979,7 @@ SceneNightConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneSnowConf
 
@@ -4346,7 +4991,7 @@ SceneSnowConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneStageConf
 
@@ -4358,7 +5003,7 @@ SceneStageConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneSunsetConf
 
@@ -4370,7 +5015,7 @@ SceneSunsetConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneTextConf
 
@@ -4382,7 +5027,7 @@ SceneTextConf
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SceneType
 
@@ -4390,11 +5035,11 @@ SceneTextConf
 SceneType
 ```
 
-**Function:** Photo scene mode, e.g., portrait, landscape, sports, night, etc.
+**Function:** Shooting scene mode, e.g., portrait, landscape, sports, night, etc.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### SensitivityType
 
@@ -4406,7 +5051,7 @@ SensitivityType
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### StandardOutputSensitivity
 
@@ -4418,7 +5063,7 @@ StandardOutputSensitivity
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### UserComment
 
@@ -4430,7 +5075,7 @@ UserComment
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WhiteBalance
 
@@ -4442,7 +5087,7 @@ WhiteBalance
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PropertyKey)
 
@@ -4494,7 +5139,7 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -4508,7 +5153,7 @@ public func toString(): String
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | The type is not supported yet. | Invalid enum value, the enum value is not supported. | Check if the input enum value is correct. |## enum ReceiveType
+  | The type is not supported yet. | Invalid enum value, the enum value is not supported. | Check if the passed enum value is correct. |## enum ReceiveType
 
 ```cangjie
 public enum ReceiveType {
@@ -4517,11 +5162,11 @@ public enum ReceiveType {
 }
 ```
 
-**Function:** Callback registration type for receiving images.
+**Function:** Callback type registered when receiving images.
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ### ImageArrival
 
@@ -4533,7 +5178,7 @@ ImageArrival
 
 **System Capability:** SystemCapability.Multimedia.Image.ImageReceiver
 
-**Since:** 21
+**Since:** 22
 
 ## enum ScaleMode
 
@@ -4545,11 +5190,11 @@ public enum ScaleMode <: Equatable<ScaleMode> & ToString {
 }
 ```
 
-**Function:** Image scaling modes.
+**Function:** Scaling modes for images.
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -4566,7 +5211,7 @@ CenterCrop
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FitTargetSize
 
@@ -4578,7 +5223,7 @@ FitTargetSize
 
 **System Capability:** SystemCapability.Multimedia.Image.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ScaleMode)
 
@@ -4586,7 +5231,7 @@ FitTargetSize
 public operator func !=(other: ScaleMode): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Function:** Determines if two enum values are not equal.
 
 **Parameters:**
 
@@ -4598,7 +5243,7 @@ public operator func !=(other: ScaleMode): Bool
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the enum values are unequal, otherwise false.|
+|Bool|Returns true if the enum values are not equal, otherwise false.|
 
 ### func ==(ScaleMode)
 
@@ -4606,7 +5251,7 @@ public operator func !=(other: ScaleMode): Bool
 public operator func ==(other: ScaleMode): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Function:** Determines if two enum values are equal.
 
 **Parameters:**
 
@@ -4626,7 +5271,7 @@ public operator func ==(other: ScaleMode): Bool
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Function:** Gets the string representation of the enum value.
 
 **Return Value:**
 

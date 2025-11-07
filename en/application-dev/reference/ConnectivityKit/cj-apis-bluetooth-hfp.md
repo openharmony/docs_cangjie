@@ -14,12 +14,12 @@ ohos.permission.ACCESS_BLUETOOTH
 
 ## Usage Instructions
 
-API sample code usage instructions:
+API example code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of example code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Description](../cj-development-intro.md#仓颉示例代码说明).
+For the above example projects and configuration templates, please refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie-Example-Code-Instructions).
 
 ## func createHfpAgProfile()
 
@@ -31,13 +31,13 @@ public func createHfpAgProfile(): HandsFreeAudioGatewayProfile
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| [HandsFreeAudioGatewayProfile](#class-handsfreeaudiogatewayprofile) | Returns an instance of this profile. |
+|:----|:----|
+|[HandsFreeAudioGatewayProfile](#class-handsfreeaudiogatewayprofile)|Returns an instance of this profile.|
 
 **Example:**
 
@@ -46,7 +46,6 @@ public func createHfpAgProfile(): HandsFreeAudioGatewayProfile
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.BusinessException
@@ -68,7 +67,7 @@ public class HandsFreeAudioGatewayProfile <: BaseProfile {}
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parent Type:**
 
@@ -82,11 +81,11 @@ public func getConnectedDevices(): Array<String>
 
 **Function:** Gets the list of connected devices.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parent Type:**
 
@@ -95,12 +94,12 @@ public func getConnectedDevices(): Array<String>
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| Array\<String> | Returns the addresses of currently connected devices. For information security considerations, the device addresses obtained here are randomized MAC addresses. This address remains unchanged after successful pairing; however, it will change when a paired device is unpaired and rescanned or when the Bluetooth service is powered off. |
+|:----|:----|
+|Array\<String>|Returns the addresses of currently connected devices. For information security considerations, the device address obtained here is a randomized MAC address. This address remains unchanged after successful pairing; however, it will change when a paired device is unpaired and rescanned or when the Bluetooth service is powered off.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -118,7 +117,6 @@ public func getConnectedDevices(): Array<String>
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.BusinessException
@@ -139,27 +137,27 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
 
 **Function:** Gets the connection state of a device profile.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| deviceId | String | Yes | - | Remote device address. |
+|:---|:---|:---|:---|:---|
+|deviceId|String|Yes|-|Remote device address.|
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| [ProfileConnectionState](cj-apis-bluetooth-constant.md#enum-profileconnectionstate) | Returns the connection state of the profile. |
+|:----|:----|
+|[ProfileConnectionState](cj-apis-bluetooth-constant.md#enum-profileconnectionstate)|Returns the connection state of the profile.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -174,7 +172,7 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
 
   | Error Message | Possible Causes | Handling Steps |
   | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Input parameter error. | Modify the input parameters. |
+  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Incorrect input parameters. | Modify the input parameters. |
 
 **Example:**
 
@@ -184,14 +182,13 @@ public func getConnectionState(deviceId: String): ProfileConnectionState
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 import ohos.business_exception.BusinessException
 
 try {
     let hdfProfile = createHfpAgProfile()
-    let ret = hdfProfile.getConnectionState("XX:XX:XX:XX:XX:XX")  // Replace with your deviceId.
+    let ret = hdfProfile.getConnectionState("XX:XX:XX:XX:XX:XX")  // Please replace with your deviceId.
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
 }
@@ -205,22 +202,22 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 
 **Function:** Unsubscribes from connection state change events.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| eventType | [ProfileCallbackType](./cj-apis-bluetooth-base_profile.md#enum-profilecallbacktype) | Yes | - | Callback event type. |
-| callback | [CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | Yes | - | Callback event. |
+|:---|:---|:---|:---|:---|
+|eventType|[ProfileCallbackType](./cj-apis-bluetooth-base_profile.md#enum-profilecallbacktype)|Yes|-|Callback event type.|
+|callback|[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject)|Yes|-|Callback event.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -231,7 +228,7 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 
   | Error Message | Possible Causes | Handling Steps |
   | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Input parameter error. | Modify the input parameters. |
+  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Incorrect input parameters. | Modify the input parameters. |
 
 **Example:**
 
@@ -240,7 +237,6 @@ public func off(eventType: ProfileCallbackType, callback: CallbackObject): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -272,21 +268,21 @@ public func off(eventType: ProfileCallbackType): Unit
 
 **Function:** Unsubscribes from connection state change events.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| eventType | [ProfileCallbackType](./cj-apis-bluetooth-base_profile.md#enum-profilecallbacktype) | Yes | - | Callback event type. |
+|:---|:---|:---|:---|:---|
+|eventType|[ProfileCallbackType](./cj-apis-bluetooth-base_profile.md#enum-profilecallbacktype)|Yes|-|Callback event type.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -297,7 +293,7 @@ public func off(eventType: ProfileCallbackType): Unit
 
   | Error Message | Possible Causes | Handling Steps |
   | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Input parameter error. | Modify the input parameters. |
+  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Incorrect input parameters. | Modify the input parameters. |
 
 **Example:**
 
@@ -306,7 +302,6 @@ public func off(eventType: ProfileCallbackType): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -338,22 +333,22 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
 
 **Function:** Subscribes to connection state change events. Uses Callback for asynchronous callbacks.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| eventType | [ProfileCallbackType](./cj-apis-bluetooth-base_profile.md#enum-profilecallbacktype) | Yes | - | Set to CONNECTIONSTATECHANGE, indicating the connection state change event type. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[StateChangeParam](cj-apis-bluetooth-base_profile.md#class-statechangeparam)> | Yes | - | Represents the input parameters of the callback function. |
+|:---|:---|:---|:---|:---|
+|eventType|[ProfileCallbackType](./cj-apis-bluetooth-base_profile.md#enum-profilecallbacktype)|Yes|-|Set to CONNECTIONSTATECHANGE, indicating the connection state change event type.|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[StateChangeParam](cj-apis-bluetooth-base_profile.md#class-statechangeparam)>|Yes|-|Represents the input parameters of the callback function.|
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -364,7 +359,7 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
 
   | Error Message | Possible Causes | Handling Steps |
   | :---- | :--- | :--- |
-  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Input parameter error. | Modify the input parameters. |
+  | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. | Incorrect input parameters. | Modify the input parameters. |
 
 **Example:**
 
@@ -373,7 +368,6 @@ public func on(eventType: ProfileCallbackType, callback: Callback1Argument<State
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
