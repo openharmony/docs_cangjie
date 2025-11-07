@@ -10,27 +10,27 @@ A component type name in the Stage model, referring to the ExtensionAbility comp
 
 ### HAP
 
-Harmony Ability Package. A HAP file contains all contents of an application, consisting of code, resources, third-party libraries, and application configuration files. Its file extension is .hap.
+Harmony Ability Package. A HAP file contains all contents of an application, consisting of code, resources, third-party libraries, and application configuration files. The file extension is .hap.
 
 ### HAR
 
-Harmony Archive, a static shared package for compile-time reuse. It may contain code, C++ libraries, resources, and configuration files. With the file extension .har, it enables code and resource sharing.
+Harmony Archive, a static shared package for compile-time reuse. It may contain code, C++ libraries, resources, and configuration files. The file extension is .har, used for sharing code and resources.
 
 ### HSP
 
-Harmony Shared Package, a dynamic shared package for runtime reuse. It may contain code, C++ libraries, resources, and configuration files. With the file extension .hsp, it facilitates code and resource sharing.
+Harmony Shared Package, a dynamic shared package for runtime reuse. It may contain code, C++ libraries, resources, and configuration files. The file extension is .hsp, used for sharing code and resources.
 
 ## M
 
 ### Module
 
-A part of an application where each module has its own module.json5 configuration file. In project engineering, Entry, Feature, HSP, and HAR each represent a module of the application.
+A part of an application where each module has its own module.json5 configuration file. In project engineering, Entry, Feature, HSP, and HAR are all considered application modules.
 
 ## S
 
 ### Stage Model
 
-An application model introduced from API version 9, providing two major types of application components: UIAbility and ExtensionAbility. Named the Stage model because it also offers classes like AbilityStage and WindowStage as "stages" for application components and Window interfaces.
+An application model introduced since API version 9, providing two major types of application components: UIAbility and ExtensionAbility. As this model also includes classes like AbilityStage and WindowStage that serve as "stages" for application components and Window interfaces, it is named the Stage model.
 
 ## U
 

@@ -2,58 +2,58 @@
 
 ## Basic Concepts
 
-- **Window Immersive Capability**: Refers to the ability to control system windows such as the status bar and navigation bar, reducing the abruptness of these system interfaces, thereby providing users with an optimal experience.
-  Immersive capability only takes effect when the application's main window is in full-screen mode. Typically, application sub-windows (pop-ups, floating windows, and other auxiliary windows) and the main application window in free window mode cannot use immersive capabilities.
+- **Window Immersive Capability**: Refers to the ability to control system windows such as the status bar and navigation bar, reducing the abruptness of these system interfaces to provide users with an optimal experience.  
+  The immersive capability only takes effect when the application's main window is in full-screen mode. Typically, application sub-windows (such as pop-ups, floating windows, and other auxiliary windows) and the main window in free-window mode cannot utilize the immersive capability.
 
-- **Floating Window**: A global floating window is a special type of application window that has the ability to remain displayed in the foreground even after the main application window and its corresponding Ability move to the background.
-  Floating windows can be used for scenarios like continuing video playback in a small window after the app moves to the background, or creating quick access points like floating balls for specific applications. Applications need to apply for corresponding permissions before creating floating windows.
+- **Floating Window**: A global floating window is a special type of application window that can remain displayed in the foreground even after the main application window and its corresponding Ability are moved to the background.  
+  Floating windows can be used for scenarios such as continuing video playback in a small window after the app is moved to the background or creating quick-access floating balls for specific applications. Applications must request the appropriate permissions before creating floating windows.
 
-## Scenario Description
+## Scenario Overview
 
 In the `Stage` model, typical scenarios for managing application windows include:
 
-- Setting the main application window properties and target page.
-- Setting sub-application window properties and target page.
-- Experiencing window immersive capability.
-- Setting up floating windows.
-- Listening for window non-interactive and interactive events.
+- Setting properties and target pages for the main application window
+- Setting properties and target pages for application sub-windows
+- Experiencing window immersive capabilities
+- Configuring floating windows
+- Monitoring window non-interactive and interactive events
 
-The specific development methods for each are described below.
+The following sections detail the specific development approaches.
 
-## Interface Description
+## API Reference
 
-The commonly used interfaces involved in the above scenarios are listed in the table below. For more API descriptions, please refer to the [API Reference](../../../en/application-dev/reference/arkui-cj/cj-apis-window.md).
+The commonly used APIs for the above scenarios are listed in the table below. For more API details, refer to the [API Reference](../reference/arkui-cj/cj-apis-window.md).
 
-| Instance      | Interface                                                                  | Description                                                                                                                                       |
-| ------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| WindowStage   | `func getMainWindow(): Window`                                             | Gets the main window under the `WindowStage` instance.<br/>This interface can only be used in the `Stage` model.                                   |
-| WindowStage   | `loadContent(path: String): Unit`                                          | Loads a specific page for the main window of the current `WindowStage`.<br>`path` is the path to the page content to be loaded into the window.<br/>This interface can only be used in the `Stage` model. |
-| WindowStage   | `createSubWindow(name: String): Window`                                    | Creates a sub-window.<br/>This interface can only be used in the `Stage` model.                                                                   |
-| window static method | `createWindow(config: Configuration): Window`                              | Creates a sub-window or system window.<br/>- `config`: Parameters for creating the window.                                                        |
-| Window        | `setWindowBrightness(brightness: Float32): Unit`                           | Sets the screen brightness value.                                                                                                                 |
-| Window        | `setWindowTouchable(isTouchable: Bool): Unit`                              | Sets whether the window is touchable. `true` means touchable; `false` means non-touchable.                                                        |
-| Window        | `moveWindowTo(x: Int32, y: Int32): Unit`                                   | Moves the current window position.                                                                                                                |
-| Window        | `resize(width: UInt32, height: UInt32): Unit`                              | Changes the current window size.                                                                                                                  |
-| Window        | `setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit`                | Sets whether the layout of the main window or sub-window is an immersive layout. `true` means immersive layout; `false` means non-immersive layout.|
-| Window        | `setWindowSystemBarEnable(names: Array<SystemBarType>): Unit`              | Sets the visibility mode of the status bar and three-key navigation bar for the main window. The status bar is controlled by `status`, and the navigation bar by `navigation`.<br>For example, setting this parameter to `[SystemBarType.Status, SystemBarType.Navigation]` displays both; setting it to `[]` displays neither. |
-| Window        | `setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Unit` | Sets the properties of the navigation bar and status bar within the window.<br/>`systemBarProperties`: The collection of properties for the navigation bar and status bar. |
-| Window        | `func showWindow(): Unit`                                                  | Displays the current window.                                                                                                                      |
-| Window        | `func destroyWindow(): Unit`                                               | Destroys the current window.                                                                                                                      |
+| Instance       | API                                                          | Description                                                  |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| WindowStage    | `func getMainWindow(): Window`                               | Retrieves the main window under the `WindowStage` instance.<br/>This API is only available in the `Stage` model. |
+| WindowStage    | `loadContent(path: String): Unit`                            | Loads a specific page into the main window of the current `WindowStage`.<br>`path` specifies the path of the page content to be loaded into the window.<br/>This API is only available in the `Stage` model. |
+| WindowStage    | `createSubWindow(name: String): Window`                     | Creates a sub-window.<br/>This API is only available in the `Stage` model. |
+| Window static method | `createWindow(config: Configuration): Window`               | Creates a sub-window or system window.<br/>- `config`: Parameters for window creation. |
+| Window         | `setWindowBrightness(brightness: Float32): Unit`            | Sets the screen brightness value.                            |
+| Window         | `setWindowTouchable(isTouchable: Bool): Unit`               | Sets whether the window is touchable. `true` for touchable; `false` for non-touchable. |
+| Window         | `moveWindowTo(x: Int32, y: Int32): Unit`                    | Moves the current window's position.                         |
+| Window         | `resize(width: UInt32, height: UInt32): Unit`               | Resizes the current window.                                  |
+| Window         | `setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit` | Sets whether the main window or sub-window uses an immersive layout. `true` for immersive layout; `false` for non-immersive layout. |
+| Window         | `setWindowSystemBarEnable(names: Array<SystemBarType>): Unit` | Sets the visibility mode of the main window's status bar and navigation bar. The status bar is controlled via `status`, and the navigation bar via `navigation`.<br>For example, setting this parameter to `[SystemBarType.Status, SystemBarType.Navigation]` displays both; setting it to `[]` hides both. |
+| Window         | `setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Unit` | Sets properties for the navigation bar and status bar within the window.<br/>`systemBarProperties`: A collection of properties for the navigation bar and status bar. |
+| Window         | `func showWindow(): Unit`                                    | Displays the current window.                                 |
+| Window         | `func destroyWindow(): Unit`                                 | Destroys the current window.                                 |
 
-## Setting Up the Main Application Window
+## Configuring the Main Application Window
 
-In the `Stage` model, the main application window is created and its lifecycle is maintained by the `UIAbility`. In the `onWindowStageCreate` callback of the `UIAbility`, the main application window can be obtained via `WindowStage`, allowing for operations like property setting. Attributes of the main application window, such as `maxWindowWidth`, can also be set in the application configuration file. For details, refer to [abilities tag in the module.json5 configuration file](../../../en/application-dev/cj-start/basic-knowledge/module-configuration-file.md#abilities-tag).
+In the `Stage` model, the main application window is created and managed by `UIAbility`. In the `onWindowStageCreate` callback of `UIAbility`, the main window can be retrieved via `WindowStage` for property configuration. Additionally, main window properties such as `maxWindowWidth` can be set in the application configuration file. For details, refer to [abilities tag in module.json5 configuration file](../cj-start/basic-knowledge/module-configuration-file.md#abilities标签).
 
 ### Development Steps
 
-1.  Get the main application window.
-    Use the `getMainWindow` interface to get the main application window.
+1. Retrieve the main application window.  
+   Use the `getMainWindow` API to obtain the main window.
 
-2.  Set the main window properties.
-    Properties such as background color, brightness, and touchability can be set. Developers can choose the corresponding interface as needed. This example sets the "touchable" property.
+2. Set main window properties.  
+   Multiple properties such as background color, brightness, and touchability can be configured as needed. This example demonstrates setting the "touchable" property.
 
-3.  Load the target page for the main window.
-    Use the `loadContent` interface to load the target page for the main window.
+3. Load the target page into the main window.  
+   Use the `loadContent` API to load the target page.
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -63,45 +63,45 @@ internal import kit.ArkUI.*
 
 class MainAbility <: UIAbility {
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-        // 1. Get the main application window.
+        // 1. Retrieve the main application window.
         let mainWindow: Window = windowStage.getMainWindow()
-        // 2. Set main window properties. Using "touchable" property as an example.
-        mainWindow.setWindowTouchable(false) // Corrected variable name from 'window' to 'mainWindow'
-        // 3. Load the target page for the main window.
+        // 2. Set main window properties. Example: Set "touchable" property.
+        window.setWindowTouchable(false)
+        // 3. Load the target page into the main window.
         windowStage.loadContent("EntryView")
     }
 }
 ```
 
-## Setting Up Application Sub-Windows
+## Configuring Application Sub-Windows
 
-Developers can create application sub-windows, such as pop-ups, as needed, and perform operations like property setting.
+Developers can create sub-windows (e.g., pop-ups) as needed and configure their properties.
 
-> **Note:**
-> The following scenarios are not recommended for using sub-windows. It is recommended to prioritize using the control [overlay](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-overlay.md) capability instead.
-> - On mobile devices (phones), sub-windows cannot exceed the boundaries of the main window when it is in floating or split-screen mode, similar to controls.
-> - In split-screen and free window modes, controls have better real-time following capability regarding changes in the main window's position and size compared to sub-windows.
-> - On some device platforms, due to actual system configuration limitations, sub-windows only have system-default animations and rounded corners/shadows, which cannot be set by the application, resulting in low flexibility.
+> **Note:**  
+> The following scenarios are not recommended for sub-windows. Instead, prioritize using the [overlay](../reference/arkui-cj/cj-universal-attribute-overlay.md) capability of controls:  
+> - On mobile devices (phones), sub-windows cannot exceed the bounds of the main window in floating or split-screen mode, similar to controls.  
+> - In split-screen or free-window mode, controls adapt to changes in the main window's position and size more effectively than sub-windows.  
+> - On some platforms, sub-windows may only support default system animations and rounded corners, limiting customization options.
 
 ### Development Steps
 
-1.  Create an application sub-window.
-    Use the `createSubWindow` interface to create an application sub-window.
+1. Create a sub-window.  
+   Use the `createSubWindow` API to create a sub-window.
 
-2.  Set sub-window properties.
-    After the sub-window is successfully created, you can change its size, position, etc., and also set properties like background color and brightness according to application needs.
-    It is recommended to set the size and position of the sub-window before calling `showWindow`.
-    If the sub-window size is not set, after calling `showWindow`:
-    + In free window state, the default sub-window size is the current physical screen size.
-    + In non-free window state, the default sub-window size is the main window size.
+2. Configure sub-window properties.  
+   After creation, properties such as size, position, background color, and brightness can be set.  
+   It is recommended to set the size and position before calling `showWindow`.  
+   If size is not specified:  
+   - In free-window mode, the default size matches the physical screen.  
+   - In non-free-window mode, the default size matches the main window.
 
-3.  Load and display the specific content of the sub-window.
-    Use the `showWindow` interface to load and display the specific content of the sub-window.
+3. Load and display sub-window content.  
+   Use the `showWindow` API to display the sub-window content.
 
-4.  Destroy the sub-window.
-    When certain sub-windows are no longer needed, use the `destroyWindow` interface to destroy them based on specific logic.
+4. Destroy the sub-window.  
+   Use the `destroyWindow` API to remove the sub-window when no longer needed.
 
-Complete sample code for creating a sub-window directly within `onWindowStageCreate`:
+Example code for creating a sub-window within `onWindowStageCreate`:
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -119,19 +119,19 @@ class MainAbility <: UIAbility {
     }
 
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-        // Developers can create sub-windows at an appropriate time, such as a button click event on the main window. It doesn't necessarily need to be called in onWindowStageCreate; shown here for demonstration only.
-        // 1. Create an application sub-window.
+        // Sub-windows can be created at appropriate times (e.g., button clicks). This example shows creation in onWindowStageCreate for demonstration.
+        // 1. Create a sub-window.
         let subWindow = windowStage.createSubWindow("mySubWindow")
-        // 2. After successful creation, set the sub-window's position, size, and related properties.
+        // 2. Set sub-window properties (position, size, etc.).
         subWindow.getOrThrow().moveWindowTo(300, 300)
         subWindow.getOrThrow().resize(500, 500)
-        // 3. Show the sub-window.
+        // 3. Display the sub-window.
         subWindow.getOrThrow().showWindow()
     }
 
     public override func onWindowStageDestroy(): Unit {
-        // Developers can destroy the sub-window at an appropriate time, such as a close button click on the sub-window. It doesn't necessarily need to be called in onWindowStageDestroy; shown here for demonstration only.
-        // 4. Destroy the sub-window. When it's no longer needed, use destroyWindow to destroy it based on specific logic.
+        // Sub-windows can be destroyed at appropriate times (e.g., close button clicks). This example shows destruction in onWindowStageDestroy for demonstration.
+        // 4. Destroy the sub-window when no longer needed.
         if (!subWindow.isSome()) {
             return
         }
@@ -140,7 +140,7 @@ class MainAbility <: UIAbility {
 }
 ```
 
-Alternatively, you can create a sub-window by clicking a button on a page. Complete sample code:
+Alternatively, sub-windows can be created via button clicks in a page:
 
 ```cangjie
 // main_ability.cj
@@ -202,12 +202,12 @@ class EntryView{
                     .onClick {
                         evt =>
                             windowStage = AppStorage.get('windowStage')
-                            // 1. Create an application sub-window.
+                            // 1. Create a sub-window.
                             subWindow = windowStage.getOrThrow().createSubWindow("mySubWindow")
-                            // 2. After successful creation, set the sub-window's position, size, and related properties.
+                            // 2. Set sub-window properties (position, size, etc.).
                             subWindow.getOrThrow().moveWindowTo(300, 300)
                             subWindow.getOrThrow().resize(500, 500)
-                            // 3. Show the sub-window.
+                            // 3. Display the sub-window.
                             subWindow.getOrThrow().showWindow()
                     }
                 Button() {
@@ -221,10 +221,10 @@ class EntryView{
                     .height(68)
                     .onClick {
                         evt =>
-                            // 4. Destroy the sub-window. When it's no longer needed, use destroyWindow to destroy it based on specific logic.
+                            // 4. Destroy the sub-window when no longer needed.
                             if (!subWindow.isSome()) {
                                 return
-            }
+                            }
                             subWindow.getOrThrow().destroyWindow()
                     }
             }.width(100.percent)
@@ -235,22 +235,22 @@ class EntryView{
 
 ## Experiencing Window Immersive Capability
 
-In scenarios like watching videos or playing games, users often want to hide unnecessary system windows like the status bar and navigation bar for a more immersive experience. This can be achieved using the window immersive capability (which applies to the main application window). Starting from API version 10, immersive windows are configured by default to full-screen size with the layout controlled by the component module. The status bar and navigation bar background color is transparent, and the text color is black. The application window calls the `setWindowLayoutFullScreen` interface. Setting it to `true` means the component module controls the layout, ignoring the status bar and navigation bar for an immersive full-screen layout. Setting it to `false` means the component module controls the layout, avoiding the status bar and navigation bar for a non-immersive full-screen layout.
+In scenarios like video playback or gaming, users often prefer to hide system windows (e.g., status bar, navigation bar) for a more immersive experience. The window immersive capability (applicable only to the main window) can achieve this effect. Starting from API version 10, immersive windows default to full-screen size with layout controlled by the component module. The status bar and navigation bar have transparent backgrounds with black text. The `setWindowLayoutFullScreen` API can be used to toggle between immersive (`true`) and non-immersive (`false`) layouts.
 
-> **Note:**
-> Current immersive interface development only supports configuration at the window level, not at the Page level. If Page-level switching is needed, you can set the immersive mode at the beginning of the page lifecycle, for example in `onPageShow`, and then restore the default settings when the page exits, for example in `onPageHide`.
+> **Note:**  
+> Currently, immersive mode configuration is only supported at the window level, not the Page level. For Page-level switching, immersive mode can be set in lifecycle callbacks like `onPageShow` and reverted in `onPageHide`.
 
 ### Development Steps
 
-1.  Get the main application window.
-    Use the `getMainWindow` interface to get the main application window.
+1. Retrieve the main application window.  
+   Use the `getMainWindow` API to obtain the main window.
 
-2.  Implement the immersive effect. There are two ways:
-    - **Method 1**: When the main application window is in full-screen mode, call the `setWindowSystemBarEnable` interface and set the navigation bar and status bar to not display, thus achieving the immersive effect.
-    - **Method 2**: Call the `setWindowLayoutFullScreen` interface to set the main application window to a full-screen layout. Then call the `setWindowSystemBarProperties` interface to set properties like transparency, background/text color, and highlight icons for the navigation bar and status bar, ensuring they coordinate with the main window display, thus achieving the immersive effect.
+2. Implement immersive effects via one of two methods:  
+   - Method 1: Hide the status bar and navigation bar using `setWindowSystemBarEnable` when the main window is in full-screen mode.  
+   - Method 2: Set the main window to full-screen layout via `setWindowLayoutFullScreen`, then configure the transparency, colors, and highlight icons of the status bar and navigation bar via `setWindowSystemBarProperties` to harmonize with the main window.
 
-3.  Load and display the specific content for the immersive window.
-    Use the `loadContent` interface to load the specific content for the immersive window.
+3. Load and display immersive window content.  
+   Use the `loadContent` API to load the content.
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -260,43 +260,43 @@ internal import kit.ArkUI.*
 
 class MainAbility <: UIAbility {
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-        // 1. Get the main application window.
+        // 1. Retrieve the main application window.
         let mainWindow: Window = windowStage.getMainWindow()
-        // 2. Implement immersive effect. Method 1: Set the navigation bar and status bar to not display.
+        // 2. Implement immersive effects. Method 1: Hide the status bar and navigation bar.
         mainWindow.setWindowSystemBarEnable([])
-        // 2. Implement immersive effect. Method 2: Set the window to full-screen layout, and coordinate the properties of the navigation bar and status bar.
+        // 2. Implement immersive effects. Method 2: Set full-screen layout and configure system bar properties.
         mainWindow.setWindowLayoutFullScreen(true)
         let sysBarProps: SystemBarProperties = SystemBarProperties(
-                                                statusBarColor: "#ff00ff",
-                                                navigationBarColor: "#00ff00",
+                                                statusBarColor: "#ff00ff", 
+                                                navigationBarColor: "#00ff00", 
                                                 statusBarContentColor: "#ffffff",
                                                 navigationBarContentColor: "#ffffff")
         mainWindow.setWindowSystemBarProperties(sysBarProps)
-        // 3. Load the target page for the immersive window.
+        // 3. Load the target page into the immersive window.
         windowStage.loadContent("EntryView")
     }
 }
 ```
 
-## Setting Up Floating Windows
+## Configuring Floating Windows
 
-A floating window can create a window that always stays in the foreground on top of an existing task. Even if the task that created the floating window moves to the background, the floating window can still be displayed in the foreground. Typically, floating windows are located above all application windows. Developers can create floating windows and perform operations like property setting.
+Floating windows can remain displayed in the foreground even after the creating task moves to the background. Typically, floating windows appear above all other application windows. Developers can create and configure floating windows as needed.
 
 ### Development Steps
 
-**Prerequisite:** Creating a window of type `WindowType.TypeFloat` (i.e., a floating window) requires applying for the `ohos.permission.SYSTEM_FLOAT_WINDOW` permission. For configuration methods, please refer to [How system_basic level applications apply for permissions](../../../en/application-dev/security/AccessToken/cj-determine-application-mode.md#how-system_basic-level-applications-apply-for-permissions).
+**Prerequisite:** To create a `WindowType.TypeFloat` (floating window), the `ohos.permission.SYSTEM_FLOAT_WINDOW` permission must be requested. For configuration details, refer to [Permission Request for system_basic-Level Applications](../security/AccessToken/cj-determine-application-mode.md#system_basic等级应用申请权限的方式).
 
-1.  Create a floating window.
-    Use the `createWindow` interface to create a window of the floating type.
+1. Create a floating window.  
+   Use the `createWindow` API with `WindowType.TypeFloat`.
 
-2.  Perform operations like property setting on the floating window.
-    After the floating window is successfully created, you can change its size, position, etc., and also set properties like background color and brightness according to application needs.
+2. Configure floating window properties.  
+   After creation, properties such as size, position, background color, and brightness can be set.
 
-3.  Load and display the specific content of the floating window.
-    Use the `showWindow` interface to load and display the specific content of the floating window.
+3. Load and display floating window content.  
+   Use the `showWindow` API to display the content.
 
-4.  Destroy the floating window.
-    When the floating window is no longer needed, use the `destroyWindow` interface to destroy it based on specific logic.
+4. Destroy the floating window.  
+   Use the `destroyWindow` API to remove the window when no longer needed.
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -311,12 +311,12 @@ class MainAbility <: UIAbility {
             name: "floatWindow", windowType: WindowType.TypeFloat, ctx: this.context
         )
         let windowClass: Window = createWindow(config)
-        // 2. After successful creation, set the floating window's position, size, and related properties.
+        // 2. Configure floating window properties (position, size, etc.).
         windowClass.moveWindowTo(300, 300)
         windowClass.resize(500, 500)
-        // 3. Show the floating window.
+        // 3. Display the floating window.
         windowClass.showWindow()
-        // 4. Destroy the floating window. When it's no longer needed, use destroyWindow to destroy it based on specific logic.
+        // 4. Destroy the floating window when no longer needed.
         windowClass.destroyWindow()
     }
 }

@@ -16,9 +16,9 @@ Operation not permitted
 
 **Possible Causes**
 
-The current user's file operation is not allowed.
+The current user's file operation is not permitted.
 
-**Resolution Steps**
+**Solution**
 
 Verify file permissions.
 
@@ -32,7 +32,7 @@ No such file or directory
 
 The file or directory does not exist.
 
-**Resolution Steps**
+**Solution**
 
 Verify the file path exists.
 
@@ -46,10 +46,10 @@ No such process
 
 The process does not exist.
 
-**Resolution Steps**
+**Solution**
 
-1. Check if the process was unexpectedly terminated.
-2. Verify if the related service is running.
+1. Check if the process was unexpectedly terminated.  
+2. Verify the relevant service is running.
 
 ### 13900004 Interrupted System Call
 
@@ -61,9 +61,9 @@ Interrupted system call
 
 The system call was interrupted by another thread.
 
-**Resolution Steps**
+**Solution**
 
-1. Check the multi-threading code logic.
+1. Review multithreading code logic.  
 2. Retry the system call.
 
 ### 13900005 I/O Error
@@ -74,9 +74,9 @@ I/O error
 
 **Possible Causes**
 
-The I/O request is invalid.
+Illegal I/O request.
 
-**Resolution Steps**
+**Solution**
 
 Retry the I/O request.
 
@@ -90,9 +90,9 @@ No such device or address
 
 Incorrect device or address information.
 
-**Resolution Steps**
+**Solution**
 
-Verify the device or address information.
+Verify device or address information.
 
 ### 13900007 Argument List Too Long
 
@@ -104,7 +104,7 @@ Arg list too long
 
 The argument list is too long.
 
-**Resolution Steps**
+**Solution**
 
 Reduce the number of arguments.
 
@@ -116,13 +116,13 @@ Bad file descriptor
 
 **Possible Causes**
 
-1. The file descriptor is already closed.
+1. The file descriptor is already closed.  
 2. Read/write permissions do not match.
 
-**Resolution Steps**
+**Solution**
 
-1. Verify if the file descriptor is closed.
-2. Verify if the file read/write permissions match.
+1. Check if the file descriptor is closed.  
+2. Verify read/write permissions match.
 
 ### 13900009 No Child Processes
 
@@ -134,7 +134,7 @@ No child processes
 
 Unable to create a child process.
 
-**Resolution Steps**
+**Solution**
 
 Check the system's maximum process limit.
 
@@ -148,7 +148,7 @@ Try again
 
 The resource is blocked.
 
-**Resolution Steps**
+**Solution**
 
 Retry the resource request.
 
@@ -162,9 +162,9 @@ Out of memory
 
 Memory overflow.
 
-**Resolution Steps**
+**Solution**
 
-1. Check memory usage.
+1. Check memory usage.  
 2. Manage system memory usage.
 
 ### 13900012 Permission Denied
@@ -175,13 +175,13 @@ Permission denied
 
 **Possible Causes**
 
-1. No permission for the file operation.
+1. Insufficient permissions for the file operation.  
 2. Incorrect file sandbox path address.
 
-**Resolution Steps**
+**Solution**
 
-1. Verify permissions.
-2. Verify the file sandbox path address.
+1. Verify permissions.  
+2. Check the file sandbox path address.
 
 ### 13900013 Bad Address
 
@@ -193,7 +193,7 @@ Bad address
 
 Incorrect address.
 
-**Resolution Steps**
+**Solution**
 
 Verify the address is correct.
 
@@ -207,7 +207,7 @@ Device or resource busy
 
 The requested resource is unavailable.
 
-**Resolution Steps**
+**Solution**
 
 Retry the resource request.
 
@@ -221,7 +221,7 @@ File exists
 
 The file to be created already exists.
 
-**Resolution Steps**
+**Solution**
 
 Verify the file path is correct.
 
@@ -235,9 +235,9 @@ Cross-device link
 
 Cross-device linking failed.
 
-**Resolution Steps**
+**Solution**
 
-Verify cross-device connectivity.
+Check if cross-device operations are functioning properly.
 
 ### 13900017 No Such Device
 
@@ -249,7 +249,7 @@ No such device
 
 The device is not recognized.
 
-**Resolution Steps**
+**Solution**
 
 Verify the device connection is normal.
 
@@ -263,7 +263,7 @@ Not a directory
 
 The path is not a directory.
 
-**Resolution Steps**
+**Solution**
 
 Verify the path is correct.
 
@@ -277,7 +277,7 @@ Is a directory
 
 The path is a directory.
 
-**Resolution Steps**
+**Solution**
 
 Verify the path is correct.
 
@@ -289,11 +289,11 @@ Invalid argument
 
 **Possible Causes**
 
-Invalid input parameter.
+Illegal input parameter.
 
-**Resolution Steps**
+**Solution**
 
-Verify the parameter validity.
+Verify parameter validity.
 
 ### 13900021 Too Many Open File Descriptors
 
@@ -305,7 +305,7 @@ File table overflow
 
 The process has opened too many file descriptors.
 
-**Resolution Steps**
+**Solution**
 
 Close unnecessary file descriptors.
 
@@ -319,7 +319,7 @@ Too many open files
 
 The system has opened too many files.
 
-**Resolution Steps**
+**Solution**
 
 Close unnecessary files.
 
@@ -333,7 +333,7 @@ Text file busy
 
 The program's executable file is in use.
 
-**Resolution Steps**
+**Solution**
 
 Close the program being debugged.
 
@@ -345,11 +345,11 @@ File too large
 
 **Possible Causes**
 
-The file size exceeds the maximum file size limit.
+The file size exceeds the maximum limit.
 
-**Resolution Steps**
+**Solution**
 
-Verify the file size meets the maximum file size limit.
+Verify the file size complies with the maximum limit.
 
 ### 13900025 No Space Left on Device
 
@@ -361,7 +361,7 @@ No space left on device
 
 Insufficient device storage space.
 
-**Resolution Steps**
+**Solution**
 
 Free up device storage space.
 
@@ -373,11 +373,11 @@ Illegal seek
 
 **Possible Causes**
 
-Using seek on a pipe or FIFO.
+Using `seek` on a pipe or FIFO.
 
-**Resolution Steps**
+**Solution**
 
-Verify seek usage.
+Verify `seek` usage.
 
 ### 13900027 Read-Only File System
 
@@ -387,9 +387,9 @@ Read-only file system
 
 **Possible Causes**
 
-The file system is read-only.
+The file system supports only read operations.
 
-**Resolution Steps**
+**Solution**
 
 Verify the file is read-only.
 
@@ -403,11 +403,11 @@ Too many links
 
 The file has reached the maximum number of links.
 
-**Resolution Steps**
+**Solution**
 
-Clean up unused links.
+Remove unnecessary links.
 
-### 13900029 Resource Deadlock Would Occur
+### 13900029 Resource Deadlock Error
 
 **Error Message**
 
@@ -417,7 +417,7 @@ Resource deadlock would occur
 
 Resource deadlock.
 
-**Resolution Steps**
+**Solution**
 
 Terminate the deadlocked process.
 
@@ -431,7 +431,7 @@ Filename too Long
 
 The path or filename exceeds the maximum length.
 
-**Resolution Steps**
+**Solution**
 
 Verify the path or filename length.
 
@@ -445,7 +445,7 @@ Function not implemented
 
 The system does not support this function.
 
-**Resolution Steps**
+**Solution**
 
 Verify the system version.
 
@@ -459,12 +459,12 @@ Directory not empty
 
 The specified directory is not empty.
 
-**Resolution Steps**
+**Solution**
 
-1. Verify the directory path.
+1. Verify the directory path.  
 2. Ensure the path is empty.
 
-### 13900033 Too Many Symbolic Links Encountered
+### 13900033 Too Many Symbolic Links
 
 **Error Message**
 
@@ -472,11 +472,11 @@ Too many symbolic links encountered
 
 **Possible Causes**
 
-Too many levels of symbolic links.
+Excessive symbolic link layers.
 
-**Resolution Steps**
+**Solution**
 
-Clean up unnecessary symbolic links.
+Remove unnecessary symbolic links.
 
 ### 13900034 Operation Would Block
 
@@ -488,7 +488,7 @@ Operation would block
 
 The operation is blocked.
 
-**Resolution Steps**
+**Solution**
 
 Retry the operation.
 
@@ -500,9 +500,9 @@ Invalid request descriptor
 
 **Possible Causes**
 
-Invalid file descriptor.
+Illegal file descriptor.
 
-**Resolution Steps**
+**Solution**
 
 Verify the file descriptor is valid.
 
@@ -514,9 +514,9 @@ Device not a stream
 
 **Possible Causes**
 
-The file descriptor does not point to a stream device.
+The file descriptor points to a non-stream device.
 
-**Resolution Steps**
+**Solution**
 
 Verify the file descriptor points to a stream device.
 
@@ -530,7 +530,7 @@ No data available
 
 Data is unavailable.
 
-**Resolution Steps**
+**Solution**
 
 Retry the data request.
 
@@ -544,7 +544,7 @@ Value too large for defined data type
 
 The value exceeds the defined data type range.
 
-**Resolution Steps**
+**Solution**
 
 Modify the data type.
 
@@ -558,9 +558,9 @@ File descriptor in bad state
 
 The file descriptor is corrupted.
 
-**Resolution Steps**
+**Solution**
 
-Verify the file descriptor validity.
+Verify the file descriptor is valid.
 
 ### 13900040 Interrupted System Call Should Be Restarted
 
@@ -572,7 +572,7 @@ Interrupted system call should be restarted
 
 The system call was interrupted.
 
-**Resolution Steps**
+**Solution**
 
 Retry the system call.
 
@@ -586,7 +586,7 @@ Quota exceeded
 
 Insufficient disk space.
 
-**Resolution Steps**
+**Solution**
 
 Free up disk storage space.
 
@@ -600,12 +600,12 @@ Unknown error
 
 Internal error.
 
-**Resolution Steps**
+**Solution**
 
-1. Retry the interface.
+1. Retry the interface.  
 2. Restart the service.
 
-### 13900043 No Record Locks Available
+### 13900043 No Locks Available
 
 **Error Message**
 
@@ -615,11 +615,11 @@ No record is locks available
 
 Insufficient system resources.
 
-**Resolution Steps**
+**Solution**
 
 Release lock resources and retry.
 
-### 13900044 Network Is Unreachable
+### 13900044 Network Unreachable
 
 **Error Message**
 
@@ -629,7 +629,7 @@ Network is unreachable
 
 Network anomaly.
 
-**Resolution Steps**
+**Solution**
 
 Check the network status and ensure it is normal.
 
@@ -641,12 +641,12 @@ Connection failed
 
 **Possible Causes**
 
-Device, WiFi, or Bluetooth status anomaly, causing connection failure.
+Device, WiFi, or Bluetooth state anomaly, causing connection failure.
 
-**Resolution Steps**
+**Solution**
 
-1. Check the device and ensure its status is normal.
-2. Check WiFi and Bluetooth and ensure their status is normal.
+1. Check the device and ensure its state is normal.  
+2. Check WiFi and Bluetooth and ensure their states are normal.
 
 ### 13900046 Connection Failed
 
@@ -658,10 +658,10 @@ Software caused connection abort
 
 Device offline or WiFi/Bluetooth disconnected.
 
-**Resolution Steps**
+**Solution**
 
-1. Check the device and ensure its status is normal.
-2. Check WiFi and Bluetooth and ensure their status is normal.## User Data Management Error Codes
+1. Check the device and ensure its state is normal.  
+2. Check WiFi and Bluetooth and ensure their states are normal.## User Data Management Error Codes
 
 ### 14000001 Invalid File Name
 
@@ -763,7 +763,7 @@ The called service does not exist.
 
 Check if the service is running.
 
-### 13600002 Unsupported File System Type
+### 13600002 Unsupported Filesystem Type
 
 **Error Message**
 
@@ -771,11 +771,11 @@ Not supported filesystem
 
 **Possible Causes**
 
-The file system type being operated is not supported.
+The filesystem type of the operation is not supported.
 
 **Resolution Steps**
 
-Modify to the correct file system type.
+Change to the correct filesystem type.
 
 ### 13600003 Mount Failure
 
@@ -789,7 +789,7 @@ Failed to execute the mount command.
 
 **Resolution Steps**
 
-Remove the card and attempt to remount.
+Remove the card and try remounting.
 
 ### 13600004 Unmount Failure
 
@@ -803,7 +803,7 @@ The device is busy.
 
 **Resolution Steps**
 
-Check if external card files are occupied by threads, and terminate the occupying threads.
+Check if external card files are being used by threads, and terminate the occupying threads.
 
 ### 13600005 Incorrect Volume State
 
@@ -813,7 +813,7 @@ Incorrect volume state
 
 **Possible Causes**
 
-The volume state being operated is incorrect.
+The volume state for the operation is incorrect.
 
 **Resolution Steps**
 
@@ -855,12 +855,12 @@ No such object
 
 **Possible Causes**
 
-1. Incorrect volume ID entered.  
+1. Incorrect volume ID entered.
 2. Incorrect package name entered.
 
 **Resolution Steps**
 
-1. Check if the entered volume exists.  
+1. Check if the entered volume exists.
 2. Check if the entered application package name exists.
 
 ### 13600009 User ID Out of Range
@@ -887,7 +887,7 @@ IPC error
 
 **Possible Causes**
 
-1. Server-side service is unavailable.  
+1. Server-side service is unavailable.
 2. Extension mechanism exception.
 
 **Resolution Steps**
@@ -902,7 +902,7 @@ Invalid uri
 
 **Possible Causes**
 
-Illegal URI used.
+Using an invalid URI.
 
 **Resolution Steps**
 
@@ -920,7 +920,7 @@ BMS interface exception.
 
 **Resolution Steps**
 
-System capability issue.
+System basic capability issue.
 
 ### 14300004 Abnormal Result Returned by js-server
 
@@ -930,7 +930,7 @@ Get wrong result
 
 **Possible Causes**
 
-Server-side returned inappropriate data.
+Server-side returned inappropriate actual data.
 
 **Resolution Steps**
 
@@ -944,7 +944,7 @@ Fail to register notification
 
 **Possible Causes**
 
-1. Server-side service is unavailable.  
+1. Server-side service is unavailable.
 2. Extension mechanism exception.
 
 **Resolution Steps**
@@ -959,7 +959,7 @@ Fail to remove notification
 
 **Possible Causes**
 
-1. Server-side service is unavailable.  
+1. Server-side service is unavailable.
 2. Extension mechanism exception.
 
 **Resolution Steps**
@@ -974,7 +974,7 @@ Fail to init notification agent
 
 **Possible Causes**
 
-Attempted to cancel notification without prior registration.
+Attempting to cancel notification without prior registration.
 
 **Resolution Steps**
 
@@ -988,7 +988,7 @@ Fail to notify agent
 
 **Possible Causes**
 
-1. Service unavailable.  
+1. Service is unavailable.
 2. Extension mechanism exception.
 
 **Resolution Steps**
@@ -1005,12 +1005,12 @@ Cloud status not ready
 
 **Possible Causes**
 
-1. Cloud service is not enabled.  
-2. Application cloud sync switch is turned off.
+1. Cloud service is not enabled.
+2. Application cloud sync switch is not turned on.
 
 **Resolution Steps**
 
-1. Check if the account is logged in.  
+1. Check if the account is logged in.
 2. Check if the cloud sync switch is turned on.
 
 ### 22400002 Network Unavailable
@@ -1021,7 +1021,7 @@ Network unavailable
 
 **Possible Causes**
 
-Device is offline or network is unavailable.
+Device is not connected to the network or network is unavailable.
 
 **Resolution Steps**
 

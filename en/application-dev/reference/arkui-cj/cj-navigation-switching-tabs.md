@@ -10,22 +10,21 @@ import kit.ArkUI.*
 
 ## Child Components
 
-Custom components are not supported as child components. Only [TabContent](#class-tabcontent) child components are allowed, along with rendering control types [if/else](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-ifelse.md) and [ForEach](../../../en/application-dev/arkui-cj/rendering_control/cj-rendering-control-foreach.md). Additionally, only TabContent is supported under if/else and ForEach, not custom components.
+Custom components are not supported as child components. Only [TabContent](./cj-navigation-switching-tabcontent.md) child components are allowed, along with rendering control types [if/else](../../arkui-cj/rendering_control/cj-rendering-control-ifelse.md) and [ForEach](cj-state-rendering-foreach.md). Note that if/else and ForEach can only contain TabContent and not custom components.
 
 > **Note:**
 >
 > - When the visibility property of a Tabs child component is set to None or Hidden, the corresponding child component will not be displayed but will still occupy space within the viewport.
-> - The TabContent child component of Tabs will not be destroyed after being displayed. For lazy loading and release of pages, refer to [Example 2](#示例2页面懒加载和释放).
 
 ## Creating the Component
 
-### init(BarPosition, TabsController, Int32, () -> Unit)
+### init(?BarPosition, ?TabsController, ?Int32, () -> Unit)
 
 ```cangjie
 public init(
-    barPosition!: BarPosition = BarPosition.Start,
-    controller!: TabsController = TabsController(),
-    index!: Int32 = -1,
+    barPosition!: ?BarPosition = None,
+    controller!: ?TabsController = None,
+    index!: ?Int32 = None,
     child!: () -> Unit = {=>}
 )
 ```
@@ -34,18 +33,18 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| barPosition | [BarPosition](#enum-barposition) | No | BarPosition.Start | Sets the position of the Tabs' tab bar.<br/>Initial value: BarPosition.Start |
-| controller | [TabsController](#class-tabscontroller) | No | TabsController() | Sets the Tabs controller.<br/>Initial value: TabsController() |
-| index | Int32 | No | -1 | Sets the index of the currently displayed tab.<br/>Initial value: 0<br/>**Note:**<br/>Values less than 0 will display the initial value. Valid values are [0, number of TabContent child nodes - 1]. Directly modifying the index to switch pages will not trigger the transition animation. Using the TabController's changeIndex will enable the transition animation by default, which can be disabled by setting animationDuration to 0. |
-| child | ()->Unit | No | { => } | Declares the child components within the container.<br/>Initial value: { => }. |
+| barPosition | ?[BarPosition](./cj-common-types.md#enum-barposition) | No | None | **Named parameter** Sets the position of the Tabs bar.<br> Initial value: BarPosition.Start |
+| controller | ?[TabsController](#class-tabscontroller) | No | None | **Named parameter** Sets the Tabs controller.<br> Initial value: TabsController() |
+| index | ?Int32 | No | None | **Named parameter** Sets the index of the currently displayed tab.<br> Initial value: 0 <br> **Note:**<br> Values less than 0 will default to the initial value. Valid range: [0, number of TabContent child nodes - 1]. Directly modifying the index to switch tabs will not trigger the transition animation. Using TabController's changeIndex will enable the transition animation by default, which can be disabled by setting animationDuration to 0. |
+| child | () -> Unit | No | {=>} | **Named parameter** Declares the child components within the container. |
 
-## Common Attributes/Common Events
+## Common Attributes/Events
 
 Common Attributes: All supported.
 
@@ -53,253 +52,135 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func animationDuration(Float32)
+### func animationDuration(?Float32)
 
 ```cangjie
-public func animationDuration(value: Float32): This
+public func animationDuration(value: ?Float32): This
 ```
 
-**Function:** Sets the animation duration for switching TabContent when clicking the TabBar tab or calling the TabsController's changeIndex interface.
+**Function:** Sets the animation duration for Tabs.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Float32 | Yes | - | The animation duration for switching TabContent when clicking the TabBar tab or calling the TabsController's changeIndex interface.<br/>Initial value: If this property is not set or set to an invalid value, and the TabBar is set to BottomTabBarStyle, the initial value is 0. For other TabBar styles, the initial value is 300.<br/>Unit: ms<br/>Range: [0, +∞). |
+| value | ?Float32 | Yes | - | Animation duration in milliseconds. Initial value: -1.0. |
 
-### func barHeight(Length)
+### func barHeight(?Length)
 
 ```cangjie
-public func barHeight(value: Length): This
+public func barHeight(value: ?Length): This
 ```
 
-**Function:** Sets the height of the TabBar. Values less than 0 or greater than the Tabs height will display the initial value.
+**Function:** Sets the height of the Tabs bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The height of the TabBar.<br/>Initial value:<br/>When no styled TabBar is set and the vertical property is false, the initial value is 56.vp.<br/>When no styled TabBar is set and the vertical property is true, the initial value is the height of Tabs.<br/>When [SubTabBarStyle](./cj-common-types.md#enum-subtabbarstyle) is set and the vertical property is false, the initial value is 56.vp.<br/>When SubTabBarStyle is set and the vertical property is true, the initial value is the height of Tabs.<br/>When [BottomTabBarStyle](./cj-common-types.md#enum-bottomtabbarstyle) is set and the vertical property is true, the initial value is the height of Tabs.<br/>When BottomTabBarStyle is set and the vertical property is false, the initial value is 48.vp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Height of the Tabs bar. When the bar is horizontal, this parameter represents its height; when vertical, it represents its width. |
 
-### func barMode(BarMode)
+### func barMode(?BarMode)
 
 ```cangjie
-public func barMode(value: BarMode): This
+public func barMode(value: ?BarMode): This
 ```
 
-**Function:** Sets the layout mode of the TabBar.
+**Function:** Sets the layout mode of the Tabs bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [BarMode](./cj-common-types.md#enum-barmode) | Yes | - | The layout mode. |
+| value | ?[BarMode](./cj-common-types.md#enum-barmode) | Yes | - | Layout mode of the Tabs bar. Initial value: BarMode.Fixed. |
 
-### func barWidth(Length)
+### func barWidth(?Length)
 
 ```cangjie
-public func barWidth(value: Length): This
+public func barWidth(value: ?Length): This
 ```
 
-**Function:** Sets the width of the TabBar. Values less than 0 or greater than the Tabs width will display the initial value.
+**Function:** Sets the width of the Tabs bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | The width of the TabBar.<br/>Initial value:<br/>When no [SubTabBarStyle](./cj-navigation-switching-tabs.md#class-subtabbarstyle) or [BottomTabBarStyle](./cj-navigation-switching-tabs.md#class-bottomtabbarstyle) is set and the vertical property is false, the initial value is the width of Tabs.<br/>When no SubTabBarStyle or BottomTabBarStyle is set and the vertical property is true, the initial value is 56.vp.<br/>When SubTabBarStyle is set and the vertical property is false, the initial value is the width of Tabs.<br/>When SubTabBarStyle is set and the vertical property is true, the initial value is 56.vp.<br/>When BottomTabBarStyle is set and the vertical property is true, the initial value is 96.vp.<br/>When BottomTabBarStyle is set and the vertical property is false, the initial value is the width of Tabs. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Width of the Tabs bar. When the bar is horizontal, this parameter represents its width; when vertical, it represents its height. |
 
-### func scrollable(Bool)
+### func scrollable(?Bool)
 
 ```cangjie
-public func scrollable(value: Bool): This
+public func scrollable(value: ?Bool): This
 ```
 
-**Function:** Sets whether page switching can be performed by swiping the page.
+**Function:** Sets whether the Tabs are scrollable.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether page switching can be performed by swiping the page.<br/>Initial value: true, page switching can be performed by swiping. When false, page switching by swiping is disabled. |
+| value | ?Bool | Yes | - | Whether scrolling is enabled. Initial value: true. |
 
-### func vertical(Bool)
+### func vertical(?Bool)
 
 ```cangjie
-public func vertical(value: Bool): This
+public func vertical(value: ?Bool): This
 ```
 
-**Function:** Sets whether the Tab is vertical.
+**Function:** Sets the orientation of the Tabs bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the Tab is vertical.<br/>Initial value: false, horizontal Tabs. When true, vertical Tabs.<br/>Try to keep the size of child components consistent across pages to avoid animation jumps during page switching. |
+| value | ?Bool | Yes | - | Whether the Tabs bar is vertically oriented. Initial value: false. |
 
 ## Component Events
 
-### func onChange(Callback\<Int32,Unit>)
+### func onChange(?Callback\<Int32, Unit>)
 
 ```cangjie
-public func onChange(event: Callback<Int32, Unit>): This
+public func onChange(event: ?Callback<Int32, Unit>): This
 ```
 
-**Function:** Triggered after a Tab tab is switched.
-
-This event is triggered under any of the following conditions:
-
-1. When switching pages by swiping, the event is triggered after the component swipe animation ends.<br>
-
-2. When the [controller](#class-tabscontroller) calls the [changeIndex](#func-changeindexint32) interface, the event is triggered after the Tab tab is switched.<br>
-
-3. When dynamically modifying the index property value constructed by [state variables](./cj-state-rendering-appstatemanagement.md), the event is triggered after the Tab tab is switched.<br>
-
-4. When clicking a TabBar tab, the event is triggered after the Tab tab is switched.
-
-> **Note:**
->
-> When using custom tabs, the onChange event may cause the tab linkage to execute only after the page is switched by swiping, resulting in a delay in the custom tab switching effect.
+**Function:** Triggered when switching tabs.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| event | [Callback](../BasicServicesKit/cj-apis-base.md#type-callback)\<Int32,Unit> | Yes | - | The callback for the Tab tab switching event.<br/>Parameter:<br/>The index of the currently displayed tab, starting from 0. |
+| event | ?[Callback](./cj-common-types.md#type-callbackt-v)\<Int32, Unit> | Yes | - | Callback function triggered when the tab index changes. Initial value: { _ => }. |
 
 ## Basic Type Definitions
-
-### class TabContent
-
-```cangjie
-public class TabContent <: ContainerBase {
-    public init(child: () -> Unit)
-    public init()
-}
-```
-
-**Function:** Used only within Tabs, corresponding to a content view for a switching tab.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parent Type:**
-
-- [ContainerBase](./cj-ui-framework.md#containerbase)
-
-#### init(() -> Unit)
-
-```cangjie
-public init(child: () -> Unit)
-```
-
-**Function:** Creates a TabContent container with child components.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| child | ()->Unit | Yes | - | Declares the child components within the container. |
-
-#### init()
-
-```cangjie
-public init()
-```
-
-**Function:** Creates a TabContent container without child components.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### func tabBar(ResourceStr)
-
-```cangjie
-public func tabBar(content: ResourceStr): This
-```
-
-**Function:** Sets the content displayed on the TabBar.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| content | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | The content displayed on the TabBar. |
-
-#### func tabBar(ResourceStr, ResourceStr)
-
-```cangjie
-public func tabBar(icon!: ResourceStr = "", text!: ResourceStr = ""): This
-```
-
-**Function:** Sets the content displayed on the TabBar.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| icon | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | **Named parameter.** The icon displayed on the TabBar.<br/>**Note:** If the icon uses an SVG image source, the SVG image source should remove its own width and height attributes. If an SVG image source with its own width and height attributes is used, the icon size will be the built-in width and height attribute values of the SVG itself. |
-| text | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | **Named parameter.** The text content displayed on the TabBar. |
-
-#### func tabBar(CustomBuilder)
-
-```cangjie
-public func tabBar(content: CustomBuilder): This
-```
-
-**Function:** Sets the content displayed on the TabBar.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| content | [CustomBuilder](./cj-common-types.md#type-custombuilder) | Yes | - | The content displayed on the TabBar.<br/>CustomBuilder: A builder that can pass in components internally. |
 
 ### class TabsController
 
@@ -309,11 +190,11 @@ public class TabsController {
 }
 ```
 
-**Function:** The controller for the Tabs component, used to control the Tabs component for tab switching. A single TabsController cannot control multiple Tabs components.
+**Function:** Tabs controller.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### init()
 
@@ -321,193 +202,35 @@ public class TabsController {
 public init()
 ```
 
-**Function:** Creates a Tabs controller.
+**Function:** Constructs a Tabs controller.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### func changeIndex(Int32)
+#### func changeIndex(?Int32)
 
 ```cangjie
-public func changeIndex(value: Int32): Unit
+public func changeIndex(value: ?Int32): Unit
 ```
 
-**Function:** Controls the Tabs to switch to the specified tab.
+**Function:** Switches to the tab at the specified index.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Int32 | Yes | - | The index value of the tab in Tabs, starting from 0.<br/>**Note:**<br/>Values less than 0 or greater than the maximum number will default to the initial value of 0. |
+| value | ?Int32 | Yes | - | Index of the tab to switch to. Initial value: 0. |
 
-### enum BarMode
-
-```cangjie
-public enum BarMode <: Equatable<BarMode> {
-    | Fixed
-    | Scrollable
-    | ...
-}
-```
-
-**Function:** Enumeration for TabBar layout modes.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parent Type:**
-
-- Equatable\<BarMode>
-
-#### Fixed
-
-```cangjie
-Fixed
-```
-
-**Function:** All TabBars evenly divide the screen width, and the TabBar cannot scroll.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### Scrollable
-
-```cangjie
-Scrollable
-```
-
-**Function:** All TabBars are laid out according to their own dimensions, and the TabBar can scroll.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### func !=(BarMode)
-
-```cangjie
-public operator func !=(other: BarMode): Bool
-```
-
-**Function:** Compares whether two BarModes are not equal.
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| other | [BarMode](#enum-barmode) | Yes | - | The other BarMode value to compare. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two BarModes are not equal, otherwise returns false. |
-
-#### func ==(BarMode)
-
-```cangjie
-public operator func ==(other: BarMode): Bool
-```
-
-**Function:** Compares whether two BarModes are equal.
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| other | [BarMode](#enum-barmode) | Yes | - | The other BarMode value to compare. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two BarModes are equal, otherwise returns false. |
-
-### enum BarPosition
-
-```cangjie
-public enum BarPosition <: Equatable<BarPosition> {
-    | Start
-    | End
-    | ...
-}
-```
-
-**Function:** Sets the layout position of the TabBar.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parent Type:**
-
-- Equatable\<BarPosition>
-
-#### End
-
-```cangjie
-End
-```
-
-**Function:** Positioned at the end.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### Start
-
-```cangjie
-Start
-```
-
-**Function:** Positioned at the start.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### func !=(BarPosition)
-
-```cangjie
-public operator func !=(other: BarPosition): Bool
-```
-
-**Function:** Compares whether two BarPositions are not equal.
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| other | [BarPosition](#enum-barposition) | Yes | - | The other BarPosition value to compare. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| Bool | Returns true if the two BarPositions are not equal, otherwise returns false. |
-
-#### func ==(BarPosition)
-
-```cangjie
-public operator func ==(other: BarPosition): Bool
-```
-
-**Function:** Compares whether two BarPositions are equal.
-
-**Parameters:**
-
-| Parameter Name | Type |## Sample Code
+## Example Code
 
 ### Example 1 (Custom Tab Switching Synchronization)
 
-This example demonstrates custom synchronization between tabBar and TabContent during switching via onChange.
+This example demonstrates custom synchronization between tabBar and TabContent during switching using onChange.
 
 <!-- run -->
 
@@ -588,7 +311,7 @@ class EntryView {
             .barHeight(56)
             .animationDuration(400.0)
             .onChange({index: Int32 =>
-                // currentIndex controls the displayed tab of TabContent
+                // currentIndex controls the displayed tab in TabContent
                 this.currentIndex = index
             })
             .width(360)
@@ -613,7 +336,7 @@ This example demonstrates lazy loading and release of pages using custom TabBar 
 package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 import std.collection.*
 import ohos.arkui.state_macro_manage.*
 
@@ -628,10 +351,10 @@ class MyDataSource <: IDataSource<String> {
     return this.list[index]
   }
 
-  public func onRegisterDataChangeListener(listener: DataChangeListener): Unit {
+  public func registerDataChangeListener(listener: DataChangeListener): Unit {
   }
 
-  public func onUnregisterDataChangeListener(listener: DataChangeListener): Unit {
+  public func unregisterDataChangeListener(listener: DataChangeListener): Unit {
   }
 }
 
@@ -709,11 +432,9 @@ class EntryView {
 }
 ```
 
-![tab](figures/tabsExample12.gif)
+![tab](figures/tabsExample12.gif)### Example 3 (Setting TabBar Layout Mode)
 
-### Example 3 (Setting TabBar Layout Mode)
-
-This example demonstrates both evenly distributed tab layout and actual-length-based layout via barMode, showing scrollable effects when the total tab length exceeds TabBar's width.
+This example demonstrates two layout modes for tabs using `barMode`: evenly distributed layout and actual length layout. It also shows the scrollable effect when the total length of tab layouts exceeds the TabBar's total length.
 
 <!-- run -->
 
@@ -733,7 +454,7 @@ class EntryView{
     func build(){
         Column(){
             Row(){
-                Button("Add Text ")
+                Button("Add Text")
                 .width(47.percent)
                 .height(50)
                 .onClick({event => this.text += "Text"})

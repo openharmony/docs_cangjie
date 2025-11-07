@@ -1,6 +1,6 @@
 # ohos.data.data_share_predicates
 
-Predicates (data_share_predicates) are filtering conditions used by developers to query data in databases through DataShare, commonly applied in data updates, deletions, and queries.
+Predicates (data_share_predicates) are filtering conditions used by developers to query data from databases through DataShare, commonly applied in data updates, deletions, and queries.
 
 The interface functions of predicates correspond one-to-one with database filtering conditions. Developers should understand relevant database knowledge before use.
 
@@ -12,12 +12,12 @@ import kit.ArkData.*
 
 ## Usage Instructions
 
-API sample code usage instructions:
+API example code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of example code contains a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration is needed in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the above sample project and configuration template, see [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Description](../cj-development-intro.md#Cangjie-Example-Code-Description).
 
 ## class DataSharePredicates
 
@@ -31,11 +31,11 @@ public class DataSharePredicates {
 
 > **Note:**
 >
-> This class is not thread-safe. If there are multiple threads in the application simultaneously operating instances derived from this class, ensure proper locking protection.
+> This class is not thread-safe. If multiple threads operate on instances derived from this class simultaneously in an application, ensure proper locking protection.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init()
 
@@ -47,26 +47,26 @@ public init()
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
-### func inValues(String, Array\<ValueType>)
+### func inValues(String, Array\<VBValueType>)
 
 ```cangjie
-public func inValues(field: String, value: Array<ValueType>): DataSharePredicates
+public func inValues(field: String, value: Array<VBValueType>): DataSharePredicates
 ```
 
-**Function:** Configures the predicate to match fields with values within the specified range. Currently, only RDB and KVDB(schema) support this predicate.
+**Function:** Configures the predicate to match fields with values within a specified range. Currently, only RDB and KVDB (schema) support this predicate.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | field | String | Yes | - | Column name in the database table. |
-| value | Array\<[ValueType](cj-apis-preferences.md#enum-valuetype)> | Yes | - | Values to match, specified as a ValueType array. |
+| value | Array\<[VBValueType](cj-apis-values_bucket.md#enum-vbvaluetype)> | Yes | - | Values to match, specified as an array of VBValueType. |
 
 **Return Value:**
 
@@ -80,7 +80,6 @@ public func inValues(field: String, value: Array<ValueType>): DataSharePredicate
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. |
 | 1 | Instance invalid. |
 
 **Example:**
@@ -90,12 +89,16 @@ public func inValues(field: String, value: Array<ValueType>): DataSharePredicate
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkData.*
-import ohos.data.values_bucket.ValueType as VBValueType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let predicates = DataSharePredicates()
-predicates.inValues("AGE", [VBValueType.Integer(18), VBValueType.Integer(20)])
+try {
+    let predicates = DataSharePredicates()
+    predicates.inValues("AGE", [VBValueType.Integer(18), VBValueType.Integer(20)])
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func and()
@@ -104,11 +107,11 @@ predicates.inValues("AGE", [VBValueType.Integer(18), VBValueType.Integer(20)])
 public func and(): DataSharePredicates
 ```
 
-**Function:** Adds an AND condition to the predicate. Currently, only RDB and KVDB(schema) support this predicate.
+**Function:** Adds an AND condition to the predicate. Currently, only RDB and KVDB (schema) support this predicate.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -131,34 +134,38 @@ public func and(): DataSharePredicates
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkData.*
-import ohos.data.values_bucket.ValueType as VBValueType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let predicates = DataSharePredicates()
-predicates.equalTo("NAME", VBValueType.StringValue("lisi"))
-        .and()
-        .equalTo("SALARY", VBValueType.Double(200.5))
+try {
+    let predicates = DataSharePredicates()
+    predicates.equalTo("NAME", VBValueType.StringValue("lisi"))
+            .and()
+            .equalTo("SALARY", VBValueType.Double(200.5))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
-### func equalTo(String, ValueType)
+### func equalTo(String, VBValueType)
 
 ```cangjie
-public func equalTo(field: String, value: ValueType): DataSharePredicates
+public func equalTo(field: String, value: VBValueType): DataSharePredicates
 ```
 
-**Function:** Configures the predicate to match fields with values equal to the specified value. Currently, only RDB and KVDB(schema) support this predicate.
+**Function:** Configures the predicate to match fields with values equal to the specified value. Currently, only RDB and KVDB (schema) support this predicate.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | field | String | Yes | - | Column name in the database table. |
-| value | [ValueType](cj-apis-preferences.md#enum-valuetype) | Yes | - | Value to match with the predicate. |
+| value | [VBValueType](./cj-apis-values_bucket.md#enum-vbvaluetype) | Yes | - | Value to match with the predicate. |
 
 **Return Value:**
 
@@ -172,7 +179,6 @@ public func equalTo(field: String, value: ValueType): DataSharePredicates
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. |
 | 1 | Instance invalid. |
 
 **Example:**
@@ -182,12 +188,16 @@ public func equalTo(field: String, value: ValueType): DataSharePredicates
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkData.*
-import ohos.data.values_bucket.ValueType as VBValueType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let predicates = DataSharePredicates()
-predicates.equalTo("NAME", VBValueType.StringValue("Rose"))
+try {
+    let predicates = DataSharePredicates()
+    predicates.equalTo("NAME", VBValueType.StringValue("Rose"))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func limit(Int32, Int32)
@@ -196,11 +206,11 @@ predicates.equalTo("NAME", VBValueType.StringValue("Rose"))
 public func limit(total: Int32, offset: Int32): DataSharePredicates
 ```
 
-**Function:** Configures the predicate to specify the number of results and starting position. Currently, only RDB and KVDB(schema) support this predicate.
+**Function:** Configures the predicate to specify the number of results and starting position. Currently, only RDB and KVDB (schema) support this predicate.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -221,7 +231,6 @@ public func limit(total: Int32, offset: Int32): DataSharePredicates
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. |
 | 1 | Instance invalid. |
 
 **Example:**
@@ -231,12 +240,16 @@ public func limit(total: Int32, offset: Int32): DataSharePredicates
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkData.*
-import ohos.data.values_bucket.ValueType as VBValueType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let predicates = DataSharePredicates()
-predicates.equalTo("NAME", VBValueType.StringValue("Rose")).limit(10, 3)
+try {
+    let predicates = DataSharePredicates()
+    predicates.equalTo("NAME", VBValueType.StringValue("Rose")).limit(10, 3)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func orderByAsc(String)
@@ -245,11 +258,11 @@ predicates.equalTo("NAME", VBValueType.StringValue("Rose")).limit(10, 3)
 public func orderByAsc(field: String): DataSharePredicates
 ```
 
-**Function:** Configures the predicate to match columns sorted in ascending order by their values. Currently, only RDB and KVDB(schema) support this predicate.
+**Function:** Configures the predicate to match columns sorted in ascending order by their values. Currently, only RDB and KVDB (schema) support this predicate.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -269,7 +282,6 @@ public func orderByAsc(field: String): DataSharePredicates
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. |
 | 1 | Instance invalid. |
 
 **Example:**
@@ -279,11 +291,16 @@ public func orderByAsc(field: String): DataSharePredicates
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let predicates = DataSharePredicates()
-predicates.orderByAsc("AGE")
+try {
+    let predicates = DataSharePredicates()
+    predicates.orderByAsc("AGE")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func orderByDesc(String)
@@ -292,11 +309,11 @@ predicates.orderByAsc("AGE")
 public func orderByDesc(field: String): DataSharePredicates
 ```
 
-**Function:** Configures the predicate to match columns sorted in descending order by their values. Currently, only RDB and KVDB(schema) support this predicate.
+**Function:** Configures the predicate to match columns sorted in descending order by their values. Currently, only RDB and KVDB (schema) support this predicate.
 
 **System Capability:** SystemCapability.DistributedDataManager.DataShare.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -316,7 +333,6 @@ public func orderByDesc(field: String): DataSharePredicates
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | Parameter error. |
 | 1 | Instance invalid. |
 
 **Example:**
@@ -326,9 +342,14 @@ public func orderByDesc(field: String): DataSharePredicates
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ArkData.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let predicates = DataSharePredicates()
-predicates.orderByDesc("AGE")
+try {
+    let predicates = DataSharePredicates()
+    predicates.orderByDesc("AGE")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```

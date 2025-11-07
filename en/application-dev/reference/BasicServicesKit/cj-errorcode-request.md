@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> The following describes only the error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> This document only covers module-specific error codes. For universal error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 13400001 File Operation Error
 
@@ -20,7 +20,7 @@ This error code indicates a file operation exception, possibly due to insufficie
 
 **Resolution Steps**
 
-Please verify that the file permissions are properly configured.
+Check whether the file permissions are properly configured.
 
 ## 13400002 Invalid File Path
 
@@ -30,7 +30,7 @@ Bad file path.
 
 **Error Description**
 
-The file path is invalid or a file already exists at the specified path when calling the uploadFile or downloadFile interface.
+Invalid file path or existing file at the specified path when calling the uploadFile or downloadFile interface.
 
 **Possible Causes**
 
@@ -38,7 +38,7 @@ This error code indicates an invalid file path, possibly due to an incorrect pat
 
 **Resolution Steps**
 
-Please verify the file path for upload/download operations.
+Verify that the file path for upload/download is correct.
 
 ## 13400003 Service Error
 
@@ -48,7 +48,7 @@ Task service ability error.
 
 **Error Description**
 
-Failure of the background service for download tasks when calling the downloadFile interface.
+Failure in the background service for download tasks when calling the downloadFile interface.
 
 **Possible Causes**
 
@@ -56,7 +56,7 @@ This error code indicates a service exception, possibly due to task creation fai
 
 **Resolution Steps**
 
-Please verify that the task configuration is correct.
+Check whether the task configuration is correct.
 
 ## 13499999 Other Errors
 
@@ -74,7 +74,7 @@ This error code indicates a service exception, possibly due to task creation fai
 
 **Resolution Steps**
 
-Please verify that the task configuration is correct.
+Check whether the task configuration is correct.
 
 ## 21900004 Application Task Queue Full
 
@@ -88,15 +88,15 @@ The application task queue is full.
 
 **Possible Causes**
 
-Failure to create a background task for the application (foreground tasks directly preempt resources and do not involve the work queue).
+Failure to create a background task (foreground tasks directly preempt resources and do not involve the work queue).
 
 **Resolution Steps**
 
-1. Query all background tasks of the application through the query interface.
-2. Actively clean up and release quotas.
-3. Recreate the background task.
+1. Query all background tasks of the application via the retrieval interface.  
+2. Actively clean up and release quotas.  
+3. Recreate the background task.  
 
-## 21900005 Task Mode Error
+## 21900005 Invalid Task Mode
 
 **Error Message**
 
@@ -104,7 +104,7 @@ task mode error.
 
 **Error Description**
 
-Incorrect task mode.
+Invalid task mode.
 
 **Possible Causes**
 
@@ -112,10 +112,10 @@ A non-foreground application attempts to create a foreground task.
 
 **Resolution Steps**
 
-1. Register/deregister event listeners for foreground applications.
-2. This is an interface restriction; follow the interface specifications for usage.
+1. Register or unregister event listeners for foreground applications.  
+2. This is an interface restriction—follow the interface specifications.  
 
-## 21900006 Operation on Non-existent Task Error
+## 21900006 Non-existent Task Operation Error
 
 **Error Message**
 
@@ -123,7 +123,7 @@ task not found error.
 
 **Error Description**
 
-Attempting to operate on a non-existent task.
+Operation attempted on a non-existent task.
 
 **Possible Causes**
 
@@ -131,11 +131,11 @@ Deleting or querying a non-existent task.
 
 **Resolution Steps**
 
-1. Query existing tasks through the search interface.
-2. Confirm whether the queried task exists (the system periodically cleans up garbage tasks).
-3. Retry the operation with the correct task ID.
+1. Query existing tasks via the retrieval interface.  
+2. Confirm whether the queried task exists (the system periodically cleans up garbage tasks).  
+3. Retry the operation with the correct task ID.  
 
-## 21900007 Operation on Unsupported State
+## 21900007 Unsupported Task State Operation
 
 **Error Message**
 
@@ -143,17 +143,17 @@ task state error.
 
 **Error Description**
 
-Attempting to perform an operation on an unsupported task state.
+Operation attempted on a task in an unsupported state.
 
 **Possible Causes**
 
-1. Starting a deleted task.
-2. Starting a non-initialized task.
-3. Pausing a task that is not in execution.
-4. Resuming a task that is not paused.
-5. Stopping a task that is not in execution.
+1. Starting a deleted task.  
+2. Starting a non-initialized task.  
+3. Pausing a non-running task.  
+4. Resuming a non-paused task.  
+5. Stopping a non-running task.  
 
 **Resolution Steps**
 
-1. Query the task state.
+1. Query the task state.  
 2. Perform operations supported by the current task state.

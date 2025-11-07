@@ -2,13 +2,13 @@
 
 ## Overview
 
-Linear Layout (LinearLayout) is the most commonly used layout in development, constructed through linear containers [Row](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-row.md) and [Column](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-column.md). Linear layout serves as the foundation for other layouts, with its child elements arranged sequentially along a linear direction (horizontal and vertical). The arrangement direction of a linear layout is determined by the selected container component: child elements within a Column container are arranged vertically, while those within a Row container are arranged horizontally. Depending on the desired arrangement direction, developers can choose to use either Row or Column containers to create a linear layout.
+Linear Layout (LinearLayout) is the most commonly used layout in development, constructed through linear containers [Row](../reference/arkui-cj/cj-row-column-stack-row.md) and [Column](../reference/arkui-cj/cj-row-column-stack-column.md). As the foundation of other layouts, child elements in a linear layout are arranged sequentially along a linear direction (horizontal or vertical). The arrangement direction is determined by the selected container component: child elements in a Column container are arranged vertically, while those in a Row container are arranged horizontally. Developers can choose between Row or Column containers to create linear layouts based on different arrangement requirements.
 
-**Figure 1** Illustration of Child Element Arrangement in a Column Container
+**Figure 1** Illustration of Child Element Arrangement in Column Container
 
 ![arrangement-child-elements-column](figures/arrangement-child-elements-column.png)
 
-**Figure 2** Illustration of Child Element Arrangement in a Row Container
+**Figure 2** Illustration of Child Element Arrangement in Row Container
 
 ![arrangement-child-elements-row](figures/arrangement-child-elements-row.png)
 
@@ -16,21 +16,21 @@ Linear Layout (LinearLayout) is the most commonly used layout in development, co
 
 - **Layout Container**: A component container with layout capabilities that can host other elements as its children. The layout container calculates dimensions and arranges its child elements.
 
-- **Layout Child Element**: Elements contained within a layout container.
+- **Layout Child Element**: Elements inside a layout container.
 
-- **Main Axis**: The axis along the layout direction of a linear layout container, where child elements are arranged by default. For a Row container, the main axis is horizontal; for a Column container, it is vertical.
+- **Main Axis**: The axis along the layout direction in a linear layout container, where child elements are arranged by default. For a Row container, the main axis is horizontal; for a Column container, it is vertical.
 
 - **Cross Axis**: The axis perpendicular to the main axis. For a Row container, the cross axis is vertical; for a Column container, it is horizontal.
 
-- **Spacing**: The spacing between child elements in a layout.
+- **Spacing**: The spacing between child elements in the layout.
 
 ## Spacing Between Child Elements Along the Arrangement Direction
 
 Within a layout container, the `space` property can be used to set the spacing between child elements along the arrangement direction, ensuring equal spacing between them.
 
-### Spacing Along the Arrangement Direction in a Column Container
+### Spacing in Column Container Along the Arrangement Direction
 
-**Figure 3** Spacing Diagram Along the Arrangement Direction in a Column Container
+**Figure 3** Spacing Diagram in Column Container Along the Arrangement Direction
 
 ![arrangement-direction-column](figures/arrangement-direction-column.png)
 
@@ -57,9 +57,9 @@ class EntryView {
 
 ![arrangement-direction-column01](figures/arrangement-direction-column01.PNG)
 
-### Spacing Along the Arrangement Direction in a Row Container
+### Spacing in Row Container Along the Arrangement Direction
 
-**Figure 4** Spacing Diagram Along the Arrangement Direction in a Row Container
+**Figure 4** Spacing Diagram in Row Container Along the Arrangement Direction
 
 ![arrangement-direction-row](figures/arrangement-direction-row.png)
 
@@ -88,13 +88,13 @@ class EntryView {
 
 ## Alignment of Child Elements Along the Cross Axis
 
-Within a layout container, the `alignItems` property can be used to set the alignment of child elements along the cross axis (perpendicular to the arrangement direction). This behavior remains consistent across screens of different sizes. For a vertical cross axis, the alignment is specified using the [VerticalAlign](../../../en/application-dev/reference/arkui-cj/cj-common-types.md#enum-verticalalign) type; for a horizontal cross axis, the [HorizontalAlign](../../../en/application-dev/reference/arkui-cj/cj-common-types.md#enum-horizontalalign) type is used.
+Within a layout container, the `alignItems` property can be used to set the alignment of child elements along the cross axis (perpendicular to the arrangement direction). This behavior remains consistent across different screen sizes. For a vertical cross axis, the alignment is of type [VerticalAlign](../reference/arkui-cj/cj-common-types.md#enum-verticalalign); for a horizontal cross axis, it is of type [HorizontalAlign](../reference/arkui-cj/cj-common-types.md#enum-horizontalalign).
 
-The `alignSelf` property controls the alignment of a single child element along the container's cross axis and takes precedence over the `alignItems` property. If `alignSelf` is set, it overrides `alignItems` for that specific child element.
+The `alignSelf` property controls the alignment of a single child element along the container's cross axis and takes precedence over `alignItems`. If `alignSelf` is set, it overrides `alignItems` for that specific child element.
 
-### Horizontal Alignment of Child Elements in a Column Container
+### Horizontal Alignment of Child Elements in Column Container
 
-**Figure 5** Horizontal Alignment Diagram of Child Elements in a Column Container
+**Figure 5** Horizontal Alignment Diagram of Child Elements in Column Container
 
 ![horizontal-arrangement-child-column](figures/horizontal-arrangement-child-column.png)
 
@@ -179,9 +179,9 @@ The `alignSelf` property controls the alignment of a single child element along 
 
   ![Column3](figures/Column3.PNG)
 
-### Vertical Alignment of Child Elements in a Row Container
+### Vertical Alignment of Child Elements in Row Container
 
-**Figure 6** Vertical Alignment Diagram of Child Elements in a Row Container
+**Figure 6** Vertical Alignment Diagram of Child Elements in Row Container
 
 ![horizontal-arrangement-child-row](figures/horizontal-arrangement-child-row.png)
 
@@ -266,17 +266,17 @@ The `alignSelf` property controls the alignment of a single child element along 
 
   ![Column6](figures/Column6.PNG)
 
-## Alignment of Child Elements Along the Main Axis in Layout
+## Arrangement of Child Elements Along the Main Axis
 
-Within a layout container, the `justifyContent` property can be used to set the alignment of child elements along the container's main axis. Elements can be aligned starting from the beginning of the main axis, from the end of the main axis, or by evenly distributing the space along the main axis.
+Within a layout container, the `justifyContent` property can be used to set the arrangement of child elements along the main axis. Child elements can be aligned from the start of the main axis, the end of the main axis, or evenly distributed along the main axis.
 
-### Vertical Alignment of Child Elements in a Column Container
+### Vertical Arrangement of Child Elements in Column Container
 
-**Figure 7** Vertical Alignment of Child Elements in a Column Container
+**Figure 7** Vertical Arrangement Diagram of Child Elements in Column Container
 
 ![vertial-arrangement-child-column](figures/vertial-arrangement-child-column.png)
 
-- `justifyContent(FlexAlign.Start)`: Elements are aligned at the start of the vertical direction, with the first element aligned to the top of the container and subsequent elements aligned to the previous one.
+- **justifyContent(FlexAlign.Start)**: Elements are aligned at the start of the vertical axis, with the first element aligned to the top and subsequent elements aligned to the previous one.
 
      <!-- run -->
 
@@ -303,7 +303,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column7](figures/Column7.PNG)
 
-- `justifyContent(FlexAlign.Center)`: Elements are center-aligned in the vertical direction, with the distance from the first element to the top of the container equal to the distance from the last element to the bottom.
+- **justifyContent(FlexAlign.Center)**: Elements are center-aligned vertically, with equal distance from the first element to the top and the last element to the bottom.
 
      <!-- run -->
 
@@ -330,7 +330,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column8](figures/Column8.PNG)
 
-- `justifyContent(FlexAlign.End)`: Elements are aligned at the end of the vertical direction, with the last element aligned to the bottom of the container and other elements aligned to the next one.
+- **justifyContent(FlexAlign.End)**: Elements are aligned at the end of the vertical axis, with the last element aligned to the bottom and other elements aligned to the next one.
 
      <!-- run -->
 
@@ -357,7 +357,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column9](figures/Column9.PNG)
 
-- `justifyContent(FlexAlign.SpaceBetween)`: Elements are evenly distributed along the vertical direction, with equal spacing between adjacent elements. The first element is aligned to the top, and the last element is aligned to the bottom.
+- **justifyContent(FlexAlign.SpaceBetween)**: Elements are evenly distributed along the vertical axis, with equal spacing between adjacent elements. The first element is aligned to the top, and the last element is aligned to the bottom.
 
      <!-- run -->
 
@@ -384,7 +384,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column10](figures/Column10.PNG)
 
-- `justifyContent(FlexAlign.SpaceAround)`: Elements are evenly distributed along the vertical direction, with equal spacing between adjacent elements. The spacing from the first element to the top and the last element to the bottom is half the spacing between adjacent elements.
+- **justifyContent(FlexAlign.SpaceAround)**: Elements are evenly distributed along the vertical axis, with equal spacing between adjacent elements. The distance from the first element to the top and the last element to the bottom is half the spacing between adjacent elements.
 
      <!-- run -->
 
@@ -411,7 +411,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column11](figures/Column11.PNG)
 
-- `justifyContent(FlexAlign.SpaceEvenly)`: Elements are evenly distributed along the vertical direction, with equal spacing between adjacent elements, as well as equal spacing from the first element to the top and the last element to the bottom.
+- **justifyContent(FlexAlign.SpaceEvenly)**: Elements are evenly distributed along the vertical axis, with equal spacing between adjacent elements, as well as between the first element and the top, and the last element and the bottom.
 
      <!-- run -->
 
@@ -438,13 +438,13 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column12](figures/Column12.PNG)
 
-### Horizontal Alignment of Child Elements in a Row Container
+### Horizontal Arrangement of Child Elements in Row Container
 
-**Figure 8** Horizontal Alignment of Child Elements in a Row Container
+**Figure 8** Horizontal Arrangement Diagram of Child Elements in Row Container
 
 ![vertial-arrangement-child-row](figures/vertial-arrangement-child-row.png)
 
-- `justifyContent(FlexAlign.Start)`: Elements are aligned at the start of the horizontal direction, with the first element aligned to the left of the container and subsequent elements aligned to the previous one.
+- **justifyContent(FlexAlign.Start)**: Elements are aligned at the start of the horizontal axis, with the first element aligned to the left and subsequent elements aligned to the previous one.
 
      <!-- run -->
 
@@ -471,34 +471,33 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column13](figures/Column13.PNG)
 
-- `justifyContent(FlexAlign.Center)`: Elements are center-aligned in the horizontal direction, with the distance from the first element to the left of the container equal to the distance from the last element to the right.
-
-     <!-- run -->
-
-  ```cangjie
-  package ohos_app_cangjie_entry
-  import kit.ArkUI.*
-  import ohos.arkui.state_macro_manage.*
-
-  @Entry
-  @Component
-  class EntryView {
-      func build() {
-          Row() {
-              Column() {
-              }.width(20.percent).height(30).backgroundColor(0xF5DEB3)
-              Column() {
-              }.width(20.percent).height(30).backgroundColor(0xD2B48C)
-              Column() {
-              }.width(20.percent).height(30).backgroundColor(0xF5DEB3)
-          }.width(100.percent).height(200).backgroundColor(0xF2F2F2).justifyContent(FlexAlign.Center)
+- **justifyContent(FlexAlign.Center)**: Elements are center-aligned horizontally, with equal distance from the first element to the left and the last element to the right.
+    <!-- run -->
+    
+      ```cangjie
+      package ohos_app_cangjie_entry
+      import kit.ArkUI.*
+      import ohos.arkui.state_macro_manage.*
+    
+      @Entry
+      @Component
+      class EntryView {
+          func build() {
+              Row() {
+                  Column() {
+                  }.width(20.percent).height(30).backgroundColor(0xF5DEB3)
+                  Column() {
+                  }.width(20.percent).height(30).backgroundColor(0xD2B48C)
+                  Column() {
+                  }.width(20.percent).height(30).backgroundColor(0xF5DEB3)
+              }.width(100.percent).height(200).backgroundColor(0xF2F2F2).justifyContent(FlexAlign.Center)
+          }
       }
-  }
-  ```
+      ```
+    
+      ![Column14](figures/Column14.PNG)
 
-  ![Column14](figures/Column14.PNG)
-
-- `justifyContent(F FlexAlign.End)`: Elements are aligned at the end of the horizontal direction, with the last element aligned to the right of the container and other elements aligned to the next one.
+- `justifyContent(FlexAlign.End)`: Aligns elements to the end of the horizontal axis, with the last element aligned to the end of the row and other elements aligned to the subsequent one.
 
      <!-- run -->
 
@@ -525,7 +524,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column15](figures/Column15.PNG)
 
-- `justifyContent(FlexAlign.SpaceBetween)`: Elements are evenly distributed along the horizontal direction, with equal spacing between adjacent elements. The first element is aligned to the left, and the last element is aligned to the right.
+- `justifyContent(FlexAlign.SpaceBetween)`: Distributes elements evenly along the horizontal axis, with equal spacing between adjacent elements. The first element is aligned to the start of the row, and the last element is aligned to the end.
 
      <!-- run -->
 
@@ -552,7 +551,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column16](figures/Column16.PNG)
 
-- `justifyContent(FlexAlign.SpaceAround)`: Elements are evenly distributed along the horizontal direction, with equal spacing between adjacent elements. The spacing from the first element to the left and the last element to the right is half the spacing between adjacent elements.
+- `justifyContent(FlexAlign.SpaceAround)`: Distributes elements evenly along the horizontal axis, with equal spacing between adjacent elements. The spacing between the first element and the start of the row, as well as between the last element and the end of the row, is half the spacing between adjacent elements.
 
      <!-- run -->
 
@@ -579,7 +578,7 @@ Within a layout container, the `justifyContent` property can be used to set the 
 
   ![Column17](figures/Column17.PNG)
 
-- `justifyContent(FlexAlign.SpaceEvenly)`: Elements are evenly distributed along the horizontal direction, with equal spacing between adjacent elements, as well as equal spacing from the first element to the left and the last element to the right.
+- `justifyContent(FlexAlign.SpaceEvenly)`: Distributes elements evenly along the horizontal axis, with equal spacing between adjacent elements, as well as between the first element and the start of the row, and the last element and the end of the row.
 
      <!-- run -->
 
@@ -603,12 +602,12 @@ Within a layout container, the `justifyContent` property can be used to set the 
       }
   }
   ```
-
+        
   ![Column18](figures/Column18.PNG)
 
 ## Adaptive Stretching
 
-In linear layouts, the [Blank](../../../en/application-dev/reference/arkui-cj/cj-blank-divider-blank.md) component is commonly used to automatically fill blank space along the main axis of the container, achieving an adaptive stretching effect. When Row and Column serve as containers, simply setting width and height as percentages will create an adaptive effect when screen dimensions change.
+In linear layouts, the [Blank](../reference/arkui-cj/cj-blank-divider-blank.md) component is commonly used to automatically fill blank space along the main axis of the container, achieving an adaptive stretching effect. When Row and Column serve as containers, simply setting their width and height as percentages will produce adaptive effects as the screen dimensions change.
 
 <!-- run -->
 
@@ -632,19 +631,19 @@ class EntryView {
 }
 ```
 
-**Figure 9** Vertical Screen with Adaptive Stretching  
+**Figure 9** Vertical Screen with Adaptive Stretching
 
-![Column19](figures/Column19.PNG)  
+![Column19](figures/Column19.PNG)
 
-**Figure 10** Horizontal Screen with Adaptive Stretching  
+**Figure 10** Horizontal Screen with Adaptive Stretching
 
-![Column20](figures/Column20.png)  
+![Column20](figures/Column20.png)
 
-## Adaptive Scaling  
+## Adaptive Scaling
 
-Adaptive scaling refers to child elements automatically adjusting their dimensions proportionally based on the container's size changes, accommodating devices of various sizes. In linear layouts, the following two methods can achieve adaptive scaling:  
+Adaptive scaling refers to child elements automatically adjusting their dimensions according to preset proportions as the container size changes, accommodating devices of various sizes. In linear layouts, the following two methods can be used to achieve adaptive scaling.
 
-- **Using the `layoutWeight` Property**: When the parent container's dimensions are fixed, the `layoutWeight` property can be set for child elements to distribute remaining space along the main axis, ignoring their original size settings. This ensures they adaptively fill the available space on any device.  
+- When the parent container's dimensions are fixed, use the `layoutWeight` property to set the weights of child elements and their siblings along the main axis, ignoring the elements' own size settings. This ensures they adaptively fill the remaining space on devices of any size.
 
     <!-- run -->
 
@@ -709,15 +708,15 @@ Adaptive scaling refers to child elements automatically adjusting their dimensio
   }
   ```
 
-  **Figure 11** Horizontal Screen with `layoutWeight` in Custom Scaling  
+  **Figure 11** Horizontal Screen with Custom Scaling Using `layoutWeight`
 
-  ![Column21](figures/Column21.png)  
+  ![Column21](figures/Column21.png)
 
-  **Figure 12** Vertical Screen with `layoutWeight` in Custom Scaling  
+  **Figure 12** Vertical Screen with Custom Scaling Using `layoutWeight`
 
-  ![Column22](figures/Column22.png)  
+  ![Column22](figures/Column22.png)
 
-- **Using Percentage-Based Width**: When the parent container's dimensions are fixed, setting child elements' widths as percentages ensures they maintain a fixed proportional layout across devices.  
+- When the parent container's dimensions are fixed, use percentages to set the width of child elements and their siblings, ensuring they maintain a fixed adaptive proportion on devices of any size.
 
     <!-- run -->
 
@@ -758,23 +757,23 @@ Adaptive scaling refers to child elements automatically adjusting their dimensio
   }
   ```
 
-  **Figure 13** Horizontal Screen with Percentage-Based Scaling  
+  **Figure 13** Horizontal Screen with Custom Scaling Using Percentages
 
-  ![Column23](figures/Column23.png)  
+  ![Column23](figures/Column23.png)
 
-  **Figure 14** Vertical Screen with Percentage-Based Scaling  
+  **Figure 14** Vertical Screen with Custom Scaling Using Percentages
 
-  ![Column24](figures/Column24.png)  
+  ![Column24](figures/Column24.png)
 
-## Adaptive Extension  
+## Adaptive Extension
 
-Adaptive extension refers to scenarios where content exceeds the screen size and requires scrolling for full visibility. This is applicable in linear layouts where content cannot fit entirely on one screen. Two common implementation methods are:  
+Adaptive extension refers to scenarios where content exceeds the screen size and cannot be fully displayed on devices of different dimensions. In such cases, scrollbars can be used to navigate the content. This method is suitable for linear layouts where content cannot be displayed on a single screen. Typically, there are two implementation approaches:
 
-- **[Adding Scrollbars to Lists](cj-layout-development-create-list.md)**: When a List contains too many items to display on one screen, each item can be placed in separate components and scrolled through. The `scrollBar` property can be used to control the scrollbar's persistent state.  
+- [Adding Scrollbars to List](cj-layout-development-create-list.md): When a List contains too many items to fit on one screen, each item can be placed in separate components and displayed via scrollbars. The `scrollBar` property can be used to set the scrollbar's persistent state.
 
-- **Using the Scroll Component**: In linear layouts, developers can arrange content vertically or horizontally. When content overflows, wrapping Column or Row components with a Scroll container enables scrollable layouts.  
+- Using the Scroll Component: In linear layouts, developers can arrange content vertically or horizontally. When content cannot be fully displayed on one screen, a Scroll component can wrap the Column or Row components to create a scrollable linear layout.
 
-  **Vertical Layout with Scroll Component**:  
+  Vertical Layout Using Scroll Component:
 
     <!-- run -->
 
@@ -806,17 +805,17 @@ Adaptive extension refers to scenarios where content exceeds the screen size and
               }.width(100.percent)
           }
           .backgroundColor(0xDCDCDC)
-          .scrollable(ScrollDirection.Vertical) // Vertical scrolling direction
-          .scrollBar(BarState.On) // Persistent scrollbar
+          .scrollable(ScrollDirection.Vertical) // Scroll direction is vertical
+          .scrollBar(BarState.On) // Scrollbar is always visible
           .scrollBarColor(Color.Gray) // Scrollbar color
           .scrollBarWidth(8.vp) // Scrollbar width
       }
   }
   ```
 
-  ![Column25](figures/Column25.gif)  
+  ![Column25](figures/Column25.gif)
 
-  **Horizontal Layout with Scroll Component**:  
+  Horizontal Layout Using Scroll Component:
 
     <!-- run -->
 
@@ -848,8 +847,8 @@ Adaptive extension refers to scenarios where content exceeds the screen size and
               }.height(100.percent)
           }
           .backgroundColor(0xDCDCDC)
-          .scrollable(ScrollDirection.Horizontal) // Horizontal scrolling direction
-          .scrollBar(BarState.On) // Persistent scrollbar
+          .scrollable(ScrollDirection.Horizontal) // Scroll direction is horizontal
+          .scrollBar(BarState.On) // Scrollbar is always visible
           .scrollBarColor(Color.Gray) // Scrollbar color
           .scrollBarWidth(8.vp) // Scrollbar width
       }

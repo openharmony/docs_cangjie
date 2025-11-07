@@ -6,22 +6,22 @@
 import kit.ArkUI.*
 ```
 
-## interface IDataSource
+## interface IDataSource\<T>
 
 ```cangjie
 public interface IDataSource<T> {
     func totalCount(): Int64
-    func getData(index: Int64): T
-    func onRegisterDataChangeListener(listener: DataChangeListener): Unit
-    func onUnregisterDataChangeListener(listener: DataChangeListener): Unit
+    func getData(Int64): T
+    func registerDataChangeListener(DataChangeListener): Unit
+    func unregisterDataChangeListener(DataChangeListener): Unit
 }
 ```
 
-**Description:** Data source for LazyForEach, requiring developers to implement relevant interfaces.
+**Description:** Data source for LazyForEach, requiring developers to implement related interfaces.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### func getData(Int64)
 
@@ -31,9 +31,13 @@ func getData(index: Int64): T
 
 **Description:** Retrieves the data corresponding to the specified index value.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | index | Int64 | Yes | - | The index value corresponding to the data. |
 
@@ -43,31 +47,39 @@ func getData(index: Int64): T
 |:----|:----|
 | T | The data corresponding to the specified index value. |
 
-### func onRegisterDataChangeListener(DataChangeListener)
+### func registerDataChangeListener(DataChangeListener)
 
 ```cangjie
-func onRegisterDataChangeListener(listener: DataChangeListener): Unit
+func registerDataChangeListener(listener: DataChangeListener): Unit
 ```
 
 **Description:** Registers a listener for data changes.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | listener | [DataChangeListener](#class-datachangelistener) | Yes | - | The listener for data changes. |
 
-### func onUnregisterDataChangeListener(DataChangeListener)
+### func unregisterDataChangeListener(DataChangeListener)
 
 ```cangjie
-func onUnregisterDataChangeListener(listener: DataChangeListener): Unit
+func unregisterDataChangeListener(listener: DataChangeListener): Unit
 ```
 
 **Description:** Unregisters a listener for data changes.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | listener | [DataChangeListener](#class-datachangelistener) | Yes | - | The listener for data changes. |
 
@@ -79,6 +91,10 @@ func totalCount(): Int64
 
 **Description:** Retrieves the total count of data items.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Return Value:**
 
 | Type | Description |
@@ -88,120 +104,87 @@ func totalCount(): Int64
 ## class DataChangeListener
 
 ```cangjie
-public class DataChangeListener {
-    public DataChangeListener(id: Int64)
-}
+public class DataChangeListener {}
 ```
 
 **Description:** Listener for data changes.
 
-> **Note:**
->
-> In methods of DataChangeListener other than `onDatasetChange`, if the parameter contains an index with a negative value, it will be replaced with 0 by default.
-> In `onDatasetChange`, if a single DataOperation parameter contains an index that is outside the data source index range (in DataAddOperation, the index can be equal to the length of the data source), the corresponding DataOperation will not take effect.
-
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### DataChangeListener(Int64)
+### func onDataAdd(IntNative)
 
 ```cangjie
-public DataChangeListener(id: Int64)
+public func onDataAdd(index: IntNative): Unit
 ```
 
-**Description:** Creates an object of type DataChangeListener.
+**Description:** Notifies the component that data has been added at the specified index. Called after data addition is completed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| id | Int64 | Yes | - | The listener ID. |
+| index | IntNative | Yes | - | The index value where data was added. |
 
-### func onDataAdd(Int64)
+### func onDataChange(IntNative)
 
 ```cangjie
-public func onDataAdd(index: Int64): Unit
+public func onDataChange(index: IntNative): Unit
 ```
 
-**Description:** Notifies the component that data has been added at the specified index. This should be called after the data addition is complete.
+**Description:** Notifies the component that data has changed at the specified index. Called after data modification is completed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| index | Int64 | Yes | - | The index value of the position where data was added. |
+| index | IntNative | Yes | - | The index value where data was modified. |
 
-### func onDataChange(Int64)
+### func onDataDelete(IntNative)
 
 ```cangjie
-public func onDataChange(index: Int64): Unit
+public func onDataDelete(index: IntNative): Unit
 ```
 
-**Description:** Notifies the component that data has changed at the specified index. This should be called after the data modification is complete.
+**Description:** Notifies the component to delete data at the specified index and refresh the LazyForEach display. Called after data deletion is completed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| index | Int64 | Yes | - | The index value of the position where data was modified. |
+| index | IntNative | Yes | - | The index value where data was deleted. |
 
-### func onDataDelete(Int64)
+### func onDataMove(IntNative, IntNative)
 
 ```cangjie
-public func onDataDelete(index: Int64): Unit
+public func onDataMove(from: IntNative, to: IntNative): Unit
 ```
 
-**Description:** Notifies the component to delete data at the specified index and refresh the display content of LazyForEach. This should be called after the data deletion is complete.
-
-> **Note:**
->
-> Ensure that the corresponding data in the dataSource has been deleted before calling `onDataDelete`; otherwise, undefined behavior may occur in page rendering.
+**Description:** Notifies the component that data has been moved. Swaps data between the `from` and `to` positions. Called after the swap is completed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| index | Int64 | Yes | - | The index value of the position where data was deleted. |
-
-### func onDataMove(Int64, Int64)
-
-```cangjie
-public func onDataMove(fromIdx: Int64, toIdx: Int64): Unit
-```
-
-**Description:** Notifies the component that data has been moved. This swaps the data at the `fromIdx` and `toIdx` positions. This should be called after the data swap is complete.
-
-> **Note:**
->
-> The key values must remain unchanged before and after the data move. If the key values change, the delete and add data interfaces should be used instead.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| fromIdx | Int64 | Yes | - | The starting position of the data move. |
-| toIdx | Int64 | Yes | - | The target position of the data move. |
+| from | IntNative | Yes | - | The source position of the data move. |
+| to | IntNative | Yes | - | The target position of the data move. |
 
 ### func onDataReloaded()
 
@@ -209,98 +192,46 @@ public func onDataMove(fromIdx: Int64, toIdx: Int64): Unit
 public func onDataReloaded(): Unit
 ```
 
-**Description:** Notifies the component to reload all data. Data items with unchanged key values will reuse their original child components, while those with changed key values will rebuild their child components. This should be called after the data reload is complete.
+**Description:** Notifies the component to reload all data. Items with unchanged key values will reuse existing child components, while items with changed key values will rebuild child components. Called after data reload is completed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-## class LazyForEach
+## class LazyForEach\<T>
 
 ```cangjie
-public class LazyForEach <: UINodeBase {
-    public LazyForEach()
+public class LazyForEach<T> {
+    public init(dataSource: IDataSource<T>, itemGenerator!: ItemGeneratorFunc<T>,
+        keyGenerator!: ?KeyGeneratorFunc<T> = None)
 }
 ```
 
-**Description:** Used to create [LazyForEach](#lazyforeach) components.
+**Description:** Used to create a LazyForEach component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-**Parent Type:**
-
-- UINodeBase
-
-### func create\<T>(Int64, CustomView, IDataSource\<T>, ItemGenFuncType\<T>, KeyGenFuncType\<T>)
+### init(IDataSource\<T>, ItemGeneratorFunc\<T>, ?KeyGeneratorFunc\<T>)
 
 ```cangjie
-public func create<T>(viewID: Int64, parentView: CustomView, dataSource: IDataSource<T>,
-    itemGeneratorFunc!: ItemGenFuncType<T>,
-    keyGeneratorFunc!: KeyGenFuncType<T> = {
-        _: T, idx: Int64 =>
-        uniqueKey++
-        return "${viewID} - ${idx} - ${uniqueKey}"
-    }): LazyForEach
+public init(dataSource: IDataSource<T>, itemGenerator!: ItemGeneratorFunc<T>, keyGenerator!: ?KeyGeneratorFunc<T> = None)
 ```
 
-**Description:** Constructs a LazyForEach object. LazyForEach iterates over data from the provided data source on demand and creates corresponding components during each iteration. When used within a scrollable container, the framework creates components on demand based on the visible area of the container. When components scroll out of the visible area, the framework destroys and recycles them to reduce memory usage.
-
-> **Notes:**
->
-> - Lazy data loading must be used within container components, and only List, Grid, and Swiper components support lazy loading (i.e., loading only the visible portion and a small amount of surrounding data for buffering). Other components still load all data at once.
-> - LazyForEach must create exactly one child component during each iteration.
-> - The generated child components must be allowed within the parent container component of LazyForEach.
-> - LazyForEach can be included in if/else conditional rendering statements and can also contain if/else conditional rendering statements within itself.
-> - The key generator must produce unique values for each data item. Duplicate key values will cause rendering issues for UI components with the same keys.
-> - LazyForEach must use a DataChangeListener object for updates. When the first parameter `dataSource` uses a state variable, changes to the state variable will not trigger UI refreshes in LazyForEach.
-> - For high-performance rendering, when updating the UI via the `onDataChange` method of the DataChangeListener object, a different key value must be generated to trigger component refreshes.
-> - When List uses LazyForEach to load child components, if the width and height of the List are not set, all child components will be loaded. If the width and height are set, only child components within the visible area of the List will be loaded.
+**Description:** Creates a LazyForEach component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| viewID | Int64 | Yes | - | Observer ID |
-| parentView | [CustomView](./cj-ui-framework.md#class-customview) | Yes | - | Parent observer |
-| dataSource | [IDataSource](#interface-idatasource)\<T> | Yes | - | Data source for LazyForEach, requiring developers to implement relevant interfaces. |
-| itemGeneratorFunc | ItemGenFuncType\<T> | Yes | - | Child component generator function, which creates a child component for each data item in the array. The first generic parameter of the lambda function is the data type, which must be a subclass of FFIData; the second parameter is the index value of the current list item. |
-| keyGeneratorFunc | KeyGenFuncType\<T> | No | { _: T, idx: Int64 => } | Anonymous function for key generation, producing unique and stable key values for given array items. When the position of a child item changes in the array, its key value must not change. When a child item is replaced by a new item in the array, the key values of the replaced item and the new item must differ. The key generator is optional, but it is recommended to provide one to help the framework better identify array changes and improve performance. For example, when reversing an array without a key generator, all nodes in LazyForEach will be rebuilt. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| [LazyForEach](#class-lazyforeach) | The LazyForEach instance object for further operations. |
-
-### func initial()
-
-```cangjie
-public func initial(): Unit
-```
-
-**Description:** Creates a LazyForEach object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### func update()
-
-```cangjie
-public func update(): Unit
-```
-
-**Description:** Updates a LazyForEach object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
+| dataSource | [IDataSource](#interface-idatasourcet)\<T> | Yes | - | The data source for LazyForEach, requiring developers to implement related interfaces. |
+| itemGenerator | [ItemGeneratorFunc](./cj-common-types.md#type-itemgeneratorfunc)\<T> | No | - | The child component generator function, which creates a child component for each data item in the array. The first generic parameter of the lambda function is the data type, and the second parameter is the index of the current list item. |
+| keyGenerator | ?[KeyGeneratorFunc](./cj-common-types.md#type-keygeneratorfunc)\<T> | No | None | An anonymous function for key generation, which generates a unique and stable key for a given array item. |
 
 ## Example Code
 
@@ -329,11 +260,11 @@ class StudentDataSource <: IDataSource<Student> {
         return data_[index]
     }
 
-    public func onRegisterDataChangeListener(listener: DataChangeListener): Unit {
+    public func registerDataChangeListener(listener: DataChangeListener): Unit {
         listenerOp = listener
     }
 
-    public func onUnregisterDataChangeListener(listener: DataChangeListener): Unit {
+    public func unregisterDataChangeListener(listener: DataChangeListener): Unit {
         listenerOp = None
     }
 

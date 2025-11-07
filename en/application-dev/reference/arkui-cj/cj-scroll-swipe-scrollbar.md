@@ -1,10 +1,10 @@
 # ScrollBar
 
-The ScrollBar component is used in conjunction with scrollable components such as [List](./cj-scroll-swipe-list.md#class-list), [Grid](./cj-scroll-swipe-grid.md#class-grid), and [Scroll](./cj-scroll-swipe-scroll.md#class-scroll).
+The ScrollBar component is used in conjunction with scrollable components such as [List](./cj-scroll-swipe-list.md), [Grid](./cj-scroll-swipe-grid.md), and [Scroll](./cj-scroll-swipe-scroll.md).
 
 > **Note:**
 >
-> When the main axis size of ScrollBar is not set, it adopts the maxSize from the parent component's <!--[-->layout constraints<!--]()-->. If the parent component of ScrollBar contains a scrollable component (e.g., [List](./cj-scroll-swipe-list.md#class-list), [Grid](./cj-scroll-swipe-grid.md#class-grid), or [Scroll](./cj-scroll-swipe-scroll.md#class-scroll)), it is recommended to explicitly set the main axis size of ScrollBar. Otherwise, the main axis size of ScrollBar may become infinite.
+> When the main axis size of ScrollBar is not specified, it adopts the maxSize from the parent component's <!--[-->layout constraints<!--]()-->. If the parent component of ScrollBar contains a scrollable component (e.g., [List](./cj-scroll-swipe-list.md), [Grid](./cj-scroll-swipe-grid.md), [Scroll](./cj-scroll-swipe-scroll.md)), it is recommended to set the main axis size of ScrollBar; otherwise, the main axis size of ScrollBar may become infinite.
 
 ## Import Module
 
@@ -18,31 +18,31 @@ Can contain a single child component.
 
 ## Creating the Component
 
-### init(Scroller, ScrollBarDirection, BarState, () -> Unit)
+### init(?Scroller, ?ScrollBarDirection, ?BarState, () -> Unit)
 
 ```cangjie
 public init(
-    scroller!: Scroller,
-    direction!: ScrollBarDirection = ScrollBarDirection.Vertical,
-    state!: BarState  = BarState.Auto,
-    child!: () -> Unit = { => }
+    scroller!: ?Scroller,
+    direction!: ?ScrollBarDirection = None,
+    state!: ?BarState = None,
+    child!: () -> Unit
 )
 ```
 
-**Function:** Creates a scroll bar component.
+**Functionality:** Creates a scrollbar component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| scroller | [Scroller](./cj-common-types.md#class-scroller) | Yes | - | Controller for the scrollable component. Used to bind with the scrollable component. |
-| direction | [ScrollBarDirection](./cj-common-types.md#enum-scrollbardirection) | No | ScrollBarDirection.Vertical | Direction of the scroll bar, controlling scrolling in the corresponding direction of the scrollable component. |
-| state | [BarState](./cj-common-types.md#enum-barstate) | No | BarState.Auto | State of the scroll bar. |
-| child | () -> Unit | No | { => } | Child component within the container. |
+| scroller | ?[Scroller](./cj-scroll-swipe-scroll.md#class-scroller) | Yes | - | **Named parameter.** The controller of the scrollable component. Used to bind with the scrollable component. |
+| direction | ?[ScrollBarDirection](./cj-common-types.md#enum-scrollbardirection) | No | None | **Named parameter.** The direction of the scrollbar, controlling the scrolling of the corresponding direction in the scrollable component. Initial value: ScrollBarDirection.Vertical. |
+| state | ?[BarState](./cj-common-types.md#enum-barstate) | No | None | **Named parameter.** The state of the scrollbar. Initial value: BarState.Auto. |
+| child | () -> Unit | Yes | - | **Named parameter.** The child component within the container. |
 
 ## Common Attributes/Common Events
 
@@ -53,7 +53,7 @@ Common Events: All supported
 
 ### Example 1 (With Child Component)
 
-This example demonstrates the scroll bar style when the ScrollBar component has a child component.
+This example demonstrates the scrollbar style when the ScrollBar component has a child component.
 
 <!-- run -->
 
@@ -110,7 +110,7 @@ class EntryView {
 
 ### Example 2 (Without Child Component)
 
-This example demonstrates the scroll bar style when the ScrollBar component has no child component.
+This example demonstrates the scrollbar style when the ScrollBar component has no child component.
 
 <!-- run -->
 

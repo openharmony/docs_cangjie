@@ -1,6 +1,6 @@
 # ohos.resource_manager
 
-The resource management module provides interfaces for retrieving application resource objects based on the current configuration: language, region, screen orientation, MCC (Mobile Country Code), MNC (Mobile Network Code), device capability (device type), and density (resolution).
+The resource management module provides interfaces for obtaining application resource objects based on the current configuration: language, region, screen orientation (portrait/landscape), MCC (Mobile Country Code), MNC (Mobile Network Code), device capability (device type), and screen density.
 
 ## Import Module
 
@@ -31,11 +31,11 @@ public class Configuration {
 }
 ```
 
-**Description:** Represents the configuration of the current device.
+**Function:** Represents the configuration of the current device.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var colorMode
 
@@ -43,15 +43,15 @@ public class Configuration {
 public var colorMode: ColorMode
 ```
 
-**Description:** Color mode.
+**Function:** Color mode.
 
 **Type:** [ColorMode](#enum-colormode)
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var deviceType
 
@@ -59,15 +59,15 @@ public var colorMode: ColorMode
 public var deviceType: DeviceType
 ```
 
-**Description:** Device type.
+**Function:** Device type.
 
 **Type:** [DeviceType](#enum-devicetype)
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var direction
 
@@ -75,15 +75,15 @@ public var deviceType: DeviceType
 public var direction: Direction
 ```
 
-**Description:** Screen orientation.
+**Function:** Screen orientation.
 
 **Type:** [Direction](#enum-direction)
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var locale
 
@@ -91,15 +91,15 @@ public var direction: Direction
 public var locale: String
 ```
 
-**Description:** Language, script, country, and region.
+**Function:** Language, script, country, and region.
 
 **Type:** String
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var mcc
 
@@ -107,15 +107,15 @@ public var locale: String
 public var mcc: UInt32
 ```
 
-**Description:** Mobile Country Code.
+**Function:** Mobile Country Code.
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var mnc
 
@@ -123,15 +123,15 @@ public var mcc: UInt32
 public var mnc: UInt32
 ```
 
-**Description:** Mobile Network Code.
+**Function:** Mobile Network Code.
 
 **Type:** UInt32
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var screenDensity
 
@@ -139,15 +139,15 @@ public var mnc: UInt32
 public var screenDensity: ScreenDensity
 ```
 
-**Description:** Screen density.
+**Function:** Screen density.
 
 **Type:** [ScreenDensity](#enum-screendensity)
 
-**Access:** Read-write
+**Read/Write Permission:** Readable and writable
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ## class DeviceCapability
 
@@ -158,11 +158,11 @@ public class DeviceCapability {
 }
 ```
 
-**Description:** Represents the capabilities supported by the device.
+**Function:** Represents the capabilities supported by the device.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var deviceType
 
@@ -170,13 +170,13 @@ public class DeviceCapability {
 public var deviceType: DeviceType
 ```
 
-**Description:** Current device type.
+**Function:** Current device type.
 
 **Type:** [DeviceType](#enum-devicetype)
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### var screenDensity
 
@@ -184,13 +184,13 @@ public var deviceType: DeviceType
 public var screenDensity: ScreenDensity
 ```
 
-**Description:** Current device screen density.
+**Function:** Current device screen density.
 
 **Type:** [ScreenDensity](#enum-screendensity)
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ## class ResourceManager
 
@@ -198,11 +198,11 @@ public var screenDensity: ScreenDensity
 public class ResourceManager {}
 ```
 
-**Description:** Provides the ability to access application resources.
+**Function:** Provides the capability to access application resources.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 ### func addResource(String)
 
@@ -210,21 +210,21 @@ public class ResourceManager {}
 public func addResource(path: String): Unit
 ```
 
-**Description:** Loads the specified resource path during application runtime to achieve resource overlay.
+**Function:** During application runtime, loads the specified resource path to implement resource overlay.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | path | String | Yes | - | Resource path. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -234,7 +234,27 @@ public func addResource(path: String): Unit
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance id is invalid. | todo | todo |
+  | If the instance id invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let path = "/data/storage/el2/base/haps/entry/files/library-default-unsigned.hsp"
+    resourceManager.addResource(path)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func closeRawFd(String)
 
@@ -242,32 +262,50 @@ public func addResource(path: String): Unit
 public func closeRawFd(path: String): Unit
 ```
 
-**Description:** Closes a rawfile file in the resources/rawfile directory.
+**Function:** Closes a rawfile file in the resources/rawfile directory.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | path | String | Yes | - | Rawfile file path. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-  | 9001005 | The resource was not found by path. |
+  | 9001005 | The resource not found by path. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance id is invalid. | todo | todo |
+  | If the instance id invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let rawfd = resourceManager.closeRawFd("test.txt")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getBoolean(UInt32)
 
@@ -275,15 +313,15 @@ public func closeRawFd(path: String): Unit
 public func getBoolean(resId: UInt32): Bool
 ```
 
-**Description:** Retrieves the boolean result corresponding to the resource ID.
+**Function:** Gets the boolean result corresponding to the resource ID.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | resId | UInt32 | Yes | - | Resource ID. |
 
@@ -291,24 +329,44 @@ public func getBoolean(resId: UInt32): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | The boolean result corresponding to the resource object. |
+| Bool | Boolean result corresponding to the resource object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
-  | 9001002 | No matching resource was found based on the resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance id is invalid. | todo | todo |
+  | If the instance id invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.boolean.test)
+    resourceManager.getBoolean(res.id)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getBoolean(AppResource)
 
@@ -316,15 +374,15 @@ public func getBoolean(resId: UInt32): Bool
 public func getBoolean(resource: AppResource): Bool
 ```
 
-**Description:** Retrieves the boolean result corresponding to the resource object. This interface is used for cross-package access within multi-project applications.
+**Function:** Gets the boolean result corresponding to the resource object. This interface is used for cross-package access within multi-project applications.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | Resource object. |
 
@@ -332,194 +390,288 @@ public func getBoolean(resource: AppResource): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | The boolean result corresponding to the resource object. |
+| Bool | Boolean result corresponding to the resource object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
-  | 9001002 | No matching resource was found based on the resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance id is invalid. | todo | todo |
+  | If the instance id invalid. | todo | todo |
 
-### func getBooleanByName(String)
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.boolean.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    resourceManager.getBoolean(resource)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getBooleanByName(String)
 
 ```cangjie
 public func getBooleanByName(resName: String): Bool
 ```
 
-**Description:** Retrieves the boolean result corresponding to the resource name.
+**Function:** Retrieves the boolean value corresponding to the resource name.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| resName | String | Yes | - | Resource name. |
+| Parameter Name | Type   | Mandatory | Default Value | Description          |
+|:---------------|:-------|:----------|:--------------|:---------------------|
+| resName        | String | Yes       | -             | The resource name.   |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Bool | The boolean result corresponding to the resource name. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, refer to [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-  | 9001003 | Invalid resource name. |
-  | 9001004 | No matching resource was found based on the resource name. |
-  | 9001006 | The resource is referenced cyclically. |
-
-- IllegalStateException:
-
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance id is invalid. | todo | todo |### func getColor(AppResource)
-
-```cangjie
-
-public func getColor(resource: AppResource): UInt32
-```
-
-**Function:** Retrieves the color resource value corresponding to the resource object. This interface is used for cross-package access in multi-project applications.
-
-**System Capability:** SystemCapability.Global.ResourceManager
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | The resource object. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| UInt32 | The color resource value (in decimal) corresponding to the resource object. |
+| Type | Description                          |
+|:-----|:-------------------------------------|
+| Bool | The boolean value corresponding to the resource name. |
 
 **Exceptions:**
 
 - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-  | 9001001 | Invalid resource ID. |
-  | 9001002 | No matching resource is found based on the resource ID. |
-  | 9001006 | The resource is referenced cyclically. |
+  | Error Code ID | Error Message                        |
+  |:-------------|:-------------------------------------|
+  | 9001003      | Invalid resource name.               |
+  | 9001004      | No matching resource is found based on the resource name. |
+  | 9001006      | The resource is referenced cyclically. |
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getBooleanByName("test")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getColor(AppResource)
+
+```cangjie
+public func getColor(resource: AppResource): UInt32
+```
+
+**Function:** Retrieves the color value corresponding to the resource object. This interface is used for cross-package access within multi-project applications.
+
+**System Capability:** SystemCapability.Global.ResourceManager
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type                              | Mandatory | Default Value | Description          |
+|:---------------|:----------------------------------|:----------|:--------------|:---------------------|
+| resource       | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes       | -             | The resource object. |
+
+**Return Value:**
+
+| Type   | Description                          |
+|:-------|:-------------------------------------|
+| UInt32 | The color value corresponding to the resource object (in decimal). |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+
+  | Error Code ID | Error Message                        |
+  |:-------------|:-------------------------------------|
+  | 9001001      | Invalid resource ID.                 |
+  | 9001002      | No matching resource is found based on the resource ID. |
+  | 9001006      | The resource is referenced cyclically. |
+
+- IllegalStateException:
+
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.color.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    resourceManager.getColor(resource)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getColor(UInt32)
 
 ```cangjie
-
 public func getColor(resId: UInt32): UInt32
 ```
 
-**Function:** Retrieves the color resource value corresponding to the resource ID.
+**Function:** Retrieves the color value corresponding to the resource ID.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| resId | UInt32 | Yes | - | The resource ID. |
+| Parameter Name | Type   | Mandatory | Default Value | Description          |
+|:---------------|:-------|:----------|:--------------|:---------------------|
+| resId          | UInt32 | Yes       | -             | The resource ID.     |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| UInt32 | The color resource value (in decimal) corresponding to the resource object. |
+| Type   | Description                          |
+|:-------|:-------------------------------------|
+| UInt32 | The color value corresponding to the resource ID (in decimal). |
 
 **Exceptions:**
 
 - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-  | 9001001 | Invalid resource ID. |
-  | 9001002 | No matching resource is found based on the resource ID. |
-  | 9001006 | The resource is referenced cyclically. |
+  | Error Code ID | Error Message                        |
+  |:-------------|:-------------------------------------|
+  | 9001001      | Invalid resource ID.                 |
+  | 9001002      | No matching resource is found based on the resource ID. |
+  | 9001006      | The resource is referenced cyclically. |
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.color.test)
+    resourceManager.getColor(res.id)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getColorByName(String)
 
 ```cangjie
-
 public func getColorByName(resName: String): UInt32
 ```
 
-**Function:** Retrieves the color resource value corresponding to the resource name.
+**Function:** Retrieves the color value corresponding to the resource name.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| resName | String | Yes | - | The resource name. |
+| Parameter Name | Type   | Mandatory | Default Value | Description          |
+|:---------------|:-------|:----------|:--------------|:---------------------|
+| resName        | String | Yes       | -             | The resource name.   |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| UInt32 | The color resource value (in decimal) corresponding to the resource name. |
+| Type   | Description                          |
+|:-------|:-------------------------------------|
+| UInt32 | The color value corresponding to the resource name (in decimal). |
 
 **Exceptions:**
 
 - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-  | 9001003 | Invalid resource name. |
-  | 9001004 | No matching resource is found based on the resource name. |
-  | 9001006 | The resource is referenced cyclically. |
+  | Error Code ID | Error Message                        |
+  |:-------------|:-------------------------------------|
+  | 9001003      | Invalid resource name.               |
+  | 9001004      | No matching resource is found based on the resource name. |
+  | 9001006      | The resource is referenced cyclically. |
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getColorByName("test")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getConfiguration()
 
 ```cangjie
-
 public func getConfiguration(): Configuration
 ```
 
@@ -527,26 +679,46 @@ public func getConfiguration(): Configuration
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                              | Description                          |
+|:----------------------------------|:-------------------------------------|
 | [Configuration](#class-configuration) | The device configuration information. |
 
 **Exceptions:**
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. @returns { Configuration } the device configuration. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let configuration = resourceManager.getConfiguration()
+    Hilog.info(0, "test", configuration.locale, "")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getDeviceCapability()
 
 ```cangjie
-
 public func getDeviceCapability(): DeviceCapability
 ```
 
@@ -554,65 +726,102 @@ public func getDeviceCapability(): DeviceCapability
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [DeviceCapability](#class-devicecapability) | The device capability. |
+| Type                                  | Description                          |
+|:--------------------------------------|:-------------------------------------|
+| [DeviceCapability](#class-devicecapability) | The device capability.               |
 
 **Exceptions:**
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. @returns { DeviceCapability } the device capability. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let deviceCapability = resourceManager.getDeviceCapability()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getLocales(Bool)
 
 ```cangjie
-
 public func getLocales(includeSystem!: Bool = false): Array<String>
 ```
 
-**Function:** Retrieves the language list of the application.
+**Function:** Retrieves the list of languages supported by the application.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| includeSystem | Bool | No | false | **Named parameter.** Whether to include system resources. Default value is false. <br> false: Indicates only retrieving the language list of application resources. <br> true: Indicates retrieving the language list of both system and application resources. <br> When retrieving the language list for system resource management objects, the includeSystem value is invalid, and the system resource language list is returned. |
+| Parameter Name | Type | Mandatory | Default Value | Description          |
+|:---------------|:-----|:----------|:--------------|:---------------------|
+| includeSystem  | Bool | No        | false         | **Named parameter.** Whether to include system resources. Default is false. <br> false: Only retrieves the language list of application resources. <br> true: Retrieves the language list of both system and application resources. <br> When retrieving the language list for system resource management objects, the includeSystem value is ignored, and the system resource language list is returned. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type          | Description                          |
+|:--------------|:-------------------------------------|
 | Array\<String> | Returns the retrieved language list. Strings in the list are composed of language, script (optional), and region (optional), concatenated in order with hyphens "-". |
 
 **Exceptions:**
 
 - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
+  | Error Code ID | Error Message                        |
+  |:-------------|:-------------------------------------|
+  | 401          | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getLocales()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getMediaBase64ByName(String, ?ScreenDensity)
 
 ```cangjie
-
 public func getMediaBase64ByName(resName: String, density!: ?ScreenDensity = None): String
 ```
 
@@ -620,62 +829,77 @@ public func getMediaBase64ByName(resName: String, density!: ?ScreenDensity = Non
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| resName | String | Yes | - | The resource ID. |
-| density | ?[ScreenDensity](#enum-screendensity) | No | None | **Named parameter.** The screen density required for resource retrieval. 0 or omitted indicates the default screen density. |
+| Parameter Name | Type                          | Mandatory | Default Value | Description          |
+|:---------------|:------------------------------|:----------|:--------------|:---------------------|
+| resName        | String                        | Yes       | -             | The resource ID.     |
+| density        | ?[ScreenDensity](#enum-screendensity) | No        | None          | **Named parameter.** The screen density required for resource retrieval. 0 or omitted means the default screen density. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type   | Description                          |
+|:-------|:-------------------------------------|
 | String | The Base64 encoding of the image resource corresponding to the resource name. |
 
 **Exceptions:**
 
 - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
-  | 9001003 | Invalid resource name. |
-  | 9001004 | No matching resource is found based on the resource name. |
+  | Error Code ID | Error Message                        |
+  |:-------------|:-------------------------------------|
+  | 9001003      | Invalid resource name.               |
+  | 9001004      | No matching resource is found based on the resource name. |
 
 - IllegalStateException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | If the instance id invalid. | todo           | todo           |
 
 - IllegalMemoryException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | Out of memory. | todo | todo |
+  | Error Message         | Possible Cause | Handling Steps |
+  |:---------------------|:---------------|:---------------|
+  | Out of memory.       | todo           | todo           |
 
-### func getMediaByName(String, ?ScreenDensity)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getMediaBase64ByName("test")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getMediaByName(String, ?ScreenDensity)
+
+```cangjie
 public func getMediaByName(resName: String, density!: ?ScreenDensity = None): Array<UInt8>
 ```
 
-**Function:** Retrieves the media file content corresponding to the resource name for the specified screen density.
+**Function:** Retrieves the media file content corresponding to the specified resource name and screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| resName | String | Yes | - | The resource name. |
-| density | ?[ScreenDensity](#enum-screendensity) | No | None | The screen density required for resource retrieval. 0 indicates the default screen density. |
+| resName | String | Yes | - | Resource name. |
+| density | ?[ScreenDensity](#enum-screendensity) | No | None | The screen density required for resource retrieval, where 0 indicates the default screen density. |
 
 **Return Value:**
 
@@ -685,11 +909,10 @@ public func getMediaByName(resName: String, density!: ?ScreenDensity = None): Ar
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
   | 9001003 | Invalid resource name. |
   | 9001004 | No matching resource is found based on the resource name. |
 
@@ -697,27 +920,45 @@ public func getMediaByName(resName: String, density!: ?ScreenDensity = None): Ar
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getMediaByName("test", density: ScreenMdpi)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getMediaContent(UInt32, ?ScreenDensity)
 
 ```cangjie
-
 public func getMediaContent(resId: UInt32, density!: ?ScreenDensity = None): Array<UInt8>
 ```
 
-**Function:** Retrieves the media file content corresponding to the resource ID for the specified screen density.
+**Function:** Retrieves the media file content corresponding to the specified resource ID and screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| resId | UInt32 | Yes | - | The resource ID. |
-| density | ?[ScreenDensity](#enum-screendensity) | No | None | The screen density required for resource retrieval. 0 indicates the default screen density. |
+| resId | UInt32 | Yes | - | Resource ID. |
+| density | ?[ScreenDensity](#enum-screendensity) | No | None | The screen density required for resource retrieval, where 0 indicates the default screen density. |
 
 **Return Value:**
 
@@ -727,11 +968,10 @@ public func getMediaContent(resId: UInt32, density!: ?ScreenDensity = None): Arr
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
 
@@ -739,27 +979,47 @@ public func getMediaContent(resId: UInt32, density!: ?ScreenDensity = None): Arr
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.media.test)
+    resourceManager.getMediaContent(res.id, density: ScreenSdpi)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getMediaContent(AppResource, ?ScreenDensity)
 
 ```cangjie
-
 public func getMediaContent(resource: AppResource, density!: ?ScreenDensity = None): Array<UInt8>
 ```
 
-**Function:** Retrieves the media file content corresponding to the resource object for the specified screen density. This interface is used for cross-package access in multi-project applications.
+**Function:** Retrieves the media file content corresponding to the specified resource object and screen density. This interface is used for cross-package access in multi-project applications.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | The resource object. |
-| density | ?[ScreenDensity](#enum-screendensity) | No | None | The screen density required for resource retrieval. 0 indicates the default screen density. |
+| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | Resource object. |
+| density | ?[ScreenDensity](#enum-screendensity) | No | None | The screen density required for resource retrieval, where 0 indicates the default screen density. |
 
 **Return Value:**
 
@@ -769,11 +1029,10 @@ public func getMediaContent(resource: AppResource, density!: ?ScreenDensity = No
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
 
@@ -781,27 +1040,48 @@ public func getMediaContent(resource: AppResource, density!: ?ScreenDensity = No
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.media.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    resourceManager.getMediaContent(resource, density: ScreenSdpi)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getMediaContentBase64(UInt32, ?ScreenDensity)
 
 ```cangjie
-
 public func getMediaContentBase64(resId: UInt32, density!: ?ScreenDensity = None): String
 ```
 
-**Function:** Retrieves the image resource corresponding to the resource ID for the specified screen density and returns the Base64 encoding of the image resource.
+**Function:** Retrieves the image resource corresponding to the specified resource ID and screen density, returning the Base64 encoding of the image resource.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| resId | UInt32 | Yes | - | The resource ID. |
-| density | ?[ScreenDensity](#enum-screendensity) | No | None | **Named parameter.** The screen density required for resource retrieval. 0 or omitted indicates the default screen density. |
+| resId | UInt32 | Yes | - | Resource ID. |
+| density | ?[ScreenDensity](#enum-screendensity) | No | None | **Named parameter.** The screen density required for resource retrieval, where 0 or omission indicates the default screen density. |
 
 **Return Value:**
 
@@ -811,11 +1091,10 @@ public func getMediaContentBase64(resId: UInt32, density!: ?ScreenDensity = None
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
 
@@ -823,53 +1102,7 @@ public func getMediaContentBase64(resId: UInt32, density!: ?ScreenDensity = None
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
-
-- IllegalMemoryException:
-
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | Out of memory. | todo | todo |### func getMediaContentBase64(AppResource, ?ScreenDensity)
-
-```cangjie
-
-public func getMediaContentBase64(resource: AppResource, density!: ?ScreenDensity = None): String
-```
-
-**Function:** Retrieves the image resource corresponding to the specified screen density from the resource object and returns its Base64 encoding. This interface is used for cross-package access within multi-project applications.
-
-**System Capability:** SystemCapability.Global.ResourceManager
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | The resource object. |
-| density | ?[ScreenDensity](#enum-screendensity) | No | None | **Named parameter.** The screen density required for resource retrieval. 0 or omission indicates the default screen density. |
-
-**Return Value:**
-
-| Type | Description |
-|:----|:----|
-| String | Base64 encoding of the image resource corresponding to the resource object. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
-  | 9001001 | Invalid resource ID. |
-  | 9001002 | No matching resource is found based on the resource ID. |
-
-- IllegalStateException:
-
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
 - IllegalMemoryException:
 
@@ -877,10 +1110,98 @@ public func getMediaContentBase64(resource: AppResource, density!: ?ScreenDensit
   | :---- | :--- | :--- |
   | Out of memory. | todo | todo |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.media.test)
+    resourceManager.getMediaContentBase64(res.id)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getMediaContentBase64(AppResource, ?ScreenDensity)
+
+```cangjie
+public func getMediaContentBase64(resource: AppResource, density!: ?ScreenDensity = None): String
+```
+
+**Function:** Retrieves the image resource corresponding to the specified resource object and screen density, returning the Base64 encoding of the image resource. This interface is used for cross-package access in multi-project applications.
+
+**System Capability:** SystemCapability.Global.ResourceManager
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | Resource object. |
+| density | ?[ScreenDensity](#enum-screendensity) | No | None | **Named parameter.** The screen density required for resource retrieval, where 0 or omission indicates the default screen density. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| String | The Base64 encoding of the image resource corresponding to the resource object. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+
+- IllegalStateException:
+
+  | Error Message | Possible Cause | Handling Steps |
+  | :---- | :--- | :--- |
+  | If the instance id is invalid. | todo | todo |
+
+- IllegalMemoryException:
+
+  | Error Message | Possible Cause | Handling Steps |
+  | :---- | :--- | :--- |
+  | Out of memory. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.media.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    resourceManager.getMediaContentBase64(resource)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func getNumber(UInt32)
 
 ```cangjie
-
 public func getNumber(resId: UInt32): NumberValueType
 ```
 
@@ -888,13 +1209,13 @@ public func getNumber(resId: UInt32): NumberValueType
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| resId | UInt32 | Yes | - | The resource ID. |
+| resId | UInt32 | Yes | - | Resource ID. |
 
 **Return Value:**
 
@@ -904,11 +1225,10 @@ public func getNumber(resId: UInt32): NumberValueType
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
@@ -917,26 +1237,52 @@ public func getNumber(resId: UInt32): NumberValueType
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.integer.test)
+    let number = resourceManager.getNumber(res.id)
+    match (number) {
+        case Int32Value(v) => Hilog.info(0, "test", v.toString(), "")
+        case Float32Value(v) => Hilog.info(0, "test", v.toString(), "")
+        case _ => throw IllegalArgumentException("The type is not supported.")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getNumber(AppResource)
 
 ```cangjie
-
 public func getNumber(resource: AppResource): NumberValueType
 ```
 
-**Function:** Retrieves the numeric resource from the resource object. This interface is used for cross-package access within multi-project applications.
+**Function:** Retrieves the numeric resource corresponding to the specified resource object. This interface is used for cross-package access in multi-project applications.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | The resource object. |
+| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | Resource object. |
 
 **Return Value:**
 
@@ -946,11 +1292,10 @@ public func getNumber(resource: AppResource): NumberValueType
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
@@ -959,40 +1304,64 @@ public func getNumber(resource: AppResource): NumberValueType
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
-### func getNumberByName(String)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.LocalizationKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.integer.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    let number = resourceManager.getNumber(resource)
+    match (number) {
+        case Int32Value(v) => Hilog.info(0, "test", v.toString(), "")
+        case Float32Value(v) => Hilog.info(0, "test", v.toString(), "")
+        case _ => throw IllegalArgumentException("The type is not supported.")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getNumberByName(String)
+
+```cangjie
 public func getNumberByName(resName: String): NumberValueType
 ```
 
-**Function:** Retrieves the numeric resource corresponding to the specified resource name. If both integer and float resources share the same `resName`, the integer resource value is prioritized.
+**Function:** Retrieves the numeric resource corresponding to the resource name. If both integer and float resources share the same `resName`, the integer resource value is prioritized.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| resName | String | Yes | - | The resource name. |
+| resName | String | Yes | - | Resource name. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [NumberValueType](#enum-numbervaluetype) | The numeric resource corresponding to the resource name. |
+| [NumberValueType](#enum-numbervaluetype) | Numeric resource corresponding to the resource name. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001003 | Invalid resource name. |
   | 9001004 | No matching resource is found based on the resource name. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1001,41 +1370,65 @@ public func getNumberByName(resName: String): NumberValueType
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let number = resourceManager.getNumberByName("test")
+    match (number) {
+        case Int32Value(v) => Hilog.info(0, "test", v.toString(), "")
+        case Float32Value(v) => Hilog.info(0, "test", v.toString(), "")
+        case _ => throw IllegalArgumentException("The type is not supported.")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getPluralStringByName(String, Int64)
 
 ```cangjie
-
 public func getPluralStringByName(resName: String, num: Int64): String
 ```
 
-**Function:** Retrieves the singular/plural string resource corresponding to the specified resource name and formats the string based on the given quantity.
+**Function:** Retrieves the plural string resource corresponding to the resource name and formats the string based on the specified quantity.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| resName | String | Yes | - | The resource name. |
-| num | Int64 | Yes | - | The quantity value. |
+| resName | String | Yes | - | Resource name. |
+| num | Int64 | Yes | - | Quantity value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The singular/plural string resource corresponding to the specified resource name. |
+| String | Plural string resource corresponding to the specified resource name. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001003 | Invalid resource name. |
   | 9001004 | No matching resource is found based on the resource name. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1044,47 +1437,64 @@ public func getPluralStringByName(resName: String, num: Int64): String
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
 - IllegalMemoryException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
   | Out of memory. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getPluralStringByName("test", 1)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getPluralStringValue(UInt32, Int64)
 
 ```cangjie
-
 public func getPluralStringValue(resId: UInt32, num: Int64): String
 ```
 
-**Function:** Retrieves the singular/plural string resource corresponding to the specified resource ID and formats the string based on the given quantity.
+**Function:** Retrieves the plural string resource corresponding to the resource ID and formats the string based on the specified quantity.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| resId | UInt32 | Yes | - | The resource ID. |
-| num | Int64 | Yes | - | The quantity value. |
+| resId | UInt32 | Yes | - | Resource ID. |
+| num | Int64 | Yes | - | Quantity value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The singular/plural string resource corresponding to the specified resource object. |
+| String | Plural string resource corresponding to the specified resource object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1093,47 +1503,66 @@ public func getPluralStringValue(resId: UInt32, num: Int64): String
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
 - IllegalMemoryException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
   | Out of memory. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.plural.test)
+    resourceManager.getPluralStringValue(res.id, 1)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getPluralStringValue(AppResource, Int64)
 
 ```cangjie
-
 public func getPluralStringValue(resource: AppResource, num: Int64): String
 ```
 
-**Function:** Retrieves the singular/plural string resource from the resource object and formats the string based on the given quantity. This interface is used for cross-package access within multi-project applications.
+**Function:** Retrieves the plural string resource corresponding to the resource object and formats the string based on the specified quantity. This interface is used for cross-package access in multi-project applications.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | The resource object. |
-| num | Int64 | Yes | - | The quantity value. |
+| resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | Resource object. |
+| num | Int64 | Yes | - | Quantity value. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The singular/plural string resource corresponding to the specified resource object. |
+| String | Plural string resource corresponding to the specified resource object. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1142,7 +1571,7 @@ public func getPluralStringValue(resource: AppResource, num: Int64): String
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
 - IllegalMemoryException:
 
@@ -1150,10 +1579,31 @@ public func getPluralStringValue(resource: AppResource, num: Int64): String
   | :---- | :--- | :--- |
   | Out of memory. | todo | todo |
 
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.plural.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    resourceManager.getPluralStringValue(resource, 1)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
 ### func getRawFd(String)
 
 ```cangjie
-
 public func getRawFd(path: String): RawFileDescriptor
 ```
 
@@ -1161,138 +1611,191 @@ public func getRawFd(path: String): RawFileDescriptor
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| path | String | Yes | - | The path to the rawfile file. |
+| path | String | Yes | - | Path of the rawfile file. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [RawFileDescriptor](./cj-apis-raw_file_descriptor.md#class-rawfiledescriptor) | The descriptor of the rawfile file. |
+| [RawFileDescriptor](./cj-apis-raw_file_descriptor.md#class-rawfiledescriptor) | Descriptor of the rawfile file. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001005 | Invalid relative path. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let rawfd = resourceManager.getRawFd("test.txt")
+    Hilog.info(0, "test", "${rawfd.fd} ${rawfd.offset} ${rawfd.length}", "")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getRawFileContent(String)
 
 ```cangjie
-
 public func getRawFileContent(path: String): Array<UInt8>
 ```
 
-**Function:** Retrieves the content of the rawfile file corresponding to the specified path in the resources/rawfile directory and returns it as a byte array.
+**Function:** Retrieves the content of the rawfile file corresponding to the specified path in the resources/rawfile directory, returning a byte array.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| path | String | Yes | - | The path to the rawfile file. |
+| path | String | Yes | - | Path of the rawfile file. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Array\<UInt8> | The content of the rawfile file. |
+| Array\<UInt8> | Content of the rawfile file. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001005 | Invalid relative path. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |### func getRawFileList(String)
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getRawFileContent("test.txt")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func getRawFileList(String)
+
+```cangjie
 public func getRawFileList(path: String): Array<String>
 ```
 
-**Function:** Retrieves the list of folders and files under the resources/rawfile directory, returning a string array of the file list.
+**Function:** Retrieves the list of folders and files in the resources/rawfile directory, returning a string array of the file list.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| path | String | Yes | - | Path to the rawfile folder. |
+| path | String | Yes | - | Path of the rawfile folder. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Array\<String> | List under the rawfile folder (including subfolders and files). |
+| Array\<String> | List of items in the rawfile folder (including subfolders and files). |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001005 | Invalid relative path. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
-### func getString(UInt32, Array\<ArgsValueType>)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// index.cj
 
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getRawFileList("")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```### func getString(UInt32, Array\<ArgsValueType>)
+
+```cangjie
 public func getString(resId: UInt32, args: Array<ArgsValueType>): String
 ```
 
-**Function:** Retrieves the string resource corresponding to the resource ID and formats it based on the args parameter.
+**Function:** Retrieves the string resource corresponding to the resource ID and formats it based on the args parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | resId | UInt32 | Yes | - | Resource object. |
-| args | Array\<[ArgsValueType](#enum-argsvaluetype)> | Yes | - | Parameters for formatting the string resource. <br>Supported parameter types: <br /> %d, %f, %s, %%. <br>Note: %% is an escape character, escaping %. <br>Example: %%d will be formatted as the string %d. |
+| args | Array\<[ArgsValueType](#enum-argsvaluetype)> | Yes | - | Parameters for formatting the string resource. <br>Supported parameter types: <br /> %d, %f, %s, %%. <br>Note: %% is an escape character that translates to %. <br>Example: %%d will be formatted as the string %d. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Formatted string corresponding to the resource name. |
+| String | The formatted string corresponding to the resource name. |
 
 **Exceptions:**
 
@@ -1300,7 +1803,6 @@ public func getString(resId: UInt32, args: Array<ArgsValueType>): String
 
 | Error Code ID | Error Message |
 | :---- | :--- |
-| 401 | If the input parameter is invalid. |
 | 9001001 | Invalid resource ID. |
 | 9001002 | No matching resource is found based on the resource ID. |
 | 9001006 | The resource is referenced cyclically. |
@@ -1309,113 +1811,155 @@ public func getString(resId: UInt32, args: Array<ArgsValueType>): String
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
-| :---- | :--- | :--- |
-| If the instance ID is invalid. | todo | todo |
+  | :---- | :--- | :--- |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let resource = @r(app.string.test)
+    resourceManager.getString(resource.id)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getString(AppResource, Array\<ArgsValueType>)
 
 ```cangjie
-
 public func getString(resource: AppResource, args: Array<ArgsValueType>): String
 ```
 
-**Function:** Retrieves the string resource corresponding to the resource object and formats it based on the args parameter.
+**Function:** Retrieves the string resource corresponding to the resource object and formats it based on the args parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | resource | [AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | Resource object. |
-| args | Array\<[ArgsValueType](#enum-argsvaluetype)> | Yes | - | Parameters for formatting the string resource. <br>Supported parameter types: <br /> %d, %f, %s, %%. <br>Note: %% is an escape character, escaping %. <br>Example: %%d will be formatted as the string %d. |
+| args | Array\<[ArgsValueType](#enum-argsvaluetype)> | Yes | - | Parameters for formatting the string resource. <br>Supported parameter types: <br /> %d, %f, %s, %%. <br>Note: %% is an escape character that translates to %. <br>Example: %%d will be formatted as the string %d. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Formatted string corresponding to the resource name. |
+| String | The formatted string corresponding to the resource name. |
 
 **Exceptions:**
 
 - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-| Error Code ID | Error Message |
-| :---- | :--- |
-| 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-| 9001001 | Invalid resource ID. |
-| 9001002 | No matching resource is found based on the resource ID. |
-| 9001006 | The resource is referenced cyclically. |
-| 9001007 | Failed to format the resource obtained based on the resource ID. |
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 9001001 | Invalid resource ID. |
+  | 9001002 | No matching resource is found based on the resource ID. |
+  | 9001006 | The resource is referenced cyclically. |
+  | 9001007 | Failed to format the resource obtained based on the resource ID. |
 
 - IllegalStateException:
 
   | Error Message | Possible Cause | Handling Steps |
-| :---- | :--- | :--- |
-| If the instance ID is invalid. | todo | todo |
+  | :---- | :--- | :--- |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let resource = @r(app.string.test)
+    resourceManager.getString(resource.id, ArgsValueType.StringValue("format string"), ArgsValueType.Int32Value(10), ArgsValueType.Float32Value(98.78))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getStringArrayByName(String)
 
- ```cangjie
- public func getStringArrayByName(resName: String): Array<String>
- ```
+```cangjie
+public func getStringArrayByName(resName: String): Array<String>
+```
 
- **Function:** Retrieves the string array resource corresponding to the resource name.
+**Function:** Retrieves the string array resource corresponding to the resource name.
 
- **System Capability:** SystemCapability.Global.ResourceManager
+**System Capability:** SystemCapability.Global.ResourceManager
 
- **Initial Version:** 21
+**Initial Version:** 22
 
- **Parameters:**
+**Parameters:**
 
- | Parameter | Type | Required | Default Value | Description |
- |:---|:---|:---|:---|:---|
- | resName | String | Yes | - | Resource name. |
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| resName | String | Yes | - | Resource name. |
 
- **Return Value:**
+**Return Value:**
 
- | Type | Description |
- |:----|:----|
- | Array\<String> | String array resource corresponding to the resource name. |
+| Type | Description |
+|:----|:----|
+| Array\<String> | The string array resource corresponding to the resource name. |
 
- **Exceptions:**
+**Exceptions:**
 
- - BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Resource Management Error Codes](./cj-errorcode-resource-manager.md).
 
-   | Error Code ID | Error Message |
-   | :---- | :--- |
-   | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
-   | 9001003 | Invalid resource name. |
-   | 9001004 | No matching resource is found based on the resource name. |
-   | 9001006 | The resource is referenced cyclically. |
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 9001003 | Invalid resource name. |
+  | 9001004 | No matching resource is found based on the resource name. |
+  | 9001006 | The resource is referenced cyclically. |
 
- - IllegalStateException:
+- IllegalStateException:
 
- | Error Message | Possible Cause | Handling Steps |
-   | :---- | :--- | :--- |
-   | If the instance ID is invalid. | todo | todo |
+  | Error Message | Possible Cause | Handling Steps |
+  | :---- | :--- | :--- |
+  | If the instance id is invalid. | todo | todo |
 
- **Example:**
+**Example:**
 
- <!-- compile -->
+<!-- compile -->
 
- ```cangjie
- // index.cj
- 
- import kit.LocalizationKit.*
- import kit.AbilityKit.*
- 
- let stageContext = getStageContext(MainAbility.abilityContext.getOrThrow())
- let resourceManager = ResourceManager.getResourceManager(stageContext)
- resourceManager.getStringArrayByName("test")
- ```
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getStringArrayByName("test")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getStringArrayValue(UInt32)
 
 ```cangjie
-
 public func getStringArrayValue(resId: UInt32): Array<String>
 ```
 
@@ -1423,7 +1967,7 @@ public func getStringArrayValue(resId: UInt32): Array<String>
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -1435,7 +1979,7 @@ public func getStringArrayValue(resId: UInt32): Array<String>
 
 | Type | Description |
 |:----|:----|
-| Array\<String> | String array corresponding to the resource ID. |
+| Array\<String> | The string array corresponding to the resource ID. |
 
 **Exceptions:**
 
@@ -1443,7 +1987,6 @@ public func getStringArrayValue(resId: UInt32): Array<String>
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1452,20 +1995,40 @@ public func getStringArrayValue(resId: UInt32): Array<String>
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.strarray.test)
+    resourceManager.getStringArrayValue(res.id)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getStringArrayValue(AppResource)
 
 ```cangjie
-
 public func getStringArrayValue(resource: AppResource): Array<String>
 ```
 
-**Function:** Retrieves the string array resource corresponding to the resource object. This interface is used for cross-package access within multi-project applications.
+**Function:** Retrieves the string array resource corresponding to the resource object. This interface is used for cross-package access in multi-project applications.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -1477,7 +2040,7 @@ public func getStringArrayValue(resource: AppResource): Array<String>
 
 | Type | Description |
 |:----|:----|
-| Array\<String> | String array corresponding to the resource object. |
+| Array\<String> | The string array corresponding to the resource object. |
 
 **Exceptions:**
 
@@ -1485,7 +2048,6 @@ public func getStringArrayValue(resource: AppResource): Array<String>
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001001 | Invalid resource ID. |
   | 9001002 | No matching resource is found based on the resource ID. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1494,33 +2056,54 @@ public func getStringArrayValue(resource: AppResource): Array<String>
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.arkui.state_macro_manage.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let res = @r(app.strarray.test)
+    let resource = AppResource("com.example.myapplication", "entry", res.id)
+    resourceManager.getStringArrayValue(resource)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func getStringByName(String, Array\<ArgsValueType>)
 
 ```cangjie
-
 public func getStringByName(resName: String, args: Array<ArgsValueType>): String
 ```
 
-**Function:** Retrieves the string resource corresponding to the resource name and formats it based on the args parameter.
+**Function:** Retrieves the string resource corresponding to the resource name and formats it based on the args parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | resName | String | Yes | - | Resource name. |
-| args | Array\<[ArgsValueType](#enum-argsvaluetype)> | Yes | - | Parameters for formatting the string resource. <br>Supported parameter types: <br /> %d, %f, %s, %%. <br>Note: %% is an escape character, escaping %. <br>Example: %%d will be formatted as the string %d. |
+| args | Array\<[ArgsValueType](#enum-argsvaluetype)> | Yes | - | Parameters for formatting the string resource. <br>Supported parameter types: <br /> %d, %f, %s, %%. <br>Note: %% is an escape character that translates to %. <br>Example: %%d will be formatted as the string %d. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | Formatted string corresponding to the resource name. |
+| String | The formatted string corresponding to the resource name. |
 
 **Exceptions:**
 
@@ -1528,7 +2111,6 @@ public func getStringByName(resName: String, args: Array<ArgsValueType>): String
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | If the input parameter is invalid. Possible causes: Incorrect parameter types. |
   | 9001003 | Invalid resource name. |
   | 9001004 | No matching resource is found based on the resource name. |
   | 9001006 | The resource is referenced cyclically. |
@@ -1538,20 +2120,38 @@ public func getStringByName(resName: String, args: Array<ArgsValueType>): String
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    resourceManager.getStringByName("test", ArgsValueType.StringValue("format string"), ArgsValueType.Int32Value(10), ArgsValueType.Float32Value(98.78))
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func removeResource(String)
 
 ```cangjie
-
 public func removeResource(path: String): Unit
 ```
 
-**Function:** Removes the specified resource path at runtime, restoring the resources to their state before being overridden.
+**Function:** Removes the specified resource path at runtime and restores the resources to their state before being overridden.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
@@ -1571,9 +2171,27 @@ public func removeResource(path: String): Unit
 
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
-  | If the instance ID is invalid. | todo | todo |
+  | If the instance id is invalid. | todo | todo |
 
-## enum ArgsValueType
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.LocalizationKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let resourceManager = Global.getResourceManager()
+    let path = "/data/storage/el2/base/haps/entry/files/library-default-unsigned.hsp"
+    resourceManager.removeResource(path)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## enum ArgsValueType
 
 ```cangjie
 public enum ArgsValueType {
@@ -1584,11 +2202,11 @@ public enum ArgsValueType {
 }
 ```
 
-**Function:** Enumeration type for formatting string resource parameters.
+**Description:** Enumeration type for formatted string resource parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 ### Float32Value(Float32)
 
@@ -1596,11 +2214,11 @@ public enum ArgsValueType {
 Float32Value(Float32)
 ```
 
-**Function:** Enumeration value for Float32 type formatting string resource parameters.
+**Description:** Enumeration value for Float32 type formatted string resource parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 ### Int32Value(Int32)
 
@@ -1608,11 +2226,11 @@ Float32Value(Float32)
 Int32Value(Int32)
 ```
 
-**Function:** Enumeration value for Int32 type formatting string resource parameters.
+**Description:** Enumeration value for Int32 type formatted string resource parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 ### StringValue(String)
 
@@ -1620,11 +2238,11 @@ Int32Value(Int32)
 StringValue(String)
 ```
 
-**Function:** Enumeration value for String type formatting string resource parameters.
+**Description:** Enumeration value for String type formatted string resource parameters.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 ## enum ColorMode
 
@@ -1636,11 +2254,11 @@ public enum ColorMode {
 }
 ```
 
-**Function:** Represents the current device color mode.
+**Description:** Represents the current device color mode.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 ### Dark
 
@@ -1648,11 +2266,11 @@ public enum ColorMode {
 Dark
 ```
 
-**Function:** Dark mode.
+**Description:** Dark mode.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21
+**Since:** 22
 
 ### Light
 
@@ -1660,11 +2278,13 @@ Dark
 Light
 ```
 
-**Function:** Light mode.
+**Description:** Light mode.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Initial Version:** 21## enum DeviceType
+**Since:** 22
+
+## enum DeviceType
 
 ```cangjie
 public enum DeviceType {
@@ -1679,11 +2299,11 @@ public enum DeviceType {
 }
 ```
 
-**Function:** Indicates the current device type.
+**Description:** Represents the current device type.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceType2In1
 
@@ -1691,11 +2311,11 @@ public enum DeviceType {
 DeviceType2In1
 ```
 
-**Function:** 2-in-1 device.
+**Description:** 2-in-1 device.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceTypeCar
 
@@ -1703,11 +2323,11 @@ DeviceType2In1
 DeviceTypeCar
 ```
 
-**Function:** Automotive device.
+**Description:** Car.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceTypePc
 
@@ -1715,11 +2335,11 @@ DeviceTypeCar
 DeviceTypePc
 ```
 
-**Function:** Personal computer.
+**Description:** PC.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceTypePhone
 
@@ -1727,11 +2347,11 @@ DeviceTypePc
 DeviceTypePhone
 ```
 
-**Function:** Smartphone.
+**Description:** Phone.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceTypeTv
 
@@ -1739,11 +2359,11 @@ DeviceTypePhone
 DeviceTypeTv
 ```
 
-**Function:** Television.
+**Description:** TV.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceTypeTablet
 
@@ -1751,11 +2371,11 @@ DeviceTypeTv
 DeviceTypeTablet
 ```
 
-**Function:** Tablet device.
+**Description:** Tablet.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DeviceTypeWearable
 
@@ -1763,11 +2383,11 @@ DeviceTypeTablet
 DeviceTypeWearable
 ```
 
-**Function:** Wearable device.
+**Description:** Wearable device.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ## enum Direction
 
@@ -1779,11 +2399,11 @@ public enum Direction {
 }
 ```
 
-**Function:** Indicates the device screen orientation.
+**Description:** Represents device screen orientation.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DirectionHorizontal
 
@@ -1791,11 +2411,11 @@ public enum Direction {
 DirectionHorizontal
 ```
 
-**Function:** Landscape orientation.
+**Description:** Landscape orientation.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### DirectionVertical
 
@@ -1803,11 +2423,11 @@ DirectionHorizontal
 DirectionVertical
 ```
 
-**Function:** Portrait orientation.
+**Description:** Portrait orientation.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ## enum NumberValueType
 
@@ -1819,11 +2439,11 @@ public enum NumberValueType {
 }
 ```
 
-**Function:** Represents numeric types obtained from resources.
+**Description:** Represents numeric types obtained from resources.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### Float32Value(Float32)
 
@@ -1831,11 +2451,11 @@ public enum NumberValueType {
 Float32Value(Float32)
 ```
 
-**Function:** Number type storing Float32 values.
+**Description:** Number type storing Float32 values.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### Int32Value(Int32)
 
@@ -1843,11 +2463,11 @@ Float32Value(Float32)
 Int32Value(Int32)
 ```
 
-**Function:** Number type storing Int32 values.
+**Description:** Number type storing Int32 values.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ## enum ScreenDensity
 
@@ -1863,11 +2483,11 @@ public enum ScreenDensity {
 }
 ```
 
-**Function:** Indicates the current device screen density.
+**Description:** Represents current device screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### ScreenLdpi
 
@@ -1875,11 +2495,11 @@ public enum ScreenDensity {
 ScreenLdpi
 ```
 
-**Function:** Large-scale screen density.
+**Description:** Large-scale screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### ScreenMdpi
 
@@ -1887,11 +2507,11 @@ ScreenLdpi
 ScreenMdpi
 ```
 
-**Function:** Medium-scale screen density.
+**Description:** Medium-scale screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### ScreenSdpi
 
@@ -1899,11 +2519,11 @@ ScreenMdpi
 ScreenSdpi
 ```
 
-**Function:** Small-scale screen density.
+**Description:** Small-scale screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### ScreenXldpi
 
@@ -1911,11 +2531,11 @@ ScreenSdpi
 ScreenXldpi
 ```
 
-**Function:** Extra-large-scale screen density.
+**Description:** Extra large-scale screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### ScreenXxldpi
 
@@ -1923,11 +2543,11 @@ ScreenXldpi
 ScreenXxldpi
 ```
 
-**Function:** Extra-extra-large-scale screen density.
+**Description:** Extra extra large-scale screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22
 
 ### ScreenXxxldpi
 
@@ -1935,8 +2555,8 @@ ScreenXxldpi
 ScreenXxxldpi
 ```
 
-**Function:** Extra-extra-extra-large-scale screen density.
+**Description:** Extra extra extra large-scale screen density.
 
 **System Capability:** SystemCapability.Global.ResourceManager
 
-**Since:** 21
+**Since:** 22

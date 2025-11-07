@@ -1,6 +1,6 @@
 # ohos.request
 
-The request component primarily provides applications with fundamental capabilities for uploading/downloading files and background transfer proxy.
+The request component primarily provides applications with fundamental capabilities for uploading/downloading files and background transfer proxying.
 
 ## Import Module
 
@@ -14,12 +14,12 @@ ohos.permission.INTERNET
 
 ## Usage Instructions
 
-API example code usage instructions:
+API sample code usage instructions:
 
-- If the first line of example code contains a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration must be done in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, configuration must be done in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Description](../cj-development-intro.md#仓颉示例代码说明).
+For details about the aforementioned sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## func create(UIAbilityContext, Config)
 
@@ -27,45 +27,68 @@ For details about the example project and configuration template mentioned above
 public func create(context: UIAbilityContext, config: Config): Task
 ```
 
-**Function:** Creates a task to be uploaded or downloaded and enqueues it. Each application supports a maximum of 10 unfinished tasks.
+**Function:** Creates an upload or download task and queues it. Each application can create up to 10 pending tasks.
 
 **Required Permission:** ohos.permission.INTERNET
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application-based context. |
-| config | [Config](#class-config) | Yes | - | Configuration information for upload/download tasks. |
+| Parameter | Type                                                                                       | Required | Default | Description                          |
+| :-------- | :----------------------------------------------------------------------------------------- | :------- | :------ | :----------------------------------- |
+| context   | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes      | -       | Application-based context.           |
+| config    | [Config](#class-config)                                                                    | Yes      | -       | Configuration information for upload/download tasks. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                | Description                                                  |
+| :------------------ | :----------------------------------------------------------- |
 | [Task](#class-task) | Returns a Task object containing the task ID and configuration information. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Upload/Download Error Codes](./cj-errorcode-request.md) and [Universal Error Code Documentation](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Upload/Download Error Codes](./cj-errorcode-request.md) and [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 201 | Permission denied. |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400001 | Invalid file or file system error. |
-  | 13400003 | Task service ability error. |
-  | 21900004 | The application task queue is full. |
-  | 21900005 | Operation with wrong task mode. |
-
+  | Error Code ID | Error Message                                                                                                                          |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+  | 201          | Permission denied.                                                                                                                    |
+  | 13400001     | Invalid file or file system error.                                                                                                    |
+  | 13400003     | Task service ability error.                                                                                                           |
+  | 21900004     | The application task queue is full.                                                                                                   |
+  | 21900005     | Operation with wrong task mode.                                                                                                      |
 - IllegalArgumentException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | The context is invalid. | todo | todo |
+  | Error Message                | Possible Cause | Handling Steps |
+  | :--------------------------- | :------------- | :------------- |
+  | The context is invalid.      | todo           | todo           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.abilityContext
+    let config = Config(
+        action = Action.Download,
+        url = "https://example.com/file.txt"
+    )
+    let task = create(context, config)
+    Hilog.info(0, "cangjie_ohos_test", "Successfully created task, Task ID: ${task.tid}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func getTask(UIAbilityContext, String, ?String)
 
@@ -77,37 +100,59 @@ public func getTask(context: UIAbilityContext, id: String, token!: ?String = Non
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application-based context. |
-| id | String | Yes | - | Task ID. |
-| token | ?String | No | None | **Named parameter.** Task query token. |
+| Parameter | Type                                                                                       | Required | Default | Description                          |
+| :-------- | :----------------------------------------------------------------------------------------- | :------- | :------ | :----------------------------------- |
+| context   | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes      | -       | Application-based context.           |
+| id        | String                                                                                     | Yes      | -       | Task ID.                             |
+| token     | ?String                                                                                    | No       | None    | **Named parameter.** Task query token. |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
+| Type                | Description                                                  |
+| :------------------ | :----------------------------------------------------------- |
 | [Task](#class-task) | Returns a Task object containing the task ID and configuration information. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Upload/Download Error Codes](./cj-errorcode-request.md) and [Universal Error Code Documentation](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
-  | 13400003 | Task service ability error. |
-  | 21900006 | Task removed or not found. |
+  | Error Code ID | Error Message                                                                                                                          |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+  | 13499999     | Other error.                                                                                                                          |
+  | 13400003     | Task service ability error.                                                                                                           |
+  | 21900006     | Task removed or not found.                                                                                                            |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.abilityContext
+    let taskId = "example_task_id"
+    let task = getTask(context, taskId)
+    Hilog.info(0, "cangjie_ohos_test", "Successfully retrieved task, Task ID: ${task.tid}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 - IllegalArgumentException:
 
-  | Error Message | Possible Cause | Handling Steps |
-  | :---- | :--- | :--- |
-  | The context is invalid. | todo | todo |
+  | Error Message                | Possible Cause | Handling Steps |
+  | :--------------------------- | :------------- | :------------- |
+  | The context is invalid.      | todo           | todo           |
 
 ## func remove(String)
 
@@ -119,23 +164,43 @@ public func remove(id: String): Unit
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| id | String | Yes | - | Task ID. |
+| Parameter | Type   | Required | Default | Description |
+| :-------- | :----- | :------- | :------ | :---------- |
+| id        | String | Yes      | -       | Task ID.    |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Upload/Download Error Codes](./cj-errorcode-request.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | Task service ability error. |
-  | 21900006 | Task removed or not found. |
+  | Error Code ID | Error Message                                                                                                                          |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+  | 13400003     | Task service ability error.                                                                                                           |
+  | 21900006     | Task removed or not found.                                                                                                            |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let taskId = "example_task_id"
+    remove(taskId)
+    Hilog.info(0, "cangjie_ohos_test", "Successfully removed task, Task ID: ${taskId}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func search(Filter)
 
@@ -143,32 +208,55 @@ public func remove(id: String): Unit
 public func search(filter!: Filter = Filter()): Array<String>
 ```
 
-**Function:** Searches for task IDs based on default [Filter](#class-filter) conditions.
+**Function:** Finds task IDs based on default [Filter](#class-filter) conditions.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| filter | [Filter](#class-filter) | No | Filter() | Filter conditions. |
+| Parameter | Type                    | Required | Default    | Description          |
+| :-------- | :---------------------- | :------- | :--------- | :------------------- |
+| filter    | [Filter](#class-filter) | No       | Filter()   | Filter conditions.   |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| Array\<String> | Returns task IDs that meet the conditions. |
+| Type           | Description                          |
+| :------------- | :----------------------------------- |
+| Array\<String> | Returns IDs of tasks meeting the conditions. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Upload/Download Error Codes](./cj-errorcode-request.md) and [Universal Error Code Documentation](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | Task service ability error. |
+  | Error Code ID | Error Message                                                                                                                          |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+  | 13400003     | Task service ability error.                                                                                                           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let filter = Filter()
+    let taskIds = search(filter)
+    Hilog.info(0, "cangjie_ohos_test", "Number of tasks found: ${taskIds.length}")
+    for (id in taskIds) {
+        Hilog.info(0, "cangjie_ohos_test", "Task ID: ${id}")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func show(String)
 
@@ -176,33 +264,53 @@ public func search(filter!: Filter = Filter()): Array<String>
 public func show(id: String): TaskInfo
 ```
 
-**Function:** Queries detailed information of a task by its ID.
+**Function:** Queries detailed information about a task by its ID.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| id | String | Yes | - | Task ID. |
+| Parameter | Type   | Required | Default | Description |
+| :-------- | :----- | :------- | :------ | :---------- |
+| id        | String | Yes      | -       | Task ID.    |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [TaskInfo](#class-taskinfo) | Returns a TaskInfo object containing detailed task information. |
+| Type                        | Description                                      |
+| :-------------------------- | :----------------------------------------------- |
+| [TaskInfo](#class-taskinfo) | Returns a TaskInfo object with task details.     |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Upload/Download Error Codes](./cj-errorcode-request.md) and [Universal Error Code Documentation](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | Task service ability error. |
-  | 21900006 | Task removed or not found. |
+  | Error Code ID | Error Message                                                                                                                          |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+  | 13400003     | Task service ability error.                                                                                                           |
+  | 21900006     | Task removed or not found.                                                                                                            |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let taskId = "example_task_id"
+    let taskInfo = show(taskId)
+    Hilog.info(0, "cangjie_ohos_test", "Task information: ${taskInfo.toString()}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func touch(String, String)
 
@@ -210,34 +318,59 @@ public func show(id: String): TaskInfo
 public func touch(id: String, token: String): TaskInfo
 ```
 
-**Function:** Queries detailed information of a task by its ID and token.
+**Function:** Queries detailed information about a task by its ID and token.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| id | String | Yes | - | Task ID. |
-| token | String | Yes | - | Task query token. |
+| Parameter | Type   | Required | Default | Description          |
+| :-------- | :----- | :------- | :------ | :------------------- |
+| id        | String | Yes      | -       | Task ID.             |
+| token     | String | Yes      | -       | Task query token.    |
 
 **Return Value:**
 
-| Type | Description |
-|:----|:----|
-| [TaskInfo](#class-taskinfo) | Returns a TaskInfo object containing detailed task information. |
+| Type                        | Description                                      |
+| :-------------------------- | :----------------------------------------------- |
+| [TaskInfo](#class-taskinfo) | Returns a TaskInfo object with task details.     |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Upload/Download Error Codes](./cj-errorcode-request.md) and [Universal Error Code Documentation](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, refer to [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
-  | 13400003 | Task service ability error. |
-  | 21900006 | Task removed or not found. |
+  | Error Code ID | Error Message                                                                                                                          |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+  | 13400003     | Task service ability error.                                                                                                           |
+  | 21900006     | Task removed or not found.                                                                                                            |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    try {
+        let taskId = "example_task_id"
+        let token = "example_token"
+        let taskInfo = touch(taskId, token)
+        Hilog.info(0, "cangjie_ohos_test", "Task information: ${taskInfo.toString()}")
+    } catch (e: Exception) {
+        Hilog.info(0, "cangjie_ohos_test", "Failed to query task information: ${e.toString()}")
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## class Config
 
@@ -269,7 +402,7 @@ public class Config {
 
     public init(action: Action, url: String, title!: ?String = None, description!: String = "",
         mode!: Mode = Mode.Background, overwrite!: Bool = false, method!: ?String = None,
-        headers!: HashMap<String, String> = HashMap<String, String>(), data!: ?ConfigData = None, saveas!: ?String = None,
+        headers!: HashMap<String, String> = HashMap<String, String>(), data!: ?ConfigData = None,  saveas!: String = "./",
         network!: Network = Network.AnyType, metered!: Bool = false, roaming!: Bool = true, retry!: Bool = true,
         redirect!: Bool = true, index!: UInt32 = 0, begins!: Int64 = 0, ends!: Int64 = -1, gauge!: Bool = false,
         precise!: Bool = false, token!: String = "", priority!: UInt32 = 0,extras!: HashMap<String, String> = HashMap<String, String>()
@@ -281,23 +414,21 @@ public class Config {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
-
-### var action
+**Initial Version:** 22### var action
 
 ```cangjie
 public var action: Action
 ```
 
-**Function:** Task operation option. UPLOAD indicates an upload task, DOWNLOAD indicates a download task.
+**Function:** Task operation option, where UPLOAD indicates an upload task and DOWNLOAD indicates a download task.
 
 **Type:** [Action](#enum-action)
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Since:** 22
 
 ### var begins
 
@@ -305,15 +436,15 @@ public var action: Action
 public var begins: Int64
 ```
 
-**Function:** File starting point, typically used for resumable transfers. Default value is 0 (inclusive). For downloads, it specifies the starting position when requesting to read the server file (setting the "Range" option in HTTP protocol). For uploads, it is read at upload start.
+**Function:** File starting point, typically used for resumable transfers. Default value is 0 (inclusive range). For downloads, it sets the starting position for reading from the server (via HTTP "Range" header). For uploads, it specifies the starting read position at upload initiation.
 
 **Type:** Int64
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Since:** 22
 
 ### var data
 
@@ -321,15 +452,15 @@ public var begins: Int64
 public var data:?ConfigData
 ```
 
-**Function:** For downloads, data is of string type (typically JSON, where objects will be converted to JSON text), default is empty. For uploads, data is an array of form items Array\<FormItem>, default is empty.
+**Function:** For downloads, `data` is of string type (typically JSON; objects will be converted to JSON text), defaulting to empty. For uploads, `data` is an array of form items (Array\<FormItem>), defaulting to empty.
 
 **Type:** ?[ConfigData](#enum-configdata)
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Since:** 22
 
 ### var description
 
@@ -337,15 +468,15 @@ public var data:?ConfigData
 public var description: String
 ```
 
-**Function:** Detailed information about the task, with a maximum length of 1024 characters. Default is an empty string.
+**Function:** Detailed information about the task, with a maximum length of 1024 characters. Default value is an empty string.
 
 **Type:** String
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Since:** 22
 
 ### var ends
 
@@ -353,15 +484,15 @@ public var description: String
 public var ends: Int64
 ```
 
-**Function:** File ending point, typically used for resumable transfers. Default value is -1 (inclusive). For downloads, it specifies the ending position when requesting to read the server file (setting the "Range" option in HTTP protocol). For uploads, it is read at upload completion.
+**Function:** File ending point, typically used for resumable transfers. Default value is -1 (inclusive range). For downloads, it sets the ending position for reading from the server (via HTTP "Range" header). For uploads, it specifies the ending read position during upload.
 
 **Type:** Int64
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Since:** 22
 
 ### var extras
 
@@ -369,15 +500,15 @@ public var ends: Int64
 public var extras: HashMap<String, String>
 ```
 
-**Function:** Additional features of the configuration. Default is empty.
+**Function:** Additional configuration features, defaulting to empty.
 
 **Type:** HashMap\<String,String>
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21
+**Since:** 22
 
 ### var gauge
 
@@ -385,29 +516,35 @@ public var extras: HashMap<String, String>
 public var gauge: Bool
 ```
 
-**Function:** Progress notification strategy for background tasks, applicable only to background tasks. Default is false. false: Only completion or failure notifications. true: Notifications for each progress completion or failure.
+**Function:** Progress notification policy for background tasks (applies only to background tasks). Default is false.  
+- `false`: Notifications only upon completion or failure.  
+- `true`: Notifications for every progress update, completion, or failure.
 
 **Type:** Bool
 
-**Read/Write Capability:** Read/Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since Version:** 21### var headers
+**Since:** 22
+
+### var headers
 
 ```cangjie
 public var headers: HashMap<String, String>
 ```
 
-**Function:** Adds HTTP protocol headers to be included in the task. For upload requests, the default Content-Type is "multipart/form-data". For download requests, the default Content-Type is "application/json".
+**Function:** HTTP headers to include with the task.  
+- For uploads, default Content-Type is "multipart/form-data".  
+- For downloads, default Content-Type is "application/json".
 
 **Type:** HashMap
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var index
 
@@ -415,15 +552,15 @@ public var headers: HashMap<String, String>
 public var index: UInt32
 ```
 
-**Function:** The path index of the task, typically used for task resumption. Default is 0.
+**Function:** Task path index, typically used for resumable transfers. Default is 0.
 
 **Type:** UInt32
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var metered
 
@@ -431,17 +568,17 @@ public var index: UInt32
 public var metered: Bool
 ```
 
-**Function:** Whether to allow operation in metered networks. Default is false.  
-- true: Yes  
-- false: No  
+**Function:** Whether to allow operation on metered networks. Default is false.  
+- `true`: Allowed  
+- `false`: Not allowed
 
 **Type:** Bool
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var method
 
@@ -449,17 +586,17 @@ public var metered: Bool
 public var method:?String
 ```
 
-**Function:** The HTTP standard method for upload or download, including GET, POST, and PUT (case-insensitive).  
-- For uploads: Use PUT or POST, default is PUT.  
-- For downloads: Use GET or POST, default is GET.  
+**Function:** HTTP method for upload/download (case-insensitive): GET, POST, or PUT.  
+- Uploads default to PUT.  
+- Downloads default to GET.
 
 **Type:** ?String
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var mode
 
@@ -467,15 +604,15 @@ public var method:?String
 public var mode: Mode
 ```
 
-**Function:** Task mode, default is background task.
+**Function:** Task mode, defaulting to background task.
 
 **Type:** [Mode](#enum-mode)
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var network
 
@@ -487,11 +624,11 @@ public var network: Network
 
 **Type:** [Network](#enum-network)
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var overwrite
 
@@ -499,17 +636,17 @@ public var network: Network
 public var overwrite: Bool
 ```
 
-**Function:** Solution for existing paths during download. Default is false.  
-- true: Overwrite existing files.  
-- false: Download fails.  
+**Function:** Behavior when download path already exists. Default is false.  
+- `true`: Overwrite existing file.  
+- `false`: Download fails.
 
 **Type:** Bool
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var precise
 
@@ -517,15 +654,15 @@ public var overwrite: Bool
 public var precise: Bool
 ```
 
-**Function:** If set to true, the task fails when file size cannot be obtained during upload/download. If set to false, the task continues with file size set to -1. Default is false.
+**Function:** If true, task fails when file size cannot be determined during upload/download. If false, task continues with file size set to -1. Default is false.
 
 **Type:** Bool
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var priority
 
@@ -533,15 +670,15 @@ public var precise: Bool
 public var priority: UInt32
 ```
 
-**Function:** Task priority. For tasks with the same mode, a lower number indicates higher priority. Default is 0.
+**Function:** Task priority. Lower numbers indicate higher priority for tasks with the same mode. Default is 0.
 
 **Type:** UInt32
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var redirect
 
@@ -549,17 +686,17 @@ public var priority: UInt32
 public var redirect: Bool
 ```
 
-**Function:** Whether to allow redirection. Default is true.  
-- true: Yes  
-- false: No  
+**Function:** Whether to allow redirects. Default is true.  
+- `true`: Allowed  
+- `false`: Not allowed
 
 **Type:** Bool
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var retry
 
@@ -568,16 +705,16 @@ public var retry: Bool
 ```
 
 **Function:** Whether to enable automatic retry for background tasks (applies only to background tasks). Default is true.  
-- true: Yes  
-- false: No  
+- `true`: Enabled  
+- `false`: Disabled
 
 **Type:** Bool
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var roaming
 
@@ -585,17 +722,17 @@ public var retry: Bool
 public var roaming: Bool
 ```
 
-**Function:** Whether to allow operation in roaming networks. Default is true.  
-- true: Yes  
-- false: No  
+**Function:** Whether to allow operation on roaming networks. Default is true.  
+- `true`: Allowed  
+- `false`: Not allowed
 
 **Type:** Bool
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var saveas
 
@@ -604,19 +741,19 @@ public var saveas:String
 ```
 
 **Function:** Path to save downloaded files, including:  
-- Relative path: Located under the caller's cache path, e.g., "./xxx/yyy/zzz.html", "xxx/yyy/zzz.html".  
-- Internal protocol path: Only supports "internal://cache/" and its subpaths, e.g., "internal://cache/path/to/file.txt".  
-- Application sandbox directory: Only supports base and its subdirectories, e.g., "/data/storage/el1/base/path/to/file.txt".  
-- File protocol path: Must match the application package name, only supports base and its subdirectories, e.g., "file://com.example.test/data/storage/el2/base/file.txt".  
-Default is a relative path, i.e., downloaded to the caller's current cache path.
+- Relative paths (under caller's cache directory), e.g., `"./xxx/yyy/zzz.html"`, `"xxx/yyy/zzz.html"`.  
+- `internal://` protocol paths (only under `internal://cache/` and subpaths), e.g., `"internal://cache/path/to/file.txt"`.  
+- Application sandbox paths (only under `base` and subdirectories), e.g., `"/data/storage/el1/base/path/to/file.txt"`.  
+- `file://` protocol paths (must match app package name, only under `base` and subdirectories), e.g., `"file://com.example.test/data/storage/el2/base/file.txt"`.  
+Defaults to relative path (caller's current cache directory).
 
 **Type:** ?String
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var title
 
@@ -624,15 +761,15 @@ Default is a relative path, i.e., downloaded to the caller's current cache path.
 public var title:?String
 ```
 
-**Function:** Task title, with a maximum length of 256 characters. Default is lowercase "upload" or "download", matching the action above.
+**Function:** Task title, with a maximum length of 256 characters. Defaults to lowercase "upload" or "download" (matching `action`).
 
 **Type:** ?String
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var token
 
@@ -640,15 +777,15 @@ public var title:?String
 public var token: ?String
 ```
 
-**Function:** When a task is created with a token, the token must be provided during normal queries; otherwise, retrieval via query will fail. Minimum length is 8 bytes, maximum is 2048 bytes. Default is empty.
+**Function:** When a task is created with a token, this token is required for normal queries; otherwise, the task cannot be retrieved. Minimum length is 8 bytes; maximum is 2048 bytes. Default is empty.
 
 **Type:** String
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var url
 
@@ -656,26 +793,25 @@ public var token: ?String
 public var url: String
 ```
 
-**Function:** Resource address, with a maximum length of 2048 characters.
+**Function:** Resource URL, with a maximum length of 2048 characters.
 
 **Type:** String
 
-**Read/Write:** Read-Write
+**Read/Write Permission:** Readable and Writable
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### init(Action, String, ?String, String, Mode, Bool, ?String, HashMap\<String,String>, ?ConfigData, String, Network, Bool, Bool, Bool, Bool, UInt32, Int64, Int64, Bool, Bool, ?String, UInt32, HashMap\<String,String>)
 
 ```cangjie
-
 public init(action: Action, url: String, title!: ?String = None, description!: String = "",
     mode!: Mode = Mode.Background, overwrite!: Bool = false, method!: ?String = None,
-    headers!: HashMap<String, String> = HashMap<String, String>(), data!: ?ConfigData = None, saveas!: ?String = None,
+    headers!: HashMap<String, String> = HashMap<String, String>(), data!: ?ConfigData = None, saveas!: ?String = "./",
     network!: Network = Network.AnyType, metered!: Bool = false, roaming!: Bool = true, retry!: Bool = true,
     redirect!: Bool = true, index!: UInt32 = 0, begins!: Int64 = 0, ends!: Int64 = -1, gauge!: Bool = false,
-    precise!: Bool = false, token!: String = "", priority!: UInt32 = 0,extras!: HashMap<String, String> = HashMap<String, String>()
+    precise!: Bool = false, token!: ?String = None, priority!: UInt32 = 0,extras!: HashMap<String, String> = HashMap<String, String>()
 )
 ```
 
@@ -683,37 +819,70 @@ public init(action: Action, url: String, title!: ?String = None, description!: S
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| action | [Action](#enum-action) | Yes | - | **Named parameter.** Task operation option.<br>- UPLOAD: Upload task.<br>- DOWNLOAD: Download task. |
-| url | String | Yes | - | **Named parameter.** Resource address, max length 2048 characters. |
-| title | ?String | No | None | **Named parameter.** Task title, max length 256 characters. Default is lowercase "upload" or "download", matching the action. |
-| description | String | No | "" | **Named parameter.** Task details, max length 1024 characters. Default is empty string. |
-| mode | [Mode](#enum-mode) | No | Mode.Background | **Named parameter.** Task mode, default is background task. |
-| overwrite | Bool | No | false | **Named parameter.** Solution for existing paths during download.<br>- true: Overwrite existing files.<br>- false: Download fails. |
-| method | ?String | No | None | **Named parameter.** HTTP standard method for upload/download (GET, POST, PUT, case-insensitive).<br>- Upload: PUT or POST, default is PUT.<br>- Download: GET or POST, default is GET. |
-| headers | HashMap\<String,String> | No | HashMap<String,String>() | **Named parameter.** HTTP headers to include in the task.<br>- Upload: Default Content-Type is "multipart/form-data".<br>- Download: Default Content-Type is "application/json". |
-| data | ?[ConfigData](#enum-configdata) | No | None | **Named parameter.**<br>- Download: data is string type (typically JSON; objects are converted to JSON text). Default is empty.<br>- Upload: data is an array of form items Array&lt;FormItem&gt;. Default is empty. |
-| saveas | ?String | No | None | **Named parameter.** Path to save downloaded files, including:<br>- Relative path: Under caller's cache path, e.g., "./xxx/yyy/zzz.html".<br>- Internal path: Only "internal://cache/" and subpaths, e.g., "internal://cache/path/to/file.txt".<br>- Sandbox path: Only base and subdirectories, e.g., "/data/storage/el1/base/path/to/file.txt".<br>- File path: Must match package name, e.g., "file://com.example.test/data/storage/el2/base/file.txt".<br>Default is relative path (caller's cache path). |
-| network | [Network](#enum-network) | No | Network.AnyType | **Named parameter.** Network options (WIFI or CELLULAR). Default is ANY (WIFI or CELLULAR). |
-| metered | Bool | No | false | **Named parameter.** Allow operation in metered networks.<br>- true: Yes<br>- false: No |
-| roaming | Bool | No | true | **Named parameter.** Allow operation in roaming networks.<br>- true: Yes<br>- false: No |
-| retry | Bool | No | true | **Named parameter.** Enable auto-retry for background tasks.<br>- true: Yes<br>- false: No |
-| redirect | Bool | No | true | **Named parameter.** Allow redirection.<br>- true: Yes<br>- false: No |
-| index | UInt32 | No | 0 | **Named parameter.** Task path index (for resumption). Default is 0. |
-| begins | Int64 | No | 0 | **Named parameter.** File start point (for resumption). Default is 0 (inclusive).<br>- Download: HTTP "Range" header start position.<br>- Upload: Read at upload start. |
-| ends | Int64 | No | -1 | **Named parameter.** File end point (for resumption). Default is -1 (inclusive).<br>- Download: HTTP "Range" header end position.<br>- Upload: Read at upload end. |
-| gauge | Bool | No | false | **Named parameter.** Background task progress notification policy.<br>- false: Only completion/failure notifications.<br>- true: Notify for every progress update. |
-| precise | Bool | No | false | **Named parameter.**<br>- true: Task fails if file size cannot be obtained.<br>- false: Task continues with size -1. |
-| token | String | No | "" | **Named parameter.** Required for querying tasks created with a token. Min 8 bytes, max 2048 bytes. Default is empty. |
-| priority | UInt32 | No | 0 | **Named parameter.** Task priority (lower number = higher priority). Default is 0. |
-| extras | HashMap\<String,String> | No | HashMap\<String, String>() | **Named parameter.** Additional configuration. Default is empty. |
+| Parameter    | Type                            | Required | Default Value              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :----------- | :------------------------------ | :------- | :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| action       | [Action](#enum-action)          | Yes      | -                          | **Named parameter.** Task operation option.<br>- `UPLOAD`: Upload task.<br>- `DOWNLOAD`: Download task.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| url          | String                          | Yes      | -                          | **Named parameter.** Resource URL, with a maximum length of 2048 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| title        | ?String                         | No       | None                       | **Named parameter.** Task title, with a maximum length of 256 characters. Defaults to lowercase "upload" or "download" (matching `action`).                                                                                                                                                                                                                                                                                                                                                                   |
+| description  | String                          | No       | ""                         | **Named parameter.** Detailed task information, with a maximum length of 1024 characters. Default is empty string.                                                                                                                                                                                                                                                                                                                                                                                            |
+| mode         | [Mode](#enum-mode)              | No       | Mode.Background            | **Named parameter.** Task mode, defaulting to background task.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| overwrite    | Bool                            | No       | false                      | **Named parameter.** Behavior when download path already exists.<br>- `true`: Overwrite existing file.<br>- `false`: Download fails.                                                                                                                                                                                                                                                                                                                                                                           |
+| method       | ?String                         | No       | None                       | **Named parameter.** HTTP method for upload/download (case-insensitive): GET, POST, or PUT.<br>- Uploads default to PUT.<br>- Downloads default to GET.                                                                                                                                                                                                                                                                                                                                                         |
+| headers      | HashMap\<String,String>         | No       | HashMap<String,String>()   | **Named parameter.** HTTP headers to include with the task.<br>- For uploads, default Content-Type is "multipart/form-data".<br>- For downloads, default Content-Type is "application/json".                                                                                                                                                                                                                                                                                                                    |
+| data         | ?[ConfigData](#enum-configdata) | No       | None                       | **Named parameter.**<br>- For downloads: String type (typically JSON; objects converted to JSON text), defaulting to empty.<br>- For uploads: Array of form items (Array\<FormItem>), defaulting to empty.                                                                                                                                                                                                                                                                                                     |
+| saveas       | ?String                         | No       | "./"                       | **Named parameter.** Path to save downloaded files:<br>- Relative paths (under caller's cache directory), e.g., `"./xxx/yyy/zzz.html"`, `"xxx/yyy/zzz.html"`.<br>- `internal://` protocol paths (only under `internal://cache/` and subpaths), e.g., `"internal://cache/path/to/file.txt"`.<br>- Application sandbox paths (only under `base` and subdirectories), e.g., `"/data/storage/el1/base/path/to/file.txt"`.<br>- `file://` protocol paths (must match app package name, only under `base` and subdirectories), e.g., `"file://com.example.test/data/storage/el2/base/file.txt"`.<br>Defaults to relative path (caller's current cache directory). |
+| network      | [Network](#enum-network)        | No       | Network.AnyType            | **Named parameter.** Network options, supporting WIFI and CELLULAR. Default is ANY (WIFI or CELLULAR).                                                                                                                                                                                                                                                                                                                                                                                                         |
+| metered      | Bool                            | No       | false                      | **Named parameter.** Whether to allow operation on metered networks.<br>- `true`: Allowed<br>- `false`: Not allowed                                                                                                                                                                                                                                                                                                                                                                                           |
+| roaming      | Bool                            | No       | true                       | **Named parameter.** Whether to allow operation on roaming networks.<br>- `true`: Allowed<br>- `false`: Not allowed                                                                                                                                                                                                                                                                                                                                                                                             |
+| retry        | Bool                            | No       | true                       | **Named parameter.** Whether to enable automatic retry for background tasks (applies only to background tasks).<br>- `true`: Enabled<br>- `false`: Disabled                                                                                                                                                                                                                                                                                                                                                     |
+| redirect     | Bool                            | No       | true                       | **Named parameter.** Whether to allow redirects.<br>- `true`: Allowed<br>- `false`: Not allowed                                                                                                                                                                                                                                                                                                                                                                                                                |
+| index        | UInt32                          | No       | 0                          | **Named parameter.** Task path index, typically used for resumable transfers. Default is 0.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| begins       | Int64                           | No       | 0                          | **Named parameter.** File starting point for resumable transfers (inclusive range). Default is 0.<br>- For downloads: Starting position for reading from server (HTTP "Range" header).<br>- For uploads: Starting read position at upload initiation.                                                                                                                                                                                                                                                            |
+| ends         | Int64                           | No       | -1                         | **Named parameter.** File ending point for resumable transfers (inclusive range). Default is -1.<br>- For downloads: Ending position for reading from server (HTTP "Range" header).<br>- For uploads: Ending read position during upload.                                                                                                                                                                                                                                                                       |
+| gauge        | Bool                            | No       | false                      | **Named parameter.** Progress notification policy for background tasks (applies only to background tasks).<br>- `false`: Notifications only upon completion or failure.<br>- `true`: Notifications for every progress update, completion, or failure.                                                                                                                                                                                                                                                           |
+| precise      | Bool                            | No       | false                      | **Named parameter.**<br>- If `true`, task fails when file size cannot be determined during upload/download.<br>- If `false`, task continues with file size set to -1.<br>Default is `false`.                                                                                                                                                                                                                                                                                                                  |
+| token        | ?String                         | No       | None                       | **Named parameter.** When a task is created with a token, this token is required for normal queries; otherwise, the task cannot be retrieved. Minimum length is 8 bytes; maximum is 2048 bytes. Default is empty.                                                                                                                                                                                                                                                                                               |
+| priority     | UInt32                          | No       | 0                          | **Named parameter.** Task priority. Lower numbers indicate higher priority for tasks with the same mode. Default is 0.                                                                                                                                                                                                                                                                                                                                                                                         |
+| extras       | HashMap\<String,String>         | No       | HashMap\<String, String>() | **Named parameter.** Additional configuration features, defaulting to empty.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-## class FileSpec
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let config = Config(
+        action = Action.Download,
+        url = "https://example.com/file.txt",
+        title = "Sample Download Task",
+        description = "This is a sample download task",
+        mode = Mode.Background,
+        overwrite = true,
+        network = Network.Wifi,
+        metered = false,
+        roaming = true,
+        retry = true,
+        redirect = true,
+        gauge = false,
+        precise = false,
+        priority = 0
+    )
+    Hilog.info(0, "cangjie_ohos_test", "Successfully created configuration object")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class FileSpec
 
 ```cangjie
 public class FileSpec {
@@ -735,7 +904,7 @@ public class FileSpec {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var extras
 
@@ -743,15 +912,15 @@ public class FileSpec {
 public var extras: HashMap<String, String>
 ```
 
-**Function:** Additional file information.
+**Function:** Additional content of file information.
 
 **Type:** HashMap\<String,String>
 
-**Read/Write:** Read-Write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var filename
 
@@ -759,15 +928,15 @@ public var extras: HashMap<String, String>
 public var filename:?String
 ```
 
-**Function:** Filename, default is derived from the path.
+**Function:** Filename, default value obtained from path.
 
 **Type:** ?String
 
-**Read/Write:** Read-Write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var mimeType
 
@@ -775,36 +944,35 @@ public var filename:?String
 public var mimeType:?String
 ```
 
-**Function:** File MIME type, derived from the filename.
+**Function:** File's mimetype obtained from filename.
 
 **Type:** ?String
 
-**Read/Write:** Read-Write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var path
 
 ```cangjie
-public var path: String
+public var path:String
 ```
 
-**Function:** File path: Relative path under the caller's cache folder or public user files (e.g., "file://media/Photo/path/to/file.img"). Only supports foreground tasks.
+**Function:** File path.
 
 **Type:** String
 
-**Read/Write:** Read-Write
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, ?String, ?String, HashMap\<String,String>)
 
 ```cangjie
-
 public init(
     path: String,
     mimeType!: ?String = None,
@@ -817,16 +985,95 @@ public init(
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| path | String | Yes | - | **Named parameter.** File path:<br>- Relative path under caller's cache folder.<br>- Public user files (e.g., "file://media/Photo/path/to/file.img"). Only supports foreground tasks. |
-| mimeType | ?String | No | None | **Named parameter.** File MIME type, derived from filename. |
-| filename | ?String | No | None | **Named parameter.** Filename, default is derived from path. |
-| extras | HashMap\<String,String> | No | HashMap<String,String>() | **Named parameter.** Additional file information. |## class Filter
+| Parameter | Type                    | Required | Default Value               | Description                                                                                                                                             |
+| :-------- | :---------------------- | :------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| path      | String                  | Yes      | -                           | **Named parameter.** File path:<br>- Relative path under the caller's cache folder.<br>- Public user files like "file://media/Photo/path/to/file.img". Only supports foreground tasks. |
+| mimeType  | ?String                 | No       | None                        | **Named parameter.** File's mimetype obtained from filename.                                                                                             |
+| filename  | ?String                 | No       | None                        | **Named parameter.** Filename, default value obtained from path.                                                                                        |
+| extras    | HashMap\<String,String> | No       | HashMap<String,String>()    | **Named parameter.** Additional content of file information.                                                                                            |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let fileSpec = FileSpec(
+        path = "./example.txt",
+        mimeType = "text/plain",
+        filename = "example.txt"
+    )
+    Hilog.info(0, "cangjie_ohos_test", "Successfully created file specification object")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+## enum Network
+
+```cangjie
+public enum Network <: Equatable<Network> & ToString {
+    | AnyType
+    | Wifi
+    | Cellular
+    | ...
+}
+```
+
+**Function:** Defines network options. When network conditions don't meet settings, pending tasks will wait for execution, while executing tasks will fail or pause.
+
+**System Capability:** SystemCapability.Request.FileTransferAgent
+
+**Since:** 22
+
+### AnyType
+
+```cangjie
+AnyType
+```
+
+**Function:** Indicates no restriction on network type.
+
+**System Capability:** SystemCapability.Request.FileTransferAgent
+
+**Since:** 22
+
+### WIFI	
+
+```cangjie
+WIFI	
+```
+
+**Function:** Indicates wireless network.
+
+**System Capability:** SystemCapability.Request.FileTransferAgent
+
+**Since:** 22
+
+### CELLULAR		
+
+```cangjie
+CELLULAR	
+```
+
+**Function:** Indicates cellular data network.
+
+**System Capability:** SystemCapability.Request.FileTransferAgent
+
+**Since:** 22
+
+## class Filter
 
 ```cangjie
 public class Filter {
@@ -846,7 +1093,7 @@ public class Filter {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var action
 
@@ -854,15 +1101,15 @@ public class Filter {
 public var action:?Action
 ```
 
-**Function:** Task operation options. UPLOAD indicates upload tasks. DOWNLOAD indicates download tasks.
+**Function:** Task operation option. UPLOAD indicates upload task. DOWNLOAD indicates download task.
 
 **Type:** ?[Action](#enum-action)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var after
 
@@ -870,15 +1117,15 @@ public var action:?Action
 public var after:?Int64
 ```
 
-**Function:** Start Unix timestamp (milliseconds), default value is the current time minus 24 hours.
+**Function:** Start Unix timestamp (milliseconds), default value is call time minus 24 hours.
 
 **Type:** ?Int64
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var before
 
@@ -886,15 +1133,15 @@ public var after:?Int64
 public var before:?Int64
 ```
 
-**Function:** End Unix timestamp (milliseconds), default value is the current time.
+**Function:** End Unix timestamp (milliseconds), default is call time.
 
 **Type:** ?Int64
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var mode
 
@@ -902,15 +1149,15 @@ public var before:?Int64
 public var mode:?Mode
 ```
 
-**Function:** Task mode. FOREGROUND indicates foreground tasks. BACKGROUND indicates background tasks. If not specified, all tasks will be queried.
+**Function:** Task mode. FOREGROUND indicates foreground task. BACKGROUND indicates background task. If unspecified, queries all tasks.
 
 **Type:** ?[Mode](#enum-mode)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var state
 
@@ -918,20 +1165,19 @@ public var mode:?Mode
 public var state:?State
 ```
 
-**Function:** Specifies the state of the task.
+**Function:** Specifies task state.
 
 **Type:** ?[State](#enum-state)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### init(?Int64, ?Int64, ?State, ?Action, ?Mode)
 
 ```cangjie
-
 public init(before!: ?Int64 = None, after!: ?Int64 = None, state!: ?State = None,
     action!: ?Action = None, mode!: ?Mode = None
 )
@@ -941,17 +1187,43 @@ public init(before!: ?Int64 = None, after!: ?Int64 = None, state!: ?State = None
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| before | ?Int64 | No | None | **Named parameter.** End Unix timestamp (milliseconds), default value is the current time. |
-| after | ?Int64 | No | None | **Named parameter.** Start Unix timestamp (milliseconds), default value is the current time minus 24 hours. |
-| state | ?[State](#enum-state) | No | None | **Named parameter.** Specifies the state of the task. |
-| action | ?[Action](#enum-action) | No | None | **Named parameter.** Task operation options.<br>- UPLOAD indicates upload tasks.<br>- DOWNLOAD indicates download tasks. |
-| mode | ?[Mode](#enum-mode) | No | None | **Named parameter.** Task mode.<br>- FOREGROUND indicates foreground tasks.<br>- BACKGROUND indicates background tasks.<br>- If not specified, all tasks will be queried. |
+| Parameter | Type                    | Required | Default Value | Description                                                                                                                                             |
+| :-------- | :---------------------- | :------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| before    | ?Int64                  | No       | None          | **Named parameter.** End Unix timestamp (milliseconds), default is call time.                                                                           |
+| after     | ?Int64                  | No       | None          | **Named parameter.** Start Unix timestamp (milliseconds), default value is call time minus 24 hours.                                                    |
+| state     | ?[State](#enum-state)   | No       | None          | **Named parameter.** Specifies task state.                                                                                                              |
+| action    | ?[Action](#enum-action) | No       | None          | **Named parameter.** Task operation option.<br>-UPLOAD indicates upload task.<br>-DOWNLOAD indicates download task.                                     |
+| mode      | ?[Mode](#enum-mode)     | No       | None          | **Named parameter.** Task mode.<br>-FOREGROUND indicates foreground task.<br>-BACKGROUND indicates background task.<br>-If unspecified, queries all tasks. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let filter = Filter(
+        before = None,
+        after = None,
+        state = State.Running,
+        action = Action.Download,
+        mode = Mode.Background
+    )
+    Hilog.info(0, "cangjie_ohos_test", "Successfully created filter object")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## class FormItem
 
@@ -968,7 +1240,7 @@ public class FormItem {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var name
 
@@ -980,11 +1252,11 @@ public var name: String
 
 **Type:** String
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var value
 
@@ -996,16 +1268,15 @@ public var value: FormItemValue
 
 **Type:** [FormItemValue](#enum-formitemvalue)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, FormItemValue)
 
 ```cangjie
-
 public init(name: String, value: FormItemValue)
 ```
 
@@ -1013,16 +1284,37 @@ public init(name: String, value: FormItemValue)
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| name | String | Yes | - | **Named parameter.** Form parameter name. |
-| value | [FormItemValue](#enum-formitemvalue) | Yes | - | **Named parameter.** Form parameter value. |
+| Parameter | Type                                 | Required | Default Value | Description                     |
+| :-------- | :----------------------------------- | :------- | :------------ | :------------------------------- |
+| name      | String                               | Yes      | -             | **Named parameter.** Form parameter name. |
+| value     | [FormItemValue](#enum-formitemvalue) | Yes      | -             | **Named parameter.** Form parameter value. |
 
-## class HttpResponse
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let formItem = FormItem(
+        name = "exampleField",
+        value = FormItemValue.StringItem("exampleValue")
+    )
+    Hilog.info(0, "cangjie_ohos_test", "Successfully created form item object")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class HttpResponse
 
 ```cangjie
 public class HttpResponse {
@@ -1037,7 +1329,7 @@ public class HttpResponse {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let headers
 
@@ -1049,11 +1341,11 @@ public let headers: HashMap<String, Array<String>>
 
 **Type:** HashMap\<String,Array\<String>>
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let reason
 
@@ -1061,15 +1353,15 @@ public let headers: HashMap<String, Array<String>>
 public let reason: String
 ```
 
-**Function:** HTTP response reason.
+**Function:** HTTP response reason phrase.
 
 **Type:** String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let statusCode
 
@@ -1081,11 +1373,11 @@ public let statusCode: Int32
 
 **Type:** Int32
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let version
 
@@ -1097,11 +1389,11 @@ public let version: String
 
 **Type:** String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ## class Progress
 
@@ -1119,7 +1411,7 @@ public class Progress {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let extras
 
@@ -1127,15 +1419,15 @@ public class Progress {
 public let extras: HashMap<String, String>
 ```
 
-**Function:** Additional content for interaction, such as headers and body from the server's response.
+**Function:** Additional interaction content, such as headers and body from server responses.
 
 **Type:** HashMap\<String,String>
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let index
 
@@ -1147,11 +1439,11 @@ public let index: UInt32
 
 **Type:** UInt32
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let processed
 
@@ -1163,11 +1455,11 @@ public let processed: Int64
 
 **Type:** Int64
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let sizes
 
@@ -1175,15 +1467,15 @@ public let processed: Int64
 public let sizes: Array<Int64>
 ```
 
-**Function:** Sizes of files in the task, in bytes.
+**Function:** File sizes in the task, in bytes.
 
 **Type:** Array\<Int64>
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let state
 
@@ -1195,11 +1487,11 @@ public let state: State
 
 **Type:** [State](#enum-state)
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ## class Task
 
@@ -1212,11 +1504,11 @@ public class Task {
 }
 ```
 
-**Function:** Upload or download task. Before using this method, you need to obtain a Task object via create.
+**Function:** Upload or download task. Requires obtaining a Task object via create() before use.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### var config
 
@@ -1228,11 +1520,11 @@ public var config: Config
 
 **Type:** [Config](#class-config)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let tid
 
@@ -1240,20 +1532,19 @@ public var config: Config
 public let tid: String
 ```
 
-**Function:** Task ID, which is unique in the system and automatically generated by the system.
+**Function:** Unique task ID automatically generated by the system.
 
 **Type:** String
 
-**Read/Write:** Read-only
+**Access:** Read-only
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, Config)
 
 ```cangjie
-
 public init(tid: String, config: Config)
 ```
 
@@ -1261,19 +1552,44 @@ public init(tid: String, config: Config)
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| tid | String | Yes | - | Task ID, which is unique in the system and automatically generated by the system. |
-| config | [Config](#class-config) | Yes | - | Configuration information for the task. |
+| Parameter | Type                    | Required | Default | Description                                      |
+| :-------- | :---------------------- | :------- | :------ | :----------------------------------------------- |
+| tid       | String                  | Yes      | -       | Unique task ID automatically generated by system |
+| config    | [Config](#class-config) | Yes      | -       | Configuration information for the task           |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.abilityContext
+    let taskId = "example_task_id"
+    let config = Config(
+        action = Action.Download,
+        url = "https://example.com/file.txt"
+    )
+    let task = Task(taskId, config)
+    Hilog.info(0, "cangjie_ohos_test", "Task initialized successfully, Task ID: ${task.tid}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func off(EventCallbackType, ?CallbackObject)
 
 ```cangjie
-
 public func off(event: EventCallbackType, callback!: ?CallbackObject = None): Unit
 ```
 
@@ -1281,19 +1597,52 @@ public func off(event: EventCallbackType, callback!: ?CallbackObject = None): Un
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| event | [EventCallbackType](#enum-eventcallbacktype) | Yes | - | Event type to unsubscribe from.<br>- 'progress' indicates task progress.<br>- 'completed' indicates task completion.<br>- 'failed' indicates task failure.<br>- 'pause' indicates task pause.<br>- 'resume' indicates task resume.<br>- 'remove' indicates task removal.<br>- 'response' indicates task response. |
-| callback | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No | None | **Named parameter.** Callback function to unsubscribe. If this parameter is not specified, all callback functions of the current type will be unsubscribed. |
+| Parameter | Type                                                                               | Required | Default | Description                                                                                                                                                                                                               |
+| :-------- | :--------------------------------------------------------------------------------- | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| event     | [EventCallbackType](#enum-eventcallbacktype)                                       | Yes      | -       | Event type to unsubscribe from:<br>- 'progress': Task progress<br>- 'completed': Task completion<br>- 'failed': Task failure<br>- 'pause': Task pause<br>- 'resume': Task resume<br>- 'remove': Task removal<br>- 'response': Task response |
+| callback  | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No       | None    | **Named parameter.** Callback function to unsubscribe. If omitted, unsubscribes all callbacks of the specified type.                                                                                                     |
 
-### func on(EventCallbackType, Callback1Argument\<HttpResponse>)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
+// main_ability.cj
 
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.abilityContext
+    let taskId = "example_task_id"
+    let config = Config(
+        action = Action.Download,
+        url = "https://example.com/file.txt"
+    )
+    let task = Task(taskId, config)
+
+    // First subscribe to event
+    task.on(EventCallbackType.Progress, (progress) => {
+        Hilog.info(0, "cangjie_ohos_test", "Download progress: ${progress.progress}%")
+    })
+
+    // Then unsubscribe
+    task.off(EventCallbackType.Progress)
+    Hilog.info(0, "cangjie_ohos_test", "Successfully unsubscribed from progress events")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
+
+### func on(EventCallbackType, Callback1Argument<HttpResponse>)
+
+```cangjie
 public func on(event: EventCallbackType, callback: Callback1Argument<HttpResponse>): Unit
 ```
 
@@ -1301,27 +1650,26 @@ public func on(event: EventCallbackType, callback: Callback1Argument<HttpRespons
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| event | [EventCallbackType](#enum-eventcallbacktype) | Yes | - | Event type to subscribe to.<br>- 'response' indicates task response. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<HttpResponse> | Yes | - | Callback method triggered when the related event occurs, returning the data structure of the task response headers. |
+| Parameter | Type                                                                                                   | Required | Default | Description                                                                                     |
+| :-------- | :----------------------------------------------------------------------------------------------------- | :------- | :------ | :---------------------------------------------------------------------------------------------- |
+| event     | [EventCallbackType](#enum-eventcallbacktype)                                                           | Yes      | -       | Event type to subscribe to:<br>- 'response': Task response                                      |
+| callback  | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<HttpResponse> | Yes      | -       | Callback triggered when event occurs, returning the response header data structure.             |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Common Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Error codes below, see [Universal Error Codes](../cj-errorcode-universal.md)
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter verification failed. |
+  | Error Code | Error Message                  |
+  | :--------- | :----------------------------- |
+  | 401        | Parameter verification failed.  |
 
 ### func on(EventCallbackType, Callback1Argument\<Progress>)
 
 ```cangjie
-
 public func on(event: EventCallbackType, callback: Callback1Argument<Progress>): Unit
 ```
 
@@ -1329,118 +1677,169 @@ public func on(event: EventCallbackType, callback: Callback1Argument<Progress>):
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| event | [EventCallbackType](#enum-eventcallbacktype) | Yes | - | Event type to subscribe to.<br>- 'progress' indicates task progress.<br>- 'completed' indicates task completion.<br>- 'failed' indicates task failure.<br>- 'pause' indicates task pause.<br>- 'resume' indicates task resume.<br>- 'remove' indicates task removal. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[Progress](#class-progress)> | Yes | - | Callback method triggered when the related event occurs, returning the data structure of the task information. |
+| Parameter | Type                                                                                                                  | Required | Default | Description                                                                                                                                                                     |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------- | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| event     | [EventCallbackType](#enum-eventcallbacktype)                                                                          | Yes      | -       | Event type to subscribe to:<br>- 'progress': Task progress<br>- 'completed': Task completion<br>- 'failed': Task failure<br>- 'pause': Task pause<br>- 'resume': Task resume<br>- 'remove': Task removal |
+| callback  | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[Progress](#class-progress)> | Yes      | -       | Callback triggered when event occurs, returning the task information data structure.                                                                                            |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Upload/Download Error Codes](./cj-errorcode-request.md).
+- BusinessException: Error codes below, see [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 401 | Parameter verification failed. |
+  | Error Code | Error Message                  |
+  | :--------- | :----------------------------- |
+  | 401        | Parameter verification failed. |
 
 ### func pause()
 
 ```cangjie
-
 public func pause(): Unit
 ```
 
-**Function:** Pauses the task. Can pause background tasks that are waiting/running/retrying.
+**Function:** Pauses a task (can pause waiting/running/retrying background tasks).
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Upload/Download Error Codes](./cj-errorcode-request.md).
+- BusinessException: Error codes below, see [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 13400003 | Task service ability error. |
-  | 21900005 | Operation with wrong task mode. |
-  | 21900007 | Operation with wrong task state. |
+  | Error Code | Error Message                         |
+  | :--------- | :----------------------------------- |
+  | 13400003   | Task service ability error.          |
+  | 21900005   | Operation with wrong task mode.      |
+  | 21900007   | Operation with wrong task state.     |
 
 ### func resume()
 
 ```cangjie
-
 public func resume(): Unit
 ```
 
-**Function:** Restarts the task. Can resume paused background tasks.
+**Function:** Restarts a paused background task.
 
 **Required Permission:** ohos.permission.INTERNET
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Upload/Download Error Codes](./cj-errorcode-request.md).
+- BusinessException: Error codes below, see [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 201 | Permission denied. |
-  | 13400003 | Task service ability error. |
-  | 21900005 | Operation with wrong task mode. |
-  | 21900007 | Operation with wrong task state. |
+  | Error Code | Error Message                         |
+  | :--------- | :----------------------------------- |
+  | 201        | Permission denied.                    |
+  | 13400003   | Task service ability error.          |
+  | 21900005   | Operation with wrong task mode.      |
+  | 21900007   | Operation with wrong task state.     |
 
 ### func start()
 
 ```cangjie
-
 public func start(): Unit
 ```
 
-**Function:** Starts the task. Cannot start an already initialized task. Can start a failed or stopped download task, resuming from the last progress.
+**Function:** Starts a task (cannot restart initialized tasks). Can resume failed/stopped download tasks from last progress.
 
 **Required Permission:** ohos.permission.INTERNET
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Upload/Download Error Codes](./cj-errorcode-request.md).
+- BusinessException: Error codes below, see [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 201 | Permission denied. |
-  | 13400003 | Task service ability error. |
-  | 21900007 | Operation with wrong task state. |
+  | Error Code | Error Message                         |
+  | :--------- | :----------------------------------- |
+  | 201        | Permission denied.                    |
+  | 13400003   | Task service ability error.          |
+  | 21900007   | Operation with wrong task state.     |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.abilityContext
+    let config = Config(
+        action = Action.Download,
+        url = "https://example.com/file.txt"
+    )
+    let task = create(context, config)
+
+    task.start()
+    Hilog.info(0, "cangjie_ohos_test", "Task started successfully")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func stop()
 
 ```cangjie
-
 public func stop(): Unit
 ```
 
-**Function:** Stops the task. Can stop tasks that are running/waiting/retrying.
+**Function:** Stops a task (can stop running/waiting/retrying tasks).
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Upload/Download Error Codes](./cj-errorcode-request.md).
+- BusinessException: Error codes below, see [Upload/Download Error Codes](./cj-errorcode-request.md).
 
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 13400003 | Task service ability error. |
-  | 21900007 | Operation with wrong task state. |## class TaskInfo
+  | Error Code | Error Message                         |
+  | :--------- | :----------------------------------- |
+  | 13400003   | Task service ability error.          |
+  | 21900007   | Operation with wrong task state.     |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.AbilityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.abilityContext
+    let config = Config(
+        action = Action.Download,
+        url = "https://example.com/largefile.zip"
+    )
+    let task = create(context, config)
+
+    task.start()
+    task.stop()
+    Hilog.info(0, "cangjie_ohos_test", "Task stopped successfully")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```## class TaskInfo
 
 ```cangjie
 public class TaskInfo {
@@ -1470,7 +1869,7 @@ public class TaskInfo {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let action
 
@@ -1478,7 +1877,7 @@ public class TaskInfo {
 public let action: Action
 ```
 
-**Function:** Task operation option. UPLOAD indicates upload task. DOWNLOAD indicates download task.
+**Function:** Task operation options. UPLOAD indicates an upload task. DOWNLOAD indicates a download task.
 
 **Type:** [Action](#enum-action)
 
@@ -1486,7 +1885,7 @@ public let action: Action
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let ctime
 
@@ -1502,7 +1901,7 @@ public let ctime: UInt64
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let data
 
@@ -1518,7 +1917,7 @@ public let data: ConfigData
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let description
 
@@ -1534,7 +1933,7 @@ public let description: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let extras
 
@@ -1550,7 +1949,7 @@ public let extras: HashMap<String, String>
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let faults
 
@@ -1566,7 +1965,7 @@ public let faults: Faults
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let gauge
 
@@ -1582,7 +1981,7 @@ public let gauge: Bool
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let mimeType
 
@@ -1598,7 +1997,7 @@ public let mimeType: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let mode
 
@@ -1614,7 +2013,7 @@ public let mode: Mode
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let mtime
 
@@ -1630,7 +2029,7 @@ public let mtime: UInt64
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let priority
 
@@ -1638,7 +2037,7 @@ public let mtime: UInt64
 public let priority: UInt32
 ```
 
-**Function:** Priority in task configuration. Foreground tasks have higher priority than background tasks. For tasks in the same mode, smaller numbers indicate higher priority.
+**Function:** Priority in task configuration. Foreground tasks have higher priority than background tasks. For tasks in the same mode, lower numbers indicate higher priority.
 
 **Type:** UInt32
 
@@ -1646,7 +2045,7 @@ public let priority: UInt32
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let progress
 
@@ -1654,7 +2053,7 @@ public let priority: UInt32
 public let progress: Progress
 ```
 
-**Function:** Progress status of the task.
+**Function:** Progress of task execution.
 
 **Type:** [Progress](#class-progress)
 
@@ -1662,7 +2061,7 @@ public let progress: Progress
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let reason
 
@@ -1678,7 +2077,7 @@ public let reason: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let retry
 
@@ -1694,7 +2093,7 @@ public let retry: Bool
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let saveas
 
@@ -1710,7 +2109,7 @@ public let saveas: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let tid
 
@@ -1726,7 +2125,7 @@ public let tid: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let title
 
@@ -1742,7 +2141,7 @@ public let title: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let tries
 
@@ -1758,7 +2157,7 @@ public let tries: UInt32
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### let url
 
@@ -1766,7 +2165,7 @@ public let tries: UInt32
 public let url: String
 ```
 
-**Function:** URL of the task.
+**Function:** Task URL.
 
 **Type:** String
 
@@ -1774,7 +2173,7 @@ public let url: String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ## enum Action
 
@@ -1790,7 +2189,7 @@ public enum Action <: Equatable<Action> & ToString {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1803,11 +2202,11 @@ public enum Action <: Equatable<Action> & ToString {
 Download
 ```
 
-**Function:** Indicates download task.
+**Function:** Indicates a download task.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Upload
 
@@ -1815,11 +2214,11 @@ Download
 Upload
 ```
 
-**Function:** Indicates upload task.
+**Function:** Indicates an upload task.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(Action)
 
@@ -1827,19 +2226,19 @@ Upload
 public operator func !=(other: Action): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are not equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[Action](#enum-action)|Yes|-|Another enum value.|
+| Parameter | Type                   | Required | Default | Description            |
+| :-------- | :--------------------- | :------- | :------ | :---------------------- |
+| other     | [Action](#enum-action) | Yes      | -       | Another enum value.     |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+| Type | Description                                      |
+| :--- | :----------------------------------------------- |
+| Bool | Returns true if enum values differ, else false. |
 
 ### func ==(Action)
 
@@ -1851,15 +2250,15 @@ public operator func ==(other: Action): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[Action](#enum-action)|Yes|-|Another enum value.|
+| Parameter | Type                   | Required | Default | Description            |
+| :-------- | :--------------------- | :------- | :------ | :---------------------- |
+| other     | [Action](#enum-action) | Yes      | -       | Another enum value.     |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Type | Description                                    |
+| :--- | :--------------------------------------------- |
+| Bool | Returns true if enum values match, else false. |
 
 ### func toString()
 
@@ -1871,9 +2270,9 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|String representation of the current enum.|## enum BroadcastEvent
+| Type   | Description                          |
+| :----- | :----------------------------------- |
+| String | String representation of the enum.  |## enum BroadcastEvent
 
 ```cangjie
 public enum BroadcastEvent <: ToString {
@@ -1882,11 +2281,11 @@ public enum BroadcastEvent <: ToString {
 }
 ```
 
-**Function:** Defines custom system events. Users can obtain these events through the public event interface. Upload/download SAs with the 'ohos.permission.SEND_TASK_COMPLETE_EVENT' permission can intercept event senders by configuring the metadata-referenced secondary configuration file. Common event data is transmitted using the CommonEventData type. The content filling of members differs from the [CommonEventData introduction](./cj-apis-common_event_manager.md), where CommonEventData.code represents task status (currently 0x40 COMPLETE or 0x41 FAILED), and CommonEventData.data represents the task's taskId.
+**Function:** Defines custom system events. Users can obtain this event through the public event interface. Upload/download SAs with the 'ohos.permission.SEND_TASK_COMPLETE_EVENT' permission can intercept other event senders by configuring the metadata-referenced secondary configuration file. Uses the CommonEventData type to transmit public event-related data. The member content differs from the description in [CommonEventData Introduction](./cj-apis-common_event_manager.md), where CommonEventData.code represents the task status (currently 0x40 COMPLETE or 0x41 FAILED), and CommonEventData.data represents the task's taskId.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1902,7 +2301,7 @@ Complete
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func toString()
 
@@ -1914,13 +2313,14 @@ public func toString(): String
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|String representation of the current enumeration.|
+
+| Type   | Description                   |
+| :----- | :--------------------- |
+| String | String representation of the current enumeration. |
 
 ## enum ConfigData
 
@@ -1936,7 +2336,7 @@ public enum ConfigData {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### FormItems(Array\<FormItem>)
 
@@ -1944,11 +2344,11 @@ public enum ConfigData {
 FormItems(Array<FormItem>)
 ```
 
-**Function:** Indicates that during upload, data is an array of form items Array&lt;FormItem&gt;, empty by default.
+**Function:** Indicates that during upload, the data is an array of form items Array&lt;FormItem&gt;, empty by default.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### StringValue(String)
 
@@ -1956,11 +2356,11 @@ FormItems(Array<FormItem>)
 StringValue(String)
 ```
 
-**Function:** During download, data is of string type (typically JSON, with objects converted to JSON text), empty by default.
+**Function:** During download, the data is of string type (typically JSON, where objects will be converted to JSON text), empty by default.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ## enum EventCallbackType
 
@@ -1981,7 +2381,7 @@ public enum EventCallbackType <: Equatable<EventCallbackType> & Hashable & ToStr
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -1999,7 +2399,7 @@ Completed
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Failed
 
@@ -2011,7 +2411,7 @@ Failed
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Pause
 
@@ -2023,7 +2423,7 @@ Pause
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Progress
 
@@ -2035,7 +2435,7 @@ Progress
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Remove
 
@@ -2047,7 +2447,7 @@ Remove
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Response
 
@@ -2059,7 +2459,7 @@ Response
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Resume
 
@@ -2071,7 +2471,7 @@ Resume
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(EventCallbackType)
 
@@ -2083,15 +2483,17 @@ public operator func !=(other: EventCallbackType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[EventCallbackType](#enum-eventcallbacktype)|Yes|-|Callback event|
+
+| Parameter | Type                                         | Required | Default | Description     |
+| :----- | :------------------------------------------- | :--- | :----- | :------- |
+| other  | [EventCallbackType](#enum-eventcallbacktype) | Yes   | -      | Callback event |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if unequal, otherwise false.|
+
+| Type | Description                                      |
+| :--- | :---------------------------------------- |
+| Bool | Returns true if the two enumeration values are unequal, otherwise false. |
 
 ### func ==(EventCallbackType)
 
@@ -2103,15 +2505,17 @@ public operator func ==(other: EventCallbackType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[EventCallbackType](#enum-eventcallbacktype)|Yes|-|Callback event|
+
+| Parameter | Type                                         | Required | Default | Description     |
+| :----- | :------------------------------------------- | :--- | :----- | :------- |
+| other  | [EventCallbackType](#enum-eventcallbacktype) | Yes   | -      | Callback event |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if equal, otherwise false.|
+
+| Type | Description                                    |
+| :--- | :-------------------------------------- |
+| Bool | Returns true if the two enumeration values are equal, otherwise false. |
 
 ### func hashCode()
 
@@ -2123,9 +2527,10 @@ public func hashCode(): Int64
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Int64|Hash value representation of the callback event.|
+
+| Type  | Description                   |
+| :---- | :--------------------- |
+| Int64 | Hash value representation of the callback event. |
 
 ### func toString()
 
@@ -2137,9 +2542,10 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|String representation of the current enumeration.|
+
+| Type   | Description                   |
+| :----- | :--------------------- |
+| String | String representation of the current enumeration. |
 
 ## enum Faults
 
@@ -2158,7 +2564,7 @@ public enum Faults <: ToString {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -2174,7 +2580,7 @@ Disconnected
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Fsio
 
@@ -2182,11 +2588,11 @@ Disconnected
 Fsio
 ```
 
-**Function:** Indicates file system I/O errors (e.g., open/lookup/read/write/close operations).
+**Function:** Indicates file system I/O errors, such as open/lookup/read/write/close operations.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Others
 
@@ -2198,7 +2604,7 @@ Others
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Protocol
 
@@ -2206,11 +2612,11 @@ Others
 Protocol
 ```
 
-**Function:** Indicates protocol errors (e.g., server internal error 500, unprocessable data range 416).
+**Function:** Indicates protocol errors, e.g., server internal errors (500), unprocessable data ranges (416), etc.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Timeout
 
@@ -2222,7 +2628,7 @@ Timeout
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func toString()
 
@@ -2234,9 +2640,10 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|String representation of the current enumeration.|
+
+| Type   | Description                   |
+| :----- | :--------------------- |
+| String | String representation of the current enumeration. |
 
 ## enum FormItemValue
 
@@ -2249,11 +2656,11 @@ public enum FormItemValue {
 }
 ```
 
-**Function:** Enumeration type for form item file information.
+**Function:** Enumeration type for file information in form items.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### FileItem(FileSpec)
 
@@ -2265,7 +2672,7 @@ FileItem(FileSpec)
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### FileItemArray(Array\<FileSpec>)
 
@@ -2277,7 +2684,7 @@ FileItemArray(Array<FileSpec>)
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### StringItem(String)
 
@@ -2289,7 +2696,7 @@ StringItem(String)
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21## enum Mode
+**Since:** 22## enum Mode
 
 ```cangjie
 public enum Mode <: Equatable<Mode> & ToString{
@@ -2303,7 +2710,7 @@ public enum Mode <: Equatable<Mode> & ToString{
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -2320,7 +2727,7 @@ Background
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Foreground
 
@@ -2332,7 +2739,7 @@ Foreground
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(Mode)
 
@@ -2344,15 +2751,17 @@ public operator func !=(other: Mode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[Mode](#enum-mode)|Yes|-|Mode status|
+
+| Parameter | Type               | Required | Default | Description     |
+| :-------- | :----------------- | :------- | :------ | :-------------- |
+| other     | [Mode](#enum-mode) | Yes      | -       | Mode state      |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise false.|
+
+| Type | Description                                      |
+| :--- | :---------------------------------------------- |
+| Bool | Returns true if enum values differ, else false. |
 
 ### func ==(Mode)
 
@@ -2364,29 +2773,17 @@ public operator func ==(other: Mode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[Mode](#enum-mode)|Yes|-|Mode status|
+
+| Parameter | Type               | Required | Default | Description     |
+| :-------- | :----------------- | :------- | :------ | :-------------- |
+| other     | [Mode](#enum-mode) | Yes      | -       | Mode state      |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise false.|
 
-### func toString()
-
-```cangjie
-public func toString(): String
-```
-
-**Function:** Gets the string representation of the current enum.
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|String|The string representation of the current enum.|
+| Type | Description                                    |
+| :--- | :-------------------------------------------- |
+| Bool | Returns true if enum values match, else false. |
 
 ## enum Network
 
@@ -2399,11 +2796,11 @@ public enum Network <: Equatable<Network> & ToString {
 }
 ```
 
-**Function:** Defines network options. When network conditions don't meet the settings, pending tasks wait for execution while executing tasks fail/pause.
+**Function:** Defines network options. When network conditions are unmet, queued tasks await execution while active tasks fail/pause.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -2420,7 +2817,7 @@ AnyType
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Cellular
 
@@ -2432,7 +2829,7 @@ Cellular
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Wifi
 
@@ -2444,7 +2841,7 @@ Wifi
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(Network)
 
@@ -2456,15 +2853,17 @@ public operator func !=(other: Network): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[Network](#enum-network)|Yes|-|Network status|
+
+| Parameter | Type                     | Required | Default | Description     |
+| :-------- | :----------------------- | :------- | :------ | :-------------- |
+| other     | [Network](#enum-network) | Yes      | -       | Network state   |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise false.|
+
+| Type | Description                                      |
+| :--- | :---------------------------------------------- |
+| Bool | Returns true if enum values differ, else false. |
 
 ### func ==(Network)
 
@@ -2476,15 +2875,17 @@ public operator func ==(other: Network): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|other|[Network](#enum-network)|Yes|-|Network status|
+
+| Parameter | Type                     | Required | Default | Description     |
+| :-------- | :----------------------- | :------- | :------ | :-------------- |
+| other     | [Network](#enum-network) | Yes      | -       | Network state   |
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise false.|
+
+| Type | Description                                    |
+| :--- | :-------------------------------------------- |
+| Bool | Returns true if enum values match, else false. |
 
 ### func toString()
 
@@ -2496,9 +2897,10 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|The string representation of the current enum.|
+
+| Type   | Description                       |
+| :----- | :------------------------------- |
+| String | String representation of the enum. |
 
 ## enum State
 
@@ -2521,7 +2923,7 @@ public enum State <: ToString {
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -2537,7 +2939,7 @@ Completed
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Failed
 
@@ -2549,7 +2951,7 @@ Failed
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Initialized
 
@@ -2557,11 +2959,11 @@ Failed
 Initialized
 ```
 
-**Function:** Creates an initialized task through configuration information (Config).
+**Function:** Creates an initialized task via configuration (Config).
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Paused
 
@@ -2569,11 +2971,11 @@ Initialized
 Paused
 ```
 
-**Function:** Indicates task pause, typically followed by task resumption.
+**Function:** Indicates a paused task, typically to be resumed later.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Removed
 
@@ -2585,7 +2987,7 @@ Removed
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Retrying
 
@@ -2593,11 +2995,11 @@ Removed
 Retrying
 ```
 
-**Function:** Indicates the task has failed at least once and is currently being reprocessed.
+**Function:** Indicates a task that failed at least once and is currently reprocessing.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Running
 
@@ -2605,11 +3007,11 @@ Retrying
 Running
 ```
 
-**Function:** Indicates a task being processed.
+**Function:** Indicates an actively processing task.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Stopped
 
@@ -2617,11 +3019,11 @@ Running
 Stopped
 ```
 
-**Function:** Indicates task stoppage.
+**Function:** Indicates task termination.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### Waiting
 
@@ -2629,11 +3031,11 @@ Stopped
 Waiting
 ```
 
-**Function:** Indicates the task lacks execution resources or the network status doesn't match.
+**Function:** Indicates a task awaiting execution due to insufficient resources or network state mismatch.
 
 **System Capability:** SystemCapability.Request.FileTransferAgent
 
-**Since:** 21
+**Since:** 22
 
 ### func toString()
 
@@ -2645,6 +3047,7 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
-|:----|:----|
-|String|The string representation of the current enum.|
+
+| Type   | Description                       |
+| :----- | :------------------------------- |
+| String | String representation of the enum. |

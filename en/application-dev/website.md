@@ -905,10 +905,10 @@
         - [Generic Interfaces](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_interface.md)
         - [Generic Classes](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_class.md)
         - [Generic Structs](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_struct.md)
-        - [Generic Enums](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_极客时间/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_enum.md)
+        - [Generic Enums](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_enum.md)
         - [Subtype Relationships of Generic Types](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_subtype.md)
         - [Type Aliases](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/typealias.md)
-        - [Generic Constraints](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/gener极客时间/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_constraint.md)
+        - [Generic Constraints](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/generic/generic_constraint.md)
     - Extensions
         - [Extensions Overview](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/extension/extend_overview.md)
         - [Direct Extensions](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/extension/direct_extension.md)
@@ -921,7 +921,7 @@
         - [HashMap](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/collections/collection_hashmap.md)
         - [Iterable and Collections](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/collections/collection_iterable_collections.md)
     - Packages
-        - [Packages Overview](https极客时间/cangjie_docs/blob/main/docs/dev-guide/source_en/package/package_overview.md)
+        - [Packages Overview](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/package/package_overview.md)
         - [Package Declaration](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/package/package_name.md)
         - [Top-Level Declaration Visibility](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/package/toplevel_access.md)
         - [Package Import](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_en/package/import.md)

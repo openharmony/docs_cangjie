@@ -1,6 +1,6 @@
 # Key Agreement (Cangjie)
 
-Taking X25519 as the key agreement type and keys used exclusively within HUKS as an example, complete the key agreement. For specific scenarios and supported algorithm specifications, refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
+Taking X25519 as the negotiated key type and keys used exclusively within HUKS as an example, complete key agreement. For specific scenarios and supported algorithm specifications, refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
 
 ## Development Steps
 
@@ -8,41 +8,41 @@ Taking X25519 as the key agreement type and keys used exclusively within HUKS as
 
 Device A and Device B each generate an asymmetric key pair. For details, refer to [Key Generation](./cj-huks-key-generation-overview.md) or [Key Import](./cj-huks-key-import-overview.md).
 
-During key generation, the parameter `HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG` (optional) can be specified to indicate whether the agreed key derived from this key is managed by HUKS.
+During key generation, the parameter HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG (optional) can be specified to indicate whether keys derived from this key agreement will be managed by HUKS.
 
-- When the TAG is set to `HUKS_STORAGE_ONLY_USED_IN_HUKS`, it means the agreed key derived from this key is managed by HUKS, ensuring the key's entire lifecycle remains within a secure environment.
+- When TAG is set to HUKS_STORAGE_ONLY_USED_IN_HUKS, it means keys derived from this key agreement will be managed by HUKS, ensuring the entire lifecycle of the negotiated key remains within a secure environment.
 
-- When the TAG is set to `HUKS_STORAGE_KEY_EXPORT_ALLOWED`, it means the agreed key derived from this key is returned to the caller for management, and the application is responsible for ensuring key security.
+- When TAG is set to HUKS_STORAGE_KEY_EXPORT_ALLOWED, it means keys derived from this key agreement will be returned to the caller for management, with the business responsible for ensuring key security.
 
-- If the TAG is not explicitly set, the agreed key derived from this key can either be managed by HUKS or returned to the caller. The application can later choose how to protect the key during the agreement process.
+- If the business does not specify a TAG value, it means keys derived from this key agreement can either be managed by HUKS or returned to the caller. The business can later choose how to protect the keys during subsequent agreements.
 
 ### Export Keys
 
-Device A and Device B export the public key material of their asymmetric key pairs. For details, refer to [Key Export](./cj-huks-export-key.md).
+Device A and B export the public key material of their asymmetric key pairs. For details, refer to [Key Export](./cj-huks-export-key.md).
 
 ### Key Agreement
 
-Device A and Device B each derive a shared key based on their private key and the peer device's public key.
+Device A and B each derive a shared key based on their private key and the peer device's public key.
 
-During key agreement, the parameter `HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG` (optional) can be specified to indicate whether the agreed key is managed by HUKS.
+During key agreement, the parameter HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG (optional) can be specified to indicate whether the negotiated key will be managed by HUKS.
 
 | Generation | Agreement | Specification |
 | :-------- | :-------- | :-------- |
-| `HUKS_STORAGE_ONLY_USED_IN_HUKS` | `HUKS_STORAGE_ONLY_USED_IN_HUKS` | Key managed by HUKS |
-| `HUKS_STORAGE_KEY_EXPORT_ALLOWED` | `HUKS_STORAGE_KEY_EXPORT_ALLOWED` | Key returned to caller for management |
-| TAG not specified | `HUKS_STORAGE_ONLY_USED_IN_HUKS` | Key managed by HUKS |
-| TAG not specified | `HUKS_STORAGE_KEY_EXPORT_ALLOWED` | Key returned to caller for management |
-| TAG not specified | TAG not specified | Key returned to caller for management |
+| HUKS_STORAGE_ONLY_USED_IN_HUKS | HUKS_STORAGE_ONLY_USED_IN_HUKS | Key managed by HUKS |
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED | HUKS_STORAGE_KEY_EXPORT_ALLOWED | Key returned to caller for management |
+| TAG value not specified | HUKS_STORAGE_ONLY_USED_IN_HUKS | Key managed by HUKS |
+| TAG value not specified | HUKS_STORAGE_KEY_EXPORT_ALLOWED | Key returned to caller for management |
+| TAG value not specified | TAG value not specified | Key returned to caller for management |
 
-The TAG value specified during agreement must not conflict with the TAG value specified during generation. The table lists only valid combinations.
+The TAG value specified during agreement must not conflict with the TAG value specified during generation. The table only lists valid specification methods.
 
 ### Delete Keys
 
-When keys are no longer needed, Device A and Device B must delete them. For details, refer to [Key Deletion](./cj-huks-delete-key.md).
+When keys are no longer needed, Device A and B must delete them. For details, refer to [Key Deletion](./cj-huks-delete-key.md).
 
 ## Examples
 
-Below are examples of key agreement using X25519 and DH keys.
+Below are examples of agreement using X25519 and DH keys respectively.
 
 - X25519 Asymmetric Key Agreement Example
 
@@ -50,7 +50,7 @@ Below are examples of key agreement using X25519 and DH keys.
 
     ```cangjie
     /*
-     * The following demonstrates X25519 key operations
+     * The following demonstrates operations using X25519 keys
      */
     import kit.PerformanceAnalysisKit.Hilog
     import kit.BasicServicesKit.*
@@ -76,32 +76,32 @@ Below are examples of key agreement using X25519 and DH keys.
     /* Assemble key generation parameter set */
     let properties: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_X25519,
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_X25519),
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256,
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256),
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_NONE,
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE),
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE,
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE),
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_CBC,
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_CBC),
         ),
         HuksParam(
-            HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-            HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+            HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+            HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
         )
     ]
     var huksOptions: HuksOptions = HuksOptions(
@@ -111,39 +111,39 @@ Below are examples of key agreement using X25519 and DH keys.
     /* Assemble first agreement parameter set */
     let finishProperties1: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-            HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+            HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+            HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
         ),
         HuksParam(
-            HuksTag.HuksTagIsKeyAlias,
+            HuksTag.HUKS_TAG_IS_KEY_ALIAS,
             HuksParamValue.BooleanValue(true)
         ),
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES,
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES),
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_256,
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256),
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2),
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_NONE,
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE),
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE,
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE),
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_ECB,
+            HuksTag.HUKS_TAG_BOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB),
         ),
         HuksParam(
-            HuksTag.HuksTagKeyAlias,
+            HuksTag.HUKS_TAG_KEY_ALIAS,
             HuksParamValue.BytesValue((srcKeyAliasFirst + 'final').toArray())
         )
     ]
@@ -154,39 +154,39 @@ Below are examples of key agreement using X25519 and DH keys.
     /* Assemble second agreement parameter set */
     let finishProperties2: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-            HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+            HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+            HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
         ),
         HuksParam(
-            HuksTag.HuksTagIsKeyAlias,
+            HuksTag.HUKS_TAG_IS_KEY_ALIAS,
             HuksParamValue.BooleanValue(true)
         ),
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_AES,
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES),
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_AES_KEY_SIZE_256,
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256),
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
+            HuksTag.HUKS_TAG_PURPOSE,
             HuksParamValue.Uint32Value(1 | 2),
         ),
         HuksParam(
-            HuksTag.HuksTagDigest,
-            HuksKeyDigest.HUKS_DIGEST_NONE,
+            HuksTag.HUKS_TAG_DIGEST,
+            HuksParamValue.Uint32Value(HuksKeyDigest.HUKS_DIGEST_NONE),
         ),
         HuksParam(
-            HuksTag.HuksTagPadding,
-            HuksKeyPadding.HUKS_PADDING_NONE,
+            HuksTag.HUKS_TAG_PADDING,
+            HuksParamValue.Uint32Value(HuksKeyPadding.HUKS_PADDING_NONE),
         ),
         HuksParam(
-            HuksTag.HuksTagBlockMode,
-            HuksCipherMode.HUKS_MODE_ECB,
+            HuksTag.HUKS_TAG_BLOCK_MODE,
+            HuksParamValue.Uint32Value(HuksCipherMode.HUKS_MODE_ECB),
         ),
         HuksParam(
-            HuksTag.HuksTagKeyAlias,
+            HuksTag.HUKS_TAG_KEY_ALIAS,
             HuksParamValue.BytesValue((srcKeyAliasSecond + 'final').toArray())
         )
     ]
@@ -280,7 +280,7 @@ Below are examples of key agreement using X25519 and DH keys.
         }
     }
 
-    /* Call finishSession to complete operation */
+    /* Call finishSession to terminate operation */
     func publicFinishFunc(handle: HuksHandleId, huksOptions: HuksOptions) {
         loggerInfo("enter doFinish")
         let throwObject: throwObject = throwObject(false)
@@ -320,7 +320,7 @@ Below are examples of key agreement using X25519 and DH keys.
 
     ```cangjie
     /*
-     * The following demonstrates DH key operations
+     * The following demonstrates operations using DH keys
      */
     import kit.PerformanceAnalysisKit.Hilog
     import kit.BasicServicesKit.*
@@ -351,26 +351,26 @@ Below are examples of key agreement using X25519 and DH keys.
 
     let dhAgree: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_DH,
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_DH),
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
         )
     ]
     let dh2048Agree: Array<HuksParam> = [
         HuksParam(
-            HuksTag.HuksTagAlgorithm,
-            HuksKeyAlg.HUKS_ALG_DH,
+            HuksTag.HUKS_TAG_ALGORITHM,
+            HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_DH),
         ),
         HuksParam(
-            HuksTag.HuksTagPurpose,
-            HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+            HuksTag.HUKS_TAG_PURPOSE,
+            HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
         ),
         HuksParam(
-            HuksTag.HuksTagKeySize,
-            HuksKeySize.HUKS_DH_KEY_SIZE_2048,
+            HuksTag.HUKS_TAG_KEY_SIZE,
+            HuksParamValue.Uint32Value(HuksKeySize.HUKS_DH_KEY_SIZE_2048),
         )
     ]
     let dhGenOptions: HuksOptions = HuksOptions(
@@ -387,16 +387,16 @@ Below are examples of key agreement using X25519 and DH keys.
         let dhAgreeUpdateBobPubKey: HuksOptions = HuksOptions(
             properties: [
                 HuksParam(
-                    HuksTag.HuksTagAlgorithm,
-                    HuksKeyAlg.HUKS_ALG_DH,
+                    HuksTag.HUKS_TAG_ALGORITHM,
+                    HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_DH),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagPurpose,
-                    HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+                    HuksTag.HUKS_TAG_PURPOSE,
+                    HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_KEY_EXPORT_ALLOWED,
+                    HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_KEY_EXPORT_ALLOWED),
                 )
             ],```swift
             inData: peerPubKey.getOrThrow()
@@ -416,50 +416,56 @@ Below are examples of key agreement using X25519 and DH keys.
     func HuksDhAgreeInHuks(keyAlias: String, peerPubKey: ?Array<UInt8>, aliasAgreedKey: String): ?Array<UInt8> {
         let onlyUsedInHuks: Array<HuksParam> = [
             HuksParam(
-                HuksTag.HuksTagKeyStorageFlag,
-                HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+                HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
             ),
             HuksParam(
-                HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
             )
         ]
         let dhAgreeInit: HuksOptions = HuksOptions(
             properties: [
                 HuksParam(
-                    HuksTag.HuksTagKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-                ),
-                HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_256),
-                HuksParam(
-                    HuksTag.HuksTagKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_KEY_SIZE, 
+                    HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)
+                ),
+                HuksParam(
+                    HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
+                ),
+                HuksParam(
+                    HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 )
             ],
             inData: Bytes()
         )
         let dhAgreeFinishParams: Array<HuksParam> = [
             HuksParam(
-                HuksTag.HuksTagKeyStorageFlag,
-                HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+                HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
             ),
             HuksParam(
-                HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
             ),
-            HuksParam(HuksTag.HuksTagIsKeyAlias, HuksParamValue.BooleanValue(true)),
-            HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-            HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_256),
+            HuksParam(HuksTag.HUKS_TAG_IS_KEY_ALIAS, HuksParamValue.BooleanValue(true)),
+            HuksParam(HuksTag.HUKS_TAG_ALGORITHM, HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)),
             HuksParam(
-                HuksTag.HuksTagPurpose,
+                HuksTag.HUKS_TAG_KEY_SIZE, 
+                HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)
+            ),
+            HuksParam(
+                HuksTag.HUKS_TAG_PURPOSE,
                 HuksParamValue.Uint32Value(1 | 2)
             )
         ]
@@ -468,20 +474,20 @@ Below are examples of key agreement using X25519 and DH keys.
         let dhAgreeUpdatePubKey: HuksOptions = HuksOptions(
             properties: [
                 HuksParam(
-                    HuksTag.HuksTagAlgorithm,
-                    HuksKeyAlg.HUKS_ALG_DH,
+                    HuksTag.HUKS_TAG_ALGORITHM,
+                    HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_DH),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagPurpose,
-                    HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+                    HuksTag.HUKS_TAG_PURPOSE,
+                    HuksParamValue.Uint32Value(HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 )
             ],
             inData: peerPubKey.getOrThrow()
@@ -490,21 +496,27 @@ Below are examples of key agreement using X25519 and DH keys.
         let dhAgreeAliceFinnish: HuksOptions = HuksOptions(
             properties: [
                 HuksParam(
-                    HuksTag.HuksTagKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 ),
                 HuksParam(
-                    HuksTag.HuksTagDerivedAgreedKeyStorageFlag,
-                    HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+                    HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+                    HuksParamValue.Uint32Value(HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS),
                 ),
-                HuksParam(HuksTag.HuksTagIsKeyAlias, HuksParamValue.BooleanValue(true)),
-                HuksParam(HuksTag.HuksTagAlgorithm, HuksKeyAlg.HUKS_ALG_AES),
-                HuksParam(HuksTag.HuksTagKeySize, HuksKeySize.HUKS_AES_KEY_SIZE_256),
+                HuksParam(HuksTag.HUKS_TAG_IS_KEY_ALIAS, HuksParamValue.BooleanValue(true)),
                 HuksParam(
-                    HuksTag.HuksTagPurpose,
+                    HuksTag.HUKS_TAG_ALGORITHM, 
+                    HuksParamValue.Uint32Value(HuksKeyAlg.HUKS_ALG_AES)
+                ),
+                HuksParam(
+                    HuksTag.HUKS_TAG_KEY_SIZE, 
+                    HuksParamValue.Uint32Value(HuksKeySize.HUKS_AES_KEY_SIZE_256)
+                ),
+                HuksParam(
+                    HuksTag.HUKS_TAG_PURPOSE,
                     HuksParamValue.Uint32Value(1 | 2)
                 ),
-                HuksParam(HuksTag.HuksTagKeyAlias, HuksParamValue.BytesValue(aliasAgreedKey.toArray()))
+                HuksParam(HuksTag.HUKS_TAG_KEY_ALIAS, HuksParamValue.BytesValue(aliasAgreedKey.toArray()))
             ],
             inData: Bytes()
         )
@@ -539,13 +551,14 @@ Below are examples of key agreement using X25519 and DH keys.
         let pubKeyAlice = exportKeyItem(aliasAlice, emptyOptions)
         let pubKeyBob = exportKeyItem(aliasBob, emptyOptions)
 
-        /* Start agreement, with the negotiated key returned to business management */
+        /* Start agreement, the negotiated key is returned to the business for management */
         HuksDhAgreeExportTest(aliasAlice, aliasBob, pubKeyAlice, pubKeyBob)
 
-        /* Start agreement, with the negotiated key managed by HUKS */
+        /* Start agreement, the negotiated key is managed by HUKS */
         HuksDhAgreeInHuksTest(aliasAlice, aliasBob, pubKeyAlice, pubKeyBob, 'agreedKeyFromAlice', 'agreedKeyFromBob')
 
         deleteKeyItem(aliasAlice, emptyOptions)
         deleteKeyItem(aliasBob, emptyOptions)
     }
     ```
+```

@@ -5,7 +5,7 @@ A date picker component used to create a sliding date selector within a specifie
 ## Import Module
 
 ```cangjie
-import kit.UIkit.*
+import kit.ArkUI.*
 ```
 
 ## Subcomponents
@@ -14,13 +14,13 @@ None
 
 ## Creating the Component
 
-### init(DateTime, DateTime, DateTime)
+### init(?DateTime, ?DateTime, ?DateTime)
 
 ```cangjie
 public init(
-    start!: DateTime = DateTime.of(year: 1970, month: Month.of(1), dayOfMonth: 1),
-    end!: DateTime = DateTime.of(year: 2100, month: Month.of(12), dayOfMonth: 31),
-    selected!: DateTime = DateTime.now()
+    start!: ?DateTime = None,
+    end!: ?DateTime = None,
+    selected!: ?DateTime = None
 )
 ```
 
@@ -28,15 +28,15 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter  | Type       | Required | Default Value                                                   | Description                                                                 |
-|:---------- |:---------- |:-------- |:--------------------------------------------------------------- |:-------------------------------------------------------------------------- |
-| start      | DateTime   | No       | DateTime.of(year: 1970, month: Month.of(1), dayOfMonth: 1)     | **Named parameter.** Specifies the start date of the picker.               |
-| end        | DateTime   | No       | DateTime.of(year: 2100, month: Month.of(12), dayOfMonth: 31)   | **Named parameter.** Specifies the end date of the picker.                 |
-| selected   | DateTime   | No       | DateTime.now()                                                 | **Named parameter.** Sets the selected date.                               |
+| Parameter | Type       | Required | Default Value                                                          | Description                    |
+|:----------|:-----------|:---------|:----------------------------------------------------------------------|:-------------------------------|
+| start     | ?[DateTime](../ImageKit/cj-apis-image.md#datetime) | No       | None | **Named parameter.** Specifies the start date of the picker.<br>Default: DateTime.of(year: 1970, month: Month.of(1), dayOfMonth: 1).|
+| end       | ?[DateTime](../ImageKit/cj-apis-image.md#datetime) | No       | None | **Named parameter.** Specifies the end date of the picker.<br>Default: DateTime.of(year: 2100, month: Month.of(12), dayOfMonth: 31).|
+| selected  | ?[DateTime](../ImageKit/cj-apis-image.md#datetime) | No       | None | **Named parameter.** Sets the selected date.<br>Default: DateTime.now().|
 
 ## Common Attributes/Events
 
@@ -46,97 +46,97 @@ Common Events: All supported.
 
 ## Component Attributes
 
-### func disappearTextStyle(PickerTextStyle)
+### func disappearTextStyle(?PickerTextStyle)
 
 ```cangjie
-public func disappearTextStyle(value: PickerTextStyle): This
+public func disappearTextStyle(value: ?PickerTextStyle): This
 ```
 
 **Function:** Sets the text style for transition items (the second item above or below the selected item).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                      | Required | Default Value | Description                                                                                              |
-|:--------- |:---------------------------------------- |:-------- |:------------- |:------------------------------------------------------------------------------------------------------- |
-| value     | [PickerTextStyle](#class-pickertextstyle) | Yes      | -             | Text color, font size, and font weight for transition items. Initial value:<br>{color: '#ff182431',font: {size: '14fp', weight: FontWeight.Regular}} |
+| Parameter | Type | Required | Default Value | Description|
+|:----------|:-----------------------------------------------------------------------|:---------|:--------------|:----------------------------------------------------------------------------------------------|
+| value     | ?[PickerTextStyle](./cj-common-types.md#class-pickertextstyle)| Yes      | -             | Text color, font size, and font weight for transition items.<br>Default: {color: '#ff182431',font: {size: '14.fp', weight: FontWeight.Regular, family: 'HarmonyOS Sans', style: FontStyle.Normal}}.|
 
-### func lunar(Bool)
+### func lunar(?Bool)
 
 ```cangjie
-public func lunar(value: Bool): This
+public func lunar(value: ?Bool): This
 ```
 
 **Function:** Sets whether to display the lunar calendar in the popup.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type   | Required | Default Value | Description                                                                 |
-|:--------- |:------ |:-------- |:------------- |:-------------------------------------------------------------------------- |
-| value     | Bool   | Yes      | -             | Whether to display the lunar calendar.<br/> - true: Show lunar.<br/> - false: Hide lunar.<br>Initial value: false. |
+| Parameter | Type   | Required | Default Value | Description                                                            |
+|:----------|:-------|:---------|:--------------|:---------------------------------------------------------------------|
+| value     | ?Bool  | Yes      | -             | Whether to display the lunar calendar.<br/> - true: Show lunar calendar.<br/> - false: Hide lunar calendar.<br>Default: false.|
 
-### func selectedTextStyle(PickerTextStyle)
+### func selectedTextStyle(?PickerTextStyle)
 
 ```cangjie
-public func selectedTextStyle(value: PickerTextStyle): This
+public func selectedTextStyle(value: ?PickerTextStyle): This
 ```
 
 **Function:** Sets the text style for the selected item.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                      | Required | Default Value | Description                                                                               |
-|:--------- |:---------------------------------------- |:-------- |:------------- |:---------------------------------------------------------------------------------------- |
-| value     | [PickerTextStyle](#class-pickertextstyle) | Yes      | -             | Text style value. Initial value:<br>{color: '#ff007dff',font: {size: '20fp', weight: FontWeight.Medium}} |
+| Parameter | Type                                                                      | Required | Default Value | Description                                                                                 |
+|:----------|:-------------------------------------------------------------------------|:---------|:--------------|:------------------------------------------------------------------------------------------|
+| value     | ?[PickerTextStyle](./cj-common-types.md#class-pickertextstyle) | Yes      | -             | Text style value.<br>Default: {color: '#ff007dff',font: {size: '20fp', weight: FontWeight.Medium, family: 'HarmonyOS Sans', style: FontStyle.Normal}}.|
 
-### func textStyle(PickerTextStyle)
+### func textStyle(?PickerTextStyle)
 
 ```cangjie
-public func textStyle(value: PickerTextStyle): This
+public func textStyle(value: ?PickerTextStyle): This
 ```
 
 **Function:** Sets the text style for general items (the first item above or below the selected item).
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                      | Required | Default Value | Description                                                                                              |
-|:--------- |:---------------------------------------- |:-------- |:------------- |:------------------------------------------------------------------------------------------------------- |
-| value     | [PickerTextStyle](#class-pickertextstyle) | Yes      | -             | Text color, font size, and font weight for general items. Initial value:<br>{color: '#ff182431',font: {size: '16fp', weight: FontWeight.Regular}} |
+| Parameter | Type                                                                      | Required | Default Value | Description                                                                                             |
+|:----------|:-------------------------------------------------------------------------|:---------|:--------------|:------------------------------------------------------------------------------------------------------|
+| value     | ?[PickerTextStyle](./cj-common-types.md#class-pickertextstyle) | Yes      | -             | Text color, font size, and font weight for general items.<br>Default: {color: '#ff182431',font: {size: '16.fp', weight: FontWeight.Regular, family: 'HarmonyOS Sans', style: FontStyle.Normal}}.|
 
 ## Component Events
 
-### func onDateChange(Callback\<DateTime,Unit>)
+### func onDateChange(?Callback\<DateTime,Unit>)
 
 ```cangjie
-public func onDateChange(callback: Callback<DateTime, Unit>): This
+public func onDateChange(callback: ?Callback<DateTime, Unit>): This
 ```
 
 **Function:** Triggered when a date is selected.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type                                                                                                 | Required | Default Value | Description                                                                 |
-|:--------- |:--------------------------------------------------------------------------------------------------- |:-------- |:------------- |:-------------------------------------------------------------------------- |
-| callback  | [Callback](../BasicServicesKit/cj-apis-base.md#type-callback)\<[DateTime](../ImageKit/cj-apis-image.md#datetime),Unit> | Yes      | -             | Returns the selected time. The year, month, and day are the selected date, while the hour and minute depend on the current system time, and the second is always 00. |
+| Parameter | Type                                                                                                                                       | Required | Default Value | Description                                      |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------|:---------|:--------------|:-----------------------------------------------|
+| callback  | ?[Callback](../arkinterop/cj-api-callback_invoke.md#type-callback)\<[DateTime](../ImageKit/cj-apis-image.md#datetime),Unit> | Yes      | -             | Returns the selected time (year, month, day) with hours and minutes based on the current system time, and seconds fixed at 00.<br>Default: { _ => } |
 
 ## Basic Type Definitions
 
@@ -159,39 +159,7 @@ public class DatePickerResult {
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
-
-#### var day
-
-```cangjie
-public var day: Int64
-```
-
-**Function:** The day of the selected date.
-
-**Type:** Int64
-
-**Read/Write Access:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-#### var month
-
-```cangjie
-public var month: Int64
-```
-
-**Function:** The month of the selected date.
-
-**Type:** Int64
-
-**Read/Write Access:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
+**Initial Version:** 22
 
 #### var year
 
@@ -203,11 +171,44 @@ public var year: Int64
 
 **Type:** Int64
 
-**Read/Write Access:** Read-Write
+**Read/Write:** Read-Write
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
+
+#### var month
+
+```cangjie
+public var month: Int64
+```
+
+**Function:** The month of the selected date.
+
+**Type:** Int64
+
+**Read/Write:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
+#### var day
+
+```cangjie
+public var day: Int64
+```
+
+**Function:** The day of the selected date.
+
+**Type:** Int64
+
+**Read/Write:** Read-Write
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
 
 #### init(Int64, Int64, Int64)
 
@@ -223,82 +224,16 @@ public init(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type    | Required | Default Value | Description                                                                 |
-|:--------- |:------ |:-------- |:------------- |:-------------------------------------------------------------------------- |
-| year      | Int64  | Yes      | -             | The year of the selected date.                                              |
+| Parameter | Type    | Required | Default Value | Description                           |
+|:----------|:-------|:---------|:--------------|:------------------------------------|
+| year      | Int64  | Yes      | -             | The year of the selected date.       |
 | month     | Int64  | Yes      | -             | The month of the selected date (0~11), where 0 represents January and 11 represents December. |
-| day       | Int64  | Yes      | -             | The day of the selected date.                                               |
+| day       | Int64  | Yes      | -             | The day of the selected date.        |
 
-### class PickerTextStyle
-
-```cangjie
-public class PickerTextStyle {
-    public var color:?ResourceColor
-    public var font:?Font
-    public init(color!: ?ResourceColor = None, font!: ?Font = None)
-}
-```
-
-**Function:** Text style for the picker.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-#### var color
-
-```cangjie
-public var color:?ResourceColor
-```
-
-**Function:** Sets the text color for the picker.
-
-**Type:** ?[ResourceColor](cj-common-types.md#interface-resourcecolor)
-
-**Read/Write Access:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-#### var font
-
-```cangjie
-public var font:?Font
-```
-
-**Function:** Sets the text font for the picker.
-
-**Type:** ?[Font](cj-common-types.md#class-font)
-
-**Read/Write Access:** Read-Write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-#### init(?ResourceColor, ?Font)
-
-```cangjie
-public init(color!: ?ResourceColor = None, font!: ?Font = None)
-```
-
-**Function:** Constructs a PickerTextStyle object.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 21
-
-**Parameters:**
-
-| Parameter | Type                                      | Required | Default Value | Description                                                                 |
-|:--------- |:---------------------------------------- |:-------- |:------------- |:-------------------------------------------------------------------------- |
-| color     | ?[ResourceColor](cj-common-types.md#interface-resourcecolor) | No       | None          | Sets the text color for the picker.                                        |
-| font      | ?[Font](cj-common-types.md#class-font)   | No       | None          | Sets the text font for the picker.                                         |
 
 ## Example Code
 
@@ -310,7 +245,7 @@ This example implements a date picker component where clicking a button toggles 
 
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
-import kit.PerformanceAnalysisKit.Hilog
+import ohos.hilog.*
 import ohos.arkui.state_macro_manage.*
 import std.time.DateTime
 import std.time.Month

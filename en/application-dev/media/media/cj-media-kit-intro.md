@@ -1,6 +1,6 @@
 # Media Kit Introduction
 
-Media Kit (Media Services) is designed for developing various audio and video playback or recording functionalities. In the Media Kit development guide, it provides detailed explanations on the development approaches for multiple audio and video modules, guiding developers on how to use the system-provided audio and video APIs to implement corresponding features. For example, using SoundPool to implement simple notification sounds, where the device emits a short "beep" when receiving a new message; or using AVPlayer to implement a music player that loops a song.
+Media Kit (Media Service) is designed for developing various audio/video playback and recording functionalities. In the Media Kit development guide, it provides detailed instructions on developing multiple audio/video modules, guiding developers on how to use the system-provided audio/video APIs to implement corresponding features. For example, using SoundPool to implement simple notification sounds—when a device receives a new message, it emits a short "beep" sound; or using AVPlayer to implement a music player that loops a single track.
 
 The modules provided by Media Kit include:
 
@@ -8,263 +8,268 @@ The modules provided by Media Kit include:
 - [SoundPool](#soundpool): Playback of short audio clips
 - [AVRecorder](#avrecorder): Recording of audio and video
 - [AVScreenCapture](#avscreencapture): Screen recording
-- [AVMetadataExtractor](#avmetadataextractor): Extraction of audio and video metadata
+- [AVMetadataExtractor](#avmetadataextractor): Extraction of audio/video metadata
 - [AVImageGenerator](#avimagegenerator): Generation of video thumbnails
 
 ## Highlights/Features
 
-- Lightweight Media Engine
-
+- **Lightweight Media Engine**  
   Utilizes minimal system resources (threads, memory) to support audio/video playback/recording, flexible pipeline assembly, and plugin-based extensions for source/demuxer/codec.
 
-- HDR Video Support
+- **HDR Video Support**  
+  Native system data structures and interfaces support HDR Vivid capture and playback, enabling third-party applications to leverage the system's HDR capabilities for more vibrant user experiences.
 
-  Native system data structures and interfaces support the capture and playback of HDR Vivid content, enabling third-party applications to leverage the system's HDR capabilities for more vibrant user experiences.
+- **Audio Pool Support**  
+  For common short sound effect playback scenarios (e.g., camera shutter sounds, system notifications), applications can call SoundPool to achieve one-time loading and multiple low-latency playback instances.
 
-- Audio Pool Support
+## Development Notes
 
-  For common short audio effect playback scenarios in development, such as camera shutter sounds or system notification sounds, applications can call SoundPool to achieve one-time loading and multiple low-latency playback instances.
-
-## Development Instructions
-
-This development guide focuses solely on audio and video playback or recording, with capabilities provided by the media module. It does not cover UI interfaces, graphics processing, media storage, or other related functionalities.
+This development guide focuses solely on audio/video playback or recording, with capabilities provided by the media module. It does not cover UI interfaces, graphics processing, media storage, or other related functionalities.
 
 Before developing music or video playback features, it is recommended to understand streaming media playback concepts, including but not limited to:
 
-- Playback process: Network protocol > Container format > Audio/Video codec > Graphics/Audio rendering
-- Network protocols: e.g., HLS, HTTP-FLV, HTTP/HTTPS
-- Container formats: e.g., mp4, mkv, mpeg-ts
-- Codec formats: e.g., h264/h265
+- **Playback Process**: Network protocol > Container format > Audio/Video codec > Graphics/Audio rendering
+- **Network Protocols**: e.g., HLS, HTTP-FLV, HTTP/HTTPS
+- **Container Formats**: e.g., MP4, MKV, MPEG-TS
+- **Codec Formats**: e.g., H.264/H.265
 
 ## AVPlayer
 
-AVPlayer primarily converts Audio/Video media resources (e.g., mp4/mp3/mkv/mpeg-ts) into renderable images and audible analog audio signals, which are then output through playback devices.
+AVPlayer primarily converts Audio/Video media resources (e.g., MP4/MP3/MKV/MPEG-TS) into renderable images and audible analog audio signals, outputting them via playback devices.
 
-AVPlayer offers comprehensive, integrated playback capabilities. Applications only need to provide the streaming media source without handling data parsing or decoding to achieve playback.
+AVPlayer offers comprehensive, integrated playback capabilities. Applications only need to provide the streaming source without handling data parsing or decoding to achieve playback.
 
 ### Audio Playback
 
 When developing a music application for audio playback using AVPlayer, the interaction between AVPlayer and external modules is illustrated below.
 
-Music applications implement corresponding functionalities by calling the AVPlayer interface provided by the Cangjie API layer. The framework layer parses resources into audio data streams (PCM) via the playback service (Player Framework). The PCM data is then decoded by software and output to the audio service (Audio Framework), which renders it through the audio driver. Complete audio playback requires collaboration between the application, Player Framework, Audio Framework, and audio HDI.
+![Audio Playback Interaction Diagram](./figures/audio-playback-interaction-diagram.png)
+
+Music applications implement functionalities by calling AVPlayer interfaces provided by the Cangjie API layer. The framework layer parses resources into PCM audio streams via the Player Framework. The audio stream is decoded by software and passed to the Audio Framework, which outputs it to the audio driver for rendering, completing audio playback. Full audio playback requires collaboration among the application, Player Framework, Audio Framework, and audio HDI.
 
 Numbers in the diagram indicate data transfers with external modules:
 
 1. The music application passes media resources to the AVPlayer interface.
-2. Player Framework outputs the audio PCM stream to Audio Framework, which then passes it to the audio HDI.
+2. The Player Framework outputs PCM audio streams to the Audio Framework, which then passes them to the audio HDI.
 
 ### Video Playback
 
-When developing a video application for video playback using AVPlayer, the interaction between AVPlayer and external modules is illustrated below.
+When developing a video application for playback using AVPlayer, the interaction between AVPlayer and external modules is illustrated below.
 
-Applications implement functionalities by calling the AVPlayer interface provided by the Cangjie API layer. The framework layer parses resources into separate audio and video streams via the playback service (Player Framework). The audio stream is decoded by software and output to Audio Framework, then to the audio HDI for playback. The video stream is decoded by hardware (recommended) or software and output to the graphics rendering service (Graphic Framework), then to the display HDI for rendering.
+![Video playback interaction diagram](./figures/video-playback-interaction-diagram.png)
 
-Complete video playback requires collaboration between the application, XComponent, Player Framework, Graphic Framework, Audio Framework, display HDI, and audio HDI.
+Applications implement functionalities by calling AVPlayer interfaces provided by the Cangjie API layer. The framework layer parses resources into separate audio and video streams via the Player Framework. The audio stream is decoded by software and passed to the Audio Framework, then to the audio HDI for playback. The video stream is decoded (preferably by hardware) and passed to the Graphic Framework, then to the display HDI for rendering.
+
+Full video playback requires collaboration among the application, XComponent, Player Framework, Graphic Framework, Audio Framework, display HDI, and audio HDI.
 
 Numbers in the diagram indicate data transfers with external modules:
 
-1. The application obtains the window SurfaceID from the XComponent.
+1. The application obtains a window SurfaceID from the XComponent.
 2. The application passes media resources and SurfaceID to the AVPlayer interface.
-3. Player Framework outputs the video ES stream to the decoder HDI, which decodes it into video frames (NV12/NV21/RGBA).
-4. Player Framework outputs the audio PCM stream to Audio Framework, which passes it to the audio HDI.
-5. Player Framework outputs video frames (NV12/NV21/RGBA) to Graphic Framework, which renders them via the display HDI.
+3. The Player Framework outputs video ES streams to the decoder HDI, decoding them into video frames (NV12/NV21/RGBA).
+4. The Player Framework outputs PCM audio streams to the Audio Framework, which passes them to the audio HDI.
+5. The Player Framework outputs video frames (NV12/NV21/RGBA) to the Graphic Framework, which passes them to the display HDI.
 
 ### Supported Formats and Protocols
 
-The following mainstream playback formats are recommended. Audio/video containers and codecs are specialized domains for content creators. Application developers are advised against creating custom streams for testing to avoid compatibility issues such as playback failure, stuttering, or artifacts. Such issues do not affect the system—simply exit playback.
+The following mainstream playback formats are recommended. Audio/video containers and codecs are specialized domains for content creators. Application developers are discouraged from creating custom streams for testing to avoid compatibility issues like playback failure, stuttering, or artifacts. Such issues do not affect the system—simply exit playback.
 
-Supported protocols:
+**Supported Protocols:**
 
-| Protocol Type | Description |
-| -------- | -------- |
-| Local VoD | Format: Supports file descriptor (file path prohibited) |
-| Network VoD | Formats: http/https/hls/dash |
-| Network Live | Formats: hls/http-flv |
+| Protocol Type       | Description                                   |
+|---------------------|-----------------------------------------------|
+| Local VOD           | Format: Supports file descriptor (file path prohibited) |
+| Network VOD         | Formats: HTTP/HTTPS/HLS/DASH                  |
+| Network Live        | Formats: HLS/HTTP-FLV                         |
 
-Supported audio playback formats:
+**Supported Audio Playback Formats:**
 
-| Audio Container | Description |
-| -------- | -------- |
-| m4a | Codec: AAC |
-| aac | Codec: AAC |
-| mp3 | Codec: MP3 |
-| ogg | Codec: VORBIS |
-| wav | Codec: PCM |
-| amr | Codec: AMR |
+| Audio Container Spec | Description           |
+|---------------------|-----------------------|
+| M4A                 | Audio Format: AAC    |
+| AAC                 | Audio Format: AAC    |
+| MP3                 | Audio Format: MP3    |
+| OGG                 | Audio Format: VORBIS |
+| WAV                 | Audio Format: PCM    |
+| AMR                 | Audio Format: AMR    |
 
 <!--Del-->
-> **Note:**
->
+> **Note:**  
+>  
 > Video playback formats are categorized into mandatory and optional specifications. Mandatory formats are supported by all vendors. Optional formats depend on vendor implementation. Developers should ensure compatibility across platforms.
 
 | Video Format | Mandatory Specification? |
-| -------- | -------- |
-| H265      | Yes |
-| H264      | Yes |
+|--------------|---------------------------|
+| H.265        | Yes                       |
+| H.264        | Yes                       |
 <!--DelEnd-->
 
-Supported video playback formats and resolutions:
+**Supported Video Playback Formats and Resolutions:**
 
-| Video Container | Description | Resolutions |
-| -------- | -------- | -------- |
-| mp4 | Video: H265/H264<br/>Audio: AAC/MP3 | Mainstream resolutions (4K/1080P/720P/480P/270P) |
-| mkv | Video: H265/H264<br/>Audio: AAC/MP3 | Mainstream resolutions (4K/1080P/720P/480P/270P) |
-| ts | Video: H265/H264<br/>Audio: AAC/MP3 | Mainstream resolutions (4K/1080P/720P/480P/270P) |
+| Video Container Spec | Description                                   | Resolutions                     |
+|----------------------|-----------------------------------------------|---------------------------------|
+| MP4                  | Video: H.265/H.264<br>Audio: AAC/MP3          | 4K/1080P/720P/480P/270P         |
+| MKV                  | Video: H.265/H.264<br>Audio: AAC/MP3          | 4K/1080P/720P/480P/270P         |
+| TS                   | Video: H.265/H.264<br>Audio: AAC/MP3          | 4K/1080P/720P/480P/270P         |
 
-Supported subtitle formats:
+**Supported Subtitle Formats:**
 
-| Subtitle Container | Supported Protocols | Loading Method |
-| -------- | -------- | -------- |
-| srt | Local VoD (fd)/Network VoD (http/https/hls/dash) | External subtitles |
-| vtt | Local VoD (fd)/Network VoD (http/https/hls/dash) | External subtitles |
-| webvtt | Network VoD (dash) | Embedded subtitles |
+| Subtitle Container Spec | Supported Protocols                          | Loading Method       |
+|-------------------------|-----------------------------------------------|----------------------|
+| SRT                     | Local VOD (FD)/Network VOD (HTTP/HTTPS/HLS/DASH) | External Subtitles   |
+| VTT                     | Local VOD (FD)/Network VOD (HTTP/HTTPS/HLS/DASH) | External Subtitles   |
+| WebVTT                  | Network VOD (DASH)                            | Embedded Subtitles   |
 
-> **Note:**
->
-> When dash protocol includes embedded subtitles, external subtitles cannot be added.
+> **Note:**  
+>  
+> When DASH streams contain embedded subtitles, external subtitles cannot be added.
 
 ## SoundPool
 
-SoundPool primarily converts audio media resources (e.g., mp3/m4a/wav) into analog audio signals for playback through output devices.
+SoundPool primarily converts audio media resources (e.g., MP3/M4A/WAV) into analog audio signals for playback via output devices.
 
 SoundPool provides short audio playback capabilities. Applications only need to provide the audio source without handling data parsing or decoding.
 
-When developing an application for audio playback using SoundPool, the interaction between SoundPool and external modules is illustrated below.
+The interaction between SoundPool and external modules during audio playback is illustrated below.
 
-Music applications implement functionalities by calling the SoundPool interface provided by the Cangjie API layer. The framework layer parses resources into PCM streams via Player Framework, which are decoded by software and output to Audio Framework for rendering via the audio driver. Complete audio playback requires collaboration between the application, Player Framework, Audio Framework, and audio HDI.
+![SoundPool Interaction Diagram](./figures/soundpool-interaction-diagram.png)
+
+Music applications implement functionalities by calling SoundPool interfaces provided by the Cangjie API layer. The framework layer parses resources into PCM audio streams via the Player Framework. The audio stream is decoded by software and passed to the Audio Framework, which outputs it to the audio driver for rendering. Full audio playback requires collaboration among the application, Player Framework, Audio Framework, and audio HDI.
 
 Numbers in the diagram indicate data transfers with external modules:
 
 1. The music application passes media resources to the SoundPool interface.
-2. Player Framework outputs the audio PCM stream to Audio Framework, which passes it to the audio HDI.
+2. The Player Framework outputs PCM audio streams to the Audio Framework, which then passes them to the audio HDI.
 
 ### Supported Formats and Protocols
 
-The following mainstream playback formats are recommended. Audio containers and codecs are specialized domains for content creators. Developers are advised against creating custom streams to avoid compatibility issues like playback failure or stuttering. Such issues do not affect the system—simply exit playback.
+The following mainstream playback formats are recommended. Audio containers and codecs are specialized domains for content creators. Application developers are discouraged from creating custom streams for testing to avoid compatibility issues like playback failure or stuttering. Such issues do not affect the system—simply exit playback.
 
-Supported protocols:
+**Supported Protocols:**
 
-| Protocol Type | Description |
-| -------- | -------- |
-| Local VoD | Format: Supports file descriptor (file path prohibited) |
+| Protocol Type       | Description                                   |
+|---------------------|-----------------------------------------------|
+| Local VOD           | Format: Supports file descriptor (file path prohibited) |
 
-Supported audio playback formats:
+**Supported Audio Playback Formats:**
 
-| Audio Container | Description |
-| -------- | -------- |
-| m4a | Codec: AAC |
-| aac | Codec: AAC |
-| mp3 | Codec: MP3 |
-| ogg | Codec: VORBIS |
-| wav | Codec: PCM |
+| Audio Container Spec | Description           |
+|---------------------|-----------------------|
+| M4A                 | Audio Format: AAC    |
+| AAC                 | Audio Format: AAC    |
+| MP3                 | Audio Format: MP3    |
+| OGG                 | Audio Format: VORBIS |
+| WAV                 | Audio Format: PCM    |
 
 ## AVRecorder
 
-AVRecorder primarily captures audio signals, receives video signals, encodes them, and saves them to files. It simplifies audio/video recording functionalities, including start, pause, resume, stop, and resource release. Developers can specify parameters like codec format, container format, and file path.
+AVRecorder primarily captures audio signals, receives video signals, encodes them, and saves them to files. It simplifies audio/video recording for developers, offering controls like start, pause, resume, stop, and resource release. Users can specify parameters like codec format, container format, and file path.
 
-When developing a video recording application using AVRecorder, the interaction between AVRecorder and external modules is illustrated below.
+The interaction between AVRecorder and external modules during video recording is illustrated below.
 
 ![Video recording interaction diagram](./figures/video-recording-interaction-diagram.png)
 
-- **Audio Recording**: Applications call the AVRecorder interface provided by the Cangjie API layer. The framework captures audio data via Audio Framework and audio HDI, encodes it via software, and saves it to a file.
-- **Video Recording**: Applications call the AVRecorder interface, which uses the Camera interface to capture video data via Camera Framework and video HDI. The data is encoded by the video codec HDI and saved to a file.
+- **Audio Recording**: Applications call AVRecorder interfaces provided by the Cangjie API layer. The framework captures audio data via the Audio Framework and audio HDI, encodes it via software, and saves it to a file.
+- **Video Recording**: Applications call AVRecorder interfaces to capture image data via the Camera Framework and video HDI. The Player Framework encodes the data via the video encoder HDI and saves it to a file.
 
-Combining audio and video recording enables pure audio, pure video, or combined recording.
+Combining audio and video recording enables pure audio, pure video, or A/V recording.
 
 Numbers in the diagram indicate data transfers with external modules:
 
-1. The application obtains SurfaceID from the recording service via AVRecorder.
-2. The application sets SurfaceID for the camera service, which captures video data via video HDI and passes it to the recording service.
-3. The camera service passes video data to the recording service via Surface.
-4. The recording service encodes video data via the video codec HDI.
-5. The recording service configures audio parameters with Audio Framework and retrieves audio data.
+1. The application obtains a SurfaceID from the Player Framework via AVRecorder.
+2. The application sets the SurfaceID for the Camera Framework to capture image data via the video HDI.
+3. The Camera Framework passes video data to the Player Framework via the Surface.
+4. The Player Framework encodes video data via the video encoder HDI.
+5. The Player Framework configures audio parameters with the Audio Framework and retrieves audio data.
 
 ### Supported Formats
 
-Supported audio sources:
+**Supported Audio Sources:**
 
-| Audio Source | Description |
-| -------- | -------- |
-| mic | System microphone as input. |
+| Audio Source Type | Description                          |
+|------------------|--------------------------------------|
+| MIC              | System microphone as audio input.    |
 
-Supported video sources:
+**Supported Video Sources:**
 
-| Video Source | Description |
-| -------- | -------- |
-| surface_yuv | Surface carries raw data. |
-| surface_es | Surface carries ES data. |
+| Video Source Type | Description                          |
+|------------------|--------------------------------------|
+| SURFACE_YUV      | Input Surface carries raw data.      |
+| SURFACE_ES       | Input Surface carries ES data.       |
 
-Supported codec formats:
+**Supported Codec Formats:**
 
-| Codec Format | Description |
-| -------- | -------- |
-| audio/mp4a-latm | Audio/MP4A-LATM |
-| video/hevc | Video/HEVC |
-| video/avc | Video/AVC |
-| audio/mpeg | Audio/MPEG |
-| audio/g711mu | Audio/G.711 μ-law |
+| Codec Format       | Description                          |
+|-------------------|--------------------------------------|
+| audio/mp4a-latm   | AAC audio type                       |
+| video/hevc        | H.265 video type                     |
+| video/avc         | H.264 video type                     |
+| audio/mpeg        | MPEG audio type                      |
+| audio/g711mu      | G.711 μ-law audio type               |
 
-Supported output file formats:
+**Supported Output File Formats:**
 
-| Output Format | Description |
-| -------- | -------- |
-| mp4 | Video container (MP4). |
-| m4a | Audio container (M4A). |
-| mp3 | Audio container (MP3). |
-| wav | Audio container (WAV). |
+| Output Format | Description                          |
+|--------------|--------------------------------------|
+| MP4          | Video container format (MP4).        |
+| M4A          | Audio container format (M4A).        |
+| MP3          | Audio container format (MP3).        |
+| WAV          | Audio container format (WAV).        |
 
 ## AVScreenCapture
 
-AVScreenCapture captures audio and video signals, encodes them, and saves screen content to files. It offers two interfaces: screen recording to file and screen recording to stream. Developers can specify parameters like codec format, container format, and file path.
+AVScreenCapture captures audio/video signals and encodes screen data into files. It offers two interfaces: screen recording to file and screen recording to stream, allowing users to specify codec formats, container formats, and file paths.
 
-When developing a screen recording application using AVScreenCapture, the interaction between AVScreenCapture and external modules is illustrated below.
+The interaction between AVScreenCapture and external modules during screen recording is illustrated below.
 
-- **Audio Recording**: Applications call the AVScreenCapture interface via JS/Native API. The framework captures audio data via Audio Framework, encodes it via software, and saves it to a file.
-- **Screen Recording**: Applications call the AVScreenCapture interface. The framework captures screen data via graphics services, encodes it via software, and saves it to a file.
+![AvScreenCapture interaction diagram](./figures/avscreencapture-interaction-diagram.png)
+
+- **Audio Recording**: Applications call AVScreenCapture interfaces (JS/Native) to capture audio data via the Audio Framework, encode it via software, and save it to a file.
+- **Screen Recording**: Applications call AVScreenCapture interfaces to capture screen data via the Graphic Framework, encode it via software, and save it to a file.
 
 ### Supported Formats
 
-Supported audio sources:
+**Supported Audio Sources:**
 
-| Audio Source | Description |
-| -------- | -------- |
-| MIC | System microphone as input. |
-| ALL_PLAYBACK | System internal recording as input. |
+| Audio Source Type | Description                          |
+|------------------|--------------------------------------|
+| MIC              | System microphone as audio input.    |
+| ALL_PLAYBACK     | System internal recording as audio input. |
 
-Supported video sources:
+**Supported Video Sources:**
 
-| Video Source | Description |
-| -------- | -------- |
-| SURFACE_RGBA | Output buffer contains RGBA data. |
+| Video Source Type | Description                          |
+|------------------|--------------------------------------|
+| SURFACE_RGBA     | Output buffer contains RGBA data.    |
 
-Supported audio codec formats:
+**Supported Audio Codec Formats:**
 
-| Audio Codec | Description |
-| -------- | -------- |
-| AAC_LC | AAC-LC type. |
+| Audio Codec Format | Description                          |
+|-------------------|--------------------------------------|
+| AAC_LC            | AAC Low Complexity type.            |
 
-Supported video codec formats:
+**Supported Video Codec Formats:**
 
-| Video Codec | Description |
-| -------- | -------- |
-| H264 | H.264 type. |
+| Video Codec Format | Description                          |
+|-------------------|--------------------------------------|
+| H264              | H.264 type.                          |
 
-Supported output file formats:
+**Supported Output File Formats:**
 
-| Output Format | Description |
-| -------- | -------- |
-| mp4 | Video container (MP4). |
-| m4a | Audio container (M4A). |
+| Output Format | Description                          |
+|--------------|--------------------------------------|
+| MP4          | Video container format (MP4).        |
+| M4A          | Audio-only container format (M4A).  |
 
 ## AVMetadataExtractor
 
-AVMetadataExtractor extracts metadata from audio and video resources. Developers can retrieve details like title, artist, album, and duration for audio, or similar metadata for video (excluding album art).
+AVMetadataExtractor extracts metadata from audio/video resources. For audio, it retrieves details like title, artist, album, and duration. Video metadata extraction is similar but excludes album covers.
 
-The workflow includes: creating AVMetadataExtractor, setting the resource, extracting metadata, optionally extracting album art, and releasing resources.
+The workflow includes: creating AVMetadataExtractor, setting the resource, extracting metadata, optionally extracting album covers, and releasing resources.
 
 ### Supported Formats
 
-Supported audio/video sources: See [Media Data Parsing](./cj-avcodec-support-formats.md#media-parsing).
+Supported audio/video sources are detailed in [Media Data Parsing](./cj-avcodec-support-formats.md#媒体数据解析).
 
 ## AVImageGenerator
 
@@ -272,4 +277,4 @@ AVImageGenerator generates video thumbnails from media resources at specified ti
 
 ### Supported Formats
 
-Supported video sources: See [Video Decoding](./cj-avcodec-support-formats.md#video-decoding).
+Supported video sources are detailed in [Video Decoding](./cj-avcodec-support-formats.md#视频解码).

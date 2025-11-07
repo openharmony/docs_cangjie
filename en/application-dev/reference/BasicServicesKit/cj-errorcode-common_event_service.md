@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> The following describes only the error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> This document only covers error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 1500001 Empty Action in Want
 
@@ -10,13 +10,13 @@
 The action field in the want parameter is null.
 
 **Error Description**  
-This error code is generated when the `Action` property in the `want` parameter for sending an event is empty.
+This error code occurs when the `Action` property in the `want` parameter of an event is empty.
 
 **Possible Causes**  
-The `Action` property in the `want` parameter for sending an event is empty.
+The `Action` property in the `want` parameter of the event is empty.
 
 **Resolution Steps**  
-Check whether the `Action` property in the passed `want` parameter is empty.
+Check whether the `Action` property in the `want` parameter is empty.
 
 ## 1500002 Sandbox Application Cannot Send Common Events
 
@@ -24,10 +24,10 @@ Check whether the `Action` property in the passed `want` parameter is empty.
 A sandbox application cannot send common events.
 
 **Error Description**  
-Sandbox applications cannot send common events.
+Sandbox applications are unable to send common events.
 
 **Possible Causes**  
-The sender application is a sandbox application, and the event sending is intercepted.
+The event sender is a sandbox application, and the event is intercepted.
 
 **Resolution Steps**  
 Sandbox applications cannot send common events. Verify whether the application is a sandbox application before sending common events.
@@ -58,7 +58,7 @@ The current application cannot send system common events.
 A non-system application or non-system service is attempting to send system common events.
 
 **Resolution Steps**  
-Verify whether the current application is a system application or whether the current service is a system service.
+Verify whether the current application is a system application or the current service is a system service.
 
 ## 1500005 Subscriber Not Found
 
@@ -83,11 +83,11 @@ Invalid userId.
 The userId is invalid.
 
 **Possible Causes**  
-The userId does not match the system `userId`, or the process is not a system application or system service.
+The userId does not match the system `userId`, or the application/service is not a system application or system service.
 
 **Resolution Steps**  
 
-1. Check whether the current `userId` matches the system `userId`.
+1. Check whether the current `userId` matches the system `userId`.  
 2. Verify whether the current application is a system application or system service.
 
 ## 1500007 IPC Request Sending Failed
@@ -96,13 +96,13 @@ The userId does not match the system `userId`, or the process is not a system ap
 Failed to send the message.
 
 **Error Description**  
-The `IPC` request failed to send.
+The IPC request failed to send.
 
 **Possible Causes**  
 The connection object was not successfully created.
 
 **Resolution Steps**  
-Avoid frequently establishing connections. Retry later.
+Avoid frequent connection establishment and retry later.
 
 ## 1500008 Failed to Read Data
 
@@ -113,7 +113,7 @@ Failed to read the data.
 An error occurred on the server side.
 
 **Possible Causes**  
-A business exception occurred while the server was processing the data.
+The server encountered a business exception while processing data.
 
 **Resolution Steps**  
 Retry later.
@@ -124,10 +124,10 @@ Retry later.
 System error.
 
 **Error Description**  
-A system exception occurred while processing the business, such as failing to obtain the current system time.
+A system exception occurred during business processing, such as failure to obtain the current system time.
 
 **Possible Causes**  
-System malfunction; an exception occurred while obtaining the current system time.
+System malfunction, such as an exception while retrieving the current system time.
 
 **Resolution Steps**  
 Retry later.

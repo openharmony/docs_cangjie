@@ -2,9 +2,9 @@
 
 > **Note:**
 >
-> The following describes only the error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> The following describes only the module-specific error codes. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
-## 5400101 Memory Allocation Failure
+## 5400101 Memory Allocation Failed
 
 **Error Message**
 
@@ -17,13 +17,13 @@ Failed to allocate memory.
 **Possible Causes**
 
 1. The number of instances exceeds 16.
-2. The `new` or `malloc` process failed, resulting in a null pointer.
+2. A null pointer occurred due to failure in the `new` or `malloc` process.
 
 **Resolution Steps**
 
 Destroy the current instance and recreate it. If recreation fails, stop the related operations.
 
-## 5400102 Operation Not Allowed in Current State
+## 5400102 Operation Not Allowed in Current State Machine
 
 **Error Message**
 
@@ -39,9 +39,9 @@ The current state machine does not support this operation.
 
 **Resolution Steps**
 
-Verify whether the current state supports the operation. Switch the instance to the correct state before performing the operation.
+Verify whether the current state supports the operation. Switch the instance to the correct state to perform the proper operation.
 
-## 5400103 I/O Error
+## 5400103 I/O Error Occurred
 
 **Error Message**
 
@@ -53,7 +53,7 @@ An I/O error occurred.
 
 **Possible Causes**
 
-Issues in data interaction between the media module and other modules (graphics, audio, network, HDI, camera).
+Data interaction issues between the media module and other modules (graphics, audio, network, HDI, camera).
 
 **Resolution Steps**
 
@@ -71,7 +71,7 @@ The operation timed out.
 
 **Possible Causes**
 
-1. Network timeout. The default network timeout is 15 seconds, starting from the event reporting of the initial cache. This error is reported upon timeout.
+1. Network timeout. The default network timeout is 15 seconds, starting from the event reporting after buffering begins. This error is reported upon timeout.
 2. Timeout when accessing other modules.
 
 **Resolution Steps**
@@ -87,11 +87,11 @@ Service died.
 
 **Error Description**
 
-The playback service terminated unexpectedly.
+The playback service died.
 
 **Possible Causes**
 
-The playback service terminated unexpectedly.
+The playback service died.
 
 **Resolution Steps**
 
@@ -113,9 +113,9 @@ Unsupported file or format.
 
 **Resolution Steps**
 
-The current format or specification is not supported. Switch to a supported format.
+The currently used format is not supported. The user must switch to a supported format.
 
-For supported specifications, refer to the relevant module's specifications in the [Media Kit Introduction](../../../en/application-dev/media/media/cj-media-kit-intro.md) based on the actual module functionality used.
+For supported formats, refer to the specifications of the corresponding module in the [Media Kit Introduction](../media/media/cj-media-kit-intro.md) based on the actual module functionality used.
 
 ## 5400107 Audio Focus Conflict
 
@@ -125,7 +125,7 @@ Audio interrupted.
 
 **Error Description**
 
-Recording failed due to an audio focus conflict.
+Recording failed due to audio focus conflict.
 
 **Possible Causes**
 
@@ -133,7 +133,7 @@ Another process has occupied the audio focus, making it unavailable.
 
 **Resolution Steps**
 
-Destroy the current instance and check if other processes are currently recording. If other processes can be stopped, recreate the instance.
+Destroy the current instance and check if another process is currently recording. If the occupying process can be stopped, recreate the instance.
 
 ## 5411001 Host Resolution or Connection Error
 
@@ -147,12 +147,12 @@ Failed to resolve or connect to the server address.
 
 **Possible Causes**
 
-1. Incorrect server address connection.
+1. Incorrect server address.
 2. Failed to resolve the server address.
 
 **Resolution Steps**
 
-The current server address is incorrect or unresolvable. Use a different server address.
+The current server address is incorrect or cannot be resolved. Use a different server address.
 
 ## 5411002 Network Connection Timeout
 
@@ -210,7 +210,7 @@ Network is disabled.
 1. Check if the network is disabled.
 2. Destroy the current instance and recreate it. If recreation fails, stop the related operations.
 
-## 5411005 Permission Denied
+## 5411005 No Permission, Access Denied
 
 **Error Message**
 
@@ -260,11 +260,11 @@ No available network resources.
 
 **Possible Causes**
 
-Server address connection anomaly.
+Server address anomaly.
 
 **Resolution Steps**
 
-1. Verify if the server address connection is functioning properly.
+1. Check if the server address is correct.
 2. Destroy the current instance and recreate it. If recreation fails, stop the related operations.
 
 ## 5411008 Server Failed to Validate Client Certificate
@@ -302,7 +302,7 @@ SSL connection failed.
 
 **Resolution Steps**
 
-1. Verify if the SSL connection has expired.
+1. Check if the SSL connection has expired.
 2. Destroy the current instance and recreate it. If recreation fails, stop the related operations.
 
 ## 5411010 Client Failed to Validate Server Certificate
@@ -324,7 +324,7 @@ No certificate provided, invalid certificate, or expired certificate.
 1. Verify if the SSL certificate is valid.
 2. Destroy the current instance and recreate it. If recreation fails, stop the related operations.
 
-## 5411011 Unsupported Request Due to Network Protocol
+## 5411011 Request Not Supported Due to Network Protocol Issues
 
 **Error Message**
 

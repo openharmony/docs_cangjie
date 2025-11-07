@@ -74,7 +74,7 @@ Abnormal device pairing.
 
 **Resolution Steps**
 
-Turn Bluetooth back on and retry the pairing process.
+Turn Bluetooth off and on again, then perform the pairing process.
 
 ## 2900006
 
@@ -88,7 +88,7 @@ Exceeded the maximum number of connections.
 
 **Possible Causes**
 
-Exceeded the device's maximum connection limit.
+The maximum number of connections for the device has been exceeded.
 
 **Resolution Steps**
 
@@ -110,7 +110,7 @@ Abnormal device pairing.
 
 **Resolution Steps**
 
-Turn Bluetooth back on and retry the pairing process.
+Turn Bluetooth off and on again, then perform the pairing process.
 
 ## 2900099
 

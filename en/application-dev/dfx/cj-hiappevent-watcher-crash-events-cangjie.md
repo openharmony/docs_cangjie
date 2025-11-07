@@ -2,22 +2,22 @@
 
 ## Interface Description
 
-For detailed API usage instructions (parameter constraints, value ranges, etc.), please refer to the [Application Event Tracking API Documentation](../../../en/application-dev/reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).
+For detailed API usage instructions (parameter constraints, value ranges, etc.), please refer to the [Application Event Tracking API Documentation](../reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).
 
 > **Note:**
 >
-> Using Cangjie interfaces to subscribe to crash events includes two crash types: CjError and NativeCrash.
+> Using the Cangjie interface to subscribe to crash events includes two crash types: CjError and NativeCrash.
 
-**Subscription Interface Functions:**
+**Subscription Interface Functionality:**
 
 | Interface Name                                          | Description                                  |
-| ------------------------------------------------------- | ------------------------------------------- |
-| addWatcher(watcher: Watcher): Option\<AppEventPackageHolder> | Adds an application event observer for subscribing to application events. |
-| removeWatcher(watcher: Watcher): Unit                   | Removes an application event observer for unsubscribing from application events. |
+| ------------------------------------------------------- | -------------------------------------------- |
+| addWatcher(watcher: Watcher): Option\<AppEventPackageHolder> | Method to add an application event observer for subscribing to application events. |
+| removeWatcher(watcher: Watcher): Unit                   | Method to remove an application event observer for unsubscribing from application events. |
 
 ## Development Steps
 
-This example demonstrates development steps by subscribing to crash events triggered when a user clicks a button.
+Taking the example of subscribing to crash events triggered by user button clicks, the development steps are as follows:
 
 1. Create a new Cangjie application project and edit the "entry > src > main > cangjie > main_bility.cj" file to import dependency modules:
 
@@ -26,9 +26,10 @@ This example demonstrates development steps by subscribing to crash events trigg
    ```cangjie
    import kit.BasicServicesKit.*
    import kit.PerformanceAnalysisKit.{HiAppEvent, Hilog}
+   import ohos.hiviewdfx.hi_app_event.*
    ```
 
-2. Add system event subscription in the onCreate function of "entry > src > main > cangjie > main_bility.cj":
+2. Add system event subscription in the onCreate function of the "entry > src > main > cangjie > main_bility.cj" file. Example:
 
    <!-- compile -->
 
@@ -37,17 +38,17 @@ This example demonstrates development steps by subscribing to crash events trigg
     let watcher = Watcher(
         // Developers can customize the observer name, which the system uses to identify different observers
         "watcher2",
-        // Developers can subscribe to system events of interest; here we subscribe to crash events
+        // Developers can subscribe to system events of interest; here, crash events are subscribed to
         appEventFilters: [eventfilter],
-        // Developers can implement the subscription callback function to customize processing of event data
+        // Developers can implement their own real-time callback function to process the subscribed event data
         onReceive: {
             domain: String, appEventGroups: Array<AppEventGroup> =>
                 Hilog.info(0x0000, 'testTag', "HiAppEvent onReceive: domain=${domain}")
             for (eventGroup in appEventGroups) {
-                // Developers can distinguish different system events by their names
+                // Developers can distinguish different system events based on the event names in the event collection
                 Hilog.info(0x0000, 'testTag', "HiAppEvent eventName=${eventGroup.name}")
                 for (eventInfo in eventGroup.appEventInfos) {
-                    // Developers can process event data; here we log the event data
+                    // Developers can process the event data in the event collection; here, the event data is logged
                     Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.domain=${eventInfo.domain}")
                     Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.name=${eventInfo.name}")
                     Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.eventType.value=${eventInfo.eventType.getValue()}")
@@ -66,30 +67,30 @@ This example demonstrates development steps by subscribing to crash events trigg
     HiAppEvent.addWatcher(watcher)
    ```
 
-3. Edit "entry > src > main > cangjie > Index.cj" to add a button and construct a crash scenario in onClick to trigger the event:
+3. Edit "entry > src > main > cangjie > Index.cj" to add a button and construct a crash scenario in the onClick function to trigger the event. Example code:
 
    <!-- compile -->
 
    ```cangjie
     import stdx.encoding.json.*
 
-    // Construct a crash scenario in the button click function to trigger application crash events
-    Button("appCrash").onClick { evt =>
+    // Construct a crash scenario in the button click function to trigger an application crash event
+    Button("appCrash").onClick ({ evt =>
         let result = JsonObject.fromStr("")
-    }
+    })
    ```
 
-4. Click the Run button in DevEco Studio to launch the application. Then click the "appCrash" button to trigger a crash event. After the crash occurs, the system generates crash logs using different stack trace methods based on the crash type (CjError or NativeCrash) before callback. NativeCrash stack tracing takes about 2 seconds (actual time depends on business thread count and IPC latency). CjError triggers in-process stack tracing, while NativeCrash triggers out-of-process stack tracing, making NativeCrash tracing slower. Users can subscribe to crash events, which are reported asynchronously after stack tracing without blocking current operations.
+4. Click the Run button in DevEco Studio to launch the application. Then, click the "appCrash" button on the application interface to trigger a crash event. After the crash event occurs, the system generates crash logs using different stack trace methods based on the crash type (CjError or NativeCrash) and then performs the callback. The NativeCrash stack trace takes about 2 seconds, with actual time depending on the number of business threads and inter-process communication delays. CjError triggers in-process stack tracing, while NativeCrash triggers out-of-process stack tracing, making NativeCrash stack tracing more time-consuming than CjError. Users can subscribe to crash events, which are reported asynchronously after stack tracing completes without blocking current business operations.
 
-5. If the application doesn't catch the crash exception, the system handles it and terminates the app. On next launch, HiAppEvent reports the crash event to registered listeners and triggers callback.
+5. If the application does not catch the crash exception, the system handles it and the application exits. Upon the next launch, HiAppEvent reports the crash event to registered listeners and triggers the callback.
 
-If the application actively catches crash exceptions, HiAppEvent will callback before app termination in these scenarios:
+If the application actively catches the crash exception, HiAppEvent will trigger the callback before the application exits in the following two scenarios:
 
-Scenario 1: Exception handling doesn't actively terminate the app (e.g., using [errorManger.on](../../../en/application-dev/reference/AbilityKit/cj-apis-app-ability-error_manager.md#static-func-onErrorManagerEvent-errorobserver) to catch CjError, or registering NativeCrash signal handlers without termination).
+**Scenario 1:** The exception handler does not actively exit, and the application does not terminate after the crash. For example, using [errorManger.on](../reference/AbilityKit/cj-apis-app-ability-error_manager.md#static-func-onErrorManagerEvent-errorobserver) to catch CjError or registering a NativeCrash signal handler without exiting.
 
-Scenario 2: Exception handling takes too long, delaying app termination.
+**Scenario 2:** The exception handling process takes too long, delaying the application exit.
 
-After HiAppEvent completes event reporting and callback, you can view processed system event logs in the Log window:
+After HiAppEvent reports the event and completes the callback, the processed system event data logs can be viewed in the Log window:
 
    ```text
    HiAppEvent onReceive: domain=OS

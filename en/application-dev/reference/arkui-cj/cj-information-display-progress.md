@@ -1,6 +1,6 @@
 # Progress
 
-A progress bar component used to display loading progress or operation processing status.
+A progress bar component used to display the loading progress of content or the processing status of operations.
 
 ## Import Module
 
@@ -14,25 +14,25 @@ None
 
 ## Creating the Component
 
-### init(Float64, Float64, ProgressType)
+### init(?Float64, ?Float64, ?ProgressType)
 
 ```cangjie
-public init(value!: Float64, total!: Float64 = 100.0, progressType!: ProgressType = ProgressType.Linear)
+public init(value!: ?Float64, total!: ?Float64 = None, progressType!: ?ProgressType = None)
 ```
 
 **Function:** Creates a progress bar component.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Float64 | Yes | - | **Named parameter.** Specifies the current progress value. Values less than 0 are set to 0.0, and values greater than total are set to total.<br/>Initial value: 0.0 |
-| total | Float64 | No | 100.0 | **Named parameter.** Specifies the total length of the progress bar. Values less than or equal to 0 are set to 100.0. |
-| progressType | [ProgressType](./cj-common-types.md#enum-progresstype) | No | ProgressType.Linear | Specifies the type of the progress bar. |
+| value | ?Float64 | Yes | - | **Named parameter.** Specifies the current progress value. Values less than 0 are set to 0.0, and values greater than total are set to total. Initial value: 0.0 |
+| total | ?Float64 | No | None | **Named parameter.** Specifies the total length of the progress bar. Values less than or equal to 0 are set to 100.0. |
+| progressType | ?[ProgressType](./cj-common-types.md#enum-progresstype) | No | None | **Named parameter.** Specifies the type of the progress bar. |
 
 ## Common Attributes/Common Events
 
@@ -40,232 +40,244 @@ Common Attributes: All supported.
 
 > **Note:**
 >
-> This component overrides the common attribute backgroundColor. When added directly to the Progress component, it affects the background color of the progress bar. To set the background color of the entire Progress component, add backgroundColor to the outer container that wraps the Progress component.
+> This component overrides the common attribute backgroundColor. When applied directly to the Progress component, it affects the background color of the progress bar. To set the background color of the entire Progress component, add backgroundColor to the outer container that wraps the Progress component.
 
 Common Events: All supported.
 
 ## Component Attributes
 
-### func color(ResourceColor)
+### func color(?ResourceColor)
 
 ```cangjie
-public func color(value: ResourceColor): This
+public func color(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the foreground color of the progress bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | The foreground color of the progress bar.<br/>Initial value:<br/>- Capsule: '0x33007dff'<br/>- Ring: Start: '0xff86c1ff', End: '0xff254ff7'<br/>- Other styles: '0xff007dff' |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The foreground color of the progress bar. |
 
-### func style(Length, Int32, Length)
+### func style(?Length, ?Int32, ?Length)
 
 ```cangjie
-public func style(strokeWidth!: Length = 10.vp, scaleCount!: Int32 = 120, scaleWidth!: Length = 2.vp): This
+public func style(strokeWidth!: ?Length = None, scaleCount!: ?Int32 = None, scaleWidth!: ?Length = None): This
 ```
 
 **Function:** Sets the style of the progress bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| strokeWidth | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 10.vp | **Named parameter.** Sets the width of the progress bar (percentage values are not supported). |
-| scaleCount | Int32 | No | 120 | **Named parameter.** Sets the total number of scale marks for the ring progress bar. |
-| scaleWidth | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 2.vp | **Named parameter.** Sets the thickness of the scale marks for the ring progress bar (percentage values are not supported). If the scale thickness exceeds the progress bar width, the system default thickness is used. |
+| strokeWidth | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Sets the width of the progress bar (percentage values are not supported). Initial value: 10.vp. |
+| scaleCount | ?Int32 | No | None | **Named parameter.** Sets the total number of scale marks for a circular progress bar. Initial value: 120. |
+| scaleWidth | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Sets the thickness of the scale marks for a circular progress bar (percentage values are not supported). If the scale thickness exceeds the progress bar width, the system default thickness is used. Initial value: 2.vp. |
 
-### func style(RingStyleOptions)
+### func style(?RingStyleOptions)
 
 ```cangjie
-public func style(value: RingStyleOptions): This
+public func style(value: ?RingStyleOptions): This
 ```
 
 **Function:** Sets the style of the Ring progress bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [RingStyleOptions](#class-ringstyleoptions) | Yes | - | Sets the style of the Ring progress bar. |
+| value | ?[RingStyleOptions](#class-ringstyleoptions) | Yes | - | Sets the style of the Ring progress bar.<br>Initial value: RingStyleOptions(). |
 
-### func value(Float64)
+### func value(?Float64)
 
 ```cangjie
-public func value(value: Float64): This
+public func value(value: ?Float64): This
 ```
 
-**Function:** Sets the current progress value. Values less than 0 are set to 0, and values greater than total are set to total. Invalid values have no effect.
+**Function:** Sets the current progress value.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Float64 | Yes | - | The current progress value.<br/>Initial value: 0 |
+| value | ?Float64 | Yes | - | The current progress value. Initial value: 0.0. |
 
 ## Basic Type Definitions
+
+### interface CommonProgressStyleOptions
+
+```cangjie
+sealed interface CommonProgressStyleOptions {}
+```
+
+**Function:** Common style options for progress bars.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 ### class RingStyleOptions
 
 ```cangjie
 public class RingStyleOptions <: CommonProgressStyleOptions {
-    public var strokeWidth: Length
-    public var shadow: Bool
-    public var status: ProgressStatus
-    public var enableSmoothEffect: Bool
-    public var enableScanEffect: Bool
-    public init(strokeWidth!: Length = 4.vp, shadow!: Bool = false,
-        status!: ProgressStatus = ProgressStatus.Progressing, enableSmoothEffect!: Bool = true,
-        enableScanEffect!: Bool = false)
+    public var strokeWidth: ?Length
+    public var shadow: ?Bool
+    public var status: ?ProgressStatus
+    public var enableSmoothEffect: ?Bool
+    public var enableScanEffect: ?Bool
+    public init(strokeWidth!: ?Length = None, shadow!: ?Bool = None, status!: ?ProgressStatus = None, enableSmoothEffect!: ?Bool = None, enableScanEffect!: ?Bool = None)
 }
 ```
 
-**Function:** Sets the style of the Ring progress bar.
+**Function:** Style options for a circular (Ring) progress bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
-- [CommonProgressStyleOptions](./cj-common-types.md#class-commonprogressstyleoptions)
+- [CommonProgressStyleOptions](#interface-commonprogressstyleoptions)
 
 #### var enableScanEffect
 
 ```cangjie
-public var enableScanEffect: Bool
+public var enableScanEffect: ?Bool
 ```
 
 **Function:** Toggles the scan light effect.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var enableSmoothEffect
 
 ```cangjie
-public var enableSmoothEffect: Bool
+public var enableSmoothEffect: ?Bool
 ```
 
 **Function:** Toggles the smooth animation effect. When enabled, the progress transitions smoothly from the current value to the target value; otherwise, it changes abruptly.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var shadow
 
 ```cangjie
-public var shadow: Bool
+public var shadow: ?Bool
 ```
 
-**Function:** Toggles the shadow effect of the progress bar.
+**Function:** Toggles the shadow effect for the progress bar.
 
-**Type:** Bool
+**Type:** ?Bool
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var status
 
 ```cangjie
-public var status: ProgressStatus
+public var status: ?ProgressStatus
 ```
 
-**Function:** Sets the status of the progress bar. When set to LOADING, the update check animation is enabled, and setting the progress value has no effect. When changed from LOADING to PROGRESSING, the update check animation completes before stopping.
+**Function:** Sets the status of the progress bar. When set to LOADING, a checking-for-updates animation is enabled, and setting the progress value has no effect. When changed from LOADING to PROGRESSING, the animation completes before stopping.
 
-**Type:** [ProgressStatus](#enum-progressstatus)
+**Type:** ?[ProgressStatus](#enum-progressstatus)
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### var strokeWidth
 
 ```cangjie
-public var strokeWidth: Length
+public var strokeWidth: ?Length
 ```
 
 **Function:** Sets the width of the progress bar (percentage values are not supported).
 
-**Type:** [Length](../BasicServicesKit/cj-apis-base.md#interface-length)
+**Type:** ?[Length](./cj-common-types.md#interface-length)
 
-**Read/Write Capability:** Readable and Writable
+**Read/Write:** Readable and Writable
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-#### init(Length, Bool, ProgressStatus, Bool, Bool)
+#### init(?Length, ?Bool, ?ProgressStatus, ?Bool, ?Bool)
 
 ```cangjie
-public init(strokeWidth!: Length = 4.vp, shadow!: Bool = false,
-    status!: ProgressStatus = ProgressStatus.Progressing, enableSmoothEffect!: Bool = true,
-    enableScanEffect!: Bool = false)
+public init(strokeWidth!: ?Length = None, shadow!: ?Bool = None, status!: ?ProgressStatus = None, enableSmoothEffect!: ?Bool = None, enableScanEffect!: ?Bool = None)
 ```
 
 **Function:** Creates a RingStyleOptions object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| strokeWidth | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | No | 4.vp | **Named parameter.** Sets the width of the progress bar (percentage values are not supported). If the width is greater than or equal to the radius, it defaults to half the radius value. |
-| shadow | Bool | No | false | **Named parameter.** Toggles the shadow effect of the progress bar. |
-| status | [ProgressStatus](#enum-progressstatus) | No | ProgressStatus.Progressing | **Named parameter.** Sets the status of the progress bar. When set to LOADING, the update check animation is enabled, and setting the progress value has no effect. When changed from LOADING to PROGRESSING, the update check animation completes before stopping. |
-| enableSmoothEffect | Bool | No | true | **Named parameter.** Toggles the smooth animation effect. When enabled, the progress transitions smoothly from the current value to the target value; otherwise, it changes abruptly. |
-| enableScanEffect | Bool | No | false | **Named parameter.** Toggles the scan light effect. |
+| strokeWidth | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Sets the width of the progress bar (percentage values are not supported). If the width is greater than or equal to the radius, it defaults to half the radius. Initial value: 4.0.vp. |
+| shadow | ?Bool | No | None | **Named parameter.** Toggles the shadow effect for the progress bar. Initial value: false. |
+| status | ?[ProgressStatus](#enum-progressstatus) | No | None | **Named parameter.** Sets the status of the progress bar. When set to LOADING, a checking-for-updates animation is enabled, and setting the progress value has no effect. When changed from LOADING to PROGRESSING, the animation completes before stopping. Initial value: ProgressStatus.Progressing. |
+| enableSmoothEffect | ?Bool | No | None | **Named parameter.** Toggles the smooth animation effect. When enabled, the progress transitions smoothly from the current value to the target value; otherwise, it changes abruptly. Initial value: true. |
+| enableScanEffect | ?Bool | No | None | **Named parameter.** Toggles the scan light effect. Initial value: false. |
 
 ### enum ProgressStatus
 
 ```cangjie
-public enum ProgressStatus {
+public enum ProgressStatus <: Equatable<ProgressStatus> {
     | Loading
     | Progressing
     | ...
 }
 ```
 
-**Function:** The status of the Progress component's progress bar.
+**Function:** The current status of the progress bar.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+**Parent Type:**
+
+- Equatable\<[ProgressStatus](#enum-progressstatus)>
 
 #### Loading
 
@@ -277,7 +289,7 @@ Loading
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 #### Progressing
 
@@ -285,17 +297,65 @@ Loading
 Progressing
 ```
 
-**Function:** Progress updating status.
+**Function:** Processing status.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
+
+#### operator func !=(ProgressStatus)
+
+```cangjie
+public operator func !=(other: ProgressStatus): Bool
+```
+
+**Function:** Compares whether two enum values are not equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| other | [ProgressStatus](#enum-progressstatus) | Yes | - | The other enum value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
+
+#### operator func ==(ProgressStatus)
+
+```cangjie
+public operator func ==(other: ProgressStatus): Bool
+```
+
+**Function:** Compares whether two enum values are equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| other | [ProgressStatus](#enum-progressstatus) | Yes | - | The other enum value to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | Returns true if the two enum values are equal, otherwise returns false. |
 
 ## Example Code
 
-### Example 1 (Setting the Progress Bar Type)
+### Example 1 (Setting the Type of Progress Bar)
 
-This example demonstrates setting the progress bar type using the type attribute.
+This example demonstrates setting the type of a progress bar using the type attribute.
 
 <!-- run -->
 
@@ -377,11 +437,9 @@ class EntryView {
 }
 ```
 
-![progress1](figures/progress1.jpg)
+![progress1](./figures/progress1.PNG)### Example 2 (Setting Circular Progress Bar Properties)
 
-### Example 2 (Setting Ring Progress Bar Attributes)
-
-This example demonstrates setting visual attributes of the ring progress bar using the strokeWidth and shadow properties of the style interface.
+This example demonstrates the visual property configuration of a circular progress bar using the `strokeWidth` and `shadow` attributes of the style interface.
 
 <!-- run -->
 
@@ -414,9 +472,11 @@ class EntryView {
 }
 ```
 
-![progress2](figures/progress2.jpg)### Example 3 (Setting Circular Progress Bar Animation)
+![progress2](./figures/progress2.PNG)
 
-This example demonstrates the toggle functionality for circular progress bar animations through the `status` and `enableScanEffect` properties of the style interface.
+### Example 3 (Configuring Circular Progress Bar Animation)
+
+This example implements the toggle functionality for circular progress bar animations using the `status` and `enableScanEffect` attributes of the style interface.
 
 <!-- run -->
 
@@ -451,9 +511,9 @@ class EntryView {
 
 ![progress3](figures/progress3.gif)
 
-### Example 4 (Setting Smooth Progress Animation)
+### Example 4 (Configuring Smooth Progress Animation)
 
-This example demonstrates the toggle functionality for smooth progress animations through the `enableSmoothEffect` property of the style interface.
+This example implements the toggle functionality for smooth progress animation using the `enableSmoothEffect` attribute of the style interface.
 
 <!-- run -->
 
@@ -476,9 +536,9 @@ class EntryView {
             Text('enableSmoothEffect: false').fontSize(9).fontColor(0xCCCCCC).width(90.percent).margin(5)
             Progress( value: this.value, total: 100.0, progressType: ProgressType.Linear ).style(RingStyleOptions(strokeWidth: 10, enableSmoothEffect: false ))
             Button('value +10')
-                .onClick{ evt =>
+                .onClick({ evt =>
                     this.value += 10.0
-            }.width(75).height(15).fontSize(9)
+            }).width(75).height(15).fontSize(9)
         }.width(50.percent).height(100.percent).margin( left: 20 )
     }
 }

@@ -1,6 +1,6 @@
 # RowSplit
 
-Arranges child components horizontally and inserts a vertical divider between each child component.
+Arranges child components horizontally and inserts vertical divider lines between each child component.
 
 ## Import Module
 
@@ -12,9 +12,9 @@ import kit.ArkUI.*
 
 Can contain child components.
 
-RowSplit restricts the width of child components through dividers. During initialization, divider positions are calculated based on the width of child components. After initialization, subsequent dynamic modifications to child component widths will not take effect—divider positions remain fixed, but child component widths can be adjusted by dragging adjacent dividers.
+RowSplit constrains the width of child components through divider lines. During initialization, the divider positions are calculated based on the width of child components. After initialization, subsequent dynamic modifications to child component widths will not take effect—the divider positions remain fixed. However, child component widths can be adjusted by dragging adjacent dividers.
 
-After initialization, dynamically modifying universal attributes such as [margin](../arkui-cj/cj-universal-attribute-size.md#func-marginlength), [border](../arkui-cj/cj-universal-attribute-border.md#func-borderlength-resourcecolor-length-borderstyle), or [padding](../arkui-cj/cj-universal-attribute-size.md#func-paddinglength) that cause a child component's width to exceed the spacing between adjacent dividers will prevent the divider from being dragged to adjust the child component's width.
+After initialization, dynamically modifying universal attributes such as [margin](../arkui-cj/cj-universal-attribute-size.md#func-marginlength), [border](../arkui-cj/cj-universal-attribute-border.md#func-borderlength-resourcecolor-length-borderstyle), or [padding](../arkui-cj/cj-universal-attribute-size.md#func-paddinglength) that cause a child component's width to exceed the spacing between adjacent dividers will prevent adjusting the child component width by dragging the divider.
 
 ## Creating the Component
 
@@ -28,13 +28,13 @@ public init(child: () -> Unit)
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| child | ()->Unit | Yes | - | Declares the child components within the container. |
+| child | () -> Unit | Yes | - | Declares the child components within the container. |
 
 ## Universal Attributes/Events
 
@@ -44,23 +44,23 @@ Universal Events: All supported.
 
 ## Component Attributes
 
-### func resizeable(Bool)
+### func resizeable(?Bool)
 
 ```cangjie
-public func resizeable(value: Bool): This
+public func resizeable(value: ?Bool): This
 ```
 
 **Function:** Sets whether the divider is draggable.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Bool | Yes | - | Whether the divider is draggable.<br>Default: false. |
+| value | ?Bool | Yes | - | Whether the divider is draggable.<br>Default: false. |
 
 > **Notes:**
 >
@@ -97,6 +97,7 @@ class EntryView {
                     .width(10.percent)
                     .height(100)
                     .backgroundColor(0xD2B48C)
+                    .textAlign(TextAlign.Center)
                     .textAlign(TextAlign.Center)
                 Text("3")
                     .width(10.percent)

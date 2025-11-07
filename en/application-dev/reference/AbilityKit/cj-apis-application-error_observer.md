@@ -20,10 +20,10 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the sample code has a "// index.cj" comment in the first line, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample code contains a "// index.cj" comment in the first line, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class ErrorObject
 
@@ -35,11 +35,11 @@ public class ErrorObject {
 }
 ```
 
-**Description:** Contains the exception name, exception message, and stack trace of the uncaught exception.
+**Function:** Contains the exception name, exception message, and stack trace of the uncaught exception.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let message
 
@@ -47,15 +47,15 @@ public class ErrorObject {
 public let message: String
 ```
 
-**Description:** Contains the exception message of the uncaught exception.
+**Function:** Contains the exception message of the uncaught exception.
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let name
 
@@ -63,15 +63,15 @@ public let message: String
 public let name: String
 ```
 
-**Description:** Contains the exception name of the uncaught exception.
+**Function:** Contains the exception name of the uncaught exception.
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### let stack
 
@@ -79,15 +79,15 @@ public let name: String
 public let stack: Option<String>
 ```
 
-**Description:** Contains the stack trace of the uncaught exception.
+**Function:** Contains the stack trace of the uncaught exception.
 
 **Type:** Option\<String>
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class ErrorObserver
 
@@ -102,11 +102,11 @@ public class ErrorObserver {
 }
 ```
 
-**Description:** Exception monitoring module.
+**Function:** Exception monitoring module.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var onException
 
@@ -114,15 +114,15 @@ public class ErrorObserver {
 public var onException: Option <(ErrorObject) -> Unit>
 ```
 
-**Description:** Callback when an application exception occurs and is reported to the JS layer.
+**Function:** Callback when an application exception occurs and is reported to the JS layer.
 
 **Type:** Option\<([ErrorObject](#class-errorobject))->Unit>
 
-**Access:** Read-write
+**Read/Write Permission:** Read/Write
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var onUnhandledException
 
@@ -130,15 +130,15 @@ public var onException: Option <(ErrorObject) -> Unit>
 public var onUnhandledException:(String) -> Unit
 ```
 
-**Description:** Callback when an uncaught exception occurs in the application.
+**Function:** Callback when an uncaught exception occurs in the application.
 
 **Type:** (String)->Unit
 
-**Access:** Read-write
+**Read/Write Permission:** Read/Write
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init((String) -> Unit, Option\<(ErrorObject) -> Unit>)
 
@@ -149,15 +149,46 @@ public init(
 )
 ```
 
-**Description:** Constructs an exception monitoring class.
+**Function:** Constructs an exception monitoring class.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | onUnhandledException | (String)->Unit | Yes | - | Callback when an uncaught exception occurs in the application. |
 | onException | Option\<([ErrorObject](#class-errorobject))->Unit> | No | None | Callback when an application exception occurs and is reported to the JS layer. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let observer = ErrorObserver(
+        {
+            errorMsg =>
+                Hilog.info(0, "test_errorManager", "onUnhandledException, errorMsg:  =${errorMsg}")
+        },
+        onException: Some({ errorObj =>
+            Hilog.info(0, "test_errorManager", "onException, name:   =${errorObj.name}")
+            Hilog.info(0, "test_errorManager", "onException, message:   =${errorObj.message}")
+            if (let Some(v) <-errorObj.stack) {
+                Hilog.info(0, "test_errorManager", "onException, stack:    =${v}")
+            }
+        })
+    )
+    ErrorManager.on(ErrorManagerEvent.Error, observer)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```

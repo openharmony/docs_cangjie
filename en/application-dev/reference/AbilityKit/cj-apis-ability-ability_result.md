@@ -16,14 +16,14 @@ ohos.permission.PREPARE_APP_TERMINATE
 
 ohos.permission.PRIVACY_WINDOW
 
-## Usage Instructions
+## Usage Guidelines
 
-API sample code usage instructions:
+API sample code usage guidelines:
 
-- If the sample code's first line contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the aforementioned sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Description](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class AbilityResult
 
@@ -39,7 +39,7 @@ public class AbilityResult {
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var resultCode
 
@@ -51,11 +51,11 @@ public var resultCode: Int32
 
 **Type:** Int32
 
-**Access:** Read-Write
+**Readable/Writable:** Readable and Writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### var want
 
@@ -67,11 +67,11 @@ public var want: Want
 
 **Type:** [Want](cj-apis-app-ability-want.md#class-want)
 
-**Access:** Read-Write
+**Readable/Writable:** Readable and Writable
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, Want)
 
@@ -83,11 +83,20 @@ public init(resultCode: Int32, want!: Want = Want())
 
 **System Capability:** SystemCapability.Ability.AbilityBase
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:--------------|:-----|:--------|:-------------|:------------|
-| resultCode    | Int32 | Yes | - | Represents the result code. |
-| want          | [Want](cj-apis-app-ability-want.md#class-want) | No | Want() | Represents Want type information, such as ability name, package name, etc. |
+|:---|:---|:---|:---|:---|
+| resultCode | Int32 | Yes | - | Indicates the result code. |
+| want | [Want](cj-apis-app-ability-want.md#class-want) | No | Want() | Represents Want type information, such as ability name, package name, etc. |
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+
+let abilityResult = AbilityResult(0)
+```

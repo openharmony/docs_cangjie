@@ -1,10 +1,10 @@
 # Best Practices for State Management
 
-To assist application developers in improving their application quality, particularly in efficient state management, this chapter presents several common inefficient development scenarios encountered in ArkUI application development and provides corresponding solutions. Additionally, it offers comparisons and explanations between recommended and non-recommended approaches for the same scenario, visually demonstrating their differences. This helps developers learn how to correctly use state variables in application development for high-performance coding.
+To assist application developers in improving their application quality, particularly in efficient state management, this chapter presents several common inefficient development scenarios encountered when developing ArkUI applications, along with corresponding solutions. Additionally, it provides comparisons and explanations between recommended and non-recommended approaches for the same scenarios, visually demonstrating their differences. This helps developers learn how to correctly use state variables in application development for high-performance outcomes.
 
 ## Forcibly Updating Non-State Variable Associated Components Without Using State Variables
 
-**Anti-Pattern**
+**Anti-pattern**
 
 <!-- run -->
 
@@ -38,24 +38,24 @@ class EntryView{
         Column(space: 20){
             ForEach(this.updateUIArr(this.realStateArr), {item: Int64, _: Int64 => Text("${item}")})
             Text("add item")
-            .onClick{ event =>
-                    // Changing realStateArr won't trigger UI view updates
-                    this.realStateArr.add(this.realStateArr[this.realStateArr.size - 1] + 1)
+            .onClick({ event =>
+                // Changing realStateArr does not trigger UI view updates
+                this.realStateArr.add(this.realStateArr[this.realStateArr.size - 1] + 1)
 
-                    // Trigger UI view update
-                    this.needsUpdate = !this.needsUpdate
-                }
+                // Trigger UI view updates
+                this.needsUpdate = !this.needsUpdate
+            })
 
             Text("chg color")
             .onClick({event =>
-                // Changing realState won't trigger UI view updates
+                // Changing realState does not trigger UI view updates
                 match {
                     case this.realState.toUInt32() == Color(0xFFFF00).toUInt32() => this.realState = Color.Red
                     case this.realState.toUInt32() == Color.Red.toUInt32() => this.realState = Color(0xFFFF00)
                     case _ => Hilog.error(0, "test", "realState invalid")
                 }
 
-                // Trigger UI view update
+                // Trigger UI view updates
                 this.needsUpdate = !this.needsUpdate
             })
         }
@@ -67,13 +67,13 @@ class EntryView{
 
 The above example has the following issues:
 
-- The application attempts to control UI update logic manually, but in ArkUI, UI update logic should be handled by the framework detecting changes in application state variables.
-- `this.needsUpdate` is a custom UI state variable that should only be used for its bound UI components. Variables `this.realStateArr` and `this.realState` are not decorated, so their changes won't trigger UI refreshes.
-- However, in this application, the user tries to drive updates of regular variables `this.realStateArr` and `this.realState` through updates to `this.needsUpdate`. This approach is unreasonable and results in poor update performance.
+- The application attempts to control UI update logic, but in ArkUI, UI update logic should be implemented by the framework detecting changes in the application's state variables.
+- `this.needsUpdate` is a custom UI state variable and should only be used for its bound UI components. Variables `this.realStateArr` and `this.realState` are not decorated, so their changes will not trigger UI refreshes.
+- However, in this application, the user tries to update the regular variables `this.realStateArr` and `this.realState` by updating `this.needsUpdate`. This approach is unreasonable and results in poor update performance.
 
-**Recommended Pattern**
+**Recommended Approach**
 
-To resolve this issue, decorate the member variables `realStateArr` and `realState` with `@State`. Once this is done, the variable `needsUpdate` is no longer needed.
+To resolve this issue, the member variables `realStateArr` and `realState` should be decorated with `@State`. Once this is done, the variable `needsUpdate` is no longer needed.
 
 <!-- run -->
 
@@ -94,20 +94,20 @@ class EntryView{
             ForEach(this.realStateArr, {item: Int64, _: Int64 => Text("${item}")})
 
             Text("add item")
-            .onClick{event =>
+            .onClick({event =>
                 // Changing realStateArr triggers UI view updates
                 this.realStateArr.append((this.realStateArr[this.realStateArr.size - 1] + 1))
-            }
+            })
 
             Text("chg color")
-            .onClick{event =>
+            .onClick({event =>
                 // Changing realState triggers UI view updates
                 match {
                     case this.realState.toUInt32() == Color(0xFFFF00).toUInt32() => this.realState = Color.Red
                     case this.realState.toUInt32() == Color.Red.toUInt32() => this.realState = Color(0xFFFF00)
                     case _ => Hilog.error(0, "test", "realState invalid")
                 }
-            }
+            })
             .backgroundColor(this.realState)
             .width(200).height(500)
         }
@@ -115,15 +115,15 @@ class EntryView{
 }
 ```
 
-## Properly Controlling the Number of Components Associated with Object-Type State Variables
+## Properly Control the Number of Components Associated with Object-Type State Variables
 
-When defining a complex object as a state variable, it's essential to reasonably control the number of components associated with it. If any member property of the object changes, it will cause all components associated with that object to refresh, even if those components don't directly use the changed property. To avoid performance impacts from such "redundant refreshes," it's recommended to properly split the complex object and control the number of associated components. For details, refer to [State Management Proper Usage Development Guide](cj-properly-use-state-management-to-develope.md).
+If a complex object is defined as a state variable, it is essential to control the number of components associated with it. When a member property of the object changes, all components associated with the object will refresh, even if they do not directly use the changed property. To avoid the performance impact of such "redundant refreshes," it is recommended to properly split the complex object and limit the number of components associated with it. For details, refer to [State Management Proper Usage Development Guide](cj-properly-use-state-management-to-develope.md).
 
-## Avoiding Frequent Reads of State Variables in Loops (for, while, etc.)
+## Avoid Frequent Reads of State Variables in Loops Such as `for` and `while`
 
 In application development, avoid frequently reading state variables within loop logic; instead, read them outside the loop.
 
-**Anti-Pattern**
+**Anti-pattern**
 
 <!-- run -->
 
@@ -141,7 +141,7 @@ class EntryView{
 
     func build(){
         Column(){
-            Button("Click to print logs")
+            Button("Click to log")
             .onClick({event=>
                 for(i in 0..10 : 1){
                     Hilog.info(0, "AppLogCj", this.message)
@@ -159,7 +159,7 @@ class EntryView{
 }
 ```
 
-**Recommended Pattern**
+**Recommended Approach**
 
 <!-- run -->
 
@@ -177,7 +177,7 @@ class EntryView{
 
     func build(){
         Column(){
-            Button("Click to print logs")
+            Button("Click to log")
             .onClick({event=>
                 let logMessage: String = this.message
                 for(i in 0..10 : 1){
@@ -196,13 +196,13 @@ class EntryView{
 }
 ```
 
-## Using Temporary Variables Instead of State Variables Is Recommended
+## Use Temporary Variables Instead of State Variables Where Possible
 
-In application development, minimize direct assignments to state variables and perform data calculations using temporary variables.
+In application development, minimize direct assignments to state variables by performing data calculations with temporary variables.
 
-When a state variable changes, ArkUI queries components that depend on that state variable and executes their update methods to complete the rendering process. By using temporary variables for calculations instead of directly manipulating state variables, ArkUI only needs to query and render components once during the final state variable change, reducing unnecessary operations and improving application performance. For state variable behavior, refer to [@State Decorator: Component Internal State](cj-macro-state.md).
+When a state variable changes, ArkUI queries components dependent on that state variable and executes their update methods to render the components. By using temporary variables for calculations instead of directly manipulating state variables, ArkUI only queries and renders components once after the final state variable change, reducing unnecessary actions and improving application performance. For details on state variable behavior, refer to [@State Macro: Component Internal State](cj-macro-state.md).
 
-**Anti-Pattern**
+**Anti-pattern**
 
 <!-- run -->
 
@@ -211,7 +211,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import ohos.hi_tracemeter.HiTraceMeter
+import ohos.hi_trace_meter.HiTraceMeter
 
 @Entry
 @Component
@@ -229,7 +229,7 @@ class EntryView{
 
     func build(){
         Column(){
-            Button("Click to print logs")
+            Button("Click to log")
             .onClick({event => this.appendMsg("Operate state variable")})
             .width(90.percent)
             .backgroundColor(Color.Blue)
@@ -247,7 +247,7 @@ Directly manipulating state variables triggers the calculation function three ti
 
 ![trace1](./figures/trace1.png)
 
-**Recommended Pattern**
+**Recommended Approach**
 
 <!-- run -->
 
@@ -276,7 +276,7 @@ class EntryView{
 
     func build(){
         Column(){
-            Button("Click to print logs")
+            Button("Click to log")
             .onClick({event => this.appendMsg("Operate state variable")})
             .width(90.percent)
             .backgroundColor(Color.Blue)
@@ -298,5 +298,5 @@ Comparison between directly manipulating state variables and using temporary var
 
 | Calculation Method | Time Consumption (Data varies by device and scenario, for reference only) | Description |
 | :--- | :--- | :--- |
-| Direct state variable manipulation | 1.01ms | Increases unnecessary ArkUI query and rendering operations, degrading performance |
-| Using temporary variables | 0.63ms | Reduces unnecessary ArkUI operations, optimizing performance |
+| Directly manipulating state variables | 1.01ms | Increases unnecessary ArkUI query and rendering actions, degrading performance |
+| Using temporary variables | 0.63ms | Reduces unnecessary ArkUI actions, optimizing performance |

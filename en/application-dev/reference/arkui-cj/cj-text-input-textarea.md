@@ -1,6 +1,6 @@
 # TextArea
 
-A multi-line text input component that automatically wraps text when the content exceeds the component width. When height is not set, the component has no default height and adapts to content height. When width is not set, it defaults to filling the maximum available width.
+A multi-line text input component that automatically wraps text when the content exceeds the component's width. When height is not set, the component has no default height and adapts to the content height. When width is not set, it defaults to occupying the maximum available width.
 
 ## Import Module
 
@@ -14,387 +14,363 @@ None
 
 ## Creating the Component
 
-### init(ResourceStr, ResourceStr, TextAreaController)
+### init(?ResourceStr, ?ResourceStr, ?TextAreaController)
 
 ```cangjie
-public init(placeholder!: ResourceStr = "", text!: ResourceStr = "",
-    controller!: TextAreaController = TextAreaController())
+public init(placeholder!: ?ResourceStr = None, text!: ?ResourceStr = None,
+    controller!: ?TextAreaController = None)
 ```
 
-**Function:** Creates a TextArea component.
+**Function:** Creates a TextArea object containing placeholder text, current text content, and a controller.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| placeholder | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | **Named parameter.** Hint text when no input is present.<br/>The hint text disappears when content is entered. When only the placeholder property is set, the handle still follows drag movements, and the cursor stays at the beginning of the text when the handle is released. |
-| text | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | No | "" | **Named parameter.** Current text content of the input box.<br/>It is recommended to bind state variables with text in real-time through the onChange event to avoid abnormal text content in TextArea during component refresh. |
-| controller | [TextAreaController](#class-textareacontroller) | No | TextAreaController() | **Named parameter.** TextArea controller. |
+| placeholder | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Placeholder text displayed when there is no input. |
+| text | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Current value of the TextArea. |
+| controller | ?[TextAreaController](#class-textareacontroller) | No | None | **Named parameter.** Controller for the TextArea component. |
 
 ## Common Attributes/Common Events
 
-Common attributes: All supported.
+Common Attributes: All supported.
 
-Common events: All supported.
+Common Events: All supported.
 
 ## Component Attributes
 
-### func caretColor(ResourceColor)
+### func caretColor(?ResourceColor)
 
 ```cangjie
-public func caretColor(value: ResourceColor): This
+public func caretColor(value: ?ResourceColor): This
 ```
 
-**Function:** Sets the cursor color of the input box.
+**Function:** Sets the color of the cursor.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Cursor color of the input box.<br>Default: 0xFF0A59F7. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Color of the cursor.<br>Initial value: 0xFF007DFF. |
 
-### func enterKeyType(EnterKeyType)
+### func enterKeyType(?EnterKeyType)
 
 ```cangjie
-public func enterKeyType(value: EnterKeyType): This
+public func enterKeyType(value: ?EnterKeyType): This
 ```
 
-**Function:** Sets the enter key type of the input method.
+**Function:** Sets the type of the input button on the soft keyboard.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [EnterKeyType](./cj-text-input-textinput.md#enum-enterkeytype) | Yes | - | Enter key type of the input method.<br>Default: EnterKeyType.NEW_LINE. |
+| value | ?[EnterKeyType](./cj-common-types.md#enum-enterkeytype) | Yes | - | Type of the input button on the soft keyboard.<br>Initial value: EnterKeyType.NewLine. |
 
-### func fontColor(ResourceColor)
+### func fontFamily(?ResourceStr)
 
 ```cangjie
-public func fontColor(value: ResourceColor): This
+public func fontFamily(value: ?ResourceStr): This
 ```
 
-**Function:** Sets the font color.
+**Function:** Sets the font family of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Font color.<br>Default: 0xE5000000. |
+| value | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | Font family of the text.<br>Initial value: "HarmonyOS Sans". |
 
-### func fontFamily(ResourceStr)
+### func fontColor(?ResourceColor)
 
 ```cangjie
-public func fontFamily(value: ResourceStr): This
+public func fontColor(value: ?ResourceColor): This
 ```
 
-**Function:** Sets the font family list.
+**Function:** Sets the color of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | Font family list. Default font is 'HarmonyOS Sans'. Currently supports 'HarmonyOS Sans' and [registered custom fonts](../BasicServicesKit/cj-apis-base.md#func-registerfont). |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Color of the text. |
 
-### func fontSize(Length)
+### func fontSize(?Length)
 
 ```cangjie
-public func fontSize(value: Length): This
+public func fontSize(value: ?Length): This
 ```
 
-**Function:** Sets the font size.
+**Function:** Sets the font size of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | Font size. When Length is Int64 or Float64, uses fp units. Percentage strings are not supported.<br>Default: 16.fp. |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Font size of the text.<br>Initial value: 16.fp. |
 
-### func fontStyle(FontStyle)
+### func fontStyle(?FontStyle)
 
 ```cangjie
-public func fontStyle(value: FontStyle): This
+public func fontStyle(value: ?FontStyle): This
 ```
 
-**Function:** Sets the font style.
+**Function:** Sets the font style of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [FontStyle](./cj-common-types.md#enum-fontstyle) | Yes | - | Font style.<br>Default: FontStyle.Normal. |
+| value | ?[FontStyle](./cj-common-types.md#enum-fontstyle) | Yes | - | Font style of the text.<br>Initial value: FontStyle.Normal. |
 
-### func fontWeight(FontWeight)
+### func fontWeight(?FontWeight)
 
 ```cangjie
-public func fontWeight(value: FontWeight): This
+public func fontWeight(value: ?FontWeight): This
 ```
 
-**Function:** Sets the font weight of the text. Setting too large a value may cause truncation in different fonts.
+**Function:** Sets the font weight of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [FontWeight](./cj-common-types.md#enum-fontweight) | Yes | - | Font weight of the text.<br>Default: FontWeight.Normal. |
+| value | ?[FontWeight](./cj-common-types.md#enum-fontweight) | Yes | - | Font weight of the text.<br>Initial value: FontWeight.Normal. |
 
-### func inputFilter(ResourceStr, ?(String) -> Unit)
+### func inputFilter(?ResourceStr, ?(String) -> Unit)
 
 ```cangjie
-public func inputFilter(value!: ResourceStr, error!: ?(String) -> Unit = None): This
+public func inputFilter(value!: ?ResourceStr, error!: ?(String) -> Unit = None): This
 ```
 
-**Function:** Sets an input filter using a regular expression.
-
-> **Note:**
->
-> Input matching the expression is allowed to display; non-matching input is filtered. Only supports single-character matching, not string matching.
+**Function:** Sets the input filtering rules for the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | **Named parameter.** Regular expression. |
-| error | ?(String)->Unit | No | None | **Named parameter.** Returns filtered content when regex matching fails. |
+| value | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | **Named parameter.** Input filtering rules.<br>Initial value: "". |
+| error | ?(String) -> Unit | No | None | **Named parameter.** Callback function for input errors. |
 
-### func maxLength(UInt32)
+### func maxLength(?UInt32)
 
 ```cangjie
-public func maxLength(value: UInt32): This
+public func maxLength(value: ?UInt32): This
 ```
 
-**Function:** Sets the maximum number of input characters for the text.
-
-> **Note:**
->
-> By default, there is no limit on the maximum number of input characters. When the maximum character limit is reached, no more characters can be entered, and the border turns red.
+**Function:** Sets the maximum length of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | UInt32 | Yes | - | Maximum number of input characters for the text. |
+| value | ?UInt32 | Yes | - | Maximum length of the text. |
 
-### func placeholderColor(ResourceColor)
+### func onChange(?(String) -> Unit)
 
 ```cangjie
-public func placeholderColor(value: ResourceColor): This
+public func onChange(callback: ?(String) -> Unit): This
 ```
 
-**Function:** Sets the text color of the placeholder.
+**Function:** Triggers this callback when the input box content changes.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | Text color of the placeholder.<br>Default: Follows theme. |
+| callback | ?(String) -> Unit | Yes | - | Callback function when the input box content changes.<br>Initial value: { _ => }. |
 
-### func placeholderFont(Length, FontWeight, String, FontStyle)
+### func onCopy(?(String) -> Unit)
 
 ```cangjie
-public func placeholderFont(size!: Length, weight!: FontWeight = FontWeight.W400, family!: String = "",
-    style!: FontStyle = FontStyle.Normal): This
+public func onCopy(callback: ?(String) -> Unit): This
 ```
 
-**Function:** Sets the placeholder text style, including font size, font weight, font family, and font style. Currently supports 'HarmonyOS Sans' and [registered custom fonts](./cj-text-input-text.md#register-custom-font).
+**Function:** Triggers this callback when using the clipboard menu.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| size | [Length](../BasicServicesKit/cj-apis-base.md#interface-length) | Yes | - | **Named parameter.** Text size. Unit: fp.<br>Default: 16.fp. |
-| weight | [FontWeight](./cj-common-types.md#enum-fontweight) | No | FontWeight.W400 | **Named parameter.** Font weight of the text. |
-| family | String | No | "" | **Named parameter.** Font family list of the text. |
-| style | [FontStyle](./cj-common-types.md#enum-fontstyle) | No | FontStyle.Normal | **Named parameter.** Font style of the text. |
+| callback | ?(String) -> Unit | Yes | - | Callback function for copy operations.<br>Initial value: { _ => }. |
 
-### func textAlign(TextAlign)
+### func onCut(?(String) -> Unit)
 
 ```cangjie
-public func textAlign(value: TextAlign): This
+public func onCut(callback: ?(String) -> Unit): This
 ```
 
-**Function:** Sets the horizontal alignment of text within the input box.
-
-> **Note:**
->
-> - Supports TextAlign.Start, TextAlign.Center, and TextAlign.End.
-> - The vertical position of text paragraphs can be controlled via the [align](./cj-universal-attribute-location.md#func-alignalignment) attribute. In this component, the align attribute cannot control the horizontal position of text paragraphs. That is, Alignment.TopStart, Alignment.Top, and Alignment.TopEnd have the same effect (top alignment), Alignment.Start, Alignment.Center, and Alignment.End have the same effect (vertical center), and Alignment.BottomStart, Alignment.Bottom, and Alignment.BottomEnd have the same effect (bottom alignment).
-> - When textAlign is set to TextAlign.JUSTIFY, the last line of text does not participate in justification and defaults to left alignment.
+**Function:** Triggers this callback when using the clipboard menu.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [TextAlign](./cj-common-types.md#enum-textalign) | Yes | - | Horizontal alignment of text within the input box. Only supports TextAlign.Start, TextAlign.Center, and TextAlign.End.<br>Default: TextAlign.Start. |
+| callback | ?(String) -> Unit | Yes | - | Callback function for cut operations.<br>Initial value: { _ => }. |
 
-## Component Events
-
-### func onChange((String) -> Unit)
+### func onEditChange(?(Bool) -> Unit)
 
 ```cangjie
-public func onChange(callback: (String) -> Unit): This
+public func onEditChange(callback: ?(Bool) -> Unit): This
 ```
 
-**Function:** Triggered when the input content changes.
-
-> **Note:**
->
-> In this callback, if cursor operations are performed, developers need to adjust cursor logic based on the previewText parameter in pre-edit scenarios to accommodate pre-edit behavior. Conditions for triggering this event:
->
-> - Keyboard input.
-> - Paste or cut operations.
-> - Keyboard shortcut Ctrl+v.
+**Function:** Determines whether the text editing state has changed.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | (String)->Unit | Yes | - | Callback function triggered when current input text content changes. |
+| callback | ?(Bool) -> Unit | Yes | - | Callback function triggered when the text area state changes.<br>Initial value: { _ => }. |
 
-### func onCopy((String) -> Unit)
+### func onPaste(?(String) -> Unit)
 
 ```cangjie
-public func onCopy(callback: (String) -> Unit): This
+public func onPaste(callback: ?(String) -> Unit): This
 ```
 
-**Function:** Triggered when a copy operation is performed.
+**Function:** Triggers this callback when using the clipboard menu.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | (String)->Unit | Yes | - | Callback function triggered during copy. Parameter: Copied text content. |
+| callback | ?(String) -> Unit | Yes | - | Callback function for paste operations.<br>Initial value: { _ => }. |
 
-### func onCut((String) -> Unit)
+### func onSubmit(?(EnterKeyType) -> Unit)
 
 ```cangjie
-public func onCut(callback: (String) -> Unit): This
+public func onSubmit(callback: ?(EnterKeyType) -> Unit): This
 ```
 
-**Function:** Triggered when a cut operation is performed.
+**Function:** Triggers this callback upon submission.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | (String)->Unit | Yes | - | Callback function triggered during cut. Parameter: Cut text content. |
+| callback | ?([EnterKeyType](./cj-common-types.md#enum-enterkeytype)) -> Unit | Yes | - | Callback function upon submission.<br>Initial value: { _ => }. |
 
-### func onEditChange((Bool) -> Unit)
+### func placeholderColor(?ResourceColor)
 
 ```cangjie
-public func onEditChange(callback: (Bool) -> Unit): This
+public func placeholderColor(value: ?ResourceColor): This
 ```
 
-**Function:** Triggered when the input state changes. The presence of a cursor indicates edit mode; absence indicates non-edit mode.
+**Function:** Sets the color of the placeholder text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | (Bool)->Unit | Yes | - | Callback function triggered when edit state changes. Parameter: Current edit state. true indicates active input. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | Color of the placeholder text. |
 
-### func onPaste((String) -> Unit)
+### func placeholderFont(?Length, ?FontWeight, ?String, ?FontStyle)
 
 ```cangjie
-public func onPaste(callback: (String) -> Unit): This
+public func placeholderFont(size!: ?Length, weight!: ?FontWeight = None, family!: ?String = None,
+    style!: ?FontStyle = None): This
 ```
 
-**Function:** Triggered when a paste operation is performed.
+**Function:** Sets the font attributes of the placeholder text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | (String)->Unit | Yes | - | Callback function triggered during paste. Returns pasted text content. |
+| size | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Font size of the placeholder text.<br>Initial value: 16.0.fp. |
+| weight | ?[FontWeight](./cj-common-types.md#enum-fontweight) | No | None | **Named parameter.** Font weight of the placeholder text.<br>Initial value: FontWeight.W400. |
+| family | ?String | No | None | **Named parameter.** Font family of the placeholder text.<br>Initial value: "". |
+| style | ?[FontStyle](./cj-common-types.md#enum-fontstyle) | No | None | **Named parameter.** Font style of the placeholder text.<br>Initial value: FontStyle.Normal. |
 
-### func onSubmit((EnterKeyType) -> Unit)
+### func textAlign(?TextAlign)
 
 ```cangjie
-public func onSubmit(callback: (EnterKeyType) -> Unit): This
+public func textAlign(value: ?TextAlign): This
 ```
 
-**Function:** Triggered when the enter key of the input method is pressed.
+**Function:** Sets the horizontal alignment of the text.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | ([EnterKeyType](./cj-text-input-textinput.md#enum-enterkeytype))->Unit | Yes | - | Callback function triggered when the enter key or soft keyboard enter key is pressed. Parameter: Current soft keyboard enter key type. Does not trigger onSubmit when type is EnterKeyType.NEW_LINE. |
+| value | ?[TextAlign](./cj-common-types.md#enum-textalign) | Yes | - | Horizontal alignment of the text.<br>Initial value: TextAlign.Start. |
 
 ## Basic Type Definitions
 
@@ -406,11 +382,11 @@ public class TextAreaController {
 }
 ```
 
-**Function:** Controller for the TextArea component.
+**Function:** TextAreaController is the controller for the TextArea component. Objects of this type can be defined and bound to the TextArea component to control it.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 #### init()
 
@@ -418,121 +394,29 @@ public class TextAreaController {
 public init()
 ```
 
-**Function:** Creates an object of type TextAreaController.
+**Function:** Constructor for TextAreaController.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
-#### func caretPosition(Int32)
+#### func caretPosition(?Int32)
 
 ```cangjie
-public func caretPosition(value: Int32): Unit
+public func caretPosition(value: ?Int32): Unit
 ```
 
-**Function:** Sets the cursor position.
+**Function:** Sets the position of the insertion cursor.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Int32 | Yes | - | Cursor position. |
-
-### enum TextAreaType
-
-```cangjie
-public enum TextAreaType {
-    | NORMAL
-    | NUMBER
-    | PHONE_NUMBER
-    | EMAIL
-    | NUMBER_DECIMAL
-    | URL
-    | ...
-}
-```
-
-**Function:** Represents the input box type.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### EMAIL
-
-```cangjie
-EMAIL
-```
-
-**Function:** Indicates email address input mode. Supports numbers, letters, underscores, periods, !, #, $, %, &, ', *, +, -, /, =, ?, ^, `, {, |, }, ~, and @ (only one @ character allowed).
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### NORMAL
-
-```cangjie
-NORMAL
-```
-
-**Function:** Indicates basic input mode. Supports numbers, letters, underscores, spaces, and special characters.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### NUMBER
-
-```cangjie
-NUMBER
-```
-
-**Function:** Indicates numeric-only input mode.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### NUMBER_DECIMAL
-
-```cangjie
-NUMBER_DECIMAL
-```
-
-**Function:** Indicates numeric input mode with decimal points. Supports numbers and decimal points (only one decimal point allowed).
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### PHONE_NUMBER
-
-```cangjie
-PHONE_NUMBER
-```
-
-**Function:** Indicates phone number input mode. Supports numbers, spaces, +, -, *, #, (, ), with no length limit.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-#### URL
-
-```cangjie
-URL
-```
-
-**Function:** Indicates URL input mode.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21## Sample Code
+| value | ?Int32 | Yes | - | Length from the start of the string to the cursor position. |## Sample Code
 
 <!--run-->
 
@@ -540,7 +424,7 @@ URL
 package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
-import kit.PerformanceAnalysisKit.*
+import ohos.hilog.*
 import ohos.arkui.state_macro_manage.*
 
 @Entry

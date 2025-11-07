@@ -2,26 +2,21 @@
 
 ## Scenario Introduction
 
-When an application is performing a critical operation that cannot be interrupted, such as writing transactions involving multiple related tables, each table write is performed individually, but the transactional relationships between tables must remain intact.
+When an application is performing a critical operation that cannot be interrupted, such as writing transactions involving multiple related tables, each table write is performed individually, but the transactional relationships between tables must not be split.
 
-If issues arise during the operation, developers can use the recovery function to restore the database to its previous state and reattempt the operation.
+If issues arise during the operation, developers can use the recovery function to restore the database to its previous state and re-execute the database operations.
 
-In scenarios where the database is tampered with, deleted, or experiences device power failure, the database may become unavailable due to data loss, corruption, or dirty data. The database's backup and recovery capabilities can restore it to a usable state.
+In scenarios where the database is tampered with, deleted, or the device loses power, the database may become unavailable due to data loss, corruption, or dirty data. The database's backup and recovery capabilities can restore it to a usable state.
 
-Both key-value databases and relational databases support backup and recovery operations. Additionally, key-value databases support deleting backups to free up local storage space.
+Both key-value databases and relational databases support backup and recovery operations. Additionally, key-value databases support deleting database backups to free up local storage space.
 
 ## Key-Value Database Backup, Recovery, and Deletion
 
-For key-value databases:
-- Backup is implemented via the `backup` interface
-- Recovery is implemented via the `restore` interface 
-- Backup deletion is implemented via the `deletebackup` interface
-
-For specific interfaces and functionalities, refer to [Distributed Key-Value Database](../../../en/application-dev/reference/ArkData/cj-apis-distributed_kv_store.md).
+For key-value databases, backups are implemented via the `backup` interface, recovery via the `restore` interface, and backup deletion via the `deletebackup` interface. For specific interfaces and functionalities, refer to [Distributed Key-Value Database](../reference/ArkData/cj-apis-distributed_kv_store.md).
 
 1. Create a database.
 
-    a. Obtain context.
+    a. Obtain the context.
 
     <!-- compile -->
 
@@ -39,7 +34,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
         }
 
         public override func onCreate(want: Want, launchParam: LaunchParam): Unit {
-            // Get context
+            // Obtain the context
             globalAbilityContext = this.context
 
             match (launchParam.launchReason) {
@@ -51,7 +46,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     }
     ```
 
-    b. Create kvStore.
+    b. Create a kvStore.
 
     <!-- compile -->
 
@@ -61,7 +56,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     import ohos.business_exception.BusinessException
     import ohos.data.distributed_kv_store.KVManager
     import ohos.data.distributed_kv_store.SingleKVStore
-    import ohos.data.relational_store.SecurityLevel as RelationalStoreSecurityLevel
+    import ohos.data.relational_store.*
 
     var kvManager: Option<KVManager> = Option<KVManager>.None
     var kvStore: Option<SingleKVStore> = Option<SingleKVStore>.None
@@ -85,12 +80,12 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     }
    ```
 
-2. Insert data using the put() method.
+2. Insert data using the `put()` method.
 
     <!-- compile -->
 
     ```cangjie
-    import ohos.data.distributed_kv_store.ValueType as KVValueType
+    import ohos.data.distributed_kv_store.*
 
     const KEY_TEST_STRING_ELEMENT: String = "key_test_string"
     const VALUE_TEST_STRING_ELEMENT: String = "value_test_string"
@@ -102,7 +97,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     }
     ```
 
-3. Backup data using the backup() method.
+3. Backup data using the `backup()` method.
 
     <!-- compile -->
 
@@ -114,7 +109,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     }
     ```
 
-4. Delete data using the delete() method (simulating accidental deletion/tampering scenarios).
+4. Delete data using the `delete()` method (simulating accidental deletion or tampering scenarios).
 
     <!-- compile -->
 
@@ -126,7 +121,7 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
     }
     ```
 
-5. Restore data using the restore() method.
+5. Recover data using the `restore()` method.
 
     <!-- compile -->
 
@@ -140,37 +135,34 @@ For specific interfaces and functionalities, refer to [Distributed Key-Value Dat
 
 ## Relational Database Backup
 
-During database operations or storage processes, unexpected database exceptions may occur for various reasons. The relational database backup capability can be used to reliably and efficiently restore data when exceptions occur, ensuring normal business operations.
+During database operations or storage processes, unexpected database exceptions may occur due to various reasons. The relational database's backup capability can be used as needed to ensure reliable and efficient data recovery when the database becomes abnormal, maintaining normal business operations.
 
-Relational databases support two backup methods:
-- Manual backup
-- Automatic backup (only available for system applications)
+Relational databases support two backup methods: manual backup and automatic backup (available only to system applications).
 
 ### Manual Backup
 
-Manual backup is implemented by calling the [backup](../../../en/application-dev/reference/ArkData/cj-apis-relational_store.md#func-backupstring) interface. Example:
+Manual backup is implemented by calling the [`backup`](../reference/ArkData/cj-apis-relational_store.md#func-backupstring) interface. Example:
 
 <!-- compile -->
 
 ```cangjie
 import kit.ArkData.*
 import ohos.business_exception.BusinessException
-import ohos.data.relational_store.RdbStore
-import ohos.data.relational_store.SecurityLevel as RelationalStoreSecurityLevel
+import ohos.data.relational_store.*
 
 var rdbStore_: Option<RdbStore> = Option<RdbStore>.None
 let storeConfig_ = StoreConfig(
-    RelationalStoreSecurityLevel.S3,// Database security level
+    RelationalStoreSecurityLevel.S3, // Database security level
     name: "RdbTest.db", // Database filename
-    encrypt: false, // Optional parameter, specifies whether to encrypt the database (default: false)
+    encrypt: false, // Optional parameter, specifies whether the database is encrypted (default: false)
 )
 
 try {
     let store = getRdbStore(globalAbilityContext.getOrThrow(), storeConfig_)
     store.executeSql("CREATE TABLE EMPLOYEE(ID int NOT NULL, NAME varchar(255) NOT NULL, AGE int, SALARY float NOT NULL, CODES Bit NOT NULL, PRIMARY KEY (Id))")
     /**
-     * "Backup.db" is the backup database filename, which by default is backed up in the same path as RdbStore.
-     * Absolute paths can also be specified: "/data/storage/el2/database/Backup.db". The directory must exist as it won't be automatically created.
+     * "Backup.db" is the backup database filename, which is backed up in the same path as RdbStore by default.
+     * An absolute path can also be specified: "/data/storage/el2/database/Backup.db". The file path must exist; directories are not created automatically.
      */
     store.backup("Backup.db")
     rdbStore_ = store
@@ -179,15 +171,15 @@ try {
 }
 ```
 
-## Relational Database Recovery
+## Relational Database Data Recovery
 
-When database exceptions occur, after successfully rebuilding the database, pre-backed-up data should be used for recovery.
+In cases where the database becomes abnormal, after rebuilding the database, pre-backed-up data can be used for recovery.
 
-### Recovering Manual Backups
+### Recovering Manually Backed-Up Data
 
-Relational databases implement manual backups via the `backup` interface and manual recovery via the `restore` interface.
+Relational databases support manual backup via the `backup` interface and manual recovery via the `restore` interface.
 
-The recovery process and key code snippets are shown below. Complete implementation should incorporate the context of relational database backup and reconstruction.
+The recovery process and key code snippets are as follows. For complete example code, implement it in conjunction with the context of relational database backup and rebuilding.
 
 1. Throw database exception error codes.
 
@@ -200,23 +192,23 @@ The recovery process and key code snippets are shown below. Complete implementat
     try {
         let predicates = RdbPredicates("EMPLOYEE")
         let columns = ["ID", "NAME", "AGE", "SALARY", "CODES"]
-        let resultSet = rdbStore.getOrThrow().query(predicates, columns)
+        let resultSet = rdbStore_.getOrThrow().query(predicates, columns)
         /*
-         * Business CRUD logic
+         * Business logic for insert, delete, and update operations
          * ...
          */
-        // Throw exception
+        // Throw an exception
         if (resultSet.rowCount == -1) {
             resultSet.isColumnNull(0)
         }
-        // Other interfaces like resultSet.goToFirstRow(), resultSet.count may also throw exceptions
+        // Other interfaces like resultSet.goToFirstRow(), resultSet.count, etc., may also throw exceptions
         while (resultSet.goToNextRow()) {
-            AppLog.info("${resultSet.getRow().size}")
+            Hilog.info(0, "info", "${resultSet.getRow().size}")
         }
         resultSet.close()
     } catch (e: BusinessException) {
         if (e.code == 14800011) {
-            // Proceed with recovery steps below after closing result sets
+            // Proceed with the steps below, i.e., close all result sets before performing data recovery
         }
         Hilog.error(0, "ErrorCode: ${e.code}", e.message)
     }
@@ -244,7 +236,7 @@ The recovery process and key code snippets are shown below. Complete implementat
     }
    ```
 
-3. Call the restore interface to recover data.
+3. Call the `restore` interface to recover data.
 
     <!-- compile -->
 
@@ -252,16 +244,16 @@ The recovery process and key code snippets are shown below. Complete implementat
     import kit.CoreFileKit.FileFs
     try {
         /**
-         * "Backup.db" is the backup database filename, which by default is searched for in the same path as the current store.
-         * If an absolute path was specified during backup: "/data/storage/el2/database/Backup.db", the absolute path must be provided.
+         * "Backup.db" is the backup database filename, which is searched for in the same path as the current store by default.
+         * If an absolute path was specified during backup, e.g., "/data/storage/el2/database/Backup.db", the absolute path must be provided.
          */
         let backup = '/data/storage/el2/database/Backup.db' + '/entry/rdb/Backup.db'
-        if (!FileFs.access(backup)) {
-            AppLog.info("no backup file")
+        if (!FileIo.access(backup)) {
+            Hilog.info(0, "info", "no backup file")
         }
-        // Call restore interface to recover data
-        rdbStore.getOrThrow().restore("Backup.db")
-        AppLog.info("Succeeded in backup data.")
+        // Call the restore interface to recover data
+        rdbStore_.getOrThrow().restore("Backup.db")
+        Hilog.info(0, "info","Succeeded in backup data.")
     } catch (e: BusinessException) {
         Hilog.error(0, "ErrorCode: ${e.code}", e.message)
     }

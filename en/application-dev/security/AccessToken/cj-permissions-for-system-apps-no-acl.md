@@ -5,14 +5,14 @@ Before applying for target permissions, developers are advised to first understa
 > **Note:**
 >
 > - The following permissions are only available to applications with an APL level of system_basic or higher, and are not open to applications with an APL level of normal.
-> - The authorization method for all the following permissions is system_grant.
+> - The authorization method for these permissions is system_grant (system-granted).
 > - These permissions cannot be applied for across levels via Access Control List (ACL).
 
 For the application process, refer to [Choosing the Permission Application Method](./cj-determine-application-mode.md).
 
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
-Allows an application to subscribe to boot completion broadcasts.
+Allows applications to subscribe to boot completion broadcasts.
 
 **Permission Level:** system_basic
 
@@ -36,7 +36,7 @@ Allows control of system lights, including operations such as turning on/off.
 
 ## ohos.permission.GET_ALL_APP_ACCOUNTS
 
-Allows an application to query all application account information.
+Allows applications to query all application account information.
 
 **Permission Level:** system_core
 
@@ -48,7 +48,7 @@ Allows an application to query all application account information.
 
 ## ohos.permission.MANAGE_DEVICE_AUTH_CRED
 
-Allows an application to call device authentication credential management application interfaces.
+Allows applications to call device authentication credential management interfaces.
 
 **Permission Level:** system_basic
 
@@ -72,7 +72,7 @@ Allows SAs to register authentication executors.
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
-Allows an application to read accessibility configuration information.
+Allows applications to read accessibility configuration information.
 
 **Permission Level:** system_basic
 
@@ -108,7 +108,7 @@ Allows push services to read data stored by push services in applications.
 
 ## ohos.permission.NETSYS_INTERNAL
 
-Allows SA services to call network management netsys interfaces for functions such as network diagnostics, WiFi, NIC monitoring, and iptables configuration.
+Allows SA services to call network management netsys interfaces for network diagnostics, WiFi, NIC monitoring, iptables configuration, etc.
 
 **Permission Level:** system_basic
 
@@ -132,7 +132,7 @@ Allows networking between different devices.
 
 ## ohos.permission.RESTRICT_APPLICATION_ACTIVE
 
-Allows the standby endurance component to publish a custom network restriction event.
+Allows standby endurance components to publish a custom network restriction event.
 
 **Permission Level:** system_basic
 
@@ -180,7 +180,7 @@ Allows SAs to delete IAM user information without a token.
 
 ## ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
-Allows an application to set accessibility configuration information.
+Allows applications to configure accessibility settings.
 
 **Permission Level:** system_basic
 
@@ -204,7 +204,7 @@ Allows system services to enable distributed hardware resources.
 
 ## ohos.permission.ACCESS_SUPER_HUB
 
-Allows an application to launch the "Transfer Station."
+Allows applications to launch the "Transfer Station."
 
 **Permission Level:** system_basic
 
@@ -216,7 +216,7 @@ Allows an application to launch the "Transfer Station."
 
 ## ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
 
-Allows UIExtensionAbility to display on top of the lock screen.
+Allows UIExtensionAbility to display above the lock screen.
 
 **Permission Level:** system_core
 
@@ -228,7 +228,7 @@ Allows UIExtensionAbility to display on top of the lock screen.
 
 ## ohos.permission.USE_USER_ACCESS_MANAGER
 
-Allows an application to query and configure user identity authentication policies and verify user identity authentication results.
+Allows applications to query and configure user identity authentication policies and verify authentication results.
 
 **Permission Level:** system_basic
 

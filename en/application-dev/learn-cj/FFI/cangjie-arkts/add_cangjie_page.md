@@ -1,10 +1,10 @@
-# Adding Cangjie Pages
+# Adding a Cangjie Page
 
-In ArkTS using Cangjie, it supports adding Cangjie Pages. In OpenHarmony, a page is part of the application interface responsible for displaying UI elements such as text, buttons, images, etc., and handling user interactions.
+In ArkTS using Cangjie, adding a Cangjie Page (Page) is supported. In OpenHarmony, a page is part of the application interface responsible for displaying user interface elements such as text, buttons, images, etc., as well as handling user interactions.
 
 > **Note:**
 >
-> In hybrid development scenarios between Cangjie and ArkTS, a Cangjie page is not a true page with a complete lifecycle. It can only be embedded into an ArkTS page as a component. Therefore, an @Entry-decorated page needs to be provided on the ArkTS side as a container to load the Cangjie page. Hereafter, such Cangjie pages will be referred to as Cangjie page components.
+> In hybrid development scenarios combining Cangjie and ArkTS, a Cangjie page is not a true page with a complete lifecycle. It can only be embedded into an ArkTS page as a component. Therefore, an @Entry page must be provided on the ArkTS side as a container to load the Cangjie page. Hereafter, such Cangjie pages will be referred to as Cangjie page components.
 
 The steps to add a Cangjie page in DevEco Studio are as follows:
 
@@ -12,7 +12,7 @@ The steps to add a Cangjie page in DevEco Studio are as follows:
 
    ![image-20250415101819817](../../figures/add_cangjie_page_1.png)
 
-2. The Cangjie page component files will be generated under the Cangjie directory:
+2. The Cangjie page component files will be generated in the Cangjie directory:
 
    ![image-20250415102758546](../../figures/add_cangjie_page_2.png)
 
@@ -32,7 +32,7 @@ The steps to add a Cangjie page in DevEco Studio are as follows:
    class Second {
        @State
        var msg: String = "Hello"
-       // Cangjie component build
+       // Cangjie component construction
        public func build() {
            Column {
                Text(msg)
@@ -48,11 +48,11 @@ The steps to add a Cangjie page in DevEco Studio are as follows:
 
    ![image-20250415105651058](../../figures/add_cangjie_page_3.png)
 
-3. Create an ArkTS file in **entry->src->main->ets->pages** to serve as the container for loading the Cangjie page component (as mentioned at the beginning of this section). Name it second.ets with the following content:
+3. Create an ArkTS file in **entry->src->main->ets->pages** to serve as the container for loading the Cangjie page component (as explained at the beginning of this section). Name it second.ets with the following content:
 
    ```ts
    // Embedding a Cangjie page component in an ArkTS page
-   // Import interface functions
+   // Importing interface functions
    import { CJHybridComponentV2 } from '@cangjie/cjhybridview';
 
    @Entry
@@ -60,7 +60,7 @@ The steps to add a Cangjie page in DevEco Studio are as follows:
    struct Second {
      build() {
        Row() {
-         // Embed the Cangjie page via the CJHybridComponentV2 interface
+         // Embedding the Cangjie page via the CJHybridComponentV2 interface
          CJHybridComponentV2({
            library: "ohos_app_cangjie_entry", // The package name where the Cangjie page resides
            component: "Second"                // The class name corresponding to the Cangjie page

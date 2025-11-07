@@ -1,6 +1,6 @@
 # ohos.bluetooth.ble (Bluetooth BLE Module)
 
-The ble module provides methods for Bluetooth operations and management.
+The ble module provides methods for Bluetooth operation and management.
 
 ## Import Module
 
@@ -18,9 +18,9 @@ API sample code usage instructions:
 
 - If the sample code has a "// index.cj" comment in the first line, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
-- Please replace XX:XX:XX:XX:XX:XX or other addresses in the sample code with your actual address.
+- Please replace XX:XX:XX:XX:XX:XX or other addresses in the sample code with your real address.
 
-For the above sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For the above sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## func createGattClientDevice(String)
 
@@ -32,11 +32,11 @@ public func createGattClientDevice(deviceId: String): GattClientDevice
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | deviceId | String | Yes | - | Peer device address, e.g., "XX:XX:XX:XX:XX:XX". |
 
@@ -44,15 +44,14 @@ public func createGattClientDevice(deviceId: String): GattClientDevice
 
 | Type | Description |
 |:----|:----|
-| [GattClientDevice](#class-gattclientdevice) | Client-side class. An instance of this class must be created to use client-side methods. |
+| [GattClientDevice](#class-gattclientdevice) | Client-side class. An instance of this class needs to be created before using client-side methods. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -63,7 +62,6 @@ public func createGattClientDevice(deviceId: String): GattClientDevice
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -71,7 +69,7 @@ import kit.PerformanceAnalysisKit.Hilog
 try {
     let device: GattClientDevice = createGattClientDevice("XX:XX:XX:XX:XX:XX")  // Replace with your device address
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -85,7 +83,7 @@ public func createGattServer(): GattServer
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Return Value:**
 
@@ -100,11 +98,15 @@ public func createGattServer(): GattServer
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
-let gattServer: GattServer = createGattServer()
+try {
+    let gattServer: GattServer = createGattServer()
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## func off(BluetoothBleCallbackType, ?CallbackObject)
@@ -119,23 +121,22 @@ public func off(eventType: BluetoothBleCallbackType, callback!: ?CallbackObject 
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | eventType | [BluetoothBleCallbackType](#enum-bluetoothblecallbacktype) | Yes | - | Callback event. |
 | callback | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No | None | **Named parameter.** Indicates unsubscribing from BLE events. If this parameter is not provided, all callbacks corresponding to the type will be unsubscribed. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900099 | Operation failed. |
 
@@ -146,7 +147,6 @@ public func off(eventType: BluetoothBleCallbackType, callback!: ?CallbackObject 
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -166,7 +166,7 @@ try {
     on(BluetoothBleCallbackType.BleDeviceFind, bleDeviceFindCallback)
     off(BluetoothBleCallbackType.BleDeviceFind, callback: bleDeviceFindCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -182,23 +182,22 @@ public func on(eventType: BluetoothBleCallbackType, callback: Callback1Argument<
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleCallbackType](#enum-bluetoothblecallbacktype) | Yes | - | Set to AdvertisingStateChange, indicating the advertising state event. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[AdvertisingStateChangeInfo](#class-advertisingstatechangeinfo)> | Yes | - | Indicates the callback function parameter, which is the advertising state. The callback function is created by the user and registered via this interface. |
+| eventType | [BluetoothBleCallbackType](#enum-bluetoothblecallbacktype) | Yes | - | Set to AdvertisingStateChange, indicating advertising state event. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[AdvertisingStateChangeInfo](#class-advertisingstatechangeinfo)> | Yes | - | Represents the input parameter of the callback function, advertising state. The callback function is created by the user and registered through this interface. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900099 | Operation failed. |
 
@@ -209,7 +208,6 @@ public func on(eventType: BluetoothBleCallbackType, callback: Callback1Argument<
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -226,7 +224,7 @@ let advertisingStateChange = AdvertisingStateChange()
 try {
     on(BluetoothBleCallbackType.AdvertisingStateChange, advertisingStateChange)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -242,23 +240,22 @@ public func on(eventType: BluetoothBleCallbackType, callback: Callback1Argument<
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleCallbackType](#enum-bluetoothblecallbacktype) | Yes | - | Set to BleDeviceFind, indicating the BLE device discovery event. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Array\<[ScanResult](#class-scanresult)>> | Yes | - | Indicates the callback function parameter, which is the collection of discovered devices. The callback function is created by the user and registered via this interface. |
+| eventType | [BluetoothBleCallbackType](#enum-bluetoothblecallbacktype) | Yes | - | Set to BleDeviceFind, indicating BLE device discovery event. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Array\<[ScanResult](#class-scanresult)>> | Yes | - | Represents the input parameter of the callback function, discovered device collection. The callback function is created by the user and registered through this interface. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900099 | Operation failed. |
 
@@ -269,7 +266,6 @@ public func on(eventType: BluetoothBleCallbackType, callback: Callback1Argument<
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -288,7 +284,7 @@ let bleDeviceFindCallback = BLEDeviceFindCallback()
 try {
     on(BluetoothBleCallbackType.BleDeviceFind, bleDeviceFindCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -304,28 +300,65 @@ public func startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, 
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| setting | [AdvertiseSetting](#class-advertisesetting) | Yes | - | BLE advertisement-related parameters. |
+| setting | [AdvertiseSetting](#class-advertisesetting) | Yes | - | BLE advertisement parameters. |
 | advData | [AdvertiseData](#class-advertisedata) | Yes | - | BLE advertisement packet content. |
 | advResponse | ?[AdvertiseData](#class-advertisedata) | No | None | **Named parameter.** BLE scan request response. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
   | 2900099 | Operation failed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+let advertisingSettings = AdvertiseSetting()
+let manufactureDataUnit = ManufactureData(
+    4567u16,
+    [1, 2, 3, 4]
+)
+let serviceDataUnit = ServiceData(
+    "00001888-0000-1000-8000-00805f9b34fb",
+    [5, 6, 7, 8]
+)
+let advertisingData = AdvertiseData(
+    ["00001888-0000-1000-8000-00805f9b34fb"],
+    [manufactureDataUnit],
+    [serviceDataUnit],
+    includeDeviceName: true
+)
+let advertisingResponse = AdvertiseData(
+    ["00001888-0000-1000-8000-00805f9b34fb"],
+    [manufactureDataUnit],
+    [serviceDataUnit]
+)
+try {
+    startAdvertising(advertisingSettings, advertisingData, advResponse: advertisingResponse)
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
+}
+```
 
 ## func startAdvertising(AdvertisingParams)
 
@@ -339,11 +372,11 @@ public func startAdvertising(advertisingParams: AdvertisingParams): UInt32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Initial Version:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | advertisingParams | [AdvertisingParams](#class-advertisingparams) | Yes | - | Parameters for starting BLE advertisements. |
 
@@ -355,21 +388,64 @@ public func startAdvertising(advertisingParams: AdvertisingParams): UInt32
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
   | 2900099 | Operation failed. |
+  | 2900010 | The number of advertising resources reaches the upper limit. |
+  | 2902054 | The length of the advertising data exceeds the upper limit. |
 
-## func startBLEScan(Array\<ScanFilter>, ?ScanOptions)
+**Example:**
+
+<!-- compile -->
 
 ```cangjie
-public func startBLESScan(filters: Array<ScanFilter>, options!: ?ScanOptions = None): Unit
+// index.cj
+
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+let advertisingSettings = AdvertiseSetting()
+let manufactureDataUnit = ManufactureData(
+    4567u16,
+    [1, 2, 3, 4]
+)
+let serviceDataUnit = ServiceData(
+    "00001888-0000-1000-8000-00805f9b34fb",
+    [5, 6, 7, 8]
+)
+let advertisingData = AdvertiseData(
+    ["00001888-0000-1000-8000-00805f9b34fb"],
+    [manufactureDataUnit],
+    [serviceDataUnit],
+    includeDeviceName: true
+)
+let advertisingResponse = AdvertiseData(
+    ["00001888-0000-1000-8000-00805f9b34fb"],
+    [manufactureDataUnit],
+    [serviceDataUnit]
+)
+let advertisingParams = AdvertisingParams(
+    advertisingSettings,
+    advertisingData,
+    advertisingResponse: advertisingResponse,
+    duration: 300
+)
+try {
+    let advHandle = startAdvertising(advertisingParams)
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
+}
+```## func startBLEScan(Array\<ScanFilter>, ?ScanOptions)
+
+```cangjie
+public func startBLEScan(filters: Array<ScanFilter>, options!: ?ScanOptions = None): Unit
 ```
 
 **Function:** Initiates the BLE scanning process.
@@ -378,23 +454,22 @@ public func startBLESScan(filters: Array<ScanFilter>, options!: ?ScanOptions = N
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| filters | Array\<[ScanFilter](#class-scanfilter)> | Yes | - | Indicates the collection of scan result filtering policies. Device discoveries that meet the filtering conditions will be retained. |
-| options | ?[ScanOptions](#class-scanoptions) | No | None | **Named parameter.** Indicates the scan parameter configuration, which is optional. |
+| filters | Array\<[ScanFilter](#class-scanfilter)> | Yes | - | Represents the collection of scan result filtering policies. Only device discoveries that match the filter conditions will be retained. |
+| options | ?[ScanOptions](#class-scanoptions) | No | None | **Named parameter.** Represents the configuration parameters for scanning, which are optional. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. Refer to [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -408,13 +483,12 @@ public func startBLESScan(filters: Array<ScanFilter>, options!: ?ScanOptions = N
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-// This code can be added to the dependency definition
+// Code here can be added to dependency definitions
 class BLEDeviceFindCallback <: Callback1Argument<Array<ScanResult>> {
     public func invoke(err: ?BusinessException, devices: Array<ScanResult>): Unit {
         for (device in devices) {
@@ -427,13 +501,15 @@ let bleDeviceFindCallback = BLEDeviceFindCallback()
 try {
     on(BluetoothBleCallbackType.BleDeviceFind, bleDeviceFindCallback)
     var scanFilter = ScanFilter()
-    scanFilter.serviceUuid = "00001888-0000-1000-8000-00805f9b34fb"  // Replace with your serviceUUid
+    scanFilter.serviceUUID = "00001888-0000-1000-8000-00805f9b34fb"  // Replace with your serviceUUID
     let scanOptions = ScanOptions(interval: 0, dutyMode: ScanDuty.ScanModeLowPower, matchMode: MatchMode.MatchModeAggressive, phyType: PhyType.PhyLe1M)
     startBLEScan([scanFilter], options: scanOptions)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
-```## func stopAdvertising()
+```
+
+## func stopAdvertising()
 
 ```cangjie
 public func stopAdvertising(): Unit
@@ -445,70 +521,11 @@ public func stopAdvertising(): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 201 | Permission denied. |
-  | 801 | Capability not supported. |
-  | 2900001 | Service stopped. |
-  | 2900003 | Bluetooth disabled. |
-  | 2900099 | Operation failed. |
-
-## func stopAdvertising(UInt32)
-
-```cangjie
-public func stopAdvertising(advertisingId: UInt32): Unit
-```
-
-**Function:** Stops sending BLE advertisements.
-
-**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
-
-**System Capability:** SystemCapability.Communication.Bluetooth.Core
-
-**Since:** 21
-
-**Parameters:**
-
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| advertisingId | UInt32 | Yes | - | The identifier of the advertisement to stop. |
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
-
-  | Error Code ID | Error Message |
-  | :---- | :--- |
-  | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
-  | 801 | Capability not supported. |
-  | 2900001 | Service stopped. |
-  | 2900003 | Bluetooth disabled. |
-  | 2900099 | Operation failed. |
-
-## func stopBLEScan()
-
-```cangjie
-public func stopBLESscan(): Unit
-```
-
-**Function:** Stops the BLE scanning process.
-
-**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
-
-**System Capability:** SystemCapability.Communication.Bluetooth.Core
-
-**Since:** 21
-
-**Exceptions:**
-
-- BusinessException: Corresponding error codes are shown in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -525,15 +542,137 @@ public func stopBLESscan(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+try {
+    stopAdvertising()
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
+}
+```
+
+## func stopAdvertising(UInt32)
+
+```cangjie
+public func stopAdvertising(advertisingId: UInt32): Unit
+```
+
+**Function:** Stops sending BLE advertisements.
+
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
+
+**System Capability:** SystemCapability.Communication.Bluetooth.Core
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| advertisingId | UInt32 | Yes | - | The identifier of the advertisement to stop. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 201 | Permission denied. |
+  | 801 | Capability not supported. |
+  | 2900001 | Service stopped. |
+  | 2900003 | Bluetooth disabled. |
+  | 2900099 | Operation failed. |
+  | 2902055 | Invalid advertising id. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+
+let advertisingSettings = AdvertiseSetting()
+let manufactureDataUnit = ManufactureData(
+    4567u16,
+    [1, 2, 3, 4]
+)
+let serviceDataUnit = ServiceData(
+    "00001888-0000-1000-8000-00805f9b34fb",
+    [5, 6, 7, 8]
+)
+let advertisingData = AdvertiseData(
+    ["00001888-0000-1000-8000-00805f9b34fb"],
+    [manufactureDataUnit],
+    [serviceDataUnit],
+    includeDeviceName: true
+)
+let advertisingResponse = AdvertiseData(
+    ["00001888-0000-1000-8000-00805f9b34fb"],
+    [manufactureDataUnit],
+    [serviceDataUnit]
+)
+let advertisingParams = AdvertisingParams(
+    advertisingSettings,
+    advertisingData,
+    advertisingResponse: advertisingResponse,
+    duration: 300
+)
+var advHandle: UInt32 = 0xFF
+try {
+    advHandle = startAdvertising(advertisingParams)
+    stopAdvertising(advHandle)
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
+}
+```
+
+## func stopBLEScan()
+
+```cangjie
+public func stopBLEScan(): Unit
+```
+
+**Function:** Stops the BLE scanning process.
+
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
+
+**System Capability:** SystemCapability.Communication.Bluetooth.Core
+
+**Since:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 201 | Permission denied. |
+  | 801 | Capability not supported. |
+  | 2900001 | Service stopped. |
+  | 2900003 | Bluetooth disabled. |
+  | 2900099 | Operation failed. |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
 try {
-    stopBLEScan()
+    stopBLESscan()
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -541,12 +680,12 @@ try {
 
 ```cangjie
 public class AdvertiseData {
-    public var serviceUuids: Array<String>
+    public var serviceUUIDs: Array<String>
     public var manufactureData: Array<ManufactureData>
     public var serviceData: Array<ServiceData>
     public var includeDeviceName: Bool
     public init(
-        serviceUuids: Array<String>,
+        serviceUUIDs: Array<String>,
         manufactureData: Array<ManufactureData>,
         serviceData: Array<ServiceData>,
         includeDeviceName!: Bool = false,
@@ -559,7 +698,7 @@ public class AdvertiseData {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var includeDeviceName
 
@@ -567,7 +706,7 @@ public class AdvertiseData {
 public var includeDeviceName: Bool
 ```
 
-**Function:** Indicates whether to include the device name (optional parameter). true means include, false or unset means exclude. Note: The total advertisement packet length must not exceed 31 bytes when including the device name.
+**Function:** Indicates whether to include the device name (optional). `true` means include, `false` or unset means exclude. Note that including the device name must not exceed the 31-byte limit.
 
 **Type:** Bool
 
@@ -575,7 +714,7 @@ public var includeDeviceName: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var manufactureData
 
@@ -591,7 +730,7 @@ public var manufactureData: Array<ManufactureData>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var serviceData
 
@@ -607,12 +746,12 @@ public var serviceData: Array<ServiceData>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuids
+### var serviceUUIDs
 
 ```cangjie
-public var serviceUuids: Array<String>
+public var serviceUUIDs: Array<String>
 ```
 
 **Function:** Represents the list of services to be advertised.
@@ -623,13 +762,13 @@ public var serviceUuids: Array<String>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Array\<String>, Array\<ManufactureData>, Array\<ServiceData>, Bool, Bool)
 
 ```cangjie
 public init(
-    serviceUuids: Array<String>,
+    serviceUUIDs: Array<String>,
     manufactureData: Array<ManufactureData>,
     serviceData: Array<ServiceData>,
     includeDeviceName!: Bool = false,
@@ -641,17 +780,17 @@ public init(
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| serviceUuids | Array\<String> | Yes | - | List of service UUIDs to advertise. |
-| manufactureData | Array\<[ManufactureData](#class-manufacturedata)> | Yes | - | List of manufacturer information to advertise. |
-| serviceData | Array\<[ServiceData](#class-servicedata)> | Yes | - | List of service data to advertise. |
-| includeDeviceName | Bool | No | false | **Named parameter.** Whether to include the device name (optional). true means include, false or unset means exclude. Note: The total advertisement packet length must not exceed 31 bytes when including the device name. |
-| includeTxPower | Bool | No | false | **Named parameter.** Whether to include the advertisement transmission power. true means include, false means exclude (default). Including this value adds 3 bytes to the advertisement packet length. Reserved field, not supported in this version. |
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| serviceUUIDs | Array\<String> | Yes | - | Represents the list of service UUIDs to be advertised. |
+| manufactureData | Array\<[ManufactureData](#class-manufacturedata)> | Yes | - | Represents the list of manufacturer information to be advertised. |
+| serviceData | Array\<[ServiceData](#class-servicedata)> | Yes | - | Represents the list of service data to be advertised. |
+| includeDeviceName | Bool | No | false | **Named parameter.** Indicates whether to include the device name (optional). `true` means include, `false` or unset means exclude. Note that including the device name must not exceed the 31-byte limit. |
+| includeTxPower | Bool | No | false | **Named parameter.** Indicates whether to include the advertisement transmission power. `true` means include, `false` means exclude (default). Including this value will occupy an additional 3 bytes in the advertisement packet. Reserved field, not supported in this version. |
 
 ## class AdvertiseSetting
 
@@ -664,11 +803,11 @@ public class AdvertiseSetting {
 }
 ```
 
-**Function:** Describes parameters for sending BLE advertisements.
+**Function:** Describes the parameters for sending BLE advertisements.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var connectable
 
@@ -676,7 +815,7 @@ public class AdvertiseSetting {
 public var connectable: Bool
 ```
 
-**Function:** Indicates whether the advertisement is connectable. Default is true (connectable), false means non-connectable.
+**Function:** Indicates whether the advertisement is connectable. The default is `true` (connectable), `false` means non-connectable.
 
 **Type:** Bool
 
@@ -684,7 +823,7 @@ public var connectable: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var interval
 
@@ -692,7 +831,7 @@ public var connectable: Bool
 public var interval: UInt16
 ```
 
-**Function:** Advertisement interval. Minimum is 160 slots (100ms), maximum is 16384 slots. Default is 1600 slots (1s).
+**Function:** Represents the advertisement interval. The minimum value is 160 slots (100ms), the maximum is 16384 slots, and the default is 1600 slots (1s).
 
 **Type:** UInt16
 
@@ -700,7 +839,7 @@ public var interval: UInt16
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var txPower
 
@@ -708,7 +847,7 @@ public var interval: UInt16
 public var txPower: Int8
 ```
 
-**Function:** Transmission power. Minimum is -127, maximum is 1, default is -7 (unit: dBm). Recommended values: High (1), Medium (-7), Low (-15).
+**Function:** Represents the transmission power. The minimum value is -127, the maximum is 1, and the default is -7 (unit: dBm). Recommended values: High (1), Medium (-7), Low (-15).
 
 **Type:** Int8
 
@@ -716,7 +855,7 @@ public var txPower: Int8
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(UInt16, Int8, Bool)
 
@@ -724,21 +863,19 @@ public var txPower: Int8
 public init(interval!: UInt16 = BLE_ADV_DEFAULT_INTERVAL, txPower!: Int8 = BLE_ADV_TX_POWER_MEDIUM_VALUE, connectable!: Bool = true)
 ```
 
-**Function:** Constructor for BLE advertisement parameters.
+**Function:** Constructs the parameters for sending BLE advertisements.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| interval | UInt16 | No | BLE_ADV_DEFAULT_INTERVAL | Advertisement interval. Minimum is 160 slots (100ms), maximum is 16384 slots. Default is 1600 slots (1s). |
-| txPower | Int8 | No | BLE_ADV_TX_POWER_MEDIUM_VALUE | Transmission power. Minimum is -127, maximum is 1, default is -7 (unit: dBm). Recommended values: High (1), Medium (-7), Low (-15). |
-| connectable | Bool | No | true | Whether the advertisement is connectable. Default is true (connectable), false means non-connectable. |
-
-## class AdvertisingParams
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| interval | UInt16 | No | BLE_ADV_DEFAULT_INTERVAL | Represents the advertisement interval. The minimum value is 160 slots (100ms), the maximum is 16384 slots, and the default is 1600 slots (1s). |
+| txPower | Int8 | No | BLE_ADV_TX_POWER_MEDIUM_VALUE | Represents the transmission power. The minimum value is -127, the maximum is 1, and the default is -7 (unit: dBm). Recommended values: High (1), Medium (-7), Low (-15). |
+| connectable | Bool | No | true | Indicates whether the advertisement is connectable. The default is `true` (connectable), `false` means non-connectable. |## class AdvertisingParams
 
 ```cangjie
 public class AdvertisingParams {
@@ -755,11 +892,11 @@ public class AdvertisingParams {
 }
 ```
 
-**Function:** Describes parameters for initializing advertisement settings.
+**Function:** Describes parameters for initial broadcast settings.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var advertisingData
 
@@ -767,15 +904,15 @@ public class AdvertisingParams {
 public var advertisingData: AdvertiseData
 ```
 
-**Function:** Content of the advertisement packet.
+**Function:** Represents the content of broadcast data packets.
 
 **Type:** [AdvertiseData](#class-advertisedata)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var advertisingResponse
 
@@ -783,15 +920,15 @@ public var advertisingData: AdvertiseData
 public var advertisingResponse: AdvertiseData
 ```
 
-**Function:** Content of the scan response.
+**Function:** Represents the response content for scan requests.
 
 **Type:** [AdvertiseData](#class-advertisedata)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var advertisingSettings
 
@@ -799,15 +936,15 @@ public var advertisingResponse: AdvertiseData
 public var advertisingSettings: AdvertiseSetting
 ```
 
-**Function:** Parameters for sending advertisements.
+**Function:** Represents parameters related to broadcast transmission.
 
 **Type:** [AdvertiseSetting](#class-advertisesetting)
 
-**Read/Write:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var duration
 
@@ -815,15 +952,15 @@ public var advertisingSettings: AdvertiseSetting
 public var duration: UInt16
 ```
 
-**Function:** Duration for sending advertisements. Unit is 10ms, valid range is 1 (10ms) to 65535 (655350ms). If unspecified or set to 0, advertisements will be sent continuously.
+**Function:** Represents the duration of broadcast transmission. Unit is 10ms, valid range is 1 (10ms) to 65535 (655350ms). If this parameter is not specified or set to 0, broadcasting will continue indefinitely.
 
 **Type:** UInt16
 
-**Read/Write:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(AdvertiseSetting, AdvertiseData, AdvertiseData, UInt16)
 
@@ -836,20 +973,22 @@ public init(
 )
 ```
 
-**Function:** Constructor for AdvertisingParams.
+**Function:** AdvertisingParams constructor.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| advertisingSettings | [AdvertiseSetting](#class-advertisesetting) | Yes | - | Parameters for sending advertisements. |
-| advertisingData | [AdvertiseData](#class-advertisedata) | Yes | - | Content of the advertisement packet. |
-| advertisingResponse | [AdvertiseData](#class-advertisedata) | No | AdvertiseData([],[],[]) | Content of the scan response. |
-| duration | UInt16 | No | 0 | **Named parameter.** Duration for sending advertisements. Unit is 10ms, valid range is 1 (10ms) to 65535 (655350ms). If unspecified or set to 0, advertisements will be sent continuously. |## class AdvertisingStateChangeInfo
+|:---|:---|:---|:---|:---|
+| advertisingSettings | [AdvertiseSetting](#class-advertisesetting) | Yes | - | Parameters related to broadcast transmission. |
+| advertisingData | [AdvertiseData](#class-advertisedata) | Yes | - | Content of broadcast data packets. |
+| advertisingResponse | [AdvertiseData](#class-advertisedata) | No | AdvertiseData([],[],[]) | Response content for scan requests. |
+| duration | UInt16 | No | 0 | **Named parameter.** Duration of broadcast transmission. Unit is 10ms, valid range is 1 (10ms) to 65535 (655350ms). If not specified or set to 0, broadcasting will continue indefinitely. |
+
+## class AdvertisingStateChangeInfo
 
 ```cangjie
 public class AdvertisingStateChangeInfo {
@@ -858,11 +997,11 @@ public class AdvertisingStateChangeInfo {
 }
 ```
 
-**Description:** Describes broadcast state information such as start and stop.
+**Function:** Describes broadcast state information such as start and stop.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var advertisingId
 
@@ -870,15 +1009,15 @@ public class AdvertisingStateChangeInfo {
 public var advertisingId: Int32
 ```
 
-**Description:** Represents the broadcast ID identifier.
+**Function:** Represents the broadcast ID identifier.
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var state
 
@@ -886,28 +1025,28 @@ public var advertisingId: Int32
 public var state: AdvertisingState
 ```
 
-**Description:** Represents the broadcast state.
+**Function:** Represents the broadcast state.
 
 **Type:** [AdvertisingState](#enum-advertisingstate)
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class BLECharacteristic
 
 ```cangjie
 public class BLECharacteristic {
-    public var serviceUuid: String
-    public var characteristicUuid: String
+    public var serviceUUID: String
+    public var characteristicUUID: String
     public var characteristicValue: Array<Byte>
     public var descriptors: Array<BLEDescriptor>
     public var properties: GattProperties
     public init(
-        serviceUuid: String,
-        characteristicUuid: String,
+        serviceUUID: String,
+        characteristicUUID: String,
         characteristicValue: Array<Byte>,
         descriptors: Array<BLEDescriptor>,
         properties!: GattProperties = GattProperties(),
@@ -917,27 +1056,27 @@ public class BLECharacteristic {
 }
 ```
 
-**Description:** Defines interface parameters for describing characteristics.
+**Function:** Defines interface parameters for characteristics.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Description:** UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var characteristicValue
 
@@ -945,15 +1084,15 @@ public var characteristicUuid: String
 public var characteristicValue: Array<Byte>
 ```
 
-**Description:** Binary value corresponding to the characteristic.
+**Function:** Binary value corresponding to the characteristic.
 
 **Type:** Array\<Byte>
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var descriptors
 
@@ -961,15 +1100,15 @@ public var characteristicValue: Array<Byte>
 public var descriptors: Array<BLEDescriptor>
 ```
 
-**Description:** List of descriptors for a specific characteristic.
+**Function:** List of descriptors for a specific characteristic.
 
 **Type:** Array\<[BLEDescriptor](#class-bledescriptor)>
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var properties
 
@@ -977,38 +1116,38 @@ public var descriptors: Array<BLEDescriptor>
 public var properties: GattProperties
 ```
 
-**Description:** Describes the properties of a specific characteristic.
+**Function:** Describes the properties of a specific characteristic.
 
 **Type:** [GattProperties](#class-gattproperties)
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Description:** UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, Array\<Byte>, Array\<BLEDescriptor>, GattProperties, GattPermissions, UInt32)
 
 ```cangjie
 public init(
-    serviceUuid: String,
-    characteristicUuid: String,
+    serviceUUID: String,
+    characteristicUUID: String,
     characteristicValue: Array<Byte>,
     descriptors: Array<BLEDescriptor>,
     properties!: GattProperties = GattProperties(),
@@ -1017,23 +1156,23 @@ public init(
 )
 ```
 
-**Description:** Constructor for BLECharacteristic.
+**Function:** BLECharacteristic constructor.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| serviceUuid | String | Yes | - | UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
-| characteristicUuid | String | Yes | - | UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb". |
+| serviceUUID | String | Yes | - | UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
+| characteristicUUID | String | Yes | - | UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb". |
 | characteristicValue | Array\<Byte> | Yes | - | Binary value corresponding to the characteristic. |
 | descriptors | Array\<[BLEDescriptor](#class-bledescriptor)> | Yes | - | List of descriptors for a specific characteristic. |
 | properties | [GattProperties](#class-gattproperties) | No | GattProperties() | **Named parameter.** Describes the properties of a specific characteristic. |
-| permissions | [GattPermissions](#class-gattpermissions) | No | GattPermissions() | **Named parameter.** Permissions required for reading/writing characteristic values. Reserved field, not supported in this version. |
-| characteristicValueHandle | UInt32 | No | 0 | **Named parameter.** Unique identifier handle for the characteristic value. When a BLE server provides multiple characteristic values with the same UUID, this handle can distinguish between them. Reserved field, not supported in this version. |
+| permissions | [GattPermissions](#class-gattpermissions) | No | GattPermissions() | **Named parameter.** Required permissions for characteristic value read/write operations. Reserved field, not supported in this version. |
+| characteristicValueHandle | UInt32 | No | 0 | **Named parameter.** Unique identifier handle for the characteristic value. When a BLE server device provides multiple characteristic values with the same UUID, this handle can distinguish between them. Reserved field, not supported in this version. |
 
 ## class BLEConnectionChangeState
 
@@ -1044,11 +1183,11 @@ public class BLEConnectionChangeState {
 }
 ```
 
-**Description:** Describes the connection state of a GATT profile.
+**Function:** Describes GATT profile connection state.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -1056,15 +1195,15 @@ public class BLEConnectionChangeState {
 public var deviceId: String
 ```
 
-**Description:** Represents the remote device address, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Represents the remote device address, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var state
 
@@ -1072,28 +1211,28 @@ public var deviceId: String
 public var state: ProfileConnectionState
 ```
 
-**Description:** Enumeration representing the BLE connection state.
+**Function:** Represents the enumeration of BLE connection states.
 
 **Type:** [ProfileConnectionState](cj-apis-bluetooth-constant.md#enum-profileconnectionstate)
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class BLEDescriptor
 
 ```cangjie
 public class BLEDescriptor {
-    public var serviceUuid: String
-    public var characteristicUuid: String
-    public var descriptorUuid: String
+    public var serviceUUID: String
+    public var characteristicUUID: String
+    public var descriptorUUID: String
     public var descriptorValue: Array<Byte>
     public init(
-        serviceUuid: String,
-        characteristicUuid: String,
-        descriptorUuid: String,
+        serviceUUID: String,
+        characteristicUUID: String,
+        descriptorUUID: String,
         descriptorValue: Array<Byte>,
         descriptorHandle!: UInt32 = 0,
         permissions!: GattPermissions = GattPermissions()
@@ -1101,43 +1240,43 @@ public class BLEDescriptor {
 }
 ```
 
-**Description:** Defines interface parameters for describing descriptors.
+**Function:** Defines interface parameters for descriptors.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Description:** UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var descriptorUuid
+### var descriptorUUID
 
 ```cangjie
-public var descriptorUuid: String
+public var descriptorUUID: String
 ```
 
-**Description:** UUID of a descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of a descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var descriptorValue
 
@@ -1145,95 +1284,93 @@ public var descriptorUuid: String
 public var descriptorValue: Array<Byte>
 ```
 
-**Description:** Binary value corresponding to the descriptor.
+**Function:** Binary value corresponding to the descriptor.
 
 **Type:** Array\<Byte>
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Description:** UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, String, Array\<Byte>, UInt32, GattPermissions)
 
 ```cangjie
 public init(
-    serviceUuid: String,
-    characteristicUuid: String,
-    descriptorUuid: String,
+    serviceUUID: String,
+    characteristicUUID: String,
+    descriptorUUID: String,
     descriptorValue: Array<Byte>,
     descriptorHandle!: UInt32 = 0,
     permissions!: GattPermissions = GattPermissions()
 )
 ```
 
-**Description:** Constructor for BLEDescriptor.
+**Function:** BLEDescriptor constructor.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| serviceUuid | String | Yes | - | UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
-| characteristicUuid | String | Yes | - | UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb". |
-| descriptorUuid | String | Yes | - | UUID of a descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb". |
+| serviceUUID | String | Yes | - | UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
+| characteristicUUID | String | Yes | - | UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb". |
+| descriptorUUID | String | Yes | - | UUID of a descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb". |
 | descriptorValue | Array\<Byte> | Yes | - | Binary value corresponding to the descriptor. |
-| descriptorHandle | UInt32 | No | 0 | **Named parameter.** Unique identifier handle for the descriptor. When a BLE server provides multiple descriptors with the same UUID, this handle can distinguish between them. Reserved field, not supported in this version. |
-| permissions | [GattPermissions](#class-gattpermissions) | No | GattPermissions() | **Named parameter.** Permissions required for reading/writing descriptor values. Reserved field, not supported in this version. |
-
-## class CharacteristicReadRequest
+| descriptorHandle | UInt32 | No | 0 | **Named parameter.** Unique identifier handle for the descriptor. When a BLE server device provides multiple descriptors with the same UUID, this handle can distinguish between them. Reserved field, not supported in this version. |
+| permissions | [GattPermissions](#class-gattpermissions) | No | GattPermissions() | **Named parameter.** Required permissions for descriptor read/write operations. Reserved field, not supported in this version. |## class CharacteristicReadRequest
 
 ```cangjie
 public class CharacteristicReadRequest {
     public var deviceId: String
     public var transId: Int32
     public var offset: Int32
-    public var characteristicUuid: String
-    public var serviceUuid: String
+    public var characteristicUUID: String
+    public var serviceUUID: String
 }
 ```
 
-**Description:** Describes the event parameter class for characteristic read requests received after server subscription.
+**Function:** Describes the parameter class for characteristic read request events received after server-side subscription.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Description:** UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -1241,15 +1378,15 @@ public var characteristicUuid: String
 public var deviceId: String
 ```
 
-**Description:** Represents the remote device address that sent the characteristic read request, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Represents the remote device address that sent the characteristic read request, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -1257,31 +1394,31 @@ public var deviceId: String
 public var offset: Int32
 ```
 
-**Description:** Represents the starting position for reading characteristic value data. For example, 'k' indicates reading from the k-th byte. The server must include the same offset in its response.
+**Function:** Represents the starting position for reading characteristic value data. For example, k indicates reading from the k-th byte. The server must fill in the same offset when responding.
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Description:** UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var transId
 
@@ -1289,15 +1426,17 @@ public var serviceUuid: String
 public var transId: Int32
 ```
 
-**Description:** Represents the transaction ID for the write request. The server must include the same transaction ID in its response.
+**Function:** Represents the transaction ID of the write request. The server must fill in the same transaction ID when responding.
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21## class CharacteristicWriteRequest
+**Since:** 22
+
+## class CharacteristicWriteRequest
 
 ```cangjie
 public class CharacteristicWriteRequest {
@@ -1307,24 +1446,24 @@ public class CharacteristicWriteRequest {
     public var isPrepared: Bool
     public var needRsp: Bool
     public var value: Array<Byte>
-    public var characteristicUuid: String
-    public var serviceUuid: String
+    public var characteristicUUID: String
+    public var serviceUUID: String
 }
 ```
 
-**Description:** Represents the event parameter class for characteristic write requests received after server subscription.
+**Function:** Describes the parameter class for characteristic write request events received after server-side subscription.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Description:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1332,7 +1471,7 @@ public var characteristicUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -1340,7 +1479,7 @@ public var characteristicUuid: String
 public var deviceId: String
 ```
 
-**Description:** Represents the address of the scanned device, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Represents the scanned device address, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
@@ -1348,7 +1487,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var isPrepared
 
@@ -1356,7 +1495,7 @@ public var deviceId: String
 public var isPrepared: Bool
 ```
 
-**Description:** Indicates whether the write request should be executed immediately. true means immediate execution.
+**Function:** Indicates whether the write request should be executed immediately. true means immediate execution.
 
 **Type:** Bool
 
@@ -1364,7 +1503,7 @@ public var isPrepared: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var needRsp
 
@@ -1372,7 +1511,7 @@ public var isPrepared: Bool
 public var needRsp: Bool
 ```
 
-**Description:** Indicates whether a response should be sent back to the client.
+**Function:** Indicates whether a response should be sent to the client.
 
 **Type:** Bool
 
@@ -1380,7 +1519,7 @@ public var needRsp: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -1388,7 +1527,7 @@ public var needRsp: Bool
 public var offset: Int32
 ```
 
-**Description:** Represents the starting position for writing descriptor data. For example, k means writing starts from the k-th byte. The server must use the same offset when responding.
+**Function:** Represents the starting position for writing descriptor data. For example, k indicates writing from the k-th byte. The server must fill in the same offset when responding.
 
 **Type:** Int32
 
@@ -1396,15 +1535,15 @@ public var offset: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Description:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1412,7 +1551,7 @@ public var serviceUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var transId
 
@@ -1420,7 +1559,7 @@ public var serviceUuid: String
 public var transId: Int32
 ```
 
-**Description:** Represents the transaction ID of the write request. The server must use the same transaction ID when responding.
+**Function:** Represents the transaction ID of the write request. The server must fill in the same transaction ID when responding.
 
 **Type:** Int32
 
@@ -1428,7 +1567,7 @@ public var transId: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var value
 
@@ -1436,7 +1575,7 @@ public var transId: Int32
 public var value: Array<Byte>
 ```
 
-**Description:** Represents the binary data of the descriptor to be written.
+**Function:** Represents the binary data of the descriptor to be written.
 
 **Type:** Array\<Byte>
 
@@ -1444,7 +1583,7 @@ public var value: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class DescriptorReadRequest
 
@@ -1453,25 +1592,25 @@ public class DescriptorReadRequest {
     public var deviceId: String
     public var transId: Int32
     public var offset: Int32
-    public var descriptorUuid: String
-    public var characteristicUuid: String
-    public var serviceUuid: String
+    public var descriptorUUID: String
+    public var characteristicUUID: String
+    public var serviceUUID: String
 }
 ```
 
-**Description:** Represents the event parameter class for descriptor read requests received after server subscription.
+**Function:** Describes the parameter class for descriptor read request events received after server-side subscription.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Description:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1479,15 +1618,15 @@ public var characteristicUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var descriptorUuid
+### var descriptorUUID
 
 ```cangjie
-public var descriptorUuid: String
+public var descriptorUUID: String
 ```
 
-**Description:** UUID of the descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb".
+**Function:** Represents the UUID of the descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1495,7 +1634,7 @@ public var descriptorUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -1503,7 +1642,7 @@ public var descriptorUuid: String
 public var deviceId: String
 ```
 
-**Description:** Represents the address of the remote device sending the descriptor read request, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Represents the remote device address that sent the descriptor read request, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
@@ -1511,7 +1650,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -1519,7 +1658,7 @@ public var deviceId: String
 public var offset: Int32
 ```
 
-**Description:** Represents the starting position for reading descriptor data. For example, k means reading starts from the k-th byte. The server must use the same offset when responding.
+**Function:** Represents the starting position for reading descriptor data. For example, k indicates reading from the k-th byte. The server must fill in the same offset when responding.
 
 **Type:** Int32
 
@@ -1527,15 +1666,15 @@ public var offset: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Description:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1543,7 +1682,7 @@ public var serviceUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var transId
 
@@ -1551,7 +1690,7 @@ public var serviceUuid: String
 public var transId: Int32
 ```
 
-**Description:** Represents the transaction ID of the read request. The server must use the same transaction ID when responding.
+**Function:** Represents the transaction ID of the read request. The server must fill in the same transaction ID when responding.
 
 **Type:** Int32
 
@@ -1559,7 +1698,7 @@ public var transId: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class DescriptorWriteRequest
 
@@ -1571,25 +1710,25 @@ public class DescriptorWriteRequest {
     public var isPrepared: Bool
     public var needRsp: Bool
     public var value: Array<Byte>
-    public var descriptorUuid: String
-    public var characteristicUuid: String
-    public var serviceUuid: String
+    public var descriptorUUID: String
+    public var characteristicUUID: String
+    public var serviceUUID: String
 }
 ```
 
-**Description:** Represents the event parameter class for descriptor write requests received after server subscription.
+**Function:** Describes the parameter class for descriptor write request events received after server-side subscription.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Description:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1597,15 +1736,15 @@ public var characteristicUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var descriptorUuid
+### var descriptorUUID
 
 ```cangjie
-public var descriptorUuid: String
+public var descriptorUUID: String
 ```
 
-**Description:** UUID of the descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb".
+**Function:** Represents the UUID of the descriptor, e.g., "00002902-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1613,7 +1752,7 @@ public var descriptorUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -1621,7 +1760,7 @@ public var descriptorUuid: String
 public var deviceId: String
 ```
 
-**Description:** Represents the address of the remote device sending the descriptor write request, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Represents the remote device address that sent the descriptor write request, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
@@ -1629,7 +1768,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var isPrepared
 
@@ -1637,7 +1776,7 @@ public var deviceId: String
 public var isPrepared: Bool
 ```
 
-**Description:** Indicates whether the write request should be executed immediately.
+**Function:** Indicates whether the write request should be executed immediately.
 
 **Type:** Bool
 
@@ -1645,7 +1784,7 @@ public var isPrepared: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var needRsp
 
@@ -1653,7 +1792,7 @@ public var isPrepared: Bool
 public var needRsp: Bool
 ```
 
-**Description:** Indicates whether a response should be sent back to the client.
+**Function:** Indicates whether a response should be sent to the client.
 
 **Type:** Bool
 
@@ -1661,7 +1800,7 @@ public var needRsp: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -1669,7 +1808,7 @@ public var needRsp: Bool
 public var offset: Int32
 ```
 
-**Description:** Represents the starting position for writing descriptor data. For example, k means writing starts from the k-th byte. The server must use the same offset when responding.
+**Function:** Represents the starting position for writing descriptor data. For example, k indicates writing from the k-th byte. The server must fill in the same offset when responding.
 
 **Type:** Int32
 
@@ -1677,15 +1816,15 @@ public var offset: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Description:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -1693,7 +1832,7 @@ public var serviceUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var transId
 
@@ -1701,7 +1840,7 @@ public var serviceUuid: String
 public var transId: Int32
 ```
 
-**Description:** Represents the transaction ID of the write request. The server must use the same transaction ID when responding.
+**Function:** Represents the transaction ID of the write request. The server must fill in the same transaction ID when responding.
 
 **Type:** Int32
 
@@ -1709,7 +1848,7 @@ public var transId: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var value
 
@@ -1717,7 +1856,7 @@ public var transId: Int32
 public var value: Array<Byte>
 ```
 
-**Description:** Represents the binary data of the descriptor to be written.
+**Function:** Represents the binary data of the descriptor to be written.
 
 **Type:** Array\<Byte>
 
@@ -1725,17 +1864,17 @@ public var value: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21## class GattClientDevice
+**Since:** 22## class GattClientDevice
 
 ```cangjie
 public class GattClientDevice {}
 ```
 
-**Description:** Client-side class. An instance of this class must be created to use client-side methods, constructed via the [createGattClientDevice(String)](#func-creategattclientdevicestring) method.
+**Description:** The client-side class. An instance of this class must be created via the [createGattClientDevice(String)](#func-creategattclientdevicestring) method before using client-side methods.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func close()
 
@@ -1743,13 +1882,13 @@ public class GattClientDevice {}
 public func close(): Unit
 ```
 
-**Description:** Closes client functionality, deregisters the client from the protocol stack. After calling this interface, the [GattClientDevice](#class-gattclientdevice) instance can no longer be used.
+**Description:** Closes the client functionality, deregisters the client from the protocol stack. After calling this interface, the [GattClientDevice](#class-gattclientdevice) instance can no longer be used.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -1771,7 +1910,6 @@ public func close(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -1780,7 +1918,7 @@ let gattClient = createGattClientDevice("XX:XX:XX:XX:XX:XX")  // Replace with yo
 try {
     gattClient.close()
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -1796,7 +1934,7 @@ public func connect(): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -1818,7 +1956,6 @@ public func connect(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -1827,7 +1964,7 @@ let gattClient = createGattClientDevice("XX:XX:XX:XX:XX:XX")  // Replace with yo
 try {
     gattClient.connect()
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -1843,7 +1980,7 @@ public func disconnect(): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Exceptions:**
 
@@ -1865,7 +2002,6 @@ public func disconnect(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -1874,7 +2010,7 @@ let gattClient = createGattClientDevice("XX:XX:XX:XX:XX:XX")  // Replace with yo
 try {
     gattClient.disconnect()
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -1890,13 +2026,13 @@ public func getDeviceName(): String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
-| :---- | :---- |
-| String | The name of the remote server device retrieved by the client. |
+|:----|:----|
+| String | The name of the remote server device obtained by the client. |
 
 **Exceptions:**
 
@@ -1905,7 +2041,6 @@ public func getDeviceName(): String
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900099 | Operation failed. |
@@ -1918,7 +2053,6 @@ public func getDeviceName(): String
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -1928,7 +2062,7 @@ try {
     let server = gattClient.getDeviceName()
     Hilog.info(0, "Bluetooth", "device name " + server)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -1944,12 +2078,12 @@ public func getRssiValue(callback: AsyncCallback<Int32>): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Int32> | Yes | - | Returns the signal strength in dBm via the registered callback function. |
 
 **Exceptions:**
@@ -1959,9 +2093,10 @@ public func getRssiValue(callback: AsyncCallback<Int32>): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
   | 801 | Capability not supported. |
   | 2900099 | Operation failed. |
+  | 2900011 | The operation is busy. The last operation is not completed. |
+  | 2901003 | The connection is not established. |
 
 **Example:**
 
@@ -1971,7 +2106,6 @@ public func getRssiValue(callback: AsyncCallback<Int32>): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -1986,7 +2120,7 @@ try {
         Hilog.info(0, "Bluetooth", "the rssi value is " + rssi.getOrThrow().toString())
     }
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2002,12 +2136,12 @@ public func getServices(callback: AsyncCallback<Array<GattService>>): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Array\<[GattService](#class-gattservice)>> | Yes | - | Performs service discovery on the client side. |
 
 **Exceptions:**
@@ -2017,7 +2151,6 @@ public func getServices(callback: AsyncCallback<Array<GattService>>): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900099 | Operation failed. |
@@ -2030,7 +2163,6 @@ public func getServices(callback: AsyncCallback<Array<GattService>>): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -2040,12 +2172,12 @@ try {
     let services = gattClient.getServices{err: ?BusinessException, c: ?Array<GattService> =>
             let ss = c.getOrThrow()
             for (service in ss) {
-                Hilog.info(0, "Bluetooth", "find serviceUuid : ${service.serviceUuid}")
+                Hilog.info(0, "Bluetooth", "find serviceUUID : ${service.serviceUUID}")
             }
         }
     Hilog.info(0, "Bluetooth", "getServices success")
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2055,29 +2187,28 @@ try {
 public func off(eventType: BluetoothBleGattClientDeviceCallbackType, callback!: ?CallbackObject = None): Unit
 ```
 
-**Description:** Unsubscribes from Bluetooth Low Energy (BLE) device events on the client side.
+**Description:** Unsubscribes from client-side Bluetooth Low Energy (BLE) device events.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | eventType | [BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype) | Yes | - | The characteristic value change event. |
-| callback | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No | None | **Named parameter.** Unsubscribes from Bluetooth Low Energy (BLE) device events on the client side. If this parameter is not provided, all callbacks corresponding to the type will be unsubscribed. |
+| callback | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No | None | **Named parameter.** Unsubscribes from client-side Bluetooth Low Energy (BLE) device events. If this parameter is not provided, all callbacks corresponding to the type will be unsubscribed. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -2088,7 +2219,6 @@ public func off(eventType: BluetoothBleGattClientDeviceCallbackType, callback!: 
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -2111,7 +2241,7 @@ try {
     gattClient.on(BluetoothBleGattClientDeviceCallbackType.BleConnectionStateChange, bleConnectionStateChangeCallback)
     gattClient.off(BluetoothBleGattClientDeviceCallbackType.BleConnectionStateChange, callback: bleConnectionStateChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2127,23 +2257,22 @@ public func on(eventType: BluetoothBleGattClientDeviceCallbackType, callback: Ca
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
-| :--- | :--- | :--- | :--- | :--- |
+|:---|:---|:---|:---|:---|
 | eventType | [BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype) | Yes | - | Must be set to ClientBleMtuChange, indicating the MTU state change event. Incorrect values will prevent callback registration. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BLECharacteristic](#class-blecharacteristic)> | Yes | - | Returns the MTU byte count value via the registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -2154,7 +2283,6 @@ public func on(eventType: BluetoothBleGattClientDeviceCallbackType, callback: Ca
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -2163,7 +2291,7 @@ import kit.PerformanceAnalysisKit.Hilog
 // This code can be added to dependency definitions
 class BLECharacteristicChangeCallback <: Callback1Argument<BLECharacteristic> {
     public func invoke(err: ?BusinessException, characteristic: BLECharacteristic): Unit {
-        Hilog.info(0, "Bluetooth", "characteristic ${characteristic.serviceUuid} has change")
+        Hilog.info(0, "Bluetooth", "characteristic ${characteristic.serviceUUID} has change")
     }
 }
 
@@ -2172,11 +2300,9 @@ let bleCharacteristicChangeCallback = BLECharacteristicChangeCallback()
 try {
     gattClient.on(BluetoothBleGattClientDeviceCallbackType.ClientBleMtuChange, bleCharacteristicChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
-```
-
-### func on(BluetoothBleGattClientDeviceCallbackType, Callback1Argument\<BLEConnectionChangeState>)
+```### func on(BluetoothBleGattClientDeviceCallbackType, Callback1Argument\<BLEConnectionChangeState>)
 
 ```cangjie
 public func on(
@@ -2185,29 +2311,28 @@ public func on(
 ): Unit
 ```
 
-**Function:** Client subscribes to MTU state change events.
+**Function:** Subscribes to MTU state change events on the client side.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype) | Yes | - | Set to BleConnectionStateChange, indicating connection state change event. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BLEConnectionChangeState](#class-bleconnectionchangestate)> | Yes | - | Returns MTU byte count value, obtained via registered callback function. |
+| eventType | [BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype) | Yes | - | Set to BleConnectionStateChange, indicating connection state change events. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BLEConnectionChangeState](#class-bleconnectionchangestate)> | Yes | - | Returns the MTU byte count value, obtained via registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -2218,7 +2343,6 @@ public func on(
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -2241,7 +2365,7 @@ let bleConnectionStateChangeCallback = BLEConnectionStateChangeCallback()
 try {
     gattClient.on(BluetoothBleGattClientDeviceCallbackType.BleConnectionStateChange, bleConnectionStateChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2251,29 +2375,28 @@ try {
 public func on(eventType: BluetoothBleGattClientDeviceCallbackType, callback: Callback1Argument<Int32>): Unit
 ```
 
-**Function:** Client subscribes to MTU state change events.
+**Function:** Subscribes to MTU state change events on the client side.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype) | Yes | - | Must be set to ClientBleMtuChange, indicating MTU state change event. Incorrect setting will cause callback registration failure. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32> | Yes | - | Returns MTU byte count value, obtained via registered callback function. |
+| eventType | [BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype) | Yes | - | Must be set to ClientBleMtuChange, indicating MTU state change events. Incorrect settings will prevent callback registration. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32> | Yes | - | Returns the MTU byte count value, obtained via registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -2284,7 +2407,6 @@ public func on(eventType: BluetoothBleGattClientDeviceCallbackType, callback: Ca
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -2302,7 +2424,7 @@ let bleMtuChangeCallback = BLEMtuChangeCallback()
 try {
     gattClient.on(BluetoothBleGattClientDeviceCallbackType.ClientBleMtuChange, bleMtuChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2315,33 +2437,38 @@ public func readCharacteristicValue(
 ): Unit
 ```
 
-**Function:** Client reads characteristic value of a specific service from a Bluetooth Low Energy (BLE) device.
+**Function:** Reads the characteristic value of a specific service from a Bluetooth Low Energy (BLE) device on the client side.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| characteristic | [BLECharacteristic](#class-blecharacteristic) | Yes | - | Characteristic to be read. |
-| callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[BLECharacteristic](#class-blecharacteristic)> | Yes | - | Client reads characteristic value, obtained via registered callback function. |
+| characteristic | [BLECharacteristic](#class-blecharacteristic) | Yes | - | The characteristic value to be read. |
+| callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[BLECharacteristic](#class-blecharacteristic)> | Yes | - | The client reads the characteristic value, obtained via registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
+  | 2900011 | The operation is busy. The last operation is not completed. |
   | 2901000 | Read forbidden. |
   | 2900099 | Operation failed. |
+  | 2901003 | The connection is not established. |
+  | 2901004 | The connection is congested. |
+  | 2901005 | The connection is not encrypted. |
+  | 2901006 | The connection is not authenticated. |
+  | 2901007 | The connection is not authorized. |
 
 **Example:**
 
@@ -2351,7 +2478,6 @@ public func readCharacteristicValue(
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -2386,7 +2512,7 @@ try {
             throw e
         }
         if (let Some(c) <- outData) {
-            Hilog.info(0, "Bluetooth", "read characteristic value uuid is ${c.characteristicUuid}")
+            Hilog.info(0, "Bluetooth", "read characteristic value uuid is ${c.characteristicUUID}", "")
             let message = StringBuilder("logCharacteristic value: ")
             for (i in 0..c.characteristicValue.size) {
                 message.append(c.characteristicValue[i])
@@ -2395,7 +2521,7 @@ try {
         }
     }
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2405,29 +2531,28 @@ try {
 public func readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback<BLEDescriptor>): Unit
 ```
 
-**Function:** Client reads descriptor of a specific characteristic from a BLE device.
+**Function:** Reads the descriptor of a specific characteristic from a BLE device on the client side.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| descriptor | [BLEDescriptor](#class-bledescriptor) | Yes | - | Descriptor to be read. |
-| callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[BLEDescriptor](#class-bledescriptor)> | Yes | - | Client reads descriptor, obtained via registered callback function. |
+| descriptor | [BLEDescriptor](#class-bledescriptor) | Yes | - | The descriptor to be read. |
+| callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[BLEDescriptor](#class-bledescriptor)> | Yes | - | The client reads the descriptor, obtained via registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900011 | The operation is busy. The last operation is not complete. |
@@ -2447,7 +2572,6 @@ public func readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallba
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -2469,7 +2593,7 @@ try {
             throw e
         }
         if (let Some(d) <- outDescriptor) {
-            Hilog.info(0, "Bluetooth", "read descriptor value uuid is ${d.descriptorUuid}")
+            Hilog.info(0, "Bluetooth", "read descriptor value uuid is ${d.descriptorUUID}")
             let message = StringBuilder("logDescriptor value: ")
             for (i in 0..d.descriptorValue.size) {
                 message.append(d.descriptorValue[i])
@@ -2478,7 +2602,7 @@ try {
         }
     }
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2488,13 +2612,13 @@ try {
 public func setBLEMtuSize(mtu: Int32): Unit
 ```
 
-**Function:** Client negotiates Maximum Transmission Unit (MTU) with remote BLE device. Can only be used after successful connection via [connect](#func-connect) interface.
+**Function:** Negotiates the Maximum Transmission Unit (MTU) size with a remote BLE device on the client side. This can only be used after a successful connection is established via the [connect](#func-connect) interface.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -2504,12 +2628,11 @@ public func setBLEMtuSize(mtu: Int32): Unit
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900099 | Operation failed. |
@@ -2522,7 +2645,6 @@ public func setBLEMtuSize(mtu: Int32): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -2531,7 +2653,7 @@ let gattClient = createGattClientDevice("XX:XX:XX:XX:XX:XX")  // Replace with yo
 try {
     gattClient.setBLEMtuSize(100)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -2539,34 +2661,36 @@ try {
 
 ```cangjie
 public func setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: Bool, callback: AsyncCallback<Unit>): Unit
+```
 
-**Function:** Sends request to server to set notification for this characteristic value, requires response from peer device.
+**Function:** Sends a request to the server to set notifications for this characteristic value, requiring a response from the peer device.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| characteristic | [BLECharacteristic](#class-blecharacteristic) | Yes | - | Binary value and other parameters corresponding to Bluetooth device characteristic. |
-| enable | Bool | Yes | - | Write type of Bluetooth device characteristic. |
+| characteristic | [BLECharacteristic](#class-blecharacteristic) | Yes | - | The binary value and other parameters corresponding to the BLE device characteristic. |
+| enable | Bool | Yes | - | The write type for the BLE device characteristic. |
 | callback | [AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Unit> | Yes | - | Callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
+  | 2900011 | The operation is busy. The last operation is not completed. |
   | 2900099 | Operation failed. |
+  | 2901003 | The connection is not established. |
 
 **Example:**
 
@@ -2576,7 +2700,6 @@ public func setCharacteristicChangeIndication(characteristic: BLECharacteristic,
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -2596,7 +2719,22 @@ let descriptors: Array<BLEDescriptor> = [descriptor]
 let charBuffer: Array<Byte> = [21, 22]
 let properties = GattProperties()
 
-let characteristic: BLECharacteristic## class GattPermissions
+let characteristic: BLECharacteristic = BLECharacteristic(
+    "00001810-0000-1000-8000-00805F9B34FB",
+    "00001820-0000-1000-8000-00805F9B34FB",
+    charBuffer,
+    descriptors,
+    properties: properties
+)
+
+try {
+    gattClient.setCharacteristicChangeIndication(characteristic, false)  {
+        error: ?BusinessException, c: ?Unit => if (let Some(e) <- error) {
+            throw e
+        }
+    }
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e## class GattPermissions
 
 ```cangjie
 public class GattPermissions <: Equatable<GattPermissions> {
@@ -2621,11 +2759,11 @@ public class GattPermissions <: Equatable<GattPermissions> {
 }
 ```
 
-**Function:** Describes the permissions required for reading/writing GATT characteristic values or descriptors.
+**Function:** Describes the required permissions for reading/writing GATT characteristic values or descriptors.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -2645,7 +2783,7 @@ public var read: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var readEncrypted
 
@@ -2661,7 +2799,7 @@ public var readEncrypted: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var readEncryptedMitm
 
@@ -2677,7 +2815,7 @@ public var readEncryptedMitm: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var write
 
@@ -2685,7 +2823,7 @@ public var readEncryptedMitm: Bool
 public var write: Bool
 ```
 
-**Function:** Indicates whether writing the characteristic value or descriptor content is permitted.
+**Function:** Indicates whether writing to the characteristic value or descriptor content is permitted.
 
 **Type:** Bool
 
@@ -2693,7 +2831,7 @@ public var write: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var writeEncrypted
 
@@ -2701,7 +2839,7 @@ public var write: Bool
 public var writeEncrypted: Bool
 ```
 
-**Function:** Indicates whether writing the characteristic value or descriptor content requires encryption.
+**Function:** Indicates whether writing to the characteristic value or descriptor content requires encryption.
 
 **Type:** Bool
 
@@ -2709,7 +2847,7 @@ public var writeEncrypted: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var writeEncryptedMitm
 
@@ -2717,7 +2855,7 @@ public var writeEncrypted: Bool
 public var writeEncryptedMitm: Bool
 ```
 
-**Function:** Indicates whether writing the characteristic value or descriptor content requires Man-in-the-Middle (MITM) protected encryption.
+**Function:** Indicates whether writing to the characteristic value or descriptor content requires MITM-protected encryption.
 
 **Type:** Bool
 
@@ -2725,7 +2863,7 @@ public var writeEncryptedMitm: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var writeSigned
 
@@ -2733,7 +2871,7 @@ public var writeEncryptedMitm: Bool
 public var writeSigned: Bool
 ```
 
-**Function:** Indicates whether writing the characteristic value or descriptor content requires signing.
+**Function:** Indicates whether writing to the characteristic value or descriptor content requires signature processing.
 
 **Type:** Bool
 
@@ -2741,7 +2879,7 @@ public var writeSigned: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var writeSignedMitm
 
@@ -2749,7 +2887,7 @@ public var writeSigned: Bool
 public var writeSignedMitm: Bool
 ```
 
-**Function:** Indicates whether writing the characteristic value or descriptor content requires MITM-protected signing.
+**Function:** Indicates whether writing to the characteristic value or descriptor content requires MITM-protected signature processing.
 
 **Type:** Bool
 
@@ -2757,7 +2895,7 @@ public var writeSignedMitm: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Bool, Bool, Bool, Bool, Bool, Bool, Bool, Bool)
 
@@ -2778,20 +2916,20 @@ public init (
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| read | Bool | No | true | Indicates whether reading the characteristic value or descriptor content is permitted.<br>true: permitted, false: not permitted. Default value: true. |
-| readEncrypted | Bool | No | false | Indicates whether reading the characteristic value or descriptor content requires encryption.<br>true: requires encryption before reading, false: no encryption required. Default value: false. |
-| readEncryptedMitm | Bool | No | false | Indicates whether reading the characteristic value or descriptor content requires MITM-protected encryption.<br>MITM protection means the operation requires authentication to prevent data tampering by third parties. true: requires MITM-protected encryption before reading, false: no MITM-protected encryption required. Default value: false. |
-| write | Bool | No | true | Indicates whether writing the characteristic value or descriptor content is permitted.<br>true: permitted, false: not permitted. Default value: true. |
-| writeEncrypted | Bool | No | false | Indicates whether writing the characteristic value or descriptor content requires encryption.<br>true: requires encryption before writing, false: no encryption required. Default value: false. |
-| writeEncryptedMitm | Bool | No | false | Indicates whether writing the characteristic value or descriptor content requires MITM-protected encryption.<br>true: requires MITM-protected encryption before writing, false: no MITM-protected encryption required. Default value: false. |
-| writeSigned | Bool | No | false | Indicates whether writing the characteristic value or descriptor content requires signing.<br>true: requires signing before writing, false: no signing required. Default value: false. |
-| writeSignedMitm | Bool | No | false | Indicates whether writing the characteristic value or descriptor content requires MITM-protected signing.<br>true: requires MITM-protected signing before writing, false: no MITM-protected signing required. Default value: false. |
+| read | Bool | No | true | Indicates whether reading the characteristic value or descriptor content is permitted.<br>true means permitted, false means not permitted. Default is true. |
+| readEncrypted | Bool | No | false | Indicates whether reading the characteristic value or descriptor content requires encryption.<br>true means encryption is required for reading, false means no basic encryption is needed. Default is false. |
+| readEncryptedMitm | Bool | No | false | Indicates whether reading the characteristic value or descriptor content requires MITM-protected encryption.<br>MITM protection means the operation requires authentication to prevent data tampering by third parties. true means MITM-protected encryption is required for reading, false means not required. Default is false. |
+| write | Bool | No | true | Indicates whether writing to the characteristic value or descriptor content is permitted.<br>true means permitted, false means not permitted. Default is true. |
+| writeEncrypted | Bool | No | false | Indicates whether writing to the characteristic value or descriptor content requires encryption.<br>true means encryption is required for writing, false means no basic encryption is needed. Default is false. |
+| writeEncryptedMitm | Bool | No | false | Indicates whether writing to the characteristic value or descriptor content requires MITM-protected encryption.<br>true means MITM-protected encryption is required for writing, false means not required. Default is false. |
+| writeSigned | Bool | No | false | Indicates whether writing to the characteristic value or descriptor content requires signature processing.<br>true means signature processing is required for writing, false means not required. Default is false. |
+| writeSignedMitm | Bool | No | false | Indicates whether writing to the characteristic value or descriptor content requires MITM-protected signature processing.<br>true means MITM-protected signature processing is required for writing, false means not required. Default is false. |
 
 ### func !=(GattPermissions)
 
@@ -2799,19 +2937,19 @@ public init (
 public operator func !=(other: GattPermissions): Bool
 ```
 
-**Function:** Checks inequality of GattPermissions.
+**Function:** Checks inequality between GattPermissions instances.
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [GattPermissions](#class-gattpermissions) | Yes | - | Permissions required for descriptor read/write operations. |
+| other | [GattPermissions](#class-gattpermissions) | Yes | - | The permissions required for descriptor read/write operations. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the permissions required for descriptor read/write operations differ, otherwise returns false. |
+| Bool | Returns true if the permissions for descriptor read/write operations differ, otherwise returns false. |
 
 ### func ==(GattPermissions)
 
@@ -2819,19 +2957,19 @@ public operator func !=(other: GattPermissions): Bool
 public operator func ==(other: GattPermissions): Bool
 ```
 
-**Function:** Checks equality of GattPermissions.
+**Function:** Checks equality between GattPermissions instances.
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| other | [GattPermissions](#class-gattpermissions) | Yes | - | Permissions required for descriptor read/write operations. |
+| other | [GattPermissions](#class-gattpermissions) | Yes | - | The permissions required for descriptor read/write operations. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the permissions required for descriptor read/write operations are the same, otherwise returns false. |
+| Bool | Returns true if the permissions for descriptor read/write operations are identical, otherwise returns false. |
 
 ## class GattProperties
 
@@ -2859,7 +2997,7 @@ public class GattProperties {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var indicate
 
@@ -2867,7 +3005,7 @@ public class GattProperties {
 public var indicate: Bool
 ```
 
-**Function:** **Named parameter.** true indicates the characteristic can notify the peer device and requires a response from the peer.
+**Function:** **Named parameter.** true indicates the characteristic can notify peer devices and requires acknowledgment.
 
 **Type:** Bool
 
@@ -2875,7 +3013,7 @@ public var indicate: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var notify
 
@@ -2883,7 +3021,7 @@ public var indicate: Bool
 public var notify: Bool
 ```
 
-**Function:** **Named parameter.** true indicates the characteristic can notify the peer device.
+**Function:** **Named parameter.** true indicates the characteristic can notify peer devices.
 
 **Type:** Bool
 
@@ -2891,7 +3029,7 @@ public var notify: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var read
 
@@ -2907,7 +3045,7 @@ public var read: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var write
 
@@ -2915,7 +3053,7 @@ public var read: Bool
 public var write: Bool
 ```
 
-**Function:** **Named parameter.** Indicates the characteristic supports write operations. true requires a response from the peer device.
+**Function:** **Named parameter.** Indicates the characteristic supports write operations. true requires acknowledgment from peer devices.
 
 **Type:** Bool
 
@@ -2923,7 +3061,7 @@ public var write: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var writeNoResponse
 
@@ -2931,7 +3069,7 @@ public var write: Bool
 public var writeNoResponse: Bool
 ```
 
-**Function:** **Named parameter.** true indicates the characteristic supports write operations without requiring a response from the peer device.
+**Function:** **Named parameter.** true indicates the characteristic supports write operations without requiring acknowledgment.
 
 **Type:** Bool
 
@@ -2939,7 +3077,7 @@ public var writeNoResponse: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Bool, Bool, Bool, Bool, Bool, Bool, Bool, Bool)
 
@@ -2960,20 +3098,20 @@ public init(
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| write | Bool | No | true | **Named parameter.** Indicates the characteristic supports write operations. true requires a response from the peer device. |
-| writeNoResponse | Bool | No | true | **Named parameter.** true indicates the characteristic supports write operations without requiring a response from the peer device. |
+| write | Bool | No | true | **Named parameter.** Indicates the characteristic supports write operations. true requires acknowledgment from peer devices. |
+| writeNoResponse | Bool | No | true | **Named parameter.** true indicates the characteristic supports write operations without requiring acknowledgment. |
 | read | Bool | No | true | **Named parameter.** true indicates the characteristic supports read operations. |
-| notify | Bool | No | false | **Named parameter.** true indicates the characteristic can notify the peer device. |
-| indicate | Bool | No | false | **Named parameter.** true indicates the characteristic can notify the peer device and requires a response from the peer. |
-| broadcast | Bool | No | false | **Named parameter.** Indicates whether the characteristic value can be broadcast by the server.<br>true: supported, the server can include the characteristic value in the advertisement packet as ServiceData. false: not supported. Default value: false. Reserved field, not supported in this version. |
-| authenticatedSignedWrite | Bool | No | false | **Named parameter.** Indicates whether the characteristic supports authenticated signed write operations, replacing encryption with signature verification.<br>true: supported, and the writeSigned or writeSignedMitm permissions in GattPermissions must be set to true; otherwise, this property is invalid. false: not supported. Default value: false. Reserved field, not supported in this version. |
-| extendedProperties | Bool | No | false | **Named parameter.** Indicates whether the characteristic has extended properties.<br>true: has extended properties, false: does not. Default value: false. Reserved field, not supported in this version. |
+| notify | Bool | No | false | **Named parameter.** true indicates the characteristic can notify peer devices. |
+| indicate | Bool | No | false | **Named parameter.** true indicates the characteristic can notify peer devices and requires acknowledgment. |
+| broadcast | Bool | No | false | **Named parameter.** Indicates whether the characteristic value can be broadcast by the server.<br>true means supported (server can include characteristic value as ServiceData in advertising packets), false means not supported. Default is false. Reserved field, not supported in this version. |
+| authenticatedSignedWrite | Bool | No | false | **Named parameter.** Indicates whether the characteristic supports authenticated signed writes, using signature verification instead of encryption.<br>true means supported (GattPermissions' writeSigned or writeSignedMitm must be set to true), false means not supported. Default is false. Reserved field, not supported in this version. |
+| extendedProperties | Bool | No | false | **Named parameter.** Indicates whether the characteristic has extended properties.<br>true means extended properties exist, false means they don't. Default is false. Reserved field, not supported in this version. |
 
 ## class GattServer
 
@@ -2981,11 +3119,11 @@ public init(
 public class GattServer {}
 ```
 
-**Function:** Server-side class. An instance of this class must be created to use server-side methods, constructed via the [createGattServer()](#func-creategattserver) method.
+**Function:** Server-side class. An instance of this class must be created to use server-side methods, constructed via [createGattServer()](#func-creategattserver).
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func addService(GattService)
 
@@ -2999,22 +3137,21 @@ public func addService(service: GattService): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| service | [GattService](#class-gattservice) | Yes | - | The service data on the server side. BLE advertisement-related parameters. |
+| service | [GattService](#class-gattservice) | Yes | - | The service data for the server side. BLE advertising parameters. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -3027,7 +3164,6 @@ public func addService(service: GattService): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -3087,11 +3223,11 @@ public func close(): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
@@ -3108,7 +3244,6 @@ public func close(): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -3117,7 +3252,7 @@ let gattServer = createGattServer()
 try {
     gattServer.close()
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3133,23 +3268,22 @@ public func notifyCharacteristicChanged(deviceId: String, notifyCharacteristic: 
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | deviceId | String | Yes | - | The address of the client device receiving the notification, e.g., "XX:XX:XX:XX:XX:XX". |
 | notifyCharacteristic | [NotifyCharacteristic](#class-notifycharacteristic) | Yes | - | The characteristic value data to be notified. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Service Subsystem Error Codes](./cj-errorcode-bluetooth_manager.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -3163,7 +3297,6 @@ public func notifyCharacteristicChanged(deviceId: String, notifyCharacteristic: 
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -3179,7 +3312,7 @@ try {
     )
     gattServer.notifyCharacteristicChanged("XX:XX:XX:XX:XX:XX", notifyCharacteristic)  // Replace with your deviceId
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3195,23 +3328,22 @@ public func off(eventType: BluetoothBleGattServerCallbackType, callback!: ?Callb
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | The callback event. |
 | callback | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | No | None | **Named parameter.** Indicates unsubscribing from BLE events. If this parameter is not provided, all callbacks corresponding to the type will be unsubscribed. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3221,7 +3353,6 @@ public func off(eventType: BluetoothBleGattServerCallbackType, callback!: ?Callb
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -3240,7 +3371,7 @@ try {
     gattServer.on(BluetoothBleGattServerCallbackType.ConnectionStateChange, stateChangeCallback)
     gattServer.off(BluetoothBleGattServerCallbackType.ConnectionStateChange, callback: stateChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3256,23 +3387,22 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to CharacteristicRead, indicating characteristic read request events. |
+| :--- | :--- | :--- | :--- | :--- |
+| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to CharacteristicRead, indicating characteristic value read request events. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CharacteristicReadRequest](#class-characteristicreadrequest)> | Yes | - | Returns the MTU byte count value, obtained via the registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3282,7 +3412,6 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -3317,7 +3446,7 @@ let characteristicReadCallback = CharacteristicReadCallback()
 try {
     gattServer.on(BluetoothBleGattServerCallbackType.CharacteristicRead, characteristicReadCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3333,23 +3462,22 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to CharacteristicWrite, indicating characteristic write request events. |
+| :--- | :--- | :--- | :--- | :--- |
+| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to CharacteristicWrite, indicating characteristic value write request events. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CharacteristicWriteRequest](#class-characteristicwriterequest)> | Yes | - | Returns the MTU byte count value, obtained via the registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3359,7 +3487,6 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -3401,7 +3528,7 @@ let characteristicWriteCallback = CharacteristicWriteCallback()
 try {
     gattServer.on(BluetoothBleGattServerCallbackType.CharacteristicWrite, characteristicWriteCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3417,23 +3544,22 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- | :--- |
 | eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to DescriptorRead, indicating descriptor read request events. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[DescriptorReadRequest](#class-descriptorreadrequest)> | Yes | - | Returns the MTU byte count value, obtained via the registered callback function. |
 
 **Exceptions:**
 
-- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md).
 
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3443,7 +3569,6 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
@@ -3478,27 +3603,29 @@ let descriptorReadCallback = DescriptorReadCallback()
 try {
     gattServer.on(BluetoothBleGattServerCallbackType.DescriptorRead, descriptorReadCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
-```### func on(BluetoothBleGattServerCallbackType, Callback1Argument\<DescriptorWriteRequest>)
+```
+
+### func on(BluetoothBleGattServerCallbackType, Callback1Argument\<DescriptorWriteRequest>)
 
 ```cangjie
 public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback1Argument<DescriptorWriteRequest>): Unit
 ```
 
-**Function:** Subscribes to descriptor write request events on the server side.
+**Function:** Subscribes to MTU state change events on the server side.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to `DescriptorWrite`, indicating a descriptor write request event. |
+| :--- | :--- | :--- | :--- | :--- |
+| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to DescriptorWrite, indicating descriptor write request events. |
 | callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[DescriptorWriteRequest](#class-descriptorwriterequest)> | Yes | - | Returns the MTU byte count value, obtained via the registered callback function. |
 
 **Exceptions:**
@@ -3508,7 +3635,6 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3518,13 +3644,12 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-// Code here can be added to dependency definitions
+// This code can be added to dependency definitions
 let gattServer = createGattServer()
 
 class DescriptorWriteCallback <: Callback1Argument<DescriptorWriteRequest> {
@@ -3557,30 +3682,26 @@ let descriptorWriteCallback = DescriptorWriteCallback()
 try {
     gattServer.on(BluetoothBleGattServerCallbackType.DescriptorWrite, descriptorWriteCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
-}
-```
-
-### func on(BluetoothBleGattServerCallbackType, Callback1Argument\<BLEConnectionChangeState>)
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage### func on(BluetoothBleGattServerCallbackType, Callback1Argument\<BLEConnectionChangeState>)
 
 ```cangjie
 public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback1Argument<BLEConnectionChangeState>): Unit
 ```
 
-**Function:** Subscribes to BLE connection state change events on the server side.
+**Function:** Subscribes to MTU state change events on the server side.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to `ConnectionStateChange`, indicating a BLE connection state change event. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BLEConnectionChangeState](#class-bleconnectionchangestate)> | Yes | - | Returns the MTU byte count value, obtained via the registered callback function. |
+| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Set to ConnectionStateChange, indicating BLE connection state change event. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BLEConnectionChangeState](#class-bleconnectionchangestate)> | Yes | - | Returns the MTU byte count value, obtained via registered callback function. |
 
 **Exceptions:**
 
@@ -3589,7 +3710,6 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3599,13 +3719,12 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-// Code here can be added to dependency definitions
+// Code can be added in dependency definitions here
 let gattServer = createGattServer()
 
 class StateChangeCallback <: Callback1Argument<BLEConnectionChangeState> {
@@ -3618,7 +3737,7 @@ let stateChangeCallback = StateChangeCallback()
 try {
     gattServer.on(BluetoothBleGattServerCallbackType.ConnectionStateChange, stateChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3634,14 +3753,14 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Must be set to `BLE_MTU_CHANGE`, indicating an MTU state change event. Incorrect settings will prevent callback registration. |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32> | Yes | - | Returns the MTU byte count value, obtained via the registered callback function. |
+| eventType | [BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype) | Yes | - | Must be set to BLE_MTU_CHANGE, indicating MTU state change event. Incorrect setting will prevent callback registration. |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32> | Yes | - | Returns the MTU byte count value, obtained via registered callback function. |
 
 **Exceptions:**
 
@@ -3650,7 +3769,6 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
 
 **Example:**
@@ -3660,13 +3778,12 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.callback_invoke.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-// Code here can be added to dependency definitions
+// Code can be added in dependency definitions here
 let gattServer = createGattServer()
 class BLEMtuChangeCallback <: Callback1Argument<Int32> {
     public func invoke(err: ?BusinessException, mtu: Int32): Unit {
@@ -3678,14 +3795,14 @@ let bleMtuChangeCallback = BLEMtuChangeCallback()
 try {
     gattServer.on(BluetoothBleGattServerCallbackType.ServerBleMtuChange, bleMtuChangeCallback)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
 ### func removeService(String)
 
 ```cangjie
-public func removeService(serviceUuid: String): Unit
+public func removeService(serviceUUID: String): Unit
 ```
 
 **Function:** Removes an added service.
@@ -3694,13 +3811,13 @@ public func removeService(serviceUuid: String): Unit
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| serviceUuid | String | Yes | - | The UUID of the service, e.g., "00001810-0000-1000-8000-00805F9B34FB". |
+| serviceUUID | String | Yes | - | Service UUID, e.g., "00001810-0000-1000-8000-00805F9B34FB". |
 
 **Exceptions:**
 
@@ -3709,7 +3826,6 @@ public func removeService(serviceUuid: String): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -3723,7 +3839,6 @@ public func removeService(serviceUuid: String): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -3732,7 +3847,7 @@ let gattServer = createGattServer()
 try {
     gattServer.removeService("00001810-0000-1000-8000-00805F9B34FB")
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3742,13 +3857,13 @@ try {
 public func sendResponse(serverResponse: ServerResponse): Unit
 ```
 
-**Function:** Responds to read/write requests from the client side on the server side.
+**Function:** Server responds to client's read/write requests.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -3763,7 +3878,6 @@ public func sendResponse(serverResponse: ServerResponse): Unit
   | Error Code ID | Error Message |
   | :---- | :--- |
   | 201 | Permission denied. |
-  | 401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
   | 801 | Capability not supported. |
   | 2900001 | Service stopped. |
   | 2900003 | Bluetooth disabled. |
@@ -3776,7 +3890,6 @@ public func sendResponse(serverResponse: ServerResponse): Unit
 ```cangjie
 // index.cj
 
-import ohos.base.*
 import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
@@ -3790,7 +3903,7 @@ try {
     )
     gattServer.sendResponse(serverResponse)
 } catch (e: BusinessException) {
-    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
 ```
 
@@ -3798,12 +3911,12 @@ try {
 
 ```cangjie
 public class GattService {
-    public var serviceUuid: String
+    public var serviceUUID: String
     public var isPrimary: Bool
     public var characteristics: Array<BLECharacteristic>
     public var includeServices: Array<GattService>
     public init(
-        serviceUuid: String,
+        serviceUUID: String,
         isPrimary: Bool,
         characteristics: Array<BLECharacteristic>,
         includeServices!: Array<GattService> = []
@@ -3811,11 +3924,11 @@ public class GattService {
 }
 ```
 
-**Function:** Defines interface parameters for describing a service.
+**Function:** Interface parameter definition describing a service.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var characteristics
 
@@ -3823,15 +3936,15 @@ public class GattService {
 public var characteristics: Array<BLECharacteristic>
 ```
 
-**Function:** List of characteristics included in the current service.
+**Function:** List of characteristics contained in the current service.
 
 **Type:** Array\<[BLECharacteristic](#class-blecharacteristic)>
 
-**Read/Write Access:** Read-Write
+**Read/Write Capability:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var includeServices
 
@@ -3843,11 +3956,11 @@ public var includeServices: Array<GattService>
 
 **Type:** Array\<[GattService](#class-gattservice)>
 
-**Read/Write Access:** Read-Write
+**Read/Write Capability:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var isPrimary
 
@@ -3855,57 +3968,59 @@ public var includeServices: Array<GattService>
 public var isPrimary: Bool
 ```
 
-**Function:** Set to `true` if it is a primary service; otherwise, set to `false`.
+**Function:** Set to true if it's a primary service, otherwise false.
 
 **Type:** Bool
 
-**Read/Write Access:** Read-Write
+**Read/Write Capability:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Function:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
-**Read/Write Access:** Read-Write
+**Read/Write Capability:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, Bool, Array\<BLECharacteristic>, Array\<GattService>)
 
 ```cangjie
 public init(
-    serviceUuid: String,
+    serviceUUID: String,
     isPrimary: Bool,
     characteristics: Array<BLECharacteristic>,
     includeServices!: Array<GattService> = []
 )
 ```
 
-**Function:** Constructor for GattService.
+**Function:** GattService constructor.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| serviceUuid | String | Yes | - | UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
-| isPrimary | Bool | Yes | - | Set to `true` if it is a primary service; otherwise, set to `false`. |
-| characteristics | Array\<[BLECharacteristic](#class-blecharacteristic)> | Yes | - | List of characteristics included in the current service. |
-| includeServices | Array\<[GattService](#class-gattservice)> | No | [] | Other services that the current service depends on. |## class ManufactureData
+| serviceUUID | String | Yes | - | UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
+| isPrimary | Bool | Yes | - | Set to true if it's a primary service, otherwise false. |
+| characteristics | Array\<[BLECharacteristic](#class-blecharacteristic)> | Yes | - | List of characteristics contained in the current service. |
+| includeServices | Array\<[GattService](#class-gattservice)> | No | [] | Other services that the current service depends on. |
+
+## class ManufactureData
 
 ```cangjie
 public class ManufactureData {
@@ -3918,11 +4033,11 @@ public class ManufactureData {
 }
 ```
 
-**Function:** Describes the content of BLE broadcast data packets.
+**Function:** Describes the content of a BLE broadcast data packet.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var manufactureId
 
@@ -3930,15 +4045,15 @@ public class ManufactureData {
 public var manufactureId: UInt16
 ```
 
-**Function:** Represents the manufacturer ID assigned by Bluetooth SIG.
+**Function:** Manufacturer ID assigned by Bluetooth SIG.
 
 **Type:** UInt16
 
-**Access:** Read-Write
+**Read/Write Capability:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var manufactureValue
 
@@ -3946,15 +4061,15 @@ public var manufactureId: UInt16
 public var manufactureValue: Array<Byte>
 ```
 
-**Function:** Represents the manufacturer data sent by the manufacturer.
+**Function:** Manufacturer data sent by the manufacturer.
 
 **Type:** Array\<Byte>
 
-**Access:** Read-Write
+**Read/Write Capability:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(UInt16, Array\<Byte>)
 
@@ -3965,49 +4080,47 @@ public init(
 )
 ```
 
-**Function:** Constructor for ManufactureData.
+**Function:** ManufactureData constructor.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| manufactureId | UInt16 | Yes | - | Represents the manufacturer ID assigned by Bluetooth SIG. |
-| manufactureValue | Array\<Byte> | Yes | - | Represents the manufacturer data sent by the manufacturer. |
-
-## class NotifyCharacteristic
+| manufactureId | UInt16 | Yes | - | Manufacturer ID assigned by Bluetooth SIG. |
+| manufactureValue | Array\<Byte> | Yes | - | Manufacturer data sent by the manufacturer. |## class NotifyCharacteristic
 
 ```cangjie
 public class NotifyCharacteristic {
-    public var serviceUuid: String
-    public var characteristicUuid: String
+    public var serviceUUID: String
+    public var characteristicUUID: String
     public var characteristicValue: Array<Byte>
     public var confirm: Bool
     public init(
-        serviceUuid: String,
-        characteristicUuid: String,
+        serviceUUID: String,
+        characteristicUUID: String,
         characteristicValue: Array<Byte>,
         confirm: Bool
     )
 }
 ```
 
-**Function:** Describes the characteristic notification parameters sent when the server-side characteristic value changes.
+**Function:** Defines the characteristic notification parameters when server-side characteristic values change.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var characteristicUuid
+### var characteristicUUID
 
 ```cangjie
-public var characteristicUuid: String
+public var characteristicUUID: String
 ```
 
-**Function:** The UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -4015,7 +4128,7 @@ public var characteristicUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var characteristicValue
 
@@ -4023,7 +4136,7 @@ public var characteristicUuid: String
 public var characteristicValue: Array<Byte>
 ```
 
-**Function:** The binary value corresponding to the characteristic.
+**Function:** Binary value corresponding to the characteristic.
 
 **Type:** Array\<Byte>
 
@@ -4031,7 +4144,7 @@ public var characteristicValue: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var confirm
 
@@ -4047,15 +4160,15 @@ public var confirm: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Function:** The UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -4063,14 +4176,14 @@ public var serviceUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, Array\<Byte>, Bool)
 
 ```cangjie
 public init(
-    serviceUuid: String,
-    characteristicUuid: String,
+    serviceUUID: String,
+    characteristicUUID: String,
     characteristicValue: Array<Byte>,
     confirm: Bool
 )
@@ -4080,16 +4193,16 @@ public init(
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| serviceUuid | String | Yes | - | The UUID of a specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
-| characteristicUuid | String | Yes | - | The UUID of a specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb". |
-| characteristicValue | Array\<Byte> | Yes | - | The binary value corresponding to the characteristic. |
-| confirm | Bool | Yes | - | Set to `true` if it's an indication requiring peer confirmation; set to `false` if it's a notification not requiring peer confirmation. |
+| serviceUUID | String | Yes | - | UUID of the specific service, e.g., "00001888-0000-1000-8000-00805f9b34fb". |
+| characteristicUUID | String | Yes | - | UUID of the specific characteristic, e.g., "00002a11-0000-1000-8000-00805f9b34fb". |
+| characteristicValue | Array\<Byte> | Yes | - | Binary value corresponding to the characteristic. |
+| confirm | Bool | Yes | - | Set to `true` for indication (requires confirmation); `false` for notification (no confirmation required). |
 
 ## class ScanFilter
 
@@ -4097,7 +4210,7 @@ public init(
 public class ScanFilter {
     public var deviceId: String
     public var name: String
-    public var serviceUuid: String
+    public var serviceUUID: String
     public var serviceUuidMask: String
     public var serviceSolicitationUuid: String
     public var serviceSolicitationUuidMask: String
@@ -4109,7 +4222,7 @@ public class ScanFilter {
     public init(
         deviceId!: String = "",
         name!: String = "",
-        serviceUuid!: String = "",
+        serviceUUID!: String = "",
         serviceUuidMask!: String = "",
         serviceSolicitationUuid!: String = "",
         serviceSolicitationUuidMask!: String = "",
@@ -4126,7 +4239,7 @@ public class ScanFilter {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -4134,7 +4247,7 @@ public class ScanFilter {
 public var deviceId: String
 ```
 
-**Function:** Represents the BLE device address to filter, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Filters BLE device addresses, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
@@ -4142,7 +4255,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var manufactureData
 
@@ -4150,7 +4263,7 @@ public var deviceId: String
 public var manufactureData: Array<Byte>
 ```
 
-**Function:** Filters devices containing this manufacturer-related data, e.g., [0x1F,0x2F,0x3F].
+**Function:** Filters devices containing specified manufacturer data, e.g., [0x1F,0x2F,0x3F].
 
 **Type:** Array\<Byte>
 
@@ -4158,7 +4271,7 @@ public var manufactureData: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var manufactureDataMask
 
@@ -4166,7 +4279,7 @@ public var manufactureData: Array<Byte>
 public var manufactureDataMask: Array<Byte>
 ```
 
-**Function:** Filters devices containing this manufacturer-related data mask, e.g., [0xFF,0xFF,0xFF].
+**Function:** Filters devices using manufacturer data mask, e.g., [0xFF,0xFF,0xFF].
 
 **Type:** Array\<Byte>
 
@@ -4174,7 +4287,7 @@ public var manufactureDataMask: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var manufactureId
 
@@ -4182,7 +4295,7 @@ public var manufactureDataMask: Array<Byte>
 public var manufactureId: UInt16
 ```
 
-**Function:** Filters devices containing this manufacturer ID, e.g., 0x0006.
+**Function:** Filters devices containing specified manufacturer ID, e.g., 0x0006.
 
 **Type:** UInt16
 
@@ -4190,7 +4303,7 @@ public var manufactureId: UInt16
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var name
 
@@ -4198,7 +4311,7 @@ public var manufactureId: UInt16
 public var name: String
 ```
 
-**Function:** Represents the BLE device name to filter.
+**Function:** Filters BLE device names.
 
 **Type:** String
 
@@ -4206,7 +4319,7 @@ public var name: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var serviceData
 
@@ -4214,7 +4327,7 @@ public var name: String
 public var serviceData: Array<Byte>
 ```
 
-**Function:** Filters devices containing this service-related data, e.g., [0x90,0x00,0xF1,0xF2].
+**Function:** Filters devices containing specified service data, e.g., [0x90,0x00,0xF1,0xF2].
 
 **Type:** Array\<Byte>
 
@@ -4222,7 +4335,7 @@ public var serviceData: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var serviceDataMask
 
@@ -4230,7 +4343,7 @@ public var serviceData: Array<Byte>
 public var serviceDataMask: Array<Byte>
 ```
 
-**Function:** Filters devices containing this service-related data mask, e.g., [0xFF,0xFF,0xFF,0xFF].
+**Function:** Filters devices using service data mask, e.g., [0xFF,0xFF,0xFF,0xFF].
 
 **Type:** Array\<Byte>
 
@@ -4238,15 +4351,15 @@ public var serviceDataMask: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceSolicitationUuid
+### var serviceSolicitationUUID
 
 ```cangjie
-public var serviceSolicitationUuid: String
+public var serviceSolicitationUUID: String
 ```
 
-**Function:** Filters devices containing this UUID service solicitation, e.g., "00001888-0000-1000-8000-00805F9B34FB".
+**Function:** Filters devices containing specified service solicitation UUID, e.g., "00001888-0000-1000-8000-00805F9B34FB".
 
 **Type:** String
 
@@ -4254,15 +4367,15 @@ public var serviceSolicitationUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceSolicitationUuidMask
+### var serviceSolicitationUUIDMask
 
 ```cangjie
-public var serviceSolicitationUuidMask: String
+public var serviceSolicitationUUIDMask: String
 ```
 
-**Function:** Filters devices containing this UUID service solicitation mask, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF".
+**Function:** Filters devices using service solicitation UUID mask, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF".
 
 **Type:** String
 
@@ -4270,15 +4383,15 @@ public var serviceSolicitationUuidMask: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Function:** Filters devices containing this UUID service, e.g., "00001888-0000-1000-8000-00805f9b34fb".
+**Function:** Filters devices containing specified service UUID, e.g., "00001888-0000-1000-8000-00805f9b34fb".
 
 **Type:** String
 
@@ -4286,15 +4399,15 @@ public var serviceUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuidMask
+### var serviceUUIDMask
 
 ```cangjie
-public var serviceUuidMask: String
+public var serviceUUIDMask: String
 ```
 
-**Function:** Filters devices containing this UUID service mask, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF".
+**Function:** Filters devices using service UUID mask, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF".
 
 **Type:** String
 
@@ -4302,7 +4415,7 @@ public var serviceUuidMask: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, String, String, String, String, String, Array\<Byte>, Array\<Byte>, UInt16, Array\<Byte>, Array\<Byte>)
 
@@ -4310,7 +4423,7 @@ public var serviceUuidMask: String
 public init(
     deviceId!: String = "",
     name!: String = "",
-    serviceUuid!: String = "",
+    serviceUUID!: String = "",
     serviceUuidMask!: String = "",
     serviceSolicitationUuid!: String = "",
     serviceSolicitationUuidMask!: String = "",
@@ -4326,23 +4439,25 @@ public init(
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| deviceId | String | No | "" | **Named parameter.** Filters broadcast packets from this BLE device address, e.g., "XX:XX:XX:XX:XX:XX". Reserved field, not supported in this version. |
-| name | String | No | "" | **Named parameter.** Filters broadcast packets with this BLE device name. Reserved field, not supported in this version. |
-| serviceUuid | String | No | "" | **Named parameter.** Filters broadcast packets containing this service UUID, e.g., "00001888-0000-1000-8000-00805f9b34fb". Reserved field, not supported in this version. |
-| serviceUuidMask | String | No | "" | **Named parameter.** Used with the serviceUuid filter to partially match service UUIDs, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF". Reserved field, not supported in this version. |
-| serviceSolicitationUuid | String | No | "" | **Named parameter.** Filters broadcast packets containing this UUID service solicitation, e.g., "00001888-0000-1000-8000-00805F9B34FB". Reserved field, not supported in this version. |
-| serviceSolicitationUuidMask | String | No | "" | **Named parameter.** Used with the serviceSolicitationUuid filter to partially match service solicitation UUIDs, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF". Reserved field, not supported in this version. |
-| serviceData | Array\<Byte> | No | [] | **Named parameter.** Filters broadcast packets containing this service data, e.g., [0x90,0x00,0xF1,0xF2]. Reserved field, not supported in this version. |
-| serviceDataMask | Array\<Byte> | No | [] | **Named parameter.** Used with the serviceData filter to partially match service data, e.g., [0xFF,0xFF,0xFF,0xFF]. Reserved field, not supported in this version. |
-| manufactureId | UInt16 | No | 0 | **Named parameter.** Filters broadcast packets containing this manufacturer identifier, e.g., 0x0006. Reserved field, not supported in this version. |
-| manufactureData | Array\<Byte> | No | [] | **Named parameter.** Used with the manufactureId filter to match manufacturer data, e.g., [0x1F,0x2F,0x3F]. Reserved field, not supported in this version. |
-| manufactureDataMask | Array\<Byte> | No | [] | **Named parameter.** Used with the manufactureData filter to partially match manufacturer data, e.g., [0xFF,0xFF,0xFF]. Reserved field, not supported in this version. |## class ScanOptions
+| deviceId | String | No | "" | **Named parameter.** Filters BLE device addresses, e.g., "XX:XX:XX:XX:XX:XX". Reserved field, not supported in this version. |
+| name | String | No | "" | **Named parameter.** Filters BLE device names. Reserved field, not supported in this version. |
+| serviceUUID | String | No | "" | **Named parameter.** Filters devices containing specified service UUID, e.g., "00001888-0000-1000-8000-00805f9b34fb". Reserved field, not supported in this version. |
+| serviceUuidMask | String | No | "" | **Named parameter.** Used with serviceUUID filter to partially match service UUIDs, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF". Reserved field, not supported in this version. |
+| serviceSolicitationUuid | String | No | "" | **Named parameter.** Filters devices containing specified service solicitation UUID, e.g., "00001888-0000-1000-8000-00805F9B34FB". Reserved field, not supported in this version. |
+| serviceSolicitationUuidMask | String | No | "" | **Named parameter.** Used with serviceSolicitationUuid filter to partially match service solicitation UUIDs, e.g., "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF". Reserved field, not supported in this version. |
+| serviceData | Array\<Byte> | No | [] | **Named parameter.** Filters devices containing specified service data, e.g., [0x90,0x00,0xF1,0xF2]. Reserved field, not supported in this version. |
+| serviceDataMask | Array\<Byte> | No | [] | **Named parameter.** Used with serviceData filter to partially match service data, e.g., [0xFF,0xFF,0xFF,0xFF]. Reserved field, not supported in this version. |
+| manufactureId | UInt16 | No | 0 | **Named parameter.** Filters devices containing specified manufacturer ID, e.g., 0x0006. Reserved field, not supported in this version. |
+| manufactureData | Array\<Byte> | No | [] | **Named parameter.** Used with manufactureId filter to match manufacturer data, e.g., [0x1F,0x2F,0x3F]. Reserved field, not supported in this version. |
+| manufactureDataMask | Array\<Byte> | No | [] | **Named parameter.** Used with manufactureData filter to partially match manufacturer data, e.g., [0xFF,0xFF,0xFF]. Reserved field, not supported in this version. |
+
+## class ScanOptions
 
 ```cangjie
 public class ScanOptions {
@@ -4364,7 +4479,7 @@ public class ScanOptions {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var dutyMode
 
@@ -4372,15 +4487,15 @@ public class ScanOptions {
 public var dutyMode: ScanDuty
 ```
 
-**Function:** Indicates the scan mode, with a default value of ScanDuty.ScanModeLowPower.
+**Function:** Scanning mode, default is ScanDuty.ScanModeLowPower.
 
 **Type:** [ScanDuty](#enum-scanduty)
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var interval
 
@@ -4388,15 +4503,15 @@ public var dutyMode: ScanDuty
 public var interval: Int32
 ```
 
-**Function:** Indicates the delay time for reporting scan results, with a default value of 0.
+**Function:** Delay time for reporting scan results, default is 0.
 
 **Type:** Int32
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var matchMode
 
@@ -4404,15 +4519,15 @@ public var interval: Int32
 public var matchMode: MatchMode
 ```
 
-**Function:** Indicates the hardware filtering match mode, with a default value of MatchMode.MatchModeAggressive.
+**Function:** Hardware filtering match mode, default is MatchMode.MatchModeAggressive.
 
 **Type:** [MatchMode](#enum-matchmode)
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var phyType
 
@@ -4420,15 +4535,15 @@ public var matchMode: MatchMode
 public var phyType: PhyType
 ```
 
-**Function:** Indicates the PHY type used during scanning.
+**Function:** PHY type used during scanning.
 
 **Type:** [PhyType](#enum-phytype)
 
-**Read/Write Permission:** Readable and Writable
+**Access:** Read-Write
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(Int32, ScanDuty, MatchMode, PhyType, ScanReportMode)
 
@@ -4442,23 +4557,21 @@ public init(
 )
 ```
 
-**Function:** Creates a ScanOptions structure for configuring scan parameters.
+**Function:** Creates a ScanOptions structure for scan configuration parameters.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| interval | Int32 | No | 0 | **Named parameter.** Indicates the delay time for reporting scan results, initial value is 0. |
-| dutyMode | [ScanDuty](#enum-scanduty) | No | ScanModeLowPower | **Named parameter.** Indicates the scan mode, initial value is ScanDuty.ScanModeLowPower. |
-| matchMode | [MatchMode](#enum-matchmode) | No | MatchModeAggressive | **Named parameter.** Indicates the hardware filtering match mode, initial value is MatchMode.MatchModeAggressive. |
-| phyType | [PhyType](#enum-phytype) | No | PhyLe1M | **Named parameter.** Indicates the PHY type used during scanning. |
-| reportMode | [ScanReportMode](#enum-scanreportmode) | No | Normal | **Named parameter.** Indicates the scan result data reporting mode, default value is NORMAL. |
-
-## class ScanResult
+| interval | Int32 | No | 0 | **Named parameter.** Delay time for reporting scan results, initial value is 0. |
+| dutyMode | [ScanDuty](#enum-scanduty) | No | ScanModeLowPower | **Named parameter.** Scanning mode, initial value is ScanDuty.ScanModeLowPower. |
+| matchMode | [MatchMode](#enum-matchmode) | No | MatchModeAggressive | **Named parameter.** Hardware filtering match mode, initial value is MatchMode.MatchModeAggressive. |
+| phyType | [PhyType](#enum-phytype) | No | PhyLe1M | **Named parameter.** PHY type used during scanning. |
+| reportMode | [ScanReportMode](#enum-scanreportmode) | No | Normal | **Named parameter.** Scan result data reporting mode, default is NORMAL. |## class ScanResult
 
 ```cangjie
 public class ScanResult {
@@ -4470,11 +4583,11 @@ public class ScanResult {
 }
 ```
 
-**Function:** Reported data for scan results.
+**Function:** Data reported for scan results.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var connectable
 
@@ -4482,7 +4595,7 @@ public class ScanResult {
 public var connectable: Bool
 ```
 
-**Function:** Indicates whether the scanned device is connectable. `true` means connectable, `false` means not connectable.
+**Function:** Indicates whether the scanned device is connectable. true means connectable, false means not connectable.
 
 **Type:** Bool
 
@@ -4490,7 +4603,7 @@ public var connectable: Bool
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var data
 
@@ -4498,7 +4611,7 @@ public var connectable: Bool
 public var data: Array<Byte>
 ```
 
-**Function:** Indicates the advertisement packet sent by the scanned device.
+**Function:** Represents the broadcast packet sent by the scanned device.
 
 **Type:** Array\<Byte>
 
@@ -4506,7 +4619,7 @@ public var data: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -4514,7 +4627,7 @@ public var data: Array<Byte>
 public var deviceId: String
 ```
 
-**Function:** Indicates the address of the scanned device, e.g., "XX:XX:XX:XX:XX:XX". For security considerations, the obtained device address is a random MAC address. This address remains unchanged after pairing; however, it changes when a paired device is unpaired and rescanned or when the Bluetooth service is powered off.
+**Function:** Represents the address of the scanned device, e.g., "XX:XX:XX:XX:XX:XX". For information security considerations, the device address obtained here is a random MAC address. This address will not change after successful pairing; however, the random address will change when a paired device is unpaired and rescanned or when the Bluetooth service is powered off.
 
 **Type:** String
 
@@ -4522,7 +4635,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceName
 
@@ -4530,7 +4643,7 @@ public var deviceId: String
 public var deviceName: String
 ```
 
-**Function:** Indicates the name of the scanned device.
+**Function:** Represents the name of the scanned device.
 
 **Type:** String
 
@@ -4538,7 +4651,7 @@ public var deviceName: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var rssi
 
@@ -4546,7 +4659,7 @@ public var deviceName: String
 public var rssi: Int32
 ```
 
-**Function:** Indicates the RSSI value of the scanned device.
+**Function:** Represents the RSSI value of the scanned device.
 
 **Type:** Int32
 
@@ -4554,7 +4667,7 @@ public var rssi: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ## class ServerResponse
 
@@ -4575,11 +4688,11 @@ public class ServerResponse {
 }
 ```
 
-**Function:** Describes the response parameters class for server-side replies to client-side read/write requests.
+**Function:** Describes the response parameters class for the server's reply to the client's read/write requests.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var deviceId
 
@@ -4587,7 +4700,7 @@ public class ServerResponse {
 public var deviceId: String
 ```
 
-**Function:** Indicates the remote device address, e.g., "XX:XX:XX:XX:XX:XX".
+**Function:** Represents the remote device address, e.g., "XX:XX:XX:XX:XX:XX".
 
 **Type:** String
 
@@ -4595,7 +4708,7 @@ public var deviceId: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var offset
 
@@ -4603,7 +4716,7 @@ public var deviceId: String
 public var offset: Int32
 ```
 
-**Function:** Indicates the starting position for read/write requests, consistent with the offset carried in the subscribed read/write request events.
+**Function:** Represents the starting position of the read/write request, consistent with the offset carried in the subscribed read/write request event.
 
 **Type:** Int32
 
@@ -4611,7 +4724,7 @@ public var offset: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var status
 
@@ -4619,7 +4732,7 @@ public var offset: Int32
 public var status: Int32
 ```
 
-**Function:** Indicates the response status. Set to 0 to indicate normal.
+**Function:** Represents the response status. Set to 0 to indicate normal.
 
 **Type:** Int32
 
@@ -4627,7 +4740,7 @@ public var status: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var transId
 
@@ -4635,7 +4748,7 @@ public var status: Int32
 public var transId: Int32
 ```
 
-**Function:** Indicates the transaction ID of the request, consistent with the ID carried in the subscribed read/write request events.
+**Function:** Represents the transaction ID of the request, consistent with the ID carried in the subscribed read/write request event.
 
 **Type:** Int32
 
@@ -4643,7 +4756,7 @@ public var transId: Int32
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var value
 
@@ -4651,7 +4764,7 @@ public var transId: Int32
 public var value: Array<Byte>
 ```
 
-**Function:** Indicates the binary data of the response.
+**Function:** Represents the binary data of the response.
 
 **Type:** Array\<Byte>
 
@@ -4659,7 +4772,7 @@ public var value: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, Int32, Int32, Int32, Array\<Byte>)
 
@@ -4673,48 +4786,48 @@ public init(
 )
 ```
 
-**Function:** Describes the response parameters class for server-side replies to client-side read/write requests.
+**Function:** Describes the response parameters class for the server's reply to the client's read/write requests.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| deviceId | String | Yes | - | Indicates the remote device address, e.g., "XX:XX:XX:XX:XX:XX". |
-| transId | Int32 | Yes | - | Indicates the transaction ID of the request, consistent with the ID carried in the subscribed read/write request events. |
-| status | Int32 | Yes | - | Indicates the response status. Set to 0 to indicate normal. |
-| offset | Int32 | Yes | - | Indicates the starting position for read/write requests, consistent with the offset carried in the subscribed read/write request events. |
-| value | Array\<Byte> | Yes | - | Indicates the binary data of the response. |
+| deviceId | String | Yes | - | Represents the remote device address, e.g., "XX:XX:XX:XX:XX:XX". |
+| transId | Int32 | Yes | - | Represents the transaction ID of the request, consistent with the ID carried in the subscribed read/write request event. |
+| status | Int32 | Yes | - | Represents the response status. Set to 0 to indicate normal. |
+| offset | Int32 | Yes | - | Represents the starting position of the read/write request, consistent with the offset carried in the subscribed read/write request event. |
+| value | Array\<Byte> | Yes | - | Represents the binary data of the response. |
 
 ## class ServiceData
 
 ```cangjie
 public class ServiceData {
-    public var serviceUuid: String
+    public var serviceUUID: String
     public var serviceValue: Array<Byte>
     public init(
-        serviceUuid: String,
+        serviceUUID: String,
         serviceValue: Array<Byte>
     )
 }
 ```
 
-**Function:** Describes the service data content in advertisement packets.
+**Function:** Describes the service data content in the broadcast packet.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
-### var serviceUuid
+### var serviceUUID
 
 ```cangjie
-public var serviceUuid: String
+public var serviceUUID: String
 ```
 
-**Function:** Indicates the UUID of the service.
+**Function:** Represents the UUID of the service.
 
 **Type:** String
 
@@ -4722,7 +4835,7 @@ public var serviceUuid: String
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var serviceValue
 
@@ -4730,7 +4843,7 @@ public var serviceUuid: String
 public var serviceValue: Array<Byte>
 ```
 
-**Function:** Indicates the service data.
+**Function:** Represents the service data.
 
 **Type:** Array\<Byte>
 
@@ -4738,29 +4851,29 @@ public var serviceValue: Array<Byte>
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(String, Array\<Byte>)
 
 ```cangjie
 public init(
-    serviceUuid: String,
+    serviceUUID: String,
     serviceValue: Array<Byte>
 )
 ```
 
-**Function:** Describes the service data content in advertisement packets.
+**Function:** Describes the service data content in the broadcast packet.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| serviceUuid | String | Yes | - | Indicates the UUID of the service. |
-| serviceValue | Array\<Byte> | Yes | - | Indicates the service data. |
+| serviceUUID | String | Yes | - | Represents the UUID of the service. |
+| serviceValue | Array\<Byte> | Yes | - | Represents the service data. |
 
 ## enum AdvertisingState
 
@@ -4778,7 +4891,7 @@ public enum AdvertisingState <: Equatable<AdvertisingState> & ToString {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -4791,11 +4904,11 @@ public enum AdvertisingState <: Equatable<AdvertisingState> & ToString {
 Disabled
 ```
 
-**Function:** Indicates the state after temporarily stopping advertising.
+**Function:** Represents the state after temporarily stopping advertising.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Enabled
 
@@ -4803,11 +4916,11 @@ Disabled
 Enabled
 ```
 
-**Function:** Indicates the state after temporarily starting advertising.
+**Function:** Represents the state after temporarily starting advertising.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Started
 
@@ -4815,11 +4928,11 @@ Enabled
 Started
 ```
 
-**Function:** Indicates the state after initially starting advertising.
+**Function:** Represents the state after initially starting advertising.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Stopped
 
@@ -4827,11 +4940,11 @@ Started
 Stopped
 ```
 
-**Function:** Indicates the state after completely stopping advertising.
+**Function:** Represents the state after completely stopping advertising.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(AdvertisingState)
 
@@ -4839,19 +4952,19 @@ Stopped
 public operator func !=(other: AdvertisingState): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Function:** Determines whether two enum values are not equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|other|[AdvertisingState](#enum-advertisingstate)|Yes|-|Another enum value.|
+| other | [AdvertisingState](#enum-advertisingstate) | Yes | - | Another enum value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+| Bool | Returns true if the two enum values are not equal, otherwise returns false. |
 
 ### func ==(AdvertisingState)
 
@@ -4863,15 +4976,15 @@ public operator func ==(other: AdvertisingState): Bool
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+| Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-|other|[AdvertisingState](#enum-advertisingstate)|Yes|-|Another enum value.|
+| other | [AdvertisingState](#enum-advertisingstate) | Yes | - | Another enum value. |
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+| Bool | Returns true if the two enum values are equal, otherwise returns false. |
 
 ### func toString()
 
@@ -4883,11 +4996,9 @@ public func toString(): String
 
 **Return Value:**
 
-|Type|Description|
+| Type | Description |
 |:----|:----|
-|String|The description of the enum.|
-
-## enum BluetoothBleCallbackType
+| String | The description of the enum. |## enum BluetoothBleCallbackType
 
 ```cangjie
 public enum BluetoothBleCallbackType <: Equatable<BluetoothBleCallbackType> & Hashable & ToString {
@@ -4897,13 +5008,13 @@ public enum BluetoothBleCallbackType <: Equatable<BluetoothBleCallbackType> & Ha
 }
 ```
 
-**Function:** Advertising scan subscription event type.
+**Description:** Broadcast scanning subscription event types.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -4917,13 +5028,13 @@ public enum BluetoothBleCallbackType <: Equatable<BluetoothBleCallbackType> & Ha
 AdvertisingStateChange
 ```
 
-**Function:** Indicates the advertising state event type.
+**Description:** Indicates the broadcast state event type.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BleDeviceFind
 
@@ -4931,13 +5042,13 @@ AdvertisingStateChange
 BleDeviceFind
 ```
 
-**Function:** Indicates the BLE device discovery event type.
+**Description:** Indicates the BLE device discovery event type.
 
 **Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(BluetoothBleCallbackType)
 
@@ -4945,19 +5056,19 @@ BleDeviceFind
 public operator func !=(other: BluetoothBleCallbackType): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[BluetoothBleCallbackType](#enum-bluetoothblecallbacktype)|Yes|-|Another enum value.|
+|other|[BluetoothBleCallbackType](#enum-bluetoothblecallbacktype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are unequal, otherwise returns false.|
 
 ### func ==(BluetoothBleCallbackType)
 
@@ -4965,19 +5076,19 @@ public operator func !=(other: BluetoothBleCallbackType): Bool
 public operator func ==(other: BluetoothBleCallbackType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[BluetoothBleCallbackType](#enum-bluetoothblecallbacktype)|Yes|-|Another enum value.|
+|other|[BluetoothBleCallbackType](#enum-bluetoothblecallbacktype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
 
 ### func hashCode()
 
@@ -4985,7 +5096,7 @@ public operator func ==(other: BluetoothBleCallbackType): Bool
 public func hashCode(): Int64
 ```
 
-**Function:** Gets the hash value of the input data.
+**Description:** Obtains the hash value of the input data.
 
 **Return Value:**
 
@@ -4999,13 +5110,13 @@ public func hashCode(): Int64
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Obtains the value of the enumeration.
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The description of the enum.|
+|String|The description of the enumeration.|
 
 ## enum BluetoothBleGattClientDeviceCallbackType
 
@@ -5018,13 +5129,13 @@ public enum BluetoothBleGattClientDeviceCallbackType <: Equatable<BluetoothBleGa
 }
 ```
 
-**Function:** Client on/off event type.
+**Description:** Types of client on/off events.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5038,13 +5149,13 @@ public enum BluetoothBleGattClientDeviceCallbackType <: Equatable<BluetoothBleGa
 BleCharacteristicChange
 ```
 
-**Function:** Indicates the characteristic value change event type.
+**Description:** Indicates the characteristic value change event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### BleConnectionStateChange
 
@@ -5052,13 +5163,13 @@ BleCharacteristicChange
 BleConnectionStateChange
 ```
 
-**Function:** Indicates the connection state change event type.
+**Description:** Indicates the connection state change event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ClientBleMtuChange
 
@@ -5066,13 +5177,13 @@ BleConnectionStateChange
 ClientBleMtuChange
 ```
 
-**Function:** Indicates the MTU state change event type.
+**Description:** Indicates the MTU state change event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(BluetoothBleGattClientDeviceCallbackType)
 
@@ -5080,19 +5191,19 @@ ClientBleMtuChange
 public operator func !=(other: BluetoothBleGattClientDeviceCallbackType): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|Yes|-|Another enum value.|
+|other|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are unequal, otherwise returns false.|
 
 ### func ==(BluetoothBleGattClientDeviceCallbackType)
 
@@ -5100,19 +5211,19 @@ public operator func !=(other: BluetoothBleGattClientDeviceCallbackType): Bool
 public operator func ==(other: BluetoothBleGattClientDeviceCallbackType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|Yes|-|Another enum value.|
+|other|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
 
 ### func hashCode()
 
@@ -5120,7 +5231,7 @@ public operator func ==(other: BluetoothBleGattClientDeviceCallbackType): Bool
 public func hashCode(): Int64
 ```
 
-**Function:** Gets the hash value of the input data.
+**Description:** Obtains the hash value of the input data.
 
 **Return Value:**
 
@@ -5134,13 +5245,13 @@ public func hashCode(): Int64
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Obtains the value of the enumeration.
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The description of the enum.|
+|String|The description of the enumeration.|
 
 ## enum BluetoothBleGattServerCallbackType
 
@@ -5156,13 +5267,13 @@ public enum BluetoothBleGattServerCallbackType <: Equatable<BluetoothBleGattServ
 }
 ```
 
-**Function:** Server on/off event type.
+**Description:** Types of server on/off events.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5176,13 +5287,13 @@ public enum BluetoothBleGattServerCallbackType <: Equatable<BluetoothBleGattServ
 CharacteristicRead
 ```
 
-**Function:** Indicates the characteristic read request event type.
+**Description:** Indicates the characteristic read request event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### CharacteristicWrite
 
@@ -5190,13 +5301,13 @@ CharacteristicRead
 CharacteristicWrite
 ```
 
-**Function:** Indicates the characteristic write request event type.
+**Description:** Indicates the characteristic write request event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ConnectionStateChange
 
@@ -5204,13 +5315,13 @@ CharacteristicWrite
 ConnectionStateChange
 ```
 
-**Function:** Indicates the BLE connection state change event type.
+**Description:** Indicates the BLE connection state change event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### DescriptorRead
 
@@ -5218,13 +5329,13 @@ ConnectionStateChange
 DescriptorRead
 ```
 
-**Function:** Indicates the descriptor read request event type.
+**Description:** Indicates the descriptor read request event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### DescriptorWrite
 
@@ -5232,13 +5343,13 @@ DescriptorRead
 DescriptorWrite
 ```
 
-**Function:** Indicates the descriptor write request event type.
+**Description:** Indicates the descriptor write request event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ServerBleMtuChange
 
@@ -5246,13 +5357,13 @@ DescriptorWrite
 ServerBleMtuChange
 ```
 
-**Function:** Indicates the MTU state change event type.
+**Description:** Indicates the MTU state change event type.
 
-**Required Permission:** ohos.ACCESS_BLUETOOTH
+**Required Permission:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(BluetoothBleGattServerCallbackType)
 
@@ -5260,19 +5371,19 @@ ServerBleMtuChange
 public operator func !=(other: BluetoothBleGattServerCallbackType): Bool
 ```
 
-**Function:** Determines whether two enum values are unequal.
+**Description:** Determines whether two enumeration values are unequal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|Yes|-|Another enum value.|
+|other|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are unequal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are unequal, otherwise returns false.|
 
 ### func ==(BluetoothBleGattServerCallbackType)
 
@@ -5280,19 +5391,19 @@ public operator func !=(other: BluetoothBleGattServerCallbackType): Bool
 public operator func ==(other: BluetoothBleGattServerCallbackType): Bool
 ```
 
-**Function:** Determines whether two enum values are equal.
+**Description:** Determines whether two enumeration values are equal.
 
 **Parameters:**
 
-|Parameter|Type|Required|Default|Description|
+|Name|Type|Mandatory|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|other|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|Yes|-|Another enum value.|
+|other|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|Yes|-|Another enumeration value.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|Bool|Returns true if the two enum values are equal, otherwise returns false.|
+|Bool|Returns true if the two enumeration values are equal, otherwise returns false.|
 
 ### func hashCode()
 
@@ -5300,7 +5411,7 @@ public operator func ==(other: BluetoothBleGattServerCallbackType): Bool
 public func hashCode(): Int64
 ```
 
-**Function:** Gets the hash value of the input data.
+**Description:** Obtains the hash value of the input data.
 
 **Return Value:**
 
@@ -5314,14 +5425,13 @@ public func hashCode(): Int64
 public func toString(): String
 ```
 
-**Function:** Gets the value of the enum.
+**Description:** Obtains the value of the enumeration.
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|String|The description of the enum.|
-```## enum GattWriteType
+|String|The description of the enumeration.|## enum GattWriteType
 
 ```cangjie
 public enum GattWriteType <: Equatable<GattWriteType> & ToString {
@@ -5335,7 +5445,7 @@ public enum GattWriteType <: Equatable<GattWriteType> & ToString {
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5348,11 +5458,11 @@ public enum GattWriteType <: Equatable<GattWriteType> & ToString {
 Write
 ```
 
-**Description:** Indicates writing characteristic values that require acknowledgment from the peer device.
+**Description:** Indicates writing characteristic values that require a response from the peer device.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### WriteNoResponse
 
@@ -5360,11 +5470,11 @@ Write
 WriteNoResponse
 ```
 
-**Description:** Indicates writing characteristic values that do not require acknowledgment from the peer device.
+**Description:** Indicates writing characteristic values that do not require a response from the peer device.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(GattWriteType)
 
@@ -5376,11 +5486,11 @@ public operator func !=(other: GattWriteType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[GattWriteType](#enum-gattwritetype)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5396,11 +5506,11 @@ public operator func ==(other: GattWriteType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[GattWriteType](#enum-gattwritetype)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5414,7 +5524,7 @@ public func toString(): String
 
 **Description:** Gets the value of the enum.
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5430,11 +5540,11 @@ public enum MatchMode <: Equatable<MatchMode> & ToString {
 }
 ```
 
-**Description:** Hardware filter matching mode.
+**Description:** Hardware filter matching modes.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5447,11 +5557,11 @@ public enum MatchMode <: Equatable<MatchMode> & ToString {
 MatchModeAggressive
 ```
 
-**Description:** Indicates a lower threshold for hardware to report scan results, such as triggering reports with lower scan power or fewer scan occurrences over a period. This is the default value.
+**Description:** Indicates a lower threshold for hardware reporting scan results, such as reporting even when the scanned power is low or the number of scans is small within a period. This is the default value.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### MatchModeSticky
 
@@ -5459,11 +5569,11 @@ MatchModeAggressive
 MatchModeSticky
 ```
 
-**Description:** Indicates a higher threshold for hardware to report scan results, requiring higher power thresholds or multiple scan occurrences before reporting.
+**Description:** Indicates a higher threshold for hardware reporting scan results, requiring higher power thresholds and multiple scans before reporting.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(MatchMode)
 
@@ -5475,11 +5585,11 @@ public operator func !=(other: MatchMode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[MatchMode](#enum-matchmode)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5495,11 +5605,11 @@ public operator func ==(other: MatchMode): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[MatchMode](#enum-matchmode)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5513,7 +5623,7 @@ public func toString(): String
 
 **Description:** Gets the value of the enum.
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5529,11 +5639,11 @@ public enum PhyType <: Equatable<PhyType> & ToString {
 }
 ```
 
-**Description:** Broadcast state.
+**Description:** Broadcast status.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5546,11 +5656,11 @@ public enum PhyType <: Equatable<PhyType> & ToString {
 PhyLe1M
 ```
 
-**Description:** Broadcast state.
+**Description:** Broadcast status.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### PhyLeAllSupported
 
@@ -5562,7 +5672,7 @@ PhyLeAllSupported
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(PhyType)
 
@@ -5574,11 +5684,11 @@ public operator func !=(other: PhyType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[PhyType](#enum-phytype)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5594,11 +5704,11 @@ public operator func ==(other: PhyType): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[PhyType](#enum-phytype)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5612,7 +5722,7 @@ public func toString(): String
 
 **Description:** Gets the value of the enum.
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5629,11 +5739,11 @@ public enum ScanDuty <: Equatable<ScanDuty> & ToString {
 }
 ```
 
-**Description:** Scan mode.
+**Description:** Scan modes.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5650,7 +5760,7 @@ ScanModeBalanced
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ScanModeLowLatency
 
@@ -5662,7 +5772,7 @@ ScanModeLowLatency
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### ScanModeLowPower
 
@@ -5674,7 +5784,7 @@ ScanModeLowPower
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ScanDuty)
 
@@ -5686,11 +5796,11 @@ public operator func !=(other: ScanDuty): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[ScanDuty](#enum-scanduty)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5706,11 +5816,11 @@ public operator func ==(other: ScanDuty): Bool
 
 **Parameters:**
 
-|Parameter|Type|Mandatory|Default|Description|
+|Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |other|[ScanDuty](#enum-scanduty)|Yes|-|Another enum value.|
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5724,7 +5834,7 @@ public func toString(): String
 
 **Description:** Gets the value of the enum.
 
-**Return Value:**
+**Returns:**
 
 |Type|Description|
 |:----|:----|
@@ -5740,15 +5850,15 @@ public enum ScanReportMode <: Equatable<ScanReportMode> & ToString {
 }
 ```
 
-**Function:** Scan data reporting mode.
+**Function:** Reporting mode for scanned data.
 
 - This mode reduces the frequency of Bluetooth chip reporting scan results, allowing the system to remain in sleep state for longer periods, thereby lowering overall power consumption.
 
-- In this mode, when a BLE advertisement packet matching the filter criteria is detected, it is not reported immediately but cached for a period (as specified by the interval field in ScanOptions) before being reported.
+- In this mode, when a BLE advertisement packet matching the filter conditions is detected, it is not immediately reported. Instead, it is cached for a period (specified by the interval field in ScanOptions) before being reported.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parent Types:**
 
@@ -5765,7 +5875,7 @@ Batch
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FenceSensitivityHigh
 
@@ -5779,13 +5889,13 @@ FenceSensitivityHigh
 
 - When the scanned advertisement signal strength is low and the number of advertisements is small, high-sensitivity fence mode can be activated.
 
-- The first scan detecting an advertisement enters the fence, triggering one report.
+- The first detection of an advertisement enters the fence, triggering one report.
 
 - If no advertisements are detected for a period of time, it leaves the fence, triggering one report.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### FenceSensitivityLow
 
@@ -5799,13 +5909,13 @@ FenceSensitivityLow
 
 - When the scanned advertisement signal strength is high and the number of advertisements is large, low-sensitivity fence mode can be activated.
 
-- The first scan detecting an advertisement enters the fence, triggering one report.
+- The first detection of an advertisement enters the fence, triggering one report.
 
 - If no advertisements are detected for a period of time, it leaves the fence, triggering one report.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### Normal
 
@@ -5813,11 +5923,11 @@ FenceSensitivityLow
 Normal
 ```
 
-**Function:** Normal scan reporting mode, where BLE advertisement packets matching the filter criteria are reported immediately upon detection.
+**Function:** Normal scan reporting mode. When a BLE advertisement packet matching the filter conditions is detected, it is immediately reported.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
-**Since:** 21
+**Since:** 22
 
 ### func !=(ScanReportMode)
 

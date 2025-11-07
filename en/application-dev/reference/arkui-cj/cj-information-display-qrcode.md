@@ -2,6 +2,10 @@
 
 A component for displaying a single QR code.
 
+> **Note:**
+>
+> The number of pixels in the QR code component is related to its content. When the component size is too small, it may fail to display the content properly, in which case the component size should be adjusted appropriately.
+
 ## Import Module
 
 ```cangjie
@@ -14,89 +18,89 @@ None
 
 ## Creating the Component
 
-### init(ResourceStr)
+### init(?ResourceStr)
 
 ```cangjie
-public init(value: ResourceStr)
+public init(value: ?ResourceStr)
 ```
 
 **Function:** Creates a component for displaying a single QR code.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceStr](../BasicServicesKit/cj-apis-base.md#interface-resourcestr) | Yes | - | The content string of the QR code. Supports up to 512 characters. If exceeded, only the first 512 characters will be used. |
+| value | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | Yes | - | The content string of the QR code. Supports up to 512 characters. If exceeded, the first 512 characters will be used. Initial value: "undefined". |
 
-## Common Attributes/Common Events
+## Universal Attributes/Events
 
-Common Attributes: All supported.
+Universal Attributes: All supported.
 
-Common Events: Supports [Click Event](./cj-universal-event-click.md#func-onclick), [Touch Event](./cj-universal-event-touch.md#func-ontouch).
+Universal Events: Supports [Click Event](cj-universal-event-click.md), [Touch Event](cj-universal-event-touch.md), [Mount/Unmount Event](cj-universal-event-appear.md).
 
 ## Component Attributes
 
-### func color(ResourceColor)
+### func color(?ResourceColor)
 
 ```cangjie
-public func color(value: ResourceColor): This
+public func color(value: ?ResourceColor): This
 ```
 
 **Function:** Sets the color of the QR code.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [ResourceColor](../BasicServicesKit/cj-apis-base.md#interface-resourcecolor) | Yes | - | The color of the QR code.<br/>Initial value: 0xff000000, and does not change with system light/dark mode switching. |
+| value | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | The color of the QR code. Initial value: 0xff000000, and it does not change with the system's light/dark mode switch. |
 
-### func contentOpacity(Float64)
+### func contentOpacity(?Float64)
 
 ```cangjie
-public func contentOpacity(value: Float64): This
+public func contentOpacity(value: ?Float64): This
 ```
 
 **Function:** Sets the opacity of the QR code content color. The minimum opacity is 0.0, and the maximum is 1.0.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Float64 | Yes | - | The opacity of the QR code content color.<br/>Initial value: 1.0<br/>Valid range: [0.0, 1.0]. Values outside this range will be treated as the initial value. |
+| value | ?Float64 | Yes | - | The opacity of the QR code content color. Initial value: 1.0. Valid range: [0.0, 1.0]. Values outside this range will be treated as the initial value. |
 
-### func contentOpacity(AppResource)
+### func contentOpacity(?AppResource)
 
 ```cangjie
-public func contentOpacity(value: AppResource): This
+public func contentOpacity(value: ?AppResource): This
 ```
 
 **Function:** Sets the opacity of the QR code content color. The minimum opacity is 0, and the maximum is 1.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Parameter | Type | Required | Default Value | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [AppResource](./cj-common-types.md#class-appresource) | Yes | - | The opacity of the QR code content color. |
+| value | ?[AppResource](../LocalizationKit/cj-apis-resource.md#class-appresource) | Yes | - | The opacity of the QR code content color. <br>Initial value: 1.0. |
 
 ## Example Code
 
-This example demonstrates the basic usage of the QRCode component, including setting the QR code color via the `color` attribute, the background color via the `backgroundColor` attribute, and the opacity via the `contentOpacity` attribute.
+This example demonstrates the basic usage of the QRCode component, setting the QR code color via the [color](#func-colorresourcecolor) attribute, the background color via the backgroundColor attribute, and the opacity via the [contentOpacity](#func-contentopacityfloat64) attribute.
 
 <!-- run -->
 
@@ -105,7 +109,8 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import kit.LocalizationKit.*
+import ohos.i18n.*
+import ohos.resource_manager.*
 
 @Entry
 @Component

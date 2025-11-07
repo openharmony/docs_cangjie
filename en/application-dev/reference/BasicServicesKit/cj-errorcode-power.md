@@ -2,7 +2,7 @@
 
 > **Note:**
 >
-> The following describes only the error codes specific to this module. For general error codes, please refer to [Universal Error Code Documentation](../cj-errorcode-universal.md).
+> The following only introduces error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).
 
 ## 4900101 Failed to Connect to Service
 
@@ -12,7 +12,7 @@ Failed to connect to the service.
 
 **Error Description**
 
-The operation failed due to an exception while connecting to the system service.
+Operation failed due to an exception when connecting to the system service.
 
 **Possible Causes**
 
@@ -30,4 +30,4 @@ Check whether the system service is running normally.
     > hdc shell hidumper -ls
     ```
 
-2. Check whether the PowerManagerService system service is included in the system service list.
+2. Check whether the system service list includes the PowerManagerService system service.

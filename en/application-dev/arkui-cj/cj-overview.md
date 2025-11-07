@@ -4,10 +4,10 @@ ArkUI (Ark UI Framework) provides a comprehensive infrastructure for application
 
 ## Basic Concepts
 
-- **UI:** Stands for User Interface. Developers can design an application's user interface as multiple functional pages, with each page managed as a separate file. Page routing APIs enable scheduling management between pages, such as navigation and back operations, to achieve functional decoupling within the application.
+- **UI:** Stands for User Interface. Developers can design an application's user interface as multiple functional pages, with each page managed in separate files. Page routing APIs enable scheduling management between pages, such as navigation and back operations, to achieve functional decoupling within the application.
 
 - **Components:** The smallest units for UI construction and display, such as lists, grids, buttons, radio buttons, progress bars, text, etc. By combining various components, developers can build complete interfaces that meet their application requirements.
 
 ## Development Paradigms
 
-The Ark UI Framework offers a [Cangjie-based Declarative Development Paradigm](./cj-ui-development-overview.md) (referred to as the "Declarative Development Paradigm"), suitable for different application scenarios and technical backgrounds. This paradigm employs Cangjie's declarative UI syntax, providing UI rendering capabilities from three dimensions: components, animations, and state management.
+The Ark UI Framework offers a [Cangjie-based Declarative Development Paradigm](./cj-ui-development-overview.md) (referred to as the "Declarative Development Paradigm"), suitable for different application scenarios and technical backgrounds. This paradigm employs Cangjie declarative UI syntax, providing UI rendering capabilities from three dimensions: components, animations, and state management.

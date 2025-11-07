@@ -1,10 +1,10 @@
-# Calling C++ Files within Modules in Cangjie
+# Calling C++ Files within the Cangjie Module
 
 > **Note:**
 >
-> To ensure optimal performance, this document uses **DevEco Studio 5.0.2 Release** and **DevEco Studio-Cangjie Plugin 5.0.9.100 Beta1** as examples. Click [here](https://developer.huawei.com/consumer/cn/download/) to obtain the download link for the latest version.
+> To ensure optimal performance, this document uses **DevEco Studio 5.0.2 Release** and **DevEco Studio-Cangjie Plugin 5.0.9.100 Beta1** as examples. Click [here](https://developer.huawei.com/consumer/cn/download/) to download the latest version.
 
-This document explains how to use the DevEco Studio Cangjie plugin to call C++ files within modules from Cangjie code.
+This document explains how to use the DevEco Studio Cangjie plugin to call C++ files within a Cangjie module.
 
 ## Development Example
 
@@ -18,7 +18,7 @@ This document explains how to use the DevEco Studio Cangjie plugin to call C++ f
 
    This will automatically generate the **entry > src > main > cpp > napi_init.cpp** file.
 
-3. Open the **napi_init.cpp** file and write the C++ code, as shown in the following example:
+3. Open the **napi_init.cpp** file and write the C++ code. Example:
 
    ```cpp
    #include <stdint.h>
@@ -32,25 +32,15 @@ This document explains how to use the DevEco Studio Cangjie plugin to call C++ f
    }
    ```
 
-4. Open the **entry > src > main > cangjie > index.cj** file and write the Cangjie code to call the C++ functions, as shown in the following example:
+4. Open the **entry > src > main > cangjie > index.cj** file and write the Cangjie code to call the C++ functions. Example:
+
+   <!-- compile -->
 
    ```cangjie
       package ohos_app_cangjie_entry
-      internal import ohos.base.LengthProp
-      internal import ohos.component.Column
-      internal import ohos.component.Row
-      internal import ohos.component.Text
-      internal import ohos.component.CustomView
-      internal import ohos.component.CJEntry
-      internal import ohos.component.loadNativeView
-      internal import ohos.component.FontWeight
-      internal import ohos.state_manage.SubscriberManager
-      internal import ohos.state_manage.ObservedProperty
-      internal import ohos.state_manage.LocalStorage
-      import ohos.state_macro_manage.Entry
-      import ohos.state_macro_manage.Component
-      import ohos.state_macro_manage.State
-      import ohos.state_macro_manage.r
+      import kit.ArkUI.*
+      import ohos.arkui.state_macro_manage.*
+
       foreign {
           func sum(a: Int32, b: Int32): Int32
           func sub(a: Int32, b: Int32): Int32
@@ -66,18 +56,18 @@ This document explains how to use the DevEco Studio Cangjie plugin to call C++ f
                       Text(this.message)
                           .fontSize(50)
                           .fontWeight(FontWeight.Bold)
-                          .onClick {
+                          .onClick ({
                               evt => unsafe {
                                   this.message = "result: ${sum(1, 2)}"
                               }
-                          }
+                          })
                   }.width(100.percent)
               }.height(100.percent)
           }
       }
       ```
 
-5. Add C++ dependencies in cjpm.toml. Open the **entry > cjpm.toml** file and add the ffi.c configuration as shown below. Synchronize the project after configuration.
+5. Add C++ dependencies in cjpm.toml. Open the **entry > cjpm.toml** file and add the following ffi.c configuration. Sync the project after configuration.
 
    ```toml
    [ffi]
@@ -90,31 +80,31 @@ This document explains how to use the DevEco Studio Cangjie plugin to call C++ f
 
 ### Using a Local Physical Device
 
-1. Connect a physical device running OpenHarmony to the development environment.
-2. After successfully connecting the device, navigate to **File > Project Structure > Project > Signing Configs**, check **Support OpenHarmony** and **Automatically generate signature**, click **Sign In** as prompted, wait for the automatic signing to complete, and then click **OK**. The process is illustrated below:
+1. Connect a physical device running OpenHarmony to your computer.
+2. After successful connection, go to **File > Project Structure > Project > Signing Configs**, check **Support HarmonyOS** and **Automatically generate signature**, then click **Sign In** to log in with your account. Wait for automatic signing to complete and click **OK**. See below:
 
    ![buildSign](../../figures/buildSign.png)
 
-3. Click the ![runButton](../../figures/runButton.png) button in the toolbar at the top-right corner of the editor window to run the application. The result is shown below:
+3. Click the ![runButton](../../figures/runButton.png) button in the top-right toolbar to run. The result is shown below:
 
    ![hybridExampleRunning](../../figures/cangjieCppAdd.png)
 
 ### Using an Emulator
 
-OpenHarmony applications/services written in Cangjie can run on the emulator (Emulator) provided by DevEco Studio.
+OpenHarmony applications/services written in Cangjie can run on emulators provided by DevEco Studio.
 
-1. Create an emulator device of the Phone type and select it from the device list in the top-right corner of DevEco Studio.
+1. Create a Phone-type emulator device and select it from the device list in the top-right corner of DevEco Studio.
 
-2. By default, Cangjie projects are compiled for the **arm64-v8a** architecture. Therefore, when using an **x86 emulator** (when the development environment is **Windows/x86_64** or **macOS/x86_64**), the Cangjie project and C++ files need to be compiled for the x86_64 architecture. In the **build-profile.json5** configuration file of the Cangjie module, add **x86_64** to the values of **cangjieOptions/abiFilters** and **externalNativeOptions/abiFilters**. The specific compilation configuration is as follows:
+2. By default, Cangjie projects compile for the **arm64-v8a** architecture. When using an **x86 emulator** (on **Windows/x86_64** or **macOS/x86_64**), the Cangjie project and C++ files must compile for x86_64. Add **x86_64** to **cangjieOptions/abiFilters** and **externalNativeOptions/abiFilters** in the **build-profile.json5** file of the Cangjie module. Example configuration:
 
     ```json
-    "buildOption": { // Configuration options used during the build process
-      "cangjieOptions": { // Cangjie-related configurations
-        "path": "./cjpm.toml", // Path to the cjpm configuration file, providing Cangjie build configurations
-        "abiFilters": ["arm64-v8a", "x86_64"] // Custom Cangjie compilation architectures; the default is arm64-v8a
+    "buildOption": { // Configuration for project build process
+      "cangjieOptions": { // Cangjie-specific configuration
+        "path": "./cjpm.toml", // Path to cjpm config file, providing Cangjie build configuration
+        "abiFilters": ["arm64-v8a", "x86_64"] // Custom Cangjie compilation architecture; default is arm64-v8a
       }
       "externalNativeOptions": {
-        "abiFilters":["arm64-v8a", "x86_64"], // Custom C++ compilation architectures; the default is arm64-v8a
+        "abiFilters":["arm64-v8a", "x86_64"], // Custom C++ compilation architecture; default is arm64-v8a
         "path": "./src/main/cpp/CMakeLists.txt",
         "arguments": "",
         "cppFlags": "",
@@ -122,4 +112,4 @@ OpenHarmony applications/services written in Cangjie can run on the emulator (Em
     }
     ```
 
-3. Click the ![runButton](../../figures/runButton.png) button in the toolbar at the top-right corner of the editor window to run the application. The result is the same as when using a physical device.
+3. Click the ![runButton](../../figures/runButton.png) button in the top-right toolbar to run. The result is the same as when using a physical device.

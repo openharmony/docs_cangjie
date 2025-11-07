@@ -2,76 +2,81 @@
 
 ## Interface Description
 
-For detailed API usage instructions (parameter constraints, value ranges, etc.), please refer to the [Application Event Logging API Documentation](../../../en/application-dev/reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).
+For detailed usage instructions of the API interface (parameter usage restrictions, specific value ranges, etc.), please refer to the [Application Event Tracking API Documentation](../reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).
 
-**Subscription Interface Functionality:**
+**Subscription Interface Function Description:**
 
 | Interface Name                                          | Description                                      |
-| ------------------------------------------------------- | ----------------------------------------------- |
+| ------------------------------------------------------- | ------------------------------------------------ |
 | addWatcher(watcher: Watcher): Option\<AppEventPackageHolder> | Adds an application event observer to subscribe to application events. |
 | removeWatcher(watcher: Watcher): Unit                   | Removes an application event observer to unsubscribe from application events. |
 
 ## Development Steps
 
-This example demonstrates the development steps for subscribing to appfreeze events triggered by user button clicks.
+This section illustrates the development steps by implementing subscription to appfreeze events triggered when a user clicks a button.
 
-1. Create a new Cangjie application project and edit the "entry > src > main > cangjie > main_bility.cj" file to import dependency modules:
+1. Create a new Cangjie application project and edit the "entry > src > main > cangjie > main_bility.cj" file in the project to import the required modules:
 
-   <!--compile-->
+   <!-- compile -->
+
    ```cangjie
    import kit.BasicServicesKit.*
    import kit.PerformanceAnalysisKit.{HiAppEvent, Hilog, AppEventGroup, AppEventFilter, Watcher}
+   import std.collection.HashMap
    ```
 
-2. Edit the "entry > src > main > cangjie > main_bility.cj" file and add system event subscription in the onCreate function. Example code:
+2. Edit the "entry > src > main > cangjie > main_bility.cj" file in the project and add subscription to system events in the onCreate function. Example code:
 
-   <!--compile-->
+   <!-- compile -->
+
    ```cangjie
     let eventfilter = AppEventFilter("OS", names: ["APP_FREEZE"])
     let watcher = Watcher(
         // Developers can customize the observer name, which the system uses to identify different observers
         "watcher2",
-        // Developers can subscribe to system events of interest; here we subscribe to appfreeze events
+        // Developers can subscribe to system events of interest; here, appfreeze events are subscribed to
           appEventFilters: [eventfilter],
-        // Developers can implement their own real-time callback function to process subscribed event data
+        // Developers can implement their own real-time callback function to process the subscribed event data
         onReceive: {
             domain: String, appEventGroups: Array<AppEventGroup> =>
-            Hilog.info(0x0000, 'testTag', "HiAppEvent onReceive: domain=${domain}")
+                Hilog.info(0x0000, 'testTag', "HiAppEvent onReceive: domain=${domain}")
             for (eventGroup in appEventGroups) {
-                // Developers can distinguish between different system events using event names in the event collection
+                // Developers can distinguish between different system events based on the event names in the event collection
                 Hilog.info(0x0000, 'testTag', "HiAppEvent eventName=${eventGroup.name}")
                 for (eventInfo in eventGroup.appEventInfos) {
-                    // Developers can process event data in the collection; here we log the event data
+                    // Developers can process the event data in the event collection; here, the event data is logged
                     Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.domain=${eventInfo.domain}")
                     Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.name=${eventInfo.name}")
-                    Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.eventType.value=${eventInfo.event.value}")
-                    for (para in eventInfo.params) {
-                        // Developers can access appfreeze event-related information
-                        if (para.key == "hilog") {
-                          Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.params.${para.key}=${para.value.value.size}")
+                    Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.eventType.value=${eventInfo.eventType.getValue()}")
+                    for ((k, v) in eventInfo.params) {
+                        // Developers can obtain information related to the appfreeze event
+                        if (k == "hilog") {
+                            Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.params.${k}=${v}")
                         } else {
-                            Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.params.${para.key}=${para.value.value}")
+                            Hilog.info(0x0000, 'testTag', "HiAppEvent eventInfo.params.${k}=${v}")
                         }
                     }
                 }
             }
         }
-    )
+        )
     HiAppEvent.addWatcher(watcher)
    ```
 
-3. Create a new ArkTS project and edit the "entry > src > main > ets > pages > Index.ets" file to add a button that constructs an appfreeze scenario in its onClick function to trigger appfreeze events. Example code:
+3. Create a new ArkTS project and edit the "entry > src > main > ets > pages > Index.ets" file in the project. Add a button and construct an appfreeze scenario in its onClick function to trigger the appfreeze event. Example code:
 
    ```ts
-    Button("appFreeze").onClick{
-      // Construct a freeze scenario in the button click function to trigger appfreeze events
-      sleep(10*Duration.second)
-    }
+    Button("appFreeze").onClick(()=>{
+      // Construct a freeze scenario in the button click function to trigger the appfreeze event
+      setTimeout(() => {
+        while (true) {}
+      }, 1000)
+    })
    ```
 
-4. Click the Run button in DevEco Studio to launch the application. Then click the "appFreeze" button in the application interface to trigger an appfreeze event.
+4. Click the Run button in DevEco Studio to run the application project. Then, click the "appFreeze" button on the application interface to trigger an appfreeze event.
 
-5. After the appfreeze occurs and the application exits, re-enter the application to view the processed system event data logs in the Log window:
+5. After the application exits due to appfreeze, re-enter the application to view the processed event data logs in the Log window:
 
    ```text
    HiAppEvent onReceive: domain=OS

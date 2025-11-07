@@ -6,40 +6,40 @@
 
 #### Focus, Focus Chain, and Focus Navigation
 
-- **Focus**: Refers to the single interactive element currently highlighted in the application interface. When users interact indirectly with the application using non-pointing input devices such as keyboards, TV remotes, or car infotainment knobs, focus-based navigation and interaction become essential input methods.
+- **Focus**: Refers to the single interactive element currently highlighted in the application interface. When users interact indirectly with the application using non-pointing input devices such as keyboards, TV remotes, or car joysticks/knobs, focus-based navigation and interaction become essential input methods.
 - **Focus Chain**: In the component tree structure of an application, when a component gains focus, all nodes along the path from the root node to that component node are considered in a focused state, forming a continuous focus chain.
-- **Focus Navigation**: Refers to the behavior of transferring focus between components within the application. This process is transparent to users, but developers can capture these changes by listening to `onFocus` (focus gain) and `onBlur` (focus loss) events. For specific methods and rules of focus navigation, see [Focus Navigation Specifications](#focus-navigation-specifications).
+- **Focus Navigation**: Refers to the behavior of transferring focus between components within the application. This process is transparent to users, but developers can monitor these changes by listening to the [`onFocus`](../reference/arkui-cj/cj-universal-event-focus.md#func-onfocus---unit) (focus gain) and [`onBlur`](../reference/arkui-cj/cj-universal-event-focus.md#func-onblur---unit) (focus loss) events. For specific methods and rules of focus navigation, see [Focus Navigation Specifications](#focus-navigation-specifications).
 
 #### Focus State
 
-Refers to the style applied to the currently focused component.
+Indicates the style of the currently focused component.
 
-- **Display Rules**: By default, the focus state is not displayed. It only becomes visible when the application enters the active state. Therefore, while a focused component may not display its focus state (depending on whether it is active), a component displaying the focus state must be focused. Most components have built-in focus state styles, but developers can customize them using style interfaces. Once customized, the component will no longer display the built-in focus state style. In a focus chain, if multiple components have focus states, the system adopts a child-first strategy, prioritizing the child component's focus state and displaying only one focus state at a time.
-- **Entering Active State**: The focus active state is entered by pressing the TAB key on an external keyboard or using the `FocusController.activate(true)` method. Once active, keyboard TAB or arrow keys can be used for focus navigation. The initial TAB key press used to activate the focus state does not trigger focus navigation.
+- **Display Rules**: By default, the focus state is not displayed. It only becomes visible when the application enters the active state. Therefore, while a focused component may not display the focus state (depending on whether it is active), a component displaying the focus state must be focused. Most components have built-in focus state styles, but developers can also customize them using style interfaces. Once customized, the component will no longer display the built-in focus state style. In a focus chain, if multiple components have focus states, the system adopts a child-first strategy, prioritizing the display of the child component's focus state and showing only one focus state at a time.
+- **Entering Active State**: The focus active state is entered by pressing the TAB key on an external keyboard or using the `FocusController.activate(true)` method. Once active, keyboard TAB or arrow keys can be used for focus navigation. The first TAB key press used to activate the focus state does not trigger focus navigation.
 - **Exiting Active State**: The focus active state exits when the application receives the `FocusController.active(false)` method or a click event (including touchscreen press events and left mouse button press events).
 
 #### Hierarchical Pages
 
-Hierarchical pages are a collective term for specific container components in the focus framework, including `Page`, `Dialog`, `SheetPage`, `ModalPage`, `Menu`, `Popup`, `NavBar`, and `NavDestination`. These components typically have the following key characteristics:
+Hierarchical pages are a collective term for specific container components in the focus framework, including Page, Dialog, SheetPage, ModalPage, Menu, Popup, Dialog, NavBar, and NavDestination. These components typically share the following key characteristics:
 
-- **Visual Hierarchy Independence**: Visually, these components appear independent of other page content, often overlaying it to create a hierarchical visual distinction.
-- **Focus Capture**: When first created and displayed, these components immediately capture the application's focus.
-- **Focus Navigation Scope Limitation**: When focus is within these components, users cannot transfer focus to elements outside the component using keyboard keys; focus movement is restricted to the component's interior.
+- **Visual Hierarchy Independence**: Visually, these components are independent of other page content and usually appear above it, creating a visual hierarchy.
+- **Focus Following**: When such a component is first created and displayed, it immediately captures the application's focus.
+- **Focus Navigation Scope Limitation**: When focus is within these components, users cannot transfer focus to elements outside the component via keyboard inputs; focus movement is restricted to the component's interior.
 
-In an application, there is always at least one hierarchical page component holding the current focus. When this hierarchical page is closed or becomes invisible, focus automatically transfers to the next available hierarchical page component, ensuring continuity and consistency in user interaction.
+At any time, an application must have at least one hierarchical page component holding the current focus. When this hierarchical page is closed or becomes invisible, focus automatically transfers to the next available hierarchical page component, ensuring continuity and consistency in user interaction.
 
-> **Notes:**
+> **Note:**
 >
-> - The `Popup` component does not exhibit the second characteristic when its `focusable` property (a component-specific attribute, not a universal one) is set to `false`.
-> - `NavBar` and `NavDestination` do not have the third characteristic. Their focus navigation scope is the same as that of their first parent hierarchical page.
+> - The [Popup](./cj-popup-and-menu-components-popup.md) component does not exhibit the second characteristic when its [`focusable`](../reference/arkui-cj/cj-universal-attribute-focus.md#focusablebool) attribute (a component attribute, not a universal attribute) is set to `false`.
+> - NavBar and [NavDestination](../reference/arkui-cj/cj-navigation-switching-navdestination.md#navdestination) do not exhibit the third characteristic. Their focus navigation scope is the same as that of their first parent hierarchical page.
 
 #### Root Container
 
-The root container is a concept within hierarchical pages. When a hierarchical page is first created and displayed, it immediately captures focus according to its characteristics. The end node of the focus chain for this page becomes the default focus, typically located on the root container of the hierarchical page.
+The root container is a concept within [hierarchical pages](#hierarchical-pages). When a [hierarchical page](#hierarchical-pages) is first created and displayed, focus is immediately captured by that page. The end node of the focus chain for that [hierarchical page](#hierarchical-pages) becomes the default focus, which typically resides on the root container of the page.
 
-By default, the default focus of a hierarchical page is on its root container, but developers can customize this behavior using the `defaultFocus` property.
+By default, the default focus of a [hierarchical page](#hierarchical-pages) is on its root container, but developers can customize this behavior using the `defaultFocus` attribute.
 
-When focus is on the root container, the first TAB key press not only activates the focus state but also triggers focus transfer to child components. If the child component is also a container, focus continues to propagate downward until reaching a leaf node. The propagation rule is: prioritize transferring focus to the last focused child node; if none exists, default to the first child node.
+When focus is on the root container, the first TAB key press not only activates the focus state but also triggers focus transfer to child components. If the child component is also a container, focus continues to propagate downward until it reaches a leaf node. The propagation rule is: prioritize transferring focus to the last focused child node; if none exists, transfer to the first child node by default.
 
 ### Focus Navigation Specifications
 
@@ -49,74 +49,78 @@ Focus navigation can be categorized into active and passive navigation based on 
 
 Refers to focus movement caused by intentional actions of developers or users, including:
 
-- **Keyboard Navigation (TAB/Shift+TAB/Arrow Keys)**:
-  - **Prerequisite**: The application must be in the focus active state.
-  - **Scope Limitation**: Keyboard navigation is restricted to the currently focused hierarchical page. For details, see the "Focus Navigation Scope Limitation" section under [Hierarchical Pages](#hierarchical-pages).
-  - **Key Types**:
-    - **TAB Key**: Follows a Z-shaped traversal logic, iterating through all leaf nodes in the current scope. Upon reaching the last component, pressing TAB again cycles focus back to the first focusable component, enabling circular navigation.
-    - **Shift+TAB Key**: Produces the opposite effect of the TAB key.
-    - **Arrow Keys (Up, Down, Left, Right)**: Follows a cross-shaped movement strategy. In a single-layer container, focus transfer is determined by the container's specific navigation algorithm. If the algorithm determines the next focus should land on a container component, the system uses a center-point distance priority algorithm to identify the target child node.
-  - **Navigation Algorithm**: Each focusable container component has its own navigation algorithm defining focus transfer rules.
-  - **Child-First Priority**: When a child component handles keyboard navigation events, the parent component does not intervene.
+- **Keyboard Navigation**: Using TAB/Shift+TAB/arrow keys on an external keyboard.
+- **Programmatic Focus Request**: Using [`requestFocus`](../reference/arkui-cj/cj-universal-attribute-focus.md#static-func-requestfocusstring) to request focus.
+- **Click-to-Focus**: Using [`focusOnTouch`](../reference/arkui-cj/cj-universal-attribute-focus.md#func-focusontouchbool) to enable focus acquisition via clicks.
+
+- **Keyboard Navigation**:
+    - **Prerequisite**: The application must be in the focus active state.
+    - **Scope Limitation**: Keyboard navigation is restricted to the currently focused [hierarchical page](#hierarchical-pages). For details, see the "Focus Navigation Scope Limitation" section under [hierarchical pages](#hierarchical-pages).
+    - **Key Types**:
+        - **TAB Key**: Follows a Z-shaped traversal logic, iterating through all leaf nodes within the current scope. After reaching the last component, pressing TAB again cycles focus back to the first focusable component, enabling cyclic navigation.
+        - **Shift+TAB Key**: Produces the opposite effect of the TAB key.
+        - **Arrow Keys (Up/Down/Left/Right)**: Follows a cross-shaped movement strategy. In a single-layer container, focus transfer is determined by the container's specific navigation algorithm. If the algorithm determines the next focus should land on a container component, the system uses a center-point distance priority algorithm to identify the target child node within the container.
+    - **Navigation Algorithm**: Each focusable container component has its own navigation algorithm defining focus transfer rules.
+    - **Child-First**: When a child component handles keyboard navigation events, the parent component does not intervene.
 
 - **requestFocus**:
-  - See [Active Focus Gain/Loss](#active-focus-gainloss) for details. This method actively transfers focus to a specified component.
-  - Cannot cross windows or ArkUI instances but can cross hierarchical pages.
+    For details, see [Active Focus Acquisition/Loss](#active-focus-acquisitionloss). This method actively transfers focus to a specified component.
+    - Cannot cross windows or ArkUI instances but can cross [hierarchical pages](#hierarchical-pages).
 
 - **focusOnTouch**:
-  - See [focusOnTouch](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-focus.md#func-focusontouchbool) for details. Enables a bound component to gain focus upon click. If the component itself is not focusable, this feature is ineffective. If bound to a container component, clicking prioritizes transferring focus to the last focused child component; otherwise, it transfers to the first focusable child component.
+    For details, see [`focusOnTouch`](../reference/arkui-cj/cj-universal-attribute-focus.md#func-focusontouchbool). Enables a component to gain focus upon clicking. If the component itself is not focusable, this feature is ineffective. If applied to a container component, clicking prioritizes transferring focus to the last focused child component; otherwise, it transfers to the first focusable child component.
 
 #### Passive Focus Navigation
 
-Passive focus navigation refers to automatic focus transfer triggered by system or other operations without direct developer intervention, which is the default behavior of the focus system.
+Passive focus navigation refers to automatic focus transfer triggered by the system or other operations without direct developer intervention. This is the default behavior of the focus system.
 
 Current mechanisms for passive focus navigation include:
 
 - **Component Deletion**: When a focused component is deleted, the focus framework first attempts to transfer focus to adjacent sibling components, following a back-to-front order. If no siblings are focusable, focus is released, and the parent component is notified to handle focus.
-- **Property Changes**: If the `focusable` or `enabled` property of a focused component is set to `false`, or its `visibility` property is set to invisible, the focus framework automatically transfers focus to another focusable component, following the same sibling order as above.
-- **Hierarchical Page Switching**: During page transitions (e.g., navigating from one page to another), the current page's focus is automatically released, and the new page may gain focus based on preset logic.
-- **Web Component Initialization**: For Web components, if designed to require immediate focus upon creation (e.g., certain pop-ups or input fields), focus may transfer to the Web component. This behavior is part of the component's logic and not within the focus framework's specifications.
+- **Attribute Changes**: If the `focusable` or `enabled` attribute of a focused component is set to `false`, or its `visibility` attribute is set to non-visible, the focus framework automatically transfers focus to another focusable component. The framework first attempts to transfer focus to adjacent siblings (back-to-front). If no siblings are focusable, focus is released, and the parent component is notified.
+- **[Hierarchical Page](#hierarchical-pages) Switching**: When switching between [hierarchical pages](#hierarchical-pages), such as navigating from one page to another, the current page's focus is automatically released, and the new page may gain focus based on preset logic.
+- **Web Component Initialization**: For Web components, if designed to immediately gain focus upon creation (e.g., certain pop-ups or input fields), focus may transfer to the Web component. This behavior is part of the component's logic and not within the focus framework's specifications.
 
 ### Focus Navigation Algorithms
 
-In the focus management system, each focusable container is equipped with specific navigation algorithms that define how focus transfers from the currently focused child component to the next focusable child component when using TAB, Shift+TAB, or arrow keys.
+In the focus management system, each focusable container is equipped with specific navigation algorithms that define how focus transfers from the currently focused child component to the next when using TAB, Shift+TAB, or arrow keys.
 
 The choice of algorithm depends on the container's UX (User Experience) specifications and is adapted by the container component. Currently, the focus framework supports three navigation algorithms: Linear Navigation, Projection Navigation, and Custom Navigation.
 
 #### Linear Navigation Algorithm
 
-The default navigation strategy, based on the mounting order of child nodes in the node tree. Commonly used for unidirectional layout containers like `Row`, `Column`, and `Flex`. Rules:
+The default navigation strategy, linear navigation is based on the mounting order of child nodes in the container's node tree. It is commonly used for unidirectional layouts like Row, Column, and Flex containers. Rules:
 
 - **Order Dependency**: Navigation order is entirely based on the mounting order of child nodes, independent of their actual layout positions.
-- **TAB Key Navigation**: Pressing TAB iterates through child nodes in mounting order.
-- **Arrow Key Navigation**: Arrow keys perpendicular to the container's defined direction are ignored. For example, vertical arrow keys are ineffective in a horizontal `Row` container.
-- **Boundary Handling**: When focus is on the first or last child node, the container rejects arrow key navigation in the opposite direction. For example, a left arrow key is ignored when focus is on the first child of a horizontal `Row`.
+- **TAB Key Navigation**: Pressing TAB traverses child nodes in mounting order.
+- **Arrow Key Navigation**: Arrow keys perpendicular to the container's defined direction are ignored. For example, in a horizontal Row container, up/down arrow keys are ineffective.
+- **Boundary Handling**: When focus is on the first or last child node, the container rejects arrow key requests in the opposite direction. For example, in a horizontal Row container, pressing the left arrow key when focus is on the first child node is ignored.
 
 #### Projection Navigation Algorithm
 
-Based on the projection of the currently focused component in the navigation direction, combined with overlap area and center-point distance for selection. Ideal for containers with unevenly sized child components, currently only `Flex` components with the `wrap` property. Rules:
+Projection navigation is based on the projection of the currently focused component in the navigation direction, combined with overlap area and center-point distance calculations for determining the next focus. This algorithm is particularly suitable for containers with unevenly sized child components, currently only Flex containers with the `wrap` attribute. Rules:
 
-1. **Arrow Key Navigation**: Calculate the overlap area between the projection and child components. Among components with non-zero overlap, select the one with the shortest center-point distance. If multiple candidates exist, the earlier node in the tree wins. If no overlap, the container cannot handle the arrow key navigation.
-2. **TAB Key Navigation**: First, apply Rule 1 using the right arrow key. If unsuccessful, simulate moving the focused child component downward by its height, then apply Rule 1 using the left arrow key. The child component with the farthest center-point distance and overlap wins. If no overlap, the container cannot handle the TAB key navigation.
-3. **Shift+TAB Key Navigation**: First, apply Rule 1 using the left arrow key. If unsuccessful, simulate moving the focused child component upward by its height, then apply Rule 1 using the right arrow key. The child component with the farthest center-point distance and overlap wins. If no overlap, the container cannot handle the Shift+TAB key navigation.
+- **Rule 1 (Arrow Keys)**: For arrow key navigation, calculate the overlap area between the projection and child component regions. Among all child components with non-zero overlap, the one with the shortest straight-line distance from the current focused component's center point wins. If multiple candidates exist, the one earlier in the node tree wins. If no overlaps exist, the container cannot process the arrow key request.
+- **Rule 2 (TAB Key)**: First apply Rule 1 using the right arrow direction. If successful, exit. Otherwise, simulate moving the current focused child component downward by its height, then apply Rule 1 using the left arrow direction. The child component with the farthest straight-line distance and overlap wins. If no overlaps exist, the TAB key request is ignored.
+- **Rule 3 (Shift+TAB Key)**: First apply Rule 1 using the left arrow direction. If successful, exit. Otherwise, simulate moving the current focused child component upward by its height, then apply Rule 1 using the right arrow direction. The child component with the farthest straight-line distance and overlap wins. If no overlaps exist, the Shift+TAB key request is ignored.
 
 #### Custom Navigation Algorithm
 
-Defined by the component itself, with specifications determined by the component.
+A navigation algorithm customized by the component, with specifications defined by the component itself.
 
-## Focus Gain/Loss Events
-
-```cangjie
-public func onFocus(callback: ()->Unit): This
-```
-
-Focus gain event callback. Triggered when the bound component gains focus.
+## Focus/Blur Events
 
 ```cangjie
-public func onBlur(callback: ()->Unit): This
+public func onFocus(event: ?() -> Unit): T
 ```
 
-Focus loss event callback. Triggered when the bound component loses focus.
+Focus event callback. Triggered when the bound component gains focus.
+
+```cangjie
+public func onBlur(event: ?() -> Unit): T 
+```
+
+Blur event callback. Triggered when the bound component loses focus.
 
 The `onFocus` and `onBlur` interfaces are typically used in pairs to monitor component focus changes.
 
@@ -135,17 +139,17 @@ class EntryView {
     @State var threeButtonColor: Color = Color.Gray
     func build() {
         Column(space: 20) {
-        // Use up/down keys on an external keyboard to move focus between three buttons. Button color changes when focused and reverts when unfocused.
+        // Using up/down arrow keys on an external keyboard moves focus between the three buttons. Button color changes on focus and reverts on blur.
         Button("First Button")
             .backgroundColor(oneButtonColor)
             .width(260)
             .height(70)
             .fontColor(Color.Black)
-            // Listen for focus gain event on the first component; change color when focused.
+            // Monitor focus event for the first component; change color on focus.
             .onFocus({ =>
                 oneButtonColor = Color.Green
             })
-            // Listen for focus loss event on the first component; revert color when unfocused.
+            // Monitor blur event for the first component; revert color on blur.
             .onBlur({=>
                 oneButtonColor = Color.Gray
             })
@@ -154,11 +158,11 @@ class EntryView {
             .width(260)
             .height(70)
             .fontColor(Color.Black)
-            // Listen for focus gain event on the second component; change color when focused.
+            // Monitor focus event for the second component; change color on focus.
             .onFocus({=>
                 twoButtonColor = Color.Green
             })
-            // Listen for focus loss event on the second component; revert color when unfocused.
+            // Monitor blur event for the second component; revert color on blur.
             .onBlur({=>
                 twoButtonColor = Color.Gray
             })
@@ -167,11 +171,11 @@ class EntryView {
             .width(260)
             .height(70)
             .fontColor(Color.Black)
-            // Listen for focus gain event on the third component; change color when focused.
+            // Monitor focus event for the third component; change color on focus.
             .onFocus({=>
                 threeButtonColor = Color.Green
             })
-            // Listen for focus loss event on the third component; revert color when unfocused.
+            // Monitor blur event for the third component; revert color on blur.
             .onBlur({=>
                 threeButtonColor = Color.Gray
             })
@@ -185,44 +189,44 @@ class EntryView {
 The above example includes the following steps:
 
 1. The application opens. Pressing the TAB key activates focus navigation. "First Button" displays the focus state style: a blue outline around the component. The `onFocus` callback is triggered, changing the background color to green.
-2. Pressing TAB again triggers focus navigation. "Second Button" gains focus, triggering its `onFocus` callback (background turns green). "First Button" loses focus, triggering its `onBlur` callback (background reverts to gray).
-3. Pressing TAB again triggers focus navigation. "Third Button" gains focus, triggering its `onFocus` callback (background turns green). "Second Button" loses focus, triggering its `onBlur` callback (background reverts to gray).
+2. Pressing the TAB key triggers focus navigation. "Second Button" gains focus, triggering its `onFocus` callback (background turns green). "First Button" loses focus, triggering its `onBlur` callback (background reverts to gray).
+3. Pressing the TAB key again triggers focus navigation. "Third Button" gains focus, triggering its `onFocus` callback (background turns green). "Second Button" loses focus, triggering its `onBlur` callback (background reverts to gray).
 
 ## Setting Component Focusability
 
 ```cangjie
-public func focusable(isFocusable: Bool): This
+public func focusable(value: ?Bool): T
 ```
 
-Sets whether the component can receive focus.
+Sets whether a component can receive focus.
 
 Components can be broadly categorized into three types based on focusability:
 
-1. **Default Focusable Components**: Typically interactive components like `Button`, `Checkbox`, and `TextInput`. These components are focusable by default without any property settings.
-2. **Focusable but Not by Default**: Examples include `Text` and `Image`. These components are not focusable by default but can be enabled using the universal property `focusable(true)`. If no `focusable` property is set but the component has focus capability, configuring `onClick` or a single-finger tap gesture implicitly makes it focusable. If `focusable` is set to `false`, even with these events, the component remains unfocusable.
-3. **Non-Focusable Components**: Typically non-interactive display components like `Blank` and `Circle`. These cannot be made focusable even with the `focusable` property.
+1. **Default Focusable Components**: Typically interactive components like Button, Checkbox, and TextInput. These components are focusable by default without any additional attributes.
+2. **Focusable but Not by Default**: Examples include Text and Image components. These are not focusable by default but can be enabled using the universal attribute `focusable(true)`. If such a component has no `focusable` attribute but is configured with `onClick` or a single-finger Tap gesture, it implicitly becomes focusable. If its `focusable` attribute is set to `false`, it remains non-focusable even with these events.
+3. **Non-Focusable Components**: Typically display-only components like Blank and Circle. These cannot be made focusable even with the `focusable` attribute.
 
 ```cangjie
-public func enabled(value: Bool): This
+public func enabled(value: ?Bool): T
 ```
 
-Sets the component's interactivity property [`enabled`](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-enable.md#func-enabledbool) to `false`, making the component non-interactive and unfocusable.
+Setting the interactive attribute [`enabled`](../reference/arkui-cj/cj-universal-attribute-enable.md#func-enabledbool) to `false` makes the component non-interactive and non-focusable.
 
 ```cangjie
-public func visibility(value: Visibility): This
+public func visibility(value: ?Bool): T
 ```
 
-Sets the component's visibility property [`visibility`](../../../en/application-dev/reference/arkui-cj/cj-universal-attribute-visibility.md#func-visibilityvisibility) to `Visibility.None` or `Visibility.Hidden`, making the component invisible and unfocusable.
+Setting the visibility attribute [`visibility`](../reference/arkui-cj/cj-universal-attribute-visibility.md#func-visibilityvisibility) to `Visibility.None` or `Visibility.Hidden` makes the component invisible and non-focusable.
 
 ```cangjie
-public func focusOnTouch(isFocusOnTouch: Bool): This
+public func focusOnTouch(value: ?Bool): T
 ```
 
-Sets whether the component can gain focus upon click.
+Sets whether the current component supports focus acquisition via clicks.
 
-> **Notes:**
+> **Note:**
 >
-> When a component is focused, setting its `focusable` or `enabled` property to `false` automatically causes it to lose focus. The focus then transfers to another focusable component according to the [Focus Navigation Specifications](#focus-navigation-specifications).
+> When a focused component's `focusable` or `enabled` attribute is set to `false`, it automatically loses focus, and focus is transferred to another component according to the [Focus Navigation Specifications](#focus-navigation-specifications).
 
  <!-- run -->
 
@@ -242,7 +246,7 @@ class EntryView {
 
     func build() {
         Column(space: 5) {
-            // First Text component without focusable property set; unfocusable by default.
+            // First Text component without focusable attribute; non-focusable by default.
             Text("Default Text")
                 .borderColor(color1)
                 .borderWidth(2)
@@ -257,7 +261,7 @@ class EntryView {
 
             Divider()
 
-            // Second Text component with initial focusable=true and focusOnTouch=true.
+            // Second Text with initial focusable=true and focusOnTouch=true.
             Text("focusable: " + textFocusable.toString())
                 .borderColor(color2)
                 .borderWidth(2)
@@ -272,7 +276,7 @@ class EntryView {
                     color2 = Color(0xFFFF00)
                 })
 
-            // Third Text component with focusable=true and initial enabled=true.
+            // Third Text with focusable=true and initial enabled=true.
             Text("enabled: " + textEnabled.toString())
                 .borderColor(color3)
                 .borderWidth(2)
@@ -294,49 +298,17 @@ class EntryView {
                 Button("Button1")
                     .width(140).height(70)
                 Button("Button2")
-                    .width(160).height(70)
-            }
+                    .## Active Focus Acquisition/Loss
 
-            Divider()
-            Button("Button3")
-                .width(300).height(70)
-
-            Divider()
-        }
-        .width(100.percent)
-        .justifyContent(FlexAlign.Center)
-        .onKeyEvent({ e =>
-            // Bind onKeyEvent. When the Column component is focused, pressing 'F' toggles the second Text's focusable property.
-            if (e.keyCode == 2022 && e.keyType == KeyType.Down) {
-                textFocusable = !textFocusable
-            }
-            // Bind onKeyEvent. When the Column component is focused, pressing 'G' toggles the third Text's enabled property.
-            if (e.keyCode == 2023 && e.keyType == KeyType.Down) {
-                textEnabled = !textEnabled
-            }
-        })
-    }
-}
-```
-
-Execution Effect:
-
-![focus-1.gif](figures/focus-1.gif)
-
-The above example includes the following steps:
-
-1. The first `Text` component does not have `focusable(true)` set, making it unfocusable.
-2. Clicking the second `Text` component (with `focusOnTouch(true)`) focuses it. Pressing TAB triggers focus navigation, keeping focus on the second `Text`. Pressing the 'F' key triggers `## Active Focus Acquisition/Loss
-
-Using methods from focusControl:
+Using methods from the FocusControl:
 
 ```cangjie
-public static func requestFocus(keyValue: String): Bool
+public static func requestFocus(value: ?String): Bool
 ```
 
-Calling this interface can actively transfer focus to the specified component. The focus transfer takes effect at the next frame signal.
+Calling this interface actively transfers focus to the component specified by the parameter. The focus transfer takes effect at the next frame signal.
 
- <!-- run -->
+<!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -385,7 +357,7 @@ class EntryView {
                     .width(80.percent)
                     .backgroundColor(0x707070)
                     .height(10)
-                //Click the focusControl.requestFocus button to focus the second Button.
+                //Clicking the FocusControl.requestFocus button gives focus to the second Button.
                 Button("FocusControl.requestFocus")
                     .width(200)
                     .height(70)
@@ -410,12 +382,12 @@ When a component gains focus and has a click event (`onClick`) or single-finger 
 
 > **Note:**
 >
-> - When click events (`onClick`) or single-finger tap events (`TapGesture`) are triggered by Enter or Space, they do not bubble up by default, meaning the parent component's corresponding [key event](../../../en/application-dev/reference/arkui-cj/cj-universal-event-key.md) will not be triggered simultaneously.
-> - Key events (`onKeyEvent`) bubble up by default, meaning they will also trigger the parent component's key event callback.
-> - If a component has both click events (`onClick`) and key events (`onKeyEvent`), both will respond when Enter or Space is pressed.
-> - A focused component responding to click events (`onClick`) is independent of the focus active state.
+> - When a click event (`onClick`) or single-finger tap event (`TapGesture`) is triggered by Enter or Space, the event does not bubble up by default, meaning the parent component's corresponding [key event](../reference/arkui-cj/cj-universal-event-key.md) will not be triggered simultaneously.
+> - Key events (`onKeyEvent`) bubble up by default, meaning the parent component's key event callback will also be triggered.
+> - If a component has both a click event (`onClick`) and a key event (`onKeyEvent`), both will respond when Enter or Space is pressed.
+> - A focused component responding to a click event (`onClick`) is independent of the focus active state.
 
- <!-- run -->
+<!-- run -->
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -457,68 +429,68 @@ Basic component focus capabilities are as follows:
 
 | Basic Component                                     | Has Focus Capability | Default focusable Value |
 | :---------------------------------------- | :------- | :------------ |
-| [AlphabetIndexer](../../../en/application-dev/reference/arkui-cj/cj-information-display-alphabetindexer.md) | Yes       | true         |
-| [Blank](../../../en/application-dev/reference/arkui-cj/cj-blank-divider-blank.md) | No       | false        |
-| [Button](../../../en/application-dev/reference/arkui-cj/cj-button-picker-button.md) | Yes       | true         |
-| [Checkbox](../../../en/application-dev/reference/arkui-cj/cj-button-picker-checkbox.md) | Yes       | true         |
-| [CheckboxGroup](../../../en/application-dev/reference/arkui-cj/cj-button-picker-checkboxgroup.md) | Yes       | true         |
-| [DataPanel](../../../en/application-dev/reference/arkui-cj/cj-information-display-datapanel.md) | Yes       | false        |
-| [DatePicker](../../../en/application-dev/reference/arkui-cj/cj-button-picker-datepicker.md) | Yes       | true         |
-| [Divider](../../../en/application-dev/reference/arkui-cj/cj-blank-divider-divider.md) | Yes       | false        |
-| [Gauge](../../../en/application-dev/reference/arkui-cj/cj-information-display-gauge.md) | Yes       | false        |
-| [Image](../../../en/application-dev/reference/arkui-cj/cj-image-video-image.md) | Yes       | false        |
-| [ImageSpan](../../../en/application-dev/reference/arkui-cj/cj-text-input-imagespan.md)                 | No       | false        |
-| [LoadingProgress](../../../en/application-dev/reference/arkui-cj/cj-information-display-loadingprogress.md) | Yes       | true        |
-| [Navigation](../../../en/application-dev/reference/arkui-cj/cj-navigation-switching-navigation.md) | Yes       | true         |
-| [PatternLock](../../../en/application-dev/reference/arkui-cj/cj-information-display-patternlock.md) | Yes       | true        |
-| [Progress](../../../en/application-dev/reference/arkui-cj/cj-information-display-progress.md) | Yes       | true        |
-| [QRCode](../../../en/application-dev/reference/arkui-cj/cj-information-display-qrcode.md) | Yes       | true        |
-| [Radio](../../../en/application-dev/reference/arkui-cj/cj-button-picker-radio.md) | Yes       | true         |
-| [Rating](../../../en/application-dev/reference/arkui-cj/cj-button-picker-rating.md) | Yes       | true         |
-| [RichEditor](../../../en/application-dev/reference/arkui-cj/cj-text-input-richeditor.md) | Yes       | true         |
-| [RichText](../../../en/application-dev/reference/arkui-cj/cj-text-input-richtext.md) | No       | false        |
-| [ScrollBar](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-scrollbar.md) | No       | false        |
-| [Search](../../../en/application-dev/reference/arkui-cj/cj-text-input-search.md) | Yes       | true         |
-| [Select](../../../en/application-dev/reference/arkui-cj/cj-button-picker-select.md) | Yes       | true         |
-| [Slider](../../../en/application-dev/reference/arkui-cj/cj-button-picker-slider.md) | Yes       | true         |
-| [Span](../../../en/application-dev/reference/arkui-cj/cj-text-input-span.md) | No       | false        |
-| [Stepper](../../../en/application-dev/reference/arkui-cj/cj-navigation-switching-stepper.md) | Yes       | true         |
-| [StepperItem](../../../en/application-dev/reference/arkui-cj/cj-navigation-switching-stepperitem.md) | Yes       | true         |
-| [Text](../../../en/application-dev/reference/arkui-cj/cj-text-input-text.md) | Yes       | false        |
-| [TextArea](../../../en/application-dev/reference/arkui-cj/cj-text-input-textarea.md) | No       | false         |
-| [TextClock](../../../en/application-dev/reference/arkui-cj/cj-information-display-textclock.md) | No       | false        |
-| [TextInput](../../../en/application-dev/reference/arkui-cj/cj-text-input-textinput.md) | Yes       | true         |
-| [TextPicker](../../../en/application-dev/reference/arkui-cj/cj-button-picker-textpicker.md) | Yes       | true         |
-| [TextTimer](../../../en/application-dev/reference/arkui-cj/cj-information-display-texttimer.md) | No       | false        |
-| [Toggle](../../../en/application-dev/reference/arkui-cj/cj-button-picker-toggle.md) | Yes       | true         |
+| [AlphabetIndexer](../reference/arkui-cj/cj-information-display-alphabetindexer.md) | Yes       | true         |
+| [Blank](../reference/arkui-cj/cj-blank-divider-blank.md) | No       | false        |
+| [Button](../reference/arkui-cj/cj-button-picker-button.md) | Yes       | true         |
+| [Checkbox](../reference/arkui-cj/cj-button-picker-checkbox.md) | Yes       | true         |
+| [CheckboxGroup](../reference/arkui-cj/cj-button-picker-checkboxgroup.md) | Yes       | true         |
+| [DataPanel](../reference/arkui-cj/cj-information-display-datapanel.md) | Yes       | false        |
+| [DatePicker](../reference/arkui-cj/cj-button-picker-datepicker.md) | Yes       | true         |
+| [Divider](../reference/arkui-cj/cj-blank-divider-divider.md) | Yes       | false        |
+| [Gauge](../reference/arkui-cj/cj-information-display-gauge.md) | Yes       | false        |
+| [Image](../reference/arkui-cj/cj-image-video-image.md) | Yes       | false        |
+| [ImageSpan](../reference/arkui-cj/cj-text-input-imagespan.md)                 | No       | false        |
+| [LoadingProgress](../reference/arkui-cj/cj-information-display-loadingprogress.md) | Yes       | true        |
+| [Navigation](../reference/arkui-cj/cj-navigation-switching-navigation.md) | Yes       | true         |
+| [PatternLock](../reference/arkui-cj/cj-information-display-patternlock.md) | Yes       | true        |
+| [Progress](../reference/arkui-cj/cj-information-display-progress.md) | Yes       | true        |
+| [QRCode](../reference/arkui-cj/cj-information-display-qrcode.md) | Yes       | true        |
+| [Radio](../reference/arkui-cj/cj-button-picker-radio.md) | Yes       | true         |
+| [Rating](../reference/arkui-cj/cj-button-picker-rating.md) | Yes       | true         |
+| [RichEditor](../reference/arkui-cj/cj-text-input-richeditor.md) | Yes       | true         |
+| [RichText](../reference/arkui-cj/cj-text-input-richtext.md) | No       | false        |
+| [ScrollBar](../reference/arkui-cj/cj-scroll-swipe-scrollbar.md) | No       | false        |
+| [Search](../reference/arkui-cj/cj-text-input-search.md) | Yes       | true         |
+| [Select](../reference/arkui-cj/cj-button-picker-select.md) | Yes       | true         |
+| [Slider](../reference/arkui-cj/cj-button-picker-slider.md) | Yes       | true         |
+| [Span](../reference/arkui-cj/cj-text-input-span.md) | No       | false        |
+| [Stepper](../reference/arkui-cj/cj-navigation-switching-stepper.md) | Yes       | true         |
+| [StepperItem](../reference/arkui-cj/cj-navigation-switching-stepperitem.md) | Yes       | true         |
+| [Text](../reference/arkui-cj/cj-text-input-text.md) | Yes       | false        |
+| [TextArea](../reference/arkui-cj/cj-text-input-textarea.md) | No       | false         |
+| [TextClock](../reference/arkui-cj/cj-information-display-textclock.md) | No       | false        |
+| [TextInput](../reference/arkui-cj/cj-text-input-textinput.md) | Yes       | true         |
+| [TextPicker](../reference/arkui-cj/cj-button-picker-textpicker.md) | Yes       | true         |
+| [TextTimer](../reference/arkui-cj/cj-information-display-texttimer.md) | No       | false        |
+| [Toggle](../reference/arkui-cj/cj-button-picker-toggle.md) | Yes       | true         |
 
 Container component focus capabilities are as follows:
 
-| Container Component                                     | Can Be Focused | Default focusable Value |
+| Container Component                                     | Can Gain Focus | Default focusable Value |
 | :---------------------------------------- | :------- | :------------ |
-| [Badge](../../../en/application-dev/reference/arkui-cj/cj-information-display-badge.md) | No     | false        |
-| [Column](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-column.md) | Yes     | true         |
-| [Flex](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-flex.md) | Yes     | true         |
-| [GridCol](../../../en/application-dev/reference/arkui-cj/cj-grid-layout-gridcol.md) | Yes     | true         |
-| [GridRow](../../../en/application-dev/reference/arkui-cj/cj-grid-layout-gridrow.md) | Yes     | true         |
-| [Grid](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-grid.md) | Yes     | true         |
-| [GridItem](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-griditem.md) | Yes     | true         |
-| [List](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-list.md) | Yes     | true         |
-| [ListItem](../../../en/application-dev/reference/arkui-cj//cj-scroll-swipe-listitem.md) | Yes     | true         |
-| [ListItemGroup](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-listgroup.md) | Yes     | true         |
-| [Navigator](../../../en/application-dev/reference/arkui-cj/cj-navigation-switching-navigation.md) | Yes     | true         |
-| [Refresh](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-refresh.md) | Yes     | true        |
-| [RelativeContainer](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-relativecontainer.md) | No     | false         |
-| [Row](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-row.md) | Yes    | true         |
-| [RowSplit](../../../en/application-dev/reference/arkui-cj/cj-grid-layout-rowsplit.md) | Yes     | true         |
-| [Scroll](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-scroll.md) | Yes     | true         |
-| [SideBarContainer](../../../en/application-dev/reference/arkui-cj/cj-grid-layout-sidebar.md) | Yes     | true         |
-| [Stack](../../../en/application-dev/reference/arkui-cj/cj-row-column-stack-stack.md) | Yes     | true         |
-| [Swiper](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-swiper.md) | Yes     | true         |
-| [Tabs](../../../en/application-dev/reference/arkui-cj/cj-navigation-switching-tabs.md) | Yes     | true         |
+| [Badge](../reference/arkui-cj/cj-information-display-badge.md) | No     | false        |
+| [Column](../reference/arkui-cj/cj-row-column-stack-column.md) | Yes     | true         |
+| [Flex](../reference/arkui-cj/cj-row-column-stack-flex.md) | Yes     | true         |
+| [GridCol](../reference/arkui-cj/cj-grid-layout-gridcol.md) | Yes     | true         |
+| [GridRow](../reference/arkui-cj/cj-grid-layout-gridrow.md) | Yes     | true         |
+| [Grid](../reference/arkui-cj/cj-scroll-swipe-grid.md) | Yes     | true         |
+| [GridItem](../reference/arkui-cj/cj-scroll-swipe-griditem.md) | Yes     | true         |
+| [List](../reference/arkui-cj/cj-scroll-swipe-list.md) | Yes     | true         |
+| [ListItem](../reference/arkui-cj//cj-scroll-swipe-listitem.md) | Yes     | true         |
+| [ListItemGroup](../reference/arkui-cj/cj-scroll-swipe-listgroup.md) | Yes     | true         |
+| [Navigator](../reference/arkui-cj/cj-navigation-switching-navigation.md) | Yes     | true         |
+| [Refresh](../reference/arkui-cj/cj-scroll-swipe-refresh.md) | Yes     | true        |
+| [RelativeContainer](../reference/arkui-cj/cj-row-column-stack-relativecontainer.md) | No     | false         |
+| [Row](../reference/arkui-cj/cj-row-column-stack-row.md) | Yes    | true         |
+| [RowSplit](../reference/arkui-cj/cj-grid-layout-rowsplit.md) | Yes     | true         |
+| [Scroll](../reference/arkui-cj/cj-scroll-swipe-scroll.md) | Yes     | true         |
+| [SideBarContainer](../reference/arkui-cj/cj-grid-layout-sidebar.md) | Yes     | true         |
+| [Stack](../reference/arkui-cj/cj-row-column-stack-stack.md) | Yes     | true         |
+| [Swiper](../reference/arkui-cj/cj-scroll-swipe-swiper.md) | Yes     | true         |
+| [Tabs](../reference/arkui-cj/cj-navigation-switching-tabs.md) | Yes     | true         |
 
 Media component focus capabilities are as follows:
 
-| Media Component                                     | Can Be Focused | Default focusable Value |
+| Media Component                                     | Can Gain Focus | Default focusable Value |
 | :---------------------------------------- | :------- | :------------ |
-| [Video](../../../en/application-dev/reference/arkui-cj/cj-image-video-video.md) | Yes     | true         |
+| [Video](../reference/arkui-cj/cj-image-video-video.md) | Yes     | true         |

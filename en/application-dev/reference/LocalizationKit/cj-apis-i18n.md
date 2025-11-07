@@ -1,6 +1,6 @@
 # ohos.i18n (Internationalization-I18n)
 
-This module provides system-related or enhanced internationalization capabilities, including locale management, phone number processing, calendars, etc. The interfaces here serve as supplements to those not defined in the ECMA 402 standard. The Intl module offers basic internationalization interfaces defined by ECMA 402, and when used together with this module, they provide comprehensive internationalization support.
+This module provides system-related or enhanced internationalization capabilities, including locale management, phone number processing, calendars, etc. The interfaces here supplement those not defined in the ECMA 402 standard. The Intl module offers basic internationalization interfaces as defined by ECMA 402 standard, which when used together with this module provide comprehensive internationalization support.
 
 ## Importing the Module
 
@@ -10,12 +10,12 @@ import kit.LocalizationKit.*
 
 ## Usage Instructions
 
-API example code usage instructions:
+API sample code usage instructions:
 
-- If the first line of example code contains a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the sample code begins with a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the sample requires obtaining [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the example project and configuration template mentioned above, refer to [Cangjie Example Code Instructions](../cj-development-intro.md#Cangjie-example-code-instructions).
+For details about the aforementioned sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## func getCalendar(String, ?CalendarType)
 
@@ -26,13 +26,13 @@ public func getCalendar(locale: String, calendarType!: ?CalendarType = None): Ca
 **Function:** Obtains a calendar object corresponding to the specified locale and calendar type.  
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| locale | String | Yes | - | A string representing locale information, composed of language, script, country, or region. |
+| locale | String | Yes | - | A string representing locale information, composed of language, script, country or region. |
 | calendarType | ?CalendarType | No | None | The calendar type. |
 
 **Return Value:**
@@ -49,8 +49,14 @@ public func getCalendar(locale: String, calendarType!: ?CalendarType = None): Ca
 // index.cj
 
 import ohos.i18n.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US", calendarType: CalendarType.Buddhist) // Obtains a Buddhist calendar object based on the en-US locale.
+try {
+    let calendar = getCalendar("en-US", calendarType: CalendarType.Buddhist) // Obtains a Buddhist calendar object based on en-US locale
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## class Calendar
@@ -63,7 +69,7 @@ public class Calendar {}
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 ### func add(String, Int32)
 
@@ -75,13 +81,13 @@ public func add(field: String, amount: Int32): Unit
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| field | String | Yes | - | Specifies the calendar field to operate on. Currently supported field values include year, month, week_of_year, week_of_month, date, day_of_year, day_of_week, day_of_week_in_month, hour, hour_of_day, minute, second, millisecond. |
+| field | String | Yes | - | Specifies the calendar field for the operation. Currently supported field values include year, month, week_of_year, week_of_month, date, day_of_year, day_of_week, day_of_week_in_month, hour, hour_of_day, minute, second, millisecond. |
 | amount | Int32 | Yes | - | The specific value for the addition or subtraction operation. |
 
 **Example:**
@@ -92,11 +98,17 @@ public func add(field: String, amount: Int32): Unit
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("zh-Hans")
-calendar.set(2021,11,11) // Set time to 2021.12.11
-calendar.add("year", 3)
-let res = calendar.get("year") // res = 2024
+try {
+    let calendar = getCalendar("zh-Hans")
+    calendar.set(2021,11,11) // set time to 2021.12.11
+    calendar.add("year", 3)
+    let res = calendar.get("year") // res = 2024
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func get(String)
@@ -105,17 +117,17 @@ let res = calendar.get("year") // res = 2024
 public func get(field: String): Int32
 ```
 
-**Function:** Obtains the value associated with the specified field in the calendar object.  
+**Function:** Gets the value associated with the specified field in the calendar object.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| field | String | Yes | - | Obtains the corresponding value of the calendar object through the field. For currently supported field values, refer to the table below. |
+| field | String | Yes | - | Retrieves the corresponding value from the calendar object via the field. For currently supported field values, refer to the table below. |
 
 **Return Value:**
 
@@ -131,15 +143,21 @@ public func get(field: String): Int32
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US")
-calendar.set(2024, 1, 1, hour: 12, minute: 30, second: 30)
-let year = calendar.get("year") // 2024
-let month = calendar.get("month") // 1
-let date = calendar.get("date") // 1
-let hour = calendar.get("hour_of_day") // 12
-let minute = calendar.get("minute") // 30
-let second = calendar.get("second") // 30
+try {
+    let calendar = getCalendar("en-US")
+    calendar.set(2024, 1, 1, hour: 12, minute: 30, second: 30)
+    let year = calendar.get("year") // 2024
+    let month = calendar.get("month") // 1
+    let date = calendar.get("date") // 1
+    let hour = calendar.get("hour_of_day") // 12
+    let minute = calendar.get("minute") // 30
+    let second = calendar.get("second") // 30
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getDisplayName(String)
@@ -148,23 +166,23 @@ let second = calendar.get("second") // 30
 public func getDisplayName(locale: String): String
 ```
 
-**Function:** Obtains the name of the calendar object in the specified locale.  
+**Function:** Gets the name of the calendar object in the specified locale.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| locale | String | Yes | - | A string representing locale information, composed of language, script, country, or region. |
+| locale | String | Yes | - | A string representing locale information, composed of language, script, country or region. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The name of the calendar in the locale specified by `locale`. For example, "Buddhist" displays as "Buddhist Calendar" in en-US. |
+| String | The name of the calendar in the locale indicated. For example, "Buddhist Calendar" is displayed for "buddhist" in en-US. |
 
 **Example:**
 
@@ -175,9 +193,15 @@ public func getDisplayName(locale: String): String
 
 import kit.LocalizationKit.getCalendar
 import ohos.i18n.CalendarType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US", calendarType: CalendarType.Buddhist)
-let res = calendar.getDisplayName("zh") // res = "佛历"
+try {
+    let calendar = getCalendar("en-US", calendarType: CalendarType.Buddhist)
+    let res = calendar.getDisplayName("zh") // res = "佛历"
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getFirstDayOfWeek()
@@ -186,17 +210,17 @@ let res = calendar.getDisplayName("zh") // res = "佛历"
 public func getFirstDayOfWeek(): Int32
 ```
 
-**Function:** Obtains the first day of the week for the calendar object.  
+**Function:** Gets the first day of the week for the calendar object.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Int32 | The first day of the week, where 1 represents Sunday and 7 represents Saturday. |
+| Int32 | Gets the first day of the week, where 1 represents Sunday and 7 represents Saturday. |
 
 **Example:**
 
@@ -206,9 +230,15 @@ public func getFirstDayOfWeek(): Int32
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US")
-let res = calendar.getFirstDayOfWeek() // res = 1
+try {
+    let calendar = getCalendar("en-US")
+    let res = calendar.getFirstDayOfWeek() // res = 1
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getMinimalDaysInFirstWeek()
@@ -217,17 +247,17 @@ let res = calendar.getFirstDayOfWeek() // res = 1
 public func getMinimalDaysInFirstWeek(): Int32
 ```
 
-**Function:** Obtains the minimal number of days in the first week of the year.  
+**Function:** Gets the minimal number of days in the first week of the year.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| Int32 | The minimal number of days in the first week of the year. This indicates the minimum number of days required to determine the first week of the year. For example, if this value is set to 4, the first week of the year must contain at least 4 days; otherwise, these days will be counted as part of the last week of the previous year. This setting ensures that week numbering conforms to regional customs. |
+| Int32 | The minimal number of days in the first week of the year. This indicates the minimum number of days required to determine the first week of the year. For example, if this value is set to 4, then the first week of the year must contain at least 4 days; otherwise, these days will be counted as part of the last week of the previous year. This setting helps ensure week numbering conforms to regional customs. |
 
 **Example:**
 
@@ -237,9 +267,15 @@ public func getMinimalDaysInFirstWeek(): Int32
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("zh-Hans")
-let res = calendar.getMinimalDaysInFirstWeek() // res = 1
+try {
+    let calendar = getCalendar("zh-Hans")
+    let res = calendar.getMinimalDaysInFirstWeek() // res = 1
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getTimeInMillis()
@@ -248,11 +284,11 @@ let res = calendar.getMinimalDaysInFirstWeek() // res = 1
 public func getTimeInMillis(): Float64
 ```
 
-**Function:** Obtains the current calendar's UTC time in milliseconds.  
+**Function:** Gets the current calendar's UTC time in milliseconds.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Return Value:**
 
@@ -268,10 +304,16 @@ public func getTimeInMillis(): Float64
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US")
-calendar.setTime(5000.0)
-let millis = calendar.getTimeInMillis() // millis = 5000
+try {
+    let calendar = getCalendar("en-US")
+    calendar.setTime(5000.0)
+    let millis = calendar.getTimeInMillis() // millis = 5000
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func getTimeZone()
@@ -280,11 +322,11 @@ let millis = calendar.getTimeInMillis() // millis = 5000
 public func getTimeZone(): String
 ```
 
-**Function:** Obtains the time zone of the calendar object.  
+**Function:** Gets the time zone of the calendar object.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Return Value:**
 
@@ -301,10 +343,16 @@ public func getTimeZone(): String
 
 import kit.LocalizationKit.getCalendar
 import ohos.i18n.CalendarType
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("zh-Hans", calendarType: CalendarType.Chinese)
-calendar.setTimeZone("Asia/Shanghai")
-let timeZone = calendar.getTimeZone() // timeZone = "Asia/Shanghai"
+try {
+    let calendar = getCalendar("zh-Hans", calendarType: CalendarType.Chinese)
+    calendar.setTimeZone("Asia/Shanghai")
+    let timeZone = calendar.getTimeZone() // timeZone = "Asia/Shanghai"
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func set(Int32, Int32, Int32, ?Int32, ?Int32, ?Int32)
@@ -317,14 +365,14 @@ public func set(year: Int32, month: Int32, date: Int32, hour!: ?Int32 = None, mi
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | year | Int32 | Yes | - | The year to set. |
-| month | Int32 | Yes | - | The month to set. Note: Months are counted from 0, where 0 represents January. |
+| month | Int32 | Yes | - | The month to set. Note: Months start from 0, where 0 represents January. |
 | date | Int32 | Yes | - | The day to set. |
 | hour | ?Int32 | No | None | **Named parameter.** The hour to set. -1 represents the system hour. |
 | minute | ?Int32 | No | None | **Named parameter.** The minute to set. -1 represents the system minute. |
@@ -338,9 +386,15 @@ public func set(year: Int32, month: Int32, date: Int32, hour!: ?Int32 = None, mi
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("zh-Hans")
-calendar.set(2021,11,11)  // Set time to 2021.12.11
+try {
+    let calendar = getCalendar("zh-Hans")
+    calendar.set(2021,11,11)  // set time to 2021.12.11
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setFirstDayOfWeek(Int32)
@@ -353,13 +407,13 @@ public func setFirstDayOfWeek(value: Int32): Unit
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Int32 | Yes | - | The first day of the week to set, where 1 represents Sunday and 7 represents Saturday. |
+| value | Int32 | Yes | - | Sets the first day of the week, where 1 represents Sunday and 7 represents Saturday. |
 
 **Example:**
 
@@ -369,10 +423,16 @@ public func setFirstDayOfWeek(value: Int32): Unit
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("zh-Hans")
-calendar.setFirstDayOfWeek(3)
-let firstDayOfWeek = calendar.getFirstDayOfWeek() // firstDayOfWeek = 3
+try {
+    let calendar = getCalendar("zh-Hans")
+    calendar.setFirstDayOfWeek(3)
+    let firstDayOfWeek = calendar.getFirstDayOfWeek() // firstDayOfWeek = 3
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setMinimalDaysInFirstWeek(Int32)
@@ -385,13 +445,13 @@ public func setMinimalDaysInFirstWeek(value: Int32): Unit
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | Int32 | Yes | - | The minimal number of days in the first week of the year. This indicates the minimum number of days required to determine the first week of the year. For example, if this value is set to 4, the first week of the year must contain at least 4 days; otherwise, these days will be counted as part of the last week of the previous year. This setting ensures that week numbering conforms to regional customs. |
+| value | Int32 | Yes | - | The minimal number of days in the first week of the year. This indicates the minimum number of days required to determine the first week of the year. For example, if this value is set to 4, then the first week of the year must contain at least 4 days; otherwise, these days will be counted as part of the last week of the previous year. This setting helps ensure week numbering conforms to regional customs. |
 
 **Example:**
 
@@ -401,10 +461,16 @@ public func setMinimalDaysInFirstWeek(value: Int32): Unit
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("zh-Hans")
-calendar.setMinimalDaysInFirstWeek(3)
-let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek() // minimalDaysInFirstWeek = 3
+try {
+    let calendar = getCalendar("zh-Hans")
+    calendar.setMinimalDaysInFirstWeek(3)
+    let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek() // minimalDaysInFirstWeek = 3
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setTime(Float64)
@@ -413,11 +479,11 @@ let minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek() // minimalDays
 public func setTime(time: Float64): Unit
 ```
 
-**Function:** Sets the internal date and time of the calendar object, where `time` is the number of milliseconds elapsed since 1970.1.1 00:00:00 GMT.  
+**Function:** Sets the internal date and time of the calendar object, where time is the number of milliseconds elapsed since 1970.1.1 00:00:00 GMT.  
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
@@ -433,9 +499,15 @@ public func setTime(time: Float64): Unit
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US")
-calendar.setTime(10540800000.0)
+try {
+    let calendar = getCalendar("en-US")
+    calendar.setTime(10540800000.0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ### func setTimeZone(String)
@@ -448,7 +520,7 @@ public func setTimeZone(timeZone: String): Unit
 
 **System Capability:** SystemCapability.Global.I18n  
 
-**Initial Version:** 21  
+**Since:** 22  
 
 **Parameters:**
 
@@ -464,9 +536,15 @@ public func setTimeZone(timeZone: String): Unit
 // index.cj
 
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let calendar = getCalendar("en-US")
-calendar.setTimeZone("Asia/Shanghai")
+try {
+    let calendar = getCalendar("en-US")
+    calendar.setTimeZone("Asia/Shanghai")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```## class System
 
 ```cangjie
@@ -477,7 +555,7 @@ public class System {}
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### static func getAppPreferredLanguage()
 
@@ -489,7 +567,7 @@ public static func getAppPreferredLanguage(): String
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 **Return Value:**
 
@@ -503,10 +581,17 @@ public static func getAppPreferredLanguage(): String
 
 ```cangjie
 // index.cj
+
 import ohos.i18n.*
 import kit.LocalizationKit.getCalendar
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let appPreferredLanguage = System.getAppPreferredLanguage() // Get the application's preferred language
+try {
+    let appPreferredLanguage = System.getAppPreferredLanguage() // Get application preferred language
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```
 
 ## enum CalendarType
@@ -533,7 +618,7 @@ public enum CalendarType {
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Buddhist
 
@@ -545,7 +630,7 @@ Buddhist
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Chinese
 
@@ -557,7 +642,7 @@ Chinese
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Coptic
 
@@ -569,7 +654,7 @@ Coptic
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Ethiopic
 
@@ -581,7 +666,7 @@ Ethiopic
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Hebrew
 
@@ -593,7 +678,7 @@ Hebrew
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Gregory
 
@@ -605,7 +690,7 @@ Gregory
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Indian
 
@@ -617,7 +702,7 @@ Indian
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### IslamicCivil
 
@@ -629,7 +714,7 @@ IslamicCivil
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### IslamicTbla
 
@@ -641,7 +726,7 @@ IslamicTbla
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### IslamicUmalqura
 
@@ -653,7 +738,7 @@ IslamicUmalqura
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Japanese
 
@@ -665,7 +750,7 @@ Japanese
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22
 
 ### Persian
 
@@ -677,4 +762,4 @@ Persian
 
 **System Capability:** SystemCapability.Global.I18n
 
-**Since:** 21
+**Since:** 22

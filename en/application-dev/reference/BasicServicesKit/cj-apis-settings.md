@@ -2,7 +2,7 @@
 
 This module provides the capability to access setting data items.
 
-## Importing the Module
+## Import Module
 
 ```cangjie
 import kit.BasicServicesKit.*
@@ -10,10 +10,10 @@ import kit.BasicServicesKit.*
 
 ## Usage Instructions
 
-API sample code usage instructions:
+API example code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
-- If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
+- If the first line of example code has a "// index.cj" comment, it indicates that the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the example requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
 ## func getValue\<T>(UIAbilityContext, T, String) where T \<: ToString
 
@@ -25,14 +25,14 @@ public func getValue<T>(context: UIAbilityContext, name: T, defValue: String): S
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
-| name | T | Yes | - | Type T must implement the ToString interface. The name of the data item. Data item names fall into the following two categories: <br>- Any existing data item in the above databases. <br>- Data items added by developers themselves. |
+| name | T | Yes | - | Type T must implement the ToString interface. The name of the data item. Data item names fall into the following two categories:<br>- Any existing data item in the above databases.<br>- Data items added by developers themselves. |
 | defValue | String | Yes | - | Default value. Set by the developer, returned when the data is not found in the database. |
 
 **Return Value:**
@@ -48,6 +48,26 @@ public func getValue<T>(context: UIAbilityContext, name: T, defValue: String): S
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
   | The context is invalid. | Context initialization failed | Restart the application |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let value = getValue(context, Date.DateFormat, "MM/dd/yyyy")
+    Hilog.info(0, "cangjie_ohos_test", "Succeeded in getting date format: ${value}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## func getValue\<T, P>(UIAbilityContext, T, String, P) where T \<: ToStringP \<: ToString
 
@@ -60,16 +80,16 @@ public func getValue<T, P>(context: UIAbilityContext, name: T, defValue: String,
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | context | [UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext) | Yes | - | Application context. |
-| name | T | Yes | - | Type T must implement the ToString interface. The name of the data item. Data item names fall into the following two categories: <br>- Any existing data item in the above databases. <br>- Data items added by developers themselves. |
+| name | T | Yes | - | Type T must implement the ToString interface. The name of the data item. Data item names fall into the following two categories:<br>- Any existing data item in the above databases.<br>- Data items added by developers themselves. |
 | defValue | String | Yes | - | Default value. Set by the developer, returned when the data is not found in the database. |
-| domainName | P | Yes | - | Type P must implement the ToString interface. Specifies the domain name to set: <br> - domainName as DomainName.DEVICE_SHARED, <br>&nbsp;&nbsp;&nbsp;indicates the device property shared domain. <br>- domainName as DomainName.USER_PROPRERTY, <br>&nbsp;&nbsp;&nbsp;indicates the user property domain. |
+| domainName | P | Yes | - | Type P must implement the ToString interface. Specifies the domain to set:<br> - domainName is DomainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;indicating the device property shared domain.<br>- domainName is DomainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;indicating the user property domain. |
 
 **Return Value:**
 
@@ -84,6 +104,26 @@ public func getValue<T, P>(context: UIAbilityContext, name: T, defValue: String,
   | Error Message | Possible Cause | Handling Steps |
   | :---- | :--- | :--- |
   | The context is invalid. | Context initialization failed | Restart the application |
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let value = getValue(context, Display.ScreenBrightnessStatus, "100", DomainName.DeviceShared)
+    Hilog.info(0, "cangjie_ohos_test", "Succeeded in getting screen brightness: ${value}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ## enum Date
 
@@ -101,7 +141,7 @@ public enum Date <: ToString {
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -113,11 +153,31 @@ public enum Date <: ToString {
 AutoGainTime
 ```
 
-**Function:** Whether to automatically obtain the date, time, and time zone from the network. A value of true means automatic retrieval; false means no automatic retrieval.
+**Function:** Whether to automatically obtain date, time, and time zone from the network. A value of true means automatic retrieval; false means no automatic retrieval.
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let autoGainTime = getValue(context, Date.AutoGainTime, "false")
+    Hilog.info(0, "cangjie_ohos_test", "Auto gain time setting: ${autoGainTime}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### AutoGainTimeZone
 
@@ -129,7 +189,27 @@ AutoGainTimeZone
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let autoGainTimeZone = getValue(context, Date.AutoGainTimeZone, "false")
+    Hilog.info(0, "cangjie_ohos_test", "Auto gain time zone setting: ${autoGainTimeZone}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### DateFormat
 
@@ -141,7 +221,27 @@ DateFormat
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let dateFormat = getValue(context, Date.DateFormat, "MM/dd/yyyy")
+    Hilog.info(0, "cangjie_ohos_test", "Date format setting: ${dateFormat}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### TimeFormat
 
@@ -149,11 +249,31 @@ DateFormat
 TimeFormat
 ```
 
-**Function:** Whether time is displayed in 12-hour or 24-hour format. A value of "12" indicates 12-hour format; "24" indicates 24-hour format.
+**Function:** Whether time is displayed in 12-hour or 24-hour format. A value of "12" means 12-hour format; "24" means 24-hour format.
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let timeFormat = getValue(context, Date.TimeFormat, "24")
+    Hilog.info(0, "cangjie_ohos_test", "Time format setting: ${timeFormat}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func toString()
 
@@ -165,13 +285,13 @@ public override func toString(): String
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The data item for setting time and date formats. |
+| String | Data item for setting time and date formats. |
 
 ## enum Display
 
@@ -194,7 +314,7 @@ public enum Display <: ToString {
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -206,11 +326,31 @@ public enum Display <: ToString {
 AnimatorDurationScale
 ```
 
-**Function:** The scaling factor for animation duration. This affects the start delay and duration of all such animations. A value of 0 means the animation ends immediately; the default value is 1.
+**Function:** The scaling factor for animation duration. This affects the start delay and duration of all such animations. A value of 0 means animations will end immediately; the default value is 1.
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let durationScale = getValue(context, Display.AnimatorDurationScale, "1.0")
+    Hilog.info(0, "cangjie_ohos_test", "Animator duration scale: ${durationScale}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### AutoScreenBrightness
 
@@ -218,11 +358,31 @@ AnimatorDurationScale
 AutoScreenBrightness
 ```
 
-**Function:** When auto-rotation is enabled, this property is invalid. When auto-rotation is disabled, the following values are available: 0 means screen rotation of 0 degrees; 1 means 90 degrees; 2 means 180 degrees; 3 means 270 degrees.
+**Function:** When auto-rotation is enabled, this property is invalid; when auto-rotation is disabled, the following values are available: 0 means screen rotation of 0 degrees; 1 means 90 degrees; 2 means 180 degrees; 3 means 270 degrees.
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let autoBrightness = getValue(context, Display.AutoScreenBrightness, "0")
+    Hilog.info(0, "cangjie_ohos_test", "Auto screen brightness setting: ${autoBrightness}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### DefaultScreenRotation
 
@@ -230,11 +390,31 @@ AutoScreenBrightness
 DefaultScreenRotation
 ```
 
-**Function:** When auto-rotation is enabled, this property is invalid. When auto-rotation is disabled, the following values are available: 0 means screen rotation of 0 degrees; 1 means 90 degrees; 2 means 180 degrees; 3 means 270 degrees.
+**Function:** When auto-rotation is enabled, this property is invalid; when auto-rotation is disabled, the following values are available: 0 means screen rotation of 0 degrees; 1 means 90 degrees; 2 means 180 degrees; 3 means 270 degrees.
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let rotation = getValue(context, Display.DefaultScreenRotation, "0")
+    Hilog.info(0, "cangjie_ohos_test", "Default screen rotation setting: ${rotation}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### DisplayInversionStatus
 
@@ -246,7 +426,27 @@ DisplayInversionStatus
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let inversion = getValue(context, Display.DisplayInversionStatus, "0")
+    Hilog.info(0, "cangjie_ohos_test", "Display inversion status: ${inversion}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### FontScale
 
@@ -258,7 +458,27 @@ FontScale
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let fontScale = getValue(context, Display.FontScale, "1.0")
+    Hilog.info(0, "cangjie_ohos_test", "Font scale setting: ${fontScale}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### ScreenBrightnessStatus
 
@@ -270,7 +490,27 @@ ScreenBrightnessStatus
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let brightness = getValue(context, Display.ScreenBrightnessStatus, "128")
+    Hilog.info(0, "cangjie_ohos_test", "Screen brightness setting: ${brightness}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### ScreenOffTimeout
 
@@ -282,7 +522,27 @@ ScreenOffTimeout
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let timeout = getValue(context, Display.ScreenOffTimeout, "30000")
+    Hilog.info(0, "cangjie_ohos_test", "Screen off timeout setting: ${timeout} ms")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### TransitionAnimationScale
 
@@ -294,7 +554,27 @@ TransitionAnimationScale
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let transitionScale = getValue(context, Display.TransitionAnimationScale, "1.0")
+    Hilog.info(0, "cangjie_ohos_test", "Transition animation scale: ${transitionScale}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### WindowAnimationScale
 
@@ -306,7 +586,27 @@ WindowAnimationScale
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let windowScale = getValue(context, Display.WindowAnimationScale, "1.0")
+    Hilog.info(0, "cangjie_ohos_test", "Window animation scale: ${windowScale}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func toString()
 
@@ -318,15 +618,13 @@ public override func toString(): String
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| String | The data item for setting display effects. |
-
-## enum DomainName
+| String | Data item for setting display effects. |## enum DomainName
 
 ```cangjie
 public enum DomainName <: ToString {
@@ -336,11 +634,11 @@ public enum DomainName <: ToString {
 }
 ```
 
-**Function:** Provides domain names for queries.
+**Function:** Provides query domain names.
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Parent Type:**
 
@@ -356,7 +654,27 @@ DeviceShared
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let value = getValue(context, Display.ScreenBrightnessStatus, "100", DomainName.DeviceShared)
+    Hilog.info(0, "cangjie_ohos_test", "Device shared screen brightness: ${value}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### UserProperty
 
@@ -368,7 +686,27 @@ UserProperty
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// main_ability.cj
+
+import kit.BasicServicesKit.*
+import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
+
+try {
+    let context = Global.getAbilityContext()
+    let value = getValue(context, Display.ScreenBrightnessStatus, "100", DomainName.UserProperty)
+    Hilog.info(0, "cangjie_ohos_test", "User property screen brightness: ${value}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```
 
 ### func toString()
 
@@ -380,10 +718,11 @@ public override func toString(): String
 
 **System Capability:** SystemCapability.Applications.Settings.Core
 
-**Initial Version:** 21
+**Since:** 22
 
 **Return Value:**
 
-| Type | Description |
+|Type|Description|
 |:----|:----|
-| String | The string corresponding to the query domain name. |
+|String|String corresponding to the query domain name.|
+```

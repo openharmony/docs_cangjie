@@ -17,11 +17,11 @@ This error code indicates parameter validation failure. Possible causes include:
 1. The tokenId value is 0.
 2. The specified permission name is empty or exceeds 256 characters in length.
 3. The flag value for requesting authorization/revocation is invalid.
-4. Parameter check error for registering listeners.
+4. Parameter check failed for listener registration.
 
 **Resolution**
 
-Check input parameters and correct them to valid values.
+Verify input parameters and correct them to valid values.
 
 ## 12100002 tokenId Does Not Exist
 
@@ -36,7 +36,7 @@ TokenId does not exist.
 
 **Resolution**
 
-Check input parameters and correct them to valid values.
+Verify input parameters and correct them to valid values.
 
 ## 12100003 Permission Does Not Exist
 
@@ -47,14 +47,14 @@ Permission does not exist.
 **Possible Causes**
 
 1. The specified permissionName does not exist.
-2. In authorization/revocation scenarios, the specified application tokenId has not applied for the specified permissionName.
+2. In authorization/revocation scenarios, the specified application tokenId has not requested the specified permissionName.
 3. In permission usage record scenarios, the specified permissionName is not a user-authorized sensitive permission.
 
 **Resolution**
 
-Check input parameters and correct them to valid values. [Permission List](../../../en/application-dev/security/AccessToken/cj-app-permissions.md#application-permission-list).
+Verify input parameters and correct them to valid values. [Permission List](../security/AccessToken/cj-app-permissions.md#application-permission-list).
 
-## 12100004 Interface Not Used in Conjunction
+## 12100004 Interfaces Not Used in Pairs
 
 **Error Message**
 
@@ -62,15 +62,15 @@ The interface is not used together.
 
 **Possible Causes**
 
-This error code indicates listener interfaces are not used in conjunction. Possible causes include:
+This error code indicates listener interfaces were not used in pairs. Possible causes include:
 
-1. The current interface is called repeatedly without proper conjunction.
-2. The current interface is called standalone without proper conjunction.
+1. The current interface was called repeatedly without being used in pairs.
+2. The current interface was called individually without being used in pairs.
 
 **Resolution**
 
-1. Verify whether the current interface requires conjunction usage. For example, after calling the start recording interface, the same parameters cannot be used to call it again before calling the stop recording interface.
-2. Check if the current interface requires conjunction usage. For example, the stop recording interface must be called after the start recording interface, and the unregister listener interface must be called after the register listener interface.
+1. Verify whether the current interface requires paired usage. For example, after calling the start recording interface, the same parameters cannot be used to call the start recording interface again before calling the stop recording interface.
+2. Verify whether the current interface requires paired usage. For example, the stop recording interface must be called after the start recording interface, and the unregister listener interface must be called after the register listener interface.
 
 ## 12100005 Listener Limit Exceeded
 
@@ -80,13 +80,13 @@ The number of listeners exceeds the limit.
 
 **Possible Causes**
 
-This error code indicates the current number of listeners exceeds the limit of 200.
+This error code indicates the current number of listeners has exceeded the limit of 200.
 
 **Resolution**
 
-Promptly release unused registered listeners.
+Release unused registered listeners promptly.
 
-## 12100006 Specified Application Does Not Support Granting/Revoking Specified Permissions
+## 12100006 Specified Application Does Not Support Permission Grant/Revocation
 
 **Error Message**
 
@@ -95,12 +95,12 @@ The specified application does not support the permissions granted or ungranted 
 **Possible Causes**
 
 1. The input tokenId is the identity of a remote device, which does not yet support distributed authorization and revocation.
-2. The specified tokenId in the input parameters is a sandbox application prohibited from applying for the specified permissions.
+2. The specified tokenId corresponds to a sandbox application that is prohibited from requesting the specified permission.
 
 **Resolution**
 
 1. Verify whether the tokenId was obtained correctly.
-2. Confirm if the target sandbox application is a special restricted sandbox process, as certain sandbox modes prohibit granting most permissions.
+2. Confirm whether the sandbox application to be authorized is a special restricted sandbox application process. Sandbox applications in certain modes are prohibited from being granted most permissions.
 
 ## 12100007 System Service Exception
 
@@ -113,11 +113,11 @@ Service is abnormal.
 This error code indicates abnormal system service operation:
 
 1. The permission management service failed to start normally.
-2. IPC data read/write failure.
+2. IPC data read/write failed.
 
 **Resolution**
 
-Internal system service error. Please retry later or restart the device.
+The system service encountered an internal exception. Please retry later or restart the device.
 
 ## 12100008 Memory Allocation Failure
 
@@ -131,7 +131,7 @@ Insufficient system memory.
 
 **Resolution**
 
-System memory is insufficient. Please retry later or restart the device.
+The system has insufficient memory. Please retry later or restart the device.
 
 ## 12100009 Internal Service Error
 
@@ -145,7 +145,7 @@ Internal system service error.
 
 **Resolution**
 
-Internal logic error. Further analysis with fault logs is required.
+An internal logic error occurred. Further analysis with fault logs is required.
 
 ## 12100010 Pending Request Exists
 
@@ -159,7 +159,7 @@ The previous request has not been processed.
 
 **Resolution**
 
-Please complete processing the previous request.
+Please complete processing of the previous request.
 
 ## 12100011 All Permissions Already Granted
 
@@ -173,9 +173,9 @@ All permissions have already been granted.
 
 **Resolution**
 
-No action needed. This error code indicates requested permissions are already granted and will not trigger a permission settings dialog.
+No action needed. This error code indicates the requested permissions are already granted, and no permission setting dialog will be displayed.
 
-## 12100012 Permission List Contains Non-User-Revoked Permissions
+## 12100012 Permission List Contains Non-Revoked Permissions
 
 **Error Message**
 
@@ -183,7 +183,7 @@ The permission list contains the permission that has not been revoked by the use
 
 **Possible Causes**
 
-Contains permissions not previously revoked by the user.
+Contains permissions not previously denied by the user.
 
 **Resolution**
 
@@ -201,4 +201,4 @@ The global switch is already enabled.
 
 **Resolution**
 
-No action needed. This error code indicates the global switch is already enabled and will not trigger a global switch settings dialog.
+No action needed. This error code indicates the global switch is already enabled, and no global switch setting dialog will be displayed.

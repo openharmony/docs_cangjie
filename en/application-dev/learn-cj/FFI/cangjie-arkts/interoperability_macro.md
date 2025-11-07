@@ -12,7 +12,7 @@ Currently, for functions (asynchronous functions), interfaces, and classes that 
 
 After successfully inserting a Cangjie interop module into an ArkTS project, custom methods can be implemented in the generated index.cj file. For example:
 
-1. Implement a Cangjie function named `addF64` and annotate it with `@Interop[ArkTS]` to mark it as an interop function. Assume the file is named demo.cj with the following content:
+1. Implement a Cangjie function named `addF64` and annotate it with `@Interop[ArkTS]` to mark it as an interop function. Assume the file is named demo.cj, with the following content:
 
    ```cangjie
    // Define the package name, which must match the package name in cjpm.toml
@@ -27,11 +27,11 @@ After successfully inserting a Cangjie interop module into an ArkTS project, cus
    }
    ```
 
-2. In DevEco Studio, select the Cangjie file demo.cj, right-click in the file editor, and choose **Generate... > Cangjie-ArkTS Interop API**. This will generate the Index.d.ts declaration file and oh_package.json5 configuration file in the **cangjie->types->libohos_app_cangjie_entry** directory, as well as the ark_interop_api.d.ts declaration file and oh_package.json5 configuration file in the **cangjie -> ark_interop_api** directory.
+2. In DevEco Studio, right-click the Cangjie file demo.cj, select **Generate... > Cangjie-ArkTS Interop API**. This will generate the Index.d.ts declaration file and oh_package.json5 configuration file in the **cangjie->types->libohos_app_cangjie_entry** directory, as well as the ark_interop_api.d.ts declaration file and oh_package.json5 configuration file in the **cangjie -> ark_interop_api** directory.
 
     > **Note:**
     >
-    > The .d.ts file generated in the ark_interop_api directory is for compatibility with applications running on OpenHarmony 12 Release or later. If there is no compatibility requirement, this folder can be ignored.
+    > The .d.ts file generated in the ark_interop_api directory is for compatibility with applications running on OpenHarmony 12 Release or later. If there are no compatibility requirements, this folder can be ignored.
 
    The content of Index.d.ts in the types->libohos_app_cangjie_entry directory is as follows:
 
@@ -96,7 +96,7 @@ After successfully inserting a Cangjie interop module into an ArkTS project, cus
 >   public func addNumber(a: Float64) : Unit {} // Compilation error in the same package; symbol conflicts may occur in parent-child packages
 >   ```
 >
-> - Functions, interfaces, and classes annotated with `@Interop` must not have the same name as those registered to JSModule using JSModule.registerModule, JSModule.registerClass, or JSModule.registerFunc.
+> - Functions, interfaces, and classes annotated with `@Interop` must not have the same name as those registered with JSModule.registerModule, JSModule.registerClass, or JSModule.registerFunc.
 >
 >   Incorrect example:
 >
@@ -106,7 +106,7 @@ After successfully inserting a Cangjie interop module into an ArkTS project, cus
 >
 >   func addFloat() {}
 >   let EXPORT_MODULE = JSModule.registerModule {
->       runtime, exports => exports["addNumber"] = runtime.function(addFloat).toJSValue() // Overrides the addNumber function annotated with @Interop
+>       runtime, exports => exports["addNumber"] = runtime.function(addFloat).toJSValue() // Will override the addNumber function annotated with @Interop
 >   }
 >   ```
 
@@ -126,7 +126,7 @@ console.log("result " + addF64(1, 2))
 
 ## Detailed Scenario Descriptions
 
-The declarative interop macros can annotate functions (asynchronous functions), interfaces, and classes. Usage recommendations for different scenarios are as follows:
+The declarative interop macros can annotate functions (asynchronous functions), interfaces, and classes. The recommended usage for different scenarios is as follows:
 
 | Scenario | Type | Annotation |
 | :--- | :--- | :--- |
@@ -144,7 +144,7 @@ Functions annotated with declarative interop macros must meet the following cond
 - Named parameters are supported, but ArkTS calling methods are the same as for non-named parameters
 - Default values are not supported
 
-For an example of function interop usage, refer to [Usage Instructions](#usage-instructions).
+For function interop usage examples, refer to [Usage Instructions](#usage-instructions).
 
 ### Asynchronous Functions
 
@@ -154,9 +154,9 @@ Asynchronous functions annotated with declarative interop macros must meet the f
 - Type parameters are not supported
 - Named parameters are supported, but ArkTS calling methods are the same as for non-named parameters
 - Default values are not supported
-- The `JSStringEx`, `JSArrayEx<T>`, and `JSHashMapEx<K, V>` types cannot be used in asynchronous functions
+- The types `JSStringEx`, `JSArrayEx<T>`, and `JSHashMapEx<K, V>` cannot be used in asynchronous functions
 
-Example of asynchronous function interop usage:
+Example of asynchronous function interop:
 
 ```cangjie
 // Create an interop function on the Cangjie side
@@ -195,12 +195,12 @@ Interfaces annotated with declarative interop macros must meet the following con
 
 - Must be annotated with `public`
 - Type parameters are not supported
-- Inheriting other interfaces is not supported
+- Inheritance from other interfaces is not supported
 - Member functions without modifiers are supported, with other restrictions matching those for functions
 - Operator overloading is not supported
 - Member properties are supported, including the `mut` modifier
 
-Example of interface interop usage:
+Example of interface interop:
 
 ```cangjie
 // Create an interop function on the Cangjie side
@@ -252,10 +252,10 @@ Classes annotated with declarative interop macros must meet the following condit
 
 - Must be annotated with `public`
 - Type parameters are not supported
-- Inheriting other classes is supported but not expanded
-- Inheriting interfaces is supported but not expanded
+- Inheritance from other classes is supported but not expanded
+- Inheritance from interfaces is supported but not expanded
 - Static initializers are not supported
-- If there is only one regular constructor or primary constructor, it must be annotated with `public`. Other modifiers are not supported, member variable parameters are not supported, and parameter default values are not supported
+- If there is only one regular constructor or primary constructor, it must be annotated with `public`; other modifiers are not supported, member variable parameters are not supported, and default parameter values are not supported
 - Member variables can have default values, must be annotated with `public`, other modifiers are not supported, and variable type annotations cannot be omitted
 - Operator overloading is not supported
 - Member properties must be annotated with `public`
@@ -264,7 +264,7 @@ Classes annotated with declarative interop macros must meet the following condit
 >
 > Class constraints apply only to members intended to be exposed to ArkTS. Members not intended to be exposed can be marked by omitting the `public` modifier or using `@Interop[ArkTS, Invisible]`.
 
-Example of class interop usage:
+Example of class interop:
 
 ```cangjie
 // Create an interop function on the Cangjie side
@@ -345,15 +345,15 @@ console.log("result " + class1.value2);
 
 ## Type Mapping
 
-The declarative interop macros support the following data type conversions.
+The declarative interop macros support the following data type conversions:
 
-| Cangjie Type | ArkTS Equivalent | Notes |
+| Cangjie Type | ArkTS Corresponding Type | Notes |
 | :----------------------------------------------------------- | :------------- | :----------------------------------------------------------- |
 | Int8, Int16, Int32, Int64, UInt8, UInt16, UInt32, UInt64, Float16, Float32, Float64 | number | - |
 | Bool | boolean | - |
 | String, JSStringEx | string | - |
 | Unit | undefined | - |
-| Option\<T> | T \| undefined | T cannot be Option\<T> or a function type. If T is a custom type (class or interface), it must be annotated with Interop macros |
+| Option\<T> | T \| undefined | T cannot be of type Option\<T> or function type. If T is a custom type (class or interface), it must be annotated with Interop macros |
 | func | function | - |
 | JSArrayEx\<T> | Array\<T> | T cannot be a function type. If T is a custom type (class or interface), it must be annotated with Interop macros |
 | JSHashMapEx\<K, V> | Map\<K, V> | V cannot be a function type. If V is a custom type (class or interface), it must be annotated with Interop macros |
@@ -363,6 +363,6 @@ The declarative interop macros support the following data type conversions.
 
 > **Warning:**
 >
-> - In function signatures annotated with `Interop` macros and in type annotations for member variables and properties, syntax sugar such as `?T` for `Option<T>` is not supported.
+> - In function signatures annotated with `Interop` macros and in type annotations for member variables and properties, syntax sugar (e.g., `?T` for `Option<T>`) is not supported.
 >
-> - The `JSStringEx`, `JSArrayEx<T>`, and `JSHashMapEx<K, V>` types can only be used in functions, classes, and interfaces annotated with `Interop` macros.
+> - The types `JSStringEx`, `JSArrayEx<T>`, and `JSHashMapEx<K, V>` can only be used in functions, classes, and interfaces annotated with `Interop` macros.

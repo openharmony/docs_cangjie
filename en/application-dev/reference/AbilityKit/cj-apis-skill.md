@@ -1,6 +1,6 @@
 # ohos.skill
 
-This module introduces the skill tag object.
+This module introduces the Skill tag object.
 
 ## Import Module
 
@@ -15,7 +15,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## Usage Instructions
 
@@ -24,7 +24,7 @@ API sample code usage instructions:
 - If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For the above sample projects and configuration templates, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the aforementioned sample project and configuration template, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
 
 ## class Skill
 
@@ -37,11 +37,11 @@ public class Skill {
 }
 ```
 
-**Description:** The skill tag object. Third-party applications can obtain skill information via [getBundleInfoForSelf](./cj-apis-bundle_manager.md#static-func-getbundleinfoforselfint32), where the input parameter bundleFlags must include at least GET_BUNDLE_INFO_WITH_HAP_MODULE, GET_BUNDLE_INFO_WITH_ABILITY, and GET_BUNDLE_INFO_WITH_SKILL.
+**Function:** The Skill tag object. Third-party applications can obtain Skill information through [getBundleInfoForSelf](./cj-apis-bundle_manager.md#static-func-getbundleinfoforselfint32), where the input parameter bundleFlags must include GET_BUNDLE_INFO_WITH_HAP_MODULE, GET_BUNDLE_INFO_WITH_ABILITY, and GET_BUNDLE_INFO_WITH_SKILL.
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let actions
 
@@ -49,15 +49,15 @@ public class Skill {
 public let actions: Array<String>
 ```
 
-**Description:** The collection of Actions received by the Skill.
+**Function:** The collection of Actions received by the Skill.
 
 **Type:** Array\<String>
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let domainVerify
 
@@ -65,15 +65,15 @@ public let actions: Array<String>
 public let domainVerify: Bool
 ```
 
-**Description:** The DomainVerify value received by the Skill, only existing in AbilityInfo.
+**Function:** The DomainVerify value received by the Skill, only existing in AbilityInfo.
 
 **Type:** Bool
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let entities
 
@@ -81,15 +81,15 @@ public let domainVerify: Bool
 public let entities: Array<String>
 ```
 
-**Description:** The collection of Entities received by the Skill.
+**Function:** The collection of Entities received by the Skill.
 
 **Type:** Array\<String>
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let uris
 
@@ -97,15 +97,15 @@ public let entities: Array<String>
 public let uris: Array<SkillUri>
 ```
 
-**Description:** The collection of URIs for Want matching.
+**Function:** The collection of URIs for Want matching.
 
 **Type:** Array\<[SkillUri](#class-skilluri)>
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ## class SkillUri
 
@@ -124,11 +124,11 @@ public class SkillUri {
 }
 ```
 
-**Description:** Describes URI identification information.
+**Function:** Describes URI identification information.
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let host
 
@@ -136,15 +136,15 @@ public class SkillUri {
 public let host: String
 ```
 
-**Description:** Identifies the host address portion of the URI, meaningful only when scheme exists.
+**Function:** Identifies the host address part of the URI, meaningful only when scheme exists.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let linkFeature
 
@@ -152,15 +152,15 @@ public let host: String
 public let linkFeature: String
 ```
 
-**Description:** Identifies the feature type provided by the URI, used for implementing inter-application jumps, only existing in AbilityInfo.
+**Function:** Identifies the feature type provided by the URI, used for inter-application jumps, only existing in AbilityInfo.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let maxFileSupported
 
@@ -168,15 +168,15 @@ public let linkFeature: String
 public let maxFileSupported: Int32
 ```
 
-**Description:** For specified file types, identifies the maximum number that can be received or opened at once.
+**Function:** For specified file types, identifies the maximum number of files that can be received or opened at once.
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let path
 
@@ -184,15 +184,15 @@ public let maxFileSupported: Int32
 public let path: String
 ```
 
-**Description:** Identifies the path portion of the URI, meaningful only when both scheme and host exist.
+**Function:** Identifies the path part of the URI, meaningful only when both scheme and host exist.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let pathRegex
 
@@ -200,15 +200,15 @@ public let path: String
 public let pathRegex: String
 ```
 
-**Description:** Identifies the path portion of the URI for regular expression matching, meaningful only when both scheme and host exist.
+**Function:** Identifies the path part of the URI for regular expression matching, meaningful only when both scheme and host exist.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let pathStartWith
 
@@ -216,15 +216,15 @@ public let pathRegex: String
 public let pathStartWith: String
 ```
 
-**Description:** Identifies the path portion of the URI for prefix matching, meaningful only when both scheme and host exist.
+**Function:** Identifies the path part of the URI for prefix matching, meaningful only when both scheme and host exist.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let port
 
@@ -232,15 +232,15 @@ public let pathStartWith: String
 public let port: Int32
 ```
 
-**Description:** Identifies the port portion of the URI, meaningful only when both scheme and host exist.
+**Function:** Identifies the port part of the URI, meaningful only when both scheme and host exist.
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let scheme
 
@@ -248,15 +248,15 @@ public let port: Int32
 public let scheme: String
 ```
 
-**Description:** Identifies the protocol name of the URI, common examples include http, https, file, ftp, etc.
+**Function:** Identifies the protocol name of the URI, common examples include http, https, file, ftp, etc.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let uriType
 
@@ -264,15 +264,15 @@ public let scheme: String
 public let uriType: String
 ```
 
-**Description:** Identifies the data type matching the Want, using MIME (Multipurpose Internet Mail Extensions) type specifications.
+**Function:** Identifies the data type matching the Want, using the MIME (Multipurpose Internet Mail Extensions) type specification.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22
 
 ### let utd
 
@@ -280,12 +280,12 @@ public let uriType: String
 public let utd: String
 ```
 
-**Description:** Identifies the standardized data type of the URI matching the Want, applicable for scenarios like sharing.
+**Function:** Identifies the standardized data type of the URI matching the Want, applicable to scenarios such as sharing.
 
 **Type:** String
 
-**Access:** Read-only
+**Read-Write Attributes:** Read-only
 
 **System Capability:** SystemCapability.BundleManager.BundleFramework.Core
 
-**Since:** 21
+**Initial Version:** 22

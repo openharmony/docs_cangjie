@@ -8,7 +8,7 @@ Developers can use the CPU Insight feature in DevEco Studio Profiler to visually
 
 1. Follow the hdc command-line tool guide to complete [Environment Preparation](../tools/cj-hdc.md#environment-preparation), ensuring the `hdc shell` command can properly connect to the device.
 
-2. Execute the `hdc shell` command in DevEco Studio's Terminal window or the host command-line window to connect to the device, then run the [hitrace](../tools/cj-hitrace.md) command on the device to start the HiTraceMeter log capture service.
+2. Execute the `hdc shell` command in DevEco Studio's Terminal window or the host command-line window to connect to the device. Then, run the [hitrace](../tools/cj-hitrace.md) command on the device to start the HiTraceMeter log capture service.
 
    ```shell
    PS D:\xxx\xxx> hdc shell
@@ -17,7 +17,7 @@ Developers can use the CPU Insight feature in DevEco Studio Profiler to visually
 
 3. Run the program containing HiTraceMeter instrumentation points on the device.
 
-4. Dump the HiTraceMeter text logs, which include the instrumentation information from step 3.
+4. Dump the HiTraceMeter text logs, which include the HiTraceMeter instrumentation information from step 3.
 
    - By default, logs are printed in the window.
 
@@ -25,7 +25,7 @@ Developers can use the CPU Insight feature in DevEco Studio Profiler to visually
    # hitrace --trace_dump
    ```
 
-   - Alternatively, provide a filename to save logs to a file. The file path must be `/data/local/tmp/`, as other paths lack permissions.
+   - Alternatively, provide a filename to save the logs to a file. The file path must be `/data/local/tmp/`, as other paths lack permissions.
 
    ```shell
    # hitrace --trace_dump -o /data/local/tmp/trace.ftrace
@@ -44,9 +44,9 @@ Developers can use the CPU Insight feature in DevEco Studio Profiler to visually
    PS D:\xxx\xxx> hdc file recv /data/local/tmp/trace.ftrace ./
    ```
 
-7. Search for keywords such as instrumentation point names in the HiTraceMeter text logs to verify successful instrumentation.
+7. Search for keywords such as instrumentation names in the HiTraceMeter text logs to verify successful instrumentation.
 
 8. Visual analysis of HiTraceMeter text logs.
 
    - Import into DevEco Studio for analysis. Refer to the [CPU Activity Analysis: CPU Profiling](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5) documentation. In DevEco Studio Profiler's session area, select "Open File" to import the HiTraceMeter text logs for analysis.
-   - Analyze using the [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host) tool. Download the tool from [developtools_smartperf_host Releases](https://gitee.com/openharmony/developtools_smartperf_host/releases).
+   - Analyze using the [HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host) tool. Download the tool from the [developtools_smartperf_host Releases](https://gitee.com/openharmony/developtools_smartperf_host/releases).

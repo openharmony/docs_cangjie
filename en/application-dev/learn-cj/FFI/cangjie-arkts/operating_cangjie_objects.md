@@ -1,22 +1,22 @@
-# Accessing Cangjie Data in ArkTS
+# ArkTS Access to Cangjie Data
 
 This chapter introduces three methods for manipulating Cangjie objects in ArkTS:
 
-1. Custom Functions: Utilize ArkTS runtime's memory management mechanism to control the lifecycle of Cangjie objects and access them through relevant interoperability interfaces.
-2. JSExternal: Store Cangjie objects in JSExternal and bind them to JSObject, hiding JSExternal data to enhance interface security.
-3. JSClass: For performance-critical scenarios, define a JSClass to accelerate object creation and reduce memory footprint.
+1. **Custom Functions**: Utilize ArkTS runtime's memory management mechanism to control the lifecycle of Cangjie objects and access them through relevant interoperability interfaces.
+2. **JSExternal**: Store Cangjie objects in JSExternal and bind them to JSObject, hiding JSExternal data to enhance interface security.
+3. **JSClass**: For performance-critical scenarios, define a JSClass to accelerate object creation and reduce memory footprint.
 
 ## Custom Functions
 
-This example demonstrates sharing Cangjie objects with the ArkTS runtime, using its memory management mechanism to control object lifecycles and access them via interoperability interfaces:
+This example demonstrates sharing Cangjie objects to the ArkTS runtime, using ArkTS runtime's memory management to control their lifecycle and accessing them through interoperability interfaces:
 
 1. Define Cangjie functions:
 
     ```cangjie
-    // Import interoperability library
+    // Import interoperability libraries
     import ohos.ark_interop.*
     import ohos.ark_interop_macro.*
-    // Define shared class (SharedObject is from the interoperability library)
+    // Define shared class (SharedObject is a class from the interoperability library)
     class Data <: SharedObject {
         Data(
             // Define two properties
@@ -25,7 +25,7 @@ This example demonstrates sharing Cangjie objects with the ArkTS runtime, using 
         ) {}
 
         static init() {
-            // Register functions to be exported to ArkTS
+            // Register functions to be exported to Ark
             JSModule.registerFunc("createData", createData)
             JSModule.registerFunc("setDataId", setDataId)
             JSModule.registerFunc("getDataId", getDataId)
@@ -41,7 +41,7 @@ This example demonstrates sharing Cangjie objects with the ArkTS runtime, using 
             return jsExternal.toJSValue()
         }
 
-        // Set object ID
+        // Set object's ID
         static func setDataId(context: JSContext, callInfo: JSCallInfo): JSValue {
             // Read parameters
             let arg0 = callInfo[0]
@@ -62,7 +62,7 @@ This example demonstrates sharing Cangjie objects with the ArkTS runtime, using 
             return result
         }
 
-        // Get object ID
+        // Get object's ID
         static func getDataId(context: JSContext, callInfo: JSCallInfo): JSValue {
             let arg0 = callInfo[0]
 
@@ -85,10 +85,10 @@ This example demonstrates sharing Cangjie objects with the ArkTS runtime, using 
     export declare function getDataId(data: undefined): number;
     ```
 
-3. Call Cangjie functions from ArkTS:
+3. ArkTS calls Cangjie functions:
 
     ```typescript
-    // Import Cangjie dynamic library (name matches package name containing interoperability interfaces)
+    // Import Cangjie dynamic library (library name should match the package name containing interoperability interfaces)
     import cjLib from "libohos_app_cangjie_entry.so";
     
     // Create shared object
@@ -100,26 +100,28 @@ This example demonstrates sharing Cangjie objects with the ArkTS runtime, using 
     console.log("id is " + id);
     ```
 
-JSExternal objects are recognized as 'undefined' type in ArkTS. Directly using undefined as parameters may lead to runtime errors with incorrect arguments:
+JSExternal objects are recognized as `undefined` in ArkTS. Directly using `undefined` as parameters may lead to runtime errors when incorrect arguments are passed:
 
 ```typescript
 // ...
 // Create shared object
 let data = cjLib.createData();
 // Manipulate object properties
-cjLib.setDataId(undefined, 3); // Wrong parameter - should pass Cangjie reference, but compiler accepts this
+cjLib.setDataId(undefined, 3); // Wrong parameter (should be Cangjie reference), but compiler won't catch this
 let id = cjLib.getDataId(data);
 // ...
 ```
 
 ## JSExternal
 
-For practical interface development, you can bind JSExternal objects to JSObject to hide JSExternal data and improve interface security:
+In actual development, you can bind JSExternal objects to JSObject to hide JSExternal data and improve interface security.
+
+Example implementation:
 
 ### Define Cangjie functions
 
 ```cangjie
-// Import interoperability library
+// Import interoperability libraries
 import ohos.ark_interop.*
 import ohos.ark_interop_macro.*
 // Define shared class
@@ -131,7 +133,7 @@ class Data <: SharedObject {
     ) {}
 
     static init() {
-        // Register function to be exported to ArkTS
+        // Register function to be exported to Ark
         JSModule.registerFunc("createData", createData)
     }
 
@@ -142,7 +144,7 @@ class Data <: SharedObject {
 
         // Create empty JSObject
         let object = context.object()
-        // Attach JS reference to Cangjie object as hidden property
+        // Attach JS reference of Cangjie object as hidden property
         object.attachCJObject(jsExternal)
 
         // Add two methods to JS object
@@ -152,7 +154,7 @@ class Data <: SharedObject {
         return object.toJSValue()
     }
 
-    // Set object ID
+    // Set object's ID
     static func setDataId(context: JSContext, callInfo: JSCallInfo): JSValue {
         // Get this pointer
         let thisArg = callInfo.thisArg
@@ -174,7 +176,7 @@ class Data <: SharedObject {
         return result.toJSValue()
     }
 
-    // Get object ID
+    // Get object's ID
     static func getDataId(context: JSContext, callInfo: JSCallInfo): JSValue {
         let thisArg = callInfo.thisArg
         let thisObject = thisArg.asObject(context)
@@ -201,10 +203,10 @@ interface Data {
 export declare function createData(): Data;
 ```
 
-### Call Cangjie functions from ArkTS
+### ArkTS calls Cangjie functions
 
 ```typescript
-// Import Cangjie dynamic library (name matches package name containing interoperability interfaces)
+// Import Cangjie dynamic library
 import cjLib from "libohos_app_cangjie_entry.so";
 
 // Create shared object
@@ -218,12 +220,12 @@ console.log("id is " + id);
 
 ## JSClass
 
-Attaching all object operation methods directly to objects consumes more memory and increases object creation overhead. For performance-critical scenarios, define a JSClass to accelerate object creation and reduce memory footprint:
+Attaching all object operation methods directly to objects consumes more memory and increases object creation overhead. For performance-critical scenarios, define a JSClass to accelerate object creation and reduce memory usage:
 
 1. Define Cangjie functions:
 
     ```cangjie
-    // Import interoperability library
+    // Import interoperability libraries
     import ohos.ark_interop.*
     import ohos.ark_interop_macro.*
     // Define shared class
@@ -235,7 +237,7 @@ Attaching all object operation methods directly to objects consumes more memory 
         ) {}
 
         static init() {
-            // Register class to be exported to ArkTS
+            // Register class to be exported to Ark
             JSModule.registerClass("Data") { context =>
                 // Create JSClass
                 let clazz = context.clazz(jsConstructor)
@@ -262,7 +264,7 @@ Attaching all object operation methods directly to objects consumes more memory 
             return thisObject.toJSValue()
         }
 
-        // Set object ID
+        // Set object's ID
         static func setDataId(context: JSContext, callInfo: JSCallInfo): JSValue {
             // Get this pointer
             let thisArg = callInfo.thisArg
@@ -284,7 +286,7 @@ Attaching all object operation methods directly to objects consumes more memory 
             return result.toJSValue()
         }
 
-        // Get object ID
+        // Get object's ID
         static func getDataId(context: JSContext, callInfo: JSCallInfo): JSValue {
             let thisArg = callInfo.thisArg
             let thisObject = thisArg.asObject(context)
@@ -308,10 +310,10 @@ Attaching all object operation methods directly to objects consumes more memory 
     }
     ```
 
-3. Call Cangjie functions from ArkTS:
+3. ArkTS calls Cangjie functions:
 
     ```typescript
-    // Import Cangjie dynamic library (name matches package name containing interoperability interfaces)
+    // Import Cangjie dynamic library
     import cjLib from "libohos_app_cangjie_entry.so";
     
     // Create shared object

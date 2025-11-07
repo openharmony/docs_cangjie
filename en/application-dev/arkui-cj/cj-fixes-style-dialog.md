@@ -1,23 +1,22 @@
 # Fixed-Style Popup Dialogs
 
-Fixed-style popup dialogs employ a standardized layout format, allowing developers to focus solely on inputting the required display content without concerning themselves with specific layout details. This simplifies the usage process and enhances convenience.
+Fixed-style popup dialogs adopt a consistent layout format, allowing developers to focus on inputting the required text content without concerning themselves with display layout details. This simplifies the usage process and enhances convenience.
 
 ## Usage Constraints
 
-- For action menus (`showActionMenu`) and dialog boxes (`showDialog`), developers must first obtain a `PromptAction` object using the `PromptAction` method, then call the corresponding methods through this object.
+- Action menus (`showActionMenu`) and dialog boxes (`showDialog`) must first obtain a `PromptAction` object using the `PromptAction` method before invoking corresponding methods through this object.
 
 - Action menus (`showActionMenu`), dialog boxes (`showDialog`), list selection popups (`ActionSheet`), and alert dialogs (`AlertDialog`) can be configured with `isModal` set to `false` to become non-modal popups.
 
 ## Action Menu (`showActionMenu`)
 
-The action menu is obtained via the `PromptAction` method to acquire a `PromptAction` object, supporting usage in callbacks or developer-defined classes.
+The action menu obtains a `PromptAction` object through the `PromptAction` method and supports usage in callbacks or developer-defined classes.
 
 After creating and displaying an action menu, the menu's response result asynchronously returns the index of the selected button in the `buttons` array.
 
  <!-- run -->
 
 ```cangjie
-// xxx.cj
 package ohos_app_cangjie_entry
 
 import ohos.base.*
@@ -25,7 +24,6 @@ import ohos.arkui.component.*
 import ohos.arkui.state_management.*
 import ohos.arkui.state_macro_manage.*
 import std.collection.*
-import ohos.prompt_action.ButtonInfo
 import ohos.arkui.ui_context.*
 import ohos.business_exception.BusinessException
 import kit.PerformanceAnalysisKit.*
@@ -56,42 +54,41 @@ class EntryView {
         }.width(100.percent).padding(top: 5)
     }
 }
-
 ```
 
 ![image](figures/UIContextShowMenu.gif)
 
 ## Dialog Box (`showDialog`)
 
-The dialog box is obtained via the `PromptAction` method to acquire a `PromptAction` object, supporting usage in callbacks or developer-defined classes.
+The dialog box obtains a `PromptAction` object through the `PromptAction` method and supports usage in callbacks or developer-defined classes.
 
 ## Picker Dialog (`PickerDialog`)
 
-Picker dialogs are typically used to display specific information or options when users perform certain actions (e.g., clicking a button).
+Picker dialogs are typically used to display specific information or options when users perform certain actions (such as clicking a button).
 
 ### Lifecycle
 
-The popup provides lifecycle functions to notify users of its lifecycle state. The triggering sequence of lifecycle events can be found in the respective component API references.
+The popup provides lifecycle functions to notify users about the popup's lifecycle.
+The triggering sequence of lifecycle events can be found in the API reference for each component.
 
 | Name            | Type | Description                       |
 | :----------------- | :------ | :---------------------------- |
-| `onDidAppear`    | `() -> Unit`  | Callback triggered when the popup appears.  |
-| `onDidDisappear` | `() -> Unit`  | Callback triggered when the popup disappears.  |
-| `onWillAppear`    | `() -> Unit` | Callback triggered before the popup's display animation. |
-| `onWillDisappear` | `() -> Unit` | Callback triggered before the popup's exit animation. |
+| `onDidAppear`    | `() -> Unit`  | Callback event when the popup appears.  |
+| `onDidDisappear` | `() -> Unit`  | Callback event when the popup disappears.  |
+| `onWillAppear`    | `() -> Unit` | Callback event before the popup's display animation. |
+| `onWillDisappear` | `() -> Unit` | Callback event before the popup's exit animation. |
 
 ## List Selection Popup (`ActionSheet`)
 
-List selection popups are suitable for presenting multiple action options, particularly when only an action list needs to be displayed without other content.
+List selector popups are suitable for presenting multiple action options, especially when only an action list needs to be displayed without other content.
 
-List selection popups are implemented via the [`show`](../../../en/application-dev/reference/arkui-cj/cj-dialog-actionsheet.md#static-func-showactionsheetoptions) interface in `ActionSheet`.
+The list selector popup is implemented through the [`show`](../reference/arkui-cj/cj-dialog-actionsheet.md#static-func-showactionsheetoptions) interface in `ActionSheet`.
 
 This example defines the popup's style and animation effects by configuring interfaces such as `width`, `height`, and `transition`.
 
  <!-- run -->
 
 ```cangjie
-// xxx.cj
 package ohos_app_cangjie_entry
 
 import ohos.base.*
@@ -106,7 +103,7 @@ import kit.PerformanceAnalysisKit.*
 class EntryView {
     func build() {
         Column() {
-            Button('showActionSheet').onClick { e =>
+            Button('showActionSheet').onClick({ e =>
                 let confirm: ActionSheetButtonOptions = ActionSheetButtonOptions(value: "Confirm button", action: {=> Hilog.info(0, "cangjie", "Get Alert Dialog handled")},
                     defaultFocus: true, style: DialogButtonStyle.Default)
                 let sheets: Array<SheetInfo> = [
@@ -147,7 +144,7 @@ class EntryView {
                         alignment: DialogAlignment.Center,
                     )
                 )
-            }
+            })
         }.width(100.percent).margin(top: 5)
     }
 }
@@ -157,17 +154,16 @@ class EntryView {
 
 ## Alert Dialog (`AlertDialog`)
 
-Alert dialogs are used when users need to be questioned or their permission is required.
+Alert dialogs can be used when you need to ask users questions or obtain their permission.
 
-- Alert dialogs highlight important information but interrupt the current task. Provide only necessary information and useful actions.
-- Avoid using alert dialogs solely for information display. Users dislike being interrupted by non-actionable alerts.
+- Alert dialogs are used to convey important information but will interrupt the current task. Provide necessary information and useful actions.
+- Avoid using alert dialogs solely to provide information. Users dislike being interrupted by information-rich but non-actionable alerts.
 
 This example defines the style and animation effects of a multi-button dialog by configuring interfaces such as `width`, `height`, and `transition`.
 
  <!-- run -->
 
 ```cangjie
-// xxx.cj
 package ohos_app_cangjie_entry
 
 import ohos.base.*
@@ -183,7 +179,7 @@ class EntryView {
     func build() {
         Column() {
             Button('showAlertDialog')
-                .onClick {
+                .onClick({
                     evt =>
                     let primaryButton = AlertDialogButtonOptions(
                         value: 'cancel',
@@ -226,7 +222,7 @@ class EntryView {
                             secondaryButton: secondaryButton
                         )
                     )
-                }.width(100.percent).margin(top: 5)
+                }).width(100.percent).margin(top: 5)
         }
     }
 }

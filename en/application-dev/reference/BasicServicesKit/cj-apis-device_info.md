@@ -1,6 +1,6 @@
 # ohos.device_info (Device Information)
 
-This module provides terminal device information queries, which cannot be configured by developers.
+This module provides terminal device information queries and cannot be configured by developers.
 
 ## Importing the Module
 
@@ -16,10 +16,10 @@ ohos.permission.sec.ACCESS_UDID
 
 API sample code usage instructions:
 
-- If the first line of sample code contains a "// index.cj" comment, it indicates the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates that the sample can be compiled and run in the "index.cj" file of the Cangjie template project.
 - If the sample requires obtaining the [Context](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#仓颉示例代码说明).
+For details about the above sample project and configuration template, see [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class DeviceInfo
 
@@ -27,11 +27,11 @@ For details about the sample project and configuration template mentioned above,
 public class DeviceInfo {}
 ```
 
-**Function:** Provides methods for querying terminal device information.
+**Function:** Provides terminal device information query methods.
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop ODID
 
@@ -43,11 +43,11 @@ public static prop ODID: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop abiList
 
@@ -59,11 +59,11 @@ public static prop abiList: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop bootloaderVersion
 
@@ -75,11 +75,11 @@ public static prop bootloaderVersion: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop brand
 
@@ -91,11 +91,11 @@ public static prop brand: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop buildHost
 
@@ -107,11 +107,11 @@ public static prop buildHost: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop buildRootHash
 
@@ -123,11 +123,11 @@ public static prop buildRootHash: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop buildTime
 
@@ -139,11 +139,11 @@ public static prop buildTime: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop buildType
 
@@ -155,11 +155,11 @@ public static prop buildType: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop buildUser
 
@@ -171,11 +171,11 @@ public static prop buildUser: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop buildVersion
 
@@ -183,15 +183,15 @@ public static prop buildUser: String
 public static prop buildVersion: Int32
 ```
 
-**Function:** Build version number, identifying the compiled build version.
+**Function:** Build version number, identifying the compiled build version number.
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop deviceType
 
@@ -203,11 +203,11 @@ public static prop deviceType: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop displayVersion
 
@@ -219,11 +219,11 @@ public static prop displayVersion: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop distributionOSApiName
 
@@ -235,11 +235,11 @@ public static prop distributionOSApiName: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop distributionOSApiVersion
 
@@ -251,11 +251,11 @@ public static prop distributionOSApiVersion: Int32
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop distributionOSName
 
@@ -267,11 +267,11 @@ public static prop distributionOSName: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop distributionOSReleaseType
 
@@ -283,11 +283,11 @@ public static prop distributionOSReleaseType: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop distributionOSVersion
 
@@ -299,11 +299,11 @@ public static prop distributionOSVersion: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop featureVersion
 
@@ -315,11 +315,11 @@ public static prop featureVersion: Int32
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop firstApiVersion
 
@@ -331,11 +331,11 @@ public static prop firstApiVersion: Int32
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop hardwareModel
 
@@ -347,11 +347,11 @@ public static prop hardwareModel: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop hardwareProfile
 
@@ -363,11 +363,11 @@ public static prop hardwareProfile: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop incrementalVersion
 
@@ -379,11 +379,11 @@ public static prop incrementalVersion: String
 
 **Type:** String
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop majorVersion
 
@@ -391,15 +391,15 @@ public static prop incrementalVersion: String
 public static prop majorVersion: Int32
 ```
 
-**Function:** Major version number, incremented with main version updates.
+**Function:** Major version number, incremented with major version updates.
 
 **Type:** Int32
 
-**Access:** Read-only
+**Read/Write Permission:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21### static prop manufacture
+**Since Version:** 22### static prop manufacture
 
 ```cangjie
 public static prop manufacture: String
@@ -409,11 +409,11 @@ public static prop manufacture: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop marketName
 
@@ -425,11 +425,11 @@ public static prop marketName: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop osFullName
 
@@ -441,11 +441,11 @@ public static prop osFullName: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop osReleaseType
 
@@ -453,15 +453,15 @@ public static prop osFullName: String
 public static prop osReleaseType: String
 ```
 
-**Function:** Operating system release type, with possible values:<br/>-&nbsp;Canary: Early preview version for specific developers, with no API stability guarantee.<br/>-&nbsp;Beta: Publicly released Beta version for developers, with no API stability guarantee.<br/>-&nbsp;Release: Publicly released stable version for developers, with API stability guarantee.
+**Function:** System release type, with possible values:<br/>-&nbsp;Canary: Early preview version for specific developers, with no API stability guarantee.<br/>-&nbsp;Beta: Public beta version for developers, with no API stability guarantee.<br/>-&nbsp;Release: Public official version for developers, with API stability guarantee.
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop productModel
 
@@ -473,11 +473,11 @@ public static prop productModel: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop productSeries
 
@@ -489,11 +489,11 @@ public static prop productSeries: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop sdkApiVersion
 
@@ -505,11 +505,11 @@ public static prop sdkApiVersion: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop securityPatchTag
 
@@ -521,11 +521,11 @@ public static prop securityPatchTag: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop seniorVersion
 
@@ -537,11 +537,11 @@ public static prop seniorVersion: Int32
 
 **Type:** Int32
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop serial
 
@@ -553,13 +553,13 @@ public static prop serial: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **Required Permission:** ohos.permission.sec.ACCESS_UDID
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop softwareModel
 
@@ -571,11 +571,11 @@ public static prop softwareModel: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop udid
 
@@ -587,13 +587,13 @@ public static prop udid: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **Required Permission:** ohos.permission.sec.ACCESS_UDID
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 ### static prop versionId
 
@@ -605,11 +605,11 @@ public static prop versionId: String
 
 **Type:** String
 
-**Read/Write Permission:** Read-only
+**Read/Write Capability:** Read-only
 
 **System Capability:** SystemCapability.Startup.SystemInfo
 
-**Since Version:** 21
+**Since Version:** 22
 
 **Example:**
 
@@ -619,70 +619,75 @@ public static prop versionId: String
 // index.cj
 
 import kit.BasicServicesKit.*
-import kit.PerformanceAnalysisKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
 
-let hardwareProfile = DeviceInfo.hardwareProfile
-Hilog.info(0, "deviceinfo", "the value of thehardwareProfile is : :${hardwareProfile}")
-let osFullName = DeviceInfo.osFullName
-Hilog.info(0, "deviceinfo", "the value of the osFullName is: :${osFullName}")
-let productModel = DeviceInfo.productModel
-Hilog.info(0, "deviceinfo", "the value of the productModelis : :${productModel}")
-let brand = DeviceInfo.brand
-Hilog.info(0, "deviceinfo", "the value of the brand is : :{brand}")
-let deviceType = DeviceInfo.deviceType
-Hilog.info(0, "deviceinfo", "the value of the deviceType is: :${deviceType}")
-let udid = DeviceInfo.udid
-Hilog.info(0, "deviceinfo", "the value of the udid is : :{udid}")
-let buildRootHash = DeviceInfo.buildRootHash
-Hilog.info(0, "deviceinfo", "the value of the buildRootHashis : :${buildRootHash}")
-let buildTime = DeviceInfo.buildTime
-Hilog.info(0, "deviceinfo", "the value of the buildTime is: :${buildTime}")
-let buildHost = DeviceInfo.buildHost
-Hilog.info(0, "deviceinfo", "the value of the buildHost is: :${buildHost}")
-let buildUser = DeviceInfo.buildUser
-Hilog.info(0, "deviceinfo", "the value of the buildUser is: :${buildUser}")
-let buildType = DeviceInfo.buildType
-Hilog.info(0, "deviceinfo", "the value of the buildType is: :${buildType}")
-let versionId = DeviceInfo.versionId
-Hilog.info(0, "deviceinfo", "the value of the versionId is: :${versionId}")
-let firstApiVersion = DeviceInfo.firstApiVersion
-Hilog.info(0, "deviceinfo", "the value of thefirstApiVersion is : :${firstApiVersion}")
-let sdkApiVersion = DeviceInfo.sdkApiVersion
-Hilog.info(0, "deviceinfo", "the value of the sdkApiVersionis : :${sdkApiVersion}")
-let buildVersion = DeviceInfo.buildVersion
-Hilog.info(0, "deviceinfo", "the value of the buildVersionis : :${buildVersion}")
-let majorVersion = DeviceInfo.majorVersion
-Hilog.info(0, "deviceinfo", "the value of the majorVersionis : :${majorVersion}")
-let displayVersion = DeviceInfo.displayVersion
-Hilog.info(0, "deviceinfo", "the value of thedisplayVersion is : :${displayVersion}")
-let serial = DeviceInfo.serial
-Hilog.info(0, "deviceinfo", "the value of the serial is : :{serial}")
-let osReleaseType = DeviceInfo.osReleaseType
-Hilog.info(0, "deviceinfo", "the value of the osReleaseTypeis : :${osReleaseType}")
-let incrementalVersion = DeviceInfo.incrementalVersion
-Hilog.info(0, "deviceinfo", "the value of theincrementalVersion is : :${incrementalVersion}")
-let securityPatchTag = DeviceInfo.securityPatchTag
-Hilog.info(0, "deviceinfo", "the value of thesecurityPatchTag is : :${securityPatchTag}")
-let abiList = DeviceInfo.abiList
-Hilog.info(0, "deviceinfo", "the value of the abiList is ::${abiList}")
-let bootloaderVersion = DeviceInfo.bootloaderVersion
-Hilog.info(0, "deviceinfo", "the value of thebootloaderVersion is : :${bootloaderVersion}")
-let hardwareModel = DeviceInfo.hardwareModel
-Hilog.info(0, "deviceinfo", "the value of the hardwareModelis : :${hardwareModel}")
-let softwareModel = DeviceInfo.softwareModel
-Hilog.info(0, "deviceinfo", "the value of the softwareModelis : :${softwareModel}")
-let productSeries = DeviceInfo.productSeries
-Hilog.info(0, "deviceinfo", "the value of the productSeriesis : :${productSeries}")
-let marketName = DeviceInfo.marketName
-Hilog.info(0, "deviceinfo", "the value of the marketName is: :${marketName}")
-let manufacture = DeviceInfo.manufacture
-Hilog.info(0, "deviceinfo", "the value of the manufactureis : :${manufacture}")
-let distributionOSName = DeviceInfo.distributionOSName
-Hilog.info(0, "deviceinfo", "the value of thedistributionOSName is : :${distributionOSName}")
-let distributionOSVersion = DeviceInfo.distributionOSVersion
-Hilog.info(0, "deviceinfo", "the value of the distributionOSVersion is : :${distributionOSVersion}")
-let distributionOSApiVersion = DeviceInfo.distributionOSApiVersion
-Hilog.info(0, "deviceinfo", "the value of the distributionOSApiVersion is : :${distributionOSApiVersion}")
-let distributionOSReleaseType = DeviceInfo.distributionOSReleaseType
-Hilog.info(0, "deviceinfo", "the value of the distributionOSReleaseType is : :${distributionOSReleaseType}")
+try {
+    let hardwareProfile = DeviceInfo.hardwareProfile
+    Hilog.info(0, "deviceinfo", "the value of thehardwareProfile is : :${hardwareProfile}")
+    let osFullName = DeviceInfo.osFullName
+    Hilog.info(0, "deviceinfo", "the value of the osFullName is: :${osFullName}")
+    let productModel = DeviceInfo.productModel
+    Hilog.info(0, "deviceinfo", "the value of the productModelis : :${productModel}")
+    let brand = DeviceInfo.brand
+    Hilog.info(0, "deviceinfo", "the value of the brand is : :{brand}")
+    let deviceType = DeviceInfo.deviceType
+    Hilog.info(0, "deviceinfo", "the value of the deviceType is: :${deviceType}")
+    let udid = DeviceInfo.udid
+    Hilog.info(0, "deviceinfo", "the value of the udid is : :{udid}")
+    let buildRootHash = DeviceInfo.buildRootHash
+    Hilog.info(0, "deviceinfo", "the value of the buildRootHashis : :${buildRootHash}")
+    let buildTime = DeviceInfo.buildTime
+    Hilog.info(0, "deviceinfo", "the value of the buildTime is: :${buildTime}")
+    let buildHost = DeviceInfo.buildHost
+    Hilog.info(0, "deviceinfo", "the value of the buildHost is: :${buildHost}")
+    let buildUser = DeviceInfo.buildUser
+    Hilog.info(0, "deviceinfo", "the value of the buildUser is: :${buildUser}")
+    let buildType = DeviceInfo.buildType
+    Hilog.info(0, "deviceinfo", "the value of the buildType is: :${buildType}")
+    let versionId = DeviceInfo.versionId
+    Hilog.info(0, "deviceinfo", "the value of the versionId is: :${versionId}")
+    let firstApiVersion = DeviceInfo.firstApiVersion
+    Hilog.info(0, "deviceinfo", "the value of thefirstApiVersion is : :${firstApiVersion}")
+    let sdkApiVersion = DeviceInfo.sdkApiVersion
+    Hilog.info(0, "deviceinfo", "the value of the sdkApiVersionis : :${sdkApiVersion}")
+    let buildVersion = DeviceInfo.buildVersion
+    Hilog.info(0, "deviceinfo", "the value of the buildVersionis : :${buildVersion}")
+    let majorVersion = DeviceInfo.majorVersion
+    Hilog.info(0, "deviceinfo", "the value of the majorVersionis : :${majorVersion}")
+    let displayVersion = DeviceInfo.displayVersion
+    Hilog.info(0, "deviceinfo", "the value of thedisplayVersion is : :${displayVersion}")
+    let serial = DeviceInfo.serial
+    Hilog.info(0, "deviceinfo", "the value of the serial is : :{serial}")
+    let osReleaseType = DeviceInfo.osReleaseType
+    Hilog.info(0, "deviceinfo", "the value of the osReleaseTypeis : :${osReleaseType}")
+    let incrementalVersion = DeviceInfo.incrementalVersion
+    Hilog.info(0, "deviceinfo", "the value of theincrementalVersion is : :${incrementalVersion}")
+    let securityPatchTag = DeviceInfo.securityPatchTag
+    Hilog.info(0, "deviceinfo", "the value of thesecurityPatchTag is : :${securityPatchTag}")
+    let abiList = DeviceInfo.abiList
+    Hilog.info(0, "deviceinfo", "the value of the abiList is ::${abiList}")
+    let bootloaderVersion = DeviceInfo.bootloaderVersion
+    Hilog.info(0, "deviceinfo", "the value of thebootloaderVersion is : :${bootloaderVersion}")
+    let hardwareModel = DeviceInfo.hardwareModel
+    Hilog.info(0, "deviceinfo", "the value of the hardwareModelis : :${hardwareModel}")
+    let softwareModel = DeviceInfo.softwareModel
+    Hilog.info(0, "deviceinfo", "the value of the softwareModelis : :${softwareModel}")
+    let productSeries = DeviceInfo.productSeries
+    Hilog.info(0, "deviceinfo", "the value of the productSeriesis : :${productSeries}")
+    let marketName = DeviceInfo.marketName
+    Hilog.info(0, "deviceinfo", "the value of the marketName is: :${marketName}")
+    let manufacture = DeviceInfo.manufacture
+    Hilog.info(0, "deviceinfo", "the value of the manufactureis : :${manufacture}")
+    let distributionOSName = DeviceInfo.distributionOSName
+    Hilog.info(0, "deviceinfo", "the value of thedistributionOSName is : :${distributionOSName}")
+    let distributionOSVersion = DeviceInfo.distributionOSVersion
+    Hilog.info(0, "deviceinfo", "the value of the distributionOSVersion is : :${distributionOSVersion}")
+    let distributionOSApiVersion = DeviceInfo.distributionOSApiVersion
+    Hilog.info(0, "deviceinfo", "the value of the distributionOSApiVersion is : :${distributionOSApiVersion}")
+    let distributionOSReleaseType = DeviceInfo.distributionOSReleaseType
+    Hilog.info(0, "deviceinfo", "the value of the distributionOSReleaseType is : :${distributionOSReleaseType}")
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
 ```

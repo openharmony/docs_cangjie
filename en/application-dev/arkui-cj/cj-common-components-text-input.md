@@ -1,20 +1,20 @@
 # Text Input (TextInput/TextArea)
 
-TextInput and TextArea are input field components, typically used to respond to user input operations such as comment section inputs, chat box inputs, form inputs, etc. They can also be combined with other components to build functional pages, such as login/registration pages. For specific usage, please refer to [TextInput](../../../en/application-dev/reference/arkui-cj/cj-text-input-textinput.md) and [TextArea](../../../en/application-dev/reference/arkui-cj/cj-text-input-textarea.md).
+TextInput and TextArea are input field components, typically used to respond to user input operations such as comment section inputs, chat box inputs, form inputs, etc. They can also be combined with other components to build functional pages, such as login/registration pages. For specific usage, please refer to [TextInput](../reference/arkui-cj/cj-text-input-textinput.md) and [TextArea](../reference/arkui-cj/cj-text-input-textarea.md).
 
 ## Creating Input Fields
 
-TextInput is a single-line input field, while TextArea is a multi-line input field. They can be created using the following interfaces:
+TextInput is a single-line input field, while TextArea is a multi-line input field. They can be created using the following interfaces.
 
 ```cangjie
-init(placeholder!: String = "", text!: String = "", controller!: TextInputController = TextInputController())
+init(placeholder!: ?ResourceStr = None, text!: ?ResourceStr = None, controller!: ?TextInputController = None)
 ```
 
 ```cangjie
-init(placeholder!: String = "", text!: String = "", controller!: TextAreaController = TextAreaController())
+init(placeholder!: ?ResourceStr = None, text!: ?ResourceStr = None,controller!: ?TextAreaController = None)
 ```
 
-- Single-line input field:
+- Single-line input field.
 
     ```cangjie
     TextInput()
@@ -22,7 +22,7 @@ init(placeholder!: String = "", text!: String = "", controller!: TextAreaControl
 
     ![Text](figures/Text.png)
 
-- Multi-line input field:
+- Multi-line input field.
 
     ```cangjie
     TextArea()
@@ -30,17 +30,17 @@ init(placeholder!: String = "", text!: String = "", controller!: TextAreaControl
 
     ![Text1](figures/Text1.png)
 
-- Multi-line input field with automatic line wrapping when text exceeds one line:
+- Multi-line input field text will automatically wrap when it exceeds one line.
 
     ```cangjie
-    TextArea(text: "I am TextArea I am TextArea I am TextArea I am TextArea").width(300)
+    TextArea(text: "I am TextArea I am TextArea I am TextArea I am TextArea" ).width(300)
     ```
 
     ![Text2](figures/Text2.png)
 
 ## Customizing Styles
 
-- Setting placeholder text when no input is provided:
+- Setting placeholder text when there is no input.
 
     ```cangjie
     TextInput(placeholder: 'I am placeholder text')
@@ -48,33 +48,33 @@ init(placeholder!: String = "", text!: String = "", controller!: TextAreaControl
 
     ![Text10](figures/Text10.png)
 
-- Setting the current text content of the input field:
+- Setting the current text content of the input field.
 
     ```cangjie
-    TextInput(placeholder: 'I am placeholder text', text: 'I am the current text content')
+    TextInput( placeholder: 'I am placeholder text', text: 'I am the current text content' )
     ```
 
     ![Text11](figures/Text11.png)
 
-- Changing the background color of the input field by adding `backgroundColor`:
+- Adding backgroundColor to change the background color of the input field.
 
     ```cangjie
-    TextInput(placeholder: 'I am placeholder text', text: 'I am the current text content')
+    TextInput( placeholder: 'I am placeholder text', text: 'I am the current text content' )
     .backgroundColor(0xFEC0CD)
     ```
 
     ![Text12](figures/Text12.png)
 
-    More diverse styles can be achieved by combining with common properties.
+    More diverse styles can be achieved by combining [Universal Attributes](../reference/arkui-cj/cj-universal-attributes.md#universal-attributes).
 
 ## Selection Menu
 
-When text in the input field is selected, a menu containing options like cut, copy, and translate will appear.
+When text in the input field is selected, a menu containing options like Cut, Copy, and Translate will appear.
 
 TextInput:
 
 ```cangjie
-TextInput(text: 'This is a piece of text to demonstrate the selection menu')
+TextInput( text: 'This is a piece of text to demonstrate the selection menu')
 ```
 
 ![Text13](figures/Text13.png)
@@ -82,14 +82,14 @@ TextInput(text: 'This is a piece of text to demonstrate the selection menu')
 TextArea:
 
 ```cangjie
-TextArea(text: 'This is a piece of text to demonstrate the selection menu')
+TextArea( text: 'This is a piece of text to demonstrate the selection menu')
 ```
 
 ![Text13](figures/Text13.png)
 
 ## Keyboard Avoidance
 
-After the keyboard is raised, keyboard avoidance will only take effect for container components with scrolling capabilities during screen orientation changes. If you want keyboard avoidance to work for container components without scrolling capabilities, it is recommended to nest them within a container component that has scrolling capabilities, such as [Scroll](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-scroll.md), [List](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-list.md), or [Grid](../../../en/application-dev/reference/arkui-cj/cj-scroll-swipe-grid.md).
+After the keyboard is raised, keyboard avoidance will only take effect for container components with scrolling capabilities during screen orientation changes. If you want keyboard avoidance to work for container components without scrolling capabilities, it is recommended to nest them within a container component that has scrolling capabilities, such as [Scroll](../reference/arkui-cj/cj-scroll-swipe-scroll.md), [List](../reference/arkui-cj/cj-scroll-swipe-list.md), or [Grid](../reference/arkui-cj/cj-scroll-swipe-grid.md).
 
 ```cangjie
 package ohos_app_cangjie_entry
@@ -104,7 +104,7 @@ class EntryView {
         Scroll() {
             Column {
                 ForEach(this.placeHolderArr, itemGeneratorFunc: {placeholder: String, _: Int64 =>
-                TextInput(placeholder: 'TextInput ' + placeholder)
+                TextInput( placeholder: 'TextInput ' + placeholder )
                 .margin(30)}
                 )
             }

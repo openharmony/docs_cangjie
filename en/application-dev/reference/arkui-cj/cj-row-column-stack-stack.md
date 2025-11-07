@@ -14,54 +14,54 @@ Can contain child components.
 
 ## Creating the Component
 
-### init(Alignment, () -> Unit)
+### init(?Alignment, () -> Unit)
 
 ```cangjie
-public init(alignContent!: Alignment = Alignment.Center, child!: () -> Unit = {=>})
+public init(alignContent!: ?Alignment = None, child!: () -> Unit = {=>})
 ```
 
-**Function:** Creates a Stack container containing child components, with child alignment specified by `alignContent`.
+**Function:** Creates a Stack container containing child components.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| alignContent | [Alignment](cj-common-types.md#enum-alignment) | No | Alignment.Center | Sets the alignment of child components within the container.<br> Default: Alignment.Center |
-| child | ()->Unit | No | { => } | Declares the child components within the container. |
+| alignContent | ?[Alignment](./cj-common-types.md#enum-alignment) | No | None | **Named parameter.** Sets the alignment of child components within the container.<br>Initial value: Alignment.Center. |
+| child | () -> Unit | No | {=>} | **Named parameter.** Declares the child components within the container. |
 
 ## Universal Attributes/Events
 
-Universal Attributes: All supported.
+Universal attributes: All supported.
 
-Universal Events: All supported.
+Universal events: All supported.
 
 ## Component Attributes
 
-### func alignContent(Alignment)
+### func alignContent(?Alignment)
 
 ```cangjie
-public func alignContent(value: Alignment): This
+public func alignContent(value: ?Alignment): This
 ```
 
-**Function:** Sets the alignment of all child components within the container. If this attribute is set alongside the [universal attribute `align`](cj-universal-attribute-location.md#func-alignalignment), the latter setting takes effect.
+**Function:** Sets the alignment of all child components within the container. If this attribute is set simultaneously with the [universal attribute align](cj-universal-attribute-location.md#func-alignalignment), the latter setting takes effect.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | [Alignment](cj-common-types.md#enum-alignment) | Yes | - | Alignment of all child components within the container.<br> Default: Alignment.Center |
+| value | ?[Alignment](./cj-common-types.md#enum-alignment) | Yes | - | The alignment of all child components within the container.<br>Initial value: Alignment.Center. |
 
 ## Example Code
 
-Demonstration of child component display when Stack's `alignContent` is set to `Alignment.Bottom`.
+Display effect of child components when Stack's alignContent is set to Alignment.Bottom.
 
 <!-- run -->
 

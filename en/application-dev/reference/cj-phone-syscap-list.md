@@ -1,13 +1,13 @@
-# SystemCapability List
+# Phone
 
-SysCap, short for SystemCapability, refers to each relatively independent feature within the operating system.
+SysCap, short for SystemCapability, refers to each relatively independent feature in an operating system.
 
-Before using any interface for development, developers are advised to first read the [SysCap Usage Guide](cj-syscap.md) to understand the definition and usage guidelines of SysCap. Then, refer to the table below to determine whether a specific capability set is supported by a device, thereby improving development efficiency.
+Before using a specific interface for development, developers are advised to first read the [SysCap Usage Guide](cj-syscap.md) to understand the definition and usage guidelines of SysCap. Then, refer to the tables below to determine whether a particular capability set is supported by a target device, thereby improving development efficiency.
 
 > **Note:**
 >
-> This list enumerates the minimum system capability sets supported by the current version of Phone device types. Developers can query this information in the SDK through the default.json file.
-> When using APIs corresponding to the system capability sets listed here for developing current-version Phone applications, developers can directly call them without performing canIUse() isolation checks beforehand.
+> This list enumerates the minimum system capability sets supported by the Phone device type in the current version. Developers can query this information in the SDK through the default.json file.
+> When using APIs corresponding to the system capability sets listed here for developing Phone applications in the current version, developers can directly call these APIs without performing canIUse() isolation checks beforehand.
 
 - SystemCapability.ArkUI.ArkUI.Full
 - SystemCapability.ArkUI.ArkUI.Napi
@@ -219,7 +219,7 @@ Before using any interface for development, developers are advised to first read
 - SystemCapability.BundleManager.BundleFramework.Launcher
 - SystemCapability.BundleManager.BundleFramework.AppControl
 - SystemCapability.BundleManager.AppDomainVerify
-- SystemCapability.Ability.AbilityRuntime.QuickFix
+- SystemCapability.Ability.AAbilityRuntime.QuickFix
 - SystemCapability.Graphic.Graphic2D.ColorManager.Core
 - SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 - SystemCapability.XTS.DeviceAttest

@@ -20,10 +20,10 @@ ohos.permission.PRIVACY_WINDOW
 
 API sample code usage instructions:
 
-- If the sample code begins with a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of the Cangjie template project.
+- If the first line of sample code contains a "// index.cj" comment, it indicates the example can be compiled and run in the "index.cj" file of a Cangjie template project.
 - If the sample requires obtaining the [Context](./cj-apis-app-ability-ui_ability.md#class-context) application context, it needs to be configured in the "main_ability.cj" file of the Cangjie template project.
 
-For details about the aforementioned sample projects and configuration templates, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
+For details about the sample project and configuration template mentioned above, refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
 ## class StartOptions
 
@@ -38,11 +38,11 @@ public open class StartOptions {
 }
 ```
 
-**Description:** Startup options containing configurations such as window mode and display ID.
+**Function:** Startup options containing configurations such as window mode and display ID.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var displayId
 
@@ -50,7 +50,7 @@ public open class StartOptions {
 public var displayId: Int32
 ```
 
-**Description:** Display ID.
+**Function:** Display ID.
 
 **Type:** Int32
 
@@ -58,7 +58,7 @@ public var displayId: Int32
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### var windowMode
 
@@ -66,7 +66,7 @@ public var displayId: Int32
 public var windowMode:?WindowMode
 ```
 
-**Description:** Window mode.
+**Function:** Window mode.
 
 **Type:** ?[WindowMode](cj-apis-app-ability-ability_constant.md#enum-windowmode)
 
@@ -74,7 +74,7 @@ public var windowMode:?WindowMode
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 ### init(?WindowMode, Int32)
 
@@ -85,11 +85,11 @@ public init(
 )
 ```
 
-**Description:** Constructor to create a StartOptions instance.
+**Function:** Constructor to create a StartOptions instance.
 
 **System Capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
@@ -97,3 +97,18 @@ public init(
 |:---|:---|:---|:---|:---|
 | windowMode | ?[WindowMode](cj-apis-app-ability-ability_constant.md#enum-windowmode) | No | None | Window mode. |
 | displayId | Int32 | No | 0 | Display ID. |
+
+**Example:**
+
+<!-- compile -->
+```cangjie
+import kit.AbilityKit.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let startOptions = StartOptions(WindowMode.FullScreen, 0)
+} catch (e: BusinessException) {
+    Hilog.info(0, "test", "${e.message}")
+}
+```

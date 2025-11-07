@@ -1,8 +1,8 @@
-# Dark/Light Mode Adaptation  
+# Dark and Light Mode Adaptation for Applications  
 
 ## Overview  
 
-The current system supports both dark and light display modes. To provide users with a better experience, applications should adapt to these modes.  
+The current system supports both dark and light display modes. To provide users with a better experience, applications should adapt to these dark and light modes.  
 
 ## Application Follows System Dark/Light Mode  
 
@@ -10,15 +10,16 @@ The current system supports both dark and light display modes. To provide users 
 
     - **Custom Resource Implementation**  
 
-      Add a dark mode qualifier directory (named `dark`) under the `resources` directory and create a `color.json` file to configure color resources for dark mode. For details, refer to [Resource Classification and Access](#).  
+      Add a dark mode qualifier directory (named `dark`) under the `resources` directory and create a `color.json` file to configure color resources for dark mode. For details, refer to [Resource Classification and Access](../cj-start/start/ide-resource-categories-and-access.md).  
 
-      **Directory Structure Example**  
+      Example of the `resources` directory structure:  
 
       ![colorJsonDir](./figures/colorJsonDir.png)  
 
-      For example, developers can define the same color names in these two `color.json` files but assign different color values.  
+      For instance, developers can define the same color name in both `color.json` files but assign different color values.  
 
-      **base/element/color.json**:  
+      `base/element/color.json` file:  
+
       ```json
       {
         "color": [
@@ -30,7 +31,8 @@ The current system supports both dark and light display modes. To provide users 
       }
       ```  
 
-      **dark/element/color.json**:  
+      `dark/element/color.json` file:  
+
       ```json
       {
         "color": [
@@ -42,22 +44,22 @@ The current system supports both dark and light display modes. To provide users 
       }
       ```  
 
-    - **Using System Resources**  
+    - **Implementation via System Resources**  
 
-      Developers can directly use system-preset resources, i.e., layered parameters. The same resource ID may have different values under various configurations such as device type or dark/light mode. By leveraging system resources, different developers can create applications with a consistent visual style without defining two sets of color resources. The system automatically switches colors based on the mode.  
+      Developers can directly use [system preset resources](../cj-start/start/ide-resource-categories-and-access.md#system-resources), i.e., layered parameters. The same resource ID may have different values under different configurations such as device type or dark/light mode. By using system resources, different developers can create applications with a consistent visual style without customizing two sets of color resources. The system will automatically switch between different color values in dark/light mode.  
 
-      For example, developers can use the system's primary text color to define text colors in the application:  
+      For example, developers can use the system-defined primary text color to define the text color in the application:  
 
       ```cangjie
-      Text('Use system-defined colors')
+      Text('Using System-Defined Colors')
         .fontColor(@r(sys.color.ohos_id_color_text_primary))
       ```  
 
 2. **Image Resource Adaptation**  
 
-    Use resource qualifier directories. Similar to color adaptation, place the corresponding dark mode images in the `dark/media` directory. Load the images using `$r` with the resource key, and the system will automatically switch to the appropriate resource file during mode changes.  
+    Use the resource qualifier directory approach. Similar to color adaptation, place the corresponding image for dark mode in the `dark/media` directory. Then, load the image resource key via `$r`. When the system switches between dark/light modes, it will automatically load the corresponding value from the resource file.  
 
-    For simple SVG icons, the [`fillColor`](./cj-graphics-display.md#display-vector-graphics) property can be used with system resources to modify the icon's color. This avoids the need for two sets of image resources while achieving dark/light mode adaptation.  
+    For simple SVG icons, the [fillColor](./cj-graphics-display.md#display-vector-graphics) property can be used with system resources to change the drawing color of the image. This eliminates the need for two sets of image resources while achieving dark/light mode adaptation.  
 
     ```cangjie
     Image(@r(app.media.pic_svg))
@@ -67,4 +69,4 @@ The current system supports both dark and light display modes. To provide users 
 
 3. **Web Component Adaptation**  
 
-    The Web component supports dark mode configuration for frontend pages. Refer to [Web Component Dark Mode](../../../en/application-dev/web/cj-web-set-dark-mode.md) for configuration details.
+    The Web component supports dark mode configuration for frontend pages. Refer to [Web Component Dark Mode](../web/cj-web-set-dark-mode.md) for related configurations.

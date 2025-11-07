@@ -1,6 +1,6 @@
 # Path2D
 
-A path object that supports describing paths through its interface and rendering them via the Canvas stroke or fill methods.
+A path object that supports path description through object interfaces and rendering via Canvas's stroke or fill interfaces.
 
 ## Import Module
 
@@ -17,11 +17,11 @@ public class Path2D {
 }
 ```
 
-**Description:** A path object that supports describing paths through its interface and rendering them via the Canvas stroke or fill methods.
+**Description:** A path object that supports path description through object interfaces and rendering via Canvas's stroke or fill interfaces.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 ### init()
 
@@ -33,45 +33,113 @@ public init()
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
-### init(String)
+### init(?String)
 
 ```cangjie
-public init(path: String)
+public init(d: ?String)
 ```
 
 **Description:** Constructs a Path2D object using a path string compliant with SVG path description specifications.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| path | String | Yes | - | A path string compliant with SVG path description specifications. Format reference: SVG Path Description Specification in Path documentation. |
+| d | ?String | No | - | Path string compliant with SVG path description specifications. Format reference: SVG path description specifications in Path. |
 
-### func addPath(Path2D)
+### func addPath(?Path2D)
 
 ```cangjie
-public func addPath(path2D: Path2D): Unit
+public func addPath(path2D: ?Path2D): Unit
 ```
 
 **Description:** Adds another path to the current path object.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| path2D | [Path2D](./cj-canvas-drawing-path2d.md#class-path2d) | Yes | - | The path object to be added to the current path. Unit: px. |
+| path2D | ?[Path2D](./cj-canvas-drawing-path2d.md#class-path2d) | No | - | Path object to be added to the current path. Unit: px. |
 
-### func arc(Float64, Float64, Float64, Float64, Float64, Bool)
+### func setTransform(?Float64, ?Float64, ?Float64, ?Float64, ?Float64, ?Float64)
+
+```cangjie
+public func setTransform(
+    scaleX: ?Float64,
+    skewX: ?Float64,
+    skewY: ?Float64,
+    scaleY: ?Float64,
+    translateX: ?Float64,
+    translateY: ?Float64
+): Unit
+```
+
+**Description:** Performs scaling, skewing, and translation operations on the path object.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| scaleX | ?Float64 | No | - | Scaling value in the x-axis direction. |
+| skewX | ?Float64 | No | - | Skew value in the x-axis direction. |
+| skewY | ?Float64 | No | - | Skew value in the y-axis direction. |
+| scaleY | ?Float64 | No | - | Scaling value in the y-axis direction. |
+| translateX | ?Float64 | No | - | Translation value in the x-axis direction. |
+| translateY | ?Float64 | No | - | Translation value in the y-axis direction. |
+
+### func moveTo(Float64, Float64)
+
+```cangjie
+public func moveTo(x: Float64, y: Float64): Unit
+```
+
+**Description:** Moves the current coordinate point of the path to the target point without drawing lines during the movement.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | Float64 | Yes | - | X-axis coordinate of the target point.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate of the target point.<br>Default unit: vp. |
+
+### func lineTo(Float64, Float64)
+
+```cangjie
+public func lineTo(x: Float64, y: Float64): Unit
+```
+
+**Description:** Draws a straight line from the current point to the target point.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| x | Float64 | Yes | - | X-axis coordinate of the target point.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate of the target point.<br>Default unit: vp. |
+
+### func arc(Float64, Float64, Float64, Float64, Float64, ?Bool)
 
 ```cangjie
 public func arc(
@@ -80,7 +148,7 @@ public func arc(
     radius: Float64,
     startAngle: Float64,
     endAngle: Float64,
-    counterclockwise!: Bool = false
+    counterclockwise!: ?Bool = None
 ): Unit
 ```
 
@@ -88,18 +156,18 @@ public func arc(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | Float64 | Yes | - | The x-coordinate of the arc's center.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the arc's center.<br>Default unit: vp. |
-| radius | Float64 | Yes | - | The radius of the arc.<br>Default unit: vp. |
-| startAngle | Float64 | Yes | - | The starting radian of the arc.<br>Unit: radians. |
-| endAngle | Float64 | Yes | - | The ending radian of the arc.<br>Unit: radians. |
-| counterclockwise | Bool | No | false | **Named parameter.** Whether to draw the arc counterclockwise.<br>true: Draw counterclockwise.<br>false: Draw clockwise. |
+| x | Float64 | Yes | - | X-axis coordinate of the arc's center.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate of the arc's center.<br>Default unit: vp. |
+| radius | Float64 | Yes | - | Radius of the arc.<br>Default unit: vp. |
+| startAngle | Float64 | Yes | - | Starting radian of the arc.<br>Unit: radians. |
+| endAngle | Float64 | Yes | - | Ending radian of the arc.<br>Unit: radians. |
+| counterclockwise | Bool | No | false | **Named parameter.** Whether to draw the arc counterclockwise.<br>true: Draws the ellipse counterclockwise.<br>false: Draws the ellipse clockwise. |
 
 ### func arcTo(Float64, Float64, Float64, Float64, Float64)
 
@@ -113,21 +181,47 @@ public func arcTo(
 ): Unit
 ```
 
-**Description:** Creates an arc path based on points the arc passes through and its radius.
+**Description:** Creates an arc path based on the points the arc passes through and the arc radius.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x1 | Float64 | Yes | - | The x-coordinate of the first point the arc passes through.<br>Default unit: vp. |
-| y1 | Float64 | Yes | - | The y-coordinate of the first point the arc passes through.<br>Default unit: vp. |
-| x2 | Float64 | Yes | - | The x-coordinate of the second point the arc passes through.<br>Default unit: vp. |
-| y2 | Float64 | Yes | - | The y-coordinate of the second point the arc passes through.<br>Default unit: vp. |
-| radius | Float64 | Yes | - | The radius of the arc.<br>Default unit: vp. |
+| x1 | Float64 | Yes | - | X-axis coordinate of the first point the arc passes through.<br>Default unit: vp. |
+| y1 | Float64 | Yes | - | Y-axis coordinate of the first point the arc passes through.<br>Default unit: vp. |
+| x2 | Float64 | Yes | - | X-axis coordinate of the second point the arc passes through.<br>Default unit: vp. |
+| y2 | Float64 | Yes | - | Y-axis coordinate of the second point the arc passes through.<br>Default unit: vp. |
+| radius | Float64 | Yes | - | Radius of the arc.<br>Default unit: vp. |
+
+### func quadraticCurveTo(Float64, Float64, Float64, Float64)
+
+```cangjie
+public func quadraticCurveTo(
+    cpx: Float64,
+    cpy: Float64,
+    x: Float64,
+    y: Float64
+): Unit
+```
+
+**Description:** Creates a quadratic Bézier curve path.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| cpx | Float64 | Yes | - | X-axis coordinate of the Bézier parameter.<br>Default unit: vp. |
+| cpy | Float64 | Yes | - | Y-axis coordinate of the Bézier parameter.<br>Default unit: vp. |
+| x | Float64 | Yes | - | X-axis coordinate at the end of the path.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate at the end of the path.<br>Default unit: vp. |
 
 ### func bezierCurveTo(Float64, Float64, Float64, Float64, Float64, Float64)
 
@@ -146,32 +240,20 @@ public func bezierCurveTo(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| cp1x | Float64 | Yes | - | The x-coordinate of the first Bézier parameter.<br>Default unit: vp. |
-| cp1y | Float64 | Yes | - | The y-coordinate of the first Bézier parameter.<br>Default unit: vp. |
-| cp2x | Float64 | Yes | - | The x-coordinate of the second Bézier parameter.<br>Default unit: vp. |
-| cp2y | Float64 | Yes | - | The y-coordinate of the second Bézier parameter.<br>Default unit: vp. |
-| x | Float64 | Yes | - | The x-coordinate of the path's endpoint.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the path's endpoint.<br>Default unit: vp. |
+| cp1x | Float64 | Yes | - | X-axis coordinate of the first Bézier parameter.<br>Default unit: vp. |
+| cp1y | Float64 | Yes | - | Y-axis coordinate of the first Bézier parameter.<br>Default unit: vp. |
+| cp2x | Float64 | Yes | - | X-axis coordinate of the second Bézier parameter.<br>Default unit: vp. |
+| cp2y | Float64 | Yes | - | Y-axis coordinate of the second Bézier parameter.<br>Default unit: vp. |
+| x | Float64 | Yes | - | X-axis coordinate at the end of the path.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate at the end of the path.<br>Default unit: vp. |
 
-### func closePath()
-
-```cangjie
-public func closePath(): Unit
-```
-
-**Description:** Moves the current point of the path back to the starting point, drawing a straight line between them. If the shape is already closed or has only one point, this function does nothing.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-### func ellipse(Float64, Float64, Float64, Float64, Float64, Float64, Float64, Bool)
+### func ellipse(Float64, Float64, Float64, Float64, Float64, Float64, Float64, ?Bool)
 
 ```cangjie
 public func ellipse(
@@ -182,7 +264,7 @@ public func ellipse(
     rotation: Float64,
     startAngle: Float64,
     endAngle: Float64,
-    counterclockwise!: Bool = false
+    counterclockwise!: ?Bool = None
 ): Unit
 ```
 
@@ -190,84 +272,20 @@ public func ellipse(
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | Float64 | Yes | - | The x-coordinate of the ellipse's center.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the ellipse's center.<br>Default unit: vp. |
-| radiusX | Float64 | Yes | - | The radius length along the x-axis.<br>Default unit: vp. |
-| radiusY | Float64 | Yes | - | The radius length along the y-axis.<br>Default unit: vp. |
-| rotation | Float64 | Yes | - | The rotation angle of the ellipse.<br>Unit: radians. |
-| startAngle | Float64 | Yes | - | The starting angle for drawing the ellipse.<br>Unit: radians. |
-| endAngle | Float64 | Yes | - | The ending angle for drawing the ellipse.<br>Unit: radians. |
-| counterclockwise | Bool | No | false | **Named parameter.** Whether to draw the ellipse counterclockwise.<br>true: Draw counterclockwise.<br>false: Draw clockwise. |
-
-### func lineTo(Float64, Float64)
-
-```cangjie
-public func lineTo(x: Float64, y: Float64): Unit
-```
-
-**Description:** Draws a straight line from the current point to the target point.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| x | Float64 | Yes | - | The x-coordinate of the target point.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the target point.<br>Default unit: vp. |
-
-### func moveTo(Float64, Float64)
-
-```cangjie
-public func moveTo(x: Float64, y: Float64): Unit
-```
-
-**Description:** Moves the current coordinate point of the path to the target point without drawing a line.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| x | Float64 | Yes | - | The x-coordinate of the target point.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the target point.<br>Default unit: vp. |
-
-### func quadraticCurveTo(Float64, Float64, Float64, Float64)
-
-```cangjie
-public func quadraticCurveTo(
-    cpx: Float64,
-    cpy: Float64,
-    x: Float64,
-    y: Float64
-): Unit
-```
-
-**Description:** Creates a quadratic Bézier curve path.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| cpx | Float64 | Yes | - | The x-coordinate of the Bézier parameter.<br>Default unit: vp. |
-| cpy | Float64 | Yes | - | The y-coordinate of the Bézier parameter.<br>Default unit: vp. |
-| x | Float64 | Yes | - | The x-coordinate of the path's endpoint.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the path's endpoint.<br>Default unit: vp. |
+| x | Float64 | Yes | - | X-axis coordinate of the ellipse's center.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate of the ellipse's center.<br>Default unit: vp. |
+| radiusX | Float64 | Yes | - | Radius length of the ellipse's x-axis.<br>Default unit: vp. |
+| radiusY | Float64 | Yes | - | Radius length of the ellipse's y-axis.<br>Default unit: vp. |
+| rotation | Float64 | Yes | - | Rotation angle of the ellipse.<br>Unit: radians. |
+| startAngle | Float64 | Yes | - | Starting angle for drawing the ellipse.<br>Unit: radians. |
+| endAngle | Float64 | Yes | - | Ending angle for drawing the ellipse.<br>Unit: radians. |
+| counterclockwise | Bool | No | false | **Named parameter.** Whether to draw the ellipse counterclockwise.<br>true: Draws the ellipse counterclockwise.<br>false: Draws the ellipse clockwise. |
 
 ### func rect(Float64, Float64, Float64, Float64)
 
@@ -279,43 +297,25 @@ public func rect(x: Float64, y: Float64, width: Float64, height: Float64): Unit
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
+**Since:** 22
 
 **Parameters:**
 
-| Name | Type | Required | Default | Description |
+| Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | Float64 | Yes | - | The x-coordinate of the rectangle's top-left corner.<br>Default unit: vp. |
-| y | Float64 | Yes | - | The y-coordinate of the rectangle's top-left corner.<br>Default unit: vp. |
-| width | Float64 | Yes | - | The width of the rectangle.<br>Default unit: vp. |
-| height | Float64 | Yes | - | The height of the rectangle.<br>Default unit: vp. |
+| x | Float64 | Yes | - | X-axis coordinate of the rectangle's top-left corner.<br>Default unit: vp. |
+| y | Float64 | Yes | - | Y-axis coordinate of the rectangle's top-left corner.<br>Default unit: vp. |
+| width | Float64 | Yes | - | Width of the rectangle.<br>Default unit: vp. |
+| height | Float64 | Yes | - | Height of the rectangle.<br>Default unit: vp. |
 
-### func setTransform(Float64, Float64, Float64, Float64, Float64, Float64)
+### func closePath()
 
 ```cangjie
-public func setTransform(
-    scaleX: Float64,
-    skewX: Float64,
-    skewY: Float64,
-    scaleY: Float64,
-    translateX: Float64,
-    translateY: Float64
-): Unit
+public func closePath(): Unit
 ```
 
-**Description:** Performs scaling, skewing, and translation operations on the path object.
+**Description:** Moves the current point of the path back to the starting point, drawing a straight line from the current point to the starting point. If the shape is already closed or has only one point, this function does nothing.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Since:** 21
-
-**Parameters:**
-
-| Name | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| scaleX | Float64 | Yes | - | The scaling factor along the x-axis. |
-| skewX | Float64 | Yes | - | The skew factor along the x-axis. |
-| skewY | Float64 | Yes | - | The skew factor along the y-axis. |
-| scaleY | Float64 | Yes | - | The scaling factor along the y-axis. |
-| translateX | Float64 | Yes | - | The translation value along the x-axis. |
-| translateY | Float64 | Yes | - | The translation value along the y-axis. |
+**Since:** 22
