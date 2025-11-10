@@ -6,6 +6,8 @@ This chapter introduces the definition and usage of Cangjie macros, which can be
 
 Non-attribute macros only accept the code to be transformed and do not take other parameters (attributes). Their definition format is as follows:
 
+<!-- code_check_manual -->
+
 ```cangjie
 import std.ast.*
 
@@ -16,6 +18,8 @@ public macro MacroName(args: Tokens): Tokens {
 
 The macro invocation format is as follows:
 
+<!-- code_check_manual -->
+
 ```cangjie
 @MacroName(...)
 ```
@@ -23,6 +27,8 @@ The macro invocation format is as follows:
 Macro invocations are enclosed in `()`. The content inside the parentheses can be any valid `Tokens` or empty.
 
 When a macro is applied to a declaration, the parentheses can generally be omitted. Refer to the following examples:
+
+<!-- code_check_manual -->
 
 ```cangjie
 @MacroName func name1() {}       // Before a FuncDecl
@@ -49,6 +55,8 @@ Special notes on the legality of `Tokens` inside the parentheses:
 - If the input contains "@" as a `Token`, it must be escaped using the escape symbol "\\".
 
 For examples of special input cases, refer to the following:
+
+<!-- code_check_manual -->
 
 ```cangjie
 // Illegal input Tokens
@@ -113,17 +121,23 @@ Below are several typical examples of macro applications.
 
   Print statements are added in the example. The `I'm in macro body` in the macro definition will be output during the compilation of `macro_call.cj`. Meanwhile, the macro invocation point is expanded. For example, compiling the following code:
 
+  <!-- code_check_manual -->
+
   ```cangjie
   let a: Int64 = @testDef(1 + 2)
   ```
 
   The compiler updates the `Tokens` returned by the macro to the syntax tree at the invocation point, resulting in the following code:
+  
+  <!-- code_check_manual -->
 
   ```cangjie
   let a: Int64 = 1 + 2
   ```
 
   In other words, the actual code in the executable becomes:
+  
+  <!-- code_check_manual -->
 
   ```cangjie
   main(): Int64 {
@@ -203,6 +217,8 @@ Below is a more meaningful example of using a macro to process a function. The `
 
   In this example, the `ModifyFunc` macro takes a function declaration as input, so the parentheses can be omitted:
 
+  <!-- code_no_check -->
+
   ```cangjie
   @ModifyFunc
   func myFunc() {
@@ -211,6 +227,8 @@ Below is a more meaningful example of using a macro to process a function. The `
   ```
 
   After macro expansion, the code becomes:
+
+  <!-- code_no_check -->
 
   ```cangjie
   func myFunc(id: Int64) {
@@ -272,6 +290,8 @@ main() {}
 - For the `Foo` macro invocation with `2+3` as the parameter, it is concatenated with the attribute `1+` inside `[]`. After macro expansion, the result is `var a: Int64 = 1+2+3`.
 - For the `Foo` macro invocation with `struct Data` as the parameter, it is concatenated with the attribute `public` inside `[]`. After macro expansion, the result is:
 
+  <!-- code_no_check -->
+
   ```cangjie
   public struct Data {
       var count: Int64 = 100
@@ -291,6 +311,8 @@ Regarding attribute macros, note the following:
     - If the input contains unmatched square brackets, they must be escaped using the escape symbol "\\".
 
     - If the input contains "@" as a `Token`, it must be escaped using the escape symbol "\\".
+
+    <!-- code_no_check -->
 
     ```cangjie
     // Illegal attribute Tokens
@@ -386,6 +408,8 @@ main() {
 
 Note that, according to the constraint that macro definitions must be compiled before their invocation points, the compilation order for the above three files must be: `pkg1` -> `pkg2` -> `pkg3`. The `Prop` macro definition in `pkg2`:
 
+<!-- code_check_manual -->
+
 ```cangjie
 public macro Prop(input:Tokens):Tokens {
     let v = parseDecl(input)
@@ -402,6 +426,8 @@ public macro Prop(input:Tokens):Tokens {
 ```
 
 will first be expanded into the following code before compilation:
+
+<!-- code_check_manual -->
 
 ```cangjie
 public macro Prop(input: Tokens): Tokens {
@@ -421,7 +447,9 @@ public macro Prop(input: Tokens): Tokens {
         }
     )
 }
-```### Nested Macro Invocations within Macro Calls
+```
+
+### Nested Macro Invocations within Macro Calls
 
 A common scenario for nested macros occurs when macro-decorated code blocks contain macro invocations. A concrete example is as follows:
 
@@ -502,6 +530,8 @@ main(): Int64 {
 As shown in the code above, the `Foo` macro decorates `struct Data`, while within `struct Data`, macro invocations `addToMul` and `Bar` appear. In such nested scenarios, the code transformation rule is: expand the inner macros (`addToMul` and `Bar`) first, then expand the outer macro (`Foo`). Multi-level macro nesting is allowed, and the code transformation always proceeds from the innermost to the outermost macros.
 
 Nested macros can appear in both parenthesized and unparenthesized macro invocations, and the two can be combined. However, developers must ensure there is no ambiguity and clearly define the macro expansion order:
+
+<!-- code_check_manual -->
 
 ```cangjie
 var a = @foo(@foo1(2 * 3)+@foo2(1 + 3))  // foo1, foo2 have to be defined.
@@ -616,6 +646,8 @@ main(): Int64 {
 ```
 
 In the above code, `Outer` receives the variable names sent by the two `Inner` macros and automatically adds the following content to the class:
+
+<!-- code_no_check -->
 
 ```cangjie
 public func getCnt() {
