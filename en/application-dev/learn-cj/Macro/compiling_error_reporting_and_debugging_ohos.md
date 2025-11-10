@@ -136,6 +136,8 @@ The custom error reporting interface provides the same output format as native c
 
 The function prototype of `diagReport` is:
 
+<!-- code_no_check -->
+
 ```cangjie
 public func diagReport(level: DiagReportLevel, tokens: Tokens, message: String, hint: String): Unit
 ```
@@ -292,6 +294,8 @@ cjc --debug-macro demo.cj --import-path ./target
 > ```
 
 In debug mode, a temporary file `demo.cj.macrocall` will be generated, containing the macro-expanded code:
+
+<!-- code_no_check -->
 
 ```cangjie
 // demo.cj.macrocall

@@ -137,6 +137,8 @@ public macro B(input: Tokens) {
 
 `diagReport` 的函数原型如下：
 
+<!-- code_no_check -->
+
 ```cangjie
 public func diagReport(level: DiagReportLevel, tokens: Tokens, message: String, hint: String): Unit
 ```
@@ -294,6 +296,8 @@ cjc --debug-macro demo.cj --import-path ./target
 > ```
 
 在 _debug_ 模式下，会生成临时文件 _demo.cj.macrocall_，对应宏展开的部分如下：
+
+<!-- code_no_check -->
 
 ```cangjie
 // demo.cj.macrocall
