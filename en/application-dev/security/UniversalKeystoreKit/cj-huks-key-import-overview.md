@@ -23,7 +23,7 @@ This method allows the service to establish an end-to-end encrypted transmission
 
 The following figure shows the development sequence diagram for encrypted key import.  
 
-![Encrypted Key Import Development Sequence Diagram](./figures/加密导入密钥开发顺序图.png)  
+![Encrypted Key Import Development Sequence Diagram](./figures/sequence_diagram.png)  
 
 According to the development process, the following HUKS capabilities need to be invoked sequentially during encrypted key import:  
 
