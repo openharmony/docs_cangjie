@@ -52,7 +52,7 @@ Permission does not exist.
 
 **Resolution**
 
-Verify input parameters and correct them to valid values. [Permission List](../security/AccessToken/cj-app-permissions.md#application-permission-list).
+Verify input parameters and correct them to valid values. [Permission List](../../security/AccessToken/cj-app-permissions.md#application-permission-list).
 
 ## 12100004 Interfaces Not Used in Pairs
 

@@ -8,13 +8,13 @@ Developers can install and uninstall applications using debugging commands. For 
 
 **Figure 1** Application Package Installation and Uninstallation Process (Developer)
 
-![hap-install-uninstall](figures/hap-install-uninstall-developer.png)
+![hap-install-uninstall](./figures/hap-install-uninstall-developer.png)
 
 After an application is released on the app market, end users can install and uninstall the application on their devices via the app market.
 
 **Figure 2** Application Package Installation and Uninstallation Process (End User)
 
-![hap-install-uninstall](figures/hap-install-uninstall-user.png)
+![hap-install-uninstall](./figures/hap-install-uninstall-user.png)
 
 ## Application Package Updates
 
