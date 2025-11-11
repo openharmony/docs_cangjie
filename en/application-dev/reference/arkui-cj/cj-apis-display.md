@@ -655,13 +655,13 @@ public prop xDPI: Float32
 
 **Since:** 22
 
-### prop yDPI
+### prop yDpi
 
 ```cangjie
-public prop yDPI: Float32
+public prop yDpi: Float32
 ```
 
-**Function:** DPI on the y-axis.
+**Function:** Dpi on the y-axis.
 
 **Type:** Float32
 
