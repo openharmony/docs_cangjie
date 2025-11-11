@@ -32,6 +32,14 @@ public func findWindow(name: String): Window
 |:-----|:-----------|
 | [Window](#class-window) | Returns the found window. |
 
+**Exceptions:**
+
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:-----------|
+  | 1300002 | This window state is abnormal. |
+
 ## func createWindow(Configuration)
 
 ```cangjie
@@ -58,6 +66,17 @@ public func createWindow(config: Configuration): Window
 |:-----|:-----------|
 | [Window](#class-window) | Returns the created window. |
 
+**Exceptions:**
+
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:-----------|
+  | 201 | Permission verification failed. The application does not have the permission required to call the API. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types. |
+  | 1300003 | This window manager service works abnormally. |
+  | 1300006 | This window context is abnormal. |
+
 ## func shiftAppWindowFocus(Int32, Int32)
 
 ```cangjie
@@ -76,6 +95,18 @@ public func shiftAppWindowFocus(sourceWindowID: Int32, targetWindowID: Int32): U
 |:---------|:-----|:--------|:-------------|:------------|
 | sourceWindowID | Int32 | Yes | - | Source window ID for focus transfer. |
 | targetWindowID | Int32 | Yes | - | Target window ID for focus transfer. |
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:-----------|
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types. |
+  | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+  | 1300002 | This window state is abnormal. |
+  | 1300003 | This window manager service works abnormally. |
+  | 1300004 | Unauthorized operation. |
 
 ## func getLastWindow(BaseContext)
 
@@ -100,6 +131,15 @@ public func getLastWindow(ctx: BaseContext): Window
 | Type | Description |
 |:-----|:-----------|
 | [Window](#class-window) | Returns the retrieved top-level window. |
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:-----------|
+  | 1300002 | This window state is abnormal. |
+  | 1300006 | This window context is abnormal. |
 
 ## class AvoidArea
 
@@ -902,6 +942,14 @@ public func destroyWindow(): Unit
 
 **Since:** 22
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func getWindowAvoidArea(AvoidAreaType)
 
 ```cangjie
@@ -926,6 +974,15 @@ public func getWindowAvoidArea(areaType: AvoidAreaType): AvoidArea
 |:----|:----|
 |[AvoidArea](#class-avoidarea)|Returns the area where the window cannot be displayed.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |401|Parameter error. Possible causes:<br> 1. Mandatory parameters are left unspecified. <br>2. Incorrect parameter types. |
+  |1300002|This window state is abnormal.|
+
 ### func getWindowColorSpace()
 
 ```cangjie
@@ -943,6 +1000,14 @@ public func getWindowColorSpace(): ColorSpace
 |Type|Description|
 |:----|:----|
 |[ColorSpace](#enum-colorspace)|Returns the obtained color space.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func getWindowProperties()
 
@@ -962,6 +1027,14 @@ public func getWindowProperties(): WindowProperties
 |:----|:----|
 |[WindowProperties](#class-windowproperties)|Returns the window properties.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func isWindowShowing()
 
 ```cangjie
@@ -979,6 +1052,14 @@ public func isWindowShowing(): Bool
 |Type|Description|
 |:----|:----|
 |Bool|Returns whether the window is displayed.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func isWindowSupportWideGamut()
 
@@ -998,6 +1079,14 @@ public func isWindowSupportWideGamut(): Bool
 |:----|:----|
 |Bool|A value of true indicates support for wide color gamut color space, and false indicates the opposite.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func minimize()
 
 ```cangjie
@@ -1010,6 +1099,15 @@ Hides the sub-window (if the caller is a sub-window). Sub-windows cannot be rest
 **System Capability:** SystemCapability.Window.SessionManager
 
 **Since:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |801|Capability not supported. Failed to call the API due to limited device capabilities.|
+  |1300002|This window state is abnormal.|
 
 ### func moveWindowTo(Int32, Int32)
 
@@ -1030,6 +1128,14 @@ public func moveWindowTo(x: Int32, y: Int32): Unit
 |x|Int32|Yes|-|Indicates the X-coordinate of the window.|
 |y|Int32|Yes|-|Indicates the Y-coordinate of the window.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func off(WindowCallbackType)
 
 ```cangjie
@@ -1047,6 +1153,14 @@ public func off(callbackType: WindowCallbackType): Unit
 |Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|Event type.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 ### func off(WindowCallbackType, Callback1Argument\<UInt32>)
 
@@ -1067,6 +1181,14 @@ public func off(callbackType: WindowCallbackType, callback: Callback1Argument<UI
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|The value must be KeyboardHeightChange, indicating the keyboard height change event.|
 |callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|Yes|-|Callback used to return the current keyboard height, which is an integer in px.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 ### func on(WindowCallbackType, Callback1Argument\<UInt32>)
 
 ```cangjie
@@ -1086,6 +1208,14 @@ public func on(callbackType: WindowCallbackType, callback: Callback1Argument<UIn
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|Yes|-|The value must be KeyboardHeightChange, indicating the keyboard height change event.|
 |callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|Yes|-|Callback used to return the current keyboard height, which is an integer in px.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 ### func resetAspectRatio()
 
 ```cangjie
@@ -1097,6 +1227,15 @@ public func resetAspectRatio(): Unit
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Since:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300004|Unauthorized operation.|
 
 ### func resize(UInt32, UInt32)
 
@@ -1117,6 +1256,14 @@ public func resize(width: UInt32, height: UInt32): Unit
 |width|UInt32|Yes|-|Indicates the width of the window.|
 |height|UInt32|Yes|-|Indicates the height of the window.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setAspectRatio(Float64)
 
 ```cangjie
@@ -1134,6 +1281,15 @@ public func setAspectRatio(ratio: Float64): Unit
 |Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |ratio|Float64|Yes|-|The aspect ratio of the window excluding decorations.|
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300004|Unauthorized operation.|
 
 ### func setPreferredOrientation(Orientation)
 
@@ -1153,6 +1309,15 @@ public func setPreferredOrientation(orientation: Orientation): Unit
 |:---|:---|:---|:---|:---|
 |orientation|[Orientation](#enum-orientation)|Yes|-|Window orientation configuration.|
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  |Error Code|Description|
+  |:----|:----|
+  |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+  |1300002|This window state is abnormal.|### func setWindowBackgroundColor(String)
+
 ```cangjie
 public func setWindowBackgroundColor(color: String): Unit
 ```
@@ -1168,6 +1333,15 @@ public func setWindowBackgroundColor(color: String): Unit
 | Parameter | Type   | Required | Default | Description          |
 |:---------|:-------|:--------|:--------|:---------------------|
 | color    | String | Yes      | -       | The specified color. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types. |
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowBrightness(Float32)
 
@@ -1187,6 +1361,14 @@ public func setWindowBrightness(brightness: Float32): Unit
 |:----------|:-------|:--------|:--------|:----------------------|
 | brightness | Float32 | Yes      | -       | The specified brightness value. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func setWindowColorSpace(ColorSpace)
 
 ```cangjie
@@ -1204,6 +1386,14 @@ public func setWindowColorSpace(colorSpace: ColorSpace): Unit
 | Parameter   | Type                     | Required | Default | Description           |
 |:-----------|:-------------------------|:--------|:--------|:----------------------|
 | colorSpace | [ColorSpace](#enum-colorspace) | Yes      | -       | The specified color space. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowFocusable(Bool)
 
@@ -1223,6 +1413,14 @@ public func setWindowFocusable(isFocusable: Bool): Unit
 |:------------|:-----|:--------|:--------|:----------------------|
 | isFocusable | Bool | Yes      | -       | If true, the window can obtain focus; if false, it cannot. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func setWindowKeepScreenOn(Bool)
 
 ```cangjie
@@ -1240,6 +1438,14 @@ public func setWindowKeepScreenOn(isKeepScreenOn: Bool): Unit
 | Parameter      | Type | Required | Default | Description           |
 |:--------------|:-----|:--------|:--------|:----------------------|
 | isKeepScreenOn | Bool | Yes      | -       | If true, the screen will stay always on; if false, it will not. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowSystemBarEnabled(Array<SystemBarType>)
 
@@ -1259,6 +1465,14 @@ public func setWindowSystemBarEnabled(names: Array<SystemBarType>): Unit
 |:---------|:----------------------------------|:--------|:--------|:----------------------|
 | names    | Array\<[SystemBarType](#enum-systembartype)> | Yes      | -       | Collection of system bar types. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func setWindowSystemBarProperties(SystemBarProperties)
 
 ```cangjie
@@ -1277,6 +1491,14 @@ public func setWindowSystemBarProperties(systemBarProperties: SystemBarPropertie
 |:--------------------|:---------------------------------------|:--------|:--------|:----------------------|
 | systemBarProperties | [SystemBarProperties](#class-systembarproperties) | Yes      | -       | The system bar properties. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func setWindowLayoutFullScreen(Bool)
 
 ```cangjie
@@ -1294,6 +1516,14 @@ public func setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit
 | Parameter          | Type | Required | Default | Description           |
 |:------------------|:-----|:--------|:--------|:----------------------|
 | isLayoutFullScreen | Bool | Yes      | -       | Whether the window layout is immersive. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowPrivacyMode(Bool)
 
@@ -1315,6 +1545,14 @@ public func setWindowPrivacyMode(isPrivacyMode: Bool): Unit
 |:-------------|:-----|:--------|:--------|:----------------------|
 | isPrivacyMode | Bool | Yes      | -       | If true, it is in privacy mode; if false, it is not. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func setWindowSystemBarEnable(Array<SystemBarType>)
 
 ```cangjie
@@ -1332,6 +1570,14 @@ public func setWindowSystemBarEnable(names: Array<SystemBarType>): Unit
 | Parameter | Type                              | Required | Default | Description           |
 |:---------|:----------------------------------|:--------|:--------|:----------------------|
 | names    | Array\<[SystemBarType](#enum-systembartype)> | Yes      | -       | Collection of system bar types. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func setWindowSystemBarProperties(SystemBarProperties)
 
@@ -1351,6 +1597,14 @@ public func setWindowSystemBarProperties(systemBarProperties: SystemBarPropertie
 |:--------------------|:---------------------------------------|:--------|:--------|:----------------------|
 | systemBarProperties | [SystemBarProperties](#class-systembarproperties) | Yes      | -       | The system bar properties. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func setWindowTouchable(Bool)
 
 ```cangjie
@@ -1369,6 +1623,14 @@ public func setWindowTouchable(isTouchable: Bool): Unit
 |:------------|:-----|:--------|:--------|:----------------------|
 | isTouchable | Bool | Yes      | -       | If true, the window is touchable; if false, it is not. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
+
 ### func showWindow()
 
 ```cangjie
@@ -1380,6 +1642,14 @@ public func showWindow(): Unit
 **System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Initial Version:** 22
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ### func snapshot()
 
@@ -1398,6 +1668,14 @@ public func snapshot(): PixelMap
 | Type | Description |
 |:----|:------------|
 | [PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap) | Returns a Promise without a value. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed in the table below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 1300002   | This window state is abnormal. |
 
 ## class WindowProperties
 
@@ -1686,6 +1964,14 @@ public func createSubWindow(name: String): Window
 |:--------------------|:-------------------|
 | [Window](#class-window) | Returns the sub-window. |
 
+**Exceptions:**
+
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description                     |
+  |:-----------|:--------------------------------|
+  | 1300002    | This window state is abnormal. |
+
 ### func getMainWindow()
 
 ```cangjie
@@ -1704,6 +1990,14 @@ public func getMainWindow(): Window
 |:--------------------|:-----------------|
 | [Window](#class-window) | Returns the main window. |
 
+**Exceptions:**
+
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description                     |
+  |:-----------|:--------------------------------|
+  | 1300002    | This window state is abnormal. |
+
 ### func getSubWindow()
 
 ```cangjie
@@ -1721,6 +2015,14 @@ public func getSubWindow(): Array<Window>
 | Type                     | Description           |
 |:-------------------------|:----------------------|
 | Array\<[Window](#class-window)> | Returns all sub-windows. |
+
+**Exceptions:**
+
+- BusinessException: Error codes are listed below. For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Window Error Codes](./cj-errorcode-window.md).
+
+  | Error Code | Description                     |
+  |:-----------|:--------------------------------|
+  | 1300002    | This window state is abnormal. |
 
 ### func loadContent(String)
 

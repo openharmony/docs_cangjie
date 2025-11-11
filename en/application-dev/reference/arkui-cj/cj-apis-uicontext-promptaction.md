@@ -80,6 +80,14 @@ public func showActionMenu(option: ActionMenuOptions, callback!: ShowActionMenuC
 | option | [ActionMenuOptions](#class-actionmenuoptions) | Yes | - | **Named parameter.** Action menu options. |
 | callback | [ShowActionMenuCallBack](#type-showactionmenucallback) | No | defaultCallback | **Named parameter.** Callback for returning action menu response results. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 100001 | Internal error: failed to allocate memory. |
+
 ### func showDialog(ShowDialogOptions, ShowDialogCallBack)
 
 ```cangjie
@@ -99,6 +107,14 @@ public func showDialog(option: ShowDialogOptions, callback!: ShowDialogCallBack 
 | option | [ShowDialogOptions](#class-showdialogoptions) | Yes | - | **Named parameter.** Dialog options. |
 | callback | [ShowDialogCallBack](#type-showdialogcallback) | No | defaultCallback | **Named parameter.** Callback for returning dialog response results. |
 
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 100001 | Internal error: failed to allocate memory. |
+
 ### func showToast(ShowToastOptions)
 
 ```cangjie
@@ -116,6 +132,14 @@ public func showToast(option: ShowToastOptions): Unit
 | Parameter | Type | Required | Default | Description |
 |:---------|:-----|:--------|:--------|:------------|
 | option | [ShowToastOptions](#class-showtoastoptions) | Yes | - | Toast options. |
+
+**Exceptions:**
+
+- BusinessException: Corresponding error codes are listed below. See [Universal Error Codes](../cj-errorcode-universal.md).
+
+  | Error Code | Description |
+  |:----------|:------------|
+  | 100001 | Internal error: failed to allocate memory. |
 
 ## class ActionMenuOptions
 

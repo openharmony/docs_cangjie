@@ -32,6 +32,14 @@ public func findWindow(name: String): Window
 |:----|:----|
 |[Window](#class-window)|返回找到的窗口。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ## func createWindow(Configuration)
 
 ```cangjie
@@ -58,6 +66,17 @@ public func createWindow(config: Configuration): Window
 |:----|:----|
 |[Window](#class-window)|返回创建的窗口。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |201|Permission verification failed. The application does not have the permission required to call the API.|
+  |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+  |1300003|This window manager service works abnormally.|
+  |1300006|This window context is abnormal.|
+
 ## func shiftAppWindowFocus(Int32, Int32)
 
 ```cangjie
@@ -76,6 +95,18 @@ public func shiftAppWindowFocus(sourceWindowID: Int32, targetWindowID: Int32): U
 |:---|:---|:---|:---|:---|
 |sourceWindowID|Int32|是|-|焦点转移的源窗口ID。|
 |targetWindowID|Int32|是|-|焦点转移的目标窗口ID。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+  |801|Capability not supported. Failed to call the API due to limited device capabilities.|
+  |1300002|This window state is abnormal.|
+  |1300003|This window manager service works abnormally.|
+  |1300004|Unauthorized operation.|
 
 ## func getLastWindow(BaseContext)
 
@@ -100,6 +131,15 @@ public func getLastWindow(ctx: BaseContext): Window
 |类型|说明|
 |:----|:----|
 |[Window](#class-window)|返回获取的顶层窗口。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300006|This window context is abnormal.|
 
 ## class AvoidArea
 
@@ -910,6 +950,14 @@ public func destroyWindow(): Unit
 
 **起始版本：** 22
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func getWindowAvoidArea(AvoidAreaType)
 
 ```cangjie
@@ -934,6 +982,15 @@ public func getWindowAvoidArea(areaType: AvoidAreaType): AvoidArea
 |:----|:----|
 |[AvoidArea](#class-avoidarea)|返回窗口无法显示的区域。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |401|Parameter error. Possible causes:<br> 1. Mandatory parameters are left unspecified. <br>2. Incorrect parameter types. |
+  |1300002|This window state is abnormal.|
+
 ### func getWindowColorSpace()
 
 ```cangjie
@@ -951,6 +1008,14 @@ public func getWindowColorSpace(): ColorSpace
 |类型|说明|
 |:----|:----|
 |[ColorSpace](#enum-colorspace)|返回获取的颜色空间。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func getWindowProperties()
 
@@ -970,6 +1035,14 @@ public func getWindowProperties(): WindowProperties
 |:----|:----|
 |[WindowProperties](#class-windowproperties)|返回窗口属性。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func isWindowShowing()
 
 ```cangjie
@@ -987,6 +1060,14 @@ public func isWindowShowing(): Bool
 |类型|说明|
 |:----|:----|
 |Bool|返回窗口是否显示。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func isWindowSupportWideGamut()
 
@@ -1006,6 +1087,14 @@ public func isWindowSupportWideGamut(): Bool
 |:----|:----|
 |Bool|值true表示支持宽色域颜色空间，false表示相反。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func minimize()
 
 ```cangjie
@@ -1018,6 +1107,15 @@ public func minimize(): Unit
 **系统能力：** SystemCapability.Window.SessionManager
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |801|Capability not supported. Failed to call the API due to limited device capabilities.|
+  |1300002|This window state is abnormal.|
 
 ### func moveWindowTo(Int32, Int32)
 
@@ -1038,6 +1136,14 @@ public func moveWindowTo(x: Int32, y: Int32): Unit
 |x|Int32|是|-|指示窗口的X坐标。|
 |y|Int32|是|-|指示窗口的Y坐标。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func off(WindowCallbackType)
 
 ```cangjie
@@ -1055,6 +1161,14 @@ public func off(callbackType: WindowCallbackType): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|是|-|事件类型。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
 ### func off(WindowCallbackType, Callback1Argument\<UInt32>)
 
@@ -1075,6 +1189,14 @@ public func off(callbackType: WindowCallbackType, callback: Callback1Argument<UI
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|是|-|值固定为KeyboardHeightChange，表示键盘高度变化事件。|
 |callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|是|-|用于返回当前键盘高度的回调，该高度为整数，单位为px。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 ### func on(WindowCallbackType, Callback1Argument\<UInt32>)
 
 ```cangjie
@@ -1094,6 +1216,14 @@ public func on(callbackType: WindowCallbackType, callback: Callback1Argument<UIn
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|是|-|值固定为KeyboardHeightChange，表示键盘高度变化事件。|
 |callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|是|-|用于返回当前键盘高度的回调，该高度为整数，单位为px。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 ### func resetAspectRatio()
 
 ```cangjie
@@ -1105,6 +1235,15 @@ public func resetAspectRatio(): Unit
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300004|Unauthorized operation.|
 
 ### func resize(UInt32, UInt32)
 
@@ -1125,6 +1264,14 @@ public func resize(width: UInt32, height: UInt32): Unit
 |width|UInt32|是|-|指示窗口的宽度。|
 |height|UInt32|是|-|指示窗口的高度。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setAspectRatio(Float64)
 
 ```cangjie
@@ -1142,6 +1289,15 @@ public func setAspectRatio(ratio: Float64): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |ratio|Float64|是|-|窗口除装饰外的宽高比。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+  |1300004|Unauthorized operation.|
 
 ### func setPreferredOrientation(Orientation)
 
@@ -1161,6 +1317,15 @@ public func setPreferredOrientation(orientation: Orientation): Unit
 |:---|:---|:---|:---|:---|
 |orientation|[Orientation](#enum-orientation)|是|-|窗口的方向配置。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+  |1300002|This window state is abnormal.|
+
 ### func setWindowBackgroundColor(String)
 
 ```cangjie
@@ -1178,6 +1343,15 @@ public func setWindowBackgroundColor(color: String): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |color|String|是|-|指定的颜色。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
+  |1300002|This window state is abnormal.|
 
 ### func setWindowBrightness(Float32)
 
@@ -1197,6 +1371,14 @@ public func setWindowBrightness(brightness: Float32): Unit
 |:---|:---|:---|:---|:---|
 |brightness|Float32|是|-|指定的亮度值。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setWindowColorSpace(ColorSpace)
 
 ```cangjie
@@ -1214,6 +1396,14 @@ public func setWindowColorSpace(colorSpace: ColorSpace): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |colorSpace|[ColorSpace](#enum-colorspace)|是|-|指定的颜色空间。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func setWindowFocusable(Bool)
 
@@ -1233,6 +1423,14 @@ public func setWindowFocusable(isFocusable: Bool): Unit
 |:---|:---|:---|:---|:---|
 |isFocusable|Bool|是|-|如果为true则可获得焦点，如果为false则不可获得焦点。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setWindowKeepScreenOn(Bool)
 
 ```cangjie
@@ -1250,6 +1448,14 @@ public func setWindowKeepScreenOn(isKeepScreenOn: Bool): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |isKeepScreenOn|Bool|是|-|如果为true则保持屏幕常亮，如果为false则不保持。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func setWindowSystemBarEnabled(Array<SystemBarType>)
 
@@ -1269,6 +1475,14 @@ public func setWindowSystemBarEnabled(names: Array<SystemBarType>): Unit
 |:---|:---|:---|:---|:---|
 |names|Array\<[SystemBarType](#enum-systembartype)>|是|-|系统栏类型集合。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setWindowSystemBarProperties(SystemBarProperties)
 
 ```cangjie
@@ -1287,6 +1501,14 @@ public func setWindowSystemBarProperties(systemBarProperties: SystemBarPropertie
 |:---|:---|:---|:---|:---|
 |systemBarProperties|[SystemBarProperties](#class-systembarproperties)|是|-|系统栏属性。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setWindowLayoutFullScreen(Bool)
 
 ```cangjie
@@ -1304,6 +1526,14 @@ public func setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |isLayoutFullScreen|Bool|是|-|窗口布局是否沉浸式。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func setWindowPrivacyMode(Bool)
 
@@ -1325,6 +1555,14 @@ public func setWindowPrivacyMode(isPrivacyMode: Bool): Unit
 |:---|:---|:---|:---|:---|
 |isPrivacyMode|Bool|是|-|如果为true则为隐私模式，如果为false则不是。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func setWindowSystemBarProperties(SystemBarProperties)
 
 ```cangjie
@@ -1342,6 +1580,14 @@ public func setWindowSystemBarProperties(systemBarProperties: SystemBarPropertie
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |systemBarProperties|[SystemBarProperties](#class-systembarproperties)|是|-|系统栏属性。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func setWindowTouchable(Bool)
 
@@ -1361,6 +1607,14 @@ public func setWindowTouchable(isTouchable: Bool): Unit
 |:---|:---|:---|:---|:---|
 |isTouchable|Bool|是|-|如果为true则可触摸，如果为false则不可触摸。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func showWindow()
 
 ```cangjie
@@ -1372,6 +1626,14 @@ public func showWindow(): Unit
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **起始版本：** 22
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func snapshot()
 
@@ -1390,6 +1652,14 @@ public func snapshot(): PixelMap
 |类型|说明|
 |:----|:----|
 |[PixelMap](../ImageKit/cj-apis-image.md#class-pixelmap)|返回不带值的Promise。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ## class WindowProperties
 
@@ -1700,6 +1970,14 @@ public func createSubWindow(name: String): Window
 |:----|:----|
 |[Window](#class-window)|返回子窗口。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func getMainWindow()
 
 ```cangjie
@@ -1718,6 +1996,14 @@ public func getMainWindow(): Window
 |:----|:----|
 |[Window](#class-window)|返回主窗口。|
 
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
+
 ### func getSubWindow()
 
 ```cangjie
@@ -1735,6 +2021,14 @@ public func getSubWindow(): Array<Window>
 |类型|说明|
 |:----|:----|
 |Array\<[Window](#class-window)>|返回所有子窗口。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[窗口错误码](./cj-errorcode-window.md)。
+
+  |错误码|说明|
+  |:----|:----|
+  |1300002|This window state is abnormal.|
 
 ### func loadContent(String)
 
