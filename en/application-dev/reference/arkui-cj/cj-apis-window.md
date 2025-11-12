@@ -2043,7 +2043,6 @@ If called multiple times, this API will destroy the existing page content (UICon
 |:----------|:-------|:---------|:--------|:--------------------------|
 | path      | String | Yes      | -       | Path of the page to load. |
 
-
 ## enum AvoidAreaType
 
 ```cangjie
@@ -2175,7 +2174,6 @@ public operator func ==(other: AvoidAreaType): Bool
 |:-----|:---------------------------------------|
 | Bool | Returns `true` if the instances are equal. |
 
-
 ## enum ColorSpace
 
 ```cangjie
@@ -2267,7 +2265,6 @@ public operator func ==(other: ColorSpace): Bool
 | Type | Description                            |
 |:-----|:---------------------------------------|
 | Bool | Returns `true` if the instances are equal. |
-
 
 ## enum Orientation
 

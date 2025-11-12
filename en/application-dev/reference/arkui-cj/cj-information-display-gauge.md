@@ -1,5 +1,7 @@
 # Gauge
 
+A gauge chart component that displays data in a circular (ring-style) format.
+
 ## Import Module
 
 ```cangjie

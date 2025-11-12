@@ -1,5 +1,7 @@
 # LazyForEach
 
+Combined with cached list items, it can improve the rendering performance of the list.
+
 ## Import Module
 
 ```cangjie
