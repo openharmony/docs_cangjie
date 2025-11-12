@@ -719,13 +719,13 @@ public prop xDPI: Float32
 
 **起始版本：** 22
 
-### prop yDPI
+### prop yDpi
 
 ```cangjie
-public prop yDPI: Float32
+public prop yDpi: Float32
 ```
 
-**功能：** y轴上的DPI。
+**功能：** y轴上的Dpi。
 
 **类型：** Float32
 

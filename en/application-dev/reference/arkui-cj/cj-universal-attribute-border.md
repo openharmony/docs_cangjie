@@ -15,7 +15,7 @@ public func border(width!: ?Length, color!: ?ResourceColor = None, radius!: ?Len
     style!: ?BorderStyle = Option.None): T
 ```
 
-**Function:** Sets the border style of a component.
+**Function:** Sets the border style of the component. When color and radius are omitted, to ensure that borderColor and borderRadius take effect, they must be specified after border.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 

@@ -1224,7 +1224,6 @@ public func on(callbackType: WindowCallbackType, callback: Callback1Argument<UIn
   |:----|:----|
   |1300016|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
-
 ### func resetAspectRatio()
 
 ```cangjie
@@ -1326,7 +1325,6 @@ public func setPreferredOrientation(orientation: Orientation): Unit
   |:----|:----|
   |401|Parameter error. Possible cause: 1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
   |1300002|This window state is abnormal.|
-
 
 ### func setWindowBackgroundColor(String)
 
@@ -2050,7 +2048,6 @@ public func loadContent(path: String): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |path|String|是|-|将加载内容的页面路径。|
-
 
 ## enum AvoidAreaType
 

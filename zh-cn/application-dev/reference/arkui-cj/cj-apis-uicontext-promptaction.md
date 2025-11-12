@@ -1427,7 +1427,6 @@ public var backgroundColor: ResourceColor
 
 **类型：** [ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
-
 **读写能力：** 可读写
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1587,7 +1586,6 @@ public var textColor: ResourceColor
 **功能：** Toast的文本颜色。
 
 **类型：** [ResourceColor](./cj-common-types.md#interface-resourcecolor)
-
 
 **读写能力：** 可读写
 
