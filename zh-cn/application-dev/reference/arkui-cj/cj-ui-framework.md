@@ -124,6 +124,18 @@ public func build(): Unit
 
 **起始版本：** 22
 
+### func rerender()
+
+```cangjie
+public open func rerender(): Unit
+```
+
+**功能：** UI框架使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
 ### func purgeVariableDependenciesOnElmtId(Int64)
 
 ```cangjie
