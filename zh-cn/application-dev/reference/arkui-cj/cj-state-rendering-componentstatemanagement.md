@@ -8,7 +8,7 @@
 import kit.ArkUI.*
 ```
 
-## class ObservedProperty
+## class ObservedProperty\<T>
 
 ```cangjie
 public open class ObservedProperty<T> {
@@ -21,7 +21,7 @@ public open class ObservedProperty<T> {
 
 **起始版本：** 22
 
-## class ObservedArrayList
+## class ObservedArrayList\<T>
 
 ```cangjie
 public class ObservedArrayList<T> <:  CollectionEx<T> {
