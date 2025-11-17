@@ -63,6 +63,23 @@ public init(
 
 ## 组件属性
 
+### func divider(Option\<ListDividerOptions>)
+
+```cangjie
+public func divider(value: Option<ListDividerOptions>): This
+```
+
+**功能：** 设置ListItem分割线样式，默认无分割线。strokeWidth，startMargin和endMargin不支持设置百分比。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|value|Option<[ListDividerOptions](#class-listdivideroptions)>|是|-|ListItem分割线样式。设置为Option.None时表示无分割线。|
 
 ## 基础类型定义
 

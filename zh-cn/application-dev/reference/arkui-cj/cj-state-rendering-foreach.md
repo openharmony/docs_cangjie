@@ -8,7 +8,7 @@ ForEach接口基于数组类型数据来进行循环渲染。
 import kit.ArkUI.*
 ```
 
-## class ForEach
+## class ForEach\<T>
 
 ```cangjie
 public class ForEach<T> {
