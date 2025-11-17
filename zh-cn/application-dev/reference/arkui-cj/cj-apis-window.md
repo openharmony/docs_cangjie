@@ -3258,7 +3258,7 @@ public operator func ==(other: WindowStatusType): Bool
 ```cangjie
 public enum WindowType <: Equatable<WindowType> {
     | TypeApp
-    | TypeSystemAlert
+    | TypeMain
     | TypeFloat
     | TypeDialog
     | ...
@@ -3287,13 +3287,13 @@ TypeApp
 
 **起始版本：** 22
 
-### TypeSystemAlert
+### TypeMain
 
 ```cangjie
-TypeSystemAlert
+TypeMain
 ```
 
-**功能：** 系统警告窗口。
+**功能：** 应用主窗口。此窗口类型不支持在创建窗口时使用，仅可在getWindowProperties接口的返回值中用于读取。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
