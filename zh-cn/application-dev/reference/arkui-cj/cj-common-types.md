@@ -245,6 +245,254 @@ prop lpx: Length
 
 **起始版本：** 22
 
+## Float64
+
+**功能：** Float64类型定义的描述。
+
+### extend Float64 <: LengthProp & Length
+
+```cangjie
+extend Float64 <: LengthProp & Length {}
+```
+
+**功能：** 扩展Float64为LengthProp和Length的子类。
+
+#### prop px
+
+```cangjie
+public prop px: Length
+```
+
+**功能：** 以px为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop vp
+
+```cangjie
+public prop vp: Length
+```
+
+**功能：** 以vp为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop fp
+
+```cangjie
+public prop fp: Length
+```
+
+**功能：** 以fp为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop percent
+
+```cangjie
+public prop percent: Length
+```
+
+**功能：** 以百分比为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop lpx
+
+```cangjie
+public prop lpx: Length
+```
+
+**功能：** 以lpx为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop value
+
+```cangjie
+public prop value: Float64
+```
+
+**功能：** 长度属性的值。
+
+**类型：** Float64
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop unitType
+
+```cangjie
+public prop unitType: LengthUnit
+```
+
+**功能：** 长度属性的单位。
+
+**类型：** [LengthUnit](#enum-lengthunit)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+## Int64
+
+**功能：** Int64类型定义的描述。
+
+### extend Int64 <: LengthProp & Length
+
+```cangjie
+extend Int64 <: LengthProp & Length {}
+```
+
+**功能：** 扩展Int64为LengthProp和Length的子类。
+
+#### prop px
+
+```cangjie
+public prop px: Length
+```
+
+**功能：** 以px为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop vp
+
+```cangjie
+public prop vp: Length
+```
+
+**功能：** 以vp为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop fp
+
+```cangjie
+public prop fp: Length
+```
+
+**功能：** 以fp为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop percent
+
+```cangjie
+public prop percent: Length
+```
+
+**功能：** 以百分比为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop lpx
+
+```cangjie
+public prop lpx: Length
+```
+
+**功能：** 以lpx为单位的长度属性。
+
+**类型：** [Length](#interface-length)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop value
+
+```cangjie
+public prop value: Float64
+```
+
+**功能：** 长度属性的值。
+
+**类型：** Float64
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+#### prop unitType
+
+```cangjie
+public prop unitType: LengthUnit
+```
+
+**功能：** 长度属性的单位。
+
+**类型：** [LengthUnit](#enum-lengthunit)
+
+**读写能力：** 只读
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
 ## interface ResourceColor
 
 ```cangjie
@@ -343,6 +591,14 @@ public interface ResourceStr {}
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
+
+### extend String <: ResourceStr
+
+```cangjie
+extend String <: ResourceStr {}
+```
+
+**功能：** 扩展String为ResourceStr子类。
 
 ## interface TextContentControllerBase
 
@@ -904,6 +1160,18 @@ public init(keyText: String, keyType: KeyType, keyCode: Int32, keySource: KeySou
 |metaKey|Int32|是|-|按键发生时元键的状态，1表示按压态，0表示未按压态。|
 |deviceId|Int64|是|-|触发当前按键的输入设备ID。|
 |timestamp|Int64|是|-|按键发生时的时间戳。|
+
+### func stopPropagation()
+
+```cangjie
+public func stopPropagation(): Unit
+```
+
+**功能：** 阻塞事件冒泡传递。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
 
 ## class TouchObject
 
