@@ -581,6 +581,7 @@
                     - [Drag Control](reference/arkui-cj/cj-universal-attribute-dragcontrol.md)
                     - [Safe Area](reference/arkui-cj/cj-universal-attribute-expandsafearea.md)
                     - [Component Content Filling Method](reference/arkui-cj/cj-universal-attribute-renderfit.md)
+                    - [Touch hot zone settings](reference/arkui-cj/cj-universal-attribute-touchtarget.md)
                 - Rows, Columns & Stacks
                     - [Flex](reference/arkui-cj/cj-row-column-stack-flex.md)
                     - [Column](reference/arkui-cj/cj-row-column-stack-column.md)
