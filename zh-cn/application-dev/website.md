@@ -739,6 +739,7 @@
                     - [拖拽控制](reference/arkui-cj/cj-universal-attribute-dragcontrol.md)
                     - [安全区域](reference/arkui-cj/cj-universal-attribute-expandsafearea.md)
                     - [组件内容填充方式](reference/arkui-cj/cj-universal-attribute-renderfit.md)
+                    - [触摸热区设置](reference/arkui-cj/cj-universal-attribute-touchtarget.md)
                 - 行列与堆叠
                     - [Flex](reference/arkui-cj/cj-row-column-stack-flex.md)
                     - [Column](reference/arkui-cj/cj-row-column-stack-column.md)
