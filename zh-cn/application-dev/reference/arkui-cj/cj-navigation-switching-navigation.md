@@ -99,7 +99,7 @@ public func navDestination(builder: ?(String, Any) -> Unit): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|builder|?(String, Any) -> Unit|是|-|NavDestination组件。参数：NavDestination页面名称和参数。初始值：{ _: String, _: Any => }。|
+|builder|?(String, Any) -> Unit|是|-|NavDestination组件。<br/>参数一：NavDestination页面名称。<br/>参数二：开发者设置的NavDestination页面详细参数，当前不支持此参数设置（设置后不生效）。<br/>初始值：{ _: String, _: Any => }。|
 
 ### func title(?CustomBuilder, ?NavigationTitleOptions)
 
