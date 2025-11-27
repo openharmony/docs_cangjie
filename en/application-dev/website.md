@@ -220,7 +220,6 @@
                 - [User Files Overview](file-management/cj-user-file-overview.md)
         - IPC Kit (Inter-Process Communication Service)
             - [Introduction to IPC Kit](ipc/cj-ipc-rpc-overview.md)
-            - [IPC and RPC Communication Development Guide](ipc/cj-ipc-rpc-guidelines.md)
         - Localization Kit (Localization Development Service)
             - [Introduction to Localization Kit](internationalization/cj-i18n-l10n.md)
             - Application Internationalization
