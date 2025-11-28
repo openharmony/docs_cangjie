@@ -13,7 +13,7 @@
 public func animateTo(value: AnimateParam, event: VoidCallback): Unit
 ```
 
-[animateTo](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-animatetoanimateparam-voidcallback)接口参数中，animation指定[AnimateParam对象](../reference/arkui-cj/cj-animation-animateto.md#struct-animateparam)（包括时长、[Curve](../reference/arkui-cj/cj-common-types.md#enum-curve)等）callback为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
+[animateTo](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-animatetoanimateparam-voidcallback)接口参数中，animation指定[AnimateParam对象](../reference/arkui-cj/cj-common-types.md#class-animateparam)（包括时长、[Curve](../reference/arkui-cj/cj-common-types.md#enum-curve)等）callback为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
 
  <!-- run -->
 

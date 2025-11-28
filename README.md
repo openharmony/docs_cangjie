@@ -18,7 +18,7 @@ The overall architecture of OpenHarmony Cangjie documentation is illustrated bel
 
 As shown above, the application developer documentation primarily includes:
 
-1. **[Application Development Guide](./en/application-dev/cj-start/start/cj-start-application-development-overview.md)**: Provides an overview of application development documentation to help developers understand the full picture.
+1. **[Application Development Guide](./en/application-dev/cj-start-application-development-overview.md)**: Provides an overview of application development documentation to help developers understand the full picture.
 2. **[Getting Started](./en/application-dev/cj-start/README.md)**:
    - **[Quick Start](./en/application-dev/cj-start/start/quick-start/README.md)**: Introduces development preparations (basic concepts and tool setup) and guides developers through building their first OpenHarmony application using the Cangjie programming language, offering a preliminary understanding of OpenHarmony application development through a simple example.
    - **[Development Fundamentals](./en/application-dev/cj-start/basic-knowledge/README.md)**: Covers foundational knowledge for OpenHarmony application development, including application package basics and configuration files.

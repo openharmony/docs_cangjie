@@ -9,6 +9,7 @@
 ![file-open](figures/file-open.jpeg)
 
 ## 接口关键参数说明
+
 开发者通过调用[startAbility](../reference/AbilityKit/cj-apis-app-ability.md#func-startabilitywant)接口即可实现由已安装的垂域应用来打开文件。
 
 **表1** startAbility请求中[Want](../reference/AbilityKit/cj-apis-app-ability.md#class-want)相关参数说明

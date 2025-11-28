@@ -1,7 +1,7 @@
 # OpenHarmony Developer Documentation (Cangjie)
 
 - Getting Started
-    - [Application Development Guide](cj-start/start/cj-start-application-development-overview.md)
+    - [Application Development Guide](cj-start-application-development-overview.md)
     - Quick Start
         - [Development Preparations](cj-start/start/quick-start/cj-quick-start-preparations.md)
         - [Building Your First Cangjie Application](cj-start/start/quick-start/cj-quick-start-first-cangjie-app.md)
