@@ -18,7 +18,7 @@ OpenHarmony仓颉文档的总体架构如下图所示：
 
 如上图所示，应用开发者文档主要包含：
 
-1. **[应用开发导读](./zh-cn/application-dev/cj-start/start/cj-start-application-development-overview.md)**：总体介绍应用开发文档内容，方便开发者了解文档全景。
+1. **[应用开发导读](./zh-cn/application-dev/cj-start-application-development-overview.md)**：总体介绍应用开发文档内容，方便开发者了解文档全景。
 2. **[入门](./zh-cn/application-dev/cj-start/README_zh.md)**：
    - **[快速入门](./zh-cn/application-dev/cj-start/start/quick-start/README_zh.md)**：介绍开发准备（基本概念和工具准备），以及使用仓颉编程语言构建第一个OpenHarmony应用，帮助开发者从一个简单的例子初步了解OpenHarmony应用开发。
    - **[开发基础知识](./zh-cn/application-dev/cj-start/basic-knowledge/README_zh.md)**：介绍OpenHarmony应用开发过程中的基础知识，包括应用程序包基础知识、应用配置文件等。

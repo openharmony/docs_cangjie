@@ -1,6 +1,6 @@
 # 开发指南（Beta特性）
 
-- [应用开发导读](cj-start/start/cj-start-application-development-overview.md)
+- [应用开发导读](cj-start-application-development-overview.md)
 - [入门](cj-start/README_zh.md)
 - 开发
     - 应用框架

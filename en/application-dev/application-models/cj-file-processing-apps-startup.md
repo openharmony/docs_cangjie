@@ -9,6 +9,7 @@ Figure 1 Illustration of the Effect
 ![file-open](figures/file-open.jpeg)
 
 ## Key Parameter Descriptions
+
 Developers can achieve opening files by installed vertical domain applications by calling the [startAbility](../reference/AbilityKit/cj-apis-app-ability.md#func-startabilitywant) interface.
 
 **Table 1** Description of [Want](../reference/AbilityKit/cj-apis-app-ability.md#class-want) related parameters in the startAbility request
