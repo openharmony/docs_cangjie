@@ -42,11 +42,7 @@ class MainAbility <: UIAbility {
 
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)<!-- ToBeReviewd -->
 
-在onWindowStageCreate()回调中通过[loadContent()](../reference/arkui-cj/cj-apis-window.md#class-windowstage)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/arkui-cj/cj-apis-window.md#func-onwindowcallbacktype-callback1argumentwindowstageeventtype)方法订阅[WindowStage的事件](../reference/arkui-cj/cj-apis-window.md#enum-windowstageeventtype)（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）。
-
-> **说明：**
->
-> 不同开发场景下[WindowStage事件](../reference/arkui-cj/cj-apis-window.md#enum-windowstageeventtype)的时序可能存在差异。
+在onWindowStageCreate()回调中通过[loadContent()](../reference/arkui-cj/cj-apis-window.md#func-loadcontentstring)方法设置应用要加载的页面。
 
 <!-- compile -->
 
@@ -56,36 +52,11 @@ import kit.AbilityKit.UIAbility
 import kit.ArkUI.{WindowStage, WindowCallbackType, WindowStageEventType}
 import ohos.callback_invoke.Callback1Argument
 import ohos.business_exception.BusinessException
-
-class WindowStageCallback <: Callback1Argument<WindowStageEventType> {
-    public override func invoke(err: ?BusinessException, arg: WindowStageEventType) {
-        match (arg) {
-            case WindowStageEventType.Shown => // 切到前台
-                Hilog.info(1, "info", "windowStage foreground.")
-            case WindowStageEventType.Active => // 获焦状态
-                Hilog.info(1, "info", "windowStage active.")
-            case WindowStageEventType.Inactive => // 失焦状态
-                Hilog.info(1, "info", "windowStage inactive.")
-            case WindowStageEventType.Hidden => // 切到后台
-                Hilog.info(1, "info", "windowStage background.")
-            case WindowStageEventType.Resumed => // 前台可交互状态
-                Hilog.info(1, "info", "windowStage resumed.")
-            case WindowStageEventType.Paused => // 前台不可交互状态
-                Hilog.info(1, "info", "windowStage paused.")
-            case _ => ()
-        }
-    }
-}
+import kit.PerformanceAnalysisKit.Hilog
 
 class MainAbility <: UIAbility {
     // ...
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
-        // 设置WindowStage的事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
-        try {
-            windowStage.on(WindowStageEvent, WindowStageCallback())
-        } catch (e: BusinessException) {
-            AppLog.error("Failed to enable the listener for window stage event changes. Cause: ${e.message}");
-        }
         // 设置UI加载
         windowStage.loadContent("EntryView")
     }
@@ -94,7 +65,7 @@ class MainAbility <: UIAbility {
 
 > **说明：**
 >
-> WindowStage的相关使用请参见[窗口开发指导](../reference/arkui-cj/cj-apis-window.md)。
+> WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md#管理应用窗口)。
 
 ### Foreground和Background状态
 
@@ -127,7 +98,7 @@ class MainAbility <: UIAbility {
 }
 ```
 
-当应用的UIAbility实例已创建，且UIAbility配置为[singleton](cj-uiability-launch-type.md#singleton启动模式)启动模式时，再次调用[startAbility()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-startabilityforresultwant-asynccallbackabilityresult)方法启动该UIAbility实例时，只会进入该UIAbility的[onNewWant()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-onnewwantwant-launchparam)回调，不会进入其[onCreate()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-oncreatewant-launchparam)和[onWindowStageCreate()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-onwindowstagecreatewindowstage)生命周期回调。应用可以在该回调中更新要加载的资源和数据等，用于后续的UI展示。
+当应用的UIAbility实例已创建，且UIAbility配置为[singleton](cj-uiability-launch-type.md#singleton启动模式)启动模式时，再次调用[startAbility()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-startabilitywant-startoptions)方法启动该UIAbility实例时，只会进入该UIAbility的[onNewWant()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-onnewwantwant-launchparam)回调，不会进入其[onCreate()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-oncreatewant-launchparam)和[onWindowStageCreate()](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-onwindowstagecreatewindowstage)生命周期回调。应用可以在该回调中更新要加载的资源和数据等，用于后续的UI展示。
 
 <!-- compile -->
 
