@@ -57,7 +57,6 @@
             - [创建网格（Grid/GridItem）](cj-layout-development-create-grid.md)
             - [创建轮播（Swiper）](cj-layout-development-create-looping.md)
             - [选项卡（Tabs）](cj-layout-development-tabs.md)
-        <!--RP2--><!--RP2End-->
     - 使用文本
         - [文本概述](cj-text-introduction.md)
         - [文本显示（Text/Span）](cj-common-components-text-display.md)
@@ -125,7 +124,6 @@
             - [使用画布绘制自定义图形（Canvas）](cj-drawing-customization-on-canvas.md)
     - [混合开发](arkui-cj/cj-appendix-hybrid.md)
     - [使用镜像能力](cj-mirroring-display.md)
-    <!--RP1--><!--RP1End-->
     - 主题设置
         - [应用深浅色适配](cj-ui-dark-light-color-adaptation.md)
 - [窗口管理](../windowmanager/README_zh.md)

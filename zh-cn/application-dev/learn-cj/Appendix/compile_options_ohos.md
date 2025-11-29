@@ -969,7 +969,7 @@ cjc -p my_pkg --test-only -L output -lmain --import-path output
 
 ## 宏选项
 
-`cjc` 支持以下宏选项，关于宏的更多内容请参见<!-- RP1 -->[宏](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/macro_introduction.md)<!-- RP1End -->章节。
+`cjc` 支持以下宏选项，关于宏的更多内容请参见<!--RP1-->[宏](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/macro_introduction.md)<!--RP1End-->章节。
 
 ### `--compile-macro` <sup>[frontend]</sup>
 
@@ -985,7 +985,7 @@ cjc -p my_pkg --test-only -L output -lmain --import-path output
 
 ## 条件编译选项
 
-`cjc` 支持以下条件编译选项，关于条件编译的更多内容请参见<!-- RP2 -->[条件编译](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/conditional_compilation.md)<!-- RP2End -->。
+`cjc` 支持以下条件编译选项，关于条件编译的更多内容请参见<!--RP2-->[条件编译](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/conditional_compilation.md)<!--RP2End-->。
 
 ### `--cfg <value>` <sup>[frontend]</sup>
 
