@@ -27,6 +27,7 @@
     import ohos.business_exception.*
     import kit.AbilityKit.{Want, UIAbilityContext, WantValueType}
     import std.collection.HashMap
+    import kit.PerformanceAnalysisKit.Hilog
 
     var globalContext:?UIAbilityContext = None
 
@@ -97,6 +98,7 @@
     ```cangjie
     import ohos.business_exception.*
     import kit.AbilityKit.UIAbilityContext
+    import kit.PerformanceAnalysisKit.Hilog
 
     var globalFuncAbilityAContext: ?UIAbilityContext = None
     // 见获取UIAbility的上下文信息章节
@@ -154,6 +156,7 @@ import kit.ArkUI.Button
 import ohos.business_exception.*
 import kit.AbilityKit.{Want, UIAbilityContext, AbilityResult, WantValueType}
 import std.collection.HashMap
+import kit.PerformanceAnalysisKit.Hilog
 
 // 见获取UIAbility的上下文信息章节
 func getContext(): UIAbilityContext {
@@ -201,6 +204,7 @@ class PageAbilityComponentsInteractive {
 ```cangjie
 import std.collection.HashMap
 import kit.AbilityKit.{UIAbility, LaunchParam, Want}
+import kit.PerformanceAnalysisKit.Hilog
 
 class FuncAbilityA <: UIAbility {
     var router = "Index"
@@ -242,6 +246,7 @@ class FuncAbilityA <: UIAbility {
     ```cangjie
     import std.collection.HashMap
     import kit.AbilityKit.{UIAbility, LaunchParam, Want}
+    import kit.PerformanceAnalysisKit.Hilog
 
     var globalFuncAbilityAContext:?UIAbilityContext = None
     class FuncAbilityA <: UIAbility {
@@ -272,6 +277,7 @@ class FuncAbilityA <: UIAbility {
     import std.collection.HashMap
     import kit.AbilityKit.{UIAbility, LaunchParam, Want}
     import kit.ArkUI.{launch, Router}
+    import kit.PerformanceAnalysisKit.Hilog
 
     class FuncAbilityA <: UIAbility {
         //...
