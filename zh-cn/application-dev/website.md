@@ -402,9 +402,7 @@
                         - [声明权限](security/AccessToken/cj-declare-permissions.md)
                         - [向用户申请授权](security/AccessToken/cj-request-user-authorization.md)
                         - [向用户申请单次授权](security/AccessToken/cj-one-time-authorization.md)
-                        <!--Del-->
                         - [申请使用受限权限](security/AccessToken/cj-declare-permissions-in-acl.md)
-                        <!--DelEnd-->
                     - [应用权限列表](security/AccessToken/cj-app-permissions.md)
                         - [开放权限（系统授权）](security/AccessToken/cj-permissions-for-all.md)
                         - [开放权限（用户授权）](security/AccessToken/cj-permissions-for-all-user.md)
@@ -556,9 +554,7 @@
                             - appfreeze事件
                                 - [appfreeze事件介绍](dfx/cj-hiappevent-watcher-freeze-events.md)
                                 - [订阅appfreeze事件（仓颉）](dfx/cj-hiappevent-watcher-freeze-events-cangjie.md)
-                    <!--Del-->
                     - [事件上报](dfx/cj-hiappevent-event-reporting.md)
-                    <!--DelEnd-->
                 - 性能跟踪
                     - [查看HiTraceMeter日志](dfx/cj-hitracemeter-view.md)
                 - 错误管理
@@ -1011,5 +1007,5 @@
         - [ohos.labels（通用接口标签）](reference/arkinterop/cj-api-labels.md)
     - 公共基础能力
         - 仓颉API
-            - [SysCap（系统能力）](reference/arkui-cj/cj-syscap.md)
+            - [SysCap（系统能力）](reference/arkui-cj/cj-apis-syscap.md)
     - [仓颉编程语言库API](reference/cj-libs-api.md)
