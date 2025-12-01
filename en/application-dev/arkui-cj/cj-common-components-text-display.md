@@ -176,7 +176,7 @@ Text can be created in the following two ways:
 
 ## Customizing Text Styles
 
-- Use [textAlign](../reference/arkui-cj/cj-text-input-text.md#textaligntextalign) to set text alignment.
+- Use [textAlign](../reference/arkui-cj/cj-text-input-text.md#func-textaligntextalign) to set text alignment.
 
      <!-- run -->
 
@@ -253,7 +253,7 @@ Text can be created in the following two ways:
   }
   ```
 
-  ![Textdisply6](figures/Textdisply6.gif)
+  ![Textdisply6](figures/Textdisplay6.gif)
 
 - Use [lineHeight](../reference/arkui-cj/cj-text-input-text.md#func-lineheightlength) to set text line height.
 
@@ -285,7 +285,7 @@ Text can be created in the following two ways:
 
   ![Textdisply7](figures/Textdisply7.png)
 
-- Use [decoration](../reference/arkui-cj/cj-text-input-text.md#decorationtextdecorationtype-color-textdecorationstyle) to set text decoration line style and color.
+- Use [decoration](../reference/arkui-cj/cj-text-input-text.md#func-decorationtextdecorationtype-resourcecolor-textdecorationstyle) to set text decoration line style and color.
 
      <!-- run -->
 
@@ -328,7 +328,7 @@ Text can be created in the following two ways:
 
   ![Textdisply8](figures/Textdisply8.png)
 
-- Use [baselineOffset](../reference/arkui-cj/cj-text-input-text.md#baselineoffsetlength) to set the baseline offset of text.
+- Use [baselineOffset](../reference/arkui-cj/cj-text-input-text.md#func-baselineoffsetlength) to set the baseline offset of text.
 
      <!-- run -->
 
@@ -374,9 +374,9 @@ Text can be created in the following two ways:
 
   ![Textdisply9](figures/Textdisply9.png)
 
-- Use [minFontSize](../reference/arkui-cj/cj-text-input-text.md#minfontsizelength) and [maxFontSize](../reference/arkui-cj/cj-text-input-text.md#maxfontsizelength) for adaptive font sizing.
+- Use [minFontSize](../reference/arkui-cj/cj-text-input-text.md#func-minfontsizelength) and [maxFontSize](../reference/arkui-cj/cj-text-input-text.md#func-maxfontsizelength) for adaptive font sizing.
 
-  `minFontSize` sets the minimum display font size, while `maxFontSize` sets the maximum display font size. Both properties must be set together to take effect and must be used with the [maxLines](../reference/arkui-cj/cj-text-input-text.md#maxlinesint32) property or layout size constraints. Setting either property alone will not produce any effect.
+  `minFontSize` sets the minimum display font size, while `maxFontSize` sets the maximum display font size. Both properties must be set together to take effect and must be used with the [maxLines](../reference/arkui-cj/cj-text-input-text.md#func-maxlinesint32) property or layout size constraints. Setting either property alone will not produce any effect.
 
      <!-- run -->
 
@@ -433,7 +433,7 @@ Text can be created in the following two ways:
 
   ![Textdisply11](figures/Textdisply11.png)
 
-- Use [textCase](../reference/arkui-cj/cj-text-input-text.md#textcasetextcase) to set text case.
+- Use [textCase](../reference/arkui-cj/cj-text-input-text.md#func-textcasetextcase) to set text case.
 
      <!-- run -->
 

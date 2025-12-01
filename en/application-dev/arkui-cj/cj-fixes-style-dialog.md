@@ -4,13 +4,13 @@ Fixed-style popup dialogs adopt a consistent layout format, allowing developers 
 
 ## Usage Constraints
 
-- Action menus (`showActionMenu`) and dialog boxes (`showDialog`) must first obtain a `PromptAction` object using the `PromptAction` method before invoking corresponding methods through this object.
+- Action menus (`showActionMenu`) and dialog boxes (`showDialog`) must first obtain a `PromptAction` object using the [getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getPromptAction) method before invoking corresponding methods through this object.
 
 - Action menus (`showActionMenu`), dialog boxes (`showDialog`), list selection popups (`ActionSheet`), and alert dialogs (`AlertDialog`) can be configured with `isModal` set to `false` to become non-modal popups.
 
 ## Action Menu (`showActionMenu`)
 
-The action menu obtains a `PromptAction` object through the `PromptAction` method and supports usage in callbacks or developer-defined classes.
+The action menu obtains a `PromptAction` object through the [getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getPromptAction) method and supports usage in callbacks or developer-defined classes.
 
 After creating and displaying an action menu, the menu's response result asynchronously returns the index of the selected button in the `buttons` array.
 
@@ -60,7 +60,59 @@ class EntryView {
 
 ## Dialog Box (`showDialog`)
 
-The dialog box obtains a `PromptAction` object through the `PromptAction` method and supports usage in callbacks or developer-defined classes.
+The dialog box obtains a `PromptAction` object through the [getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getPromptAction) method and supports usage in callbacks or developer-defined classes.
+
+ <!-- run -->
+
+```cangjie
+package ohos_app_cangjie_entry
+
+import ohos.base.*
+import ohos.arkui.component.*
+import ohos.arkui.state_management.*
+import ohos.arkui.state_macro_manage.*
+import std.collection.*
+import ohos.arkui.ui_context.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.*
+
+@Entry
+@Component
+class EntryView {
+    @State var index1: Int32 = 0
+    func build() {
+         Column {
+            Button("showDialog").onClick(
+                {
+                    evt =>
+                    getUIContext().getPromptAction().showDialog(
+                        ShowDialogOptions(
+                            title: "showDialog Title Info",
+                            message: "Message Info",
+                            buttons: [
+                                ButtonInfo(text: 'button1', color: Color(0X000000)),
+                                ButtonInfo(text: 'button2', color: Color(0X000000))
+                            ]
+                        ),
+                        callback: {
+                            err: Option<BusinessException>, i: Option<Int32> => try {
+                                match (err) {
+                                    case Some(e) => Hilog.info(0, "cangjie", "error: errcode is ${e.code}")
+                                    case _ => ()
+                                }
+                            } catch (e: Exception) {
+                                Hilog.info(0, "cangjie", e.toString())
+                            }
+                        }
+                    )
+                }
+            )
+        }.width(100.percent).padding(top: 5)
+    }
+}
+```
+
+![showdialog](figures/showdialog.gif)
 
 ## Picker Dialog (`PickerDialog`)
 
@@ -82,7 +134,7 @@ The triggering sequence of lifecycle events can be found in the API reference fo
 
 List selector popups are suitable for presenting multiple action options, especially when only an action list needs to be displayed without other content.
 
-The list selector popup is implemented through the [`show`](../reference/arkui-cj/cj-dialog-actionsheet.md#static-func-showactionsheetoptions) interface in `ActionSheet`.
+The list selector popup is implemented through the [showActionSheet](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-showActionSheet)interface in `ActionSheet`.
 
 This example defines the popup's style and animation effects by configuring interfaces such as `width`, `height`, and `transition`.
 

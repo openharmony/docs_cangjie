@@ -166,7 +166,7 @@ public func aboutToImeInput(callback: ?Callback<RichEditorInsertValue, Bool>): T
 ### func onImeInputComplete(?Callback\<RichEditorTextSpanResult, Unit>)
 
 ```cangjie
-public func onImeInputComplete(callback: ?Callback<RichEditorTextSpanResult, Unit>): RichEditor
+public func onImeInputComplete(callback: ?Callback<RichEditorTextSpanResult, Unit>): This
 ```
 
 **功能：** 输入法完成输入后，触发事件。
@@ -180,12 +180,6 @@ public func onImeInputComplete(callback: ?Callback<RichEditorTextSpanResult, Uni
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |callback|?[Callback](./cj-common-types.md#type-callbackt-v)\<[RichEditorTextSpanResult](#class-richeditortextspanresult), Unit>|是|-|回调函数，输入法完成输入后触发回调。RichEditorTextSpanResult：输入法完成输入后的文本Span信息。<br>初始值：{ _ => false }。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[RichEditor](./cj-text-input-richeditor.md)|当前的RichEditor组件实例本身。|
 
 ### func onDeleteComplete(?VoidCallback)
 
@@ -239,7 +233,7 @@ public func onSelect(callback: ?Callback<RichEditorSelection, Unit>): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback](./cj-common-types.md#type-callbackt-v)\<[RichEditorSelection](#class-richeditorselection), Unit>|是|-|回调函数，鼠标左键按下选择，松开左键后触发回调。用手指选择时，松开手指触发回调。RichEditorSelection：选中的所有Span信息。<br>初始值：{ _ => }。|
+|callback|?[Callback](./cj-common-types.md#type-callbackt-v)\<[RichEditorSelection](#class-richeditorselection), Unit>|是|-|回调函数，RichEditorSelection为选中的所有Span信息。<br>初始值：{ _ => }。|
 
 ### func onPaste(?PasteEventCallback)
 
@@ -279,7 +273,7 @@ public func onDidChange(callback: ?OnDidChangeCallback): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[OnDidChangeCallback](#type-ondidchangecallback)|是|-|回调函数，件执行增删操作后，触发回调。文本实际未发生增删时，不触发该回调。参数：图文变化前后的内容范围。<br>初始值：{ rangeBefore: TextRange, rangeAfter: TextRange => }。|
+|callback|?[OnDidChangeCallback](#type-ondidchangecallback)|是|-|回调函数，组件执行增删操作后，触发回调。文本实际未发生增删时，不触发该回调。参数：图文变化前后的内容范围。<br>初始值：{ rangeBefore: TextRange, rangeAfter: TextRange => }。|
 
 ## 基础类型定义
 
@@ -866,7 +860,7 @@ public class RichEditorSelection {
 }
 ```
 
-**功能：** 定义编辑的文本信息。
+**功能：** 选中内容信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -878,7 +872,7 @@ public class RichEditorSelection {
 public var selection: (Int32, Int32)
 ```
 
-**功能：** 位置信息。
+**功能：** 选中范围。
 
 **类型：** (Int32, Int32)
 
@@ -920,7 +914,7 @@ public init(selection: ?(Int32, Int32), spans: ?ArrayList<RichEditorSpanResult>)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|selection|?(Int32, Int32)|是|-|位置信息。初始值：(0, 0)。|
+|selection|?(Int32, Int32)|是|-|选中范围。初始值：(0, 0)。|
 |spans|?ArrayList\<[RichEditorSpanResult](#interface-richeditorspanresult)>|是|-|选中的文本内容。初始值：ArrayList\<RichEditorSpanResult>()。|
 
 ### class RichEditorDeleteValue
@@ -2408,6 +2402,7 @@ import ohos.arkui.state_macro_manage.*
 import ohos.i18n.*
 import ohos.resource_manager.*
 import ohos.hilog.*
+import ohos.resource.*
 
 @Entry
 @Component

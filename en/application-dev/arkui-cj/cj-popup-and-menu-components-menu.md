@@ -21,12 +21,14 @@ The menu needs to be implemented by calling the bindMenu interface. bindMenu res
 
 ```cangjie
 Button("click for Menu").bindMenu(
-    Action(
-        value: 'Menu1',
-        action: {
-            => AppLog.info('handle Menu1 select')
-        }
-    )
+    [
+        MenuElement(
+            value: 'Menu1',
+            action: {
+                => Hilog.info(0, 'cangjie', 'handle Menu1 select')
+            }
+        )
+    ]
 )
 ```
 
@@ -45,6 +47,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
+import ohos.resource.*
 import kit.LocalizationKit.*
 
 class Tmp {

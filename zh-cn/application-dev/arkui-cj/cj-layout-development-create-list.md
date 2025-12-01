@@ -207,7 +207,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import ohos.resource_manager.*
+import ohos.resource.*
 
 public class Contact {
     var name: String
@@ -324,7 +324,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import ohos.resource_manager.*
+import ohos.resource.*
 
 @Entry
 @Component
@@ -379,7 +379,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 package ohos_app_cangjie_entry
 
 import ohos.arkui.state_macro_manage.*
-import ohos.resource_manager.*
+import ohos.resource.*
 import kit.ArkUI.*
 
 public class Contact {
@@ -425,8 +425,11 @@ public class EntryView {
     func footertest(itemGroup: ContactGroup) {
         ForEach(itemGroup.contacts, itemGeneratorFunc: { item: Contact, _:Int64 =>
                 ListItem() {
-                    // ...
-                }
+                    Row() {
+                        Image(item.icon).width(36).height(36).margin(8)
+                        itemHead(item.name)
+                    }
+                }.backgroundColor(Color(0XFFFFFFFF))
             }
         )
     }
@@ -435,12 +438,17 @@ public class EntryView {
         List() {
             // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
             ForEach(this.contactsGroups, itemGeneratorFunc: { itemGroup: ContactGroup, _: Int64 =>
-                    ListItemGroup(header: {=> bind(this.itemHead, this)(itemGroup.title)},
-                    footer: { => bind(this.footertest, this)(itemGroup)}) {}
+                    ListItemGroup(header: { => bind(this.itemHead, this)(itemGroup.title)}) {
+                        this.footertest(itemGroup)
+                    }
+                    .divider(ListDividerOptions(strokeWidth: 1, color: Color(0X08000000), startMargin: 48, endMargin: 48))
                 },
                 keyGeneratorFunc: {item: ContactGroup, idx: Int64 => idx.toString()}
             )
-        }.sticky(StickyStyle.Header) // 设置吸顶，实现粘性标题效果
+        }
+        .backgroundColor(Color(0X08000000))
+        .divider(ListDividerOptions(strokeWidth: 1, color: Color(0X08000000), startMargin: 48, endMargin: 48))
+        .sticky(StickyStyle.Header) // 设置吸顶，实现粘性标题效果
     }
 }
 ```
@@ -499,7 +507,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
-import ohos.resource_manager.*
+import ohos.resource.*
 
 @Entry
 @Component
@@ -717,31 +725,30 @@ List() {
                 ForEach(
                     this.routes,
                     itemGeneratorFunc: { itemGroup: ItemGroupInfo, _: Int64 =>
-                        ListItemGroup(
-                            ListItemGroupParams(header: {=> bind(this.ListItemGroupHeader, this)(itemGroup)},
-                                footer: {=>}, space: 0, style: ListItemGroupStyle.CARD)) {
-                                    if (this.expandedItems[itemGroup.index] == 180.0) {
-                                        ForEach(itemGroup.children, itemGeneratorFunc: { item: ItemInfo, _: Int64 =>
-                                            ListItem() {
-                                                    Row() {
-                                                        Text(item.name)
-                                                        Blank()
-                                                        if (item.`type` == 'Image') {
-                                                            Image(item.label)
-                                                                .height(20)
-                                                                .width(20)
-                                                        } else {
-                                                            Text(item.label)
-                                                        }
-                                                        Image(@r(sys.media.ohos_ic_public_arrow_right))
-                                                            .fillColor(@r(sys.color.ohos_id_color_fourth))
-                                                            .height(30)
-                                                            .width(30)
+                        ListItemGroup(header: {=> bind(this.ListItemGroupHeader, this)(itemGroup)},
+                            footer: {=>}, space: 0, style: ListItemGroupStyle.Card) {
+                                if (this.expandedItems[itemGroup.index] == 180.0) {
+                                    ForEach(itemGroup.children, itemGeneratorFunc: { item: ItemInfo, _: Int64 =>
+                                        ListItem() {
+                                                Row() {
+                                                    Text(item.name)
+                                                    Blank()
+                                                    if (item.`type` == 'Image') {
+                                                        Image(item.label)
+                                                            .height(20)
+                                                            .width(20)
+                                                    } else {
+                                                        Text(item.label)
                                                     }
-                                                    .width(100.percent)
-                                            }.width(100.percent)
-                                        })
-                                    }
+                                                    Image(@r(sys.media.ohos_ic_public_arrow_right))
+                                                        .fillColor(@r(sys.color.ohos_id_color_fourth))
+                                                        .height(30)
+                                                        .width(30)
+                                                }
+                                                .width(100.percent)
+                                        }.width(100.percent)
+                                    })
+                                }
                             }
                     }
                 )
