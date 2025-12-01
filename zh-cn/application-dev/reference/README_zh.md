@@ -32,5 +32,5 @@
 - [Test Kit API参考](TestKit/README_zh.md)
 - [Universal Keystore Kit API参考](UniversalKeystoreKit/README_zh.md)
 - 公共基础能力
-    - [Syscap（系统能力）](arkui-cj/cj-syscap.md)
+    - [Syscap（系统能力）](arkui-cj/cj-apis-syscap.md)
 - [仓颉编程语言库API](cj-libs-api.md)

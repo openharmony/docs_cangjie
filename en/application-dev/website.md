@@ -845,7 +845,7 @@
         - [ohos.labels (Common Interface Labels)](reference/arkinterop/cj-api-labels.md)
     - Basic Capabilities
         - Cangjie APIs
-            - [sysCap (System Capabilities)](reference/arkui-cj/cj-syscap.md)
+            - [sysCap (System Capabilities)](reference/arkui-cj/cj-apis-syscap.md)
     - [Cangjie Programming Language Library API](reference/cj-libs-api.md)
 
 - Learning Cangjie Language
