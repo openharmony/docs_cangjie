@@ -166,7 +166,7 @@ public func aboutToImeInput(callback: ?Callback<RichEditorInsertValue, Bool>): T
 ### func onImeInputComplete(?Callback\<RichEditorTextSpanResult, Unit>)
 
 ```cangjie
-public func onImeInputComplete(callback: ?Callback<RichEditorTextSpanResult, Unit>): RichEditor
+public func onImeInputComplete(callback: ?Callback<RichEditorTextSpanResult, Unit>): This
 ```
 
 **Function:** Triggered after input method input is completed.
@@ -233,7 +233,7 @@ public func onSelect(callback: ?Callback<RichEditorSelection, Unit>): This
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| callback | ?[Callback](./cj-common-types.md#type-callbackt-v)\<[RichEditorSelection](#class-richeditorselection), Unit> | Yes | - | Callback function triggered upon left mouse button press selection (triggered again upon release) or finger selection (triggered upon release). `RichEditorSelection`: Information of all selected spans.<br>Initial value: { _ => }. |
+| callback | ?[Callback](./cj-common-types.md#type-callbackt-v)\<[RichEditorSelection](#class-richeditorselection), Unit> | Yes | - | `RichEditorSelection`: Information of all selected spans.<br>Initial value: { _ => }. |
 
 ### func onPaste(?PasteEventCallback)
 
@@ -858,7 +858,7 @@ public class RichEditorSelection {
 }
 ```
 
-**Function:** Defines the text information for editing.
+**Function:** Selected content information.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -870,7 +870,7 @@ public class RichEditorSelection {
 public var selection: ?(Int32, Int32)
 ```
 
-**Function:** Position information.
+**Function:** Selected Range.
 
 **Type:** ?(Int32, Int32)
 
@@ -2311,7 +2311,7 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
 import ohos.i18n.*
-import ohos.resource_manager.*
+import ohos.resource.*
 import ohos.hilog.*
 
 @Entry

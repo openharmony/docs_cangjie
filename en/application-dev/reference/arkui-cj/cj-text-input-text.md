@@ -400,7 +400,7 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.i18n.*
 ``````markdown
-import ohos.resource_manager.*
+import ohos.resource.*
 import ohos.arkui.state_macro_manage.*
 import ohos.hilog.*
 import ohos.arkui.component.CopyOptions as MyCopyOptions
@@ -437,6 +437,7 @@ class EntryView {
             Column {
                 // Display the set text style effects
                 Text(message)
+                    // @r(app.string.fontFamily) should be replaced with the resources required by the developer
                     .fontFamily(@r(app.string.fontFamily))
                     .height(100.vp)
                     .width(100.vp)
@@ -452,7 +453,9 @@ class EntryView {
                 Text(message)
                     .textAlign(TextAlign.End).baselineOffset(10.vp)
                     .id("textComponent3")
+                    // @r(app.string.minFontSize) should be replaced with the resources required by the developer
                     .minFontSize(@r(app.string.font_size))
+                    // @r(app.string.line_height) should be replaced with the resources required by the developer
                     .lineHeight(@r(app.string.line_height))
 
                 Text(message)
@@ -465,7 +468,9 @@ class EntryView {
                     .minFontSize(10.fp)
                     .maxFontSize(30.fp)
                     .maxLines(1).id("textComponent5")
+                    // @r(app.string.baselineOffset) should be replaced with the resources required by the developer
                     .baselineOffset(@r(app.string.baselineOffset))
+                    // @r(app.color.blue_23C452) should be replaced with the resources required by the developer
                     .fontColor(@r(app.color.blue_23C452))
                 // Set display method for overflow text
                 Text(
@@ -479,11 +484,13 @@ class EntryView {
                 Text("Hello")
                     .textCase(TextCase.UpperCase)
                     .id("textComponent7")
+                    // @r(app.string.font_size) should be replaced with the resources required by the developer
                     .maxFontSize(@r(app.string.font_size))
                 // Set text to lowercase display
                 Text("Hello")
                     .foregroundColor(Color.Blue)
                     .id("textComponent8")
+                    // @r(app.string.font_size) should be replaced with the resources required by the developer
                     .fontSize(@r(app.string.font_size))
                     .textOverflow(TextOverflow.None)
                     .textCase(TextCase.LowerCase)
@@ -516,13 +523,19 @@ class EntryView {
                     .textCase(TextCase.UpperCase)
                     .id("TextGivenFont")
                 // Set text effects through resource calls and display
+                // @r(app.string.module_desc) should be replaced with the resources required by the developer
                 Text(@r(app.string.module_desc))
+                    // @r(app.string.font_size) should be replaced with the resources required by the developer
                     .fontSize(@r(app.string.font_size))
                     .maxFontSize(@r(app.string.font_size))
                     .minFontSize(@r(app.string.font_size))
+                    // @r(app.string.fontFamily) should be replaced with the resources required by the developer
                     .fontFamily(@r(app.string.fontFamily))
+                    // @r(app.string.line_height) should be replaced with the resources required by the developer
                     .lineHeight(@r(app.string.line_height))
+                    // @r(app.string.baselineOffset) should be replaced with the resources required by the developer
                     .baselineOffset(@r(app.string.baselineOffset))
+                    // @r(app.color.blue_23C452) should be replaced with the resources required by the developer
                     .fontColor(@r(app.color.blue_23C452))
                     .id("TextResource")
 
@@ -571,5 +584,5 @@ class EntryView {
 }
 ```
 
-![text](figures/text.gif)
+![text](figures/text1.png)
 ```
