@@ -180,7 +180,7 @@ Text可通过以下两种方式来创建：
 
 ## 自定义文本样式
 
-- 通过[textAlign](../reference/arkui-cj/cj-text-input-text.md#textaligntextalign)属性设置文本对齐样式。
+- 通过[textAlign](../reference/arkui-cj/cj-text-input-text.md#func-textaligntextalign)属性设置文本对齐样式。
 
      <!-- run -->
 
@@ -220,7 +220,7 @@ Text可通过以下两种方式来创建：
 
   ![Textdisply5](figures/Textdisply5.png)
 
-- 通过[textOverflow](../reference/arkui-cj/cj-text-input-text.md#textoverflowtextoverflow)属性控制文本超长处理，textOverflow需配合[maxLines](../reference/arkui-cj/cj-text-input-text.md#maxlinesint32)一起使用（默认情况下文本自动折行）。
+- 通过[textOverflow](../reference/arkui-cj/cj-text-input-text.md#func-textoverflowtextoverflow)属性控制文本超长处理，textOverflow需配合[maxLines](../reference/arkui-cj/cj-text-input-text.md#func-maxlinesint32)一起使用（默认情况下文本自动折行）。
 
      <!-- run -->
 
@@ -257,7 +257,7 @@ Text可通过以下两种方式来创建：
   }
   ```
 
-  ![Textdisply6](figures/Textdisply6.gif)
+  ![Textdisply6](figures/Textdisplay6.gif)
 
 - 通过[lineHeight](../reference/arkui-cj/cj-text-input-text.md#func-lineheightlength)属性设置文本行高。
 
@@ -289,7 +289,7 @@ Text可通过以下两种方式来创建：
 
   ![Textdisply7](figures/Textdisply7.png)
 
-- 通过[decoration](../reference/arkui-cj/cj-text-input-text.md#decorationtextdecorationtype-color-textdecorationstyle)属性设置文本装饰线样式及其颜色。
+- 通过[decoration](../reference/arkui-cj/cj-text-input-text.md#func-decorationtextdecorationtype-resourcecolor-textdecorationstyle)属性设置文本装饰线样式及其颜色。
 
      <!-- run -->
 
@@ -332,7 +332,7 @@ Text可通过以下两种方式来创建：
 
   ![Textdisply8](figures/Textdisply8.png)
 
-- 通过[baselineOffset](../reference/arkui-cj/cj-text-input-text.md#baselineoffsetlength)属性设置文本基线的偏移量。
+- 通过[baselineOffset](../reference/arkui-cj/cj-text-input-text.md#func-baselineoffsetlength)属性设置文本基线的偏移量。
 
      <!-- run -->
 
@@ -378,9 +378,9 @@ Text可通过以下两种方式来创建：
 
   ![Textdisply9](figures/Textdisply9.png)
 
-- 通过[minFontSize](../reference/arkui-cj/cj-text-input-text.md#minfontsizelength)与[maxFontSize](../reference/arkui-cj/cj-text-input-text.md#maxfontsizelength)自适应字体大小。
+- 通过[minFontSize](../reference/arkui-cj/cj-text-input-text.md#func-minfontsizelength)与[maxFontSize](../reference/arkui-cj/cj-text-input-text.md#func-maxfontsizelength)自适应字体大小。
 
-  minFontSize用于设置文本的最小显示字号，maxFontSize用于设置文本的最大显示字号。这两个属性必须同时设置才能生效，并且需要与[maxLines](../reference/arkui-cj/cj-text-input-text.md#maxlinesint32)属性或布局大小限制配合使用，单独设置任一属性将不会产生效果。
+  minFontSize用于设置文本的最小显示字号，maxFontSize用于设置文本的最大显示字号。这两个属性必须同时设置才能生效，并且需要与[maxLines](../reference/arkui-cj/cj-text-input-text.md#func-maxlinesint32)属性或布局大小限制配合使用，单独设置任一属性将不会产生效果。
 
      <!-- run -->
 
@@ -437,7 +437,7 @@ Text可通过以下两种方式来创建：
 
   ![Textdisply11](figures/Textdisply11.png)
 
-- 通过[textCase](../reference/arkui-cj/cj-text-input-text.md#textcasetextcase)属性设置文本大小写。
+- 通过[textCase](../reference/arkui-cj/cj-text-input-text.md#func-textcasetextcase)属性设置文本大小写。
 
      <!-- run -->
 

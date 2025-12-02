@@ -10,7 +10,7 @@ The dialog (CustomDialog) can be configured as modal or non-modal via the [isMod
 
 ## Creating a Custom Dialog
 
-1. Use the @CustomDialog macro to decorate the custom dialog, where you can define the dialog content. The CustomDialogController must be defined within @Component.
+1. Use the @CustomDialog macro to decorate the custom dialog, where you can define the dialog content. The CustomDialogController must be defined within @CustomDialog.
 
     ```cangjie
     package ohos_app_cangjie_entry

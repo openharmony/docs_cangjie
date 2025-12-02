@@ -399,7 +399,7 @@ public func closeSelectionMenu(): Unit
 package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.i18n.*
-import ohos.resource_manager.*
+import ohos.resource.*
 import ohos.arkui.state_macro_manage.*
 import ohos.hilog.*
 import ohos.arkui.component.CopyOptions as MyCopyOptions
@@ -436,6 +436,7 @@ class EntryView {
             Column {
                 //展示设置的文本样式效果
                 Text(message)
+                    // @r(app.string.fontFamily)需替换为开发者所需的资源
                     .fontFamily(@r(app.string.fontFamily))
                     .height(100.vp)
                     .width(100.vp)
@@ -451,7 +452,9 @@ class EntryView {
                 Text(message)
                     .textAlign(TextAlign.End).baselineOffset(10.vp)
                     .id("textComponent3")
+                    // @r(app.string.font_size)需替换为开发者所需的资源
                     .minFontSize(@r(app.string.font_size))
+                    // @r(app.string.line_height)需替换为开发者所需的资源
                     .lineHeight(@r(app.string.line_height))
 
                 Text(message)
@@ -464,7 +467,9 @@ class EntryView {
                     .minFontSize(10.fp)
                     .maxFontSize(30.fp)
                     .maxLines(1).id("textComponent5")
+                    // @r(app.string.baselineOffset)需替换为开发者所需的资源
                     .baselineOffset(@r(app.string.baselineOffset))
+                    // @r(app.string.blue_23C452)需替换为开发者所需的资源
                     .fontColor(@r(app.color.blue_23C452))
                 //设置文本超长时的显示方式
                 Text(
@@ -478,11 +483,13 @@ class EntryView {
                 Text("Hello")
                     .textCase(TextCase.UpperCase)
                     .id("textComponent7")
+                    // @r(app.string.font_size)需替换为开发者所需的资源
                     .maxFontSize(@r(app.string.font_size))
                 //设置文本全小写显示
                 Text("Hello")
                     .foregroundColor(Color.Blue)
                     .id("textComponent8")
+                    // @r(app.string.font_size)需替换为开发者所需的资源
                     .fontSize(@r(app.string.font_size))
                     .textOverflow(TextOverflow.None)
                     .textCase(TextCase.LowerCase)
@@ -514,14 +521,21 @@ class EntryView {
                     .decoration(decorationType: TextDecorationType.LineThrough, color: Color.Red, decorationStyle: TextDecorationStyle.Dashed)
                     .textCase(TextCase.UpperCase)
                     .id("TextGivenFont")
-                //以资源调用的形式设置文本效果并展示
+                //以资源调用的形式设置文本效果并展示，@r(app.string.module_desc)需替换为开发者所需的资源
                 Text(@r(app.string.module_desc))
+                    // @r(app.string.font_size)需替换为开发者所需的资源
                     .fontSize(@r(app.string.font_size))
+                    // @r(app.string.font_size)需替换为开发者所需的资源
                     .maxFontSize(@r(app.string.font_size))
+                    // @r(app.string.font_size)需替换为开发者所需的资源
                     .minFontSize(@r(app.string.font_size))
+                    // @r(app.string.fontFamily)需替换为开发者所需的资源
                     .fontFamily(@r(app.string.fontFamily))
+                    // @r(app.string.line_height)需替换为开发者所需的资源
                     .lineHeight(@r(app.string.line_height))
+                    // @r(app.string.baselineOffset)需替换为开发者所需的资源
                     .baselineOffset(@r(app.string.baselineOffset))
+                    // @r(app.string.blue_23C452)需替换为开发者所需的资源
                     .fontColor(@r(app.color.blue_23C452))
                     .id("TextResource")
 
@@ -570,4 +584,4 @@ class EntryView {
 }
 ```
 
-![text](figures/text.gif)
+![text](figures/text1.png)
