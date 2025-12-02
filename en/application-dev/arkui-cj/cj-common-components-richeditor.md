@@ -55,35 +55,42 @@ import ohos.arkui.state_macro_manage.*
 import ohos.hilog.*
 import ohos.arkui.component.CopyOptions as MyCopyOptions
 import std.collection.ArrayList
+import ohos.resource.*
 
 @Entry
 @Component
 class EntryView {
-    let controller: TextController = TextController()
+    let controller: RichEditorController = RichEditorController()
+
     @Builder
     func RightClickTextCustomMenu() {
         Menu() {
-            MenuItemGroup(header: "", footer: "") {=>
-                MenuItem(startIcon: @r(app.media.startIcon),   endIcon: @r(app.media.startIcon), content: @r(app.media.startIcon), labelInfo: @r(app.media.startIcon) )
-                    .onChange ({ selected =>
-                        // Use the closeSelectionMenu interface to close the menu
-                        this.controller.closeSelectionMenu()
-                    })
-                MenuItem(startIcon: @r(app.media.startIcon),   endIcon: @r(app.media.startIcon), content: @r(app.media.startIcon), labelInfo: @r(app.media.startIcon) )
-                MenuItem(startIcon: @r(app.media.startIcon),   endIcon: @r(app.media.startIcon), content: @r(app.media.startIcon), labelInfo: @r(app.media.startIcon) )
+            MenuItemGroup() {=>
+                MenuItem(startIcon: @r(app.media.startIcon), endIcon: @r(app.media.startIcon), content: "Cut", labelInfo: "Ctrl+X" )
+                MenuItem(startIcon: @r(app.media.startIcon), endIcon: @r(app.media.startIcon), content: "Copy", labelInfo: "Ctrl+C" )
+                MenuItem(startIcon: @r(app.media.startIcon), endIcon: @r(app.media.startIcon), content: "Paste", labelInfo: "Ctrl+V" )
             }
         }.backgroundColor(0XF0F0F0)
     }
     func build() {
         Scroll() {
             Column {
-                RichEditor(RichEditorController())
-                    .bindSelectionMenu(spantype: RichEditorSpanType.Text, content: {=>}, responseType: ResponseType.LongPress,
-                        options: SelectionMenuOptions( onDisappear: {
+                RichEditor(this.controller)
+                .bindSelectionMenu(
+                    spantype: RichEditorSpanType.Text,
+                    content: bind(this.RightClickTextCustomMenu, this),
+                    responseType: ResponseType.LongPress,
+                    options: SelectionMenuOptions( onDisappear: {
                             => Hilog.info(0, " ", "Trigger this callback when the custom selection menu closes")
                         },
                         onAppear: {
-                            => Hilog.info(0, " ", "Callback triggered when the custom selection menu appears"))
+                            => Hilog.info(0, " ", "Callback triggered when the custom selection menu appears")
+                        }
+                    )
+                )
+                .onReady({ =>
+                    controller.addTextSpan(content: "This is a piece of text used to display the selected menu.")
+                })
             }
         }
     }
@@ -131,11 +138,11 @@ class EntryView {
 
 ### Adding a Callback Triggered When Component Content Is Selected
 
-Use [onSelect](../reference/arkui-cj/cj-text-input-richeditor.md#func-onselectcallbackricheditorselectionunit) to add a callback triggered when component content is selected.
+Use [onSelect](../reference/arkui-cj/cj-text-input-richeditor.md#func-onselectcallbackricheditorselection-unit) to add a callback triggered when component content is selected.
 
 This callback can enhance operational experience after text selection. For example, after selecting text, the callback can trigger a pop-up menu for users to modify text styles. Alternatively, it can analyze and process the selected text to provide input suggestions, improving text editing efficiency and convenience.
 
-The callback can be triggered in two ways: 
+The callback can be triggered in two ways:
 1. Via left mouse button selection—pressing the left button to select and releasing it to trigger the callback.
 2. Via touch selection—using a finger to select and releasing it to trigger the callback.
 
@@ -219,9 +226,9 @@ class EntryView {
 
 ### Adding Callbacks Triggered Before and After Input Method Input
 
-Before input method input begins, use [aboutToImeInput](../reference/arkui-cj/cj-text-input-richeditor.md#func-abouttoimeinputcallbackricheditorinsertvaluebool) to trigger a callback. After input method input completes, use [onImeInputComplete](../reference/arkui-cj/cj-text-input-richeditor.md#func-onimeinputcompletecallbackricheditortextspanresultunit) to trigger a callback.
+Before input method input begins, use [aboutToImeInput](../reference/arkui-cj/cj-text-input-richeditor.md#func-abouttoimeinputcallbackricheditorinsertvalue-bool) to trigger a callback. After input method input completes, use [onImeInputComplete](../reference/arkui-cj/cj-text-input-richeditor.md#func-onimeinputcompletecallbackricheditortextspanresult-unit) to trigger a callback.
 
-These callback mechanisms are suitable for intelligent input assistance. For example: 
+These callback mechanisms are suitable for intelligent input assistance. For example:
 - Before a user starts typing, use the callback to provide word suggestions.
 - After a user completes input, use the callback to perform automated error correction or format conversion.
 
@@ -349,7 +356,7 @@ class EntryView {
 
 ## Adding Image Content
 
-Use [addImageSpan](../reference/arkui-cj/cj-text-input-richeditor.md#func-addimagespanstring-richeditorimagespanoptions) to add image content.
+Use [addImageSpan](../reference/arkui-cj/cj-text-input-richeditor.md#func-addimagespanresourcestr-richeditorimagespanoptions) to add image content.
 
 This interface can be used for content enrichment and visual presentation, such as adding images to news articles or data visualization graphics to documents.
 
@@ -362,6 +369,7 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import kit.LocalizationKit.*
 import ohos.arkui.state_macro_manage.*
+import ohos.resource.*
 
 @Entry
 @Component

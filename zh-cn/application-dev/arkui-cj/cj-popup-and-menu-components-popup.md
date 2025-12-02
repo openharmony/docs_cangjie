@@ -4,7 +4,7 @@ Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、
 
 气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/arkui-cj/cj-universal-attribute-popup.md#struct-popupoptions)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/arkui-cj/cj-universal-attribute-popup.md#struct-custompopupoptions)。其中，PopupOptions通过配置primaryButton和secondaryButton来设置带按钮的气泡，CustomPopupOptions通过配置builder来设置自定义的气泡。
 
-气泡可以通过配置[mask](../reference/arkui-cj/cj-universal-attribute-popup.md#var-mask-1)来实现模态和非模态窗口，mask为true或者颜色值的时候，气泡为模态窗口，mask为false时，气泡为非模态窗口。
+气泡可以通过配置[mask](../reference/arkui-cj/cj-common-types.md#var-mask)来实现模态和非模态窗口，mask为true或者颜色值的时候，气泡为模态窗口，mask为false时，气泡为非模态窗口。
 
 ## 文本提示气泡
 
@@ -26,13 +26,13 @@ class EntryView {
     @State var handlePopup: Bool = false
     func build() {
         Column {
-            Button('CustomPopupOptions')
+            Button('PopupOptions')
                 .onClick ({
                     e => this.handlePopup = !this.handlePopup
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(builder: {=>}, showInSubWindow: false)
+                    PopupOptions(message: 'This is a popup with PopupOptions', placement: Placement.Bottom)
                 )
         }.width(100.percent).padding(top: 5)
     }
@@ -58,16 +58,16 @@ import ohos.arkui.state_macro_manage.*
 class EntryView {
     @State var handlePopup: Bool = false
     func build() {
-        Column() {
-            Button('CustomPopupOptions')
-                .onClick({
+        Column {
+            Button('PopupOptions')
+                .onClick ({
                     e => this.handlePopup = !this.handlePopup
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(
-                        builder: {=>},
-                        showInSubWindow: false,
+                    PopupOptions(
+                        message: 'This is a popup with PopupOptions',
+                        placement: Placement.Bottom,
                         onStateChange: {
                             e =>
                             if (!e.isVisible) {
@@ -94,6 +94,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
+import ohos.hilog.*
 
 @Entry
 @Component
@@ -101,22 +102,24 @@ class EntryView {
     @State var handlePopup: Bool = false
     func build() {
         Column() {
-            Button('CustomPopupOptions')
+            Button('PopupOptions')
                 .margin(top: 200)
                 .onClick ({
                     e => this.handlePopup = !this.handlePopup
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(
-                        builder: {=>},
-                        showInSubWindow: false,
-                        onStateChange: {
-                            e =>
-                            if (!e.isVisible) {
-                                this.handlePopup = false
-                            }
-                        }
+                    PopupOptions(
+                        message: 'This is a popup with PopupOptions',
+                        placement: Placement.Bottom,
+                        primaryButton: PopupButton(
+                            value: "Confirm",
+                            action: { => Hilog.info(0, 'cangjie', 'Confirm')}
+                        ),
+                        secondaryButton: PopupButton(
+                            value: "Cancel",
+                            action: { => Hilog.info(0, 'cangjie', 'Cancel')}
+                        )
                     )
                 )
         }.width(100.percent).padding(top: 5)
@@ -143,8 +146,9 @@ import ohos.arkui.state_macro_manage.*
 class EntryView {
     @State var handlePopup: Bool = false
     @State var customPopup: Bool = false
+    @State var popup: Bool = false
     @State var custom: String = "Custom Wait"
-    // popup构造器定义弹框内容
+    // Popup builder defines popup content
     @Builder
     func popupBuilder() {
         Row() {
@@ -156,6 +160,38 @@ class EntryView {
 
     func build() {
         Flex(direction: FlexDirection.Column) {
+            // 类型设置弹框内容
+            Button('PopupOptions')
+                .position(x: 100, y: 150)
+                .onClick ({
+                    e => this.popup = !this.popup
+                })
+                .bindPopup(
+                    this.popup,
+                    PopupOptions(
+                        message: "This is popup with transitionEffect",
+                        placement: Placement.Top,
+                        showInSubWindow: false,
+                        onStateChange: {
+                            e =>
+                            custom = "stateChange: ${e.isVisible}"
+                            if (!e.isVisible) {
+                                this.popup = true
+                            }
+                        },
+                        // 设置弹窗显示动效与退出动效为平移动效
+                        transition: TransitionEffect.asymmetric(
+                            TransitionEffect
+                            .OPACITY
+                            .animation(AnimateParam(duration: 1000, curve: Curve.Ease))
+                            .combine(
+                                TransitionEffect.translate(TranslateOptions(x: 50, y: 50))
+                            ),
+                            TransitionEffect.IDENTITY
+                        )
+                    )
+                )
+
             // CustomPopupOptions 类型设置弹框内容
             Button('CustomPopupOptions')
                 .position(x: 80, y: 300)
@@ -200,6 +236,7 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
 import kit.LocalizationKit.*
+import ohos.resource.*
 
 @Entry
 @Component
@@ -250,7 +287,7 @@ class EntryView {
 
 使用者通过配置placement参数将弹出的气泡放到需要提示的位置。弹窗构造器会触发弹出提示信息，来引导使用者完成操作，也让使用者有更好的UI体验。
 
-![popup3](figures/popup3.jpeg)
+![popup3](figures/popup3.gif)
 
 ## 气泡样式
 
@@ -260,7 +297,7 @@ class EntryView {
 
 蒙层样式：气泡默认有蒙层，且蒙层的颜色为透明。
 
-显示大小：气泡大小有内部的builder大小或者message的长度决定的。
+显示大小：气泡大小由内部的builder大小或者message的长度决定的。
 
 显示位置：气泡默认显示在宿主组件的下方，可以通过Placement接口来配置其显示位置以及对齐方向。
 
@@ -278,6 +315,7 @@ import ohos.arkui.state_macro_manage.*
 @Component
 class EntryView {
     @State var handlePopup: Bool = false
+
     func build() {
         Column(space: 100) {
             Button('PopupOptions')
@@ -286,8 +324,8 @@ class EntryView {
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(
-                        builder: {=>},
+                    PopupOptions(
+                        message: "This is a popup",
                         width: 200,
                         popupColor: Color.Red,
                         mask: Color(0x33d9d9d9), // 设置气泡的背景色

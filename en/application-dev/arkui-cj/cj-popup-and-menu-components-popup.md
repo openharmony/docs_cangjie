@@ -4,7 +4,7 @@ The Popup attribute can be bound to components to display popup tooltips, config
 
 There are two types of popups: one is the system-provided [PopupOptions](../reference/arkui-cj/cj-universal-attribute-popup.md#struct-popupoptions), and the other is the developer-customizable [CustomPopupOptions](../reference/arkui-cj/cj-universal-attribute-popup.md#struct-custompopupoptions). PopupOptions configures buttons via `primaryButton` and `secondaryButton` to create popups with buttons, while CustomPopupOptions uses the `builder` configuration for custom popups.
 
-Popups can be configured as modal or non-modal windows through the [mask](../reference/arkui-cj/cj-universal-attribute-popup.md#var-mask-1) parameter. When `mask` is set to `true` or a color value, the popup becomes a modal window; when set to `false`, it becomes non-modal.
+Popups can be configured as modal or non-modal windows through the [mask](../reference/arkui-cj/cj-common-types.md#var-mask) parameter. When `mask` is set to `true` or a color value, the popup becomes a modal window; when set to `false`, it becomes non-modal.
 
 ## Text Popup
 
@@ -26,13 +26,13 @@ class EntryView {
     @State var handlePopup: Bool = false
     func build() {
         Column {
-            Button('CustomPopupOptions')
+            Button('PopupOptions')
                 .onClick ({
                     e => this.handlePopup = !this.handlePopup
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(builder: {=>}, showInSubWindow: false)
+                    PopupOptions(message: 'This is a popup with PopupOptions', placement: Placement.Bottom)
                 )
         }.width(100.percent).padding(top: 5)
     }
@@ -58,16 +58,16 @@ import ohos.arkui.state_macro_manage.*
 class EntryView {
     @State var handlePopup: Bool = false
     func build() {
-        Column() {
-            Button('CustomPopupOptions')
-                .onClick({
+        Column {
+            Button('PopupOptions')
+                .onClick ({
                     e => this.handlePopup = !this.handlePopup
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(
-                        builder: {=>},
-                        showInSubWindow: false,
+                    PopupOptions(
+                        message: 'This is a popup with PopupOptions',
+                        placement: Placement.Bottom,
                         onStateChange: {
                             e =>
                             if (!e.isVisible) {
@@ -94,6 +94,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
+import ohos.hilog.*
 
 @Entry
 @Component
@@ -101,22 +102,24 @@ class EntryView {
     @State var handlePopup: Bool = false
     func build() {
         Column() {
-            Button('CustomPopupOptions')
+            Button('PopupOptions')
                 .margin(top: 200)
                 .onClick ({
                     e => this.handlePopup = !this.handlePopup
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(
-                        builder: {=>},
-                        showInSubWindow: false,
-                        onStateChange: {
-                            e =>
-                            if (!e.isVisible) {
-                                this.handlePopup = false
-                            }
-                        }
+                    PopupOptions(
+                        message: 'This is a popup with PopupOptions',
+                        placement: Placement.Bottom,
+                        primaryButton: PopupButton(
+                            value: "Confirm",
+                            action: { => Hilog.info(0, 'cangjie', 'Confirm')}
+                        ),
+                        secondaryButton: PopupButton(
+                            value: "Cancel",
+                            action: { => Hilog.info(0, 'cangjie', 'Cancel')}
+                        )
                     )
                 )
         }.width(100.percent).padding(top: 5)
@@ -143,6 +146,7 @@ import ohos.arkui.state_macro_manage.*
 class EntryView {
     @State var handlePopup: Bool = false
     @State var customPopup: Bool = false
+    @State var popup: Bool = false
     @State var custom: String = "Custom Wait"
     // Popup builder defines popup content
     @Builder
@@ -156,6 +160,38 @@ class EntryView {
 
     func build() {
         Flex(direction: FlexDirection.Column) {
+            // PopupOptions type popup content
+            Button('PopupOptions')
+                .position(x: 100, y: 150)
+                .onClick ({
+                    e => this.popup = !this.popup
+                })
+                .bindPopup(
+                    this.popup,
+                    PopupOptions(
+                        message: "This is popup with transitionEffect",
+                        placement: Placement.Top,
+                        showInSubWindow: false,
+                        onStateChange: {
+                            e =>
+                            custom = "stateChange: ${e.isVisible}"
+                            if (!e.isVisible) {
+                                this.popup = true
+                            }
+                        },
+                        // Set entry and exit animations as translate effects
+                        transition: TransitionEffect.asymmetric(
+                            TransitionEffect
+                            .OPACITY
+                            .animation(AnimateParam(duration: 1000, curve: Curve.Ease))
+                            .combine(
+                                TransitionEffect.translate(TranslateOptions(x: 50, y: 50))
+                            ),
+                            TransitionEffect.IDENTITY
+                        )
+                    )
+                )
+
             // CustomPopupOptions type popup content
             Button('CustomPopupOptions')
                 .position(x: 80, y: 300)
@@ -199,6 +235,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
 import ohos.arkui.state_macro_manage.*
+import ohos.resource.*
 import kit.LocalizationKit.*
 
 @Entry
@@ -250,7 +287,7 @@ class EntryView {
 
 The `placement` parameter positions the popup relative to the target component. The popup builder triggers informational prompts to guide users through operations, enhancing UI experience.
 
-![popup3](figures/popup3.jpeg)
+![popup3](figures/popup3.gif)
 
 ## Popup Styling
 
@@ -278,6 +315,7 @@ import ohos.arkui.state_macro_manage.*
 @Component
 class EntryView {
     @State var handlePopup: Bool = false
+
     func build() {
         Column(space: 100) {
             Button('PopupOptions')
@@ -286,8 +324,8 @@ class EntryView {
                 })
                 .bindPopup(
                     this.handlePopup,
-                    CustomPopupOptions(
-                        builder: {=>},
+                    PopupOptions(
+                        message: "This is a popup",
                         width: 200,
                         popupColor: Color.Red,
                         mask: Color(0x33d9d9d9), // Set popup background color

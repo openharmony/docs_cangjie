@@ -91,7 +91,7 @@
 
 - 关闭自定义弹出框。
 
-   由于closeCustomDialog接口需要传入待关闭弹出框对应的CustomDialogId。
+   closeCustomDialog接口需要传入待关闭弹出框对应的CustomDialogId。
 
     <!-- run -->
 

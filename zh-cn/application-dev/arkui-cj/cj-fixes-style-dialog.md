@@ -4,13 +4,13 @@
 
 ## 使用约束
 
-- 操作菜单（showActionMenu）、对话框（showDialog）需先使用PromptAction方法获取到PromptAction对象，再通过该对象调用对应方法。
+- 操作菜单（showActionMenu）、对话框（showDialog）需先使用[getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getPromptAction)方法获取到PromptAction对象，再通过该对象调用对应方法。
 
 - 操作菜单（showActionMenu）、对话框（showDialog）、列表选择弹出框（ActionSheet）、警告弹出框（AlertDialog）可以设置isModal为false，变成非模态弹窗。
 
 ## 操作菜单（showActionMenu）
 
-操作菜单通过PromptAction方法获取到PromptAction对象，支持在回调或开发者自定义类中使用。
+操作菜单通过UIContext中的[getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getPromptAction)方法获取到PromptAction对象，支持在回调或开发者自定义类中使用。
 
 创建并显示操作菜单后，菜单的响应结果会异步返回选中按钮在buttons数组中的索引。
 
@@ -60,7 +60,58 @@ class EntryView {
 
 ## 对话框（showDialog）
 
-对话框通过PromptAction方法获取到PromptAction对象，支持在回调或开发者自定义类中使用。
+对话框通过[getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getPromptAction)方法获取到PromptAction对象，支持在回调或开发者自定义类中使用。
+
+ <!-- run -->
+
+```cangjie
+package ohos_app_cangjie_entry
+
+import ohos.base.*
+import ohos.arkui.component.*
+import ohos.arkui.state_management.*
+import ohos.arkui.state_macro_manage.*
+import std.collection.*
+import ohos.arkui.ui_context.*
+import ohos.business_exception.BusinessException
+import kit.PerformanceAnalysisKit.*
+
+@Entry
+@Component
+class EntryView {
+    @State var index1: Int32 = 0
+    func build() {
+         Column {
+            Button("showDialog").onClick(
+                {
+                    evt =>
+                    getUIContext().getPromptAction().showDialog(
+                        ShowDialogOptions(
+                            title: "showDialog Title Info",
+                            buttons: [
+                                ButtonInfo(text: 'button1', color: Color(0X000000)),
+                                ButtonInfo(text: 'button2', color: Color(0X000000))
+                            ]
+                        ),
+                        callback: {
+                            err: Option<BusinessException>, i: Option<Int32> => try {
+                                match (err) {
+                                    case Some(e) => Hilog.info(0, "cangjie", "error: errcode is ${e.code}")
+                                    case _ => ()
+                                }
+                            } catch (e: Exception) {
+                                Hilog.info(0, "cangjie", e.toString())
+                            }
+                        }
+                    )
+                }
+            )
+        }.width(100.percent).padding(top: 5)
+    }
+}
+```
+
+![showdialog](figures/showdialog.gif)
 
 ## 选择器弹窗（PickerDialog）
 
@@ -82,7 +133,7 @@ class EntryView {
 
 列表选择器弹窗适用于呈现多个操作选项，尤其当界面中仅需展示操作列表而无其他内容时。
 
-列表选择器弹窗通过ActionSheet中的[show](../reference/arkui-cj/cj-dialog-actionsheet.md#static-func-showactionsheetoptions)接口实现。
+列表选择器弹窗通过ActionSheet中的[showActionSheet](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-showActionSheet)接口实现。
 
 该示例通过配置width、height、transition等接口定义了弹窗的样式以及弹出动效。
 

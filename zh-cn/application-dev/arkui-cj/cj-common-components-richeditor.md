@@ -54,37 +54,43 @@ import kit.LocalizationKit.*
 import ohos.arkui.state_macro_manage.*
 import ohos.hilog.*
 import ohos.arkui.component.CopyOptions as MyCopyOptions
+import ohos.resource.*
 import std.collection.ArrayList
 
 @Entry
 @Component
 class EntryView {
-    let controller: TextController = TextController()
+    let controller: RichEditorController = RichEditorController()
+
     @Builder
     func RightClickTextCustomMenu() {
         Menu() {
-            MenuItemGroup(header: "", footer: "") {=>
-                MenuItem(startIcon: @r(app.media.startIcon),   endIcon: @r(app.media.startIcon), content: @r(app.media.startIcon), labelInfo: @r(app.media.startIcon) )
-                    .onChange ({ selected =>
-                        // 使用closeSelectionMenu接口关闭菜单
-                        this.controller.closeSelectionMenu()
-                    })
-                MenuItem(startIcon: @r(app.media.startIcon),   endIcon: @r(app.media.startIcon), content: @r(app.media.startIcon), labelInfo: @r(app.media.startIcon) )
-                MenuItem(startIcon: @r(app.media.startIcon),   endIcon: @r(app.media.startIcon), content: @r(app.media.startIcon), labelInfo: @r(app.media.startIcon) )
+            MenuItemGroup() {=>
+                MenuItem(startIcon: @r(app.media.startIcon), endIcon: @r(app.media.startIcon), content: "剪切", labelInfo: "Ctrl+X" )
+                MenuItem(startIcon: @r(app.media.startIcon), endIcon: @r(app.media.startIcon), content: "复制", labelInfo: "Ctrl+C" )
+                MenuItem(startIcon: @r(app.media.startIcon), endIcon: @r(app.media.startIcon), content: "粘贴", labelInfo: "Ctrl+V" )
             }
         }.backgroundColor(0XF0F0F0)
     }
     func build() {
         Scroll() {
             Column {
-                RichEditor(RichEditorController())
-                    .bindSelectionMenu(spantype: RichEditorSpanType.Text, content: {=>}, responseType: ResponseType.LongPress,
-                        options: SelectionMenuOptions( onDisappear: {
+                RichEditor(this.controller)
+                .bindSelectionMenu(
+                    spantype: RichEditorSpanType.Text,
+                    content: bind(this.RightClickTextCustomMenu, this),
+                    responseType: ResponseType.LongPress,
+                    options: SelectionMenuOptions( onDisappear: {
                             => Hilog.info(0, " ", "自定义选择菜单关闭时  触发该回调")
                         },
                         onAppear: {
                             => Hilog.info(0, " ", "自定义选择菜单弹出时回调")
-                        }))
+                        }
+                    )
+                )
+                .onReady({ =>
+                    controller.addTextSpan(content: "这是一段文本，用来展示选中菜单")
+                })
             }
         }
     }
@@ -132,7 +138,7 @@ class EntryView {
 
 ### 添加组件内容被选中时可触发的回调
 
-通过[onSelect](../reference/arkui-cj/cj-text-input-richeditor.md#func-onselectcallbackricheditorselectionunit)来添加组件内容被选中时可触发的回调。
+通过[onSelect](../reference/arkui-cj/cj-text-input-richeditor.md#func-onselectcallbackricheditorselection-unit)来添加组件内容被选中时可触发的回调。
 
 该回调可在文本选择后增强操作体验。例如，在选中文本后，可在回调中触发弹出菜单，以便用户进行文本样式的修改。或者对选中的文本进行内容分析和处理，为用户提供输入建议，从而提升文本编辑的效率和便捷性。
 
@@ -218,7 +224,7 @@ class EntryView {
 
 ### 添加输入法输入内容前和完成输入后可触发的回调
 
-在添加输入法输入内容前，可以通过[aboutToImeInput](../reference/arkui-cj/cj-text-input-richeditor.md#func-abouttoimeinputcallbackricheditorinsertvaluebool)触发回调。在输入法完成输入后，可以通过[onImeInputComplete](../reference/arkui-cj/cj-text-input-richeditor.md#func-onimeinputcompletecallbackricheditortextspanresultunit)触发回调。
+在添加输入法输入内容前，可以通过[aboutToImeInput](../reference/arkui-cj/cj-text-input-richeditor.md#func-abouttoimeinputcallbackricheditorinsertvalue-bool)触发回调。在输入法完成输入后，可以通过[onImeInputComplete](../reference/arkui-cj/cj-text-input-richeditor.md#func-onimeinputcompletecallbackricheditortextspanresult-unit)触发回调。
 
 这两种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调提供词汇联想，在用户完成输入后，利用回调执行自动化纠错或格式转换。
 
@@ -346,7 +352,7 @@ class EntryView {
 
 ## 添加图片内容
 
-通过[addImageSpan](../reference/arkui-cj/cj-text-input-richeditor.md#func-addimagespanstring-richeditorimagespanoptions)添加图片内容。
+通过[addImageSpan](../reference/arkui-cj/cj-text-input-richeditor.md#func-addimagespanresourcestr-richeditorimagespanoptions)添加图片内容。
 
 此接口可用于内容丰富与可视化展示，例如在新闻中加入图片，在文档中加入数据可视化图形等。
 
@@ -359,6 +365,7 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import kit.LocalizationKit.*
 import ohos.arkui.state_macro_manage.*
+import ohos.resource.*
 
 @Entry
 @Component
