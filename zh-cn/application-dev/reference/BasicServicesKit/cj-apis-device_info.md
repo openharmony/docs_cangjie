@@ -505,9 +505,9 @@ public static prop marketName: String
 public static prop osFullName: String
 ```
 
-**功能：** 系统版本，版本格式<!--RP12-->OpenHarmony<!--RP12End-->-x.x.x.x,x为数值。
+**功能：** 系统版本，版本格式OpenHarmony-x.x.x.x,x为数值。
 
-示例：<!--RP10-->Openharmony-5.0.0.1<!--RP10End-->
+示例：Openharmony-5.0.0.1
 
 **类型：** String
 
