@@ -544,7 +544,6 @@
                     - [Click Event](reference/arkui-cj/cj-universal-event-click.md)
                     - [Touch Event](reference/arkui-cj/cj-universal-event-touch.md)
                     - [Mount/Unmount Event](reference/arkui-cj/cj-universal-event-appear.md)
-                    - [Drag Event](reference/arkui-cj/cj-universal-event-drag.md)
                     - [Key Event](reference/arkui-cj/cj-universal-event-key.md)
                     - [Focus Event](reference/arkui-cj/cj-universal-event-focus.md)
                     - [Mouse Event](reference/arkui-cj/cj-universal-event-mouse.md)
@@ -577,7 +576,6 @@
                     - Modal Transition Setting
                         - [Full-Screen Modal Transition](reference/arkui-cj/cj-universal-attribute-bindcontentcover.md)
                         - [Half-Modal Transition](reference/arkui-cj/cj-universal-attribute-sheettransition.md)
-                    - [Drag Control](reference/arkui-cj/cj-universal-attribute-dragcontrol.md)
                     - [Safe Area](reference/arkui-cj/cj-universal-attribute-expandsafearea.md)
                     - [Component Content Filling Method](reference/arkui-cj/cj-universal-attribute-renderfit.md)
                     - [Touch hot zone settings](reference/arkui-cj/cj-universal-attribute-touchtarget.md)

@@ -3287,7 +3287,7 @@ public func opacity(rate: Float32): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|rate|Float32|是|-|透明比率的值，取值范围是(0,1]。|
+|rate|Float32|是|-|透明比率的值，取值范围是(0.0,1.0]。|
 
 **异常：**
 
@@ -4144,8 +4144,8 @@ public init(sourceDensity: Int32, sourcePixelFormat!: PixelMapFormat = PixelMapF
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |sourceDensity|Int32|是|-|图片资源像素密度，单位为ppi。|
-|sourcePixelFormat|[PixelMapFormat](#enum-pixelmapformat)|否|PixelMapFormat.Unknown|**命名参数** 图片像素格式，默认值为UNKNOWN。|
-|sourceSize|[Size](#class-size)|否|Size(0, 0)|**命名参数** 图像像素大小，默认值为空。|
+|sourcePixelFormat|[PixelMapFormat](#enum-pixelmapformat)|否|PixelMapFormat.Unknown|**命名参数。** 图片像素格式，默认值为UNKNOWN。|
+|sourceSize|[Size](#class-size)|否|Size(0, 0)|**命名参数。** 图像像素大小，默认值为空。|
 
 ## enum AlphaType
 
