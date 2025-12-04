@@ -38,7 +38,7 @@ HAR (Harmony Archive) is a static shared package that can contain code, C++ libr
 
 ## Creation  
 
-Developers can create a HAR module using DevEco Studio. For details, refer to [Creating a Library Module](#)<!-- add link -->.  
+Developers can create a HAR module using DevEco Studio.
 
 ## Development  
 
@@ -62,28 +62,26 @@ package ohos_app_cangjie_library
 
 import kit.ArkUI.*  
 import ohos.arkui.state_macro_manage.*  
-import kit.LocalizationKit.*  
+import ohos.resource.__GenerateResource__
 
 @Component  
 public class MainPage {  
     @State  
     var message: String = "Hello"  
 
-    public func build() {  
-        Column() {  
-            Row() {  
-                Text(this.message).fontSize(32).fontWeight(FontWeight.Bold)  
-            }.margin(32).height(56).width(624)  
-            Flex(  
-                FlexParams(justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center,  
-                    alignContent: FlexAlign.Center)) {  
-                    Column() {  
-                        Image(@r(app.media.pic_empty)).width(33.percent)  
-                        Text(@r(app.string.empty)).fontSize(14).fontColor(@r(app.color.text_color))  
-                    }  
-            }.width(100.percent).height(90.percent)  
-        }.width(100.percent).height(100.percent).backgroundColor(@r(app.color.page_background))  
-    }  
+    public func build() {
+        Column() {
+            Row() {
+                Text(this.message).fontSize(32).fontWeight(FontWeight.Bold)
+            }.margin(32).height(56).width(624)
+            Flex(justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center, alignContent: FlexAlign.Center, direction: FlexDirection.Row, wrap: FlexWrap.NoWrap) {
+                    Column() {
+                        Image(@r(app.media.pic_empty)).width(33.percent)
+                        Text(@r(app.string.empty)).fontSize(14).fontColor(@r(app.color.text_color))
+                    }
+            }.width(100.percent).height(90.percent)
+        }.width(100.percent).height(100.percent).backgroundColor(@r(app.color.page_background))
+    }
 }  
 ```  
 
@@ -193,12 +191,12 @@ class EntryView2 {
                 Text(this.message)  
                     .fontSize(50)  
                     .fontWeight(FontWeight.Bold)  
-                    .onClick {  
-                        evt =>  
-                        // Reference a class and method from the HAR  
-                        Log.info("har msg")  
-                        this.message = "func return: ${harFunc()}"  
-                    }  
+                    .onClick ({
+                        evt =>
+                        // 引用HAR的类和方法
+                        Log.info("har msg")
+                        this.message = "func return: ${harFunc()}"
+                    })
             }.width(100.percent)  
         }.height(100.percent)  
     }  
@@ -217,7 +215,7 @@ package ohos_app_cangjie_entry
 
 import kit.ArkUI.*  
 import ohos.arkui.state_macro_manage.*  
-import kit.LocalizationKit.*  
+import ohos.resource.__GenerateResource__
 
 @Entry  
 @Component  
@@ -232,9 +230,9 @@ class EntryView3 {
                 Text(@r(app.string.hello_har))  
                     .fontSize(50)  
                     .fontWeight(FontWeight.Bold)  
-                    .onClick {  
-                        evt => this.message = "Hello Cangjie"  
-                    }  
+                    .onClick ({
+                        evt => this.message = "Hello Cangjie"
+                    })
                 List() {  
                     ListItem() {  
                         // Reference an image resource from the HAR  
