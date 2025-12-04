@@ -703,7 +703,6 @@
                     - [点击事件](reference/arkui-cj/cj-universal-event-click.md)
                     - [触摸事件](reference/arkui-cj/cj-universal-event-touch.md)
                     - [挂载卸载事件](reference/arkui-cj/cj-universal-event-appear.md)
-                    - [拖拽事件](reference/arkui-cj/cj-universal-event-drag.md)
                     - [按键事件](reference/arkui-cj/cj-universal-event-key.md)
                     - [焦点事件](reference/arkui-cj/cj-universal-event-focus.md)
                     - [鼠标事件](reference/arkui-cj/cj-universal-event-mouse.md)
@@ -736,7 +735,6 @@
                     - 模态转场设置
                         - [全屏模态转场](reference/arkui-cj/cj-universal-attribute-bindcontentcover.md)
                         - [半模态转场](reference/arkui-cj/cj-universal-attribute-sheettransition.md)
-                    - [拖拽控制](reference/arkui-cj/cj-universal-attribute-dragcontrol.md)
                     - [安全区域](reference/arkui-cj/cj-universal-attribute-expandsafearea.md)
                     - [组件内容填充方式](reference/arkui-cj/cj-universal-attribute-renderfit.md)
                     - [触摸热区设置](reference/arkui-cj/cj-universal-attribute-touchtarget.md)

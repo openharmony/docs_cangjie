@@ -202,7 +202,7 @@ public func contrast(value: ?Float64): T
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | ?Float64 | Yes | - | Contrast value. A value of 1 displays the original image. Values greater than 1 increase contrast (higher values make the image sharper and more pronounced), while values less than 1 decrease contrast. Recommended range: [0, 10). Initial value: 1.0 |
+| value | ?Float64 | Yes | - | Contrast value. A value of 1.0 displays the original image. Values greater than 1.0 increase contrast (higher values make the image sharper and more pronounced), while values less than 1.0 decrease contrast. Recommended range: [0.0, 10.0). Initial value: 1.0 |
 
 **Return Value:**
 
