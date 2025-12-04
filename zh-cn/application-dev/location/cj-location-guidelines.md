@@ -45,7 +45,7 @@
         Hilog.error(1, "info", "errCode: ${err.code}, message: ${err.message}")
     }
     ```
-    
+
 4. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
     - 获取当前位置。<br/>
 
