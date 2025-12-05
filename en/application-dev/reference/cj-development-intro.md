@@ -37,27 +37,40 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
 
     ```cangjie
     // index.cj
+    package ohos_app_cangjie_entry
 
-    // Import relevant packages here
-    import kit.ArkUI.*
-    import kit.PerformanceAnalysisKit.Hilog
+    import kit.ArkUI.LengthProp
+    import kit.ArkUI.Column
+    import kit.ArkUI.Row
+    import kit.ArkUI.Text
+    import kit.ArkUI.CustomView
+    import kit.ArkUI.CJEntry
+    import kit.ArkUI.loadNativeView
+    import kit.ArkUI.FontWeight
+    import kit.ArkUI.SubscriberManager
+    import kit.ArkUI.ObservedProperty
+    import kit.ArkUI.LocalStorage
+    import ohos.arkui.state_macro_manage.Entry
+    import ohos.arkui.state_macro_manage.Component
+    import ohos.arkui.state_macro_manage.State
 
     // Define required dependencies such as classes and functions here
 
     @Entry
     @Component
     class EntryView {
+        @State
+        var message: String = "Hello World"
+
         func build() {
             Row {
                 Column {
-                    Text("Hello Cangjie").onClick {
-                        evt =>
-                        try {
-                            // Add API sample code here
-                        } (e: Exception) {
-                            Hilog.info(0, "AppLogCj", e.toString())
-                        }
-                    }
+                    Text(this.message)
+                        .fontSize(50)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick ({
+                            evt => this.message = "Hello Cangjie"
+                        })
                 }.width(100.percent)
             }.height(100.percent)
         }

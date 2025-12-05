@@ -10,8 +10,6 @@
 
 - ohos.permission.APPROXIMATELY_LOCATION：用于获取模糊位置，精确度为5公里。
 
-- ohos.permission.LOCATION_IN_BACKGROUND：用于应用切换到后台仍然需要获取定位信息的场景。
-
 Location Kit接口对权限的要求请参见：[Location Kit](../reference/LocationKit/cj-apis-geo_location_manager.md)。
 
 ## 开发步骤
