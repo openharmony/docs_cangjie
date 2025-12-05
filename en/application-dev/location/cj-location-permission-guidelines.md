@@ -10,8 +10,6 @@ The system provides the following location permissions:
 
 - `ohos.permission.APPROXIMATELY_LOCATION`: Used to obtain approximate location with an accuracy of 5 kilometers.
 
-- `ohos.permission.LOCATION_IN_BACKGROUND`: Used for scenarios where the application needs to continue obtaining location information after switching to the background.
-
 For permission requirements of Location Kit interfaces, refer to: [Location Kit](../reference/LocationKit/cj-apis-geo_location_manager.md).
 
 ## Development Steps
