@@ -48,7 +48,7 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
     internal import ohos.arkui.component.loadNativeView
     internal import ohos.arkui.component.FontWeight
     internal import ohos.arkui.state_management.SubScriberManager
-    internal import ohos.arkui.state_management.ObserverProperty
+    internal import ohos.arkui.state_management.ObservedProperty
     internal import ohos.arkui.state_management.LocalStorage
     import ohos.arkui.state_macro_manage.Entry
     import ohos.arkui.state_macro_manage.Component
