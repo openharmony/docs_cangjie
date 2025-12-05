@@ -59,6 +59,9 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
     @Entry
     @Component
     class EntryView {
+        @State
+        var message: String = "Hello World"
+
         func build() {
             Row {
                 Column {
