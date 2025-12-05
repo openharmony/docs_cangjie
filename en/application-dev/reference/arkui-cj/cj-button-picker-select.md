@@ -512,7 +512,7 @@ import ohos.arkui.state_macro_manage.*
 import ohos.i18n.*
 import ohos.resource_manager.*
 import ohos.hilog.*
-
+import ohos.resource.__GenerateResource__
 
 @Entry
 @Component

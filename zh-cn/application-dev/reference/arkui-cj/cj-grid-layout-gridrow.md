@@ -845,7 +845,7 @@ class EntryView {
                 //lg:大宽度类型设备     xl:特大宽度类型设备  xxl:超大宽度类型设备。
                 columns: GridRowOptions(xs: 6, sm: 7, md: 8, lg: 9, xl: 10, xxl: 11),
                 //设置栅格布局间距，x代表水平方向，y代表垂直方向。
-                gutter: GutterOptions(x: 5.vp, y: 10.vp),
+                gutter: GutterOption(x: 5.vp, y: 10.vp),
                 //设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。
                 breakpoints: BreakPoints(
                     //启用xs,sm,md,lg四个断点
@@ -879,7 +879,7 @@ class EntryView {
                 //设置布局列数为5列
                 columns: 5,
                 //设置栅格布局间距，水平方向为5vp，垂直方向10vp。
-                gutter: GutterOptions(x: 5.vp, y: 10.vp),
+                gutter: GutterOption(x: 5.vp, y: 10.vp),
                 //设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。
                 breakpoints: BreakPoints(
                     //启用xs,sm,md,lg四个断点
