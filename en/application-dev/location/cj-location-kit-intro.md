@@ -12,8 +12,6 @@ When implementing device location-based features—such as driving navigation or
 
 The location subsystem employs multiple positioning technologies to deliver services, including GNSS positioning, base station positioning, and WLAN/Bluetooth positioning (the latter two are collectively referred to as "network positioning technologies"). These technologies enable accurate device location determination, whether indoors or outdoors.  
 
-In addition to basic positioning services, Location Kit provides functionalities and interfaces such as geofencing, geocoding, reverse geocoding, and country code support.  
-
 - **Coordinates**  
   The system uses the World Geodetic System 1984 (WGS84) as a reference, describing a location on Earth with longitude and latitude data.  
 
