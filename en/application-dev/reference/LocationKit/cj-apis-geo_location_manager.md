@@ -1,6 +1,6 @@
 # ohos.geo_location_manager (Location Services)
 
-Location services provide basic functionalities including GNSS positioning, network positioning (cellular base station, WLAN, Bluetooth positioning technologies), geocoding, reverse geocoding, country codes, and geofencing.
+Location services provide basic functionalities including GNSS positioning, network positioning (cellular base station, WLAN, Bluetooth positioning technologies).
 
 > **Note:**
 >
