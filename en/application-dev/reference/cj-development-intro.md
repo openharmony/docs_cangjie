@@ -37,6 +37,7 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
 
     ```cangjie
     // index.cj
+    package ohos_app_cangjie_entry
 
     import kit.ArkUI.LengthProp
     import kit.ArkUI.Column
