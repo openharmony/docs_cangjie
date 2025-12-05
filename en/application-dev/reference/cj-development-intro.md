@@ -39,9 +39,21 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
     // index.cj
 
     // Import relevant packages here
-    import kit.ArkUI.*
-    import kit.PerformanceAnalysisKit.Hilog
-
+    internal import ohos.base.LengthProp
+    internal import ohos.arkui.component.Column
+    internal import ohos.arkui.component.Row
+    internal import ohos.arkui.component.Text
+    internal import ohos.arkui.component.CustomView
+    internal import ohos.arkui.component.CJEntry
+    internal import ohos.arkui.component.loadNativeView
+    internal import ohos.arkui.component.FontWeight
+    internal import ohos.arkui.state_management.SubScriberManager
+    internal import ohos.arkui.state_management.ObserverProperty
+    internal import ohos.arkui.state_management.LocalStorage
+    import ohos.arkui.state_macro_manage.Entry
+    import ohos.arkui.state_macro_manage.Component
+    import ohos.arkui.state_macro_manage.State
+    import ohos.arkui.state_macro_manage.r
     // Define required dependencies such as classes and functions here
 
     @Entry
@@ -51,12 +63,7 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
             Row {
                 Column {
                     Text("Hello Cangjie").onClick {
-                        evt =>
-                        try {
-                            // Add API sample code here
-                        } (e: Exception) {
-                            Hilog.info(0, "AppLogCj", e.toString())
-                        }
+                        evt => this.message = "Hello Cangjie"
                     }
                 }.width(100.percent)
             }.height(100.percent)
