@@ -38,23 +38,22 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
     ```cangjie
     // index.cj
 
-    // Import relevant packages here
-    internal import ohos.base.LengthProp
-    internal import ohos.arkui.component.Column
-    internal import ohos.arkui.component.Row
-    internal import ohos.arkui.component.Text
-    internal import ohos.arkui.component.CustomView
-    internal import ohos.arkui.component.CJEntry
-    internal import ohos.arkui.component.loadNativeView
-    internal import ohos.arkui.component.FontWeight
-    internal import ohos.arkui.state_management.SubscriberManager
-    internal import ohos.arkui.state_management.ObservedProperty
-    internal import ohos.arkui.state_management.LocalStorage
+    import kit.ArkUI.LengthProp
+    import kit.ArkUI.Column
+    import kit.ArkUI.Row
+    import kit.ArkUI.Text
+    import kit.ArkUI.CustomView
+    import kit.ArkUI.CJEntry
+    import kit.ArkUI.loadNativeView
+    import kit.ArkUI.FontWeight
+    import kit.ArkUI.SubscriberManager
+    import kit.ArkUI.ObservedProperty
+    import kit.ArkUI.LocalStorage
     import ohos.arkui.state_macro_manage.Entry
     import ohos.arkui.state_macro_manage.Component
     import ohos.arkui.state_macro_manage.State
-    import ohos.arkui.state_macro_manage.r
-    // Define required dependencies such as classes and functions here
+
+    // 此处定义所需要的依赖项如class、func等
 
     @Entry
     @Component
@@ -65,9 +64,12 @@ The Cangjie samples in each Kit are not complete programs but rather key code sn
         func build() {
             Row {
                 Column {
-                    Text("Hello Cangjie").onClick {
-                        evt => this.message = "Hello Cangjie"
-                    }
+                    Text(this.message)
+                        .fontSize(50)
+                        .fontWeight(FontWeight.BOLD)
+                        .onClick ({
+                            evt => this.message = "Hello Cangjie"
+                        })
                 }.width(100.percent)
             }.height(100.percent)
         }
