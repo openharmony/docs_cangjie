@@ -38,7 +38,7 @@ public init(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|columns|?Int32|是|-| **命名参数。** 布局列数设置。<br>初始值：12。|
+|columns|?Int32|是|-| **命名参数。** 布局列数设置。|
 |gutter|?[Length](./cj-common-types.md#interface-length)|否|None| **命名参数。** 栅格布局间距。<br>初始值：0.vp。|
 |breakpoints|?[BreakPoints](#class-breakpoints)|否|Option.None| **命名参数。** 断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br>初始值：BreakPoints()。|
 |direction|?[GridRowDirection](#enum-gridrowdirection)|否|Option.None| **命名参数。** 栅格布局排列方向。<br>初始值：GridRowDirection.Row。|
@@ -94,7 +94,7 @@ public init(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|columns|?Int32|是|-| **命名参数。** 布局列数设置。<br>初始值：12|
+|columns|?Int32|是|-| **命名参数。** 布局列数设置。|
 |gutter|?[GutterOptions](#class-gutteroptions)|是|-| **命名参数。** 栅格布局间距。|
 |breakpoints|?[BreakPoints](#class-breakpoints)|否|Option.None| **命名参数。** 断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br>初始值：BreakPoints()|
 |direction|?[GridRowDirection](#enum-gridrowdirection)|否|Option.None| **命名参数。** 栅格布局排列方向。<br>初始值：GridRowDirection.Row|
