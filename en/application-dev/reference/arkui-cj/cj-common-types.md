@@ -19839,6 +19839,10 @@ public type VoidCallback = () -> Unit
 
 **Function:** [VoidCallback](#type-voidcallback) is a type alias for [() -> Unit](#type-voidcallback).
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Type:** () -> Unit
 
 ## type Callback\<T, V>
@@ -19848,6 +19852,10 @@ public type Callback<T, V> = (T) -> V
 ```
 
 **Function:** Callback\<T, V> is a type alias for (T) -> V.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Type:** (T) -> V
 
@@ -19859,6 +19867,10 @@ public type CustomBuilder = () -> Unit
 
 **Function:** CustomBuilder is a type alias for () -> Unit.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Type:** () -> Unit
 
 ## type TransitionFinishCallback
@@ -19868,6 +19880,10 @@ public type TransitionFinishCallback = (Bool) -> Unit
 ```
 
 **Function:** [TransitionFinishCallback](#type-transitionfinishcallback) is a type alias for (Bool) -> Unit.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Type:** (Bool) -> Unit
 
@@ -19879,6 +19895,10 @@ public type ItemGeneratorFunc<T> = (T, Int64) -> Unit
 
 **Function:** Defines an item generator function.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 **Type:** (T, Int64) -> Unit
 
 ## type KeyGeneratorFunc
@@ -19888,5 +19908,9 @@ public type KeyGeneratorFunc<T> = (T, Int64) -> String
 ```
 
 **Function:** Defines a key generator function.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
 
 **Type:** (T, Int64) -> String
