@@ -1513,53 +1513,6 @@ public var y: Float64
 
 **起始版本：** 22
 
-## class DragInfo
-
-```cangjie
-public class DragInfo {
-    public var extraParams: String
-    public var touchPoint: Position
-}
-```
-
-**功能：** 拖拽动作参数配置类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### var extraParams
-
-```cangjie
-public var extraParams: String
-```
-
-**功能：** 存储拖拽事件额外信息。
-
-**类型：** String
-
-**读写能力：** 可读写
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### var touchPoint
-
-```cangjie
-public var touchPoint: Position
-```
-
-**功能：** 存储拖拽点坐标信息。
-
-**类型：** [Position](./cj-common-types.md#class-position)
-
-**读写能力：** 可读写
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
 ## class DragItemInfo
 
 ```cangjie

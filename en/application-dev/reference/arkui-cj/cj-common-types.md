@@ -1468,53 +1468,6 @@ public var y: Float64
 
 **Since:** 22
 
-## class DragInfo
-
-```cangjie
-public class DragInfo {
-    public var extraParams: ?String
-    public var touchPoint: ?Position
-}
-```
-
-**Description:** Configuration type for drag operation parameters.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-### var extraParams
-
-```cangjie
-public var extraParams: ?String
-```
-
-**Description:** Stores additional information for drag events.
-
-**Type:** String
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-### var touchPoint
-
-```cangjie
-public var touchPoint: ?Position
-```
-
-**Description:** Stores coordinate information of the drag point.
-
-**Type:** [Position](./cj-common-types.md#class-position)
-
-**Access:** Read-write
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
 ## class DragItemInfo
 
 ```cangjie

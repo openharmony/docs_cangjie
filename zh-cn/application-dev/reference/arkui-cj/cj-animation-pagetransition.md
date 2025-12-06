@@ -106,7 +106,7 @@ public func opacity(value: Float64): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|Float64|是|-|透明度值，取值范围[0, 1]，0表示完全透明，1表示完全不透明。|
+|value|Float64|是|-|透明度值，取值范围[0.0, 1.0]，0.0表示完全透明，1.0表示完全不透明。|
 
 ## class PageTransitionEnter
 

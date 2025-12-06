@@ -180,8 +180,6 @@ public var bottomRect: Rect
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
 **Since:** 22
 
 ### var leftRect
@@ -197,8 +195,6 @@ public var leftRect: Rect
 **Type:** [Rect](#class-rect)
 
 **Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Since:** 22
 
@@ -216,8 +212,6 @@ public var rightRect: Rect
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
 **Since:** 22
 
 ### var topRect
@@ -234,8 +228,6 @@ public var topRect: Rect
 
 **Read/Write:** Readable and Writable
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
-
 **Since:** 22
 
 ### var visible
@@ -251,8 +243,6 @@ public var visible: Bool
 **Type:** Bool
 
 **Read/Write:** Readable and Writable
-
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
 **Since:** 22
 
@@ -1447,7 +1437,7 @@ public func setWindowKeepScreenOn(isKeepScreenOn: Bool): Unit
   |:----------|:------------|
   | 1300002   | This window state is abnormal. |
 
-### func setWindowSystemBarEnabled(Array<SystemBarType>)
+### func setWindowSystemBarEnabled(Array\<SystemBarType>)
 
 ```cangjie
 public func setWindowSystemBarEnabled(names: Array<SystemBarType>): Unit

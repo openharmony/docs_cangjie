@@ -106,7 +106,7 @@ public func opacity(value: Float64): This
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Float64 | Yes | - | The opacity value, ranging from [0, 1], where 0 means fully transparent and 1 means fully opaque. |
+| value | Float64 | Yes | - | The opacity value, ranging from [0.0, 1.0], where 0.0 means fully transparent and 1.0 means fully opaque. |
 
 ## class PageTransitionEnter
 
