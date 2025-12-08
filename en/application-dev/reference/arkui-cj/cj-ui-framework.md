@@ -11,7 +11,7 @@ import kit.ArkUI.*
 ## func bind((CustomView) -> ViewBuilder, CustomView)
 
 ```cangjie
-public func bind(builder: (CustomView) -> ViewBuilder, thisView: CustomView)
+public func bind(builder: (CustomView) -> ViewBuilder, thisView: CustomView): () -> Unit
 ```
 
 **Function:** Used to bind an @Builder decorated function with a custom component object. For details, see bind function usage.
@@ -27,10 +27,16 @@ public func bind(builder: (CustomView) -> ViewBuilder, thisView: CustomView)
 | builder | ([CustomView](#class-customview))->[ViewBuilder](#class-viewbuilder) | Yes | - | [@Builder](../../arkui-cj/paradigm/cj-macro-builder.md) decorated function type. |
 | thisView | [CustomView](#class-customview) | Yes | - | Current custom component object (usually `this`). |
 
+**Return Value:**
+
+| Type                      | Description                              |
+| :------------------------ | :--------------------------------------- |
+| () -> Unit | Returns the bind function, can used as a builder. |
+
 ## func bind\<T1>((CustomView,ObservedProperty\<T1>) -> ViewBuilder, CustomView)
 
 ```cangjie
-public func bind<T1>(builder: (CustomView, ObservedProperty<T1>) -> ViewBuilder, thisView: CustomView)
+public func bind<T1>(builder: (CustomView, ObservedProperty<T1>) -> ViewBuilder, thisView: CustomView): (T1) -> Unit
 ```
 
 **Function:** Used to bind an @Builder decorated function with a custom component object. For details, see bind function usage.
@@ -46,11 +52,19 @@ public func bind<T1>(builder: (CustomView, ObservedProperty<T1>) -> ViewBuilder,
 | builder | ([CustomView](#class-customview),[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedpropertyt)\<T1>)->[ViewBuilder](#class-viewbuilder) | Yes | - | [@Builder](../../arkui-cj/paradigm/cj-macro-builder.md) decorated function type. |
 | thisView | [CustomView](#class-customview) | Yes | - | Current custom component object (usually `this`). |
 
+**Return Value:**
+
+| Type                      | Description                              |
+| :------------------------ | :--------------------------------------- |
+| () -> Unit | Returns the bind function, can used as a builder. |
+
 ## func bind\<T1, T2>((CustomView,ObservedProperty\<T1>,ObservedProperty\<T2>) -> ViewBuilder, CustomView)
 
 ```cangjie
-public func bind<T1, T2>(builder: (CustomView, ObservedProperty<T1>,
-    ObservedProperty<T2>) -> ViewBuilder, thisView: CustomView)
+public func bind<T1, T2>(
+    builder: (CustomView, ObservedProperty<T1>, ObservedProperty<T2>) -> ViewBuilder,
+    thisView: CustomView
+): (T1, T2) -> Unit
 ```
 
 **Function:** Used to bind an @Builder decorated function with a custom component object. For details, see bind function usage.
@@ -65,6 +79,12 @@ public func bind<T1, T2>(builder: (CustomView, ObservedProperty<T1>,
 |:---|:---|:---|:---|:---|
 | builder | ([CustomView](#class-customview),[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedpropertyt)\<T1>,[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedpropertyt)\<T2>)->[ViewBuilder](#class-viewbuilder) | Yes | - | [@Builder](../../arkui-cj/paradigm/cj-macro-builder.md) decorated function type. |
 | thisView | [CustomView](#class-customview) | Yes | - | Current custom component object (usually `this`). |
+
+**Return Value:**
+
+| Type                      | Description                              |
+| :------------------------ | :--------------------------------------- |
+| () -> Unit | Returns the bind function, can used as a builder. |
 
 ## func bind\<T1, T2, T3>((CustomView,ObservedProperty\<T1>,ObservedProperty\<T2>,ObservedProperty\<T3>) -> ViewBuilder, CustomView)
 

@@ -2615,9 +2615,9 @@ public init(anchor: ?String, align: ?VerticalAlign)
 
 ```cangjie
 public class Bias {
-    public var horizontal: ?Float64
-    public var vertical: ?Float64
-    public init(horizontal!: ?Float64 = None, vertical!: ?Float64 = None)
+    public var horizontal: ?Float32
+    public var vertical: ?Float32
+    public init(horizontal!: ?Float32 = None, vertical!: ?Float32 = None)
 }
 ```
 
@@ -2630,12 +2630,12 @@ public class Bias {
 ### var horizontal
 
 ```cangjie
-public var horizontal: ?Float64
+public var horizontal: ?Float32
 ```
 
 **功能：** 设置组件水平方向的偏移量。
 
-**类型：** ?Float64
+**类型：** ?Float32
 
 **读写能力：** 可读写
 
@@ -2646,12 +2646,12 @@ public var horizontal: ?Float64
 ### var vertical
 
 ```cangjie
-public var vertical: ?Float64
+public var vertical: ?Float32
 ```
 
 **功能：** 设置组件垂直方向的偏移量。
 
-**类型：** ?Float64
+**类型：** ?Float32
 
 **读写能力：** 可读写
 
@@ -2659,10 +2659,10 @@ public var vertical: ?Float64
 
 **起始版本：** 22
 
-### init(?Float64, ?Float64)
+### init(?Float32, ?Float32)
 
 ```cangjie
-public init(horizontal!: ?Float64 = None, vertical!: ?Float64 = None)
+public init(horizontal!: ?Float32 = None, vertical!: ?Float32 = None)
 ```
 
 **功能：** 构造一个Bias对象。
@@ -2675,8 +2675,8 @@ public init(horizontal!: ?Float64 = None, vertical!: ?Float64 = None)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|horizontal|?Float64|否|None|**命名参数。** 设置组件水平方向的偏移量。初始值为0.5。|
-|vertical|?Float64|否|None|**命名参数。** 设置组件垂直方向的偏移量。初始值为0.5。|
+|horizontal|?Float32|否|None|**命名参数。** 设置组件水平方向的偏移量。初始值为0.5。|
+|vertical|?Float32|否|None|**命名参数。** 设置组件垂直方向的偏移量。初始值为0.5。|
 
 ## class Fonts
 
@@ -3974,17 +3974,17 @@ public class PopupOptions {
     public var followTransformOfTarget: ?Bool
     public init(
         message!: ?String,
+        placement!: ?Placement = Option.None,
         primaryButton!: ?PopupButton = None,
         secondaryButton!: ?PopupButton = None,
         onStateChange!: Option<(PopupStateChangeParam) -> Unit> = Option.None,
         arrowOffset!: ?Length = None,
         showInSubWindow!: ?Bool = None,
-        messageOptions!: ?PopupMessageOptions = None,
         mask!: ?Color = None,
+        messageOptions!: ?PopupMessageOptions = None,
         targetSpace!: ?Length = None,
-        placement!: ?Placement = Option.None,
-        offset!: ?Position = None,
         enableArrow!: ?Bool = None,
+        offset!: ?Position = None,
         popupColor!: ?Color = None,
         autoCancel!: ?Bool = None,
         width!: ?Length = None,
@@ -4401,22 +4401,22 @@ public var followTransformOfTarget: ?Bool
 
 **起始版本：** 22
 
-### init(?String, ?PopupButton, ?PopupButton, Option\<(PopupStateChangeParam) -> Unit>, ?Length, ?Bool, ?PopupMessageOptions, ?Color, ?Length, ?Placement, ?Position, ?Bool, ?Color, ?Bool, ?Length, ?ArrowPointPosition, ?Length, ?Length, ?Length, ?ShadowStyle, ?BlurStyle, ?TransitionEffect, Option\<(DismissPopupAction) -> Unit>, ?Bool)
+### init(?String, ?Placement, ?PopupButton, ?PopupButton, Option\<(PopupStateChangeParam) -> Unit>, ?Length, ?Bool, ?Color, ?PopupMessageOptions, ?Length, ?Bool, ?Position, ?Color, ?Bool, ?Length, ?ArrowPointPosition, ?Length, ?Length, ?Length, ?ShadowStyle, ?BlurStyle, ?TransitionEffect, Option\<(DismissPopupAction) -> Unit>, ?Bool)
 
 ```cangjie
 public init(
     message!: ?String,
+    placement!: ?Placement = Option.None,
     primaryButton!: ?PopupButton = None,
     secondaryButton!: ?PopupButton = None,
     onStateChange!: Option<(PopupStateChangeParam) -> Unit> = Option.None,
     arrowOffset!: ?Length = None,
     showInSubWindow!: ?Bool = None,
-    messageOptions!: ?PopupMessageOptions = None,
     mask!: ?Color = None,
+    messageOptions!: ?PopupMessageOptions = None,
     targetSpace!: ?Length = None,
-    placement!: ?Placement = Option.None,
-    offset!: ?Position = None,
     enableArrow!: ?Bool = None,
+    offset!: ?Position = None,
     popupColor!: ?Color = None,
     autoCancel!: ?Bool = None,
     width!: ?Length = None,
@@ -4443,17 +4443,17 @@ public init(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |message|?String|是|-|**命名参数。** 设置弹窗信息内容。|
+|placement|?[Placement](#enum-placement)|否|Option.None|**命名参数。** 设置popup组件相对于目标的显示位置。|
 |primaryButton|?[PopupButton](#class-popupbutton)|否|None|**命名参数。** 设置第一个按钮。初始值为PopupButton(value: "", action: {=>})。|
 |secondaryButton|?[PopupButton](#class-popupbutton)|否|None|**命名参数。** 设置第二个按钮。初始值为PopupButton(value: "", action: {=>})。|
 |onStateChange|Option<([PopupStateChangeParam](#class-popupstatechangeparam)) -> Unit>|否|Option.None|**命名参数。** 设置弹窗状态变化事件回调。|
 |arrowOffset|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 设置popup箭头在弹窗处的偏移。初始值为0.vp。|
 |showInSubWindow|?Bool|否|None|**命名参数。** 设置是否在子窗口显示气泡。初始值为false。|
-|messageOptions|?[PopupMessageOptions](#class-popupmessageoptions)|否|None|**命名参数。** 设置弹窗信息文本参数。初始值为PopupMessageOptions()。|
 |mask|?[Color](./cj-common-types.md#class-color)|否|None|**命名参数。** 设置遮罩层的颜色。初始值为Color(0x1000000)。|
+|messageOptions|?[PopupMessageOptions](#class-popupmessageoptions)|否|None|**命名参数。** 设置弹窗信息文本参数。初始值为PopupMessageOptions()。|
 |targetSpace|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 设置popup与目标的间隙。初始值为0.vp。|
-|placement|?[Placement](#enum-placement)|否|Option.None|**命名参数。** 设置popup组件相对于目标的显示位置。|
-|offset|?[Position](#class-position)|否|None|**命名参数。** 设置popup组件相对于placement设置的显示位置的偏移。初始值为Position(x:0.0, y: 0.0)。|
 |enableArrow|?Bool|否|None|**命名参数。** 是否启用箭头，初始值为true。|
+|offset|?[Position](#class-position)|否|None|**命名参数。** 设置popup组件相对于placement设置的显示位置的偏移。初始值为Position(x:0.0, y: 0.0)。|
 |popupColor|?[Color](./cj-common-types.md#class-color)|否|None|**命名参数。** 设置提示气泡的颜色。初始值为Color(0x1000000)。|
 |autoCancel|?Bool|否|None|**命名参数。** 页面有操作时，设置是否自动关闭气泡。初始值为true。|
 |width|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 设置弹窗宽度。初始值为0.vp。|

@@ -2561,9 +2561,9 @@ public init(anchor: ?String, align: ?VerticalAlign)
 
 ```cangjie
 public class Bias {
-    public var horizontal: ?Float64
-    public var vertical: ?Float64
-    public init(horizontal!: ?Float64 = None, vertical!: ?Float64 = None)
+    public var horizontal: ?Float32
+    public var vertical: ?Float32
+    public init(horizontal!: ?Float32 = None, vertical!: ?Float32 = None)
 }
 ```
 
@@ -2576,12 +2576,12 @@ public class Bias {
 ### var horizontal
 
 ```cangjie
-public var horizontal: ?Float64
+public var horizontal: ?Float32
 ```
 
 **Function:** Sets the horizontal offset for components.
 
-**Type:** ?Float64
+**Type:** ?Float32
 
 **Access:** Read-Write
 
@@ -2592,12 +2592,12 @@ public var horizontal: ?Float64
 ### var vertical
 
 ```cangjie
-public var vertical: ?Float64
+public var vertical: ?Float32
 ```
 
 **Function:** Sets the vertical offset for components.
 
-**Type:** ?Float64
+**Type:** ?Float32
 
 **Access:** Read-Write
 
@@ -2605,10 +2605,10 @@ public var vertical: ?Float64
 
 **Since:** 22
 
-### init(?Float64, ?Float64)
+### init(?Float32, ?Float32)
 
 ```cangjie
-public init(horizontal!: ?Float64 = None, vertical!: ?Float64 = None)
+public init(horizontal!: ?Float32 = None, vertical!: ?Float32 = None)
 ```
 
 **Function:** Constructs a Bias object.
@@ -2621,8 +2621,8 @@ public init(horizontal!: ?Float64 = None, vertical!: ?Float64 = None)
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| horizontal | ?Float64 | No | None | **Named parameter.** Sets the horizontal offset for components. Initial value is 0.5. |
-| vertical | ?Float64 | No | None | **Named parameter.** Sets the vertical offset for components. Initial value is 0.5. |
+| horizontal | ?Float32 | No | None | **Named parameter.** Sets the horizontal offset for components. Initial value is 0.5. |
+| vertical | ?Float32 | No | None | **Named parameter.** Sets the vertical offset for components. Initial value is 0.5. |
 
 ## class Fonts
 
@@ -3935,7 +3935,32 @@ public class PopupOptions {
     public var transition: ?TransitionEffect
     public var onWillDismiss: ?(DismissPopupAction) -> Unit
     public var followTransformOfTarget: ?Bool
-    public init(message!: ?String, primaryButton!: ?PopupButton = None, secondaryButton!: ?PopupButton = None, onStateChange!: Option<(PopupStateChangeParam) -> Unit> = Option.None, arrowOffset!: ?Length = None, showInSubWindow!: ?Bool = None, messageOptions!: ?PopupMessageOptions = None, mask!: ?Color = None, targetSpace!: ?Length = None, placement!: ?Placement = Option.None, offset!: ?Position = None, enableArrow!: ?Bool = None, popupColor!: ?Color = None, autoCancel!: ?Bool = None, width!: ?Length = None, arrowPointPosition!: ?ArrowPointPosition = None, arrowWidth!: ?Length = None, arrowHeight!: ?Length = None, radius!: ?Length = None, shadow!: ?ShadowStyle = None, backgroundBlurStyle!: ?BlurStyle = Option.None, transition!: ?TransitionEffect = Option.None, onWillDismiss!: Option<(DismissPopupAction) -> Unit> = None, followTransformOfTarget!: ?Bool = None)
+    public init(
+        message!: ?String,
+        placement!: ?Placement = Option.None,
+        primaryButton!: ?PopupButton = None,
+        secondaryButton!: ?PopupButton = None,
+        onStateChange!: Option<(PopupStateChangeParam) -> Unit> = Option.None,
+        arrowOffset!: ?Length = None,
+        showInSubWindow!: ?Bool = None,
+        mask!: ?Color = None,
+        messageOptions!: ?PopupMessageOptions = None,
+        targetSpace!: ?Length = None,
+        enableArrow!: ?Bool = None,
+        offset!: ?Position = None,
+        popupColor!: ?Color = None,
+        autoCancel!: ?Bool = None,
+        width!: ?Length = None,
+        arrowPointPosition!: ?ArrowPointPosition = None,
+        arrowWidth!: ?Length = None,
+        arrowHeight!: ?Length = None,
+        radius!: ?Length = None,
+        shadow!: ?ShadowStyle = None,
+        backgroundBlurStyle!: ?BlurStyle = Option.None,
+        transition!: ?TransitionEffect = Option.None,
+        onWillDismiss!: Option<(DismissPopupAction) -> Unit> = None,
+        followTransformOfTarget!: ?Bool = None
+    )
 }
 ```
 
@@ -4339,7 +4364,73 @@ public var followTransformOfTarget: ?Bool
 
 **Since:** 22
 
-### init(?String, ?PopupButton, ?PopupButton, Option\<(PopupStateChangeParam) -> Unit>, ?Length, ?Bool, ?PopupMessageOptions, ?Color, ?Length, Option\<Placement>, ?Position, ?Bool, ?Color, ?Bool, ?Length, ?ArrowPointPosition, ?Length,## class MenuElement
+### init(?String, ?Placement, ?PopupButton, ?PopupButton, Option\<(PopupStateChangeParam) -> Unit>, ?Length, ?Bool, ?Color, ?PopupMessageOptions, ?Length, ?Bool, ?Position, ?Color, ?Bool, ?Length, ?ArrowPointPosition, ?Length, ?Length, ?Length, ?ShadowStyle, ?BlurStyle, ?TransitionEffect, Option\<(DismissPopupAction) -> Unit>, ?Bool)
+
+```cangjie
+public init(
+    message!: ?String,
+    placement!: ?Placement = Option.None,
+    primaryButton!: ?PopupButton = None,
+    secondaryButton!: ?PopupButton = None,
+    onStateChange!: Option<(PopupStateChangeParam) -> Unit> = Option.None,
+    arrowOffset!: ?Length = None,
+    showInSubWindow!: ?Bool = None,
+    mask!: ?Color = None,
+    messageOptions!: ?PopupMessageOptions = None,
+    targetSpace!: ?Length = None,
+    enableArrow!: ?Bool = None,
+    offset!: ?Position = None,
+    popupColor!: ?Color = None,
+    autoCancel!: ?Bool = None,
+    width!: ?Length = None,
+    arrowPointPosition!: ?ArrowPointPosition = None,
+    arrowWidth!: ?Length = None,
+    arrowHeight!: ?Length = None,
+    radius!: ?Length = None,
+    shadow!: ?ShadowStyle = None,
+    backgroundBlurStyle!: ?BlurStyle = Option.None,
+    transition!: ?TransitionEffect = Option.None,
+    onWillDismiss!: Option<(DismissPopupAction) -> Unit> = None,
+    followTransformOfTarget!: ?Bool = None
+)
+```
+
+**Function:** Creates a PopupOptions object.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+|message|?String|Yes|-|**Named parameter.** Sets the content of the popup message.|
+|placement|?[Placement](#enum-placement)|No|Option.None|**Named parameter.** Sets the display position of the popup component relative to the target.|
+|primaryButton|?[PopupButton](#class-popupbutton)|No|None|**Named parameter.** Sets the first button. Initial value is PopupButton(value: "", action: {=>}).|
+|secondaryButton|?[PopupButton](#class-popupbutton)|No|None|**Named parameter.** Sets the second button. Initial value is PopupButton(value: "", action: {=>}).|
+|onStateChange|Option<([PopupStateChangeParam](#class-popupstatechangeparam)) -> Unit>|No|Option.None|**Named parameter.** Sets the callback for popup state change events.|
+|arrowOffset|?[Length](./cj-common-types.md#interface-length)|No|None|**Named parameter.** Sets the offset of the popup arrow on the popup window. Initial value is 0.vp.|
+|showInSubWindow|?Bool|No|None|**Named parameter.** Sets whether to display the bubble in a sub-window. Initial value is false.|
+|mask|?[Color](./cj-common-types.md#class-color)|No|None|**Named parameter.** Sets the color of the mask layer. Initial value is Color(0x1000000).|
+|messageOptions|?[PopupMessageOptions](#class-popupmessageoptions)|No|None|**Named parameter.** Sets the parameters for popup message text. Initial value is PopupMessageOptions().|
+|targetSpace|?[Length](./cj-common-types.md#interface-length)|No|None|**Named parameter.** Sets the gap between the popup and the target. Initial value is 0.vp.|
+|enableArrow|?Bool|No|None|**Named parameter.** Whether to enable the arrow. Initial value is true.|
+|offset|?[Position](#class-position)|No|None|**Named parameter.** Sets the offset of the popup component relative to the display position set by placement. Initial value is Position(x:0.0, y: 0.0).|
+|popupColor|?[Color](./cj-common-types.md#class-color)|No|None|**Named parameter.** Sets the color of the tooltip bubble. Initial value is Color(0x1000000).|
+|autoCancel|?Bool|No|None|**Named parameter.** Sets whether to automatically close the bubble when there is an operation on the page. Initial value is true.|
+|width|?[Length](./cj-common-types.md#interface-length)|No|None|**Named parameter.** Sets the popup width. Initial value is 0.vp.|
+|arrowPointPosition|?[ArrowPointPosition](./cj-common-types.md#enum-arrowpointposition)|No|None|**Named parameter.** Sets the display position of the bubble arrow point relative to the parent component.|
+|arrowWidth|?[Length](./cj-common-types.md#interface-length)|No|None|**Named parameter.** Arrow width. Initial value is 16.vp.|
+|arrowHeight|?[Length](./cj-common-types.md#interface-length)|No|None|**Named parameter.** Arrow height. Initial value is 8.vp.|
+|radius|?[Length](./cj-common-types.md#interface-length)|No|None|**Named parameter.** Sets the border radius of the bubble. Initial value is 20.vp.|
+|shadow|?[ShadowStyle](./cj-common-types.md#enum-shadowstyle)|No|None|**Named parameter.** Sets the bubble shadow. Initial value is ShadowStyle.OuterDefaultMD.|
+|backgroundBlurStyle|?[BlurStyle](#enum-blurstyle)|No|Option.None|**Named parameter.** Sets the blur background parameters for the bubble. Initial value is BlurStyle.ComponentUltraThick.|
+|transition|?[TransitionEffect](./cj-animation-transition.md#class-transitioneffect)|No|Option.None|**Named parameter.** Customizes the animation effect for popup display and exit.|
+|onWillDismiss|Option\<([DismissPopupAction](#class-dismisspopupaction)) -> Unit>|No|None|**Named parameter.** Sets the callback function to intercept the dismiss event.|
+|followTransformOfTarget|?Bool|No|None|**Named parameter.** When the host component bound to the bubble or the parent container of the host component has transformations such as rotation or scaling applied, sets whether the bubble can be displayed at the corresponding transformed position.|
+
+## class MenuElement
 
 ```cangjie
 public class MenuElement {

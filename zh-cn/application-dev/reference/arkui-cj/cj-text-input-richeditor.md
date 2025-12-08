@@ -49,7 +49,7 @@ public init(controller: ?RichEditorController)
 
 ```cangjie
 public func bindSelectionMenu(
-    spantype!: ?RichEditorSpanType = None,
+    spanType!: ?RichEditorSpanType = None,
     content!: ?CustomBuilder,
     responseType!: ?ResponseType = None,
     options!: ?SelectionMenuOptions
@@ -70,7 +70,7 @@ public func bindSelectionMenu(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|spantype|?[RichEditorSpanType](./cj-common-types.md#enum-richeditorspantype)|否|None|**命名参数。** 指定选择菜单的类型。<br>初始值：RichEditorSpanType.Text。|
+|spanType|?[RichEditorSpanType](./cj-common-types.md#enum-richeditorspantype)|否|None|**命名参数。** 指定选择菜单的类型。<br>初始值：RichEditorSpanType.Text。|
 |content|?[CustomBuilder](./cj-common-types.md#type-custombuilder)|是|-|**命名参数。** 指定选择菜单的内容。使用时结合[@Builder](../../arkui-cj/paradigm/cj-macro-builder.md)和bind方法使用。<br>初始值：{ => }。|
 |responseType|?[ResponseType](./cj-common-types.md#enum-responsetype)|否|None|**命名参数。** 指定选择菜单的响应类型。<br>初始值：ResponseType.LongPress。|
 |options|?[SelectionMenuOptions](#class-selectionmenuoptions)|是|-|**命名参数。** 指定选择菜单的选项。<br>初始值：SelectionMenuOptions()。|
@@ -2512,7 +2512,7 @@ class EntryView {
             RichEditor(controller)
             .customKeyboard(value: bind(builder, this))
             .bindSelectionMenu(
-                spantype: RichEditorSpanType.Text,
+                spanType: RichEditorSpanType.Text,
                 content: bind(builder, this),
                 responseType: ResponseType.LongPress,
                 options: SelectionMenuOptions(onAppear: { => Hilog.info(0, "AppLogCj", "SelectionMenuOptions onAppear")}, onDisappear: { => Hilog.info(0, "AppLogCj", "SelectionMenuOptions onDisappear")})
