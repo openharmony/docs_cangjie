@@ -496,6 +496,10 @@ public operator func !=(other: DisconnectCause): Bool
 
 **功能：** 对连接失败原因进行判不等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -516,6 +520,10 @@ public operator func ==(other: DisconnectCause): Bool
 
 **功能：** 对连接失败原因进行判等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -535,6 +543,10 @@ public func toString(): String
 ```
 
 **功能：** 返回连接失败原因的字符串表示。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -574,64 +586,6 @@ ConnectionStateChange
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
 **起始版本：** 22
-
-### func !=(ProfileCallbackType)
-
-```cangjie
-public operator func !=(other: ProfileCallbackType): Bool
-```
-
-**功能：** 对bluetooth baseprofile 回调事件进行判不等。
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|other|[ProfileCallbackType](#enum-profilecallbacktype)|是|-|bluetooth baseprofile 回调事件。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Bool|如果bluetooth baseprofile 回调事件不同，返回true，否则返回false。|
-
-### func ==(ProfileCallbackType)
-
-```cangjie
-public operator func ==(other: ProfileCallbackType): Bool
-```
-
-**功能：** 对bluetooth baseprofile 回调事件进行判等。
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|other|[ProfileCallbackType](#enum-profilecallbacktype)|是|-|bluetooth baseprofile 回调事件。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Bool|如果bluetooth baseprofile 回调事件相同，返回true，否则返回false。|
-
-### func hashCode()
-
-```cangjie
-public func hashCode(): Int64
-```
-
-**功能：** 获取回调事件的哈希值。
-
-**系统能力：** SystemCapability.Communication.Bluetooth.Core
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Int64|回调事件的哈希值。|
 
 ### func toString()
 

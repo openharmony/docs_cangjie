@@ -3335,6 +3335,10 @@ public operator func !=(other: AlbumKeys): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3354,6 +3358,10 @@ public operator func ==(other: AlbumKeys): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -3477,6 +3485,10 @@ public operator func !=(other: AlbumSubtype): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3497,6 +3509,10 @@ public operator func ==(other: AlbumSubtype): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3516,6 +3532,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -3576,6 +3596,10 @@ public operator func !=(other: AlbumType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3596,6 +3620,10 @@ public operator func ==(other: AlbumType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3615,6 +3643,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -3675,6 +3707,10 @@ public operator func !=(other: DefaultChangeUri): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3694,6 +3730,10 @@ public operator func ==(other: DefaultChangeUri): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -3791,6 +3831,10 @@ public operator func !=(other: DeliveryMode): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3811,6 +3855,10 @@ public operator func ==(other: DeliveryMode): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3830,6 +3878,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -3890,6 +3942,10 @@ public operator func !=(other: DynamicRangeType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3910,6 +3966,10 @@ public operator func ==(other: DynamicRangeType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3929,6 +3989,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4080,6 +4144,10 @@ public operator func !=(other: NotifyType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4100,6 +4168,10 @@ public operator func ==(other: NotifyType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4119,6 +4191,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4438,6 +4514,10 @@ public operator func !=(other: PhotoKeys): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4457,6 +4537,10 @@ public operator func ==(other: PhotoKeys): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -4554,6 +4638,10 @@ public operator func !=(other: PhotoSubtype): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4574,6 +4662,10 @@ public operator func ==(other: PhotoSubtype): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4593,6 +4685,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4652,6 +4748,10 @@ public operator func !=(other: PhotoType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4672,6 +4772,10 @@ public operator func ==(other: PhotoType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4691,6 +4795,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4777,6 +4885,10 @@ public operator func !=(other: PhotoViewMimeTypes): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4797,6 +4909,10 @@ public operator func ==(other: PhotoViewMimeTypes): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4816,6 +4932,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4980,6 +5100,10 @@ public operator func !=(other: RecommendationType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5000,6 +5124,10 @@ public operator func ==(other: RecommendationType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5019,6 +5147,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -5079,6 +5211,10 @@ public operator func !=(other: ResourceType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5099,6 +5235,10 @@ public operator func ==(other: ResourceType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5118,6 +5258,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**起始版本：** 22
 
 **返回值：**
 

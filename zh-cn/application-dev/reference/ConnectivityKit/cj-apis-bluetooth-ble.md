@@ -3329,6 +3329,10 @@ public operator func !=(other: GattPermissions): Bool
 
 **功能：** 对 GattPermissions 进行判不等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -3348,6 +3352,11 @@ public operator func ==(other: GattPermissions): Bool
 ```
 
 **功能：** 对 GattPermissions 进行判等。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4645,9 +4654,9 @@ public class ScanFilter {
         deviceId!: String = "",
         name!: String = "",
         serviceUUID!: String = "",
-        serviceUuidMask!: String = "",
-        serviceSolicitationUuid!: String = "",
-        serviceSolicitationUuidMask!: String = "",
+        serviceUUIDMask!: String = "",
+        serviceSolicitationUUID!: String = "",
+        serviceSolicitationUUIDMask!: String = "",
         serviceData!: Array<Byte> = [],
         serviceDataMask!: Array<Byte> = [],
         manufactureId!: UInt16 = 0,
@@ -5390,6 +5399,10 @@ public operator func !=(other: AdvertisingState): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5410,6 +5423,10 @@ public operator func ==(other: AdvertisingState): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5429,6 +5446,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -5496,6 +5517,10 @@ public operator func !=(other: BluetoothBleCallbackType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5515,6 +5540,10 @@ public operator func ==(other: BluetoothBleCallbackType): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -5536,6 +5565,10 @@ public func hashCode(): Int64
 
 **功能：** 获取输入数据的哈希值。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **返回值：**
 
 |类型|说明|
@@ -5549,6 +5582,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -5631,6 +5668,10 @@ public operator func !=(other: BluetoothBleGattClientDeviceCallbackType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5650,6 +5691,10 @@ public operator func ==(other: BluetoothBleGattClientDeviceCallbackType): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -5671,6 +5716,10 @@ public func hashCode(): Int64
 
 **功能：** 获取输入数据的哈希值。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **返回值：**
 
 |类型|说明|
@@ -5684,6 +5733,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -5811,6 +5864,10 @@ public operator func !=(other: BluetoothBleGattServerCallbackType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5830,6 +5887,10 @@ public operator func ==(other: BluetoothBleGattServerCallbackType): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -5851,6 +5912,10 @@ public func hashCode(): Int64
 
 **功能：** 获取输入数据的哈希值。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **返回值：**
 
 |类型|说明|
@@ -5864,6 +5929,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -5924,6 +5993,10 @@ public operator func !=(other: GattWriteType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5944,6 +6017,10 @@ public operator func ==(other: GattWriteType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5963,6 +6040,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -6023,6 +6104,10 @@ public operator func !=(other: MatchMode): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6043,6 +6128,10 @@ public operator func ==(other: MatchMode): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6062,6 +6151,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -6122,6 +6215,10 @@ public operator func !=(other: PhyType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6142,6 +6239,10 @@ public operator func ==(other: PhyType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6161,6 +6262,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -6234,6 +6339,10 @@ public operator func !=(other: ScanDuty): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6254,6 +6363,10 @@ public operator func ==(other: ScanDuty): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6273,6 +6386,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -6379,6 +6496,10 @@ public operator func !=(other: ScanReportMode): Bool
 
 **功能：** 对扫描上报模式进行判不等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6399,6 +6520,10 @@ public operator func ==(other: ScanReportMode): Bool
 
 **功能：** 对扫描上报模式进行判等。
 
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6418,6 +6543,10 @@ public func toString(): String
 ```
 
 **功能：** 获取扫描结果数据上报模式的字符串表示。
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 22
 
 **返回值：**
 
