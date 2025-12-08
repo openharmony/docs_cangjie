@@ -11,7 +11,7 @@ import kit.ArkUI.*
 ## func bind((CustomView) -> ViewBuilder, CustomView)
 
 ```cangjie
-public func bind(builder: (CustomView) -> ViewBuilder, thisView: CustomView):() -> Unit
+public func bind(builder: (CustomView) -> ViewBuilder, thisView: CustomView): () -> Unit
 ```
 
 **功能：** 用于将@Builder修饰的函数与自定义组件对象进行绑定。详情见bind函数使用。
@@ -31,12 +31,12 @@ public func bind(builder: (CustomView) -> ViewBuilder, thisView: CustomView):() 
 
 |类型|说明|
 |:----|:----|
-|() -> Unit|没有参数、返回Unit。|
+|() -> Unit|返回builder函数。|
 
 ## func bind\<T1>((CustomView,ObservedProperty\<T1>) -> ViewBuilder, CustomView)
 
 ```cangjie
-public func bind<T1>(builder: (CustomView, ObservedProperty<T1>) -> ViewBuilder, thisView: CustomView)
+public func bind<T1>(builder: (CustomView, ObservedProperty<T1>) -> ViewBuilder, thisView: CustomView): (T1) -> Unit
 ```
 
 **功能：** 用于将@Builder修饰的函数与自定义组件对象进行绑定。详情见bind函数使用。
@@ -52,11 +52,19 @@ public func bind<T1>(builder: (CustomView, ObservedProperty<T1>) -> ViewBuilder,
 |builder|([CustomView](#class-customview),[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedpropertyt)\<T1>)->[ViewBuilder](#class-viewbuilder)|是|-|[@Builder](../../arkui-cj/paradigm/cj-macro-builder.md)修饰的函数类型。|
 |thisView|[CustomView](#class-customview)|是|-|当前自定义组件对象（一般为this）。|
 
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|(T1) -> Unit|返回builder函数。|
+
 ## func bind\<T1, T2>((CustomView,ObservedProperty\<T1>,ObservedProperty\<T2>) -> ViewBuilder, CustomView)
 
 ```cangjie
-public func bind<T1, T2>(builder: (CustomView, ObservedProperty<T1>,
-    ObservedProperty<T2>) -> ViewBuilder, thisView: CustomView)
+public func bind<T1, T2>(
+    builder: (CustomView, ObservedProperty<T1>, ObservedProperty<T2>) -> ViewBuilder,
+    thisView: CustomView
+): (T1, T2) -> Unit
 ```
 
 **功能：** 用于将@Builder修饰的函数与自定义组件对象进行绑定。详情见bind函数使用。
@@ -71,6 +79,12 @@ public func bind<T1, T2>(builder: (CustomView, ObservedProperty<T1>,
 |:---|:---|:---|:---|:---|
 |builder|([CustomView](#class-customview),[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedpropertyt)\<T1>,[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedpropertyt)\<T2>)->[ViewBuilder](#class-viewbuilder)|是|-|[@Builder](../../arkui-cj/paradigm/cj-macro-builder.md)修饰的函数类型。|
 |thisView|[CustomView](#class-customview)|是|-|当前自定义组件对象（一般为this）。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|(T1, T2) -> Unit|返回builder函数。|
 
 ## func bind\<T1, T2, T3>((CustomView,ObservedProperty\<T1>,ObservedProperty\<T2>,ObservedProperty\<T3>) -> ViewBuilder, CustomView)
 
