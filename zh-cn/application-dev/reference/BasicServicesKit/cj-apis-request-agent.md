@@ -3016,7 +3016,7 @@ public func toString(): String
 
 | 类型   | 说明                       |
 | :----- | :------------------------- |
-| String | 获取当前枚举的字符串表示。 |
+| String | 当前枚举的字符串表示。 |
 
 ## enum Network
 
