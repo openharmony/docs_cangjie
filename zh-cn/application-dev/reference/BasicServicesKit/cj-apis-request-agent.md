@@ -1094,10 +1094,10 @@ AnyType
 
 **起始版本：** 22
 
-### WIFI
+### Wifi
 
 ```cangjie
-WIFI 
+Wifi 
 ```
 
 **功能：** 表示无线网络。
@@ -1106,10 +1106,10 @@ WIFI
 
 **起始版本：** 22
 
-### CELLULAR
+### Cellular
 
 ```cangjie
-CELLULAR 
+Cellular 
 ```
 
 **功能：** 表示蜂窝数据网络。
@@ -2407,6 +2407,10 @@ public operator func !=(other: Action): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **参数：**
 
 | 参数名 | 类型                   | 必填 | 默认值 | 说明           |
@@ -2426,6 +2430,10 @@ public operator func ==(other: Action): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **参数：**
 
@@ -2447,11 +2455,15 @@ public func toString(): String
 
 **功能：** 获取当前枚举的字符串表示。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **返回值：**
 
-| 类型   | 说明                   |
-| :----- | :--------------------- |
-| String | 当前枚举的字符串表示。 |
+| 类型   | 说明                       |
+| :----- | :------------------------- |
+| String | 获取当前枚举的字符串表示。 |
 
 ## enum BroadcastEvent
 
@@ -2663,6 +2675,10 @@ public operator func !=(other: EventCallbackType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **参数：**
 
 | 参数名 | 类型                                         | 必填 | 默认值 | 说明     |
@@ -2682,6 +2698,10 @@ public operator func ==(other: EventCallbackType): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **参数：**
 
@@ -2703,6 +2723,10 @@ public func hashCode(): Int64
 
 **功能：** 获取回调事件的哈希值。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **返回值：**
 
 | 类型  | 说明                   |
@@ -2716,6 +2740,10 @@ public func toString(): String
 ```
 
 **功能：** 获取当前枚举的字符串表示。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -2813,6 +2841,10 @@ public func toString(): String
 ```
 
 **功能：** 获取当前枚举的字符串表示。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -2928,6 +2960,10 @@ public operator func !=(other: Mode): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **参数：**
 
 | 参数名 | 类型               | 必填 | 默认值 | 说明     |
@@ -2947,6 +2983,10 @@ public operator func ==(other: Mode): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **参数：**
 
@@ -3028,6 +3068,10 @@ public operator func !=(other: Network): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **参数：**
 
 | 参数名 | 类型                     | 必填 | 默认值 | 说明     |
@@ -3048,6 +3092,10 @@ public operator func ==(other: Network): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
+
 **参数：**
 
 | 参数名 | 类型                     | 必填 | 默认值 | 说明     |
@@ -3067,6 +3115,10 @@ public func toString(): String
 ```
 
 **功能：** 获取当前枚举的字符串表示。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -3216,6 +3268,10 @@ public func toString(): String
 ```
 
 **功能：** 获取当前枚举的字符串表示。
+
+**系统能力：** SystemCapability.Request.FileTransferAgent
+
+**起始版本：** 22
 
 **返回值：**
 

@@ -1032,6 +1032,10 @@ public operator func ==(other: GroupOwnerBand): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -1051,6 +1055,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -1099,6 +1107,10 @@ public operator func !=(other: WifiCallbackType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -1118,6 +1130,10 @@ public operator func ==(other: WifiCallbackType): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**起始版本：** 22
 
 **参数：**
 
@@ -1139,6 +1155,10 @@ public func hashCode(): Int64
 
 **功能：** 获取输入数据的哈希值。
 
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**起始版本：** 22
+
 **返回值：**
 
 |类型|说明|
@@ -1152,6 +1172,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -1249,6 +1273,10 @@ public operator func ==(other: WifiCategory): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -1268,6 +1296,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -1456,6 +1488,10 @@ public operator func ==(other: WifiSecurityType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Communication.WiFi.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -1475,6 +1511,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Communication.WiFi.Core
+
+**起始版本：** 22
 
 **返回值：**
 

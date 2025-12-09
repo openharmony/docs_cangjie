@@ -319,6 +319,8 @@ public enum Display <: ToString {
     | ScreenBrightnessStatus
     | AutoScreenBrightness
     | ScreenOffTimeout
+    | AutoScreenBrightnessMode
+    | ManualScreenBrightnessMode
     | ...
 }
 ```
@@ -341,9 +343,9 @@ AutoScreenBrightness
 
 **功能：** 是否启用屏幕亮度自动调整。
 
-值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整。
+值为AutoScreenBrightnessMode，表示启用自动调整。
 
-值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。
+值为ManualScreenBrightnessMode，表示不启用自动调整。
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
@@ -464,6 +466,32 @@ try {
     Hilog.info(0, "test", "${e.message}")
 }
 ```
+
+### AutoScreenBrightnessMode
+
+```cangjie
+AutoScreenBrightnessMode
+```
+
+**功能：** 使用屏幕亮度自动调整时AutoScreenBrightness的值。
+
+**系统能力：** SystemCapability.Applications.Settings.Core
+
+**起始版本：** 22
+
+
+### ManualScreenBrightnessMode
+
+```cangjie
+ManualScreenBrightnessMode
+```
+
+**功能：** 使用屏幕亮度手动调整时的AutoScreenBrightness值。
+
+**系统能力：** SystemCapability.Applications.Settings.Core
+
+**起始版本：** 22
+
 
 ### func toString()
 
