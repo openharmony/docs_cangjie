@@ -5183,6 +5183,10 @@ public operator func !=(other: OnceType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Test.UiTest
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5203,6 +5207,10 @@ public operator func ==(other: OnceType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Test.UiTest
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5222,6 +5230,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Test.UiTest
+
+**起始版本：** 22
 
 **返回值：**
 

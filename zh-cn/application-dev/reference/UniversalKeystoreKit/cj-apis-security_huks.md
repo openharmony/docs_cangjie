@@ -3625,3 +3625,11 @@ Uint64Value(UInt64)
 **系统能力：** SystemCapability.Security.Huks.Core
 
 **起始版本：** 22
+
+## type Bytes
+
+```cangjie
+public type Bytes = Array<UInt8>
+```
+
+**功能：** [Bytes](#type-Bytes)用于表示密钥输入输出值，支持Array\<UInt8>格式。

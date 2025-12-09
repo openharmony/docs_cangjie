@@ -369,7 +369,7 @@ public class Location {
     public var altitude: Float64
     public var accuracy: Float64
     public var speed: Float64
-    public var timeStamp: Int64
+    public var timestamp: Int64
     public var direction: Float64
     public var timeSinceBoot: Int64
     public var additions: Array<String>
@@ -613,10 +613,10 @@ public var timeSinceBoot: Int64
 
 **起始版本：** 22
 
-### var timeStamp
+### var timestamp
 
 ```cangjie
-public var timeStamp: Int64
+public var timestamp: Int64
 ```
 
 **功能：** 表示位置时间戳，UTC格式。

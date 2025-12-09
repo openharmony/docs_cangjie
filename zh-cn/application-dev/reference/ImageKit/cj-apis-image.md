@@ -2493,7 +2493,7 @@ public class InitializationOptions {
     public var scaleMode: ScaleMode
     public var size: Size
     public init(size: Size, alphaType!: AlphaType = AlphaType.Premul, editable!: Bool = false, srcPixelFormat!: PixelMapFormat = PixelMapFormat.Bgra8888,
-        pixelFormat!: PixelMapFormat = PixelMapFormat.Bgra8888, scaleMode!: ScaleMode = ScaleMode.FitTargetSize)
+        pixelFormat!: PixelMapFormat = PixelMapFormat.Rgba8888, scaleMode!: ScaleMode = ScaleMode.FitTargetSize)
 }
 ```
 
@@ -4226,6 +4226,10 @@ public operator func !=(other: AlphaType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4246,6 +4250,10 @@ public operator func ==(other: AlphaType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4265,6 +4273,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4351,6 +4363,10 @@ public operator func !=(other: ComponentType): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4371,6 +4387,10 @@ public operator func ==(other: ComponentType): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4390,6 +4410,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4463,6 +4487,10 @@ public operator func !=(other: DecodingDynamicRange): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4483,6 +4511,10 @@ public operator func ==(other: DecodingDynamicRange): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4502,6 +4534,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4562,6 +4598,10 @@ public operator func !=(other: ImageFormat): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4582,6 +4622,10 @@ public operator func ==(other: ImageFormat): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4601,6 +4645,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4661,6 +4709,10 @@ public operator func !=(other: PackingDynamicRange): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4681,6 +4733,10 @@ public operator func ==(other: PackingDynamicRange): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -4700,6 +4756,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **返回值：**
 
@@ -4888,6 +4948,10 @@ YcrcbP010
 public operator func !=(other: PixelMapFormat): Bool
 ```
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **功能：** 判断两个枚举值是否不相等。
 
 **参数：**
@@ -4908,6 +4972,10 @@ public operator func !=(other: PixelMapFormat): Bool
 public operator func ==(other: PixelMapFormat): Bool
 ```
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **功能：** 判断两个枚举值是否相等。
 
 **参数：**
@@ -4927,6 +4995,10 @@ public operator func ==(other: PixelMapFormat): Bool
 ```cangjie
 public func toString(): String
 ```
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **功能：** 获取枚举的值。
 
@@ -5866,6 +5938,10 @@ public operator func !=(other: PropertyKey): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -5885,6 +5961,10 @@ public operator func ==(other: PropertyKey): Bool
 ```
 
 **功能：** 判断两个枚举值是否相等。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **参数：**
 
@@ -5996,6 +6076,10 @@ public operator func !=(other: ScaleMode): Bool
 
 **功能：** 判断两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6016,6 +6100,10 @@ public operator func ==(other: ScaleMode): Bool
 
 **功能：** 判断两个枚举值是否相等。
 
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -6035,6 +6123,10 @@ public func toString(): String
 ```
 
 **功能：** 获取枚举的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**起始版本：** 22
 
 **返回值：**
 
