@@ -172,6 +172,7 @@
             - [TokenKind 类型](learn-cj/Appendix/tokenkind_type.md)
 
 - 开发
+    <!--RP5--><!--RP5End-->
     - 应用框架
         - Ability Kit（程序框架服务）
             - [Ability Kit简介](application-models/cj-abilitykit-overview.md)
@@ -619,6 +620,7 @@
                     - [使用AVImageGenerator提取视频指定时间图像（仓颉）](media/media/cj-avimagegenerator.md)
                 - [AVCodec支持的格式](media/media/cj-avcodec-support-formats.md)
         - Media Library Kit（媒体文件管理服务）
+            <!--RP6--><!--RP6End-->
             - 受限开放能力
                 - [系统相册资源使用指导](media/medialibrary/cj-photoAccessHelper-systemAlbum-guidelines.md)
     - 图形
