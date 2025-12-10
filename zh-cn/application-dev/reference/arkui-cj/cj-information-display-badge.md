@@ -82,8 +82,8 @@ public class BadgeStyle {
     public var borderColor: ?ResourceColor
     public var borderWidth: ?Length
     public init(color!: ?ResourceColor = None, fontSize!: ?Length = None, badgeSize!: ?Length = None,
-        badgeColor!: ?ResourceColor = None, fontWeight!: ?FontWeight = None,
-        borderColor!: ?ResourceColor = None, borderWidth!: ?Length = None)
+        badgeColor!: ?ResourceColor = None, borderColor!: ?ResourceColor = None,
+        borderWidth!: ?Length = None, fontWeight!: ?FontWeight = None)
 }
 ```
 
@@ -205,12 +205,12 @@ public var fontWeight: ?FontWeight
 
 **起始版本：** 22
 
-#### init(?ResourceColor, ?Length, ?Length, ?ResourceColor, ?FontWeight, ?ResourceColor, ?Length)
+#### init(?ResourceColor, ?Length, ?Length, ?ResourceColor, ?ResourceColor, ?Length, ?FontWeight)
 
 ```cangjie
 public init(color!: ?ResourceColor = None, fontSize!: ?Length = None, badgeSize!: ?Length = None,
-    badgeColor!: ?ResourceColor = None, fontWeight!: ?FontWeight = None,
-    borderColor!: ?ResourceColor = None, borderWidth!: ?Length = None)
+    badgeColor!: ?ResourceColor = None, borderColor!: ?ResourceColor = None,
+    borderWidth!: ?Length = None, fontWeight!: ?FontWeight = None)
 ```
 
 **功能：** 创建一个BadgeStyle对象。
@@ -227,9 +227,9 @@ public init(color!: ?ResourceColor = None, fontSize!: ?Length = None, badgeSize!
 |fontSize|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 文本大小。初始值：10.fp|
 |badgeSize|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** badge的大小。初始值：16.vp|
 |badgeColor|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|否|None|**命名参数。** badge的颜色。初始值：Color.Red|
-|fontWeight|?[FontWeight](./cj-common-types.md#enum-fontweight)|否|None|**命名参数。** 设置文本的字体粗细。初始值：FontWeight.Normal|
 |borderColor|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|否|None|**命名参数。** 底板描边颜色。初始值：Color.Red|
 |borderWidth|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 底板描边粗细。初始值：1.vp|
+|fontWeight|?[FontWeight](./cj-common-types.md#enum-fontweight)|否|None|**命名参数。** 设置文本的字体粗细。初始值：FontWeight.Normal|
 
 ### enum BadgePosition
 

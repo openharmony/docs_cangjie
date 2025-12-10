@@ -49,7 +49,7 @@ Common Events: All supported.
 
 ```cangjie
 public func bindSelectionMenu(
-    spantype!: ?RichEditorSpanType = None,
+    spanType!: ?RichEditorSpanType = None,
     content!: ?CustomBuilder,
     responseType!: ?ResponseType = None,
     options!: ?SelectionMenuOptions
@@ -70,7 +70,7 @@ public func bindSelectionMenu(
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| spantype | ?[RichEditorSpanType](./cj-common-types.md#enum-richeditorspantype) | No | None | **Named parameter.** Specifies the type of selection menu.<br>Initial value: RichEditorSpanType.Text. |
+| spanType | ?[RichEditorSpanType](./cj-common-types.md#enum-richeditorspantype) | No | None | **Named parameter.** Specifies the type of selection menu.<br>Initial value: RichEditorSpanType.Text. |
 | content | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | Yes | - | **Named parameter.** Specifies the content of the selection menu. Use with [@Builder](../../arkui-cj/paradigm/cj-macro-builder.md) and bind method.<br>Initial value: { => }. |
 | responseType | ?[ResponseType](./cj-common-types.md#enum-responsetype) | No | None | **Named parameter.** Specifies the response type of the selection menu.<br>Initial value: ResponseType.LongPress. |
 | options | ?[SelectionMenuOptions](#class-selectionmenuoptions) | Yes | - | **Named parameter.** Specifies the options for the selection menu.<br>Initial value: SelectionMenuOptions(). |
