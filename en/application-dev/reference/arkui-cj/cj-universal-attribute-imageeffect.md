@@ -326,6 +326,7 @@ package ohos_app_cangjie_entry
 import kit.UIKit.*
 import ohos.state_macro_manage.*
 import kit.LocalizationKit.*
+import ohos.resource.__GenerateResource__
 
 @Entry
 @Component
@@ -490,7 +491,8 @@ This example primarily demonstrates:
 package ohos_app_cangjie_entry
 import kit.UIKit.*
 import ohos.state_macro_manage.*
-import ohos.resource_manager.{AppResource, __GenerateResource__}
+import ohos.resource_manager.*
+import ohos.resource.__GenerateResource__
 
 @Entry
 @Component
