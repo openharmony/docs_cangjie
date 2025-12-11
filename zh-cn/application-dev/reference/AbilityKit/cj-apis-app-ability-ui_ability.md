@@ -454,6 +454,24 @@ class MyUIAbility6 <: UIAbility {
 }
 ```
 
+### func toJSValue(JSContext)
+
+```cangjie
+func toJSValue(context: JSContext): JSValue
+```
+
+**功能：** 将仓颉对象转换成[JSValue](../arkinterop/cj-apis-ark_interop.md#struct-jsvalue)。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|context|[JSContext](../arkinterop/cj-apis-ark_interop.md#class-jscontext)|是|-|ArkTS互操作上下文。|
+
 ## class UIAbility
 
 ```cangjie
