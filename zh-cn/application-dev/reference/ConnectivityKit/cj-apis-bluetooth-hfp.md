@@ -87,10 +87,6 @@ public func getConnectedDevices(): Array<String>
 
 **起始版本：** 22
 
-**父类型：**
-
-- [BaseProfile](cj-apis-bluetooth-base_profile.md#interface-baseprofile)
-
 **返回值：**
 
 |类型|说明|
