@@ -2620,7 +2620,7 @@ public init(size: Size, alphaType!: AlphaType = AlphaType.Premul, editable!: Boo
 |alphaType|[AlphaType](#enum-alphatype)|否|AlphaType.Premul|**命名参数。** 透明度。默认值为AlphaType.Premul。|
 |editable|Bool|否|false|**命名参数。** true表示可编辑，false表示不可编辑。默认值为false。|
 |srcPixelFormat|[PixelMapFormat](#enum-pixelmapformat)|否|PixelMapFormat.Bgra8888|**命名参数。** 传入的buffer数据的像素格式。默认值为Bgra8888。|
-|pixelFormat|[PixelMapFormat](#enum-pixelmapformat)|否|PixelMapFormat.Rgba8888|**命名参数。**  生成的pixelMap的像素格式。默认值为RGBA_8888。|
+|pixelFormat|[PixelMapFormat](#enum-pixelmapformat)|否|PixelMapFormat.Rgba8888|**命名参数。**  生成的pixelMap的像素格式。默认值为Rgba8888。|
 |scaleMode|[ScaleMode](#enum-scalemode)|否|ScaleMode.FitTargetSize|**命名参数。** 缩略值。默认值为0|
 
 ## class PackingOption
