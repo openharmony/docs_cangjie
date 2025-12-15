@@ -140,7 +140,8 @@ public func off(sensorType: SensorId, callback!: ?CallbackObject = None): Unit
 
 | 参数名 | 类型 | 必填  | 默认值  | 说明 |
 |:---------- |:--- |:--- |:---- |:----- |
-| sensorType | [SensorId](#enum-sensorid)| 是   | -    | 传感器类型。| callback   | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | 否   | None | **命名参数。** 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| sensorType | [SensorId](#enum-sensorid)| 是   | -    | 传感器类型。|
+| callback   | ?[CallbackObject](../arkinterop/cj-api-callback_invoke.md#class-callbackobject) | 否   | None | **命名参数。** 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **异常：**
 

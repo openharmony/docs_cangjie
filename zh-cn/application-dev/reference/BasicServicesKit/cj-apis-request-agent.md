@@ -831,7 +831,7 @@ public var url: String
 ```cangjie
 public init(action: Action, url: String, title!: ?String = None, description!: String = "",
     mode!: Mode = Mode.Background, overwrite!: Bool = false, method!: ?String = None,
-    headers!: HashMap<String, String> = HashMap<String, String>(), data!: ?ConfigData = None, saveas!: ?String = "./",
+    headers!: HashMap<String, String> = HashMap<String, String>(), data!: ?ConfigData = None, saveas!: String = "./",
     network!: Network = Network.AnyType, metered!: Bool = false, roaming!: Bool = true, retry!: Bool = true,
     redirect!: Bool = true, index!: UInt32 = 0, begins!: Int64 = 0, ends!: Int64 = -1, gauge!: Bool = false,
     precise!: Bool = false, token!: ?String = None, priority!: UInt32 = 0,extras!: HashMap<String, String> = HashMap<String, String>()
@@ -857,7 +857,7 @@ public init(action: Action, url: String, title!: ?String = None, description!: S
 | method      | ?String | 否   | None  | **命名参数。** 上传或下载HTTP的标准方法，包括GET、POST和PUT，不区分大小写。|
 | headers     | HashMap\<String,String>  | 否   | HashMap<String,String>()   | **命名参数。** 添加要包含在任务中的HTTP协议标志头。|
 | data        | ?[ConfigData](#enum-configdata) | 否   | None | **命名参数。** - 下载时，data为字符串类型，通常情况下使用json格式（object将被转换为json文本），默认为空。|
-| saveas      | ?String | 否   | "./" | **命名参数。** 保存下载文件的路径。|
+| saveas      | String | 否   | "./" | **命名参数。** 保存下载文件的路径。|
 | network     | [Network](#enum-network)  | 否   | Network.AnyType | **命名参数。** 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。|
 | metered     | Bool | 否   | false  | **命名参数。** 是否允许在按流量计费的网络中工作，默认为false。|
 | roaming     | Bool | 否   | true | **命名参数。** 是否允许在漫游网络中工作，默认为true。|
