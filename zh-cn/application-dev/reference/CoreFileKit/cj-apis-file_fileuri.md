@@ -70,7 +70,7 @@ try {
 ## class FileUri
 
 ```cangjie
-public class FileUri <: Uri {
+public class FileUri {
     public init(uriOrPath: String)
 }
 ```
@@ -80,10 +80,6 @@ public class FileUri <: Uri {
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
 **起始版本：** 22
-
-**父类型：**
-
-- [Uri](#class-uri)
 
 ### prop name
 
@@ -174,52 +170,3 @@ public override func toString(): String
 |:----|:----|
 |String|返回字符串类型URI。|
 
-## class Uri
-
-```cangjie
-public open class Uri <: ToString {}
-```
-
-**功能：** 提供在分享过程中将uri转分享路径path、应用自己的沙箱路径在分享时生成对应应用自己的uri、获取uri所在目录路径的uri等接口能力，方便应用对文件分享业务中uri的访问。
-
-**系统能力：** SystemCapability.FileManagement.AppFileService
-
-**起始版本：** 22
-
-**父类型：**
-
-- ToString
-
-### prop path
-
-```cangjie
-public override prop path: String
-```
-
-**功能：** 获取Uri对应路径名。提供给子类，不建议用户直接使用，否则会抛出异常。
-
-**类型：** String
-
-**读写能力：** 只读
-
-**系统能力：** SystemCapability.FileManagement.AppFileService
-
-**起始版本：** 22
-
-### func toString()
-
-```cangjie
-public open func toString(): String
-```
-
-**功能：** 返回字符串类型URI。提供给子类，不建议用户直接使用，否则会抛出异常。
-
-**系统能力：** SystemCapability.FileManagement.AppFileService
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|String|返回字符串类型URI。|
