@@ -504,7 +504,7 @@ class EntryView {
                 Stack() {
                     Column()
                     Stack() {
-                        Image(@r(app.media.background))
+                        Image(@r(app.media.background)).opacity(0.7)
                         Column() {
                             Column()
                                 .width(100.percent)
@@ -514,7 +514,7 @@ class EntryView {
                                     high: 1.0,
                                     threshold: 0.5,
                                     thresholdRange: 0.2
-                                )
+                                ).opacity(0.7)
                             Column()
                                 .width(100.percent)
                                 .height(30.vp)
@@ -523,7 +523,7 @@ class EntryView {
                                     high: 0.5,
                                     threshold: 0.3,
                                     thresholdRange: 0.2
-                                )
+                                ).opacity(0.7)
                         }
                     }
                     .width(100.vp)
@@ -574,7 +574,7 @@ class EntryView {
                 }
                     .height(90)
                     .width(200)
-                    .backgroundImage(repeat: ImageRepeat.X, src: @r(app.media.background))
+                    .backgroundImage(repeat: ImageRepeat.X, src: @r(app.media.background)).opacity(0.7)
 
                 Text("lightUpEffect")
                 Text('This is the text content with letterSpacing 0.')
@@ -589,7 +589,7 @@ class EntryView {
                     .width(200)
                     .height(35)
                     .caretColor(Color.RED)
-                    .placeholderColor(Color.BLUE)
+                    .placeholderColor(Color.BLACK).opacity(0.4)
                     .placeholderFont(size: 20.vp)
                     .sphericalEffect(0.5)
                     .id("test_sphericalEffect")
@@ -716,7 +716,7 @@ class EntryView {
             }
             .width(380)
             .borderWidth(1)
-            .backgroundColor(Color.GRAY)
+            .backgroundColor(Color(0xf1f3f5))
         }
     }
 }
