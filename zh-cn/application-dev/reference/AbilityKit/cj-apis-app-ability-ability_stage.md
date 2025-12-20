@@ -85,7 +85,7 @@ public open func onCreate(): Unit
 ```cangjie
 import kit.AbilityKit.*
 
-class MyAbilityStage <: AbilityStage {
+class MyAbilityStage2 <: AbilityStage {
     public override func onCreate(): Unit {
         let context = this.context
     }

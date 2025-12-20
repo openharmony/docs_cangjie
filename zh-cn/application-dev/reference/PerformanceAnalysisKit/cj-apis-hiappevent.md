@@ -863,80 +863,96 @@ public static func addWatcher(watcher: Watcher): Option<AppEventPackageHolder>
 // index.cj
 
 import kit.PerformanceAnalysisKit.*
-import ohos.business_exception.BusinessException
 
-try {
-    func f1(){
-        // 如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
-        var condition = TriggerCondition(row: 1)
-        var appEventFilter = [AppEventFilter("button")]
-        var watcher = Watcher("watcher1", triggerCondition: condition,
-            onTrigger:  Some({ row, size, holder =>
-                Hilog.info(0, "AppLogCj", "HiAppEvent onTrigger: curRow=${row}, curSize=${size}", "")
-                while (let Some(v) <- holder.takeNext()) {
-                    let eventPkg = v
-                    Hilog.info(0, "AppLogCj", "HiAppEvent packageId=${eventPkg.packageId}", "")
-                    Hilog.info(0, "AppLogCj", "HiAppEvent row=${eventPkg.row}", "")
-                    Hilog.info(0, "AppLogCj", "HiAppEvent size=${eventPkg.size}", "")
-                    for (i in 0..eventPkg.data.size) {
-                        Hilog.info(0, "AppLogCj", "HiAppEvent info=${eventPkg.data[i]}", "")
-                    }
-                 }
-         }))
-         HiAppEvent.addWatcher(watcher)
-    }
-
-    func f2(){
-        // 如果观察者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件
-        let watcher =  Watcher("watcher2")
-        let holder = HiAppEvent.addWatcher(watcher)
-        if (let Some(v1) <- holder) {
-           while (let Some(v2) <- v1.takeNext()) {
-                let eventPkg = v2
-                Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent packageId=${eventPkg.packageId}", "")
-                Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent row=${eventPkg.row}", "")
-                Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent size=${eventPkg.size}", "")
-                for (i in 0..eventPkg.data.size) {
-                    Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent info=${eventPkg.data[i]}", "")
-                }
-            }
-         }
-    }
-
-    func f3(){
-        // 观察者可以在实时回调函数onReceive中处理订阅事件
-        var condition = TriggerCondition(row: 1, size: 100)
-        let watcher= Watcher("watcher", triggerCondition: condition,
-                 onTrigger: {row, size, holder =>
-                    Hilog.info(0, "AppLogCj", "HiAppEvent onTrigger: curRow=${row}, curSize=${size}", "")},
-                 onReceive: {domain, AppEventGroups =>
-                    Hilog.info(0, "AppLogCj", "domain =${domain}")
-                    let groupSize = AppEventGroups.size
-                    for (i in 0..groupSize) {
-                        Hilog.info(0, "AppLogCj", "name =${AppEventGroups[i].name}", "")
-                        let appInfosize = AppEventGroups[i].appEventInfos.size
-                        for (j in 0..appInfosize) {
-                            Hilog.info(0, "AppLogCj", "appEventInfo name=${AppEventGroups[i].appEventInfos[j].name}", "")
-                            Hilog.info(0, "AppLogCj", "appEventInfo domain=${AppEventGroups[i].appEventInfos[j].domain}", "")
-                            Hilog.info(0, "AppLogCj", "appEventInfo event=${AppEventGroups[i].appEventInfos[j].eventType.getValue()}", "")
-                            let paSize = AppEventGroups[i].appEventInfos[j].params.size
-                            for ((k, v) in AppEventGroups[i].appEventInfos[j].params) {
-                                Hilog.info(0x0000, "HiAppEnvent", "key=${k}", "")
-                                Hilog.info(0x0000, "HiAppEnvent", "value=${v.toString()}", "")
-                            }
+func f1() {
+    // 如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
+    var condition = TriggerCondition(row: 1)
+    var appEventFilter = [AppEventFilter("button")]
+    var watcher = Watcher(
+        "watcher1",
+        triggerCondition: condition,
+        onTrigger: Some(
+            {
+                row, size, holder =>
+                    Hilog.info(0, "AppLogCj", "HiAppEvent onTrigger: curRow=${row}, curSize=${size}", "")
+                    while (let Some(v) <- holder.takeNext()) {
+                        let eventPkg = v
+                        Hilog.info(0, "AppLogCj", "HiAppEvent packageId=${eventPkg.packageId}", "")
+                        Hilog.info(0, "AppLogCj", "HiAppEvent row=${eventPkg.row}", "")
+                        Hilog.info(0, "AppLogCj", "HiAppEvent size=${eventPkg.size}", "")
+                        for (i in 0..eventPkg
+                                .data
+                                .size) {
+                            Hilog.info(0, "AppLogCj", "HiAppEvent info=${eventPkg.data[i]}", "")
                         }
                     }
-                })
-        HiAppEvent.addWatcher(watcher)
-    }
+            }
+        )
+    )
+    HiAppEvent.addWatcher(watcher)
+}
 
-    func test() {
-        f1()
-        f2()
-        f3()
+func f2() {
+    // 如果观察者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件
+    let watcher = Watcher("watcher2")
+    let holder = HiAppEvent.addWatcher(watcher)
+    if (let Some(v1) <- holder) {
+        while (let Some(v2) <- v1.takeNext()) {
+            let eventPkg = v2
+            Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent packageId=${eventPkg.packageId}", "")
+            Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent row=${eventPkg.row}", "")
+            Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent size=${eventPkg.size}", "")
+            for (i in 0..eventPkg
+                    .data
+                    .size) {
+                Hilog.info(0, "test_hiAppEvent_addWatcher", "HiAppEvent info=${eventPkg.data[i]}", "")
+            }
+        }
     }
-} catch (e: BusinessException) {
-    Hilog.info(0, "test", "${e.message}")
+}
+
+func f3() {
+    // 观察者可以在实时回调函数onReceive中处理订阅事件
+    var condition = TriggerCondition(row: 1, size: 100)
+    let watcher = Watcher(
+        "watcher",
+        triggerCondition: condition,
+        onTrigger: {
+            row, size, holder => Hilog.info(0, "AppLogCj", "HiAppEvent onTrigger: curRow=${row}, curSize=${size}", "")
+        },
+        onReceive: {
+            domain, AppEventGroups =>
+                Hilog.info(0, "AppLogCj", "domain =${domain}")
+                let groupSize = AppEventGroups.size
+                for (i in 0..groupSize) {
+                    Hilog.info(0, "AppLogCj", "name =${AppEventGroups[i].name}", "")
+                    let appInfosize = AppEventGroups[i]
+                        .appEventInfos
+                        .size
+                    for (j in 0..appInfosize) {
+                        Hilog.info(0, "AppLogCj", "appEventInfo name=${AppEventGroups[i].appEventInfos[j].name}", "")
+                        Hilog.info(0, "AppLogCj", "appEventInfo domain=${AppEventGroups[i].appEventInfos[j].domain}", "")
+                        let paSize = AppEventGroups[i]
+                            .appEventInfos[j]
+                            .params
+                            .size
+                        for ((k, v) in AppEventGroups[i]
+                                .appEventInfos[j]
+                                .params) {
+                            Hilog.info(0x0000, "HiAppEnvent", "key=${k}", "")
+                            Hilog.info(0x0000, "HiAppEnvent", "value=${v.toString()}", "")
+                        }
+                    }
+                }
+        }
+    )
+    HiAppEvent.addWatcher(watcher)
+}
+
+func test() {
+    f1()
+    f2()
+    f3()
 }
 ```
 

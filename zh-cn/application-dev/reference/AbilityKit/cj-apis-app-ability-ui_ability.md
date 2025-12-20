@@ -228,18 +228,18 @@ func toJSValue(context: JSContext): JSValue
 |:----|:----|
 |[JSValue](../arkinterop/cj-apis-ark_interop.md#struct-jsvalue)|ArkTS统一类型。|
 
+**示例：**
+
 <!-- compile -->
 ```cangjie
 import ohos.ark_interop.*
-import ohos.ark_interop_helper.*
 import kit.AbilityKit.*
-import kit.TestKit.*
 
-class MyAbilityStage <: AbilityStage {
+class MyAbilityStage4 <: AbilityStage {
     public override func onCreate(): Unit {
-        let jsContext = JSRuntime.getCurrentContext()
+        let jsContext = jsRuntime.getOrThrow().mainContext
         let input = this.context.toJSValue(jsContext)
-        let ctx = createContextFromJSValue(JjsContext, input)
+        let ctx = createContextFromJSValue(jsContext, input)
     }
 }
 ```
@@ -299,7 +299,7 @@ public var currentHapModuleInfo: HapModuleInfo
 ```cangjie
 import kit.AbilityKit.*
 
-class MyAbilityStage4 <: AbilityStage {
+class MyAbilityStage5 <: AbilityStage {
     public override func onCreate(): Unit {
         let info = this.context.currentHapModuleInfo
     }

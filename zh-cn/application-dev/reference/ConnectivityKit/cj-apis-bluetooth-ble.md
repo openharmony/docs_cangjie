@@ -3658,8 +3658,8 @@ import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-let gattServer = createGattServer()
 try {
+    let gattServer = createGattServer()
     gattServer.close()
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -3717,8 +3717,8 @@ import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-let gattServer = createGattServer()
 try {
+    let gattServer = createGattServer()
     let charBuffer: Array<Byte> = [21, 22]
     let notifyCharacteristic = NotifyCharacteristic(
         "00001810-0000-1000-8000-00805F9B34FB",
@@ -3781,9 +3781,9 @@ class StateChangeCallback <: Callback1Argument<BleConnectionChangeState> {
     }
 }
 
-let stateChangeCallback = StateChangeCallback()
-let gattServer = createGattServer()
 try {
+    let gattServer = createGattServer()
+    let stateChangeCallback = StateChangeCallback()
     gattServer.on(BluetoothBleGattServerCallbackType.ConnectionStateChange, stateChangeCallback)
     gattServer.off(BluetoothBleGattServerCallbackType.ConnectionStateChange, callback: stateChangeCallback)
 } catch (e: BusinessException) {
@@ -3834,7 +3834,6 @@ import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
 // 此处代码可添加在依赖项定义中
-let gattReadServer = createGattServer()
 class CharacteristicReadCallback <: Callback1Argument<CharacteristicReadRequest> {
     public func invoke(err: ?BusinessException, charReq: CharacteristicReadRequest): Unit {
         let deviceId: String = charReq.deviceId
@@ -3857,8 +3856,9 @@ class CharacteristicReadCallback <: Callback1Argument<CharacteristicReadRequest>
     }
 }
 
-let characteristicReadCallback = CharacteristicReadCallback()
 try {
+    let gattReadServer = createGattServer()
+    let characteristicReadCallback = CharacteristicReadCallback()
     gattReadServer.on(BluetoothBleGattServerCallbackType.CharacteristicRead, characteristicReadCallback)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -3908,7 +3908,6 @@ import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
 // 此处代码可添加在依赖项定义中
-let gattWriteServer = createGattServer()
 class CharacteristicWriteCallback <: Callback1Argument<CharacteristicWriteRequest> {
     public func invoke(err: ?BusinessException, charReq: CharacteristicWriteRequest): Unit {
         let deviceId: String = charReq.deviceId
@@ -3938,8 +3937,9 @@ class CharacteristicWriteCallback <: Callback1Argument<CharacteristicWriteReques
     }
 }
 
-let characteristicWriteCallback = CharacteristicWriteCallback()
 try {
+    let gattWriteServer = createGattServer()
+    let characteristicWriteCallback = CharacteristicWriteCallback()
     gattWriteServer.on(BluetoothBleGattServerCallbackType.CharacteristicWrite, characteristicWriteCallback)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -3989,7 +3989,6 @@ import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
 // 此处代码可添加在依赖项定义中
-let gattServer = createGattServer()
 class DescriptorReadCallback <: Callback1Argument<DescriptorReadRequest> {
     public func invoke(err: ?BusinessException, desReq: DescriptorReadRequest): Unit {
         let deviceId: String = desReq.deviceId
@@ -4012,8 +4011,9 @@ class DescriptorReadCallback <: Callback1Argument<DescriptorReadRequest> {
     }
 }
 
-let descriptorReadCallback = DescriptorReadCallback()
 try {
+    let gattServer = createGattServer()
+    let descriptorReadCallback = DescriptorReadCallback()
     gattServer.on(BluetoothBleGattServerCallbackType.DescriptorRead, descriptorReadCallback)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -4063,7 +4063,6 @@ import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
 // 此处代码可添加在依赖项定义中
-let gattServer1 = createGattServer()
 class DescriptorWriteCallback <: Callback1Argument<DescriptorWriteRequest> {
     public func invoke(err: ?BusinessException, desReq: DescriptorWriteRequest): Unit {
         let deviceId: String = desReq.deviceId
@@ -4090,9 +4089,10 @@ class DescriptorWriteCallback <: Callback1Argument<DescriptorWriteRequest> {
     }
 }
 
-let descriptorWriteCallback = DescriptorWriteCallback()
 try {
-    gattServer1.on(BluetoothBleGattServerCallbackType.DescriptorWrite, descriptorWriteCallback)
+    let gattServer = createGattServer()
+    let descriptorWriteCallback = DescriptorWriteCallback()
+    gattServer.on(BluetoothBleGattServerCallbackType.DescriptorWrite, descriptorWriteCallback)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
 }
@@ -4141,16 +4141,15 @@ import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
 // 此处代码可添加在依赖项定义中
-let gattServer = createGattServer()
-
 class StateChangeCallback1 <: Callback1Argument<BleConnectionChangeState> {
     public func invoke(err: ?BusinessException, state: BleConnectionChangeState): Unit {
         Hilog.info(0, "Bluetooth", "onGattServerStateChange: device=" + state.deviceId + ", state=" + state.state.toString())
     }
 }
 
-let stateChangeCallback = StateChangeCallback1()
 try {
+    let gattServer = createGattServer()
+    let stateChangeCallback = StateChangeCallback1()
     gattServer.on(BluetoothBleGattServerCallbackType.ConnectionStateChange, stateChangeCallback)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -4206,9 +4205,9 @@ class BLEMtuChangeCallback1 <: Callback1Argument<Int32> {
     }
 }
 
-let gattServer = createGattServer()
-let bleMtuChangeCallback = BLEMtuChangeCallback1()
 try {
+    let gattServer = createGattServer()
+    let bleMtuChangeCallback = BLEMtuChangeCallback1()
     gattServer.on(BluetoothBleGattServerCallbackType.ServerBleMtuChange, bleMtuChangeCallback)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -4261,8 +4260,8 @@ import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-let gattServer = createGattServer()
 try {
+    let gattServer = createGattServer()
     gattServer.removeService("00001810-0000-1000-8000-00805F9B34FB")
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
@@ -4319,13 +4318,13 @@ import ohos.business_exception.*
 import kit.ConnectivityKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-let gattServer = createGattServer()
 try {
     let rspBuffer = Array<Byte>()
     let serverResponse: ServerResponse = ServerResponse(
         "XX:XX:XX:XX:XX:XX'", 0, 0, 0,
         rspBuffer
     )
+    let gattServer = createGattServer()
     gattServer.sendResponse(serverResponse)
 } catch (e: BusinessException) {
     Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}", "")
