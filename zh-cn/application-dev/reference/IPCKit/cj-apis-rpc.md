@@ -1617,7 +1617,7 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let data = MessageSequence.create()
-    data.readFileDescriptor()
+    let fd = data.readFileDescriptor()
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
