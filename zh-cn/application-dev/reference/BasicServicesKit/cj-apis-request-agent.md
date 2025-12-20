@@ -1269,8 +1269,6 @@ import ohos.business_exception.BusinessException
 
 try {
     let filter = Filter(
-        before: None,
-        after: None,
         state: State.Running,
         action: Action.Download,
         mode: Mode.Background
@@ -1878,6 +1876,7 @@ public func resume(): Unit
 
 import kit.BasicServicesKit.*
 import kit.PerformanceAnalysisKit.Hilog
+import ohos.business_exception.BusinessException
 
 try {
     let config = Config(
