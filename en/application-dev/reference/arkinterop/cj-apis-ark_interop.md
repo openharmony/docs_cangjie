@@ -22,7 +22,7 @@ The following types extend this interface:
 
 **Since:** 22
 
-## interface JSInteropType
+## interface JSInteropType\<T>
 
 ```cangjie
 public interface JSInteropType<T> {
@@ -73,7 +73,7 @@ static func fromJSValue(context: JSContext, input: JSValue): T
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -117,7 +117,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 ## interface JSKeyable
 
@@ -139,6 +139,8 @@ sealed interface JSKeyable <: ToString & ToJSValue {
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func keyableUsage(context: JSContext): Unit {
     // Create an array that can be used as JSObject keys
     let keys: Array<JSKeyable> = [
@@ -160,7 +162,7 @@ func keyableUsage(context: JSContext): Unit {
 ## interface ToJSValue
 
 ```cangjie
-interface ToJSValue {
+public interface ToJSValue {
     func toJSValue(context: JSContext): JSValue
 }
 ```
@@ -189,7 +191,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 ## extend Int8 <: JSInteropType\<Int8>
 
@@ -201,6 +203,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func int8Translate(context: JSContext): Unit {
     let source: Int8 = 123
     let value = source.toJSValue(context)
@@ -212,7 +216,7 @@ func int8Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int8
+public static func fromJSValue(_: JSContext, input: JSValue): Int8
 ```
 
 **Description:** Converts JSValue type data to the corresponding Int8 type.
@@ -223,8 +227,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int8
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:** Int8
 
@@ -246,7 +250,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int8
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Description:** Gets the ArkTS type name corresponding to the Cangjie Int8 type.
@@ -262,7 +266,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Description:** Converts Cangjie Int8 type data to JSValue.
@@ -279,7 +283,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -300,6 +304,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func int16Translate(context: JSContext): Unit {
     let source: Int16 = 123
     let value = source.toJSValue(context)
@@ -311,7 +317,7 @@ func int16Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int16
+public static func fromJSValue(_: JSContext, input: JSValue): Int16
 ```
 
 **Description:** Converts JSValue type data to the corresponding Int16 type.
@@ -322,8 +328,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int16
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -345,7 +351,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int16
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Description:** Gets the ArkTS type name corresponding to the Cangjie Int16 type.
@@ -361,7 +367,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Description:** Converts Cangjie Int16 type data to JSValue.
@@ -378,7 +384,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -399,6 +405,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func int32Translate(context: JSContext): Unit {
     let source: Int32 = 123
     let value = source.toJSValue(context)
@@ -410,7 +418,7 @@ func int32Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int32
+public static func fromJSValue(_: JSContext, input: JSValue): Int32
 ```
 
 **Description:** Converts JSValue type data to the corresponding Int32 type.
@@ -421,8 +429,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int32
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -444,7 +452,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int32
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Description:** Gets the ArkTS type name corresponding to the Cangjie Int32 type.
@@ -460,7 +468,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Description:** Converts Cangjie Int32 type data to JSValue.
@@ -477,7 +485,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -486,7 +494,9 @@ func toJSValue(context: JSContext): JSValue
 | Error Code ID | Error Message |
 |:------| :--- |
 | 34300003   | Accessing reference is beyond reach. |
-| 34300004   | Thread mismatch. |## extend Int64 <: JSInteropType\<Int64>
+| 34300004   | Thread mismatch. |
+
+## extend Int64 <: JSInteropType\<Int64>
 
 **Functionality:** This interface can be used to implement extension methods for the built-in type Int64.
 
@@ -496,6 +506,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func int64Translate(context: JSContext): Unit {
     let source: Int64 = 123
     let value = source.toJSValue(context)
@@ -507,7 +519,7 @@ func int64Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int64
+public static func fromJSValue(_: JSContext, input: JSValue): Int64
 ```
 
 **Functionality:** Converts JSValue type data to corresponding Int64 type.
@@ -518,8 +530,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -541,7 +553,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int64
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie Int64 type.
@@ -557,7 +569,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie Int64 type data to JSValue.
@@ -574,7 +586,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -596,6 +608,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func uint8Translate(context: JSContext): Unit {
     let source: UInt8 = 123
     let value = source.toJSValue(context)
@@ -607,7 +621,7 @@ func uint8Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt8
+public static func fromJSValue(_: JSContext, input: JSValue): UInt8
 ```
 
 **Functionality:** Converts JSValue type data to corresponding UInt8 type.
@@ -618,8 +632,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt8
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -641,7 +655,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt8
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt8 type.
@@ -657,7 +671,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie UInt8 type data to JSValue.
@@ -674,7 +688,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 ## extend UInt16 <: JSInteropType\<UInt16>
 
@@ -686,6 +700,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func uint16Translate(context: JSContext): Unit {
     let source: UInt16 = 123
     let value = source.toJSValue(context)
@@ -697,7 +713,7 @@ func uint16Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt16
+public static func fromJSValue(_: JSContext, input: JSValue): UInt16
 ```
 
 **Functionality:** Converts JSValue type data to corresponding UInt16 type.
@@ -708,8 +724,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt16
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -731,7 +747,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt16
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt16 type.
@@ -747,7 +763,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie UInt16 type data to JSValue.
@@ -764,7 +780,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -785,6 +801,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func uint32Translate(context: JSContext): Unit {
     let source: UInt32 = 123
     let value = source.toJSValue(context)
@@ -796,7 +814,7 @@ func uint32Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt32
+public static func fromJSValue(_: JSContext, input: JSValue): UInt32
 ```
 
 **Functionality:** Converts JSValue type data to corresponding UInt32 type.
@@ -807,8 +825,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt32
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -830,7 +848,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt32
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt32 type.
@@ -846,7 +864,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie UInt32 type data to JSValue.
@@ -863,7 +881,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -884,6 +902,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func uint64Translate(context: JSContext): Unit {
     let source: UInt64 = 123
     let value = source.toJSValue(context)
@@ -895,7 +915,7 @@ func uint64Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt64
+public static func fromJSValue(_: JSContext, input: JSValue): UInt64
 ```
 
 **Functionality:** Converts JSValue type data to corresponding UInt64 type.
@@ -906,8 +926,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -929,7 +949,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt64
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie UInt64 type.
@@ -945,7 +965,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie UInt64 type data to JSValue.
@@ -962,7 +982,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -972,7 +992,9 @@ func toJSValue(context: JSContext): JSValue
 |:------|:-------------------------------------|
 | 2 | Outside error occurred. |
 | 3 | Accessing reference is beyond reach. |
-| 4 | Thread mismatch. |## extend Float16 <: JSInteropType\<Float16>
+| 4 | Thread mismatch. |
+
+## extend Float16 <: JSInteropType\<Float16>
 
 **Function:** This interface can be used to implement extension methods for the built-in type Float16.
 
@@ -982,6 +1004,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func float16Translate(context: JSContext): Unit {
     let source: Float16 = 123.0
     let value = source.toJSValue(context)
@@ -993,7 +1017,7 @@ func float16Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Float16
+public static func fromJSValue(_: JSContext, input: JSValue): Float16
 ```
 
 **Function:** Converts JSValue type data to the corresponding Float16 type.
@@ -1004,8 +1028,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Float16
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -1027,7 +1051,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Float16
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Function:** Gets the ArkTS type name corresponding to the Cangjie Float16 type.
@@ -1043,7 +1067,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Function:** Converts Cangjie Float16 type data to JSValue.
@@ -1060,7 +1084,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -1081,6 +1105,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func float32Translate(context: JSContext): Unit {
     let source: Float32 = 123.0
     let value = source.toJSValue(context)
@@ -1092,7 +1118,7 @@ func float32Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Float32
+public static func fromJSValue(_: JSContext, input: JSValue): Float32
 ```
 
 **Function:** Converts JSValue type data to the corresponding Float32 type.
@@ -1103,8 +1129,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Float32
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -1126,7 +1152,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Float32
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Function:** Gets the ArkTS type name corresponding to the Cangjie Float32 type.
@@ -1142,7 +1168,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Function:** Converts Cangjie Float32 type data to JSValue.
@@ -1159,7 +1185,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -1180,6 +1206,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func float64Translate(context: JSContext): Unit {
     let source: Float64 = 123.0
     let value = source.toJSValue(context)
@@ -1191,7 +1219,7 @@ func float64Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Float64
+public static func fromJSValue(_: JSContext, input: JSValue): Float64
 ```
 
 **Function:** Converts JSValue type data to the corresponding Float64 type.
@@ -1202,8 +1230,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Float64
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -1224,7 +1252,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Float64
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Function:** Gets the ArkTS type name corresponding to the Cangjie Float64 type.
@@ -1240,7 +1268,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Function:** Converts Cangjie Float64 type data to JSValue.
@@ -1257,7 +1285,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -1278,6 +1306,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func boolTranslate(context: JSContext): Unit {
     let source: Bool = true
     let value = source.toJSValue(context)
@@ -1289,7 +1319,7 @@ func boolTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Bool
+public static func fromJSValue(_: JSContext, input: JSValue): Bool
 ```
 
 **Function:** Converts JSValue type data to the corresponding Bool type.
@@ -1300,8 +1330,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Bool
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -1312,7 +1342,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Bool
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Function:** Gets the ArkTS type name corresponding to the Cangjie Bool type.
@@ -1338,7 +1368,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Function:** Converts Cangjie Bool type data to JSValue.
@@ -1355,7 +1385,7 @@ func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -1376,6 +1406,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func stringTranslate(context: JSContext): Unit {
     let source: String = "123.0"
     let value = source.toJSValue(context)
@@ -1387,7 +1419,7 @@ func stringTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(_: JSContext, input: JSValue): String
+public static func fromJSValue(_: JSContext, input: JSValue): String
 ```
 
 **Function:** Converts JSValue type data to the corresponding String type.
@@ -1399,7 +1431,7 @@ static func fromJSValue(_: JSContext, input: JSValue): String
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | _ | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperability context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -1420,7 +1452,7 @@ static func fromJSValue(_: JSContext, input: JSValue): String
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Function:** Gets the ArkTS type name corresponding to the Cangjie String type.
@@ -1431,7 +1463,9 @@ static func toArktsType(): String
 
 | Type | Description |
 |:----|:----|
-| String | Converted ArkTS type name. |## extend String <: JSKeyable
+| String | Converted ArkTS type name. |
+
+## extend String <: JSKeyable
 
 **Functionality:** This interface can be used to implement extension methods for the built-in String type.
 
@@ -1441,6 +1475,8 @@ static func toArktsType(): String
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func stringTranslate(context: JSContext): Unit {
     let source: String = "123.0"
     let value = source.toJSValue(context)
@@ -1452,7 +1488,7 @@ func stringTranslate(context: JSContext): Unit {
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie String type data to JSValue.
@@ -1469,7 +1505,7 @@ func toJSValue(context: JSContext): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -1501,7 +1537,7 @@ func unitTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Unit
+public static func fromJSValue(_: JSContext, _: JSValue): Unit
 ```
 
 **Functionality:** Converts JSValue type data to corresponding Bool type.
@@ -1512,8 +1548,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Unit
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
-|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
+|_|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
+|_|[JSValue](#class-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
@@ -1524,7 +1560,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Unit
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie Unit type.
@@ -1540,7 +1576,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie Unit type data to JSValue.
@@ -1557,7 +1593,7 @@ func toJSValue(context: JSContext): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -1578,6 +1614,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func optionTranslate(context: JSContext): Unit {
     let sources: Array<?String> = ["abc", None, "123"]
     for (v in sources) {
@@ -1591,7 +1629,7 @@ func optionTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Option<T>
+public static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 ```
 
 **Functionality:** Converts JSValue type data to corresponding Option\<T> type.
@@ -1603,7 +1641,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
-|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
+|input|[JSValue](#class-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
@@ -1623,7 +1661,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie Option\<T> type.
@@ -1639,7 +1677,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie Option\<T> type data to JSValue.
@@ -1656,7 +1694,7 @@ func toJSValue(context: JSContext): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -1677,6 +1715,8 @@ func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func arrayTranslate(context: JSContext): Unit {
     let sources: Array<Byte> = [1, 4, 5]
     let value = sources.toJSValue(context)
@@ -1688,7 +1728,7 @@ func arrayTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(_: JSContext, input: JSValue): Array<T>
+public static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 ```
 
 **Functionality:** Converts JSValue type data to corresponding Array\<T> type.
@@ -1700,7 +1740,7 @@ static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |_|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
-|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
+|input|[JSValue](#class-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
@@ -1721,7 +1761,7 @@ static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **Functionality:** Gets the ArkTS type name corresponding to the Cangjie Array\<T> type.
@@ -1737,7 +1777,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **Functionality:** Converts Cangjie Array\<T> type data to JSValue.
@@ -1754,7 +1794,7 @@ func toJSValue(context: JSContext): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -1822,7 +1862,7 @@ public operator func[](index: Int64): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -1860,7 +1900,7 @@ public operator func[](index: Int64, value!: JSValue): Unit
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |index|Int64|Yes|-|Write index.|
-|value|[JSValue](#struct-jsvalue)|Yes|-| **Named parameter.** Value to write.|
+|value|[JSValue](#class-jsvalue)|Yes|-| **Named parameter.** Value to write.|
 
 **Exceptions:**
 
@@ -1921,7 +1961,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     jsArr[0] = setValue
     return setValue.toJSValue()
 }
-```## class JSArrayBuffer
+```
+
+## class JSArrayBuffer
 
 ```cangjie
 public class JSArrayBuffer <: JSHeapObject {}
@@ -1962,6 +2004,8 @@ public prop byteLength: Int32
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getBufferLength(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let length = arrayBuffer.byteLength
@@ -1999,6 +2043,8 @@ public func readBytes(): Array<Byte>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func readBufferBytes(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let bytes = arrayBuffer.readBytes()
@@ -2021,7 +2067,7 @@ public func toArrayBufferJSValue(): JSValue
 
 | Type          | Description               |
 |:-------------|:-------------------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+| [JSValue](#class-jsvalue) | ArkTS unified type.       |
 
 **Exceptions:**
 
@@ -2075,6 +2121,8 @@ public func toFloat32Array(): Array<Float32>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createFloat32Array(context: JSContext): Unit {
     let data: Array<Float32> = [1.0, 2.0, 3.0, 4.0]
     let arrayBuffer = context.arrayBuffer(data)
@@ -2097,7 +2145,7 @@ public func toFloat32ArrayJSValue(): JSValue
 
 | Type          | Description               |
 |:-------------|:-------------------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+| [JSValue](#class-jsvalue) | ArkTS unified type.       |
 
 **Exceptions:**
 
@@ -2113,6 +2161,8 @@ public func toFloat32ArrayJSValue(): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToFloat32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let float32Array = arrayBuffer.toFloat32Array()
@@ -2151,6 +2201,8 @@ public func toFloat64Array(): Array<Float64>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToFloat64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let float64Array = arrayBuffer.toFloat64Array()
@@ -2173,7 +2225,7 @@ public func toFloat64ArrayJSValue(): JSValue
 
 | Type          | Description               |
 |:-------------|:-------------------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+| [JSValue](#class-jsvalue) | ArkTS unified type.       |
 
 **Exceptions:**
 
@@ -2226,6 +2278,8 @@ public func toInt16Array(): Array<Int16>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToInt16Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let int16Array = arrayBuffer.toInt16Array()
@@ -2248,7 +2302,7 @@ public func toInt16ArrayJSValue(): JSValue
 
 | Type          | Description               |
 |:-------------|:-------------------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+| [JSValue](#class-jsvalue) | ArkTS unified type.       |
 
 **Exceptions:**
 
@@ -2301,6 +2355,8 @@ public func toInt32Array(): Array<Int32>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToInt32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let int32Array = arrayBuffer.toInt32Array()
@@ -2323,7 +2379,7 @@ public func toInt32ArrayJSValue(): JSValue
 
 | Type          | Description               |
 |:-------------|:-------------------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type.       |
+| [JSValue](#class-jsvalue) | ArkTS unified type.       |
 
 **Exceptions:**
 
@@ -2344,7 +2400,9 @@ func getInt32ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
     let int32ArrayJSValue = arrayBuffer.toInt32ArrayJSValue()
     return int32ArrayJSValue
 }
-```### func toInt64Array()
+```
+
+### func toInt64Array()
 
 ```cangjie
 public func toInt64Array(): Array<Int64>
@@ -2374,6 +2432,8 @@ public func toInt64Array(): Array<Int64>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToInt64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let int64Array = arrayBuffer.toInt64Array()
@@ -2396,7 +2456,7 @@ public func toInt64ArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2448,6 +2508,8 @@ public func toInt8Array(): Array<Int8>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToInt8Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let int8Array = arrayBuffer.toInt8Array()
@@ -2470,7 +2532,7 @@ public func toInt8ArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2523,6 +2585,8 @@ public func toUInt16Array(): Array<UInt16>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToUInt16Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let uint16Array = arrayBuffer.toUInt16Array()
@@ -2545,7 +2609,7 @@ public func toUInt16ArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2598,6 +2662,8 @@ public func toUInt32Array(): Array<UInt32>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToUInt32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let uint32Array = arrayBuffer.toUInt32Array()
@@ -2620,7 +2686,7 @@ public func toUInt32ArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2673,6 +2739,8 @@ public func toUInt64Array(): Array<UInt64>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToUInt64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let uint64Array = arrayBuffer.toUInt64Array()
@@ -2695,7 +2763,7 @@ public func toUInt64ArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2747,6 +2815,8 @@ public func toUInt8Array(): Array<UInt8>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToUInt8Array(context: JSContext, callInfo: JSCallInfo): JSValue {
     let arrayBuffer = callInfo[0].asArrayBuffer()
     let uint8Array = arrayBuffer.toUInt8Array()
@@ -2769,7 +2839,7 @@ public func toUInt8ArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2806,7 +2876,7 @@ public func toUInt8ClampedArrayJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -2827,10 +2897,12 @@ func getUInt8ClampedArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSVa
     let uint8ClampedArrayJSValue = arrayBuffer.toUInt8ClampedArrayJSValue()
     return uint8ClampedArrayJSValue
 }
-```## class JSArrayEx
+```
+
+## class JSArrayEx\<T> where T <: JSInteropType\<T>
 
 ```cangjie
-public class JSArrayEx<T> <: JSInteropType<JSArrayEx<T>> where T <: JSInteropType <T> {
+public class JSArrayEx<T> <: JSInteropType<JSArrayEx<T>> where T <: JSInteropType<T> {
     public init(arr: Array<T>)
 }
 ```
@@ -2897,7 +2969,7 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSArrayEx<T>
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](#class-jscontext) | Yes | - | ArkTS interop context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -2960,6 +3032,8 @@ public func clone(): JSArrayEx<T>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func cloneArrayEx(context: JSContext): JSValue {
     let originalArray: Array<Int64> = [1, 2, 3, 4, 5]
     let jsArrayEx = JSArrayEx<Int64>(originalArray)
@@ -3007,6 +3081,8 @@ public func concat(other: JSArrayEx<T>): JSArrayEx<T>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func concatArrayEx(context: JSContext): JSValue {
     let array1: Array<Int64> = [1, 2, 3]
     let array2: Array<Int64> = [4, 5, 6]
@@ -3056,6 +3132,8 @@ public func get(index: Int64): Option<T>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getElementFromArrayEx(context: JSContext, callInfo: JSCallInfo): JSValue {
     let array: Array<String> = ["apple", "banana", "cherry"]
     let jsArrayEx = JSArrayEx<String>(array)
@@ -3098,6 +3176,8 @@ public func isEmpty(): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkArrayExEmpty(context: JSContext): JSValue {
     let emptyArray: Array<Int64> = []
     let nonEmptyArray: Array<Int64> = [1, 2, 3]
@@ -3143,6 +3223,8 @@ public func set(index: Int64, element: T): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func setElementInArrayEx(context: JSContext): JSValue {
     let array: Array<Int64> = [1, 2, 3, 4, 5]
     let jsArrayEx = JSArrayEx<Int64>(array)
@@ -3184,6 +3266,8 @@ public func toArray(): Array<T>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertArrayExToArray(context: JSContext): JSValue {
     let array: Array<String> = ["hello", "world", "cangjie"]
     let jsArrayEx = JSArrayEx<String>(array)
@@ -3215,7 +3299,7 @@ public func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -3263,6 +3347,8 @@ public operator func[](index: Int64): T
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getIndexOperator(context: JSContext): JSValue {
     let array: Array<Int64> = [10, 20, 30, 40]
     let jsArrayEx = JSArrayEx<Int64>(array)
@@ -3305,6 +3391,8 @@ public operator func[](index: Int64, value!: T)
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func setIndexOperator(context: JSContext): JSValue {
     let array: Array<Int64> = [1, 2, 3, 4]
     let jsArrayEx = JSArrayEx<Int64>(array)
@@ -3315,7 +3403,9 @@ func setIndexOperator(context: JSContext): JSValue {
 
     return jsArrayEx.toJSValue(context)
 }
-```## class JSBigInt
+```
+
+## class JSBigInt
 
 ```cangjie
 public class JSBigInt <: JSHeapObject {}
@@ -3358,6 +3448,8 @@ public func toBigInt(): BigInt
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToBigInt(context: JSContext, callInfo: JSCallInfo): JSValue {
     let jsBigInt = callInfo[0].asBigInt()
     let bigIntValue = jsBigInt.toBigInt()
@@ -3365,6 +3457,185 @@ func convertToBigInt(context: JSContext, callInfo: JSCallInfo): JSValue {
     Hilog.info(0, "test", "Converted BigInt value: ${bigIntValue}")
 
     return context.string(bigIntValue.toString()).toJSValue()
+}
+```
+
+## class JSBoolean
+
+```cangjie
+public class JSBoolean {}
+```
+
+**Function:** ArkTS boolean type.
+
+**Initial Version:** 22
+
+### func toBool()
+
+```cangjie
+public func toBool(): Bool
+```
+
+**Function:** Converts to Cangjie Bool.
+
+**Initial Version:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:------------|
+| Bool | Cangjie boolean value. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 34300003          | Accessing reference is beyond reach.   |
+| 34300004          | Thread mismatch.                       |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+import ohos.hilog.Hilog
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let jsBool = context.boolean(true)
+    let value = jsBool.toBool()
+    Hilog.info(0, "test", "value is ${value}")
+    return jsBool.toJSValue()
+}
+```
+
+### func toJSValue()
+
+```cangjie
+public func toJSValue(): JSValue
+```
+
+**Function:** Converts to JSValue.
+
+**Initial Version:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 34300003          | Accessing reference is beyond reach.   |
+| 34300004          | Thread mismatch.                       |
+
+## class JSCallInfo
+
+```cangjie
+public class JSCallInfo {}
+```
+
+**Function:** Contains information about an ArkTS function call. Allows accessing this pointer, parameter count, and retrieving parameters by index.
+
+Each ArkTS function call stores parameter lists and related information on the ArkTS stack. JSCallInfo is a pointer to this information.
+
+Lifecycle: The JSCallInfo becomes invalid when the ArkTS function call ends.
+
+**Initial Version:** 22
+
+### prop count
+
+```cangjie
+public prop count: Int64
+```
+
+**Function:** Number of input parameters.
+
+**Initial Version:** 22
+
+**Type:** Int64
+
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 34300003          | Accessing reference is beyond reach.   |
+| 34300004          | Thread mismatch.                       |
+
+### prop thisArg
+
+```cangjie
+public prop thisArg: JSValue
+```
+
+**Function:** this pointer.
+
+**Initial Version:** 22
+
+**Type:** [JSValue](#class-jsvalue)
+
+**Access:** Read-only
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                           |
+|:-------------|:---------------------------------------|
+| 34300003          | Accessing reference is beyond reach.   |
+| 34300004          | Thread mismatch.                       |
+
+### func \[](Int64)
+
+```cangjie
+public operator func[](index: Int64): JSValue
+```
+
+**Function:** Retrieves the corresponding parameter by index.
+
+**Initial Version:** 22
+
+**Parameters:**
+
+| Parameter | Type | Required | Default | Description |
+|:----------|:-----|:---------|:--------|:------------|
+| index | Int64 | Yes | - | Parameter index, safe range: [0, parameter count). |
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#class-jsvalue) | Parameter value. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 34300001          | The accessing index is out of range.  |
+| 34300003          | Accessing reference is beyond reach.  |
+| 34300004          | Thread mismatch.                      |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    if (callInfo.count > 0) {
+        let firstArg = callInfo[0]
+        return firstArg
+    }
+    return context.undefined().toJSValue()
 }
 ```
 
@@ -3408,6 +3679,8 @@ public prop prototype: JSObject
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func accessClassPrototype(context: JSContext): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3453,6 +3726,8 @@ public func addAccessor(key: JSKeyable, getter!: ?JSFunction = None, setter!: ?J
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3464,7 +3739,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addAccessor("classKind", getter: context.function(getClassKind))
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3501,6 +3776,8 @@ public func addAccessor(key: JSKeyable, getter!: ?JSLambda = None, setter!: ?JSL
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3512,7 +3789,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addAccessor("classKind", getter: getClassKind)
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3548,6 +3825,8 @@ public func addMethod(key: JSKeyable, method: JSFunction): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3559,7 +3838,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addMethod("getClassKind", context.function(getClassKind))
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3595,6 +3874,8 @@ public func addMethod(key: JSKeyable, method: JSLambda): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3606,7 +3887,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addMethod("getClassKind", getClassKind)
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3626,7 +3907,7 @@ public func addProperty(key: JSKeyable, value: JSValue): Unit
 |Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
-|value|[JSValue](#struct-jsvalue)|Yes|-|Property value.|
+|value|[JSValue](#class-jsvalue)|Yes|-|Property value.|
 
 **Exceptions:**
 
@@ -3642,6 +3923,8 @@ public func addProperty(key: JSKeyable, value: JSValue): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3650,7 +3933,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addProperty("classKind", context.string("CustomClass").toJSValue())
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3669,7 +3952,7 @@ public func new(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|The newly instantiated object.|
+|[JSValue](#class-jsvalue)|The newly instantiated object.|
 
 **Exceptions:**
 
@@ -3709,13 +3992,13 @@ public func new(arg: JSValue): JSValue
 
 |Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|arg|[JSValue](#struct-jsvalue)|Yes|-|Constructor argument.|
+|arg|[JSValue](#class-jsvalue)|Yes|-|Constructor argument.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|The newly instantiated object.|
+|[JSValue](#class-jsvalue)|The newly instantiated object.|
 
 **Exceptions:**
 
@@ -3759,13 +4042,13 @@ public func new(args: Array<JSValue>): JSValue
 
 |Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|args|Array\<[JSValue](#struct-jsvalue)>|Yes|-|Constructor argument list.|
+|args|Array\<[JSValue](#class-jsvalue)>|Yes|-|Constructor argument list.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|The newly instantiated object.|
+|[JSValue](#class-jsvalue)|The newly instantiated object.|
 
 **Exceptions:**
 
@@ -3839,6 +4122,8 @@ public prop env: JSEnv
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func accessContextEnv(context: JSContext): JSValue {
     let env = context.env
     Hilog.info(0, "test", "Context env accessed")
@@ -3874,6 +4159,8 @@ public prop global: JSObject
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func accessGlobalObject(context: JSContext): JSValue {
     let globalObj = context.global
     let globalKeys = globalObj.keys()
@@ -3898,7 +4185,7 @@ public func array(arr: Array<JSValue>): JSArray
 
 | Parameter | Type | Required | Default | Description |
 |:---------|:-----|:--------|:--------|:------------|
-| arr      | Array\<[JSValue](#struct-jsvalue)> | Yes | - | Reference to an ArkTS array. |
+| arr      | Array\<[JSValue](#class-jsvalue)> | Yes | - | Reference to an ArkTS array. |
 
 **Return Value:**
 
@@ -4048,6 +4335,8 @@ public func arrayBuffer(data: Array<Int8>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromInt8(context: JSContext): JSValue {
     let int8Array: Array<Int8> = [1, 2, 3]
     let arrayBuffer = context.arrayBuffer(int8Array)
@@ -4094,6 +4383,8 @@ public func arrayBuffer(data: Array<Int16>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromInt16(context: JSContext): JSValue {
     let int16Array: Array<Int16> = [1, 2, 3]
     let arrayBuffer = context.arrayBuffer(int16Array)
@@ -4140,6 +4431,8 @@ public func arrayBuffer(data: Array<UInt16>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromUInt16(context: JSContext): JSValue {
     let uint16Array: Array<UInt16> = [1, 2, 3]
     let arrayBuffer = context.arrayBuffer(uint16Array)
@@ -4186,6 +4479,8 @@ public func arrayBuffer(data: Array<UInt32>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromUInt32(context: JSContext): JSValue {
     let uint32Array: Array<UInt32> = [1, 2, 3]
     let arrayBuffer = context.arrayBuffer(uint32Array)
@@ -4232,6 +4527,8 @@ public func arrayBuffer(data: Array<Int32>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromInt32(context: JSContext): JSValue {
     let int32Array: Array<Int32> = [1, 2, 3]
     let arrayBuffer = context.arrayBuffer(int32Array)
@@ -4240,7 +4537,9 @@ func createArrayBufferFromInt32(context: JSContext): JSValue {
 
     return arrayBuffer.toJSValue()
 }
-```### func arrayBuffer(Array\<Float32>)
+```
+
+### func arrayBuffer(Array\<Float32>)
 
 ```cangjie
 public func arrayBuffer(data: Array<Float32>): JSArrayBuffer
@@ -4276,6 +4575,8 @@ public func arrayBuffer(data: Array<Float32>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromFloat32(context: JSContext): JSValue {
     let float32Array: Array<Float32> = [1.0, 2.0, 3.0]
     let arrayBuffer = context.arrayBuffer(float32Array)
@@ -4322,6 +4623,8 @@ public func arrayBuffer(data: Array<Int64>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromInt64(context: JSContext): JSValue {
     let int64Array: Array<Int64> = [1, 2, 3]
     let arrayBuffer = context.arrayBuffer(int64Array)
@@ -4368,6 +4671,8 @@ public func arrayBuffer(data: Array<UInt64>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromUInt64(context: JSContext): JSValue {
     let uint64Array: Array<UInt64> = [1.u64, 2.u64, 3.u64]
     let arrayBuffer = context.arrayBuffer(uint64Array)
@@ -4414,6 +4719,8 @@ public func arrayBuffer(data: Array<Float64>): JSArrayBuffer
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createArrayBufferFromFloat64(context: JSContext): JSValue {
     let float64Array: Array<Float64> = [1.0, 2.0, 3.0]
     let arrayBuffer = context.arrayBuffer(float64Array)
@@ -4579,7 +4886,7 @@ public func boolean(value: Bool): JSBoolean
 
 | Type | Description |
 |:----|:----|
-| [JSBoolean](#struct-jsboolean) | ArkTS boolean value. |
+| [JSBoolean](#class-jsboolean) | ArkTS boolean value. |
 
 **Exceptions:**
 
@@ -4645,7 +4952,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let result = context.clazz(clsCtor)
     return result.toJSValue()
 }
-```### func external(SharedObject)
+```
+
+### func external(SharedObject)
 
 ```cangjie
 public func external(data: SharedObject): JSExternal
@@ -4765,6 +5074,8 @@ public func getNapiEnv(): napi_env
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getNapiEnvironment(context: JSContext): JSValue {
     let napiEnv = context.getNapiEnv()
     Hilog.info(0, "test", "Got napi environment")
@@ -4815,7 +5126,7 @@ public func null(): JSNull
 
 | Type | Description |
 |:----|:----|
-| [JSNull](#struct-jsnull) | Returns ArkTS `null`. |
+| [JSNull](#class-jsnull) | Returns ArkTS `null`. |
 
 **Exceptions:**
 
@@ -4856,7 +5167,7 @@ public func number(value: Float64): JSNumber
 
 | Type | Description |
 |:----|:----|
-| [JSNumber](#struct-jsnumber) | ArkTS number. |
+| [JSNumber](#class-jsnumber) | ArkTS number. |
 
 **Exceptions:**
 
@@ -4897,7 +5208,7 @@ public func number(value: Int32): JSNumber
 
 | Type | Description |
 |:----|:----|
-| [JSNumber](#struct-jsnumber) | ArkTS number. |
+| [JSNumber](#class-jsnumber) | ArkTS number. |
 
 **Exceptions:**
 
@@ -5042,7 +5353,7 @@ public func requireSystemNativeModule(moduleName: String, prefix!: ?String = Non
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | Module return value, typically an object. Returns `undefined` if loading fails. |
+| [JSValue](#class-jsvalue) | Module return value, typically an object. Returns `undefined` if loading fails. |
 
 **Exceptions:**
 
@@ -5206,7 +5517,7 @@ public func undefined(): JSUndefined
 
 | Type | Description |
 |:----|:----|
-| [JSUndefined](#struct-jsundefined) | Returns ArkTS `undefined`. |
+| [JSUndefined](#class-jsundefined) | Returns ArkTS `undefined`. |
 
 **Exceptions:**
 
@@ -5225,7 +5536,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let result = context.undefined()
     return result.toJSValue()
 }
-```## class JSExternal
+```
+
+## class JSExternal
 
 ```cangjie
 public class JSExternal <: JSHeapObject {}
@@ -5352,7 +5665,7 @@ public func requireArkModule(src: String): JSValue
 
 | 类型                         | 说明                    |
 |:---------------------------|:----------------------|
-| [JSValue](#struct-jsvalue) | The module's JSValue. |
+| [JSValue](#class-jsvalue) | The module's JSValue. |
 
 **Exceptions:**
 
@@ -5409,13 +5722,13 @@ public func call(thisArg!: JSValue = context.undefined().toJSValue()): JSValue
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** this pointer.|
+|thisArg|[JSValue](#class-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** this pointer.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Function call return value.|
+|[JSValue](#class-jsvalue)|Function call return value.|
 
 **Exceptions:**
 
@@ -5451,14 +5764,14 @@ public func call(arg: JSValue, thisArg!: JSValue = context.undefined().toJSValue
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|arg|[JSValue](#struct-jsvalue)|Yes|-|ArkTS function input parameter.|
-|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** ArkTS function this pointer.|
+|arg|[JSValue](#class-jsvalue)|Yes|-|ArkTS function input parameter.|
+|thisArg|[JSValue](#class-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** ArkTS function this pointer.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Function call return value.|
+|[JSValue](#class-jsvalue)|Function call return value.|
 
 **Exceptions:**
 
@@ -5495,14 +5808,14 @@ public func call(args: Array<JSValue>, thisArg!: JSValue = context.undefined().t
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|args|Array\<[JSValue](#struct-jsvalue)>|Yes|-|Parameter list.|
-|thisArg|[JSValue](#struct-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** this pointer.|
+|args|Array\<[JSValue](#class-jsvalue)>|Yes|-|Parameter list.|
+|thisArg|[JSValue](#class-jsvalue)|No|context.undefined().toJSValue()| **Named parameter.** this pointer.|
 
 **Return Value:**
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|Function call return value.|
+|[JSValue](#class-jsvalue)|Function call return value.|
 
 **Exceptions:**
 
@@ -5526,10 +5839,10 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 }
 ```
 
-## class JSHashMapEx
+## class JSHashMapEx<K, V> where K <: JSKeyable & Hashable & Equatable\<K> & JSInteropType\<K>, V <: JSInteropType\<V>
 
 ```cangjie
-public class JSHashMapEx<K, V> <: JSInteropType<JSHashMapEx<K,V>> where K <: JSKeyable & Hashable & Equatable <K> & JSInteropType <K>V <: JSInteropType <V> {
+public class JSHashMapEx<K, V> <: JSInteropType<JSHashMapEx<K, V>> where K <: JSKeyable & Hashable & Equatable<K> & JSInteropType<K>, V <: JSInteropType<V> {
     public init(map: HashMap<K, V>)
     public init()
 }
@@ -5586,6 +5899,8 @@ public init(map: HashMap<K, V>)
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createHashMapExFromHashMap(context: JSContext): JSValue {
     let hashMap = HashMap<String, Int64>()
     hashMap["key1"] = 1
@@ -5612,6 +5927,8 @@ public init()
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createEmptyHashMapEx(context: JSContext): JSValue {
     let jsHashMapEx = JSHashMapEx<String, Int64>()
     Hilog.info(0, "test", "Created empty JSHashMapEx")
@@ -5635,7 +5952,7 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSHashMapEx<
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
-|input|[JSValue](#struct-jsvalue)|Yes|-|ArkTS unified type.|
+|input|[JSValue](#class-jsvalue)|Yes|-|ArkTS unified type.|
 
 **Return Value:**
 
@@ -5657,6 +5974,8 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSHashMapEx<
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertJSValueToStringHashMapEx(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Create a JSHashMapEx<String, String>
     let source = JSHashMapEx<String, String>()
@@ -5679,7 +5998,9 @@ func convertJSValueToStringHashMapEx(context: JSContext, callInfo: JSCallInfo): 
 
     return jsValue
 }
-```### static func toArktsType()
+```
+
+### static func toArktsType()
 
 ```cangjie
 public static func toArktsType(): String
@@ -5946,6 +6267,8 @@ public func isEmpty(): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkHashMapExEmpty(context: JSContext): JSValue {
     let emptyMap = JSHashMapEx<String, Int64>()
     let nonEmptyMap = JSHashMapEx<String, Int64>()
@@ -5987,6 +6310,8 @@ public func keys(): EquatableCollection<K>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getHashMapExKeys(context: JSContext): JSValue {
     let jsHashMapEx = JSHashMapEx<String, Int64>()
     jsHashMapEx.set("key1", 1)
@@ -6030,6 +6355,8 @@ public func set(key: K, value: V): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func setHashMapExValue(context: JSContext): JSValue {
     let jsHashMapEx = JSHashMapEx<String, Int64>()
     jsHashMapEx.set("myKey", 42)
@@ -6069,6 +6396,8 @@ public func setAll(elements: Collection<(K, V)>): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func setAllHashMapExValues(context: JSContext): JSValue {
     let jsHashMapEx = JSHashMapEx<String, Int64>()
     let elements: Array<(String, Int64)> = [("key1", 1), ("key2", 2), ("key3", 3)]
@@ -6157,7 +6486,7 @@ public func toJSValue(c: JSContext): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -6229,6 +6558,8 @@ public operator func [](key: K): V
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getIndexOperatorHashMapEx(context: JSContext): JSValue {
     let jsHashMapEx = JSHashMapEx<String, Int64>()
     jsHashMapEx.set("myKey", 100)
@@ -6270,6 +6601,8 @@ public operator func [](key: K, value!: V): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func setIndexOperatorHashMapEx(context: JSContext): JSValue {
     let jsHashMapEx = JSHashMapEx<String, Int64>()
     jsHashMapEx["newKey"] = context.number(200).toJSValue()
@@ -6278,10 +6611,12 @@ func setIndexOperatorHashMapEx(context: JSContext): JSValue {
 
     return jsHashMapEx.toJSValue(context)
 }
-```## class JSHeapObject
+```
+
+## class JSHeapObject
 
 ```cangjie
-sealed abstract class JSHeapObject {}
+abstract sealed class JSHeapObject {}
 ```
 
 **Function:** A strong reference to an ArkTS runtime object (but it will not exceed the lifecycle of the ArkTS runtime nor prevent its destruction). Can be converted to JSValue.
@@ -6304,7 +6639,7 @@ public func toJSValue(): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -6461,6 +6796,115 @@ class Main {
 }
 ```
 
+## class JSNull
+
+```cangjie
+public class JSNull {}
+```
+
+**Function:** ArkTS null type.
+
+**Initial Version:** 22
+
+### func toJSValue()
+
+```cangjie
+public func toJSValue(): JSValue
+```
+
+**Function:** Converts to ArkTS unified type.
+
+**Initial Version:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 34300003          | Accessing reference is beyond reach.  |
+| 34300004          | Thread mismatch.                      |
+
+## class JSNumber
+
+```cangjie
+public class JSNumber {}
+```
+
+**Function:** ArkTS number type.
+
+**Initial Version:** 22
+
+### func toFloat64()
+
+```cangjie
+public func toFloat64(): Float64
+```
+
+**Function:** Converts to Float64.
+
+**Initial Version:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:------------|
+| Float64 | Cangjie floating-point number. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 34300003          | Accessing reference is beyond reach.  |
+| 34300004          | Thread mismatch.                      |
+
+**Example:**
+
+<!--compile-->
+```cangjie
+import ohos.hilog.Hilog
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let jsNum = context.number(1.0)
+    let value = jsNum.toFloat64()
+    Hilog.info(0, "test", "value is ${value}")
+    return jsNum.toJSValue()
+}
+```
+
+### func toJSValue()
+
+```cangjie
+public func toJSValue(): JSValue
+```
+
+**Function:** Converts to JSValue.
+
+**Initial Version:** 22
+
+**Return Value:**
+
+| Type | Description |
+|:-----|:------------|
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
+
+**Exceptions:**
+
+- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
+
+| Error Code ID | Error Message                          |
+|:-------------|:--------------------------------------|
+| 34300003          | Accessing reference is beyond reach.  |
+| 34300004          | Thread mismatch.                      |
+
 ## class JSObject
 
 ```cangjie
@@ -6478,6 +6922,8 @@ public class JSObject <: JSObjectBase {}
 **Example:**
 
 ```cangjie
+import ohos.hilog.Hilog
+
 func setObjectProperties(context: JSContext): JSValue {
     let jsObject = context.object()
 
@@ -6558,13 +7004,13 @@ public func callMethod(key: JSKeyable, args: Array<JSValue>): JSValue
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | key | [JSKeyable](#interface-jskeyable) | Yes | - | Target method name. |
-| args | Array\<[JSValue](#struct-jsvalue)> | Yes | - | List of arguments for the invocation. |
+| args | Array\<[JSValue](#class-jsvalue)> | Yes | - | List of arguments for the invocation. |
 
 **Return Value:**
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | Method invocation return value. |
+| [JSValue](#class-jsvalue) | Method invocation return value. |
 
 **Exceptions:**
 
@@ -6690,7 +7136,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     obj.defineOwnAccessor("a", getter: getter, isConfigurable: false)
     return obj.toJSValue()
 }
-```### func defineOwnProperty(JSKeyable, JSValue, Bool, Bool, Bool)
+```
+
+### func defineOwnProperty(JSKeyable, JSValue, Bool, Bool, Bool)
 
 ```cangjie
 public func defineOwnProperty(key: JSKeyable, setValue: JSValue,
@@ -6709,7 +7157,7 @@ public func defineOwnProperty(key: JSKeyable, setValue: JSValue,
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
-| setValue | [JSValue](#struct-jsvalue) | Yes | - | Target value. |
+| setValue | [JSValue](#class-jsvalue) | Yes | - | Target value. |
 | isWritable | Bool | No | true | **Named parameter.** Whether writable. |
 | isEnumerable | Bool | No | true | **Named parameter.** Whether enumerable. |
 | isConfigurable | Bool | No | true | **Named parameter.** Whether redefinable. |
@@ -6803,7 +7251,7 @@ public func getProperty(key: JSKeyable): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | Retrieved value. |
+| [JSValue](#class-jsvalue) | Retrieved value. |
 
 **Exceptions:**
 
@@ -6861,10 +7309,12 @@ public func hasProperty(key: JSKeyable): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let obj = callInfo[0].asObject(context)
     let hasA = obj.hasProperty("a")
-    println("obj has property of a: ${hasA}")
+    Hilog.info(0, "test", "obj has property of a: ${hasA}")
     obj.toJSValue()
 }
 ```
@@ -6904,6 +7354,8 @@ public func instanceOf(clazz: JSClass): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { context, callInfo =>
         callInfo.thisArg
@@ -6911,7 +7363,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let classA = context.clazz(ctor)
     let obj = classA.new().asObject(context)
     let isClassA = obj.instanceOf(classA)
-    println("obj is classA: ${isClassA}")
+    Hilog.info(0, "test", "obj is classA: ${isClassA}")
     return obj.toJSValue()
 }
 ```
@@ -6945,9 +7397,11 @@ public func keys(): Array<String>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let keys = context.global.keys()
-    println("global keys: ${keys}")
+    Hilog.info(0, "test", "global keys: ${keys}")
     context.undefined().toJSValue()
 }
 ```
@@ -6967,7 +7421,7 @@ public func setProperty(key: JSKeyable, setValue: JSValue): Unit
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
-| setValue | [JSValue](#struct-jsvalue) | Yes | - | Target value. |
+| setValue | [JSValue](#class-jsvalue) | Yes | - | Target value. |
 
 **Exceptions:**
 
@@ -7010,7 +7464,7 @@ public operator func [](key: JSKeyable): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | Retrieved value. |
+| [JSValue](#class-jsvalue) | Retrieved value. |
 
 **Exceptions:**
 
@@ -7048,7 +7502,7 @@ public operator func [](key: JSKeyable, value!: JSValue): Unit
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | key | [JSKeyable](#interface-jskeyable) | Yes | - | Target key. |
-| value | [JSValue](#struct-jsvalue) | Yes | - | **Named parameter.** Target value. |
+| value | [JSValue](#class-jsvalue) | Yes | - | **Named parameter.** Target value. |
 
 **Exceptions:**
 
@@ -7166,7 +7620,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     promise.then(context.function(onFulfilled))
     context.undefined().toJSValue()
 }
-```## class JSPromiseCapability
+```
+
+## class JSPromiseCapability
 
 ```cangjie
 public class JSPromiseCapability {
@@ -7193,7 +7649,7 @@ public func reject(value: JSValue): Unit
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [JSValue](#struct-jsvalue) | Yes | - | Exception data, typically an Error object or string. |
+| value | [JSValue](#class-jsvalue) | Yes | - | Exception data, typically an Error object or string. |
 
 **Exceptions:**
 
@@ -7231,7 +7687,7 @@ public func resolve(value: JSValue): Unit
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [JSValue](#struct-jsvalue) | Yes | - | Processing result. |
+| value | [JSValue](#class-jsvalue) | Yes | - | Processing result. |
 
 **Exceptions:**
 
@@ -7271,7 +7727,7 @@ public func toJSValue(): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -7326,6 +7782,8 @@ public class JSRuntime {
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getJSRuntimeInstance(): Unit {
     // Create JSRuntime instance
     let runtime = JSRuntime()
@@ -7422,7 +7880,7 @@ public func toJSValue(_: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -7462,10 +7920,12 @@ public func toString(): String
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let jsStr = context.string("abc")
     let value = jsStr.toString()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return jsStr.toJSValue()
 }
 ```
@@ -7517,6 +7977,8 @@ public class JSStringEx <: JSInteropType<JSStringEx> & Equatable<JSStringEx> & T
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createJSStringEx(context: JSContext): JSValue {
     // Create a JSStringEx object
     let sourceString: String = "Hello, World!"
@@ -7559,7 +8021,7 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSStringEx
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | context | [JSContext](#class-jscontext) | Yes | - | ArkTS interoperation context. |
-| input | [JSValue](#struct-jsvalue) | Yes | - | ArkTS unified type. |
+| input | [JSValue](#class-jsvalue) | Yes | - | ArkTS unified type. |
 
 **Return Value:**
 
@@ -7613,7 +8075,7 @@ public func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -7709,7 +8171,9 @@ public operator func ==(str: JSStringEx): Bool
 | Error Code ID | Error Message |
 |:------|:-------------------------------------|
 | 34300003   | Accessing reference is beyond reach. |
-| 34300004   | Thread mismatch.                     |## class JSSymbol
+| 34300004   | Thread mismatch.                     |
+
+## class JSSymbol
 
 ```cangjie
 public class JSSymbol <: JSHeapObject & JSKeyable {}
@@ -7786,7 +8250,7 @@ public func toJSValue(_: JSContext): JSValue
 
 | Type | Description |
 |:-----|:------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -7822,584 +8286,10 @@ public func toString(): String
 | 34300003          | Accessing reference is beyond reach.   |
 | 34300004          | Thread mismatch.                       |
 
-## class SharedObject
+## class JSUndefined
 
 ```cangjie
-public open class SharedObject {
-    public init()
-}
-```
-
-**Function:** Base class for Cangjie objects that can be referenced by ArkTS.
-
-**Initial Version:** 22
-
-**Example:**
-
-<!--compile-->
-```cangjie
-// Create a class inheriting from SharedObject
-class MyObject <: SharedObject {
-    let name: String = "MyObject"
-}
-
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    // Instantiate a MyObject
-    let data = MyObject()
-    // Create a JSExternal object from data
-    let external = context.external(data)
-    // Create a JSObject
-    let object = context.object()
-    // Bind external to object
-    object.attachCJObject(external)
-    // Create a publicly visible function that accesses object properties
-    object["name"] = context.function { context, callInfo =>
-        // Get this object
-        let object = callInfo.thisArg.asObject()
-        // Retrieve the bound MyObject instance from object
-        let data = object.getAttachInfo<MyObject>().getOrThrow()
-        // Convert data.name to JSString
-        let name = context.string(data.name)
-        return name.toJSValue()
-    }.toJSValue()
-    return object.toJSValue()
-}
-```
-
-### prop nativeId
-
-```cangjie
-public prop nativeId: Int64
-```
-
-**Function:** Unique identifier of the object.
-
-**Initial Version:** 22
-
-**Type:** Int64
-
-**Access:** Read-only
-
-### init()
-
-```cangjie
-public init()
-```
-
-**Function:** Creates a SharedObject instance.
-
-**Initial Version:** 22
-
-## struct JSBoolean
-
-```cangjie
-public struct JSBoolean {}
-```
-
-**Function:** ArkTS boolean type.
-
-**Initial Version:** 22
-
-### func toBool()
-
-```cangjie
-public func toBool(): Bool
-```
-
-**Function:** Converts to Cangjie Bool.
-
-**Initial Version:** 22
-
-**Return Value:**
-
-| Type | Description |
-|:-----|:------------|
-| Bool | Cangjie boolean value. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                           |
-|:-------------|:---------------------------------------|
-| 34300003          | Accessing reference is beyond reach.   |
-| 34300004          | Thread mismatch.                       |
-
-**Example:**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    let jsBool = context.boolean(true)
-    let value = jsBool.toBool()
-    println("value is ${value}")
-    return jsBool.toJSValue()
-}
-```
-
-### func toJSValue()
-
-```cangjie
-public func toJSValue(): JSValue
-```
-
-**Function:** Converts to JSValue.
-
-**Initial Version:** 22
-
-**Return Value:**
-
-| Type | Description |
-|:-----|:------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                           |
-|:-------------|:---------------------------------------|
-| 34300003          | Accessing reference is beyond reach.   |
-| 34300004          | Thread mismatch.                       |
-
-## struct JSCallInfo
-
-```cangjie
-public struct JSCallInfo {}
-```
-
-**Function:** Contains information about an ArkTS function call. Allows accessing this pointer, parameter count, and retrieving parameters by index.
-
-Each ArkTS function call stores parameter lists and related information on the ArkTS stack. JSCallInfo is a pointer to this information.
-
-Lifecycle: The JSCallInfo becomes invalid when the ArkTS function call ends.
-
-**Initial Version:** 22
-
-### prop count
-
-```cangjie
-public prop count: Int64
-```
-
-**Function:** Number of input parameters.
-
-**Initial Version:** 22
-
-**Type:** Int64
-
-**Access:** Read-only
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                           |
-|:-------------|:---------------------------------------|
-| 34300003          | Accessing reference is beyond reach.   |
-| 34300004          | Thread mismatch.                       |
-
-### prop thisArg
-
-```cangjie
-public prop thisArg: JSValue
-```
-
-**Function:** this pointer.
-
-**Initial Version:** 22
-
-**Type:** [JSValue](#struct-jsvalue)
-
-**Access:** Read-only
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                           |
-|:-------------|:---------------------------------------|
-| 34300003          | Accessing reference is beyond reach.   |
-| 34300004          | Thread mismatch.                       |
-
-### func \[](Int64)
-
-```cangjie
-public operator func[](index: Int64): JSValue
-```
-
-**Function:** Retrieves the corresponding parameter by index.
-
-**Initial Version:** 22
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:----------|:-----|:---------|:--------|:------------|
-| index | Int64 | Yes | - | Parameter index, safe range: [0, parameter count). |
-
-**Return Value:**
-
-| Type | Description |
-|:-----|:------------|
-| [JSValue](#struct-jsvalue) | Parameter value. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                          |
-|:-------------|:--------------------------------------|
-| 34300001          | The accessing index is out of range.  |
-| 34300003          | Accessing reference is beyond reach.  |
-| 34300004          | Thread mismatch.                      |
-
-**Example:**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    if (callInfo.count > 0) {
-        let firstArg = callInfo[0]
-        return firstArg
-    }
-    return context.undefined().toJSValue()
-}
-```
-
-## struct JSNull
-
-```cangjie
-public struct JSNull {}
-```
-
-**Function:** ArkTS null type.
-
-**Initial Version:** 22
-
-### func toJSValue()
-
-```cangjie
-public func toJSValue(): JSValue
-```
-
-**Function:** Converts to ArkTS unified type.
-
-**Initial Version:** 22
-
-**Return Value:**
-
-| Type | Description |
-|:-----|:------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                          |
-|:-------------|:--------------------------------------|
-| 34300003          | Accessing reference is beyond reach.  |
-| 34300004          | Thread mismatch.                      |
-
-## struct JSNumber
-
-```cangjie
-public struct JSNumber {}
-```
-
-**Function:** ArkTS number type.
-
-**Initial Version:** 22
-
-### func toFloat64()
-
-```cangjie
-public func toFloat64(): Float64
-```
-
-**Function:** Converts to Float64.
-
-**Initial Version:** 22
-
-**Return Value:**
-
-| Type | Description |
-|:-----|:------------|
-| Float64 | Cangjie floating-point number. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                          |
-|:-------------|:--------------------------------------|
-| 34300003          | Accessing reference is beyond reach.  |
-| 34300004          | Thread mismatch.                      |
-
-**Example:**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    let jsNum = context.number(1.0)
-    let value = jsNum.toFloat64()
-    println("value is ${value}")
-    return jsNum.toJSValue()
-}
-```
-
-### func toJSValue()
-
-```cangjie
-public func toJSValue(): JSValue
-```
-
-**Function:** Converts to JSValue.
-
-**Initial Version:** 22
-
-**Return Value:**
-
-| Type | Description |
-|:-----|:------------|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                          |
-|:-------------|:--------------------------------------|
-| 34300003          | Accessing reference is beyond reach.  |
-| 34300004          | Thread mismatch.                      |## struct JSType
-
-```cangjie
-public struct JSType {
-    public static let UNDEFINED: JSType = JSType(0)
-    public static let NULL: JSType = JSType(1)
-    public static let NUMBER: JSType = JSType(2)
-    public static let BOOLEAN: JSType = JSType(3)
-    public static let BIGINT: JSType = JSType(4)
-    public static let STRING: JSType = JSType(5)
-    public static let SYMBOL: JSType = JSType(6)
-    public static let OBJECT: JSType = JSType(7)
-    public static let FUNCTION: JSType = JSType(8)
-    public static let EXTERNAL: JSType = JSType(9)
-}
-```
-
-**Function:** Enumeration of ArkTS data types.
-
-In ArkTS, the `typeof` operator can enumerate the general type of data. JSType lists these types and includes the EXTERNAL type.
-
-**Initial Version:** 22
-
-**Example:**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    // Get the first argument
-    let firstArg = callInfo[0]
-    // Get the argument type
-    let typeInfo = firstArg.typeof()
-    // Check the argument type
-    if (typeInfo == JSType.STRING) {
-        Hilog.info(0, "test", "input is string: ${firstArg.toString()}")
-    } else {
-        // Get the type name
-        let typeName = typeInfo.toString()
-        Hilog.info(0, "test", "input is unexpected type: ${typeName}")
-    }
-    return context.undefined().toJSValue()
-}
-```
-
-### static let BIGINT
-
-```cangjie
-public static let BIGINT: JSType = JSType(4)
-```
-
-**Function:** bigint type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let BOOLEAN
-
-```cangjie
-public static let BOOLEAN: JSType = JSType(3)
-```
-
-**Function:** bool type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let EXTERNAL
-
-```cangjie
-public static let EXTERNAL: JSType = JSType(9)
-```
-
-**Function:** external type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let FUNCTION
-
-```cangjie
-public static let FUNCTION: JSType = JSType(8)
-```
-
-**Function:** function type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let NULL
-
-```cangjie
-public static let NULL: JSType = JSType(1)
-```
-
-**Function:** null type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let NUMBER
-
-```cangjie
-public static let NUMBER: JSType = JSType(2)
-```
-
-**Function:** number type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let OBJECT
-
-```cangjie
-public static let OBJECT: JSType = JSType(7)
-```
-
-**Function:** object type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let STRING
-
-```cangjie
-public static let STRING: JSType = JSType(5)
-```
-
-**Function:** string type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let SYMBOL
-
-```cangjie
-public static let SYMBOL: JSType = JSType(6)
-```
-
-**Function:** symbol type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### static let UNDEFINED
-
-```cangjie
-public static let UNDEFINED: JSType = JSType(0)
-```
-
-**Function:** undefined type.
-
-**Initial Version:** 22
-
-**Type:** [JSType](#struct-jstype)
-
-### func toString()
-
-```cangjie
-public func toString(): String
-```
-
-**Function:** Gets the string description of JSType.
-
-**Initial Version:** 22
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|String|String description.|
-
-### func !=(JSType)
-
-```cangjie
-public operator func !=(target: JSType): Bool
-```
-
-**Function:** Performs inequality comparison between two JSTypes.
-
-**Initial Version:** 22
-
-**Parameters:**
-
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|target|[JSType](#struct-jstype)|Yes|-|Target type for comparison.|
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the types are not equal.|
-
-### func ==(JSType)
-
-```cangjie
-public operator func ==(target: JSType): Bool
-```
-
-**Function:** Performs equality comparison between two JSTypes.
-
-**Initial Version:** 22
-
-**Parameters:**
-
-|Parameter|Type|Required|Default|Description|
-|:---|:---|:---|:---|:---|
-|target|[JSType](#struct-jstype)|Yes|-|Target type for comparison.|
-
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Bool|Returns true if the types are equal.|
-
-## struct JSUndefined
-
-```cangjie
-public struct JSUndefined {}
+public class JSUndefined {}
 ```
 
 **Function:** ArkTS null.
@@ -8420,7 +8310,7 @@ public func toJSValue(): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS unified type.|
+|[JSValue](#class-jsvalue)|ArkTS unified type.|
 
 **Exceptions:**
 
@@ -8442,10 +8332,10 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 }
 ```
 
-## struct JSValue
+## class JSValue
 
 ```cangjie
-public struct JSValue {}
+public class JSValue {}
 ```
 
 **Function:** An ArkTS variable (weakly typed, short lifecycle).
@@ -8548,7 +8438,7 @@ public func asBoolean(): JSBoolean
 
 |Type|Description|
 |:----|:----|
-|[JSBoolean](#struct-jsboolean)|An ArkTS boolean.|
+|[JSBoolean](#class-jsboolean)|An ArkTS boolean.|
 
 **Exceptions:**
 
@@ -8584,7 +8474,9 @@ public func asClass(): JSClass
 |:------|:-------------------------------------|
 | 34300003   | Accessing reference is beyond reach. |
 | 34300004   | Thread mismatch.                     |
-| 34300005   | The ArkTS data types do not match.   |### func asExternal()
+| 34300005   | The ArkTS data types do not match.   |
+
+### func asExternal()
 
 ```cangjie
 public func asExternal(): JSExternal
@@ -8650,7 +8542,7 @@ public func asNull(): JSNull
 
 |Type|Description|
 |:----|:----|
-|[JSNull](#struct-jsnull)|An ArkTS null value.|
+|[JSNull](#class-jsnull)|An ArkTS null value.|
 
 **Exceptions:**
 
@@ -8676,7 +8568,7 @@ public func asNumber(): JSNumber
 
 |Type|Description|
 |:----|:----|
-|[JSNumber](#struct-jsnumber)|An ArkTS number value.|
+|[JSNumber](#class-jsnumber)|An ArkTS number value.|
 
 **Exceptions:**
 
@@ -8806,7 +8698,7 @@ public func asUndefined(): JSUndefined
 
 |Type|Description|
 |:----|:----|
-|[JSUndefined](#struct-jsundefined)|An ArkTS undefined value.|
+|[JSUndefined](#class-jsundefined)|An ArkTS undefined value.|
 
 **Exceptions:**
 
@@ -8832,7 +8724,7 @@ public func bindObject(external: JSValue): Unit
 
 |Parameter Name|Type|Required|Default Value|Description|
 |:---|:---|:---|:---|:---|
-|external|[JSValue](#struct-jsvalue)|Yes|-|ArkTS reference to a Cangjie object.|
+|external|[JSValue](#class-jsvalue)|Yes|-|ArkTS reference to a Cangjie object.|
 
 **Exceptions:**
 
@@ -8971,7 +8863,7 @@ public func getElement(index: Int64): JSValue
 
 |Type|Description|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|An ArkTS value.|
+|[JSValue](#class-jsvalue)|An ArkTS value.|
 
 **Exceptions:**
 
@@ -8993,7 +8885,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let element = jsArr.getElement(0)
     return element
 }
-```### func getProperty(JSKeyable)
+```
+
+### func getProperty(JSKeyable)
 
 ```cangjie
 public func getProperty(key: JSKeyable): JSValue
@@ -9013,7 +8907,7 @@ public func getProperty(key: JSKeyable): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | The retrieved value |
+| [JSValue](#class-jsvalue) | The retrieved value |
 
 **Exceptions:**
 
@@ -9428,7 +9322,9 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Return the result
     return context.boolean(result).toJSValue()
 }
-```### func isPromise()
+```
+
+### func isPromise()
 
 ```cangjie
 public func isPromise(): Bool
@@ -9599,7 +9495,7 @@ public func setElement(index: Int64, value: JSValue): Unit
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |index|Int64|Yes|-|Array write index.|
-|value|[JSValue](#struct-jsvalue)|Yes|-|Value to write to the array.|
+|value|[JSValue](#class-jsvalue)|Yes|-|Value to write to the array.|
 
 **Exceptions:**
 
@@ -9640,7 +9536,7 @@ public func setProperty(key: JSKeyable, setValue: JSValue): Unit
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|Yes|-|Property key.|
-|setValue|[JSValue](#struct-jsvalue)|Yes|-|Property value.|
+|setValue|[JSValue](#class-jsvalue)|Yes|-|Property value.|
 
 **Exceptions:**
 
@@ -9679,7 +9575,7 @@ public func strictEqual(target: JSValue): Bool
 
 |Parameter|Type|Required|Default|Description|
 |:---|:---|:---|:---|:---|
-|target|[JSValue](#struct-jsvalue)|Yes|-|Target value for comparison|
+|target|[JSValue](#class-jsvalue)|Yes|-|Target value for comparison|
 
 **Return Value:**
 
@@ -9741,9 +9637,11 @@ public func toBigInt(): BigInt
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let value = callInfo[0].toBigInt()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return context.undefined().toJSValue()
 }
 ```
@@ -9778,9 +9676,11 @@ public func toBoolean(): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let value = callInfo[0].toBoolean()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return context.undefined().toJSValue()
 }
 ```
@@ -9815,9 +9715,11 @@ public func toNumber(): Float64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let value = callInfo[0].toNumber()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return context.undefined().toJSValue()
 }
 ```
@@ -9923,13 +9825,15 @@ public func typeof(): JSType
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // Get first parameter
     let arg0 = callInfo[0]
     // Get parameter type
     let valueType = arg0.typeof()
     // Print parameter type
-    println("arg type is ${valueType.toString()}")
+    Hilog.info(0, "test", "arg type is ${valueType.toString()}")
     arg0
 }
 ``````markdown
@@ -9943,70 +9847,79 @@ public type ClassRegister =(JSContext) -> JSClass
 
 **Since:** 22
 
-## type FuncRegister
+## class SharedObject
 
 ```cangjie
-public type FuncRegister =(JSContext) -> JSFunction
+public open class SharedObject {
+    public init()
+}
 ```
 
-**Function:** FuncRegister is a type alias for ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction).
+**Function:** Base class for Cangjie objects that can be referenced by ArkTS.
 
-**Since:** 22
+**Initial Version:** 22
 
-## type JSBufferFinalizer
+**Example:**
+
+<!--compile-->
+```cangjie
+// Create a class inheriting from SharedObject
+class MyObject <: SharedObject {
+    let name: String = "MyObject"
+}
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // Instantiate a MyObject
+    let data = MyObject()
+    // Create a JSExternal object from data
+    let external = context.external(data)
+    // Create a JSObject
+    let object = context.object()
+    // Bind external to object
+    object.attachCJObject(external)
+    // Create a publicly visible function that accesses object properties
+    object["name"] = context.function { context, callInfo =>
+        // Get this object
+        let object = callInfo.thisArg.asObject()
+        // Retrieve the bound MyObject instance from object
+        let data = object.getAttachInfo<MyObject>().getOrThrow()
+        // Convert data.name to JSString
+        let name = context.string(data.name)
+        return name.toJSValue()
+    }.toJSValue()
+    return object.toJSValue()
+}
+```
+
+### prop nativeId
 
 ```cangjie
-public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
+public prop nativeId: Int64
 ```
 
-**Function:** JSBufferFinalizer is a type alias for (CPointer\<Byte>) -> Unit.
+**Function:** Unique identifier of the object.
 
-**Since:** 22
+**Initial Version:** 22
 
-## type JSLambda
+**Type:** Int64
+
+**Access:** Read-only
+
+### init()
 
 ```cangjie
-public type JSLambda =(JSContext, JSCallInfo) -> JSValue
+public init()
 ```
 
-**Function:** JSLambda is a type alias for ([JSContext](#class-jscontext), [JSCallInfo](#struct-jscallinfo)) -> [JSValue](#struct-jsvalue).
+**Function:** Creates a SharedObject instance.
 
-**Since:** 22
-
-## type ModuleRegister
-
-```cangjie
-public type ModuleRegister =(JSContext, JSObject) -> Unit
-```
-
-**Function:** ModuleRegister is a type alias for ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit.
-
-**Since:** 22
-
-## type napi_env
-
-```cangjie
-public type napi_env = CPointer<Unit>
-```
-
-**Function:** napi_env is a type alias for CPointer\<Unit>.
-
-**Since:** 22
-
-## type napi_value
-
-```cangjie
-public type napi_value = CPointer<Unit>
-```
-
-**Function:** napi_value is a type alias for CPointer\<Unit>.
-
-**Since:** 22
+**Initial Version:** 22
 
 ## class Utf16String
 
 ```cangjie
 public class Utf16String <: ToString & Equatable<Utf16String> & Hashable & JSKeyable & JSInteropType<Utf16String> {
+    public static let EMPTY: Utf16String
     public init(src: String)
 }
 ```
@@ -10041,6 +9954,8 @@ public prop accessible: Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkStringAccessibility(context: JSContext): JSValue {
     let utf16Str = Utf16String("Test String")
 
@@ -10083,6 +9998,8 @@ public prop size: Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getStringSize(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello 世界")  // Contains mixed Chinese and English characters
     let size = utf16Str.size  // Total length of UTF-16 code units
@@ -10119,6 +10036,8 @@ public prop totalChars: Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getStringTotalChars(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello 世界")  // Contains mixed Chinese and English characters
     let totalChars = utf16Str.totalChars  // Total number of characters
@@ -10129,10 +10048,10 @@ func getStringTotalChars(context: JSContext): JSValue {
 }
 ```
 
-### static let empty
+### static let EMPTY
 
 ```cangjie
-public static let empty: Utf16String
+public static let EMPTY: Utf16String
 ```
 
 **Function:** An empty string.
@@ -10171,6 +10090,8 @@ public init(src: String)
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createUtf16String(context: JSContext): JSValue {
     // Create Utf16String from a string
     let utf16Str = Utf16String("Hello World")
@@ -10200,7 +10121,7 @@ public static func fromJSValue(_: JSContext, value: JSValue): Utf16String
 | Parameter | Type               | Required | Default | Description                     |
 |:----------|:-------------------|:---------|:--------|:--------------------------------|
 | _         | [JSContext](#class-jscontext) | Yes      | -       | ArkTS interoperability context. |
-| value     | [JSValue](#struct-jsvalue)    | Yes      | -       | ArkTS unified type.             |
+| value     | [JSValue](#class-jsvalue)    | Yes      | -       | ArkTS unified type.             |
 
 **Return Value:**
 
@@ -10222,6 +10143,8 @@ public static func fromJSValue(_: JSContext, value: JSValue): Utf16String
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func createFromJSValue(context: JSContext): JSValue {
     let jsString = context.string("Hello from JS")
     let jsValue = jsString.toJSValue()
@@ -10345,6 +10268,8 @@ public func count(src: Utf16String): Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func countSubstring(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World Hello Hello")
     let target = Utf16String("Hello")
@@ -10355,7 +10280,9 @@ func countSubstring(context: JSContext): JSValue {
 
     return context.number(Float64(count)).toJSValue()
 }
-```### func dispose()
+```
+
+### func dispose()
 
 ```cangjie
 public func dispose(): Unit
@@ -10369,6 +10296,8 @@ public func dispose(): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func disposeString(context: JSContext): JSValue {
     let utf16Str = Utf16String("Test String")
 
@@ -10420,6 +10349,8 @@ public func endsWith(target: Utf16String): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkEndsWith(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World")
     let target = Utf16String("World")
@@ -10460,6 +10391,8 @@ public func hashCode(): Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getStringHashCode(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World")
     let hashCode = utf16Str.hashCode()
@@ -10504,6 +10437,8 @@ public func indexOf(target: Utf16String): ?Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func findSubstring(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World Hello")
     let target = Utf16String("World")
@@ -10579,6 +10514,8 @@ public func isEmpty(): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkIsEmpty(context: JSContext): JSValue {
     let emptyStr = Utf16String("")
     let nonEmptyStr = Utf16String("Hello")
@@ -10621,6 +10558,8 @@ public func isCompressed(): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkIsCompressed(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World")
 
@@ -10666,6 +10605,8 @@ public func lastIndexOf(target: Utf16String): ?Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func findLastSubstring(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World Hello")
     let target = Utf16String("Hello")
@@ -10717,6 +10658,8 @@ public func lastIndexOf(target: Utf16String, fromIndex: Int64): ?Int64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func findLastSubstringFromIndex(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World Hello")
     let target = Utf16String("Hello")
@@ -10769,6 +10712,8 @@ public func lazySplit(separator: Utf16String, removeEmpty!: Bool = false): Itera
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func lazySplitString(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello,World,Test,Example")
     let separator = Utf16String(",")
@@ -10784,7 +10729,9 @@ func lazySplitString(context: JSContext): JSValue {
 
     return context.number(Float64(count)).toJSValue()
 }
-```### func lazySplit(Utf16String, Int64, Bool)
+```
+
+### func lazySplit(Utf16String, Int64, Bool)
 
 ```cangjie
 public func lazySplit(separator: Utf16String, maxSplit: Int64, removeEmpty!: Bool = false): Iterator<Utf16String>
@@ -10844,6 +10791,8 @@ public func lines(): Iterator<Utf16String>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func getLines(context: JSContext): JSValue {
     let utf16Str = Utf16String("Line 1\nLine 2\nLine 3")
 
@@ -10896,6 +10845,8 @@ public func replace(old: Utf16String, new: Utf16String, count!: Int64 = Int64.Ma
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func replaceString(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World Hello")
     let target = Utf16String("Hello")
@@ -10970,6 +10921,8 @@ public func split(separator: Utf16String, removeEmpty!: Bool = false): Array<Utf
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func splitString(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello,World,Test")
     let separator = Utf16String(",")
@@ -11054,6 +11007,8 @@ public func startsWith(target: Utf16String): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func checkStartsWith(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello World")
     let target = Utf16String("Hello")
@@ -11086,7 +11041,7 @@ public func toJSValue(context: JSContext): JSValue
 
 | Type | Description |
 |:----|:----|
-| [JSValue](#struct-jsvalue) | ArkTS unified type. |
+| [JSValue](#class-jsvalue) | ArkTS unified type. |
 
 **Exceptions:**
 
@@ -11101,6 +11056,8 @@ public func toJSValue(context: JSContext): JSValue
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToJSValue(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello from Utf16String")
 
@@ -11141,6 +11098,8 @@ public func toString(): String
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func convertToString(context: JSContext): JSValue {
     let utf16Str = Utf16String("Hello Utf16String")
     let stringResult = utf16Str.toString()
@@ -11209,7 +11168,9 @@ public operator func + (right: Utf16String): Utf16String
 
 | Error Code ID | Error Message |
 |:------|:-------------------------------------|
-| 3 | Accessing reference is beyond reach. |### func \<(Utf16String)
+| 3 | Accessing reference is beyond reach. |
+
+### func \<(Utf16String)
 
 ```cangjie
 public operator func < (target: Utf16String): Bool
@@ -11420,3 +11381,289 @@ public operator func [](range: Range<Int64>): Utf16String
 |:------|:-------------------------------------|
 | 34300001   | The accessing index is out of range. |
 | 34300003   | Accessing reference is beyond reach. |
+
+## struct JSType
+
+```cangjie
+public struct JSType {
+    public static let UNDEFINED: JSType = JSType(0)
+    public static let NULL: JSType = JSType(1)
+    public static let NUMBER: JSType = JSType(2)
+    public static let BOOLEAN: JSType = JSType(3)
+    public static let BIGINT: JSType = JSType(4)
+    public static let STRING: JSType = JSType(5)
+    public static let SYMBOL: JSType = JSType(6)
+    public static let OBJECT: JSType = JSType(7)
+    public static let FUNCTION: JSType = JSType(8)
+    public static let EXTERNAL: JSType = JSType(9)
+}
+```
+
+**Function:** Enumeration of ArkTS data types.
+
+In ArkTS, the `typeof` operator can enumerate the general type of data. JSType lists these types and includes the EXTERNAL type.
+
+**Initial Version:** 22
+
+**Example:**
+
+<!--compile-->
+```cangjie
+import ohos.hilog.Hilog
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // Get the first argument
+    let firstArg = callInfo[0]
+    // Get the argument type
+    let typeInfo = firstArg.typeof()
+    // Check the argument type
+    if (typeInfo == JSType.STRING) {
+        Hilog.info(0, "test", "input is string: ${firstArg.toString()}")
+    } else {
+        // Get the type name
+        let typeName = typeInfo.toString()
+        Hilog.info(0, "test", "input is unexpected type: ${typeName}")
+    }
+    return context.undefined().toJSValue()
+}
+```
+
+### static let BIGINT
+
+```cangjie
+public static let BIGINT: JSType = JSType(4)
+```
+
+**Function:** bigint type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let BOOLEAN
+
+```cangjie
+public static let BOOLEAN: JSType = JSType(3)
+```
+
+**Function:** bool type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let EXTERNAL
+
+```cangjie
+public static let EXTERNAL: JSType = JSType(9)
+```
+
+**Function:** external type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let FUNCTION
+
+```cangjie
+public static let FUNCTION: JSType = JSType(8)
+```
+
+**Function:** function type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let NULL
+
+```cangjie
+public static let NULL: JSType = JSType(1)
+```
+
+**Function:** null type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let NUMBER
+
+```cangjie
+public static let NUMBER: JSType = JSType(2)
+```
+
+**Function:** number type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let OBJECT
+
+```cangjie
+public static let OBJECT: JSType = JSType(7)
+```
+
+**Function:** object type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let STRING
+
+```cangjie
+public static let STRING: JSType = JSType(5)
+```
+
+**Function:** string type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let SYMBOL
+
+```cangjie
+public static let SYMBOL: JSType = JSType(6)
+```
+
+**Function:** symbol type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### static let UNDEFINED
+
+```cangjie
+public static let UNDEFINED: JSType = JSType(0)
+```
+
+**Function:** undefined type.
+
+**Initial Version:** 22
+
+**Type:** [JSType](#struct-jstype)
+
+### func toString()
+
+```cangjie
+public func toString(): String
+```
+
+**Function:** Gets the string description of JSType.
+
+**Initial Version:** 22
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|String|String description.|
+
+### func !=(JSType)
+
+```cangjie
+public operator func !=(target: JSType): Bool
+```
+
+**Function:** Performs inequality comparison between two JSTypes.
+
+**Initial Version:** 22
+
+**Parameters:**
+
+|Parameter|Type|Required|Default|Description|
+|:---|:---|:---|:---|:---|
+|target|[JSType](#struct-jstype)|Yes|-|Target type for comparison.|
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the types are not equal.|
+
+### func ==(JSType)
+
+```cangjie
+public operator func ==(target: JSType): Bool
+```
+
+**Function:** Performs equality comparison between two JSTypes.
+
+**Initial Version:** 22
+
+**Parameters:**
+
+|Parameter|Type|Required|Default|Description|
+|:---|:---|:---|:---|:---|
+|target|[JSType](#struct-jstype)|Yes|-|Target type for comparison.|
+
+**Return Value:**
+
+|Type|Description|
+|:----|:----|
+|Bool|Returns true if the types are equal.|
+
+## type FuncRegister
+
+```cangjie
+public type FuncRegister =(JSContext) -> JSFunction
+```
+
+**Function:** FuncRegister is a type alias for ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction).
+
+**Since:** 22
+
+## type JSBufferFinalizer
+
+```cangjie
+public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
+```
+
+**Function:** JSBufferFinalizer is a type alias for (CPointer\<Byte>) -> Unit.
+
+**Since:** 22
+
+## type JSLambda
+
+```cangjie
+public type JSLambda =(JSContext, JSCallInfo) -> JSValue
+```
+
+**Function:** JSLambda is a type alias for ([JSContext](#class-jscontext), [JSCallInfo](#class-jscallinfo)) -> [JSValue](#class-jsvalue).
+
+**Since:** 22
+
+## type ModuleRegister
+
+```cangjie
+public type ModuleRegister =(JSContext, JSObject) -> Unit
+```
+
+**Function:** ModuleRegister is a type alias for ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit.
+
+**Since:** 22
+
+## type napi_env
+
+```cangjie
+public type napi_env = CPointer<Unit>
+```
+
+**Function:** napi_env is a type alias for CPointer\<Unit>.
+
+**Since:** 22
+
+## type napi_value
+
+```cangjie
+public type napi_value = CPointer<Unit>
+```
+
+**Function:** napi_value is a type alias for CPointer\<Unit>.
+
+**Since:** 22
