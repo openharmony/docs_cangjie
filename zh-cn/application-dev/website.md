@@ -999,13 +999,13 @@
             - 错误码
                 - [位置服务错误码](reference/LocationKit/cj-errorcode-geo_location_manager.md)
     - 仓颉与ArkTS互操作库
-        - [ohos.ark_interop（ArkTS互操作库）](reference/arkinterop/cj-apis-ark_interop.md)
+        - ohos.ark_interop（ArkTS互操作库）
+            - [ArkTS互操作API](reference/arkinterop/cj-apis-ark_interop.md)
             - 错误码
                 - [ArkTS互操作库错误码](reference/arkinterop/cj-errorcode-ark_interop.md)
         - [ohos.ark_interop_helper（ArkTS互操作公共辅助功能函数）](reference/arkinterop/cj-apis-ark_interop_helper.md)
         - [ohos.business_exception（通用异常信息）](reference/arkinterop/cj-api-business_exception.md)
         - [ohos.callback_invoke（通用回调信息）](reference/arkinterop/cj-api-callback_invoke.md)
-        - [ohos.labels（通用接口标签）](reference/arkinterop/cj-api-labels.md)
     - 公共基础能力
         - 仓颉API
             - [SysCap（系统能力）](reference/arkui-cj/cj-apis-syscap.md)

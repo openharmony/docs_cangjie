@@ -22,7 +22,7 @@ sealed interface JSInteropByte {}
 
 **起始版本：** 22
 
-## interface JSInteropType
+## interface JSInteropType\<T>
 
 ```cangjie
 public interface JSInteropType<T> {
@@ -73,7 +73,7 @@ static func fromJSValue(context: JSContext, input: JSValue): T
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -117,7 +117,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 ## interface JSKeyable
 
@@ -161,7 +161,7 @@ func keyableUsage(context: JSContext): Unit {
 ## interface ToJSValue
 
 ```cangjie
-interface ToJSValue {
+public interface ToJSValue {
     func toJSValue(context: JSContext): JSValue
 }
 ```
@@ -190,7 +190,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 ## extend Int8 <: JSInteropType\<Int8>
 
@@ -215,7 +215,7 @@ func int8Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int8
+public static func fromJSValue(_: JSContext, input: JSValue): Int8
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Int8 类型。
@@ -226,8 +226,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int8
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：** Int8
 
@@ -249,7 +249,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int8
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Int8 类型对应的ArkTS类型名称。
@@ -265,7 +265,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Int8 类型数据转换为JSValue。
@@ -282,7 +282,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -316,7 +316,7 @@ func int16Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int16
+public static func fromJSValue(_: JSContext, input: JSValue): Int16
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Int16 类型。
@@ -327,8 +327,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int16
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -350,7 +350,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int16
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Int16 类型对应的ArkTS类型名称。
@@ -366,7 +366,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Int16 类型数据转换为JSValue。
@@ -383,7 +383,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -417,7 +417,7 @@ func int32Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int32
+public static func fromJSValue(_: JSContext, input: JSValue): Int32
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Int32 类型。
@@ -428,8 +428,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int32
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -451,7 +451,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int32
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Int32 类型对应的ArkTS类型名称。
@@ -467,7 +467,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Int32 类型数据转换为JSValue。
@@ -484,7 +484,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -518,7 +518,7 @@ func int64Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Int64
+public static func fromJSValue(_: JSContext, input: JSValue): Int64
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Int64 类型。
@@ -529,8 +529,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Int64
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -552,7 +552,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Int64
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Int64 类型对应的ArkTS类型名称。
@@ -568,7 +568,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Int64 类型数据转换为JSValue。
@@ -585,7 +585,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -620,7 +620,7 @@ func uint8Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt8
+public static func fromJSValue(_: JSContext, input: JSValue): UInt8
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 UInt8 类型。
@@ -631,8 +631,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt8
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -654,7 +654,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt8
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 UInt8 类型对应的ArkTS类型名称。
@@ -670,7 +670,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 UInt8 类型数据转换为JSValue。
@@ -687,7 +687,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 ## extend UInt16 <: JSInteropType\<UInt16>
 
@@ -712,7 +712,7 @@ func uint16Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt16
+public static func fromJSValue(_: JSContext, input: JSValue): UInt16
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 UInt16 类型。
@@ -723,8 +723,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt16
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -746,7 +746,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt16
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 UInt16 类型对应的ArkTS类型名称。
@@ -762,7 +762,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 UInt16 类型数据转换为JSValue。
@@ -779,7 +779,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -813,7 +813,7 @@ func uint32Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt32
+public static func fromJSValue(_: JSContext, input: JSValue): UInt32
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 UInt32 类型。
@@ -824,8 +824,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt32
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -847,7 +847,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt32
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 UInt32 类型对应的ArkTS类型名称。
@@ -863,7 +863,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 UInt32 类型数据转换为JSValue。
@@ -880,7 +880,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -914,7 +914,7 @@ func uint64Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): UInt64
+public static func fromJSValue(_: JSContext, input: JSValue): UInt64
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 UInt64 类型。
@@ -925,8 +925,8 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt64
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -948,7 +948,7 @@ static func fromJSValue(context: JSContext, input: JSValue): UInt64
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 UInt64 类型对应的ArkTS类型名称。
@@ -964,7 +964,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 UInt64 类型数据转换为JSValue。
@@ -981,7 +981,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1016,7 +1016,7 @@ func float16Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Float16
+public static func fromJSValue(_: JSContext, input: JSValue): Float16
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Float16 类型。
@@ -1027,8 +1027,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Float16
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1050,7 +1050,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Float16
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Float16 类型对应的ArkTS类型名称。
@@ -1066,7 +1066,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Float16 类型数据转换为JSValue。
@@ -1083,7 +1083,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1117,7 +1117,7 @@ func float32Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Float32
+public static func fromJSValue(_: JSContext, input: JSValue): Float32
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Float32 类型。
@@ -1128,8 +1128,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Float32
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1151,7 +1151,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Float32
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Float32 类型对应的ArkTS类型名称。
@@ -1167,7 +1167,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Float32 类型数据转换为JSValue。
@@ -1184,7 +1184,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1218,7 +1218,7 @@ func float64Translate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Float64
+public static func fromJSValue(_: JSContext, input: JSValue): Float64
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Float64 类型。
@@ -1229,8 +1229,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Float64
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1251,7 +1251,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Float64
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Float64 类型对应的ArkTS类型名称。
@@ -1267,7 +1267,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Float64 类型数据转换为JSValue。
@@ -1284,7 +1284,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1318,7 +1318,7 @@ func boolTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Bool
+public static func fromJSValue(_: JSContext, input: JSValue): Bool
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Bool 类型。
@@ -1329,8 +1329,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1341,7 +1341,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Bool
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Bool 类型对应的ArkTS类型名称。
@@ -1367,7 +1367,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Bool 类型数据转换为JSValue。
@@ -1384,7 +1384,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1418,7 +1418,7 @@ func stringTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(_: JSContext, input: JSValue): String
+public static func fromJSValue(_: JSContext, input: JSValue): String
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 String 类型。
@@ -1430,7 +1430,7 @@ static func fromJSValue(_: JSContext, input: JSValue): String
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1451,7 +1451,7 @@ static func fromJSValue(_: JSContext, input: JSValue): String
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 String 类型对应的ArkTS类型名称。
@@ -1487,7 +1487,7 @@ func stringTranslate(context: JSContext): Unit {
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 String 类型数据转换为JSValue。
@@ -1504,7 +1504,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1536,7 +1536,7 @@ func unitTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Unit
+public static func fromJSValue(_: JSContext, _: JSValue): Unit
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Bool 类型。
@@ -1547,8 +1547,8 @@ static func fromJSValue(context: JSContext, input: JSValue): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
+|_|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1559,7 +1559,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Unit
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Unit 类型对应的ArkTS类型名称。
@@ -1575,7 +1575,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Unit 类型数据转换为JSValue。
@@ -1592,7 +1592,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1628,7 +1628,7 @@ func optionTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(context: JSContext, input: JSValue): Option<T>
+public static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Option\<T> 类型。
@@ -1640,7 +1640,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1660,7 +1660,7 @@ static func fromJSValue(context: JSContext, input: JSValue): Option<T>
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Option\<T> 类型对应的ArkTS类型名称。
@@ -1676,7 +1676,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Option\<T> 类型数据转换为JSValue。
@@ -1693,7 +1693,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1727,7 +1727,7 @@ func arrayTranslate(context: JSContext): Unit {
 ### static func fromJSValue(JSContext, JSValue)
 
 ```cangjie
-static func fromJSValue(_: JSContext, input: JSValue): Array<T>
+public static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 ```
 
 **功能：** 将 JSValue 类型数据转换为相应的 Array\<T> 类型。
@@ -1739,7 +1739,7 @@ static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -1760,7 +1760,7 @@ static func fromJSValue(_: JSContext, input: JSValue): Array<T>
 ### static func toArktsType()
 
 ```cangjie
-static func toArktsType(): String
+public static func toArktsType(): String
 ```
 
 **功能：** 获取仓颉 Array\<T> 类型对应的ArkTS类型名称。
@@ -1776,7 +1776,7 @@ static func toArktsType(): String
 ### func toJSValue(JSContext)
 
 ```cangjie
-func toJSValue(context: JSContext): JSValue
+public func toJSValue(context: JSContext): JSValue
 ```
 
 **功能：** 将仓颉 Array\<T> 类型数据转换为JSValue。
@@ -1793,7 +1793,7 @@ func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1861,7 +1861,7 @@ public operator func[](index: Int64): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -1899,7 +1899,7 @@ public operator func[](index: Int64, value!: JSValue): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |index|Int64|是|-|写入索引。|
-|value|[JSValue](#struct-jsvalue)|是|-| **命名参数。** 写入值。|
+|value|[JSValue](#class-jsvalue)|是|-| **命名参数。** 写入值。|
 
 **异常：**
 
@@ -2058,7 +2058,7 @@ func readBufferBytes(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toArrayBufferJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 ArrayBuffer 的 JSValue 。
+**功能：** 返回 ArkTS 的 ArrayBuffer 的 JSValue。
 
 **起始版本：** 22
 
@@ -2066,7 +2066,7 @@ public func toArrayBufferJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2136,7 +2136,7 @@ func createFloat32Array(context: JSContext): Unit {
 public func toFloat32ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Float32Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Float32Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2144,7 +2144,7 @@ public func toFloat32ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2216,7 +2216,7 @@ func convertToFloat64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toFloat64ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Float64Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Float64Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2224,7 +2224,7 @@ public func toFloat64ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2293,7 +2293,7 @@ func convertToInt16Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toInt16ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Int16Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Int16Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2301,7 +2301,7 @@ public func toInt16ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2370,7 +2370,7 @@ func convertToInt32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toInt32ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Int32Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Int32Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2378,7 +2378,7 @@ public func toInt32ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2447,7 +2447,7 @@ func convertToInt64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toInt64ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 BigInt64Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 BigInt64Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2455,7 +2455,7 @@ public func toInt64ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2523,7 +2523,7 @@ func convertToInt8Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toInt8ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Int8Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Int8Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2531,7 +2531,7 @@ public func toInt8ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2600,7 +2600,7 @@ func convertToUInt16Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toUInt16ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Uint16Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Uint16Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2608,7 +2608,7 @@ public func toUInt16ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2677,7 +2677,7 @@ func convertToUInt32Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toUInt32ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Uint32Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Uint32Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2685,7 +2685,7 @@ public func toUInt32ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2754,7 +2754,7 @@ func convertToUInt64Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toUInt64ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 BigUint64Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 BigUint64Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2762,7 +2762,7 @@ public func toUInt64ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2830,7 +2830,7 @@ func convertToUInt8Array(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toUInt8ArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Uint8Array 的 JSValue 。
+**功能：** 返回 ArkTS 的 Uint8Array 的 JSValue。
 
 **起始版本：** 22
 
@@ -2838,7 +2838,7 @@ public func toUInt8ArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2867,7 +2867,7 @@ func getUInt8ArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toUInt8ClampedArrayJSValue(): JSValue
 ```
 
-**功能：** 返回 ArkTS 的 Uint8ClampedArray 的 JSValue 。
+**功能：** 返回 ArkTS 的 Uint8ClampedArray 的 JSValue。
 
 **起始版本：** 22
 
@@ -2875,7 +2875,7 @@ public func toUInt8ClampedArrayJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -2898,10 +2898,10 @@ func getUInt8ClampedArrayJSValue(context: JSContext, callInfo: JSCallInfo): JSVa
 }
 ```
 
-## class JSArrayEx
+## class JSArrayEx\<T> where T <: JSInteropType\<T>
 
 ```cangjie
-public class JSArrayEx<T> <: JSInteropType<JSArrayEx<T>> where T <: JSInteropType <T> {
+public class JSArrayEx<T> <: JSInteropType<JSArrayEx<T>> where T <: JSInteropType<T> {
     public init(arr: Array<T>)
 }
 ```
@@ -2968,7 +2968,7 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSArrayEx<T>
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -3298,7 +3298,7 @@ public func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -3459,6 +3459,185 @@ func convertToBigInt(context: JSContext, callInfo: JSCallInfo): JSValue {
 }
 ```
 
+## class JSBoolean
+
+```cangjie
+public class JSBoolean {}
+```
+
+**功能：** ArkTS boolean。
+
+**起始版本：** 22
+
+### func toBool()
+
+```cangjie
+public func toBool(): Bool
+```
+
+**功能：** 转换为仓颉 Bool。
+
+**起始版本：** 22
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Bool|仓颉Bool值。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                 |
+|:------|:-------------------------------------|
+| 34300003   | Accessing reference is beyond reach. |
+| 34300004   | Thread mismatch.                     |
+
+**示例：**
+
+<!--compile-->
+```cangjie
+import ohos.hilog.Hilog
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let jsBool = context.boolean(true)
+    let value = jsBool.toBool()
+    Hilog.info(0, "test", "value is ${value}")
+    return jsBool.toJSValue()
+}
+```
+
+### func toJSValue()
+
+```cangjie
+public func toJSValue(): JSValue
+```
+
+**功能：** 转换为 JSValue。
+
+**起始版本：** 22
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                 |
+|:------|:-------------------------------------|
+| 34300003   | Accessing reference is beyond reach. |
+| 34300004   | Thread mismatch.                     |
+
+## class JSCallInfo
+
+```cangjie
+public class JSCallInfo {}
+```
+
+**功能：** 一次ArkTS函数调用的相关信息。可以获取this指针、获取参数数量、按索引读取参数。
+
+每次ArkTS函数调用会在ArkTS栈上保存参数列表和其他相关信息，JSCallInfo是一个指向这些信息的指针。
+
+生命周期：本次ArkTS函数调用结束这个JSCallInfo就会失效。
+
+**起始版本：** 22
+
+### prop count
+
+```cangjie
+public prop count: Int64
+```
+
+**功能：** 入参数量。
+
+**起始版本：** 22
+
+**类型：** Int64
+
+**读写能力：** 只读
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                 |
+|:------|:-------------------------------------|
+| 34300003   | Accessing reference is beyond reach. |
+| 34300004   | Thread mismatch.                     |
+
+### prop thisArg
+
+```cangjie
+public prop thisArg: JSValue
+```
+
+**功能：** this 指针。
+
+**起始版本：** 22
+
+**类型：** [JSValue](#class-jsvalue)
+
+**读写能力：** 只读
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                 |
+|:------|:-------------------------------------|
+| 34300003   | Accessing reference is beyond reach. |
+| 34300004   | Thread mismatch.                     |
+
+### func \[](Int64)
+
+```cangjie
+public operator func[](index: Int64): JSValue
+```
+
+**功能：** 通过索引获取对应的参数。
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|index|Int64|是|-|入参索引，安全范围：[0, 入参数量)。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|[JSValue](#class-jsvalue)|入参的值。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                  |
+|:------|:--------------------------------------|
+| 1     | The accessing index is out of range.  |
+| 34300003   | Accessing reference is beyond reach.  |
+| 34300004   | Thread mismatch.                      |
+
+**示例：**
+
+<!--compile-->
+```cangjie
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    if (callInfo.count > 0) {
+        let firstArg = callInfo[0]
+        return firstArg
+    }
+    return context.undefined().toJSValue()
+}
+```
+
 ## class JSClass
 
 ```cangjie
@@ -3546,6 +3725,8 @@ public func addAccessor(key: JSKeyable, getter!: ?JSFunction = None, setter!: ?J
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3557,7 +3738,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addAccessor("classKind", getter: context.function(getClassKind))
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3594,6 +3775,8 @@ public func addAccessor(key: JSKeyable, getter!: ?JSLambda = None, setter!: ?JSL
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3605,7 +3788,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addAccessor("classKind", getter: getClassKind)
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3641,6 +3824,8 @@ public func addMethod(key: JSKeyable, method: JSFunction): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3652,7 +3837,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addMethod("getClassKind", context.function(getClassKind))
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3688,6 +3873,8 @@ public func addMethod(key: JSKeyable, method: JSLambda): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3699,7 +3886,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addMethod("getClassKind", getClassKind)
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3719,7 +3906,7 @@ public func addProperty(key: JSKeyable, value: JSValue): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|是|-|属性键。|
-|value|[JSValue](#struct-jsvalue)|是|-|属性值。|
+|value|[JSValue](#class-jsvalue)|是|-|属性值。|
 
 **异常：**
 
@@ -3735,6 +3922,8 @@ public func addProperty(key: JSKeyable, value: JSValue): Unit
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { _, callInfo =>
         return callInfo.thisArg
@@ -3743,7 +3932,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     clazz.addProperty("classKind", context.string("CustomClass").toJSValue())
     let obj = clazz.new()
     let classKind = obj.getProperty(context, "classKind").toString(context)
-    println("class kind is ${classKind}")
+    Hilog.info(0, "test", "class kind is ${classKind}")
     return obj
 }
 ```
@@ -3762,7 +3951,7 @@ public func new(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|new 出来的实例。|
+|[JSValue](#class-jsvalue)|new 出来的实例。|
 
 **异常：**
 
@@ -3802,13 +3991,13 @@ public func new(arg: JSValue): JSValue
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|arg|[JSValue](#struct-jsvalue)|是|-|new 的入参。|
+|arg|[JSValue](#class-jsvalue)|是|-|new 的入参。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|实例化出来的新对象。|
+|[JSValue](#class-jsvalue)|实例化出来的新对象。|
 
 **异常：**
 
@@ -3852,13 +4041,13 @@ public func new(args: Array<JSValue>): JSValue
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|args|Array\<[JSValue](#struct-jsvalue)>|是|-|new 的参数列表。|
+|args|Array\<[JSValue](#class-jsvalue)>|是|-|new 的参数列表。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|实例化出来的新对象。|
+|[JSValue](#class-jsvalue)|实例化出来的新对象。|
 
 **异常：**
 
@@ -3995,7 +4184,7 @@ public func array(arr: Array<JSValue>): JSArray
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|arr|Array\<[JSValue](#struct-jsvalue)>|是|-|ArkTS 数组的引用。|
+|arr|Array\<[JSValue](#class-jsvalue)>|是|-|ArkTS 数组的引用。|
 
 **返回值：**
 
@@ -4696,7 +4885,7 @@ public func boolean(value: Bool): JSBoolean
 
 |类型|说明|
 |:----|:----|
-|[JSBoolean](#struct-jsboolean)|ArkTS 布尔值。|
+|[JSBoolean](#class-jsboolean)|ArkTS 布尔值。|
 
 **异常：**
 
@@ -4936,7 +5125,7 @@ public func null(): JSNull
 
 |类型|说明|
 |:----|:----|
-|[JSNull](#struct-jsnull)|返回 ArkTS null。|
+|[JSNull](#class-jsnull)|返回 ArkTS null。|
 
 **异常：**
 
@@ -4977,7 +5166,7 @@ public func number(value: Float64): JSNumber
 
 |类型|说明|
 |:----|:----|
-|[JSNumber](#struct-jsnumber)|ArkTS number。|
+|[JSNumber](#class-jsnumber)|ArkTS number。|
 
 **异常：**
 
@@ -5018,7 +5207,7 @@ public func number(value: Int32): JSNumber
 
 |类型|说明|
 |:----|:----|
-|[JSNumber](#struct-jsnumber)|ArkTS number。|
+|[JSNumber](#class-jsnumber)|ArkTS number。|
 
 **异常：**
 
@@ -5163,7 +5352,7 @@ public func requireSystemNativeModule(moduleName: String, prefix!: ?String = Non
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|模块返回值，一般是一个对象，如果加载出错将会返回 undefined|
+|[JSValue](#class-jsvalue)|模块返回值，一般是一个对象，如果加载出错将会返回 undefined|
 
 **异常：**
 
@@ -5327,7 +5516,7 @@ public func undefined(): JSUndefined
 
 |类型|说明|
 |:----|:----|
-|[JSUndefined](#struct-jsundefined)|返回 ArkTS undefined。|
+|[JSUndefined](#class-jsundefined)|返回 ArkTS undefined。|
 
 **异常：**
 
@@ -5368,7 +5557,7 @@ public func requireArkModule(src: String): JSValue
 
 | 类型                         | 说明                     |
 |:---------------------------|:-----------------------|
-| [JSValue](#struct-jsvalue) | 返回 ArkTS 模块的JSValue。 |
+| [JSValue](#class-jsvalue) | 返回 ArkTS 模块的JSValue。 |
 
 **异常：**
 
@@ -5532,13 +5721,13 @@ public func call(thisArg!: JSValue = context.undefined().toJSValue()): JSValue
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|thisArg|[JSValue](#struct-jsvalue)|否|context.undefined().toJSValue()| **命名参数。** this 指针。|
+|thisArg|[JSValue](#class-jsvalue)|否|context.undefined().toJSValue()| **命名参数。** this 指针。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|函数调用返回值。|
+|[JSValue](#class-jsvalue)|函数调用返回值。|
 
 **异常：**
 
@@ -5574,14 +5763,14 @@ public func call(arg: JSValue, thisArg!: JSValue = context.undefined().toJSValue
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|arg|[JSValue](#struct-jsvalue)|是|-|ArkTS 函数调用入参。|
-|thisArg|[JSValue](#struct-jsvalue)|否|context.undefined().toJSValue()| **命名参数。** ArkTS函数调用 this 指针。|
+|arg|[JSValue](#class-jsvalue)|是|-|ArkTS 函数调用入参。|
+|thisArg|[JSValue](#class-jsvalue)|否|context.undefined().toJSValue()| **命名参数。** ArkTS函数调用 this 指针。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|函数调用返回值。|
+|[JSValue](#class-jsvalue)|函数调用返回值。|
 
 **异常：**
 
@@ -5618,14 +5807,14 @@ public func call(args: Array<JSValue>, thisArg!: JSValue = context.undefined().t
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|args|Array\<[JSValue](#struct-jsvalue)>|是|-|参数列表。|
-|thisArg|[JSValue](#struct-jsvalue)|否|context.undefined().toJSValue()| **命名参数。** this 指针。|
+|args|Array\<[JSValue](#class-jsvalue)>|是|-|参数列表。|
+|thisArg|[JSValue](#class-jsvalue)|否|context.undefined().toJSValue()| **命名参数。** this 指针。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|函数调用返回值。|
+|[JSValue](#class-jsvalue)|函数调用返回值。|
 
 **异常：**
 
@@ -5649,10 +5838,10 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 }
 ```
 
-## class JSHashMapEx
+## class JSHashMapEx<K, V> where K <: JSKeyable & Hashable & Equatable\<K> & JSInteropType\<K>, V <: JSInteropType\<V>
 
 ```cangjie
-public class JSHashMapEx<K, V> <: JSInteropType<JSHashMapEx<K,V>> where K <: JSKeyable & Hashable & Equatable <K> & JSInteropType <K>V <: JSInteropType <V> {
+public class JSHashMapEx<K, V> <: JSInteropType<JSHashMapEx<K, V>> where K <: JSKeyable & Hashable & Equatable<K> & JSInteropType<K>, V <: JSInteropType<V> {
     public init(map: HashMap<K, V>)
     public init()
 }
@@ -5764,7 +5953,7 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSHashMapEx<
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -5923,7 +6112,7 @@ public func delete(key: K): Bool
 
 |类型|说明|
 |:----|:----|
-|Bool|如果删除之前 key 存在且删除成功，则返回 true ，不存在则返回 false 。|
+|Bool|如果删除之前 key 存在且删除成功，则返回 true，不存在则返回 false。|
 
 **异常：**
 
@@ -6242,7 +6431,7 @@ public func setIfAbsent(key: K, value: V): Bool
 
 |类型|说明|
 |:----|:----|
-|Bool|如果赋值之前 key 存在，则返回 false ，否则返回 true 。|
+|Bool|如果赋值之前 key 存在，则返回 false，否则返回 true。|
 
 **异常：**
 
@@ -6298,7 +6487,7 @@ public func toJSValue(c: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -6428,7 +6617,7 @@ func setIndexOperatorHashMapEx(context: JSContext): JSValue {
 ## class JSHeapObject
 
 ```cangjie
-sealed abstract class JSHeapObject {}
+abstract sealed class JSHeapObject {}
 ```
 
 **功能：** 一个 ArkTS 运行时对象的强引用（但不会超过 ArkTS 运行时的生命周期，也不会阻止 ArkTS 运行时的销毁）。可以转换为JSValue。
@@ -6443,7 +6632,7 @@ sealed abstract class JSHeapObject {}
 public func toJSValue(): JSValue
 ```
 
-**功能：** 转换为 JSValue 。
+**功能：** 转换为 JSValue。
 
 **起始版本：** 22
 
@@ -6451,7 +6640,7 @@ public func toJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -6609,6 +6798,115 @@ class Main {
 }
 ```
 
+## class JSNull
+
+```cangjie
+public class JSNull {}
+```
+
+**功能：** ArkTS null。
+
+**起始版本：** 22
+
+### func toJSValue()
+
+```cangjie
+public func toJSValue(): JSValue
+```
+
+**功能：** 转换为 ArkTS 统一类型。
+
+**起始版本：** 22
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                  |
+|:------|:--------------------------------------|
+| 34300003   | Accessing reference is beyond reach.  |
+| 34300004   | Thread mismatch.                      |
+
+## class JSNumber
+
+```cangjie
+public class JSNumber {}
+```
+
+**功能：** ArkTS number。
+
+**起始版本：** 22
+
+### func toFloat64()
+
+```cangjie
+public func toFloat64(): Float64
+```
+
+**功能：** 转换为 Float64。
+
+**起始版本：** 22
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Float64|仓颉浮点数。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                  |
+|:------|:--------------------------------------|
+| 34300003   | Accessing reference is beyond reach.  |
+| 34300004   | Thread mismatch.                      |
+
+**示例：**
+
+<!--compile-->
+```cangjie
+import ohos.hilog.Hilog
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    let jsNum = context.number(1.0)
+    let value = jsNum.toFloat64()
+    Hilog.info(0, "test", "value is ${value}")
+    return jsNum.toJSValue()
+}
+```
+
+### func toJSValue()
+
+```cangjie
+public func toJSValue(): JSValue
+```
+
+**功能：** 转换为 JSValue。
+
+**起始版本：** 22
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
+
+**异常：**
+
+- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
+
+| 错误码ID | 错误信息                                  |
+|:------|:--------------------------------------|
+| 34300003   | Accessing reference is beyond reach.  |
+| 34300004   | Thread mismatch.                      |
+
 ## class JSObject
 
 ```cangjie
@@ -6709,13 +7007,13 @@ public func callMethod(key: JSKeyable, args: Array<JSValue>): JSValue
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|是|-|目标方法名。|
-|args|Array\<[JSValue](#struct-jsvalue)>|是|-|调用的参数列表。|
+|args|Array\<[JSValue](#class-jsvalue)>|是|-|调用的参数列表。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|方法调用返回值。|
+|[JSValue](#class-jsvalue)|方法调用返回值。|
 
 **异常：**
 
@@ -6746,7 +7044,7 @@ public func defineOwnAccessor(key: JSKeyable, getter!:? JSFunction = None, sette
 ): Bool
 ```
 
-**功能：** 为当前对象定义 accessors 。
+**功能：** 为当前对象定义 accessors。
 
 **起始版本：** 22
 
@@ -6799,7 +7097,7 @@ public func defineOwnAccessor(key: JSKeyable, getter!:? JSLambda = None, setter!
 ): Bool
 ```
 
-**功能：** 为当前对象定义 accessors 。
+**功能：** 为当前对象定义 accessors。
 
 **起始版本：** 22
 
@@ -6862,7 +7160,7 @@ public func defineOwnProperty(key: JSKeyable, setValue: JSValue,
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|是|-|目标键。|
-|setValue|[JSValue](#struct-jsvalue)|是|-|目标值。|
+|setValue|[JSValue](#class-jsvalue)|是|-|目标值。|
 |isWritable|Bool|否|true| **命名参数。** 是否可写。|
 |isEnumerable|Bool|否|true| **命名参数。** 是否可枚举。|
 |isConfigurable|Bool|否|true| **命名参数。** 是否可重新定义。|
@@ -6956,7 +7254,7 @@ public func getProperty(key: JSKeyable): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|获得的值。|
+|[JSValue](#class-jsvalue)|获得的值。|
 
 **异常：**
 
@@ -7014,10 +7312,12 @@ public func hasProperty(key: JSKeyable): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let obj = callInfo[0].asObject(context)
     let hasA = obj.hasProperty("a")
-    println("obj has property of a: ${hasA}")
+    Hilog.info(0, "test", "obj has property of a: ${hasA}")
     obj.toJSValue()
 }
 ```
@@ -7057,6 +7357,8 @@ public func instanceOf(clazz: JSClass): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let ctor: JSLambda = { context, callInfo =>
         callInfo.thisArg
@@ -7064,7 +7366,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let classA = context.clazz(ctor)
     let obj = classA.new().asObject(context)
     let isClassA = obj.instanceOf(classA)
-    println("obj is classA: ${isClassA}")
+    Hilog.info(0, "test", "obj is classA: ${isClassA}")
     return obj.toJSValue()
 }
 ```
@@ -7098,9 +7400,11 @@ public func keys(): Array<String>
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let keys = context.global.keys()
-    println("global keys: ${keys}")
+    Hilog.info(0, "test", "global keys: ${keys}")
     context.undefined().toJSValue()
 }
 ```
@@ -7120,7 +7424,7 @@ public func setProperty(key: JSKeyable, setValue: JSValue): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|是|-|目标键。|
-|setValue|[JSValue](#struct-jsvalue)|是|-|目标值。|
+|setValue|[JSValue](#class-jsvalue)|是|-|目标值。|
 
 **异常：**
 
@@ -7163,7 +7467,7 @@ public operator func [](key: JSKeyable): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|取到的值。|
+|[JSValue](#class-jsvalue)|取到的值。|
 
 **异常：**
 
@@ -7201,7 +7505,7 @@ public operator func [](key: JSKeyable, value!: JSValue): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|是|-|目标键。|
-|value|[JSValue](#struct-jsvalue)|是|-| **命名参数。** 目标值。|
+|value|[JSValue](#class-jsvalue)|是|-| **命名参数。** 目标值。|
 
 **异常：**
 
@@ -7348,7 +7652,7 @@ public func reject(value: JSValue): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|[JSValue](#struct-jsvalue)|是|-|异常数据，一般是 Error 对象或 string。|
+|value|[JSValue](#class-jsvalue)|是|-|异常数据，一般是 Error 对象或 string。|
 
 **异常：**
 
@@ -7386,7 +7690,7 @@ public func resolve(value: JSValue): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|value|[JSValue](#struct-jsvalue)|是|-|处理结果。|
+|value|[JSValue](#class-jsvalue)|是|-|处理结果。|
 
 **异常：**
 
@@ -7426,7 +7730,7 @@ public func toJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS统一类型。|
 
 **异常：**
 
@@ -7565,7 +7869,7 @@ public class JSString <: JSHeapObject & ToString & JSKeyable {}
 public func toJSValue(_: JSContext): JSValue
 ```
 
-**功能：** 转换为 JSValue 。
+**功能：** 转换为 JSValue。
 
 **起始版本：** 22
 
@@ -7579,7 +7883,7 @@ public func toJSValue(_: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -7619,10 +7923,12 @@ public func toString(): String
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let jsStr = context.string("abc")
     let value = jsStr.toString()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return jsStr.toJSValue()
 }
 ```
@@ -7718,7 +8024,7 @@ public static func fromJSValue(context: JSContext, input: JSValue): JSStringEx
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
-|input|[JSValue](#struct-jsvalue)|是|-|ArkTS 统一类型。|
+|input|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
 **返回值：**
 
@@ -7772,7 +8078,7 @@ public func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -7947,7 +8253,7 @@ public func toJSValue(_: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -7983,255 +8289,10 @@ public func toString(): String
 | 34300003   | Accessing reference is beyond reach. |
 | 34300004   | Thread mismatch.                     |
 
-## class SharedObject
+## class JSUndefined
 
 ```cangjie
-public open class SharedObject {
-    public init()
-}
-```
-
-**功能：** 可以被 ArkTS 引用的仓颉对象的基类。
-
-**起始版本：** 22
-
-**示例：**
-
-<!--compile-->
-```cangjie
-// 创建一个类继承 SharedObject
-class MyObject <: SharedObject {
-    let name: String = "MyObject"
-}
-
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    // 实例化一个 MyObject 对象
-    let data = MyObject()
-    // 从 data 创建一个 JSExternal 对象
-    let external = context.external(data)
-    // 创建一个 JSObject 对象
-    let object = context.object()
-    // 绑定 external 到 object
-    object.attachCJObject(external)
-    // 创建一个对外可见函数，在这个函数中，通过object访问对象属性
-    object["name"] = context.function { context, callInfo =>
-        // 获取 this 对象
-        let object = callInfo.thisArg.asObject()
-        // 从 object 中获取绑定的 MyObject 实例
-        let external = object.getAttachInfo().getOrThrow()
-        // 把 data.name 转换为 JSString
-        let name = context.string(external.cast<MyObject>().getOrThrow().name)
-        return name.toJSValue()
-    }.toJSValue()
-    return object.toJSValue()
-}
-```
-
-### prop nativeId
-
-```cangjie
-public prop nativeId: Int64
-```
-
-**功能：** 对象唯一标识。
-
-**起始版本：** 22
-
-**类型：** Int64
-
-**读写能力：** 只读
-
-### init()
-
-```cangjie
-public init()
-```
-
-**功能：** 创建一个 SharedObject 对象。
-
-**起始版本：** 22
-
-## struct JSBoolean
-
-```cangjie
-public struct JSBoolean {}
-```
-
-**功能：** ArkTS boolean。
-
-**起始版本：** 22
-
-### func toBool()
-
-```cangjie
-public func toBool(): Bool
-```
-
-**功能：** 转换为仓颉 Bool。
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Bool|仓颉Bool值。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                 |
-|:------|:-------------------------------------|
-| 34300003   | Accessing reference is beyond reach. |
-| 34300004   | Thread mismatch.                     |
-
-**示例：**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    let jsBool = context.boolean(true)
-    let value = jsBool.toBool()
-    println("value is ${value}")
-    return jsBool.toJSValue()
-}
-```
-
-### func toJSValue()
-
-```cangjie
-public func toJSValue(): JSValue
-```
-
-**功能：** 转换为 JSValue 。
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                 |
-|:------|:-------------------------------------|
-| 34300003   | Accessing reference is beyond reach. |
-| 34300004   | Thread mismatch.                     |
-
-## struct JSCallInfo
-
-```cangjie
-public struct JSCallInfo {}
-```
-
-**功能：** 一次ArkTS函数调用的相关信息。可以获取this指针、获取参数数量、按索引读取参数。
-
-每次ArkTS函数调用会在ArkTS栈上保存参数列表和其他相关信息，JSCallInfo是一个指向这些信息的指针。
-
-生命周期：本次ArkTS函数调用结束这个JSCallInfo就会失效。
-
-**起始版本：** 22
-
-### prop count
-
-```cangjie
-public prop count: Int64
-```
-
-**功能：** 入参数量。
-
-**起始版本：** 22
-
-**类型：** Int64
-
-**读写能力：** 只读
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                 |
-|:------|:-------------------------------------|
-| 34300003   | Accessing reference is beyond reach. |
-| 34300004   | Thread mismatch.                     |
-
-### prop thisArg
-
-```cangjie
-public prop thisArg: JSValue
-```
-
-**功能：** this 指针。
-
-**起始版本：** 22
-
-**类型：** [JSValue](#struct-jsvalue)
-
-**读写能力：** 只读
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                 |
-|:------|:-------------------------------------|
-| 34300003   | Accessing reference is beyond reach. |
-| 34300004   | Thread mismatch.                     |
-
-### func \[](Int64)
-
-```cangjie
-public operator func[](index: Int64): JSValue
-```
-
-**功能：** 通过索引获取对应的参数。
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|index|Int64|是|-|入参索引，安全范围：[0, 入参数量)。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|入参的值。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                  |
-|:------|:--------------------------------------|
-| 1     | The accessing index is out of range.  |
-| 34300003   | Accessing reference is beyond reach.  |
-| 34300004   | Thread mismatch.                      |
-
-**示例：**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    if (callInfo.count > 0) {
-        let firstArg = callInfo[0]
-        return firstArg
-    }
-    return context.undefined().toJSValue()
-}
-```
-
-## struct JSNull
-
-```cangjie
-public struct JSNull {}
+public class JSUndefined {}
 ```
 
 **功能：** ArkTS null。
@@ -8244,7 +8305,7 @@ public struct JSNull {}
 public func toJSValue(): JSValue
 ```
 
-**功能：** 转为为 ArkTS 统一类型。
+**功能：** 转换为 JSValue。
 
 **起始版本：** 22
 
@@ -8252,340 +8313,7 @@ public func toJSValue(): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                  |
-|:------|:--------------------------------------|
-| 34300003   | Accessing reference is beyond reach.  |
-| 34300004   | Thread mismatch.                      |
-
-## struct JSNumber
-
-```cangjie
-public struct JSNumber {}
-```
-
-**功能：** ArkTS number。
-
-**起始版本：** 22
-
-### func toFloat64()
-
-```cangjie
-public func toFloat64(): Float64
-```
-
-**功能：** 转换为 Float64 。
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Float64|仓颉浮点数。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                  |
-|:------|:--------------------------------------|
-| 34300003   | Accessing reference is beyond reach.  |
-| 34300004   | Thread mismatch.                      |
-
-**示例：**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    let jsNum = context.number(1.0)
-    let value = jsNum.toFloat64()
-    println("value is ${value}")
-    return jsNum.toJSValue()
-}
-```
-
-### func toJSValue()
-
-```cangjie
-public func toJSValue(): JSValue
-```
-
-**功能：** 转换为 JSValue 。
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                  |
-|:------|:--------------------------------------|
-| 34300003   | Accessing reference is beyond reach.  |
-| 34300004   | Thread mismatch.                      |
-
-## struct JSType
-
-```cangjie
-public struct JSType {
-    public static let UNDEFINED: JSType = JSType(0)
-    public static let NULL: JSType = JSType(1)
-    public static let NUMBER: JSType = JSType(2)
-    public static let BOOLEAN: JSType = JSType(3)
-    public static let BIGINT: JSType = JSType(4)
-    public static let STRING: JSType = JSType(5)
-    public static let SYMBOL: JSType = JSType(6)
-    public static let OBJECT: JSType = JSType(7)
-    public static let FUNCTION: JSType = JSType(8)
-    public static let EXTERNAL: JSType = JSType(9)
-}
-```
-
-**功能：** ArkTS 数据类型枚举。
-
-在 ArkTS 里，通过 typeof 操作符可枚举出某个数据的大致类型，JSType 罗列出这些类型并且加入 EXTERNAL 类型。
-
-**起始版本：** 22
-
-**示例：**
-
-<!--compile-->
-```cangjie
-import ohos.hilog.Hilog
-
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    // 获取首个参数
-    let firstArg = callInfo[0]
-    // 获取参数类型
-    let typeInfo = firstArg.typeof()
-    // 判断参数类型
-    if (typeInfo == JSType.STRING) {
-        Hilog.info(0, "test", "input is string: ${firstArg.toString()}")
-    } else {
-        // 获取参数类型名称
-        let typeName = typeInfo.toString()
-        Hilog.info(0, "test", "input is unexpected type: ${typeName}")
-    }
-    return context.undefined().toJSValue()
-}
-```
-
-### static let BIGINT
-
-```cangjie
-public static let BIGINT: JSType = JSType(4)
-```
-
-**功能：** bigint 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let BOOLEAN
-
-```cangjie
-public static let BOOLEAN: JSType = JSType(3)
-```
-
-**功能：** bool 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let EXTERNAL
-
-```cangjie
-public static let EXTERNAL: JSType = JSType(9)
-```
-
-**功能：** external 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let FUNCTION
-
-```cangjie
-public static let FUNCTION: JSType = JSType(8)
-```
-
-**功能：** function 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let NULL
-
-```cangjie
-public static let NULL: JSType = JSType(1)
-```
-
-**功能：** null 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let NUMBER
-
-```cangjie
-public static let NUMBER: JSType = JSType(2)
-```
-
-**功能：** number 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let OBJECT
-
-```cangjie
-public static let OBJECT: JSType = JSType(7)
-```
-
-**功能：** object 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let STRING
-
-```cangjie
-public static let STRING: JSType = JSType(5)
-```
-
-**功能：** string 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let SYMBOL
-
-```cangjie
-public static let SYMBOL: JSType = JSType(6)
-```
-
-**功能：** symbol 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### static let UNDEFINED
-
-```cangjie
-public static let UNDEFINED: JSType = JSType(0)
-```
-
-**功能：** undefined 类型。
-
-**起始版本：** 22
-
-**类型：** [JSType](#struct-jstype)
-
-### func toString()
-
-```cangjie
-public func toString(): String
-```
-
-**功能：** 获取 JSType 的字符串描述。
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|String|字符串描述。|
-
-### func !=(JSType)
-
-```cangjie
-public operator func !=(target: JSType): Bool
-```
-
-**功能：** 对两个 JSType 进行不等判断。
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|target|[JSType](#struct-jstype)|是|-|对比的目标类型。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Bool|为 true 时代表两个类型不等。|
-
-### func ==(JSType)
-
-```cangjie
-public operator func ==(target: JSType): Bool
-```
-
-**功能：** 对两个 JSType 进行判等。
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|target|[JSType](#struct-jstype)|是|-|对比的目标类型。|
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Bool|为 true 时代表两个类型相等。|
-
-## struct JSUndefined
-
-```cangjie
-public struct JSUndefined {}
-```
-
-**功能：** ArkTS null。
-
-**起始版本：** 22
-
-### func toJSValue()
-
-```cangjie
-public func toJSValue(): JSValue
-```
-
-**功能：** 转换为 JSValue 。
-
-**起始版本：** 22
-
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -8607,10 +8335,10 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 }
 ```
 
-## struct JSValue
+## class JSValue
 
 ```cangjie
-public struct JSValue {}
+public class JSValue {}
 ```
 
 **功能：** 一个ArkTS变量（弱类型，短生命周期）。
@@ -8627,7 +8355,7 @@ JSValue是ArkTS运行时统一类型，也是直接与ArkTS运行时交互的数
 public func asArray(): JSArray
 ```
 
-**功能：** 把一个 JSValue 转换为 JSArray 。
+**功能：** 把一个 JSValue 转换为 JSArray。
 
 **起始版本：** 22
 
@@ -8653,7 +8381,7 @@ public func asArray(): JSArray
 public func asArrayBuffer(): JSArrayBuffer
 ```
 
-**功能：** 把一个 JSValue 转换为 JSArrayBuffer 。
+**功能：** 把一个 JSValue 转换为 JSArrayBuffer。
 
 **起始版本：** 22
 
@@ -8679,7 +8407,7 @@ public func asArrayBuffer(): JSArrayBuffer
 public func asBigInt(): JSBigInt
 ```
 
-**功能：** 把一个 JSValue 转换为 JSBigInt 。
+**功能：** 把一个 JSValue 转换为 JSBigInt。
 
 **起始版本：** 22
 
@@ -8705,7 +8433,7 @@ public func asBigInt(): JSBigInt
 public func asBoolean(): JSBoolean
 ```
 
-**功能：** 把一个 JSValue 转换为 JSBoolean 。
+**功能：** 把一个 JSValue 转换为 JSBoolean。
 
 **起始版本：** 22
 
@@ -8713,7 +8441,7 @@ public func asBoolean(): JSBoolean
 
 |类型|说明|
 |:----|:----|
-|[JSBoolean](#struct-jsboolean)|一个 ArkTS boolean。|
+|[JSBoolean](#class-jsboolean)|一个 ArkTS boolean。|
 
 **异常：**
 
@@ -8731,7 +8459,7 @@ public func asBoolean(): JSBoolean
 public func asClass(): JSClass
 ```
 
-**功能：** 把一个 JSValue 转换为 JSClass 。
+**功能：** 把一个 JSValue 转换为 JSClass。
 
 **起始版本：** 22
 
@@ -8757,7 +8485,7 @@ public func asClass(): JSClass
 public func asExternal(): JSExternal
 ```
 
-**功能：** 把一个 JSValue 转换为 JSExternal 。
+**功能：** 把一个 JSValue 转换为 JSExternal。
 
 **起始版本：** 22
 
@@ -8783,7 +8511,7 @@ public func asExternal(): JSExternal
 public func asFunction(): JSFunction
 ```
 
-**功能：** 把一个 JSValue 转换为 JSFunction 。
+**功能：** 把一个 JSValue 转换为 JSFunction。
 
 **起始版本：** 22
 
@@ -8809,7 +8537,7 @@ public func asFunction(): JSFunction
 public func asNull(): JSNull
 ```
 
-**功能：** 把一个 JSValue 转换为 JSNull 。
+**功能：** 把一个 JSValue 转换为 JSNull。
 
 **起始版本：** 22
 
@@ -8817,7 +8545,7 @@ public func asNull(): JSNull
 
 |类型|说明|
 |:----|:----|
-|[JSNull](#struct-jsnull)|一个 ArkTS null|
+|[JSNull](#class-jsnull)|一个 ArkTS null|
 
 **异常：**
 
@@ -8835,7 +8563,7 @@ public func asNull(): JSNull
 public func asNumber(): JSNumber
 ```
 
-**功能：** 把一个 JSValue 转换为 JSNumber 。
+**功能：** 把一个 JSValue 转换为 JSNumber。
 
 **起始版本：** 22
 
@@ -8843,7 +8571,7 @@ public func asNumber(): JSNumber
 
 |类型|说明|
 |:----|:----|
-|[JSNumber](#struct-jsnumber)|一个 ArkTS number。|
+|[JSNumber](#class-jsnumber)|一个 ArkTS number。|
 
 **异常：**
 
@@ -8861,7 +8589,7 @@ public func asNumber(): JSNumber
 public func asObject(): JSObject
 ```
 
-**功能：** 把一个 JSValue 转换为 JSObject 。
+**功能：** 把一个 JSValue 转换为 JSObject。
 
 **起始版本：** 22
 
@@ -8887,7 +8615,7 @@ public func asObject(): JSObject
 public func asPromise(): JSPromise
 ```
 
-**功能：** 把一个 JSValue 转换为 JSPromise 。
+**功能：** 把一个 JSValue 转换为 JSPromise。
 
 **起始版本：** 22
 
@@ -8913,7 +8641,7 @@ public func asPromise(): JSPromise
 public func asString(): JSString
 ```
 
-**功能：** 把一个 JSValue 转换为 JSString 。
+**功能：** 把一个 JSValue 转换为 JSString。
 
 **起始版本：** 22
 
@@ -8939,7 +8667,7 @@ public func asString(): JSString
 public func asSymbol(): JSSymbol
 ```
 
-**功能：** 把一个 JSValue 转换为 JSSymbol 。
+**功能：** 把一个 JSValue 转换为 JSSymbol。
 
 **起始版本：** 22
 
@@ -8965,7 +8693,7 @@ public func asSymbol(): JSSymbol
 public func asUndefined(): JSUndefined
 ```
 
-**功能：** 把一个 JSValue 转换为 JSUndefined 。
+**功能：** 把一个 JSValue 转换为 JSUndefined。
 
 **起始版本：** 22
 
@@ -8973,7 +8701,7 @@ public func asUndefined(): JSUndefined
 
 |类型|说明|
 |:----|:----|
-|[JSUndefined](#struct-jsundefined)|一个ArkTS undefined。|
+|[JSUndefined](#class-jsundefined)|一个ArkTS undefined。|
 
 **异常：**
 
@@ -8999,7 +8727,7 @@ public func bindObject(external: JSValue): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|external|[JSValue](#struct-jsvalue)|是|-|仓颉对象的 ArkTS 引用。|
+|external|[JSValue](#class-jsvalue)|是|-|仓颉对象的 ArkTS 引用。|
 
 **异常：**
 
@@ -9138,7 +8866,7 @@ public func getElement(index: Int64): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|一个 ArkTS 值。|
+|[JSValue](#class-jsvalue)|一个 ArkTS 值。|
 
 **异常：**
 
@@ -9182,7 +8910,7 @@ public func getProperty(key: JSKeyable): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|取到的值|
+|[JSValue](#class-jsvalue)|取到的值|
 
 **异常：**
 
@@ -9215,7 +8943,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isArray(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 Array 类型 。
+**功能：** 判断一个 JSValue 是否是 Array 类型。
 
 **起始版本：** 22
 
@@ -9254,7 +8982,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isArrayBuffer(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 ArrayBuffer 类型 。
+**功能：** 判断一个 JSValue 是否是 ArrayBuffer 类型。
 
 **起始版本：** 22
 
@@ -9293,7 +9021,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isBigInt(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 bigint 类型 。
+**功能：** 判断一个 JSValue 是否是 bigint 类型。
 
 **起始版本：** 22
 
@@ -9332,7 +9060,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isBoolean(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 boolean 类型 。
+**功能：** 判断一个 JSValue 是否是 boolean 类型。
 
 **起始版本：** 22
 
@@ -9371,7 +9099,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isClass(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是一个 ArkTS 类（构造函数） 。
+**功能：** 判断一个 JSValue 是否是一个 ArkTS 类（构造函数）。
 
 **起始版本：** 22
 
@@ -9410,7 +9138,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isExternal(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是一个外部对象（仓颉对象的 ArkTS 引用） 。
+**功能：** 判断一个 JSValue 是否是一个外部对象（仓颉对象的 ArkTS 引用）。
 
 **起始版本：** 22
 
@@ -9449,7 +9177,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isFunction(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 function 类型 。
+**功能：** 判断一个 JSValue 是否是 function 类型。
 
 **起始版本：** 22
 
@@ -9488,7 +9216,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isNull(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 null 。
+**功能：** 判断一个 JSValue 是否是 null。
 
 **起始版本：** 22
 
@@ -9527,7 +9255,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isNumber(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 number 类型 。
+**功能：** 判断一个 JSValue 是否是 number 类型。
 
 **起始版本：** 22
 
@@ -9566,7 +9294,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isObject(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 object 类型 。
+**功能：** 判断一个 JSValue 是否是 object 类型。
 
 **起始版本：** 22
 
@@ -9605,7 +9333,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isPromise(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 Promise 类型 。
+**功能：** 判断一个 JSValue 是否是 Promise 类型。
 
 **起始版本：** 22
 
@@ -9644,7 +9372,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isString(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 string 类型 。
+**功能：** 判断一个 JSValue 是否是 string 类型。
 
 **起始版本：** 22
 
@@ -9683,7 +9411,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isSymbol(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 Symbol 类型 。
+**功能：** 判断一个 JSValue 是否是 Symbol 类型。
 
 **起始版本：** 22
 
@@ -9722,7 +9450,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func isUndefined(): Bool
 ```
 
-**功能：** 判断一个 JSValue 是否是 undefined 。
+**功能：** 判断一个 JSValue 是否是 undefined。
 
 **起始版本：** 22
 
@@ -9770,7 +9498,7 @@ public func setElement(index: Int64, value: JSValue): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |index|Int64|是|-|数组写入索引。|
-|value|[JSValue](#struct-jsvalue)|是|-|写入数组的值。|
+|value|[JSValue](#class-jsvalue)|是|-|写入数组的值。|
 
 **异常：**
 
@@ -9811,7 +9539,7 @@ public func setProperty(key: JSKeyable, setValue: JSValue): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |key|[JSKeyable](#interface-jskeyable)|是|-|属性的键。|
-|setValue|[JSValue](#struct-jsvalue)|是|-|属性的值。|
+|setValue|[JSValue](#class-jsvalue)|是|-|属性的值。|
 
 **异常：**
 
@@ -9850,7 +9578,7 @@ public func strictEqual(target: JSValue): Bool
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|target|[JSValue](#struct-jsvalue)|是|-|比较的目标值|
+|target|[JSValue](#class-jsvalue)|是|-|比较的目标值|
 
 **返回值：**
 
@@ -9888,7 +9616,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toBigInt(): BigInt
 ```
 
-**功能：** 把一个 JSValue 转换为 BigInt 。
+**功能：** 把一个 JSValue 转换为 BigInt。
 
 **起始版本：** 22
 
@@ -9912,9 +9640,11 @@ public func toBigInt(): BigInt
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let value = callInfo[0].toBigInt()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return context.undefined().toJSValue()
 }
 ```
@@ -9925,7 +9655,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toBoolean(): Bool
 ```
 
-**功能：** 把一个 JSValue 转换为 Bool 。
+**功能：** 把一个 JSValue 转换为 Bool。
 
 **起始版本：** 22
 
@@ -9949,9 +9679,11 @@ public func toBoolean(): Bool
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let value = callInfo[0].toBoolean()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return context.undefined().toJSValue()
 }
 ```
@@ -9962,7 +9694,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toNumber(): Float64
 ```
 
-**功能：** 把一个 JSValue 转换为 Float64 。
+**功能：** 把一个 JSValue 转换为 Float64。
 
 **起始版本：** 22
 
@@ -9986,9 +9718,11 @@ public func toNumber(): Float64
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let value = callInfo[0].toNumber()
-    println("value is ${value}")
+    Hilog.info(0, "test", "value is ${value}")
     return context.undefined().toJSValue()
 }
 ```
@@ -9999,7 +9733,7 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
 public func toString(): String
 ```
 
-**功能：** 把一个 JSValue 转换为 String 。
+**功能：** 把一个 JSValue 转换为 String。
 
 **起始版本：** 22
 
@@ -10095,84 +9829,84 @@ public func typeof(): JSType
 
 <!--compile-->
 ```cangjie
+import ohos.hilog.Hilog
+
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     // 获取首个参数
     let arg0 = callInfo[0]
     // 获取参数类型
     let valueType = arg0.typeof()
     // 打印参数类型
-    println("arg type is ${valueType.toString()}")
+    Hilog.info(0, "test", "arg type is ${valueType.toString()}")
     arg0
 }
 ```
 
-## type ClassRegister
+## class SharedObject
 
 ```cangjie
-public type ClassRegister =(JSContext) -> JSClass
+public open class SharedObject {
+    public init()
+}
 ```
 
-**功能：** ClassRegister 是 ([JSContext](#class-jscontext)) -> [JSClass](#class-jsclass) 类型的别名。
+**功能：** 可以被 ArkTS 引用的仓颉对象的基类。
 
 **起始版本：** 22
 
-## type FuncRegister
+**示例：**
 
+<!--compile-->
 ```cangjie
-public type FuncRegister =(JSContext) -> JSFunction
+// 创建一个类继承 SharedObject
+class MyObject <: SharedObject {
+    let name: String = "MyObject"
+}
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // 实例化一个 MyObject 对象
+    let data = MyObject()
+    // 从 data 创建一个 JSExternal 对象
+    let external = context.external(data)
+    // 创建一个 JSObject 对象
+    let object = context.object()
+    // 绑定 external 到 object
+    object.attachCJObject(external)
+    // 创建一个对外可见函数，在这个函数中，通过object访问对象属性
+    object["name"] = context.function { context, callInfo =>
+        // 获取 this 对象
+        let object = callInfo.thisArg.asObject()
+        // 从 object 中获取绑定的 MyObject 实例
+        let external = object.getAttachInfo().getOrThrow()
+        // 把 data.name 转换为 JSString
+        let name = context.string(external.cast<MyObject>().getOrThrow().name)
+        return name.toJSValue()
+    }.toJSValue()
+    return object.toJSValue()
+}
 ```
 
-**功能：** FuncRegister 是 ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction) 类型的别名。
+### prop nativeId
+
+```cangjie
+public prop nativeId: Int64
+```
+
+**功能：** 对象唯一标识。
 
 **起始版本：** 22
 
-## type JSBufferFinalizer
+**类型：** Int64
+
+**读写能力：** 只读
+
+### init()
 
 ```cangjie
-public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
+public init()
 ```
 
-**功能：** JSBufferFinalizer 是 (CPointer\<Byte>) -> Unit 类型的别名。
-
-**起始版本：** 22
-
-## type JSLambda
-
-```cangjie
-public type JSLambda =(JSContext, JSCallInfo) -> JSValue
-```
-
-**功能：** JSLambda 是 ([JSContext](#class-jscontext), [JSCallInfo](#struct-jscallinfo)) -> [JSValue](#struct-jsvalue) 类型的别名。
-
-**起始版本：** 22
-
-## type ModuleRegister
-
-```cangjie
-public type ModuleRegister =(JSContext, JSObject) -> Unit
-```
-
-**功能：** ModuleRegister 是 ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit 类型的别名。
-
-**起始版本：** 22
-
-## type napi_env
-
-```cangjie
-public type napi_env = CPointer<Unit>
-```
-
-**功能：** napi_env 是 CPointer\<Unit> 类型的别名。
-
-**起始版本：** 22
-
-## type napi_value
-
-```cangjie
-public type napi_value = CPointer<Unit>
-```
-
-**功能：** napi_value 是 CPointer\<Unit> 类型的别名。
+**功能：** 创建一个 SharedObject 对象。
 
 **起始版本：** 22
 
@@ -10180,6 +9914,7 @@ public type napi_value = CPointer<Unit>
 
 ```cangjie
 public class Utf16String <: ToString & Equatable<Utf16String> & Hashable & JSKeyable & JSInteropType<Utf16String> {
+    public static let EMPTY: Utf16String
     public init(src: String)
 }
 ```
@@ -10308,10 +10043,10 @@ func getStringTotalChars(context: JSContext): JSValue {
 }
 ```
 
-### static let empty
+### static let EMPTY
 
 ```cangjie
-public static let empty: Utf16String
+public static let EMPTY: Utf16String
 ```
 
 **功能：** 空字符串。
@@ -10381,7 +10116,7 @@ public static func fromJSValue(_: JSContext, value: JSValue): Utf16String
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |_|[JSContext](#class-jscontext)|是|-|ArkTS互操作上下文。|
-|value|[JSValue](#struct-jsvalue)|是|-|ArkTS统一类型。|
+|value|[JSValue](#class-jsvalue)|是|-|ArkTS统一类型。|
 
 **返回值：**
 
@@ -10637,7 +10372,7 @@ public func hashCode(): Int64
 
 |类型|说明|
 |:----|:----|
-|Int64|字符串 hash 值。<br>**注意：** 不保证该 hash 值与相同内容的 String 的 hash 一致。 不保证该 hash 值与相同内容的 ArkTS string 的 hash 一致。|
+|Int64|字符串 hash 值。<br>**注意：** 不保证该 hash 值与相同内容的 String 的 hash 一致。不保证该 hash 值与相同内容的 ArkTS string 的 hash 一致。|
 
 **异常：**
 
@@ -11301,7 +11036,7 @@ public func toJSValue(context: JSContext): JSValue
 
 |类型|说明|
 |:----|:----|
-|[JSValue](#struct-jsvalue)|ArkTS 统一类型。|
+|[JSValue](#class-jsvalue)|ArkTS 统一类型。|
 
 **异常：**
 
@@ -11641,3 +11376,299 @@ public operator func [](range: Range<Int64>): Utf16String
 |:------|:-------------------------------------|
 | 1     | The accessing index is out of range. |
 | 34300003   | Accessing reference is beyond reach. |
+
+## struct JSType
+
+```cangjie
+public struct JSType {
+    public static let UNDEFINED: JSType = JSType(0)
+    public static let NULL: JSType = JSType(1)
+    public static let NUMBER: JSType = JSType(2)
+    public static let BOOLEAN: JSType = JSType(3)
+    public static let BIGINT: JSType = JSType(4)
+    public static let STRING: JSType = JSType(5)
+    public static let SYMBOL: JSType = JSType(6)
+    public static let OBJECT: JSType = JSType(7)
+    public static let FUNCTION: JSType = JSType(8)
+    public static let EXTERNAL: JSType = JSType(9)
+}
+```
+
+**功能：** ArkTS 数据类型枚举。
+
+在 ArkTS 里，通过 typeof 操作符可枚举出某个数据的大致类型，JSType 罗列出这些类型并且加入 EXTERNAL 类型。
+
+**起始版本：** 22
+
+**示例：**
+
+<!--compile-->
+```cangjie
+import ohos.hilog.Hilog
+
+func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
+    // 获取首个参数
+    let firstArg = callInfo[0]
+    // 获取参数类型
+    let typeInfo = firstArg.typeof()
+    // 判断参数类型
+    if (typeInfo == JSType.STRING) {
+        Hilog.info(0, "test", "input is string: ${firstArg.toString()}")
+    } else {
+        // 获取参数类型名称
+        let typeName = typeInfo.toString()
+        Hilog.info(0, "test", "input is unexpected type: ${typeName}")
+    }
+    return context.undefined().toJSValue()
+}
+```
+
+### static let BIGINT
+
+```cangjie
+public static let BIGINT: JSType = JSType(4)
+```
+
+**功能：** bigint 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let BOOLEAN
+
+```cangjie
+public static let BOOLEAN: JSType = JSType(3)
+```
+
+**功能：** bool 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let EXTERNAL
+
+```cangjie
+public static let EXTERNAL: JSType = JSType(9)
+```
+
+**功能：** external 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let FUNCTION
+
+```cangjie
+public static let FUNCTION: JSType = JSType(8)
+```
+
+**功能：** function 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let NULL
+
+```cangjie
+public static let NULL: JSType = JSType(1)
+```
+
+**功能：** null 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let NUMBER
+
+```cangjie
+public static let NUMBER: JSType = JSType(2)
+```
+
+**功能：** number 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let OBJECT
+
+```cangjie
+public static let OBJECT: JSType = JSType(7)
+```
+
+**功能：** object 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let STRING
+
+```cangjie
+public static let STRING: JSType = JSType(5)
+```
+
+**功能：** string 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let SYMBOL
+
+```cangjie
+public static let SYMBOL: JSType = JSType(6)
+```
+
+**功能：** symbol 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### static let UNDEFINED
+
+```cangjie
+public static let UNDEFINED: JSType = JSType(0)
+```
+
+**功能：** undefined 类型。
+
+**起始版本：** 22
+
+**类型：** [JSType](#struct-jstype)
+
+### func toString()
+
+```cangjie
+public func toString(): String
+```
+
+**功能：** 获取 JSType 的字符串描述。
+
+**起始版本：** 22
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|String|字符串描述。|
+
+### func !=(JSType)
+
+```cangjie
+public operator func !=(target: JSType): Bool
+```
+
+**功能：** 对两个 JSType 进行不等判断。
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|target|[JSType](#struct-jstype)|是|-|对比的目标类型。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Bool|为 true 时代表两个类型不等。|
+
+### func ==(JSType)
+
+```cangjie
+public operator func ==(target: JSType): Bool
+```
+
+**功能：** 对两个 JSType 进行判等。
+
+**起始版本：** 22
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|target|[JSType](#struct-jstype)|是|-|对比的目标类型。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Bool|为 true 时代表两个类型相等。|
+
+## type ClassRegister
+
+```cangjie
+public type ClassRegister =(JSContext) -> JSClass
+```
+
+**功能：** ClassRegister 是 ([JSContext](#class-jscontext)) -> [JSClass](#class-jsclass) 类型的别名。
+
+**起始版本：** 22
+
+## type FuncRegister
+
+```cangjie
+public type FuncRegister =(JSContext) -> JSFunction
+```
+
+**功能：** FuncRegister 是 ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction) 类型的别名。
+
+**起始版本：** 22
+
+## type JSBufferFinalizer
+
+```cangjie
+public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
+```
+
+**功能：** JSBufferFinalizer 是 (CPointer\<Byte>) -> Unit 类型的别名。
+
+**起始版本：** 22
+
+## type JSLambda
+
+```cangjie
+public type JSLambda =(JSContext, JSCallInfo) -> JSValue
+```
+
+**功能：** JSLambda 是 ([JSContext](#class-jscontext), [JSCallInfo](#class-jscallinfo)) -> [JSValue](#class-jsvalue) 类型的别名。
+
+**起始版本：** 22
+
+## type ModuleRegister
+
+```cangjie
+public type ModuleRegister =(JSContext, JSObject) -> Unit
+```
+
+**功能：** ModuleRegister 是 ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit 类型的别名。
+
+**起始版本：** 22
+
+## type napi_env
+
+```cangjie
+public type napi_env = CPointer<Unit>
+```
+
+**功能：** napi_env 是 CPointer\<Unit> 类型的别名。
+
+**起始版本：** 22
+
+## type napi_value
+
+```cangjie
+public type napi_value = CPointer<Unit>
+```
+
+**功能：** napi_value 是 CPointer\<Unit> 类型的别名。
+
+**起始版本：** 22
