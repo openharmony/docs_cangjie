@@ -617,9 +617,8 @@ public class DecodingOptions {
     public var desiredSize: Size
     public var desiredRegion: Region
     public var desiredPixelFormat: PixelMapFormat
-    public var index: UInt32
     public var fitDensity: Int32
-    public var desiredColorSpace:?ColorSpaceManager
+    public var desiredColorSpace: ?ColorSpaceManager
     public var desiredDynamicRange: DecodingDynamicRange
     public init(sampleSize!: UInt32 = 1, rotate!: UInt32 = 0, editable!: Bool = false,
         desiredSize!: Size = Size(0, 0), desiredRegion!: Region = Region(Size(0, 0), 0, 0),
@@ -5013,35 +5012,45 @@ public func toString(): String
 
 ```cangjie
 public enum PropertyKey <: ToString {
-    | ImageWidth
-    | ImageLength
     | BitsPerSample
+    | Orientation
+    | ImageLength
+    | ImageWidth
+    | GpsLatitude
+    | GpsLongitude
+    | GpsLatitudeRef
+    | GpsLongitudeRef
+    | DateTimeOriginal
+    | ExposureTime
+    | SceneType
+    | IsoSpeedRatings
+    | FNumber
+    | DateTime
+    | GpsTimestamp
+    | GpsDateStamp
     | ImageDescription
     | Make
     | Model
-    | Orientation
-    | DateTime
     | PhotoMode
-    | ExposureTime
-    | FNumber
-    | GpsLatitudeRef
-    | GpsLatitude
-    | GpsLongitudeRef
-    | GpsLongitude
-    | GpsTimestamp
-    | GpsDateStamp
-    | IsoSpeedRatings
     | SensitivityType
     | StandardOutputSensitivity
     | RecommendedExposureIndex
     | IsoSpeed
-    | DateTimeOriginal
     | ApertureValue
     | ExposureBiasValue
     | MeteringMode
     | LightSource
     | Flash
     | FocalLength
+    | UserComment
+    | PixelXDimension
+    | PixelYDimension
+    | WhiteBalance
+    | FocalLengthIn35mmFilm
+    | CaptureMode
+    | PhysicalAperture
+    | RollAngle
+    | PitchAngle
     | SceneFoodConf
     | SceneStageConf
     | SceneBlueSkyConf
@@ -5053,17 +5062,7 @@ public enum PropertyKey <: ToString {
     | SceneNightConf
     | SceneTextConf
     | FaceCount
-    | CaptureMode
-    | RollAngle
-    | PitchAngle
-    | PhysicalAperture
     | FocusMode
-    | UserComment
-    | PixelXDimension
-    | PixelYDimension
-    | SceneType
-    | WhiteBalance
-    | FocalLengthIn35mmFilm
     | ...
 }
 ```
