@@ -834,13 +834,13 @@
             - Error Codes
                 - [Location Service Error Codes](reference/LocationKit/cj-errorcode-geo_location_manager.md)
     - Cangjie and ArkTS Interoperability Library
-        - [ohos.ark_interop (ArkTS Interoperability Library)](reference/arkinterop/cj-apis-ark_interop.md)
+        - ohos.ark_interop (ArkTS Interoperability Library)
+            - [ArkTS Interoperability Library APIs](reference/arkinterop/cj-apis-ark_interop.md)
             - Error Codes
                 - [ArkTS Interoperability Library Error Codes](reference/arkinterop/cj-errorcode-ark_interop.md)
         - [ohos.ark_interop_helper (ArkTS Interoperability Common Utility Functions)](reference/arkinterop/cj-apis-ark_interop_helper.md)
         - [ohos.business_exception (Common Exception Information)](reference/arkinterop/cj-api-business_exception.md)
         - [ohos.callback_invoke (Common Callback Information)](reference/arkinterop/cj-api-callback_invoke.md)
-        - [ohos.labels (Common Interface Labels)](reference/arkinterop/cj-api-labels.md)
     - Basic Capabilities
         - Cangjie APIs
             - [sysCap (System Capabilities)](reference/arkui-cj/cj-apis-syscap.md)
