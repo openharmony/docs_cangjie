@@ -23,8 +23,8 @@ class EntryView{
     func build(){
         Column(){
             Image(@r(app.media.foreground))
-                .position(x: 0,y: 0)
-                .size(width: 100,height: 100)
+                .position(x: 220,y: 220)
+                .size(width: 80,height: 80)
                 .id('image1')
                 .backgroundColor(Color.Blue)
         }
