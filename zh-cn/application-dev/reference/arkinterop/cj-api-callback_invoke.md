@@ -1,4 +1,4 @@
-# ohos.callback_invoke (通用回调信息)
+# ohos.callback_invoke（通用回调信息）
 
 ## class Callback0Argument
 

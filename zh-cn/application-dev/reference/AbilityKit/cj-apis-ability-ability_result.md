@@ -1,4 +1,4 @@
-# ohos.ability.ability_result
+# ohos.app.ability.ability_result
 
 ability_result模块定义了Ability被拉起并退出后返回的结果码和数据。
 
