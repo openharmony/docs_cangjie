@@ -1,4 +1,4 @@
-# ohos.geo_location_manager (位置服务)
+# ohos.geo_location_manager（位置服务）
 
 geo_location_manager模块提供GNSS定位、网络定位（蜂窝基站、WLAN、蓝牙定位技术）等基本功能。
 

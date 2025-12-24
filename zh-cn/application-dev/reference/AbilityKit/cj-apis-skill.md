@@ -1,4 +1,4 @@
-# ohos.skill
+# ohos.security.skill
 
 skill模块介绍了skill标签对象。
 

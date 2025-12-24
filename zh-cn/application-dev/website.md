@@ -138,8 +138,8 @@
                     - [构建第一个仓颉与ArkTS混合应用](learn-cj/FFI/cangjie-arkts/cj-quick-start-first-cangjie-hybrid-app.md)
                     - [在已有ArkTS工程中增量使用仓颉](learn-cj/FFI/cangjie-arkts/cj-quick-start-first-cangjie-hybrid-module.md)
                     - [在仓颉代码里导入ArkTS模块](learn-cj/FFI/cangjie-arkts/cangjie-load-arkts.md)
-                - [概述](learn-cj/FFI/cangjie-arkts/cangjie_arkts_overview.md)
-                - [场景](learn-cj/FFI/cangjie-arkts/interoperability_senario.md)
+                - [仓颉-ArkTS 互操作概述](learn-cj/FFI/cangjie-arkts/cangjie_arkts_overview.md)
+                - [仓颉-ArkTS 互操作场景](learn-cj/FFI/cangjie-arkts/interoperability_senario.md)
                     - [ArkTS 应用中使用仓颉](learn-cj/FFI/cangjie-arkts/using_cangjie.md)
                         - [增加仓颉页面](learn-cj/FFI/cangjie-arkts/add_cangjie_page.md)
                         - [增加仓颉模块](learn-cj/FFI/cangjie-arkts/add_cangjie_module.md)
@@ -147,25 +147,25 @@
                 - 互操作用法
                     - [ArkTS 调用仓颉](learn-cj/FFI/cangjie-arkts/method_of_ArkTS_calling_cangjie.md)
                         - 仓颉侧实现互操作代码
-                            - [声明式互操作宏](learn-cj/FFI/cangjie-arkts/interoperability_macro.md)
-                            - [互操作库](learn-cj/FFI/cangjie-arkts/interoperability_lib.md)
+                            - [仓颉-ArkTS 声明式互操作宏](learn-cj/FFI/cangjie-arkts/interoperability_macro.md)
+                            - [仓颉-ArkTS 互操作库](learn-cj/FFI/cangjie-arkts/interoperability_lib.md)
                         - [ArkTS 侧使用互操作代码](learn-cj/FFI/cangjie-arkts/arkts_import_cangjie.md)
                     - 仓颉调用 ArkTS
-                        - [ArkTS 侧互操作准备](learn-cj/FFI/cangjie-arkts/prepare_arkts_module.md)
-                        - [仓颉侧调用互操作代码](learn-cj/FFI/cangjie-arkts/using_arkts_module.md)
+                        - [ArkTS 侧获取互操作模块名](learn-cj/FFI/cangjie-arkts/prepare_arkts_module.md)
+                        - [仓颉侧调用 ArkTS 模块](learn-cj/FFI/cangjie-arkts/using_arkts_module.md)
                 - [互操作使用案例](learn-cj/FFI/cangjie-arkts/using_example.md)
                     - [仓颉访问 ArkTS 数据](learn-cj/FFI/cangjie-arkts/operating_ArkTS_data.md)
                     - [ArkTS 访问仓颉数据](learn-cj/FFI/cangjie-arkts/operating_cangjie_objects.md)
-                    - [仓颉多线程中使用互操作](learn-cj/FFI/cangjie-arkts/using_interoperability_lib_multithread.md)
+                    - [仓颉多线程中使用互操作库](learn-cj/FFI/cangjie-arkts/using_interoperability_lib_multithread.md)
                     - [仓颉调用ArkTS三方模块](learn-cj/FFI/cangjie-arkts/cj-quick-start-dts2cj-plugin-usage.md)
-                - [仓颉与 ArkTS 互操作辅助库](learn-cj/FFI/cangjie-arkts/auxiliary_lib.md)
+                - [仓颉-ArkTS 互操作辅助库](learn-cj/FFI/cangjie-arkts/auxiliary_lib.md)
                 - [仓颉-ArkTS 互操作开发规范](learn-cj/FFI/cangjie-arkts/interop_guidelines.md)
         - 编译和构建
-            - [cjc 使用](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/cjc_usage.md)
-            - [cjpm 介绍](learn-cj/compile_and_build/cjpm_usage_ohos.md)
+            - [`cjc` 使用](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/cjc_usage.md)
+            - [`cjpm` 介绍](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/cjpm_usage.md)
             - [条件编译](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/compile_and_build/conditional_compilation.md)
         - 附录
-            - [cjc 编译选项](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/compile_options.md)
+            - [`cjc` 编译选项](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/compile_options.md)
             - [关键字](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/keyword.md)
             - [操作符](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/operator.md)
             - [操作符函数](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/operator_function.md)
@@ -342,7 +342,7 @@
             - 窗口管理
                 - [管理应用窗口](windowmanager/application-window-stage.md)
             - 屏幕管理
-                - [使用Display实现屏幕属性获取及状态监听](displaymanager/screenProperty-guideline.md)
+                - [使用Display实现屏幕属性查询及状态监听](displaymanager/screenProperty-guideline.md)
         - ArkWeb（方舟Web）
             - [ArkWeb简介](web/cj-web-component-overview.md)
             - 设置基本属性和事件
@@ -378,7 +378,7 @@
             - [IPC Kit简介](ipc/cj-ipc-rpc-overview.md)
             <!--RP3--><!--RP3End-->
         - Localization Kit（本地化开发服务）
-            - [Localization Kit简介](internationalization/cj-i18n-l10n.md)
+            - [国际化和本地化概述](internationalization/cj-i18n-l10n.md)
             - 应用国际化
                 - [国际化界面设计](internationalization/cj-i18n-ui-design.md)
                 - [设置日历和历法](internationalization/cj-i18n-calendar.md)
@@ -493,7 +493,7 @@
                     - 开发指导
                         - [匿名密钥证明（仓颉）](security/UniversalKeystoreKit/cj-huks-key-anon-attestation.md)
                         <!--Del-->
-                        - [非匿名密钥证明(仓颉)](security/UniversalKeystoreKit/cj-huks-key-attestation-arkts.md)
+                        - [非匿名密钥证明（仓颉）](security/UniversalKeystoreKit/cj-huks-key-attestation-arkts.md)
                         <!--DelEnd-->
                 - 其他操作
                     - 查询密钥是否存在
@@ -594,12 +594,12 @@
             - [Camera Kit简介](media/camera/cj-camera-overview.md)
             - [开发准备](media/camera/cj-camera-preparation.md)
             - 开发相机应用必选能力（仓颉）
-                - [相机管理](media/camera/cj-camera-device-management.md)
-                - [设备输入](media/camera/cj-camera-device-input.md)
-                - [会话管理](media/camera/cj-camera-session-management.md)
+                - [相机管理（仓颉）](media/camera/cj-camera-device-management.md)
+                - [设备输入（仓颉）](media/camera/cj-camera-device-input.md)
+                - [会话管理（仓颉）](media/camera/cj-camera-session-management.md)
             - 开发相机应用基础能力（仓颉）
-                - [预览](media/camera/cj-camera-preview.md)
-                - [手电筒使用](media/camera/cj-camera-torch-use.md)
+                - [预览（仓颉）](media/camera/cj-camera-preview.md)
+                - [手电筒使用（仓颉）](media/camera/cj-camera-torch-use.md)
                 - [相机启动恢复实践（仓颉）](media/camera/cj-camera-background-recovery.md)
         - Image Kit（图片处理服务）
             - [Image Kit简介](media/image/cj-image-overview.md)
@@ -672,11 +672,11 @@
                 - [锁屏敏感数据管理错误码](reference/AbilityKit/cj-errorcode-screen_lock_file_manager.md)
         - ArkData（方舟数据管理）
             - 仓颉API
-                - [ohos.data_share_predicates（数据共享谓词）](reference/ArkData/cj-apis-data_share_predicates.md)
-                - [ohos.distributed_kv_store（分布式键值数据库）](reference/ArkData/cj-apis-distributed_kv_store.md)
-                - [ohos.preferences（用户首选项）](reference/ArkData/cj-apis-preferences.md)
-                - [ohos.relational_store（关系型数据库）](reference/ArkData/cj-apis-relational_store.md)
-                - [ohos.values_bucket（数据集）](reference/ArkData/cj-apis-values_bucket.md)
+                - [ohos.data.data_share_predicates（数据共享谓词）](reference/ArkData/cj-apis-data_share_predicates.md)
+                - [ohos.data.distributed_kv_store（分布式键值数据库）](reference/ArkData/cj-apis-distributed_kv_store.md)
+                - [ohos.data.preferences（用户首选项）](reference/ArkData/cj-apis-preferences.md)
+                - [ohos.data.relational_store（关系型数据库）](reference/ArkData/cj-apis-relational_store.md)
+                - [ohos.data.values_bucket（数据集）](reference/ArkData/cj-apis-values_bucket.md)
             - 错误码
                 - [关系型数据库错误码](reference/ArkData/cj-errorcode-data-rdb.md)
                 - [分布式键值数据库错误码](reference/ArkData/cj-errorcode-distributed_kv_store.md)
@@ -685,7 +685,7 @@
             - 仓颉API
                 - UI界面
                     - [ohos.component_utils（ComponentUtils）](reference/arkui-cj/cj-apis-componentutils.md)
-                    - [ohos.shape（形状）](reference/arkui-cj/cj-apis-shape.md)
+                    - [ohos.arkui.shape（形状）](reference/arkui-cj/cj-apis-shape.md)
                     - [ohos.curves（插值计算）](reference/arkui-cj/cj-apis-curves.md)
                     - ohos.ui_context（UIContext）
                         - [AnimatorResult](reference/arkui-cj/cj-apis-uicontext-animator.md)
@@ -858,20 +858,20 @@
                     - [窗口错误码](reference/arkui-cj/cj-errorcode-window.md)
         - ArkWeb（方舟Web）
             - 仓颉API
-                - [ohos.webview（Webview）](reference/ArkWeb/cj-apis-webview.md)
+                - [ohos.web.webview（Webview）](reference/ArkWeb/cj-apis-webview.md)
             - 错误码
                 - [Webview错误码](reference/ArkWeb/cj-errorcode-webview.md)
         - Core File Kit（文件基础服务）
             - 仓颉API
-                - [ohos.file_fileuri（文件URI）](reference/CoreFileKit/cj-apis-file_fileuri.md)
-                - [ohos.file_fs（文件管理）](reference/CoreFileKit/cj-apis-file_fs.md)
+                - [ohos.file.fileuri（文件URI）](reference/CoreFileKit/cj-apis-file_fileuri.md)
+                - [ohos.file.fs（文件管理）](reference/CoreFileKit/cj-apis-file_fs.md)
             - 错误码
                 - [文件管理错误码](reference/CoreFileKit/cj-errorcode-filemanagement.md)
         - IPC Kit（进程间通信服务）
             - 仓颉API
                 - [ohos.rpc（RPC通信）](reference/IPCKit/cj-apis-rpc.md)
             - 错误码
-                - [ipc错误码](reference/IPCKit/cj-errorcode-rpc.md)
+                - [RPC错误码](reference/IPCKit/cj-errorcode-rpc.md)
         - Localization Kit（本地化开发服务）
             - 仓颉API
                 - [ohos.i18n（国际化-I18n）](reference/LocalizationKit/cj-apis-i18n.md)
@@ -885,22 +885,22 @@
         - 安全
             - Crypto Architecture Kit（加解密算法框架服务）
                 - 仓颉API
-                    - [ohos.crypto（加解密算法库框架）](reference/CryptoArchitectureKit/cj-apis-crypto.md)
+                    - [ohos.security.crypto_framework（加解密算法库框架）](reference/CryptoArchitectureKit/cj-apis-crypto.md)
                 - 错误码
                     - [crypto framework错误码](reference/CryptoArchitectureKit/cj-errorcode-crypto.md)
             - Universal Keystore Kit（密钥管理服务）
                 - 仓颉API
-                    - [ohos.security_huks（通用密钥库系统）](reference/UniversalKeystoreKit/cj-apis-security_huks.md)
+                    - [ohos.security.huks（通用密钥库系统）](reference/UniversalKeystoreKit/cj-apis-security_huks.md)
                 - 错误码
-                    - [huks错误码](reference/UniversalKeystoreKit/cj-errorcode-huks.md)
+                    - [HUKS错误码](reference/UniversalKeystoreKit/cj-errorcode-huks.md)
         - 网络
             - Connectivity Kit（短距通信服务）
                 - 仓颉API
                     - [ohos.bluetooth.a2dp（蓝牙a2dp模块）](reference/ConnectivityKit/cj-apis-bluetooth-a2dp.md)
                     - [ohos.bluetooth.ble（蓝牙ble模块）](reference/ConnectivityKit/cj-apis-bluetooth-ble.md)
-                    - [ohos.bluetooth.baseProfile（蓝牙baseProfile模块）](reference/ConnectivityKit/cj-apis-bluetooth-base_profile.md)
+                    - [ohos.bluetooth.base_profile（蓝牙baseProfile模块）](reference/ConnectivityKit/cj-apis-bluetooth-base_profile.md)
                     - [ohos.bluetooth.constant（蓝牙constant模块）](reference/ConnectivityKit/cj-apis-bluetooth-constant.md)
-                    - [ohos.bluetooth.hfp(蓝牙hfp模块)](reference/ConnectivityKit/cj-apis-bluetooth-hfp.md)
+                    - [ohos.bluetooth.hfp（蓝牙hfp模块）](reference/ConnectivityKit/cj-apis-bluetooth-hfp.md)
                     - [ohos.wifi_manager（WLAN）](reference/ConnectivityKit/cj-apis-wifi_manager.md)
                 - 错误码
                     - [蓝牙服务子系统错误码](reference/ConnectivityKit/cj-errorcode-bluetooth_manager.md)
@@ -921,7 +921,7 @@
                         - [ohos.battery_info（电量信息）](reference/BasicServicesKit/cj-apis-battery_info.md)
                         - [ohos.device_info（设备信息）](reference/BasicServicesKit/cj-apis-device_info.md)
                     - 数据文件处理
-                        - [kit.BasicServicesKit.agent（上传下载）](reference/BasicServicesKit/cj-apis-request-agent.md)
+                        - [ohos.request（上传下载）](reference/BasicServicesKit/cj-apis-request-agent.md)
                     - 进程线程通信
                         - [ohos.common_event_manager（公共事件模块）](reference/BasicServicesKit/cj-apis-common_event_manager.md)
                     - 其他
@@ -934,7 +934,7 @@
                         - [ohos.value_type](reference/BasicServicesKit/cj-apis-value_type.md)
                 - 错误码
                     - [上传下载错误码](reference/BasicServicesKit/cj-errorcode-request.md)
-                    - [时间时区错误码](reference/BasicServicesKit/cj-errorcode-time.md)
+                    - [时间时区服务错误码](reference/BasicServicesKit/cj-errorcode-time.md)
                     - [事件错误码](reference/BasicServicesKit/cj-errorcode-common_event_service.md)
                     - [系统电源管理错误码](reference/BasicServicesKit/cj-errorcode-power.md)
                     - [账号管理错误码](reference/BasicServicesKit/cj-errorcode-basic-account.md)
@@ -955,13 +955,13 @@
                 - 仓颉API
                     - [ohos.hiviewdfx.hi_app_event（应用事件打点）](reference/PerformanceAnalysisKit/cj-apis-hiappevent.md)
                     - [ohos.hilog（HiLog日志打印）](reference/PerformanceAnalysisKit/cj-apis-hilog.md)
-                    - [ohos.hi_tracemeter（性能打点）](reference/PerformanceAnalysisKit/cj-apis-hi_tracemeter.md)
+                    - [ohos.hi_trace_meter（性能打点）](reference/PerformanceAnalysisKit/cj-apis-hi_tracemeter.md)
                 - 错误码
                     - [应用事件打点错误码](reference/PerformanceAnalysisKit/cj-errorcode-hiappevent.md)
                     - [Hidebug CpuUsage错误码](reference/PerformanceAnalysisKit/cj-errorcode-hidebug-cpuusage.md)
             - Test Kit（应用测试服务）
                 - 仓颉API
-                    - [ohos.ability_delegator_registry（AbilityDelegatorRegistry）](reference/TestKit/cj-apis-ability_delegator_registry.md)
+                    - [ohos.app.ability.ability_delegator_registry（AbilityDelegatorRegistry）](reference/TestKit/cj-apis-ability_delegator_registry.md)
                     - [ohos.ui_test（UI测试）](reference/TestKit/cj-apis-ui_test.md)
                 - 错误码
                     - [uitest错误码](reference/TestKit/cj-errorcode-uitest.md)
@@ -987,24 +987,24 @@
     - 图形
         - ArkGraphics2D（方舟2D图形服务）
             - 仓颉API
-                - [ohos.color_manager（色彩管理）](reference/ArkGraphics2D/cj-apis-color_manager.md)
+                - [ohos.graphics.color_space_manager（色彩管理）](reference/ArkGraphics2D/cj-apis-color_manager.md)
             - 错误码
                 - [色彩管理错误码](reference/ArkGraphics2D/cj-errorcode-colorspace-manager.md)
     - 应用服务
         - Location Kit（位置服务）
             - 仓颉API
-                - [ohos.geo_location_manager (位置服务)](reference/LocationKit/cj-apis-geo_location_manager.md)
+                - [ohos.geo_location_manager（位置服务）](reference/LocationKit/cj-apis-geo_location_manager.md)
             - 错误码
                 - [位置服务错误码](reference/LocationKit/cj-errorcode-geo_location_manager.md)
     - 仓颉与ArkTS互操作库
-        - ohos.ark_interop（ArkTS互操作库）
-            - [ArkTS互操作API](reference/arkinterop/cj-apis-ark_interop.md)
-            - 错误码
-                - [ArkTS互操作库错误码](reference/arkinterop/cj-errorcode-ark_interop.md)
-        - [ohos.ark_interop_helper（ArkTS互操作公共辅助功能函数）](reference/arkinterop/cj-apis-ark_interop_helper.md)
-        - [ohos.business_exception（通用异常信息）](reference/arkinterop/cj-api-business_exception.md)
-        - [ohos.callback_invoke（通用回调信息）](reference/arkinterop/cj-api-callback_invoke.md)
+        - 互操作API
+            - [ohos.ark_interop（ArkTS互操作库）](reference/arkinterop/cj-apis-ark_interop.md)
+            - [ohos.ark_interop_helper（ArkTS互操作公共辅助功能函数）](reference/arkinterop/cj-apis-ark_interop_helper.md)
+            - [ohos.business_exception（通用异常信息）](reference/arkinterop/cj-api-business_exception.md)
+            - [ohos.callback_invoke（通用回调信息）](reference/arkinterop/cj-api-callback_invoke.md)
+        - 错误码
+            - [ArkTS互操作库错误码](reference/arkinterop/cj-errorcode-ark_interop.md)
     - 公共基础能力
         - 仓颉API
             - [SysCap（系统能力）](reference/arkui-cj/cj-apis-syscap.md)
-    - [仓颉编程语言库API](reference/cj-libs-api.md)
+    - [仓颉编程语言标准库API](reference/cj-libs-api.md)
