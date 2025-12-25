@@ -12,8 +12,8 @@ import kit.ArkUI.*
 
 ```cangjie
 public class ImageData {
-    public init(?Float64, ?Float64, ?Array<UInt8>, ?LengthMetricsUnit)
-    public init(?Float64, ?Float64, ?LengthMetricsUnit)
+    public init(width: ?Float64, height: ?Float64, data!: ?Array<UInt8>, unit!: ?LengthMetricsUnit = None)
+    public init(width: ?Float64, height: ?Float64, unit!: ?LengthMetricsUnit = None)
 }
 ```
 

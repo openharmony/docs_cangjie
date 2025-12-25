@@ -161,7 +161,7 @@ extend CanvasPattern <: StrokeStyle {}
 
 ```cangjie
 public class CanvasRenderingContext2D {
-    public init(?RenderingContextSettings)
+    public init(settings: ?RenderingContextSettings)
 }
 ```
 
@@ -620,10 +620,10 @@ public func clearRect(x: Float64, y: Float64, w: Float64, h: Float64): Unit
 | w | Float64 | Yes | - | The width of the rectangle.<br>Default unit: vp. |
 | h | Float64 | Yes | - | The height of the rectangle.<br>Default unit: vp. |
 
-### func fillText(String, Float64, Float64, ?Float64)
+### func fillText(String, Float64, Float64, Option\<Float64>)
 
 ```cangjie
-public func fillText(text: String, x: Float64, y: Float64, maxWidth!: ?Float64 = Option.None): Unit
+public func fillText(text: String, x: Float64, y: Float64, maxWidth!: Option<Float64> = Option.None): Unit
 ```
 
 **Function:** Fills the specified text at the given position.
@@ -641,7 +641,7 @@ public func fillText(text: String, x: Float64, y: Float64, maxWidth!: ?Float64 =
 | y | Float64 | Yes | - | The y-coordinate of the bottom-left corner of the text.<br>Default unit: vp. |
 | maxWidth | ?Float64 | No | - | **Named parameter.** The maximum allowed width of the text.<br>Default unit: vp.<br>Initial value: No width limit. |
 
-### func strokeText(String, Float64, Float64, ?Float64)
+### func strokeText(String, Float64, Float64, Option\<Float64>)
 
 ```cangjie
 public func strokeText(text: String, x: Float64, y: Float64, maxWidth!: Option<Float64> = Option.None): Unit

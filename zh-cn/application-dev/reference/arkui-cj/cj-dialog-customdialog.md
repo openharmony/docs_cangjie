@@ -51,7 +51,7 @@ public init(value: CustomDialogControllerOptions)
 public func bindView(view: CustomView)
 ```
 
-**功能：** 将CustomView绑定到自定义弹窗构建器，用户无需主动调用，会在宏展开后隐式地调用。
+**功能：** 将CustomView绑定到自定义弹窗构建器，开发者无需主动调用，会在宏展开后隐式地调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +66,7 @@ public func bindView(view: CustomView)
 ### func closeDialog()
 
 ```cangjie
-public func closeDialog()
+public func closeDialog(): Unit
 ```
 
 **功能：** 关闭显示的自定义弹窗，若已关闭，则不生效。
@@ -78,7 +78,7 @@ public func closeDialog()
 ### func openDialog()
 
 ```cangjie
-public func openDialog()
+public func openDialog(): Unit
 ```
 
 **功能：** 显示自定义弹窗内容，允许多次使用，但如果弹框为SubWindow模式，则该弹框不允许再弹出SubWindow弹框。
@@ -102,10 +102,10 @@ public func releaseSelf(): Unit
 ### func setBuilder(() -> Unit)
 
 ```cangjie
-public func setBuilder(builder: () -> Unit)
+public func setBuilder(builder: () -> Unit): Unit
 ```
 
-**功能：** 设置一个构建器，用户无需主动调用，会在宏展开后隐式地调用。
+**功能：** 设置一个构建器，开发者无需主动调用，会在宏展开后隐式地调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -166,7 +166,7 @@ public class CustomDialogControllerOptions {
         borderColor!: ?ResourceColor = None,
         borderStyle!: ?EdgeStyles = None,
         shadow!: ?ShadowOptions = None,
-        backgroundBlurStyle!: ?BlurStyle = None
+        backgroundBlurStyle!: ?BlurStyle = Option.None
     )
 }
 ```
@@ -183,7 +183,7 @@ public class CustomDialogControllerOptions {
 public var alignment: ?DialogAlignment
 ```
 
-**功能：** 弹窗在竖直方向上的对齐方式。
+**功能：** 弹窗在竖直方向上的对齐方式。初始值：DialogAlignment.Default
 
 **类型：** ?[DialogAlignment](./cj-common-types.md#enum-dialogalignment)
 
@@ -193,15 +193,13 @@ public var alignment: ?DialogAlignment
 
 **起始版本：** 22
 
-**初始值：** DialogAlignment.Default
-
 ### var autoCancel
 
 ```cangjie
 public var autoCancel: ?Bool
 ```
 
-**功能：** 是否允许点击遮障层退出。true表示关闭弹窗，false表示不关闭弹窗。
+**功能：** 是否允许点击遮障层退出。true表示关闭弹窗，false表示不关闭弹窗。初始值：true
 
 **类型：** ?Bool
 
@@ -211,15 +209,13 @@ public var autoCancel: ?Bool
 
 **起始版本：** 22
 
-**初始值：** true
-
 ### var backgroundBlurStyle
 
 ```cangjie
 public var backgroundBlurStyle: ?BlurStyle
 ```
 
-**功能：** 弹窗背板模糊材质。
+**功能：** 弹窗背板模糊材质。初始值：BlurStyle.ComponentUltraThick
 
 **类型：** ?[BlurStyle](./cj-common-types.md#enum-blurstyle)
 
@@ -229,15 +225,13 @@ public var backgroundBlurStyle: ?BlurStyle
 
 **起始版本：** 22
 
-**初始值：** BlurStyle.ComponentUltraThick
-
 ### var backgroundColor
 
 ```cangjie
 public var backgroundColor: ?ResourceColor
 ```
 
-**功能：** 设置弹窗背板填充。
+**功能：** 设置弹窗背板填充。初始值：Color.Transparent
 
 **类型：** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
@@ -246,8 +240,6 @@ public var backgroundColor: ?ResourceColor
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**初始值：** Color.Transparent
 
 ### var borderColor
 
@@ -255,7 +247,7 @@ public var backgroundColor: ?ResourceColor
 public var borderColor: ?ResourceColor
 ```
 
-**功能：** 设置弹窗背板的边框颜色。
+**功能：** 设置弹窗背板的边框颜色。初始值：Color.Black
 
 **类型：** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
@@ -265,15 +257,13 @@ public var borderColor: ?ResourceColor
 
 **起始版本：** 22
 
-**初始值：** Color.Black
-
 ### var borderStyle
 
 ```cangjie
 public var borderStyle: ?EdgeStyles
 ```
 
-**功能：** 设置弹窗背板的边框样式。
+**功能：** 设置弹窗背板的边框样式。初始值：EdgeStyles()
 
 **类型：** ?[EdgeStyles](./cj-common-types.md#class-edgestyles)
 
@@ -283,15 +273,13 @@ public var borderStyle: ?EdgeStyles
 
 **起始版本：** 22
 
-**初始值：** EdgeStyles()
-
 ### var borderWidth
 
 ```cangjie
 public var borderWidth: ?Length
 ```
 
-**功能：** 设置弹窗背板的边框宽度。
+**功能：** 设置弹窗背板的边框宽度。初始值：0.vp
 
 **类型：** ?[Length](./cj-common-types.md#interface-length)
 
@@ -301,15 +289,13 @@ public var borderWidth: ?Length
 
 **起始版本：** 22
 
-**初始值：** 0.vp
-
 ### var cancel
 
 ```cangjie
 public var cancel: ?VoidCallback
 ```
 
-**功能：** 返回、ESC键和点击遮障层弹窗退出时的回调。
+**功能：** 返回、ESC键和点击遮障层弹窗退出时的回调。初始值： { => }
 
 **类型：** ?[VoidCallback](./cj-common-types.md#type-voidcallback)
 
@@ -318,8 +304,6 @@ public var cancel: ?VoidCallback
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**初始值：** { => }
 
 ### var closeAnimation
 
@@ -343,7 +327,7 @@ public var closeAnimation: ?AnimateParam
 public var cornerRadius: ?Length
 ```
 
-**功能：** 设置背板的圆角半径。
+**功能：** 设置背板的圆角半径。初始值：32.vp
 
 **类型：** ?[Length](./cj-common-types.md#interface-length)
 
@@ -353,15 +337,13 @@ public var cornerRadius: ?Length
 
 **起始版本：** 22
 
-**初始值：** 32.vp
-
 ### var customStyle
 
 ```cangjie
 public var customStyle: ?Bool
 ```
 
-**功能：** 弹窗容器样式是否自定义。
+**功能：** 弹窗容器样式是否自定义。初始值：false
 
 **类型：** ?Bool
 
@@ -370,8 +352,6 @@ public var customStyle: ?Bool
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**初始值：** false
 
 ### var gridCount
 
@@ -411,7 +391,7 @@ public var height: ?Length
 public var isModal: ?Bool
 ```
 
-**功能：** 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。
+**功能：** 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。初始值：true
 
 **类型：** ?Bool
 
@@ -421,15 +401,13 @@ public var isModal: ?Bool
 
 **起始版本：** 22
 
-**初始值：** true
-
 ### var maskColor
 
 ```cangjie
 public var maskColor: ?ResourceColor
 ```
 
-**功能：** 自定义蒙层颜色。
+**功能：** 自定义蒙层颜色。初始值：Color(0x33000000)
 
 **类型：** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
@@ -439,15 +417,13 @@ public var maskColor: ?ResourceColor
 
 **起始版本：** 22
 
-**初始值：** Color(0x33000000)
-
 ### var maskRect
 
 ```cangjie
 public var maskRect: ?Rectangle
 ```
 
-**功能：** 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。
+**功能：** 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。初始值：Rectangle()
 
 **类型：** ?[Rectangle](./cj-common-types.md#class-rectangle)
 
@@ -457,15 +433,13 @@ public var maskRect: ?Rectangle
 
 **起始版本：** 22
 
-**初始值：** Rectangle()
-
 ### var offset
 
 ```cangjie
 public var offset: ?Offset
 ```
 
-**功能：** 弹窗相对alignment所在位置的偏移量。
+**功能：** 弹窗相对alignment所在位置的偏移量。初始值：Offset(0.vp, 0.vp)
 
 **类型：** ?[Offset](./cj-common-types.md#class-offset)
 
@@ -474,8 +448,6 @@ public var offset: ?Offset
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**初始值：** Offset(0.vp, 0.vp)
 
 ### var onWillDismiss
 
@@ -531,7 +503,7 @@ public var shadow: ?ShadowOptions
 public var showInSubWindow: ?Bool
 ```
 
-**功能：** 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。
+**功能：** 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。初始值：false
 
 **类型：** ?Bool
 
@@ -540,8 +512,6 @@ public var showInSubWindow: ?Bool
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-**初始值：** false
 
 ### var width
 
@@ -559,7 +529,7 @@ public var width: ?Length
 
 **起始版本：** 22
 
-### init(?VoidCallback, ?Bool, ?DialogAlignment, ?Offset, ?Bool, ?UInt32, ?ResourceColor, ?Rectangle, ?AnimateParam, ?AnimateParam, ?Bool, ?ResourceColor, ?Length, ?Bool, ?Callback\<DismissDialogAction,Unit>, ?Length, ?Length, ?Length, ?ResourceColor, ?EdgeStyles, ?ShadowOptions, ?BlurStyle)
+### init(CustomView, ?VoidCallback, ?Bool, ?DialogAlignment, ?Offset, ?Bool, ?UInt32, ?ResourceColor, ?Rectangle, ?AnimateParam, ?AnimateParam, ?Bool, ?ResourceColor, ?Length, ?Bool, ?Callback\<DismissDialogAction,Unit>, ?Length, ?Length, ?Length, ?ResourceColor, ?EdgeStyles, ?ShadowOptions, ?BlurStyle)
 
 ```cangjie
 public init(
@@ -585,7 +555,7 @@ public init(
     borderColor!: ?ResourceColor = None,
     borderStyle!: ?EdgeStyles = None,
     shadow!: ?ShadowOptions = None,
-    backgroundBlurStyle!: ?BlurStyle = None
+    backgroundBlurStyle!: ?BlurStyle = Option.None
 )
 ```
 
@@ -599,6 +569,7 @@ public init(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
+|builder|CustomView|是|-| **命名参数。** 自定义弹窗内容构造器。|
 |cancel|?[VoidCallback](./cj-common-types.md#type-voidcallback)|否|None| **命名参数。** 返回、ESC键和点击遮障层弹窗退出时的回调。初始值: { => }|
 |autoCancel|?Bool|否|None| **命名参数。** 是否允许点击遮障层退出，true表示关闭弹窗。false表示不关闭弹窗。初始值: true|
 |alignment|?[DialogAlignment](./cj-common-types.md#enum-dialogalignment)|否|None| **命名参数。** 弹窗在竖直方向上的对齐方式。初始值: DialogAlignment.Default|
@@ -620,7 +591,7 @@ public init(
 |borderColor|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|否|None| **命名参数。** 设置弹窗背板的边框颜色。初始值: Color.Black<br/>如果使用borderColor属性，需要和borderWidth属性一起使用。|
 |borderStyle|?[EdgeStyles](./cj-common-types.md#class-edgestyles)|否|None| **命名参数。** 设置弹窗背板的边框样式。初始值: EdgeStyles()<br/>如果使用borderStyle属性，需要和borderWidth属性一起使用。|
 |shadow|?[ShadowOptions](./cj-common-types.md#class-shadowoptions)|否|None| **命名参数。** 设置弹窗背板的阴影。 <br/> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OuterFloatingMD，失焦为ShadowStyle.OuterFloatingSM|
-|backgroundBlurStyle|?[BlurStyle](./cj-common-types.md#enum-blurstyle)|否|None| **命名参数。** 弹窗背板模糊材质。 初始值: BlurStyle.ComponentUltraThick<br/>**说明：** <br/>设置为BlurStyle.None即可关闭背景虚化。当设置了backgroundBlurStyle为非None值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。|
+|backgroundBlurStyle|?[BlurStyle](./cj-common-types.md#enum-blurstyle)|否|Option.None| **命名参数。** 弹窗背板模糊材质。 初始值: BlurStyle.ComponentUltraThick<br/>**说明：** <br/>设置为BlurStyle.None即可关闭背景虚化。当设置了backgroundBlurStyle为非None值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。|
 
 ## 示例代码
 

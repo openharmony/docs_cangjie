@@ -161,7 +161,7 @@ extend CanvasPattern <: StrokeStyle {}
 
 ```cangjie
 public class CanvasRenderingContext2D {
-    public init(?RenderingContextSettings)
+    public init(settings: ?RenderingContextSettings)
 }
 ```
 
@@ -622,10 +622,10 @@ public func clearRect(x: Float64, y: Float64, w: Float64, h: Float64): Unit
 |w|Float64|是|-|指定矩形的宽度。<br>默认单位：vp。|
 |h|Float64|是|-|指定矩形的高度。<br>默认单位：vp。|
 
-### func fillText(String, Float64, Float64, ?Float64)
+### func fillText(String, Float64, Float64, Option\<Float64>)
 
 ```cangjie
-public func fillText(text: String, x: Float64, y: Float64, maxWidth!: ?Float64 = Option.None): Unit
+public func fillText(text: String, x: Float64, y: Float64, maxWidth!: Option<Float64> = Option.None): Unit
 ```
 
 **功能：** 在指定位置填充指定的文本。
@@ -643,10 +643,10 @@ public func fillText(text: String, x: Float64, y: Float64, maxWidth!: ?Float64 =
 |y|Float64|是|-|需要绘制的文本的左下角y坐标。<br>默认单位：vp。|
 |maxWidth|?Float64|否|Option.None|**命名参数。** 指定文本允许的最大宽度。<br>默认单位：vp。<br>初始值：不限制宽度。|
 
-### func strokeText(String, Float64, Float64, ?Float64)
+### func strokeText(String, Float64, Float64, Option\<Float64>)
 
 ```cangjie
-public func strokeText(text: String, x: Float64, y: Float64, maxWidth!: ?Float64 = Option.None): Unit
+public func strokeText(text: String, x: Float64, y: Float64, maxWidth!: Option<Float64> = Option.None): Unit
 ```
 
 **功能：** 绘制描边类文本。
@@ -1127,10 +1127,10 @@ public func setTransform(
 |e|Float64|是|-|指定水平移动值。<br>默认单位：vp。|
 |f|Float64|是|-|指定垂直移动值。<br>默认单位：vp。|
 
-### func setTransform(?Matrix2D)
+### func setTransform(Option\<Matrix2D>)
 
 ```cangjie
-public func setTransform(matrix: ?Matrix2D): Unit
+public func setTransform(matrix: Option<Matrix2D>): Unit
 ```
 
 **功能：** 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。

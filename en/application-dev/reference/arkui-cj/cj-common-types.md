@@ -770,7 +770,7 @@ public class Color <: ResourceColor {
 ### static let Black
 
 ```cangjie
-public static let Black: Color
+public static let Black: Color = Color(0xff000000)
 ```
 
 **Description:** Black color.
@@ -786,7 +786,7 @@ public static let Black: Color
 ### static let Blue
 
 ```cangjie
-public static let Blue: Color
+public static let Blue: Color = Color(0xff0000ff)
 ```
 
 **Description:** Blue color.
@@ -802,7 +802,7 @@ public static let Blue: Color
 ### static let Gray
 
 ```cangjie
-public static let Gray: Color
+public static let Gray: Color = Color(0xff808080)
 ```
 
 **Description:** Gray color.
@@ -818,7 +818,7 @@ public static let Gray: Color
 ### static let Green
 
 ```cangjie
-public static let Green: Color
+public static let Green: Color = Color(0xff008000)
 ```
 
 **Description:** Green color.
@@ -834,7 +834,7 @@ public static let Green: Color
 ### static let Red
 
 ```cangjie
-public static let Red: Color
+public static let Red: Color = Color(0xffff0000)
 ```
 
 **Description:** Red color.
@@ -850,7 +850,7 @@ public static let Red: Color
 ### static let White
 
 ```cangjie
-public static let White: Color
+public static let White: Color = Color(0xffffffff)
 ```
 
 **Description:** White color.
@@ -866,7 +866,7 @@ public static let White: Color
 ### static let Transparent
 
 ```cangjie
-public static let Transparent: Color
+public static let Transparent: Color = Color(0, 0, 0, alpha: 0.0)
 ```
 
 **Description:** Transparent color.
@@ -996,13 +996,13 @@ public func get<T>(key: String): ?T
 
 ```cangjie
 public class KeyEvent {
-    public var keyText: String,
-    public var keyType: KeyType,
-    public var keyCode: Int32,
-    public var keySource: KeySource,
-    public var metaKey: Int32,
-    public var deviceId: Int64,
-    public var timestamp: Int64,
+    public var keyText: String
+    public var keyType: KeyType
+    public var keyCode: Int32
+    public var keySource: KeySource
+    public var metaKey: Int32
+    public var deviceId: Int64
+    public var timestamp: Int64
     public init(keyText: String, keyType: KeyType, keyCode: Int32, keySource: KeySource, metaKey: Int32,
         deviceId: Int64, timestamp: Int64)
 }
@@ -1616,9 +1616,9 @@ public init(timestamp: Int64, screenX: Float64, screenY: Float64, x: Float64, y:
 
 ```cangjie
 public class TouchEvent <: BaseEvent {
-    public var eventType: TouchType,
-    public var touches: ArrayList<TouchObject>,
-    public var changedTouches: ArrayList<TouchObject>
+    public var eventType: TouchType
+    public var touches: Array<TouchObject>
+    public var changedTouches: Array<TouchObject>
     public func stopPropagation(): Unit
 }
 ```
@@ -3358,10 +3358,10 @@ public open class MultiShadowOptions {
 public var radius: ?Length
 ```
 
-**Function:** Shadow blur radius.  
-Unit: vp.  
-<p>**NOTE:**  
-<br>Values less than or equal to 0 will be treated as default values.  
+**Function:** Shadow blur radius.
+Unit: vp.
+<p>**NOTE:**
+<br>Values less than or equal to 0 will be treated as default values.
 </p>
 
 **Type:** ?[Length](./cj-common-types.md#interface-length)
@@ -3378,7 +3378,7 @@ Unit: vp.
 public var offsetX: ?Length
 ```
 
-**Function:** Sets the horizontal offset of the shadow.  
+**Function:** Sets the horizontal offset of the shadow.
 Unit: vp.
 
 **Type:** ?[Length](./cj-common-types.md#interface-length)
@@ -3395,7 +3395,7 @@ Unit: vp.
 public var offsetY: ?Length
 ```
 
-**Function:** Sets the vertical offset of the shadow.  
+**Function:** Sets the vertical offset of the shadow.
 Unit: vp.
 
 **Type:** ?[Length](./cj-common-types.md#interface-length)
@@ -5205,8 +5205,6 @@ public class ContextMenuOptions {
     public var backgroundColor: ?ResourceColor
     public var backgroundBlurStyle: ?BlurStyle
     public var transition: ?TransitionEffect
-    public var borderRadius: ?BorderRadiuses = None
-    public var layoutRegionMargin: ?Margin = None
     public init(offset!: ?Position = None, placement!: Option<Placement> = Option.None, enableArrow!: ?Bool = None, arrowOffset!: ?Length = None, preview!: Option<() -> Unit> = Option.None, previewAnimationOptions!: ?ContextMenuAnimationOptions = None, onAppear!: ?() -> Unit = None, onDisappear!: ?() -> Unit = None, aboutToAppear!: ?() -> Unit = None, aboutToDisappear!: ?() -> Unit = None, backgroundColor!: ?ResourceColor = None, backgroundBlurStyle!: ?BlurStyle = Option.None, transition!: ?TransitionEffect = None, borderRadius!: ?BorderRadiuses = None, layoutRegionMargin!: ?Margin = None)
 }
 ```
