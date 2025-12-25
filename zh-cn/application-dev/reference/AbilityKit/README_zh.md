@@ -6,7 +6,7 @@
     - [ohos.ability_access_ctrl（程序访问控制管理）](cj-apis-ability_access_ctrl.md)
     - [ohos.bundle.bundle_manager（bundleManager管理）](cj-apis-bundle_manager.md)
     - [ohos.app.ability.ability_stage](cj-apis-app-ability-ability_stage.md)
-    - [ohos.app.ability.ability_result](cj-apis-ability-ability_result.md)
+    - [ohos.ability.ability_result](cj-apis-ability-ability_result.md)
     - [ohos.app.ability.app_recovery（应用故障恢复）](cj-apis-app-ability-app_recovery.md)
     - [ohos.app.ability.ability_constant](cj-apis-app-ability-ability_constant.md)
     - [ohos.app.ability.context_constant](cj-apis-app-ability-context_constant.md)
@@ -19,7 +19,7 @@
     - [ohos.element_name](cj-apis-element_name.md)
     - [ohos.metadata](cj-apis-metadata.md)
     - [ohos.security.permission_request_result（PermissionRequestResult）](cj-apis-sercurity-permission_request_result.md)
-    - [ohos.security.skill](cj-apis-skill.md)
+    - [ohos.skill](cj-apis-skill.md)
     - [ohos.app.ability.error_manager（错误管理模块）](cj-apis-app-ability-error_manager.md)
 - 错误码
     - [元能力子系统错误码](cj-errorcode-ability.md)
