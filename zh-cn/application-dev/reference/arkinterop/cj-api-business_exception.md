@@ -1,4 +1,4 @@
-# ohos.business_exception (通用异常信息)
+# ohos.business_exception（通用异常信息）
 
 本模块定义了接口调用过程中出现的常见异常信息。
 
