@@ -112,23 +112,6 @@
 
 **变更信息：** API 12-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
-## ohos.permission.GET_WIFI_CONFIG
-
-允许应用获取Wi-Fi的配置信息。
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**支持设备：** PC/2in1
-
-<!--Del-->
-**ACL使能：** true<!--DelEnd-->
-
-**起始版本：** 12
-
-**变更信息：** API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
-
 ## ohos.permission.SET_WIFI_CONFIG
 
 允许应用配置Wi-Fi信息。
@@ -335,37 +318,3 @@
 **ACL使能：** true<!--DelEnd-->
 
 **起始版本：** 18
-
-## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
-
-允许应用作为AppServiceExtension被拉起。
-
-获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-<!--Del-->
-**ACL使能：** true<!--DelEnd-->
-
-**支持设备：** PC/2in1
-
-**起始版本：** 20
-
-## ohos.permission.ENTERPRISE_MANAGE_EAP
-
-允许企业网络安全软件在EAP报文中新增私有信息。
-
-获取此权限后，允许企业网络安全软件获取802.1x报文并新增信息，完成定制化认证需求。
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-<!--Del-->
-**ACL使能：** true<!--DelEnd-->
-
-**支持设备：** PC/2in1
-
-**起始版本：** 20

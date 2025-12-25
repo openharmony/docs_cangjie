@@ -15,7 +15,7 @@
 
 - **BLE模块（低功耗蓝牙）**
 
-  BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种能够在低功耗情况下进行通信的蓝牙技术，与传统蓝牙相比，BLE的功耗更低，适用于需要长时间运行的低功耗设备，如智能手表、健康监测设备、智能家居等。
+  BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种能够在低功耗情况下进行通信的蓝牙技术，与传统蓝牙相比，BLE的功耗更低，适用于需要长时间运行的低功耗设备。
 
   详情请参见[ohos.bluetooth.ble API参考](../reference/ConnectivityKit/cj-apis-bluetooth-ble.md)。
 
