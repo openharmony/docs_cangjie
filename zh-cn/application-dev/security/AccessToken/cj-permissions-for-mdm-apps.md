@@ -472,7 +472,7 @@
 <!--Del-->
 **ACL使能：** true<!--DelEnd-->
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20
 
@@ -487,7 +487,7 @@
 <!--Del-->
 **ACL使能：** true<!--DelEnd-->
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20
 
@@ -502,7 +502,7 @@
 <!--Del-->
 **ACL使能：** true<!--DelEnd-->
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20
 
@@ -517,7 +517,7 @@
 <!--Del-->
 **ACL使能：** true<!--DelEnd-->
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20
 
@@ -532,7 +532,7 @@
 <!--Del-->
 **ACL使能：** true<!--DelEnd-->
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20
 
@@ -547,6 +547,6 @@
 <!--Del-->
 **ACL使能：** true<!--DelEnd-->
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20

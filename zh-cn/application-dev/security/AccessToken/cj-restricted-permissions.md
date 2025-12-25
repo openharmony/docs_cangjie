@@ -244,8 +244,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 在获取Wi-Fi扫描结果时，如果需要获取对端设备的MAC地址，则需要申请该权限。
 
-<!--RP14--><!--RP14End-->
-
 **权限级别：** system_basic
 
 **授权方式：** 系统授权（system_grant）
@@ -412,8 +410,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 通过BLE扫描、BR扫描或连接监听获取到对端蓝牙设备MAC对应的虚拟随机地址，申请该权限后，可保持该虚拟随机地址长时间保持，即使是开/关/重启蓝牙也不发生变化。
 
-<!--RP36--><!--RP36End-->
-
 **权限级别：** system_basic
 
 **授权方式：** 系统授权（system_grant）
@@ -425,8 +421,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用管控虚拟屏。
 
 获得该权限的应用可以调用虚拟屏相关接口管理虚拟屏，包括创建虚拟屏，使虚拟屏，销毁虚拟屏等。
-
-<!--RP37--><!--RP37End-->
 
 **权限级别：** system_basic
 
@@ -457,8 +451,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式：** 系统授权（system_grant）
 
 **起始版本：** 12
-
-**变更信息：** API 12-15该权限仅向系统应用开放；从API 16开始，在PC/2in1设备上面向普通应用开放，在其余设备上仍仅面向系统应用开放。
 
 ### ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
 
@@ -542,20 +534,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式：** 系统授权（system_grant）
 
-**支持设备：** Phone | PC/2in1 | Tablet
+**支持设备：** Phone | Tablet
 
 **起始版本：** 20
 
-### ohos.permission.GET_ABILITY_INFO
-
-允许应用根据URI查询Ability信息。
-
-<!--RP42--><!--RP42End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**支持设备**: PC/2in1
-
-**起始版本：** 20
