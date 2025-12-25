@@ -1,4 +1,4 @@
-# ohos.arkui.shape
+# ohos.arkui.shape（形状）
 
 提供绘制图形的基础能力。
 
