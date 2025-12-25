@@ -27,8 +27,6 @@
 | DES/CBC/NoPadding<br/>DES/ECB/NoPadding | CBC模式下 IV 参数必选。 | 15+ | 是 |
 | 3DES/CBC/NoPadding<br/>3DES/ECB/NoPadding | CBC模式下 IV 参数必选。 | 15+ | 是 |
 
-### <!--RP2-->轻量级设备<!--RP2End-->规格
-
 <!--Del-->
 轻量级设备所列规格，OEM厂商将基于实际情况决定是否实现，如需使用，请查阅具体厂商提供的说明，确保规格支持再使用。
 <!--DelEnd-->
