@@ -376,8 +376,6 @@ public type OnAlphabetIndexerSelectCallback = (Int64) -> Unit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**起始版本：** 22
-
 ### type OnAlphabetIndexerRequestPopupDataCallback
 
 ```cangjie
@@ -390,8 +388,6 @@ public type OnAlphabetIndexerRequestPopupDataCallback = (Int64) -> Array<String>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**起始版本：** 22
-
 ### type OnAlphabetIndexerPopupSelectCallback
 
 ```cangjie
@@ -403,8 +399,6 @@ public type OnAlphabetIndexerPopupSelectCallback = (Int64) -> Unit
 **类型：** (Int64) -> Unit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
 
 ## 示例代码
 

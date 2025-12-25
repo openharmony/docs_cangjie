@@ -785,7 +785,7 @@ public operator func !=(other: GridRowDirection): Bool
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**起始版本：** 22。
+**起始版本：** 22
 
 **参数：**
 

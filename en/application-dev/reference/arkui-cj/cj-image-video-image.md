@@ -538,8 +538,6 @@ public type ImageCompleteCallback = (ImageLoadResult) -> Unit
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
-**Initial Version:** 22
-
 ## type ImageErrorCallback
 
 ```cangjie
@@ -551,8 +549,6 @@ public type ImageErrorCallback = (ImageError) -> Unit
 **Type:** ([ImageError](#class-imageerror)) -> Unit
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 22
 
 ## Example Code
 

@@ -394,7 +394,7 @@ public var locale: ?String
 #### var localeMatcher: ?String
 
 ```cangjie
-public var localeMatcher
+public var localeMatcher: ?String
 ```
 
 **Function:** Locale matching algorithm. Values can be: "lookup" (exact match) or "best fit" (best match).
@@ -458,7 +458,7 @@ public var numberingSystem: ?String
 #### var second: ?String
 
 ```cangjie
-public var second
+public var second: ?String
 ```
 
 **Function:** Second display format. Values can be: "numeric" or "2-digit".

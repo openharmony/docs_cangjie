@@ -13,7 +13,7 @@ import kit.ArkUI.*
 ```cangjie
 public class Path2D {
     public init()
-    public init(path: String)
+    public init(d: ?String)
 }
 ```
 

@@ -520,7 +520,6 @@ public class RichEditorImageSpanStyleResult {
     public var size: ?(Float64, Float64)
     public var verticalAlign: ?ImageSpanAlignment
     public var objectFit: ?ImageFit
-    public var layoutStyle: ?RichEditorLayoutStyle
 }
 ```
 
@@ -571,22 +570,6 @@ public var objectFit: ?ImageFit
 **Function:** Image fitting method.
 
 **Type:** ?[ImageFit](./cj-common-types.md#enum-imagefit)
-
-**Read-Write Access:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-#### var layoutStyle
-
-```cangjie
-public var layoutStyle: ?RichEditorLayoutStyle
-```
-
-**Function:** RichEditor image layout style.
-
-**Type:** ?[RichEditorLayoutStyle](#class-richeditorlayoutstyle)
 
 **Read-Write Access:** Readable and Writable
 
@@ -1700,22 +1683,6 @@ public var objectFit: ?ImageFit
 **Function:** Image fitting method.
 
 **Type:** ?[ImageFit](./cj-common-types.md#enum-imagefit)
-
-**Read-Write Access:** Readable and Writable
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-#### var layoutStyle
-
-```cangjie
-public var layoutStyle: ?RichEditorLayoutStyle
-```
-
-**Function:** Image layout style.
-
-**Type:** [RichEditorLayoutStyle](#class-richeditorlayoutstyle)
 
 **Read-Write Access:** Readable and Writable
 

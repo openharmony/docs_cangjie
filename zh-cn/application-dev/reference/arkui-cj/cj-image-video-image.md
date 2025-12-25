@@ -547,7 +547,7 @@ public var contentHeight: Float64
 #### var contentOffsetX
 
 ```cangjie
-public var contentOffsetX: ?Float64
+public var contentOffsetX: Float64
 ```
 
 **功能：** 实际绘制内容相对于组件自身的x轴偏移，单位为px。
@@ -664,8 +664,6 @@ public type ImageCompleteCallback = (ImageLoadResult) -> Unit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**起始版本：** 22
-
 ## type ImageErrorCallback
 
 ```cangjie
@@ -677,8 +675,6 @@ public type ImageErrorCallback = (ImageError) -> Unit
 **类型：** ([ImageError](#class-imageerror)) -> Unit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
 
 ## 示例代码
 

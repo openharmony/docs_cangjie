@@ -154,9 +154,9 @@ public init(
 
 ```cangjie
 public class SizeOptions {
-    public var height: Length
-    public var width: Length
-    public init(Length, Length)
+    public var height: Length = 0
+    public var width: Length = 0
+    public init(Length = 0, Length = 0)
 }
 ```
 
@@ -169,7 +169,7 @@ public class SizeOptions {
 ### var height
 
 ```cangjie
-public var height: Length
+public var height: Length = 0
 ```
 
 **功能：** 高度。
@@ -185,7 +185,7 @@ public var height: Length
 ### var width
 
 ```cangjie
-public var width: Length
+public var width: Length = 0
 ```
 
 **功能：** 宽度。

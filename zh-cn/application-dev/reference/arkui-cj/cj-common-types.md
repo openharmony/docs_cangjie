@@ -781,7 +781,7 @@ public class Color <: ResourceColor {
 ### static let Black
 
 ```cangjie
-public static let Black: Color
+public static let Black: Color = Color(0xff000000)
 ```
 
 **功能：** 黑色。
@@ -797,7 +797,7 @@ public static let Black: Color
 ### static let Blue
 
 ```cangjie
-public static let Blue: Color
+public static let Blue: Color = Color(0xff0000ff)
 ```
 
 **功能：** 蓝色。
@@ -813,7 +813,7 @@ public static let Blue: Color
 ### static let Gray
 
 ```cangjie
-public static let Gray: Color
+public static let Gray: Color = Color(0xff808080)
 ```
 
 **功能：** 灰色。
@@ -829,7 +829,7 @@ public static let Gray: Color
 ### static let Green
 
 ```cangjie
-public static let Green: Color
+public static let Green: Color = Color(0xff008000)
 ```
 
 **功能：** 绿色。
@@ -845,7 +845,7 @@ public static let Green: Color
 ### static let Red
 
 ```cangjie
-public static let Red: Color
+public static let Red: Color = Color(0xffff0000)
 ```
 
 **功能：** 红色。
@@ -861,7 +861,7 @@ public static let Red: Color
 ### static let White
 
 ```cangjie
-public static let White: Color
+public static let White: Color = Color(0xffffffff)
 ```
 
 **功能：** 白色。
@@ -877,7 +877,7 @@ public static let White: Color
 ### static let Transparent
 
 ```cangjie
-public static let Transparent: Color
+public static let Transparent: Color = Color(0, 0, 0, alpha: 0.0)
 ```
 
 **功能：** 透明色。
@@ -1007,13 +1007,13 @@ public func get<T>(key: String): ?T
 
 ```cangjie
 public class KeyEvent {
-    public var keyText: String,
-    public var keyType: KeyType,
-    public var keyCode: Int32,
-    public var keySource: KeySource,
-    public var metaKey: Int32,
-    public var deviceId: Int64,
-    public var timestamp: Int64,
+    public var keyText: String
+    public var keyType: KeyType
+    public var keyCode: Int32
+    public var keySource: KeySource
+    public var metaKey: Int32
+    public var deviceId: Int64
+    public var timestamp: Int64
     public init(keyText: String, keyType: KeyType, keyCode: Int32, keySource: KeySource, metaKey: Int32,
         deviceId: Int64, timestamp: Int64)
 }
@@ -1746,9 +1746,9 @@ public init(timestamp: Int64, screenX: Float64, screenY: Float64, x: Float64, y:
 
 ```cangjie
 public class TouchEvent <: BaseEvent {
-    public var eventType: TouchType,
-    public var touches: ArrayList<TouchObject>,
-    public var changedTouches: ArrayList<TouchObject>
+    public var eventType: TouchType
+    public var touches: Array<TouchObject>
+    public var changedTouches: Array<TouchObject>
     public func stopPropagation(): Unit
 }
 ```
@@ -1782,12 +1782,12 @@ public var eventType: TouchType
 ### var touches
 
 ```cangjie
-public var touches: ArrayList<TouchObject>
+public var touches: Array<TouchObject>
 ```
 
 **功能：** 全部手指信息。
 
-**类型：** ArrayList\<[TouchObject](#class-touchobject)>
+**类型：** Array\<[TouchObject](#class-touchobject)>
 
 **读写能力：** 可读写
 
@@ -1798,12 +1798,12 @@ public var touches: ArrayList<TouchObject>
 ### var changedTouches
 
 ```cangjie
-public var changedTouches: ArrayList<TouchObject>
+public var changedTouches: Array<TouchObject>
 ```
 
 **功能：** 当前发生变化的手指信息。
 
-**类型：** ArrayList\<[TouchObject](#class-touchobject)>
+**类型：** Array\<[TouchObject](#class-touchobject)>
 
 **读写能力：** 可读写
 
@@ -3866,11 +3866,45 @@ public init(colorMode!: ?ThemeColorMode = None, adaptiveColor!: ?AdaptiveColor =
 
 ```cangjie
 public class PopupButton {
+    public var value: ?String
+    public var action: () -> Unit
     public init(value!: ?String, action!: () -> Unit)
 }
 ```
 
 **功能：** 构建弹窗按钮。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+### var value
+
+```cangjie
+public var value: ?String
+```
+
+**功能：** 按钮的文本内容。
+
+**类型：** Bool
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+### var action
+
+```cangjie
+public var action: () -> Unit
+```
+
+**功能：** 按钮的点击事件。
+
+**类型：** Bool
+
+**读写能力：** 可读写
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5601,8 +5635,6 @@ public class ContextMenuOptions {
     public var backgroundColor: ?ResourceColor
     public var backgroundBlurStyle: ?BlurStyle
     public var transition: ?TransitionEffect
-    public var borderRadius: ?BorderRadiuses = None
-    public var layoutRegionMargin: ?Margin = None
     public init(
         offset!: ?Position = None,
         placement!: Option<Placement> = Option.None,

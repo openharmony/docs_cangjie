@@ -1648,7 +1648,6 @@ public class RichEditorImageSpanStyle {
     public var size: Option<(Length, Length)>
     public var verticalAlign: ?ImageSpanAlignment
     public var objectFit: ?ImageFit
-    public var layoutStyle: ?RichEditorLayoutStyle
     public init(
         size!: Option<(Length, Length)> = Option.None,
         verticalAlign!: ?ImageSpanAlignment = Option.None,
@@ -1704,22 +1703,6 @@ public var objectFit: ?ImageFit
 **功能：** 图像适应方式。
 
 **类型：** ?[ImageFit](./cj-common-types.md#enum-imagefit)
-
-**读写能力：** 可读写
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-#### var layoutStyle
-
-```cangjie
-public var layoutStyle: RichEditorLayoutStyle
-```
-
-**功能：** 图像布局样式。
-
-**类型：** [RichEditorLayoutStyle](#class-richeditorlayoutstyle)
 
 **读写能力：** 可读写
 
@@ -2383,8 +2366,6 @@ public type PasteEventCallback = (PasteEvent) -> Unit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**起始版本：** 22
-
 ### type OnDidChangeCallback
 
 ```cangjie
@@ -2396,8 +2377,6 @@ public type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange
 **类型：** ([TextRange](#class-textrange), [TextRange](#class-textrange)) -> Unit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
 
 ## 示例代码
 
