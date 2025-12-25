@@ -123,10 +123,10 @@
             - [宏的简介](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/macro_introduction.md)
             - [Tokens 相关类型和 quote 表达式](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/Tokens_types_and_quote_expressions.md)
             - [语法节点](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/syntax_node.md)
-            - [宏的实现](learn-cj/Macro/implementation_of_macros_ohos.md)
-            - [编译、报错与调试](learn-cj/Macro/compiling_error_reporting_and_debugging_ohos.md)
+            - [宏的实现](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/implementation_of_macros.md)
+            - [编译、报错与调试](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/compiling_error_reporting_and_debugging.md)
             - [宏包定义和导入](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/defining_and_importing_macro_package.md)
-            - [内置编译标记](learn-cj/Macro/builtin_compilation_flags.md)
+            - [内置编译标记](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/builtin_compilation_flags.md)
             - [实用案例](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Macro/practical_case.md)
         - 反射和注解
             - [动态特性](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/reflect_and_annotation/dynamic_feature.md)
@@ -169,7 +169,7 @@
             - [关键字](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/keyword.md)
             - [操作符](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/operator.md)
             - [操作符函数](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/operator_function.md)
-            - [TokenKind 类型](learn-cj/Appendix/tokenkind_type.md)
+            - [TokenKind 类型](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/tokenkind_type.md)
 - 开发
     <!--RP5--><!--RP5End-->
     - 应用框架
@@ -376,7 +376,6 @@
                 - [用户文件概述](file-management/cj-user-file-overview.md)
         - IPC Kit（进程间通信服务）
             - [IPC Kit简介](ipc/cj-ipc-rpc-overview.md)
-            <!--RP3--><!--RP3End-->
         - Localization Kit（本地化开发服务）
             - [国际化和本地化概述](internationalization/cj-i18n-l10n.md)
             - 应用国际化
@@ -598,9 +597,7 @@
                 - [设备输入（仓颉）](media/camera/cj-camera-device-input.md)
                 - [会话管理（仓颉）](media/camera/cj-camera-session-management.md)
             - 开发相机应用基础能力（仓颉）
-                - [预览（仓颉）](media/camera/cj-camera-preview.md)
-                - [手电筒使用（仓颉）](media/camera/cj-camera-torch-use.md)
-                - [相机启动恢复实践（仓颉）](media/camera/cj-camera-background-recovery.md)
+                - [手电筒使用](media/camera/cj-camera-torch-use.md)
         - Image Kit（图片处理服务）
             - [Image Kit简介](media/image/cj-image-overview.md)
             - 图片开发指导
@@ -613,7 +610,6 @@
                 - 图片接收
                     - [使用ImagePacker完成图片编码](media/image/cj-image-encoding.md)
         - Media Kit（媒体服务）
-            - [Media Kit简介](media/media/cj-media-kit-intro.md)
             - 媒体开发指导
                 - 媒体信息查询
                     - [使用AVImageGenerator提取视频指定时间图像（仓颉）](media/media/cj-avimagegenerator.md)
