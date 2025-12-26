@@ -12,8 +12,6 @@ public class BusinessException <: Exception {
 
 **功能：** 业务异常类，继承自Exception类。
 
-**系统能力：** SystemCapability.Base
-
 **起始版本：** 22
 
 **父类型：**
@@ -48,15 +46,19 @@ public func getData<T>(): ?T
 
 **起始版本：** 22
 
+**返回值：**
+
+| 类型 | 说明    |
+|:----|:------|
+| T | 额外补充的异常信息。|
+
 ### func toString()
 
 ```cangjie
-public open func toString(): String
+public func toString(): String
 ```
 
 **功能：** 获取错误信息字符串。
-
-**系统能力：** SystemCapability.Base
 
 **起始版本：** 22
 
@@ -66,25 +68,7 @@ public open func toString(): String
 |:----|:------|
 | String | 错误信息。|
 
-### func getClassName()
-
-```cangjie
-protected override func getClassName(): String
-```
-
-**功能：** 获取异常类型名称。
-
-**系统能力：** SystemCapability.Base
-
-**起始版本：** 22
-
-**返回值：**
-
-| 类型     | 说明    |
-|:-------|:------|
-| String | 类型名称。 |
-
-## type AsyncCallback
+## type AsyncCallback\<T>
 
 ```cangjie
 public type AsyncCallback<T>=(Option<AsyncError>, Option<T>) -> Unit
