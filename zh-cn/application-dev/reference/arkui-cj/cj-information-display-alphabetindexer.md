@@ -112,7 +112,7 @@ public func font(
 ### func itemSize(?Length)
 
 ```cangjie
-public func itemSize(size: ?Length): This
+public func itemSize(value: ?Length): This
 ```
 
 **功能：** 设置索引项区域大小。
@@ -125,7 +125,7 @@ public func itemSize(size: ?Length): This
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|size|?[Length](./cj-common-types.md#interface-length)|是|-|索引项区域大小，索引项区域为正方形，即正方形边长。<br>不支持设置为百分比。初始值: 16.vp|
+|value|?[Length](./cj-common-types.md#interface-length)|是|-|索引项区域大小，索引项区域为正方形，即正方形边长。<br>不支持设置为百分比。初始值: 16.vp|
 
 ### func popupBackground(?ResourceColor)
 
@@ -374,8 +374,6 @@ public type OnAlphabetIndexerSelectCallback = (Int64) -> Unit
 
 **类型：** (Int64) -> Unit
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ### type OnAlphabetIndexerRequestPopupDataCallback
 
 ```cangjie
@@ -386,8 +384,6 @@ public type OnAlphabetIndexerRequestPopupDataCallback = (Int64) -> Array<String>
 
 **类型：** (Int64) -> Array\<String>
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ### type OnAlphabetIndexerPopupSelectCallback
 
 ```cangjie
@@ -397,8 +393,6 @@ public type OnAlphabetIndexerPopupSelectCallback = (Int64) -> Unit
 **功能：** 提示弹窗二级索引项被选中时触发的事件。
 
 **类型：** (Int64) -> Unit
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 示例代码
 

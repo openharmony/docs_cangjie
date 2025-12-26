@@ -1242,7 +1242,7 @@ public func resize(width: UInt32, height: UInt32): Unit
 
 **功能：** 设置窗口大小。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **起始版本：** 22
 

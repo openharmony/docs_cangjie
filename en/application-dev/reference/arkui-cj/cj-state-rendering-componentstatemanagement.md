@@ -12,19 +12,6 @@ import kit.ArkUI.*
 
 A property type used for state management.
 
-### class ObservedProperty\<T>
-
-```cangjie
-public open class ObservedProperty<T> {
-}
-```
-
-**Function:** Represents a property type used for state management.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 22
-
 ## ObservedArrayList
 
 An array list type used for state management.

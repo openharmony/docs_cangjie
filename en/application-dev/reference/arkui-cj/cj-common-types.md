@@ -10911,7 +10911,6 @@ public enum Placement <: Equatable<Placement> {
     | LeftBottom
     | RightTop
     | RightBottom
-    | None
     | ...
 }
 ```
@@ -11065,18 +11064,6 @@ RightBottom
 ```
 
 **Function:** Bubble prompt is positioned to the right of the component, aligned with the bottom edge of the component.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-### None
-
-```cangjie
-None
-```
-
-**Function:** No change in bubble prompt position.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -15190,7 +15177,7 @@ public enum MixedMode <: Equatable<MixedMode> {
 
 **Function:** Sets the security loading mode for mixed content.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -15206,7 +15193,7 @@ All
 
 **Function:** Permissive mode: Allows loading both HTTP and HTTPS mixed content. All insecure content can be loaded.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -15218,7 +15205,7 @@ Compatible
 
 **Function:** Compatibility mode: Mixed content compatibility mode where some insecure content may be loaded.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -15230,7 +15217,7 @@ None
 
 **Function:** Strict mode: Disallows loading HTTP and HTTPS mixed content. Secure origins are not allowed to load content from insecure origins.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -15242,7 +15229,7 @@ public operator func ==(other: MixedMode): Bool
 
 **Function:** Determines whether two MixedMode enums are equal.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -17111,7 +17098,7 @@ public enum WebDarkMode <: Equatable<WebDarkMode> {
 
 **Description:** Web dark mode, disabled by default.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -17127,7 +17114,7 @@ Off
 
 **Description:** Web dark mode is disabled.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -17139,7 +17126,7 @@ On
 
 **Description:** Web dark mode is enabled.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -17151,7 +17138,7 @@ Auto
 
 **Description:** Web dark mode follows system settings.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -17163,7 +17150,7 @@ public operator func ==(other: WebDarkMode): Bool
 
 **Description:** Determines whether two WebDarkMode enums are equal.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+**System Capability:** SystemCapability.Web.Webview.Core
 
 **Since:** 22
 
@@ -19803,10 +19790,6 @@ public type VoidCallback = () -> Unit
 
 **Function:** [VoidCallback](#type-voidcallback) is a type alias for [() -> Unit](#type-voidcallback).
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
 **Type:** () -> Unit
 
 ## type Callback\<T, V>
@@ -19831,10 +19814,6 @@ public type CustomBuilder = () -> Unit
 
 **Function:** CustomBuilder is a type alias for () -> Unit.
 
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
 **Type:** () -> Unit
 
 ## type TransitionFinishCallback
@@ -19844,10 +19823,6 @@ public type TransitionFinishCallback = (Bool) -> Unit
 ```
 
 **Function:** [TransitionFinishCallback](#type-transitionfinishcallback) is a type alias for (Bool) -> Unit.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
 
 **Type:** (Bool) -> Unit
 

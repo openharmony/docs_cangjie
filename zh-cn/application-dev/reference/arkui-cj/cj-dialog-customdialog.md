@@ -13,8 +13,6 @@ import kit.ArkUI.*
 ```cangjie
 public class CustomDialogController {
     public init(value: CustomDialogControllerOptions)
-    public func setBuilder(builder: () -> Unit): Unit
-    public func bindView(view: CustomView): Unit
     public func openDialog(): Unit
     public func closeDialog(): Unit
     public func releaseSelf(): Unit
@@ -44,24 +42,6 @@ public init(value: CustomDialogControllerOptions)
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |value|[CustomDialogControllerOptions](#class-customdialogcontrolleroptions)|是|-|配置自定义弹窗的参数。|
-
-### func bindView(CustomView)
-
-```cangjie
-public func bindView(view: CustomView)
-```
-
-**功能：** 将CustomView绑定到自定义弹窗构建器，开发者无需主动调用，会在宏展开后隐式地调用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|view|[CustomView](./cj-ui-framework.md#class-customview)|是|-|被绑定的CustomView。|
 
 ### func closeDialog()
 
@@ -98,24 +78,6 @@ public func releaseSelf(): Unit
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-### func setBuilder(() -> Unit)
-
-```cangjie
-public func setBuilder(builder: () -> Unit): Unit
-```
-
-**功能：** 设置一个构建器，开发者无需主动调用，会在宏展开后隐式地调用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|builder|() -> Unit|是|-|builder对应的渲染函数。|
 
 ## class CustomDialogControllerOptions
 

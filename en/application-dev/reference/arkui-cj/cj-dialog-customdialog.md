@@ -13,8 +13,6 @@ import kit.ArkUI.*
 ```cangjie
 public class CustomDialogController {
     public init(value: CustomDialogControllerOptions)
-    public func setBuilder(builder: () -> Unit): Unit
-    public func bindView(view: CustomView): Unit
     public func openDialog(): Unit
     public func closeDialog(): Unit
     public func releaseSelf(): Unit
@@ -44,24 +42,6 @@ public init(value: CustomDialogControllerOptions)
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | value | [CustomDialogControllerOptions](#class-customdialogcontrolleroptions) | Yes | - | Parameters for configuring the custom dialog. |
-
-### func bindView(CustomView)
-
-```cangjie
-public func bindView(view: CustomView)
-```
-
-**Function:** Binds a CustomView to the custom dialog builder. Users do not need to call this explicitly; it is implicitly invoked after macro expansion.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| view | [CustomView](./cj-ui-framework.md#class-customview) | Yes | - | The CustomView to be bound. |
 
 ### func closeDialog()
 
@@ -98,24 +78,6 @@ public func releaseSelf(): Unit
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since:** 22
-
-### func setBuilder(() -> Unit)
-
-```cangjie
-public func setBuilder(builder: () -> Unit): Unit
-```
-
-**Function:** Sets a builder. Users do not need to call this explicitly; it is implicitly invoked after macro expansion.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| builder | () -> Unit | Yes | - | The rendering function corresponding to the builder. |
 
 ## class CustomDialogControllerOptions
 

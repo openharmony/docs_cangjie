@@ -688,12 +688,12 @@ public prop state: DisplayState
 ### prop width
 
 ```cangjie
-public prop width: Int32
+public prop width: Int64
 ```
 
 **Function:** Display width in pixels.
 
-**Type:** Int32
+**Type:** Int64
 
 **Accessibility:** Read-only
 
@@ -720,12 +720,12 @@ public prop xDpi: Float64
 ### prop yDpi
 
 ```cangjie
-public prop yDpi: Float32
+public prop yDpi: Float64
 ```
 
 **Function:** Dpi on the y-axis.
 
-**Type:** Float32
+**Type:** Float64
 
 **Accessibility:** Read-only
 
@@ -780,8 +780,8 @@ func getCutoutInfoExample() {
 
 ```cangjie
 public class FoldCreaseRegion {
-    public let creaseRects: Array<Rect>
     public let displayId: UInt32
+    public let creaseRects: Array<Rect>
     public init(
         displayId!: UInt32,
         creaseRects!: Array<Rect>
@@ -851,10 +851,10 @@ public init(
 
 ```cangjie
 public class Rect {
-    public var height: UInt32
     public var left: Int32
     public var top: Int32
     public var width: UInt32
+    public var height: UInt32
     public init(
     left!: Int32,
     top!: Int32,
@@ -964,10 +964,10 @@ public init(
 
 ```cangjie
 public class WaterfallDisplayAreaRects {
-    public let bottom: Rect
     public let left: Rect
-    public let right: Rect
     public let top: Rect
+    public let right: Rect
+    public let bottom: Rect
     public init(
     left!: Rect,
     top!: Rect,

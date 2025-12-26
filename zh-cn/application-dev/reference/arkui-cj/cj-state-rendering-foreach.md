@@ -42,15 +42,3 @@ public init(arr: CollectionEx<T>, itemGenerator!: ItemGeneratorFunc<T>, keyGener
 |arr|[CollectionEx\<T>](./cj-common-types.md#interface-collectionext)|是|-|用于UI中的数组集合。|
 |itemGenerator|[ItemGeneratorFunc\<T>](./cj-common-types.md#type-itemgeneratorfunct)|是|-|**命名参数。** 组件生成函数。|
 |keyGenerator|?[KeyGeneratorFunc\<T>](./cj-common-types.md#type-keygeneratorfunct)|否|None|**命名参数。** 键生成函数。|
-
-### func pop()
-
-```cangjie
-public func pop(): Unit
-```
-
-**功能：** 弹出ForEach组件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
