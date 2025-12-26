@@ -1550,12 +1550,6 @@ public static func fromJSValue(_: JSContext, _: JSValue): Unit
 |_|[JSContext](#class-jscontext)|是|-|ArkTS 互操作上下文。|
 |_|[JSValue](#class-jsvalue)|是|-|ArkTS 统一类型。|
 
-**返回值：**
-
-|类型|说明|
-|:----|:----|
-|Unit|仓颉类型。|
-
 ### static func toArktsType()
 
 ```cangjie
@@ -3313,7 +3307,7 @@ public func toJSValue(context: JSContext): JSValue
 ### func \[](Int64)
 
 ```cangjie
-public operator func[](index: Int64): T
+public operator func [](index: Int64): T
 ```
 
 **功能：** 获取数组下标 index 对应的值。
@@ -3362,7 +3356,7 @@ func getIndexOperator(context: JSContext): JSValue {
 ### func \[](Int64, T)
 
 ```cangjie
-public operator func[](index: Int64, value!: T)
+public operator func [](index: Int64, value!: T): Unit
 ```
 
 **功能：** 修改数组中下标 index 对应的值。
@@ -5534,55 +5528,6 @@ public func undefined(): JSUndefined
 func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
     let result = context.undefined()
     return result.toJSValue()
-}
-```
-
-### func requireArkModule(String)
-
-```cangjie
-public func requireArkModule(src: String): JSValue
-```
-
-**功能：** 导入一个ArkTS模块。
-
-**起始版本：** 23
-
-**参数：**
-
-| 参数名 | 类型     | 必填 | 默认值 | 说明     |
-|:----|:-------|:---|:----|:-------|
-| src | String | 是  | -   | 模块标识符。 |
-
-**返回值：**
-
-| 类型                         | 说明                     |
-|:---------------------------|:-----------------------|
-| [JSValue](#class-jsvalue) | 返回 ArkTS 模块的JSValue。 |
-
-**异常：**
-
-- BusinessException：对应错误码如下表，详见[互操作错误码](./cj-errorcode-ark_interop.md)
-
-| 错误码ID | 错误信息                                                              |
-|:------|:------------------------------------------------------------------|
-| 34300002   | Module initialize fail.                                           |
-| 34300004   | Thread mismatch.                                                  |
-| 34300006   | Target module not exist.                                          |
-| 34300007   | Can not requireArkModule during initializing cangjie module.      |
-| 34300008   | Current application have not support requireArkModule of the url. |
-
-**示例：**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    let hilog = context.requireArkModule("@ohos.hilog").asObject()
-    hilog.callMethod("info", [
-        context.number(0).toJSValue(),
-        context.string("test").toJSValue(),
-        context.string("call hilog success").toJSValue()
-    ])
-    return context.undefined().toJSValue()
 }
 ```
 
@@ -11611,8 +11556,6 @@ public type ClassRegister =(JSContext) -> JSClass
 
 **功能：** ClassRegister 是 ([JSContext](#class-jscontext)) -> [JSClass](#class-jsclass) 类型的别名。
 
-**起始版本：** 22
-
 ## type FuncRegister
 
 ```cangjie
@@ -11620,8 +11563,6 @@ public type FuncRegister =(JSContext) -> JSFunction
 ```
 
 **功能：** FuncRegister 是 ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction) 类型的别名。
-
-**起始版本：** 22
 
 ## type JSBufferFinalizer
 
@@ -11631,8 +11572,6 @@ public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
 
 **功能：** JSBufferFinalizer 是 (CPointer\<Byte>) -> Unit 类型的别名。
 
-**起始版本：** 22
-
 ## type JSLambda
 
 ```cangjie
@@ -11640,8 +11579,6 @@ public type JSLambda =(JSContext, JSCallInfo) -> JSValue
 ```
 
 **功能：** JSLambda 是 ([JSContext](#class-jscontext), [JSCallInfo](#class-jscallinfo)) -> [JSValue](#class-jsvalue) 类型的别名。
-
-**起始版本：** 22
 
 ## type ModuleRegister
 
@@ -11651,8 +11588,6 @@ public type ModuleRegister =(JSContext, JSObject) -> Unit
 
 **功能：** ModuleRegister 是 ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit 类型的别名。
 
-**起始版本：** 22
-
 ## type napi_env
 
 ```cangjie
@@ -11661,8 +11596,6 @@ public type napi_env = CPointer<Unit>
 
 **功能：** napi_env 是 CPointer\<Unit> 类型的别名。
 
-**起始版本：** 22
-
 ## type napi_value
 
 ```cangjie
@@ -11670,5 +11603,3 @@ public type napi_value = CPointer<Unit>
 ```
 
 **功能：** napi_value 是 CPointer\<Unit> 类型的别名。
-
-**起始版本：** 22

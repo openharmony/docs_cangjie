@@ -1551,12 +1551,6 @@ public static func fromJSValue(_: JSContext, _: JSValue): Unit
 |_|[JSContext](#class-jscontext)|Yes|-|ArkTS interoperability context.|
 |_|[JSValue](#class-jsvalue)|Yes|-|ArkTS unified type.|
 
-**Return Value:**
-
-|Type|Description|
-|:----|:----|
-|Unit|Cangjie type.|
-
 ### static func toArktsType()
 
 ```cangjie
@@ -3314,7 +3308,7 @@ public func toJSValue(context: JSContext): JSValue
 ### func \[](Int64)
 
 ```cangjie
-public operator func[](index: Int64): T
+public operator func [](index: Int64): T
 ```
 
 **Function:** Gets the value at the specified `index` in the array.
@@ -3363,7 +3357,7 @@ func getIndexOperator(context: JSContext): JSValue {
 ### func \[](Int64, T)
 
 ```cangjie
-public operator func[](index: Int64, value!: T)
+public operator func [](index: Int64, value!: T): Unit
 ```
 
 **Function:** Modifies the value at the specified `index` in the array.
@@ -5642,55 +5636,6 @@ func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
      }
 
     context.undefined().toJSValue()
-}
-```
-
-### func requireArkModule(String)
-
-```cangjie
-public func requireArkModule(src: String): JSValue
-```
-
-**Function:** Import an ArkTS module.
-
-**Initial Version:** 23
-
-**Parameters:**
-
-| Parameter | Type | Required | Default | Description           |
-|:----|:-------|:---------|:----|:----------------------|
-| src | String | Yes      | -   | The module specifier. |
-
-**Return Value:**
-
-| 类型                         | 说明                    |
-|:---------------------------|:----------------------|
-| [JSValue](#class-jsvalue) | The module's JSValue. |
-
-**Exceptions:**
-
-- BusinessException: Error codes as follows，see[Interoperation Error Codes](./cj-errorcode-ark_interop.md)
-
-| Error Code ID | Error Message                                                             |
-|:------|:--------------------------------------------------------------------------|
-| 34300002   | Module initialize fail.                                                   |
-| 34300004   | Thread mismatch.                                                          |
-| 34300006   | Target module not exist.                                                  |
-| 34300007   | Can not requireArkModule during initializing cangjie module.              |
-| 34300008   | Current application have not support requireArkModule of the url.         |
-
-**Example:**
-
-<!--compile-->
-```cangjie
-func doSth(context: JSContext, callInfo: JSCallInfo): JSValue {
-    let hilog = context.requireArkModule("@ohos.hilog").asObject()
-    hilog.callMethod("info", [
-        context.number(0).toJSValue(),
-        context.string("test").toJSValue(),
-        context.string("call hilog success").toJSValue()
-    ])
-    return context.undefined().toJSValue()
 }
 ```
 
@@ -11616,8 +11561,6 @@ public type FuncRegister =(JSContext) -> JSFunction
 
 **Function:** FuncRegister is a type alias for ([JSContext](#class-jscontext)) -> [JSFunction](#class-jsfunction).
 
-**Since:** 22
-
 ## type JSBufferFinalizer
 
 ```cangjie
@@ -11625,8 +11568,6 @@ public type JSBufferFinalizer =(CPointer<Byte>) -> Unit
 ```
 
 **Function:** JSBufferFinalizer is a type alias for (CPointer\<Byte>) -> Unit.
-
-**Since:** 22
 
 ## type JSLambda
 
@@ -11636,8 +11577,6 @@ public type JSLambda =(JSContext, JSCallInfo) -> JSValue
 
 **Function:** JSLambda is a type alias for ([JSContext](#class-jscontext), [JSCallInfo](#class-jscallinfo)) -> [JSValue](#class-jsvalue).
 
-**Since:** 22
-
 ## type ModuleRegister
 
 ```cangjie
@@ -11645,8 +11584,6 @@ public type ModuleRegister =(JSContext, JSObject) -> Unit
 ```
 
 **Function:** ModuleRegister is a type alias for ([JSContext](#class-jscontext), [JSObject](#class-jsobject)) -> Unit.
-
-**Since:** 22
 
 ## type napi_env
 
@@ -11656,8 +11593,6 @@ public type napi_env = CPointer<Unit>
 
 **Function:** napi_env is a type alias for CPointer\<Unit>.
 
-**Since:** 22
-
 ## type napi_value
 
 ```cangjie
@@ -11665,5 +11600,3 @@ public type napi_value = CPointer<Unit>
 ```
 
 **Function:** napi_value is a type alias for CPointer\<Unit>.
-
-**Since:** 22
