@@ -11,8 +11,8 @@ import kit.ArkUI.*
 ## func border(?Length, ?ResourceColor, ?Length, ?BorderStyle)
 
 ```cangjie
-func border(width!: ?Length, color!: ?ResourceColor = None, radius!: ?Length = None,
-    style!: ?BorderStyle = Option.None): T
+func border(width!: ?Length, color!: ?ResourceColor, radius!: ?Length,
+    style!: ?BorderStyle): T
 ```
 
 **Function:** Sets the border style of the component. 
@@ -30,9 +30,9 @@ func border(width!: ?Length, color!: ?ResourceColor = None, radius!: ?Length = N
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | width | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Border width. Initial value: 0.vp |
-| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** Border color. Initial value: Color.Black |
-| radius | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Border radius. Initial value: 0.vp |
-| style | ?[BorderStyle](./cj-common-types.md#enum-borderstyle) | No | Option.None | **Named parameter.** Border style. Initial value: BorderStyle.Solid |
+| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | **Named parameter.** Border color. Initial value: Color.Black |
+| radius | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Border radius. Initial value: 0.vp |
+| style | ?[BorderStyle](./cj-common-types.md#enum-borderstyle) | Yes | - | **Named parameter.** Border style. Initial value: BorderStyle.Solid |
 
 **Return Value:**
 
@@ -91,8 +91,8 @@ func borderRadius(value: ?Length): T
 ## func borderRadius(?Length, ?Length, ?Length, ?Length)
 
 ```cangjie
-func borderRadius(topLeft!: ?Length = None, topRight!: ?Length = None, bottomLeft!: ?Length = None,
-    bottomRight!: ?Length = None): T
+func borderRadius(topLeft!: ?Length, topRight!: ?Length, bottomLeft!: ?Length,
+    bottomRight!: ?Length): T
 ```
 
 **Function:** Sets the border radius for each corner of a component.
@@ -105,10 +105,10 @@ func borderRadius(topLeft!: ?Length = None, topRight!: ?Length = None, bottomLef
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| topLeft | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Top-left corner radius. Initial value: 0.vp |
-| topRight | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Top-right corner radius. Initial value: 0.vp |
-| bottomLeft | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Bottom-left corner radius. Initial value: 0.vp |
-| bottomRight | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Bottom-right corner radius. Initial value: 0.vp |
+| topLeft | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Top-left corner radius. Initial value: 0.vp |
+| topRight | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Top-right corner radius. Initial value: 0.vp |
+| bottomLeft | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Bottom-left corner radius. Initial value: 0.vp |
+| bottomRight | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Bottom-right corner radius. Initial value: 0.vp |
 
 **Return Value:**
 

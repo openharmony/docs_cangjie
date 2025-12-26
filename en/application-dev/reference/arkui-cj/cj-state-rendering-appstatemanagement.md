@@ -156,7 +156,7 @@ public static func link<T>(propName: String): ?ObservedProperty<T>
 
 | Type | Description |
 |:----|:----|
-| ?[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T> | Returns the two-way bound data. Returns None if the property does not exist in AppStorage. |
+| ?ObservedProperty\<T> | Returns the two-way bound data. Returns None if the property does not exist in AppStorage. |
 
 ### static func property\<T>(String)
 
@@ -180,7 +180,7 @@ public static func property<T>(propName: String): ?ObservedProperty<T>
 
 | Type | Description |
 |:----|:----|
-| ?[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T> | Returns the one-way bound data. Returns None if the property does not exist in AppStorage. |
+| ?ObservedProperty\<T> | Returns the one-way bound data. Returns None if the property does not exist in AppStorage. |
 
 ### static func set\<T>(String, T)
 
@@ -230,7 +230,7 @@ public static func setAndLink<T>(propName: String, defaultValue: T): ObservedPro
 
 | Type | Description |
 |:----|:----|
-| [ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T> | Returns the two-way bound data. |
+| ObservedProperty\<T> | Returns the two-way bound data. |
 
 ### static func setAndProp\<T>(String, T)
 
@@ -255,7 +255,7 @@ public static func setAndProp<T>(propName: String, defaultValue: T): ObservedPro
 
 | Type | Description |
 |:----|:----|
-| [ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T> | Returns the one-way bound data. |
+| ObservedProperty\<T> | Returns the one-way bound data. |
 
 ### static func setOrCreate\<T>(String, T)
 
@@ -523,7 +523,7 @@ public func link<T>(propName: String): ?ObservedProperty<T>
 
 | Type | Description |
 |:----|:----|
-| ?[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T> | Returns the two-way bound data. Returns None if the property does not exist in LocalStorage. |
+| ?ObservedProperty\<T> | Returns the two-way bound data. Returns None if the property does not exist in LocalStorage. |
 
 ### func property\<T>(String)
 
@@ -547,7 +547,7 @@ public func property<T>(propName: String): ?ObservedProperty<T>
 
 | Type | Description |
 |:----|:----|
-| ?[ObservedProperty](./cj-state-rendering-componentstatemanagement.md#class-observedproperty)\<T> | Returns the one-way bound data. Returns None if the property does not exist in LocalStorage. |
+| ?ObservedProperty\<T> | Returns the one-way bound data. Returns None if the property does not exist in LocalStorage. |
 
 ### func set\<T>(String, T)
 

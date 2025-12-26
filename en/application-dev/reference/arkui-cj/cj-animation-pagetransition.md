@@ -15,7 +15,7 @@ import kit.ArkUI.*
 ## class CommonTransition
 
 ```cangjie
-sealed abstract class CommonTransition {}
+abstract sealed class CommonTransition {}
 ```
 
 **Function:** The common base class for page transition animations, providing a series of reusable animation effect methods.
@@ -470,10 +470,6 @@ public type PageTransitionCallback = (RouteType, Float64) -> Unit
 ```
 
 **Function:** Callback for reporting page transition events.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Initial Version:** 22
 
 **Type:** ([RouteType](#enum-routetype), Float64) -> Unit
 

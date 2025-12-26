@@ -83,7 +83,7 @@ public func backdropBlur(value: ?Float64): T
 ## func shadow(?Float64, ?ResourceColor, ?Float64, ?Float64)
 
 ```cangjie
-func shadow(radius!: ?Float64, color!: ?ResourceColor = None, offsetX!: ?Float64 = None, offsetY!: ?Float64 = None): T
+func shadow(radius!: ?Float64, color!: ?ResourceColor, offsetX!: ?Float64, offsetY!: ?Float64): T
 ```
 
 **功能：** 为组件添加阴影效果。
@@ -97,9 +97,9 @@ func shadow(radius!: ?Float64, color!: ?ResourceColor = None, offsetX!: ?Float64
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |radius|?Float64|是|-|**命名参数。** 阴影模糊半径。初始值:  0.0|
-|color|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|否|None|**命名参数。** 阴影颜色。初始值:  Color(0x666666)|
-|offsetX|?Float64|否|None|**命名参数。** 阴影X轴偏移量。初始值:  0.0|
-|offsetY|?Float64|否|None|**命名参数。** 阴影Y轴偏移量。初始值:  0.0|
+|color|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|是|-|**命名参数。** 阴影颜色。初始值:  Color(0x666666)|
+|offsetX|?Float64|是|-|**命名参数。** 阴影X轴偏移量。初始值:  0.0|
+|offsetY|?Float64|是|-|**命名参数。** 阴影Y轴偏移量。初始值:  0.0|
 
 **返回值：**
 

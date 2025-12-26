@@ -108,7 +108,7 @@ func backgroundImagePosition(value: ?Alignment): T
 ## func backgroundImagePosition(?Length, ?Length)
 
 ```cangjie
-func backgroundImagePosition(x!: ?Length = None, y!: ?Length = None): T
+func backgroundImagePosition(x!: ?Length, y!: ?Length): T
 ```
 
 **Description:** Sets the position of the background image.
@@ -121,8 +121,8 @@ func backgroundImagePosition(x!: ?Length = None, y!: ?Length = None): T
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-axis position. Initial value: 0.vp |
-| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-axis position. Initial value: 0.vp |
+| x | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** X-axis position. Initial value: 0.vp |
+| y | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Y-axis position. Initial value: 0.vp |
 
 **Return Value:**
 
@@ -157,7 +157,7 @@ func backgroundImageSize(value: ?ImageSize): T
 ## func backgroundImageSize(?Length, ?Length)
 
 ```cangjie
-func backgroundImageSize(width!: ?Length = None, height!: ?Length = None): T
+func backgroundImageSize(width!: ?Length, height!: ?Length): T
 ```
 
 **Description:** Sets the width and height of the background image.
@@ -170,8 +170,8 @@ func backgroundImageSize(width!: ?Length = None, height!: ?Length = None): T
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| width | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Image width. Initial value: 0.vp |
-| height | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Image height. Initial value: 0.vp |
+| width | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Image width. Initial value: 0.vp |
+| height | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Image height. Initial value: 0.vp |
 
 **Return Value:**
 
