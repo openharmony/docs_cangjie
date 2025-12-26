@@ -196,7 +196,7 @@
         - ArkData（方舟数据管理）
             - [ArkData简介](database/cj-data-mgmt-overview.md)
             - 标准化数据定义
-              - [UTD预置列表](database/cj-uniform-data-type-list.md)
+                - [UTD预置列表](database/cj-uniform-data-type-list.md)
             - 应用数据持久化
                 - [应用数据持久化概述](database/cj-app-data-persistence-overview.md)
                 - [通过用户首选项实现数据持久化](database/cj-data-persistence-by-preferences.md)
@@ -646,7 +646,7 @@
                 - [ohos.ability_access_ctrl（程序访问控制管理）](reference/AbilityKit/cj-apis-ability_access_ctrl.md)
                 - [ohos.bundle.bundle_manager（bundleManager管理）](reference/AbilityKit/cj-apis-bundle_manager.md)
                 - [ohos.app.ability.ability_stage](reference/AbilityKit/cj-apis-app-ability-ability_stage.md)
-                - [ohos.app.ability.ability_result](reference/AbilityKit/cj-apis-ability-ability_result.md)
+                - [ohos.ability.ability_result](reference/AbilityKit/cj-apis-ability-ability_result.md)
                 - [ohos.app.ability.app_recovery（应用故障恢复）](reference/AbilityKit/cj-apis-app-ability-app_recovery.md)
                 - [ohos.app.ability.ability_constant](reference/AbilityKit/cj-apis-app-ability-ability_constant.md)
                 - [ohos.app.ability.context_constant](reference/AbilityKit/cj-apis-app-ability-context_constant.md)
@@ -659,7 +659,7 @@
                 - [ohos.element_name](reference/AbilityKit/cj-apis-element_name.md)
                 - [ohos.metadata](reference/AbilityKit/cj-apis-metadata.md)
                 - [ohos.security.permission_request_result（PermissionRequestResult）](reference/AbilityKit/cj-apis-sercurity-permission_request_result.md)
-                - [ohos.security.skill](reference/AbilityKit/cj-apis-skill.md)
+                - [ohos.skill](reference/AbilityKit/cj-apis-skill.md)
                 - [ohos.app.ability.error_manager（错误管理模块）](reference/AbilityKit/cj-apis-app-ability-error_manager.md)
             - 错误码
                 - [元能力子系统错误码](reference/AbilityKit/cj-errorcode-ability.md)
