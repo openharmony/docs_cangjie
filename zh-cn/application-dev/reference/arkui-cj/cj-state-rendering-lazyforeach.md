@@ -13,9 +13,9 @@ import kit.ArkUI.*
 ```cangjie
 public interface IDataSource<T> {
     func totalCount(): Int64
-    func getData(Int64): T
-    func registerDataChangeListener(DataChangeListener): Unit
-    func unregisterDataChangeListener(DataChangeListener): Unit
+    func getData(index: Int64): T
+    func registerDataChangeListener(listener: DataChangeListener): Unit
+    func unregisterDataChangeListener(listener: DataChangeListener): Unit
 }
 ```
 

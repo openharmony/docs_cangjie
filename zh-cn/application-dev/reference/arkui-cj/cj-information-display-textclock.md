@@ -394,7 +394,7 @@ public var locale: ?String
 #### var localeMatcher
 
 ```cangjie
-public var localeMatcher
+public var localeMatcher: ?String
 ```
 
 **功能：** 区域设置匹配算法。值可以是："lookup"（精确匹配）或"best fit"（最佳匹配）。
@@ -458,7 +458,7 @@ public var numberingSystem: ?String
 #### var second
 
 ```cangjie
-public var second
+public var second: ?String
 ```
 
 **功能：** 秒显示格式。值可以是："numeric"或"2-digit"。

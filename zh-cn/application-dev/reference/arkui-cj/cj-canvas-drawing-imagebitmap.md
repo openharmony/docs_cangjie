@@ -12,7 +12,7 @@ import kit.ArkUI.*
 
 ```cangjie
 public class ImageBitmap {
-    public init(?String)
+    public init(src: ?String)
 }
 ```
 

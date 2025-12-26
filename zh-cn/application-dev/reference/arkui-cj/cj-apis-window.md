@@ -145,17 +145,17 @@ public func getLastWindow(ctx: BaseContext): Window
 
 ```cangjie
 public class AvoidArea {
-    public var bottomRect: Rect
-    public var leftRect: Rect
-    public var rightRect: Rect
-    public var topRect: Rect
     public var visible: Bool
+    public var leftRect: Rect
+    public var topRect: Rect
+    public var rightRect: Rect
+    public var bottomRect: Rect
     public init(
-    visible!: Bool,
-    leftRect!: Rect,
-    topRect!: Rect,
-    rightRect!: Rect,
-    bottomRect!: Rect
+        visible!: Bool,
+        leftRect!: Rect,
+        topRect!: Rect,
+        rightRect!: Rect,
+        bottomRect!: Rect
     )
 }
 ```
@@ -278,17 +278,17 @@ public init(
 
 ```cangjie
 public class Configuration {
-    public var ctx: BaseContext
-    public var displayId: Int64 = -1
     public var name: String
-    public var parentId: Int64 = -1
     public var windowType: WindowType
+    public var ctx: BaseContext
+    public var displayId: Int64
+    public var parentId: Int64
     public init(
-      name!: String,
-      windowType!: WindowType,
-      ctx!: BaseContext,
-      displayId!: Int64 = -1,
-      parentId!: Int64 = -1
+        name!: String,
+        windowType!: WindowType,
+        ctx!: BaseContext,
+        displayId!: Int64 = -1,
+        parentId!: Int64 = -1
     )
 }
 ```
@@ -410,17 +410,16 @@ public init(
 ## class Rect
 
 ```cangjie
-
 public class Rect {
-    public var height: UInt32
     public var left: Int32
     public var top: Int32
+    public var height: UInt32
     public var width: UInt32
     public init(
-      left!: Int32,
-      top!: Int32,
-      width!: UInt32,
-      height!: UInt32
+        left!: Int32,
+        top!: Int32,
+        width!: UInt32,
+        height!: UInt32
     )
 }
 ```
@@ -525,11 +524,11 @@ public init(
 
 ```cangjie
 public class Size {
-    public var height: UInt32
     public var width: UInt32
+    public var height: UInt32
     public init(
-    width!: UInt32,
-    height!: UInt32
+        width!: UInt32,
+        height!: UInt32
     )
 }
 ```
@@ -598,14 +597,14 @@ public init(
 
 ```cangjie
 public class SystemBarProperties {
-    public var enableNavigationBarAnimation: Bool = false
-    public var enableStatusBarAnimation: Bool = false
-    public var isNavigationBarLightIcon: Bool = false
+    public var statusBarColor: String = "#66000000"
     public var isStatusBarLightIcon: Bool = false
-    public var navigationBarColor: String
-    public var navigationBarContentColor: String
-    public var statusBarColor: String
-    public var statusBarContentColor: String
+    public var statusBarContentColor: String = "#E5FFFFFF"
+    public var navigationBarColor: String = "#66000000"
+    public var isNavigationBarLightIcon: Bool = false
+    public var navigationBarContentColor: String = "#E5FFFFFF"
+    public var enableStatusBarAnimation: Bool = false
+    public var enableNavigationBarAnimation: Bool = false
     public init(
         statusBarColor!: String = "#66000000",
         isStatusBarLightIcon!: Bool = false,
@@ -700,7 +699,7 @@ public var isStatusBarLightIcon: Bool = false
 ### var navigationBarColor
 
 ```cangjie
-public var navigationBarColor: String
+public var navigationBarColor: String = "#66000000"
 ```
 
 **功能：** 导航栏颜色。
@@ -718,7 +717,7 @@ public var navigationBarColor: String
 ### var navigationBarContentColor
 
 ```cangjie
-public var navigationBarContentColor: String
+public var navigationBarContentColor: String = "#E5FFFFFF"
 ```
 
 **功能：** 导航栏内容颜色。
@@ -736,7 +735,7 @@ public var navigationBarContentColor: String
 ### var statusBarColor
 
 ```cangjie
-public var statusBarColor: String
+public var statusBarColor: String = "#66000000"
 ```
 
 **功能：** 状态栏颜色。
@@ -754,7 +753,7 @@ public var statusBarColor: String
 ### var statusBarContentColor
 
 ```cangjie
-public var statusBarContentColor: String
+public var statusBarContentColor: String = "#E5FFFFFF"
 ```
 
 **功能：** 状态栏内容颜色。
@@ -807,10 +806,10 @@ public init(
 
 ```cangjie
 public class TitleButtonRect {
-    public var height: UInt32
     public var right: Int32
     public var top: Int32
     public var width: UInt32
+    public var height: UInt32
     public init(
       right!: Int32,
       top!: Int32,
@@ -1655,31 +1654,31 @@ public func snapshot(): PixelMap
 
 ```cangjie
 public class WindowProperties {
-    public var brightness: Float32
+    public var windowRect: Rect
     public var drawableRect: Rect
-    public var focusable: Bool
-    public var id: UInt32
+    public var windowType: WindowType
     public var isFullScreen: Bool
-    public var isKeepScreenOn: Bool
     public var isLayoutFullScreen: Bool
+    public var focusable: Bool
+    public var touchable: Bool
+    public var brightness: Float32
+    public var isKeepScreenOn: Bool
     public var isPrivacyMode: Bool
     public var isTransparent: Bool
-    public var touchable: Bool
-    public var winType: WindowType
-    public var windowRect: Rect
+    public var id: UInt32
     public init(
-      windowRect!: Rect,
-      drawableRect!: Rect,
-      winType!: WindowType,
-      isFullScreen!: Bool,
-      isLayoutFullScreen!: Bool,
-      focusable!: Bool,
-      touchable!: Bool,
-      brightness!: Float32,
-      isKeepScreenOn!: Bool,
-      isPrivacyMode!: Bool,
-      isTransparent!: Bool,
-      id!: UInt32
+        windowRect!: Rect,
+        drawableRect!: Rect,
+        windowType!: WindowType,
+        isFullScreen!: Bool,
+        isLayoutFullScreen!: Bool,
+        focusable!: Bool,
+        touchable!: Bool,
+        brightness!: Float32,
+        isKeepScreenOn!: Bool,
+        isPrivacyMode!: Bool,
+        isTransparent!: Bool,
+        id!: UInt32
     )
 }
 ```
@@ -1850,10 +1849,10 @@ public var touchable: Bool
 
 **起始版本：** 22
 
-### var winType
+### var windowType
 
 ```cangjie
-public var winType: WindowType
+public var windowType: WindowType
 ```
 
 **功能：** 窗口类型。
@@ -1888,7 +1887,7 @@ public var windowRect: Rect
 public init(
     windowRect!: Rect,
     drawableRect!: Rect,
-    winType!: WindowType,
+    windowType!: WindowType,
     isFullScreen!: Bool,
     isLayoutFullScreen!: Bool,
     focusable!: Bool,
@@ -1913,7 +1912,7 @@ public init(
 |:---|:---|:---|:---|:---|
 |windowRect|[Rect](#class-rect)|是|-| **命名参数。** 窗口矩形。|
 |drawableRect|[Rect](#class-rect)|是|-| **命名参数。** 可绘制矩形。|
-|winType|[WindowType](#enum-windowtype)|是|-| **命名参数。** 窗口类型。|
+|windowType|[WindowType](#enum-windowtype)|是|-| **命名参数。** 窗口类型。|
 |isFullScreen|Bool|是|-| **命名参数。** 是否全屏。|
 |isLayoutFullScreen|Bool|是|-| **命名参数。** 是否布局全屏。|
 |focusable|Bool|是|-| **命名参数。** 是否可获得焦点。|

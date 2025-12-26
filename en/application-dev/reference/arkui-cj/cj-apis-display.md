@@ -783,8 +783,8 @@ public class FoldCreaseRegion {
     public let creaseRects: Array<Rect>
     public let displayId: UInt32
     public init(
-    displayId!: UInt32,
-    creaseRects!: Array<Rect>
+        displayId!: UInt32,
+        creaseRects!: Array<Rect>
     )
 }
 ```
@@ -1361,124 +1361,124 @@ public operator func ==(other: FoldDisplayMode): Bool
 |:----|:----|
 | Bool | Comparison result, returns true if equal. ||类型|说明|
 |:----|:----|
-|Bool|Comparison result, returns true when equal.|  
+|Bool|Comparison result, returns true when equal.|
 
-## enum Orientation  
+## enum Orientation
 
-```cangjie  
-public enum Orientation <: Equatable<Orientation> {  
-    | Portrait  
-    | Landscape  
-    | PortraitInverted  
-    | LandscapeInverted  
-    | ...  
-}  
-```  
+```cangjie
+public enum Orientation <: Equatable<Orientation> {
+    | Portrait
+    | Landscape
+    | PortraitInverted
+    | LandscapeInverted
+    | ...
+}
+```
 
-**Description:** Enumerates screen orientations.  
+**Description:** Enumerates screen orientations.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-**Parent Type:**  
+**Parent Type:**
 
-- Equatable\<[Orientation](#enum-orientation)>  
+- Equatable\<[Orientation](#enum-orientation)>
 
-### Portrait  
+### Portrait
 
-```cangjie  
-Portrait  
-```  
+```cangjie
+Portrait
+```
 
-**Description:** Portrait mode.  
+**Description:** Portrait mode.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-### Landscape  
+### Landscape
 
-```cangjie  
-Landscape  
-```  
+```cangjie
+Landscape
+```
 
-**Description:** Landscape mode.  
+**Description:** Landscape mode.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-### PortraitInverted  
+### PortraitInverted
 
-```cangjie  
-PortraitInverted  
-```  
+```cangjie
+PortraitInverted
+```
 
-**Description:** Inverted portrait mode.  
+**Description:** Inverted portrait mode.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-### LandscapeInverted  
+### LandscapeInverted
 
-```cangjie  
-LandscapeInverted  
-```  
+```cangjie
+LandscapeInverted
+```
 
-**Description:** Inverted landscape mode.  
+**Description:** Inverted landscape mode.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-### operator func !=(Orientation)  
+### operator func !=(Orientation)
 
-```cangjie  
-public operator func !=(other: Orientation): Bool  
-```  
+```cangjie
+public operator func !=(other: Orientation): Bool
+```
 
-**Description:** Inequality comparison operator.  
+**Description:** Inequality comparison operator.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-**Parameters:**  
+**Parameters:**
 
-| Parameter | Type | Required | Default | Description |  
-|:---|:---|:---|:---|:---|  
-| other | [Orientation](#enum-orientation) | Yes | - | Another Orientation instance to compare. |  
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [Orientation](#enum-orientation) | Yes | - | Another Orientation instance to compare. |
 
-**Return Value:**  
+**Return Value:**
 
-| Type | Description |  
-|:----|:----|  
-| Bool | Comparison result, returns true when not equal. |  
+| Type | Description |
+|:----|:----|
+| Bool | Comparison result, returns true when not equal. |
 
-### operator func ==(Orientation)  
+### operator func ==(Orientation)
 
-```cangjie  
-public operator func ==(other: Orientation): Bool  
-```  
+```cangjie
+public operator func ==(other: Orientation): Bool
+```
 
-**Description:** Equality comparison operator.  
+**Description:** Equality comparison operator.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core  
+**System Capability:** SystemCapability.WindowManager.WindowManager.Core
 
-**Since:** 22  
+**Since:** 22
 
-**Parameters:**  
+**Parameters:**
 
-| Parameter | Type | Required | Default | Description |  
-|:---|:---|:---|:---|:---|  
-| other | [Orientation](#enum-orientation) | Yes | - | Another Orientation instance to compare. |  
+| Parameter | Type | Required | Default | Description |
+|:---|:---|:---|:---|:---|
+| other | [Orientation](#enum-orientation) | Yes | - | Another Orientation instance to compare. |
 
-**Return Value:**  
+**Return Value:**
 
-| Type | Description |  
-|:----|:----|  
+| Type | Description |
+|:----|:----|
 | Bool | Comparison result, returns true when equal. || Type       | Description                          |
 |:-----------|:------------------------------------|
 | Bool       | Comparison result, returns true when equal. |
