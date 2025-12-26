@@ -147,7 +147,7 @@ public func title(value: ?ResourceStr, options!: ?NavigationTitleOptions = None)
 public class NavigationOptions {
     public var launchMode: ?LaunchMode
     public var animated: ?Bool
-    public init(launchMode: ?LaunchMode = None, animated: ?Bool = None)
+    public init(launchMode!: ?LaunchMode = None, animated!: ?Bool = None)
 }
 ```
 
@@ -192,7 +192,7 @@ public var launchMode: ?LaunchMode
 #### init(?LaunchMode, ?Bool)
 
 ```cangjie
-public init(launchMode: ?LaunchMode = None, animated: ?Bool = None)
+public init(launchMode!: ?LaunchMode = None, animated!: ?Bool = None)
 ```
 
 **Function:** Constructor for NavigationOptions.
@@ -217,8 +217,9 @@ public class NavigationTitleOptions {
     public var barStyle: ?BarStyle
     public var paddingStart: ?Length
     public var paddingEnd: ?Length
-    public init(backgroundColor: ?ResourceColor = None, backgroundBlurStyle: ?BlurStyle = None, 
-        barStyle: ?BarStyle = None, paddingStart: ?Length = None, paddingEnd: ?Length = None)
+    public init(backgroundColor!: ?ResourceColor = None, backgroundBlurStyle!: ?BlurStyle = Option.None,
+        barStyle!: ?BarStyle = None, paddingStart!: ?Length = None, paddingEnd!: ?Length = None
+    )
 }
 ```
 
@@ -311,8 +312,8 @@ public var paddingStart: ?Length
 #### init(?ResourceColor, ?BlurStyle, ?BarStyle, ?Length, ?Length)
 
 ```cangjie
-public init(backgroundColor: ?ResourceColor = None, backgroundBlurStyle: ?BlurStyle = None, 
-    barStyle: ?BarStyle = None, paddingStart: ?Length = None, paddingEnd: ?Length = None)
+public init(backgroundColor!: ?ResourceColor = None, backgroundBlurStyle!: ?BlurStyle = Option.None,
+    barStyle!: ?BarStyle = None, paddingStart!: ?Length = None, paddingEnd!: ?Length = None)
 ```
 
 **Function:** Constructor for NavigationTitleOptions.
@@ -399,7 +400,7 @@ public var param: ?String
 #### init(?String, ?String, ?Callback\<PopInfo, Unit>)
 
 ```cangjie
-public init(name！: ?String, param！: ?String, onPop！: ?Callback<PopInfo, Unit> = None)
+public init(name!: ?String, param!: ?String, onPop!: ?Callback<PopInfo, Unit> = None)
 ```
 
 **Function:** Constructor for NavPathInfo.

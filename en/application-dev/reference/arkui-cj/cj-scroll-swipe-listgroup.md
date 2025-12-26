@@ -246,6 +246,10 @@ public operator func !=(other: ListItemGroupStyle): Bool
 
 **Function:** Compares whether two enum values are not equal.
 
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
+
 **Parameters:**
 
 | Parameter | Type | Required | Default Value | Description |
@@ -265,6 +269,10 @@ public operator func ==(other: ListItemGroupStyle): Bool
 ```
 
 **Function:** Compares whether two enum values are equal.
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Initial Version:** 22
 
 **Parameters:**
 

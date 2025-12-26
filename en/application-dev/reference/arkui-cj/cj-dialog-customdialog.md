@@ -66,7 +66,7 @@ public func bindView(view: CustomView)
 ### func closeDialog()
 
 ```cangjie
-public func closeDialog()
+public func closeDialog(): Unit
 ```
 
 **Function:** Closes the displayed custom dialog. If already closed, this has no effect.
@@ -78,7 +78,7 @@ public func closeDialog()
 ### func openDialog()
 
 ```cangjie
-public func openDialog()
+public func openDialog(): Unit
 ```
 
 **Function:** Displays the custom dialog content. Can be used multiple times, but if the dialog is in SubWindow mode, it cannot trigger another SubWindow dialog.
@@ -102,7 +102,7 @@ public func releaseSelf(): Unit
 ### func setBuilder(() -> Unit)
 
 ```cangjie
-public func setBuilder(builder: () -> Unit)
+public func setBuilder(builder: () -> Unit): Unit
 ```
 
 **Function:** Sets a builder. Users do not need to call this explicitly; it is implicitly invoked after macro expansion.
@@ -166,7 +166,7 @@ public class CustomDialogControllerOptions {
         borderColor!: ?ResourceColor = None,
         borderStyle!: ?EdgeStyles = None,
         shadow!: ?ShadowOptions = None,
-        backgroundBlurStyle!: ?BlurStyle = None
+        backgroundBlurStyle!: ?BlurStyle = Option.None
     )
 }
 ```
@@ -183,7 +183,7 @@ public class CustomDialogControllerOptions {
 public var alignment: ?DialogAlignment
 ```
 
-**Function:** The alignment of the dialog in the vertical direction.
+**Function:** The alignment of the dialog in the vertical direction.Initial Value: DialogAlignment.Default.
 
 **Type:** ?[DialogAlignment](./cj-common-types.md#enum-dialogalignment)
 
@@ -193,15 +193,13 @@ public var alignment: ?DialogAlignment
 
 **Since:** 22
 
-**Initial Value:** DialogAlignment.Default
-
 ### var autoCancel
 
 ```cangjie
 public var autoCancel: ?Bool
 ```
 
-**Function:** Whether clicking the mask layer closes the dialog. true means the dialog will close, false means it will not.
+**Function:** Whether clicking the mask layer closes the dialog. true means the dialog will close, false means it will not.Initial Value: true.
 
 **Type:** ?Bool
 
@@ -211,15 +209,13 @@ public var autoCancel: ?Bool
 
 **Since:** 22
 
-**Initial Value:** true
-
 ### var backgroundBlurStyle
 
 ```cangjie
 public var backgroundBlurStyle: ?BlurStyle
 ```
 
-**Function:** The blur material of the dialog backplate.
+**Function:** The blur material of the dialog backplate.Initial Value: BlurStyle.ComponentUltraThick.
 
 **Type:** ?[BlurStyle](./cj-common-types.md#enum-blurstyle)
 
@@ -229,15 +225,13 @@ public var backgroundBlurStyle: ?BlurStyle
 
 **Since:** 22
 
-**Initial Value:** BlurStyle.ComponentUltraThick
-
 ### var backgroundColor
 
 ```cangjie
 public var backgroundColor: ?ResourceColor
 ```
 
-**Function:** Sets the fill color of the dialog backplate.
+**Function:** Sets the fill color of the dialog backplate.Initial Value: Color.Transparent.
 
 **Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
@@ -246,8 +240,6 @@ public var backgroundColor: ?ResourceColor
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since:** 22
-
-**Initial Value:** Color.Transparent
 
 ### var borderColor
 
@@ -255,7 +247,7 @@ public var backgroundColor: ?ResourceColor
 public var borderColor: ?ResourceColor
 ```
 
-**Function:** Sets the border color of the dialog backplate.
+**Function:** Sets the border color of the dialog backplate.Initial Value: Color.Black.
 
 **Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
@@ -265,15 +257,13 @@ public var borderColor: ?ResourceColor
 
 **Since:** 22
 
-**Initial Value:** Color.Black
-
 ### var borderStyle
 
 ```cangjie
 public var borderStyle: ?EdgeStyles
 ```
 
-**Function:** Sets the border style of the dialog backplate.
+**Function:** Sets the border style of the dialog backplate.Initial Value: EdgeStyles().
 
 **Type:** ?[EdgeStyles](./cj-common-types.md#class-edgestyles)
 
@@ -283,15 +273,13 @@ public var borderStyle: ?EdgeStyles
 
 **Since:** 22
 
-**Initial Value:** EdgeStyles()
-
 ### var borderWidth
 
 ```cangjie
 public var borderWidth: ?Length
 ```
 
-**Function:** Sets the border width of the dialog backplate.
+**Function:** Sets the border width of the dialog backplate.Initial Value: 0.vp.
 
 **Type:** ?[Length](./cj-common-types.md#interface-length)
 
@@ -301,15 +289,13 @@ public var borderWidth: ?Length
 
 **Since:** 22
 
-**Initial Value:** 0.vp
-
 ### var cancel
 
 ```cangjie
 public var cancel: ?VoidCallback
 ```
 
-**Function:** Callback when the dialog is closed via back button, ESC key, or clicking the mask layer.
+**Function:** Callback when the dialog is closed via back button, ESC key, or clicking the mask layer.Initial Value: { => }.
 
 **Type:** ?[VoidCallback](./cj-common-types.md#type-voidcallback)
 
@@ -318,8 +304,6 @@ public var cancel: ?VoidCallback
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since:** 22
-
-**Initial Value:** { => }
 
 ### var closeAnimation
 
@@ -343,7 +327,7 @@ public var closeAnimation: ?AnimateParam
 public var cornerRadius: ?Length
 ```
 
-**Function:** Sets the corner radius of the backplate.
+**Function:** Sets the corner radius of the backplate.Initial Value: 32.vp.
 
 **Type:** ?[Length](./cj-common-types.md#interface-length)
 
@@ -353,15 +337,13 @@ public var cornerRadius: ?Length
 
 **Since:** 22
 
-**Initial Value:** 32.vp
-
 ### var customStyle
 
 ```cangjie
 public var customStyle: ?Bool
 ```
 
-**Function:** Whether the dialog container style is customized.
+**Function:** Whether the dialog container style is customized.Initial Value: false.
 
 **Type:** ?Bool
 
@@ -370,8 +352,6 @@ public var customStyle: ?Bool
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since:** 22
-
-**Initial Value:** false
 
 ### var gridCount
 
@@ -411,7 +391,7 @@ public var height: ?Length
 public var isModal: ?Bool
 ```
 
-**Function:** Whether the dialog is a modal window. Modal windows have a mask layer; non-modal windows do not.
+**Function:** Whether the dialog is a modal window. Modal windows have a mask layer; non-modal windows do not.Initial Value: true
 
 **Type:** ?Bool
 
@@ -421,15 +401,13 @@ public var isModal: ?Bool
 
 **Since:** 22
 
-**Initial Value:** true
-
 ### var maskColor
 
 ```cangjie
 public var maskColor: ?ResourceColor
 ```
 
-**Function:** Customizes the mask layer color.
+**Function:** Customizes the mask layer color.Initial Value: Color(0x33000000).
 
 **Type:** ?[ResourceColor](./cj-common-types.md#interface-resourcecolor)
 
@@ -439,15 +417,13 @@ public var maskColor: ?ResourceColor
 
 **Since:** 22
 
-**Initial Value:** Color(0x33000000)
-
 ### var maskRect
 
 ```cangjie
 public var maskRect: ?Rectangle
 ```
 
-**Function:** The mask layer area of the dialog. Events within this area are not transmitted; events outside are transmitted.
+**Function:** The mask layer area of the dialog. Events within this area are not transmitted; events outside are transmitted.Initial Value: Rectangle().
 
 **Type:** ?[Rectangle](./cj-common-types.md#class-rectangle)
 
@@ -457,15 +433,13 @@ public var maskRect: ?Rectangle
 
 **Since:** 22
 
-**Initial Value:** Rectangle()
-
 ### var offset
 
 ```cangjie
 public var offset: ?Offset
 ```
 
-**Function:** The offset of the dialog relative to the alignment position.
+**Function:** The offset of the dialog relative to the alignment position.Initial Value: Offset(0.vp, 0.vp).
 
 **Type:** ?[Offset](./cj-common-types.md#class-offset)
 
@@ -474,8 +448,6 @@ public var offset: ?Offset
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since:** 22
-
-**Initial Value:** Offset(0.vp, 0.vp)
 
 ### var onWillDismiss
 
@@ -531,7 +503,7 @@ public var shadow: ?ShadowOptions
 public var showInSubWindow: ?Bool
 ```
 
-**Function:** Whether to display the dialog in a sub-window when it needs to appear outside the main window.
+**Function:** Whether to display the dialog in a sub-window when it needs to appear outside the main window.Initial Value: false.
 
 **Type:** ?Bool
 
@@ -540,8 +512,6 @@ public var showInSubWindow: ?Bool
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since:** 22
-
-**Initial Value:** false
 
 ### var width
 
@@ -559,7 +529,7 @@ public var width: ?Length
 
 **Since:** 22
 
-### init(?VoidCallback, ?Bool, ?DialogAlignment, ?Offset, ?Bool, ?UInt32, ?ResourceColor, ?Rectangle, ?AnimateParam, ?AnimateParam, ?Bool, ?ResourceColor, ?Length, ?Bool, ?Callback\<DismissDialogAction,Unit>, ?Length, ?Length, ?Length, ?ResourceColor, ?EdgeStyles, ?ShadowOptions, ?BlurStyle)
+### init(CustomView, ?VoidCallback, ?Bool, ?DialogAlignment, ?Offset, ?Bool, ?UInt32, ?ResourceColor, ?Rectangle, ?AnimateParam, ?AnimateParam, ?Bool, ?ResourceColor, ?Length, ?Bool, ?Callback\<DismissDialogAction,Unit>, ?Length, ?Length, ?Length, ?ResourceColor, ?EdgeStyles, ?ShadowOptions, ?BlurStyle)
 
 ```cangjie
 public init(
@@ -585,7 +555,7 @@ public init(
     borderColor!: ?ResourceColor = None,
     borderStyle!: ?EdgeStyles = None,
     shadow!: ?ShadowOptions = None,
-    backgroundBlurStyle!: ?BlurStyle = None
+    backgroundBlurStyle!: ?BlurStyle = Option.None
 )
 ```
 
@@ -599,6 +569,7 @@ public init(
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
+|builder|CustomView|Yes|-| **Named parameter.** Custom pop-up content constructor.|
 |cancel|?[VoidCallback](./cj-common-types.md#type-voidcallback)|No|None| **Named parameter.** Callback when the dialog is closed via back button, ESC key, or clicking the mask layer. Initial value: { => }|
 |autoCancel|?Bool|No|None| **Named parameter.** Whether clicking the mask layer closes the dialog. true means the dialog will close, false means it will not. Initial value: true|
 |alignment|?[DialogAlignment](./cj-common-types.md#enum-dialogalignment)|No|None| **Named parameter.** The alignment of the dialog in the vertical direction. Initial value: DialogAlignment.Default|
@@ -620,7 +591,7 @@ public init(
 |borderColor|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|No|None| **Named parameter.** Sets the border color of the dialog backplane. Initial value: Color.Black<br/>If you use the borderColor attribute, it must be used together with the borderWidth attribute.|
 |borderStyle|?[EdgeStyles](./cj-common-types.md#class-edgestyles)|No|None| **Named parameter.** Sets the border style of the dialog backplane. Initial value: EdgeStyles()<br/>If you use the borderStyle attribute, it must be used together with the borderWidth attribute.|
 |shadow|?[ShadowOptions](./cj-common-types.md#class-shadowoptions)|No|None| **Named parameter.** Sets the shadow of the dialog backplane.<br/>When the device is a 2-in-1 device, the default focused shadow value is ShadowStyle.OuterFloatingMD, and the unfocused shadow value is ShadowStyle.OuterFloatingSM.|
-|backgroundBlurStyle|?[BlurStyle](./cj-common-types.md#enum-blurstyle)|No|None| **Named parameter.** Blur material of the dialog backplane. Initial value: BlurStyle.ComponentUltraThick<br/>**Note:**<br/>Set to BlurStyle.None to disable background blur. When backgroundBlurStyle is set to a non-None value, do not set backgroundColor, otherwise the color display will not meet the expected effect.|
+|backgroundBlurStyle|?[BlurStyle](./cj-common-types.md#enum-blurstyle)|No|Option.None| **Named parameter.** Blur material of the dialog backplane. Initial value: BlurStyle.ComponentUltraThick<br/>**Note:**<br/>Set to BlurStyle.None to disable background blur. When backgroundBlurStyle is set to a non-None value, do not set backgroundColor, otherwise the color display will not meet the expected effect.|
 
 <!-- run -->
 

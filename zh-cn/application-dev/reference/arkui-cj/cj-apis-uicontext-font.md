@@ -98,16 +98,16 @@ public func registerFont(familyName!: ResourceStr, familySrc!: ResourceStr): Uni
 
 ```cangjie
 public class FontInfo {
-    public var family: String
-    public var fullName: String
-    public var italic: Bool
-    public var monoSpace: Bool
     public var path: String
     public var postScriptName: String
+    public var fullName: String
+    public var family: String
     public var subfamily: String
-    public var symbolic: Bool
     public var weight: UInt32
     public var width: UInt32
+    public var italic: Bool
+    public var monoSpace: Bool
+    public var symbolic: Bool
 }
 ```
 

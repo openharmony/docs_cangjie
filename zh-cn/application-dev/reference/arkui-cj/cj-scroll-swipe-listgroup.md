@@ -246,6 +246,10 @@ public operator func !=(other: ListItemGroupStyle): Bool
 
 **功能：** 比较两个枚举值是否不相等。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
 **参数：**
 
 |参数名|类型|必填|默认值|说明|
@@ -265,6 +269,10 @@ public operator func ==(other: ListItemGroupStyle): Bool
 ```
 
 **功能：** 比较两个枚举值是否相等。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
 
 **参数：**
 
