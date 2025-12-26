@@ -8,19 +8,6 @@
 import kit.ArkUI.*
 ```
 
-## class ObservedProperty\<T>
-
-```cangjie
-public open class ObservedProperty<T> {
-}
-```
-
-**功能：** 表示用于进行状态管理的属性类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
 ## class ObservedArrayList\<T>
 
 ```cangjie

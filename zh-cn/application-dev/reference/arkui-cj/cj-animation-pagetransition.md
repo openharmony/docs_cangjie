@@ -15,7 +15,7 @@ import kit.ArkUI.*
 ## class CommonTransition
 
 ```cangjie
-sealed abstract class CommonTransition {}
+abstract sealed class CommonTransition {}
 ```
 
 **功能：** 页面转场动画的通用基类，提供一系列可复用的动画效果方法。
@@ -472,10 +472,6 @@ public type PageTransitionCallback = (RouteType, Float64) -> Unit
 ```
 
 **功能：** 回调用于报告页面转换事件。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
 
 **类型：** ([RouteType](#enum-routetype) , Float64) -> Unit
 

@@ -11,7 +11,7 @@ import kit.ArkUI.*
 ## func expandSafeArea(?Array\<SafeAreaType>, ?Array\<SafeAreaEdge>)
 
 ```cangjie
-func expandSafeArea(types!: ?Array<SafeAreaType> = None, edges!: ?Array<SafeAreaEdge> = None): This
+func expandSafeArea(types!: ?Array<SafeAreaType>, edges!: ?Array<SafeAreaEdge>): T
 ```
 
 **Function:** Configures a component to extend its safe area.
@@ -24,8 +24,8 @@ func expandSafeArea(types!: ?Array<SafeAreaType> = None, edges!: ?Array<SafeArea
 
 | Name | Type | Required | Default Value | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| types | ?Array\<[SafeAreaType](./cj-common-types.md#enum-safeareatype)> | No | None | **Named parameter.** Configures the type of safe area to extend. <br/>Initial value: [SafeAreaType.System, SafeAreaType.Cutout, SafeAreaType.Keyboard]. |
-| edges | ?Array\<[SafeAreaEdge](./cj-common-types.md#enum-safeareatype)> | No | None | **Named parameter.** Configures the direction to extend the safe area. <br/>Initial value: [SafeAreaEdge.Top, SafeAreaEdge.Bottom, SafeAreaEdge.Start, SafeAreaEdge.End]. |
+| types | ?Array\<[SafeAreaType](./cj-common-types.md#enum-safeareatype)> | Yes | - | **Named parameter.** Configures the type of safe area to extend. <br/>Initial value: [SafeAreaType.System, SafeAreaType.Cutout, SafeAreaType.Keyboard]. |
+| edges | ?Array\<[SafeAreaEdge](./cj-common-types.md#enum-safeareatype)> | Yes | - | **Named parameter.** Configures the direction to extend the safe area. <br/>Initial value: [SafeAreaEdge.Top, SafeAreaEdge.Bottom, SafeAreaEdge.Start, SafeAreaEdge.End]. |
 
 > **Notes:**
 >

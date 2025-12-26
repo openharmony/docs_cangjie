@@ -11,8 +11,8 @@ import kit.ArkUI.*
 ## func border(?Length, ?ResourceColor, ?Length, ?BorderStyle)
 
 ```cangjie
-func border(width!: ?Length, color!: ?ResourceColor = None, radius!: ?Length = None,
-    style!: ?BorderStyle = Option.None): T
+func border(width!: ?Length, color!: ?ResourceColor, radius!: ?Length,
+    style!: ?BorderStyle): T
 ```
 
 **功能：** 设置组件的边框样式。
@@ -30,9 +30,9 @@ func border(width!: ?Length, color!: ?ResourceColor = None, radius!: ?Length = N
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |width|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 边框宽度。初始值:  0.vp|
-|color|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|否|None|**命名参数。** 边框颜色。初始值:  Color.Black|
-|radius|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 边框圆角半径。初始值:  0.vp|
-|style|?[BorderStyle](./cj-common-types.md#enum-borderstyle)|否|Option.None|**命名参数。** 边框样式。初始值:  BorderStyle.Solid|
+|color|?[ResourceColor](./cj-common-types.md#interface-resourcecolor)|是|-|**命名参数。** 边框颜色。初始值:  Color.Black|
+|radius|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 边框圆角半径。初始值:  0.vp|
+|style|?[BorderStyle](./cj-common-types.md#enum-borderstyle)|是|-|**命名参数。** 边框样式。初始值:  BorderStyle.Solid|
 
 **返回值：**
 
@@ -91,8 +91,8 @@ func borderRadius(value: ?Length): T
 ## func borderRadius(?Length, ?Length, ?Length, ?Length)
 
 ```cangjie
-func borderRadius(topLeft!: ?Length = None, topRight!: ?Length = None, bottomLeft!: ?Length = None,
-    bottomRight!: ?Length = None): T
+func borderRadius(topLeft!: ?Length, topRight!: ?Length, bottomLeft!: ?Length,
+    bottomRight!: ?Length): T
 ```
 
 **功能：** 设置组件的四个角的圆角半径。
@@ -105,10 +105,10 @@ func borderRadius(topLeft!: ?Length = None, topRight!: ?Length = None, bottomLef
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|topLeft|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 左上角圆角半径。初始值:  0.vp|
-|topRight|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 右上角圆角半径。初始值:  0.vp|
-|bottomLeft|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 左下角圆角半径。初始值:  0.vp|
-|bottomRight|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 右下角圆角半径。初始值:  0.vp|
+|topLeft|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 左上角圆角半径。初始值:  0.vp|
+|topRight|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 右上角圆角半径。初始值:  0.vp|
+|bottomLeft|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 左下角圆角半径。初始值:  0.vp|
+|bottomRight|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 右下角圆角半径。初始值:  0.vp|
 
 **返回值：**
 

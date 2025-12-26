@@ -16,8 +16,8 @@ import kit.ArkUI.*
 ## func linearGradient(?Float64, ?GradientDirection, ?Array\<(ResourceColor, Float64)>, ?Bool)
 
 ```cangjie
-public func linearGradient(angle!: ?Float64 = None, direction!: ?GradientDirection = Option.None,
-    colors!: ?Array<(ResourceColor, Float64)> = None, repeating!: ?Bool = None): T
+public func linearGradient(angle!: ?Float64, direction!: ?GradientDirection,
+    colors!: ?Array<(ResourceColor, Float64)>, repeating!: ?Bool): T
 ```
 
 **Function:** Sets a linear gradient.
@@ -30,18 +30,18 @@ public func linearGradient(angle!: ?Float64 = None, direction!: ?GradientDirecti
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| angle | ?Float64 | No | None | **Named parameter.** The starting angle of the linear gradient. Positive angles are measured clockwise from the 0-degree position. |
-| direction | ?[GradientDirection](./cj-common-types.md#enum-gradientdirection) | No | Option.None | **Named parameter.** The direction of the linear gradient. This parameter does not take effect if angle is set.<br>Default: GradientDirection.Bottom. |
-| colors | ?Array\<([ResourceColor](./cj-common-types.md#interface-resourcecolor), Float64)> | No | None | **Named parameter.** An array specifying gradient colors and their corresponding percentage positions. Invalid colors will be skipped.<br>Default: [(Color.Transparent, 0.0)]. |
-| repeating | ?Bool | No | None | **Named parameter.** Repeats the gradient colors.<br>Default: false. |
+| angle | ?Float64 | Yes | - | **Named parameter.** The starting angle of the linear gradient. Positive angles are measured clockwise from the 0-degree position. |
+| direction | ?[GradientDirection](./cj-common-types.md#enum-gradientdirection) | Yes | - | **Named parameter.** The direction of the linear gradient. This parameter does not take effect if angle is set.<br>Default: GradientDirection.Bottom. |
+| colors | ?Array\<([ResourceColor](./cj-common-types.md#interface-resourcecolor), Float64)> | Yes | - | **Named parameter.** An array specifying gradient colors and their corresponding percentage positions. Invalid colors will be skipped.<br>Default: [(Color.Transparent, 0.0)]. |
+| repeating | ?Bool | Yes | - | **Named parameter.** Repeats the gradient colors.<br>Default: false. |
 
 
 ## func sweepGradient(?(Length, Length), ?Float64, ?Float64, ?Float64, ?Array\<(ResourceColor, Float64)>, ?Bool)
 
 ```cangjie
-public func sweepGradient(center: ?(Length, Length), start!: ?Float64 = None, end!: ?Float64 = None,
-    rotation!: ?Float64 = None, colors!: ?Array<(ResourceColor, Float64)> = None,
-    repeating!: ?Bool = None): T
+public func sweepGradient(center: ?(Length, Length), start!: ?Float64, end!: ?Float64,
+    rotation!: ?Float64, colors!: ?Array<(ResourceColor, Float64)>,
+    repeating!: ?Bool): T
 ```
 
 **Function:** Sets an angular gradient.
@@ -55,18 +55,18 @@ public func sweepGradient(center: ?(Length, Length), start!: ?Float64 = None, en
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | center | ?([Length](./cj-common-types.md#interface-length), [Length](./cj-common-types.md#interface-length)) | Yes | - | The center coordinates relative to the top-left corner of the current component.<br>Default: (0.0.vp, 0.0.vp). |
-| start | ?Float64 | No | None | **Named parameter.** The starting point of the angular gradient.<br>Default: 0.0. |
-| end | ?Float64 | No | None | **Named parameter.** The ending point of the angular gradient.<br>Default: 0.0. |
-| rotation | ?Float64 | No | None | **Named parameter.** The rotation angle of the angular gradient.<br>Default: 0.0. |
-| colors | ?Array\<([ResourceColor](./cj-common-types.md#interface-resourcecolor), Float64)> | No | None | **Named parameter.** An array specifying gradient colors and their corresponding percentage positions. Invalid colors will be skipped.<br>Default: [(Color.Transparent, 0.0)]. |
-| repeating | ?Bool | No | None | **Named parameter.** Repeats the gradient colors.<br>Default: false. |
+| start | ?Float64 | Yes | - | **Named parameter.** The starting point of the angular gradient.<br>Default: 0.0. |
+| end | ?Float64 | Yes | - | **Named parameter.** The ending point of the angular gradient.<br>Default: 0.0. |
+| rotation | ?Float64 | Yes | - | **Named parameter.** The rotation angle of the angular gradient.<br>Default: 0.0. |
+| colors | ?Array\<([ResourceColor](./cj-common-types.md#interface-resourcecolor), Float64)> | Yes | - | **Named parameter.** An array specifying gradient colors and their corresponding percentage positions. Invalid colors will be skipped.<br>Default: [(Color.Transparent, 0.0)]. |
+| repeating | ?Bool | Yes | - | **Named parameter.** Repeats the gradient colors.<br>Default: false. |
 
 
 ## func radialGradient(?(Length, Length), ?Length, ?Array\<(ResourceColor, Float64)>, ?Bool)
 
 ```cangjie
 public func radialGradient(center: ?(Length, Length), radius: ?Length, colors: ?Array<(ResourceColor, Float64)>,
-    repeating!: ?Bool = None): T
+    repeating!: ?Bool): T
 ```
 
 **Function:** Sets a radial gradient.
@@ -82,7 +82,7 @@ public func radialGradient(center: ?(Length, Length), radius: ?Length, colors: ?
 | center | ?([Length](./cj-common-types.md#interface-length), [Length](./cj-common-types.md#interface-length)) | Yes | \- | The center coordinates relative to the top-left corner of the current component.<br>Default: (0.0.px, 0.0.px). |
 | radius | ?[Length](./cj-common-types.md#interface-length) | Yes | \- | The radius of the radial gradient. |
 | colors | ?Array\<([ResourceColor](./cj-common-types.md#interface-resourcecolor), Float64)> | Yes | \- | An array specifying gradient colors and their corresponding percentage positions. Invalid colors will be skipped.<br>Default: []. |
-| repeating | ?Bool | No | None | **Named parameter.** Repeats the gradient colors.<br>Default: false. |
+| repeating | ?Bool | Yes | - | **Named parameter.** Repeats the gradient colors.<br>Default: false. |
 
 
 ## Example Code

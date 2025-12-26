@@ -86,7 +86,7 @@ public func backdropBlur(value: ?Float64): T
 ## func shadow(?Float64, ?ResourceColor, ?Float64, ?Float64)
 
 ```cangjie
-func shadow(radius!: ?Float64, color!: ?ResourceColor = None, offsetX!: ?Float64 = None, offsetY!: ?Float64 = None): T
+func shadow(radius!: ?Float64, color!: ?ResourceColor, offsetX!: ?Float64, offsetY!: ?Float64): T
 ```
 
 **Function:** Adds a shadow effect to the component.
@@ -100,9 +100,9 @@ func shadow(radius!: ?Float64, color!: ?ResourceColor = None, offsetX!: ?Float64
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
 | radius | ?Float64 | Yes | - | **Named parameter.** Shadow blur radius. Initial value: 0.0 |
-| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | No | None | **Named parameter.** Shadow color. Initial value: Color(0x666666) |
-| offsetX | ?Float64 | No | None | **Named parameter.** Shadow X-axis offset. Initial value: 0.0 |
-| offsetY | ?Float64 | No | None | **Named parameter.** Shadow Y-axis offset. Initial value: 0.0 |
+| color | ?[ResourceColor](./cj-common-types.md#interface-resourcecolor) | Yes | - | **Named parameter.** Shadow color. Initial value: Color(0x666666) |
+| offsetX | ?Float64 | Yes | - | **Named parameter.** Shadow X-axis offset. Initial value: 0.0 |
+| offsetY | ?Float64 | Yes | - | **Named parameter.** Shadow Y-axis offset. Initial value: 0.0 |
 
 **Return Value:**
 

@@ -16,7 +16,7 @@ import kit.ArkUI.*
 ## func bindContentCover(?Bool, ?CustomBuilder, ?ContentCoverOptions)  
 
 ```cangjie  
-public func bindContentCover(isShow: ?Bool, builder: ?CustomBuilder, options!: ?ContentCoverOptions = None): T  
+public func bindContentCover(isShow: ?Bool, builder: ?CustomBuilder, options!: ?ContentCoverOptions): T  
 ```  
 
 **Function:**  
@@ -34,7 +34,7 @@ SystemCapability.ArkUI.ArkUI.Full
 |:---|:---|:---|:---|:---|  
 | isShow | ?Bool | Yes | - | Whether to display the full-screen modal page.<br/>Default value: false. |  
 | builder | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | Yes | - | Configures the content of the full-screen modal page.<br>Default value: { => }. |  
-| options | ?[ContentCoverOptions](./cj-common-types.md#class-contentcoveroptions) | No | None | **Named parameter.** Configures optional properties of the full-screen modal page.<br/>Default value: ContentCoverOptions(). |  
+| options | ?[ContentCoverOptions](./cj-common-types.md#class-contentcoveroptions) | Yes | - | **Named parameter.** Configures optional properties of the full-screen modal page.<br/>Default value: ContentCoverOptions(). |  
 
 **Return Value:**  
 

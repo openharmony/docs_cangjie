@@ -11,7 +11,7 @@ import kit.ArkUI.*
 ## func constraintSize(?Length, ?Length, ?Length, ?Length)
 
 ```cangjie
-func constraintSize(minWidth!: ?Length = None, maxWidth!: ?Length = None, minHeight!: ?Length = None, maxHeight!: ?Length = None): T
+func constraintSize(minWidth!: ?Length, maxWidth!: ?Length, minHeight!: ?Length, maxHeight!: ?Length): T
 ```
 
 **Function:** Sets constraint dimensions for components.
@@ -24,10 +24,10 @@ func constraintSize(minWidth!: ?Length = None, maxWidth!: ?Length = None, minHei
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| minWidth | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Minimum component width <br>Default: 0.vp |
-| maxWidth | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Maximum component width <br>Default: (Float64.Inf).vp |
-| minHeight | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Minimum component height <br>Default: 0.vp |
-| maxHeight | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Maximum component height <br>Default: (Float64.Inf).vp |
+| minWidth | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Minimum component width <br>Default: 0.vp |
+| maxWidth | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Maximum component width <br>Default: (Float64.Inf).vp |
+| minHeight | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Minimum component height <br>Default: 0.vp |
+| maxHeight | ?[Length](./cj-common-types.md#interface-length) | Yes | - | **Named parameter.** Maximum component height <br>Default: (Float64.Inf).vp |
 
 **Return Value:**
 

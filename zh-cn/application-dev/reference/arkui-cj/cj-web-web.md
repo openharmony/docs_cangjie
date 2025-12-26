@@ -389,7 +389,7 @@ public class OnLoadInterceptEvent {
 
 **功能：** 当资源加载被拦截时，加载拦截事件。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -405,7 +405,7 @@ public var data: WebResourceRequest
 
 **读写能力：** 可读写
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -417,7 +417,7 @@ public init(data: WebResourceRequest)
 
 **功能：** 构造函数。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 

@@ -11567,7 +11567,6 @@ public enum Placement <: Equatable<Placement> {
     | LeftBottom
     | RightTop
     | RightBottom
-    | None
     | ...
 }
 ```
@@ -11721,18 +11720,6 @@ RightBottom
 ```
 
 **功能：** 气泡提示位于组件右侧，与组件下侧边缘对齐。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-### None
-
-```cangjie
-None
-```
-
-**功能：** 气泡提示位置无变化。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -16014,7 +16001,7 @@ public enum MixedMode <: Equatable<MixedMode> {
 
 **功能：** 设置混合内容安全加载模式。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -16030,7 +16017,7 @@ All
 
 **功能：** 宽松模式：允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -16042,7 +16029,7 @@ Compatible
 
 **功能：** 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -16054,7 +16041,7 @@ None
 
 **功能：** 严格模式：不允许加载HTTP和HTTPS混合内容。不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -16066,7 +16053,7 @@ public operator func ==(other: MixedMode): Bool
 
 **功能：** 判断两个MixedMode枚举是否相等。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -16090,7 +16077,7 @@ public operator func !=(other: MixedMode): Bool
 
 **功能：** 判断两个MixedMode枚举是否不相等。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -18006,7 +17993,7 @@ public enum WebDarkMode <: Equatable<WebDarkMode> {
 
 **功能：** Web的深色模式，默认关闭。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -18022,7 +18009,7 @@ Off
 
 **功能：** Web的深色模式为关闭。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -18034,7 +18021,7 @@ On
 
 **功能：** Web的深色模式为开启。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -18046,7 +18033,7 @@ Auto
 
 **功能：** Web的深色模式为跟随系统。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -18058,7 +18045,7 @@ public operator func ==(other: WebDarkMode): Bool
 
 **功能：** 判断两个WebDarkMode枚举是否相等。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -18082,7 +18069,7 @@ public operator func !=(other: WebDarkMode): Bool
 
 **功能：** 判断两个WebDarkMode枚举是否不相等。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 22
 
@@ -20795,10 +20782,6 @@ public type VoidCallback = () -> Unit
 
 **功能：** [VoidCallback](#type-voidcallback)是[() -> Unit](#type-voidcallback)类型的别名。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
 **类型：** () -> Unit
 
 ## type Callback\<T, V>
@@ -20823,10 +20806,6 @@ public type CustomBuilder = () -> Unit
 
 **功能：** CustomBuilder是() -> Unit类型的别名。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
 **类型：** () -> Unit
 
 ## type TransitionFinishCallback
@@ -20836,10 +20815,6 @@ public type TransitionFinishCallback = (Bool) -> Unit
 ```
 
 **功能：** [TransitionFinishCallback](#type-transitionfinishcallback)是(Bool) -> Unit类型的别名。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
 
 **类型：** (Bool) -> Unit
 
