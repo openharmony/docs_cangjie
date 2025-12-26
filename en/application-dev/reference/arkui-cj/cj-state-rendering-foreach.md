@@ -42,15 +42,3 @@ public init(arr: CollectionEx<T>, itemGenerator!: ItemGeneratorFunc<T>, keyGener
 | arr | [CollectionEx](./cj-common-types.md#interface-collectionext)\<T> | Yes | - | Array collection for UI. |
 | itemGenerator | [ItemGeneratorFunc\<T>](./cj-common-types.md#type-itemgeneratorfunct) | Yes | - | **Named parameter.** Item generator function. |
 | keyGenerator | ?[KeyGeneratorFunc\<T>](./cj-common-types.md#type-keygeneratorfunct) | No | None | **Named parameter.** Key generator function. |
-
-### func pop()
-
-```cangjie
-public func pop(): Unit
-```
-
-**Description:** Pops the ForEach component.
-
-**System Capability:** SystemCapability.ArkUI.ArkUI.Full
-
-**Since:** 22

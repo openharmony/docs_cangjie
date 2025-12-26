@@ -19,7 +19,7 @@ import kit.ArkUI.*
 
 ```cangjie
 public func bindContextMenu(builder!: ?CustomBuilder, responseType!: ?ResponseType,
-    options!: ?ContextMenuOptions = None): T
+    options!: ?ContextMenuOptions): T
 ```
 
 **Function:** Binds a context menu to a component.
@@ -34,7 +34,7 @@ public func bindContextMenu(builder!: ?CustomBuilder, responseType!: ?ResponseTy
 | :--- | :--- | :--- | :--- | :--- |
 | builder | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | Yes | \- | **Named parameter.** Custom builder.<br>Initial value: { => }. |
 | responseType | ?[ResponseType](./cj-common-types.md#enum-responsetype) | Yes | - | **Named parameter.** Response type.<br>Initial value: ResponseType.LongPress. |
-| options | ?[ContextMenuOptions](./cj-common-types.md#class-contextmenuoptions) | No | None | **Named parameter.** Context menu options.<br>Initial value: ContextMenuOptions(). |
+| options | ?[ContextMenuOptions](./cj-common-types.md#class-contextmenuoptions) | Yes | - | **Named parameter.** Context menu options.<br>Initial value: ContextMenuOptions(). |
 
 **Return Value:**
 

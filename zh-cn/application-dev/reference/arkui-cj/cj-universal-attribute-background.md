@@ -108,7 +108,7 @@ func backgroundImagePosition(value: ?Alignment): T
 ## func backgroundImagePosition(?Length, ?Length)
 
 ```cangjie
-func backgroundImagePosition(x!: ?Length = None, y!: ?Length = None): T
+func backgroundImagePosition(x!: ?Length, y!: ?Length): T
 ```
 
 **功能：** 设置背景图片的位置。
@@ -121,8 +121,8 @@ func backgroundImagePosition(x!: ?Length = None, y!: ?Length = None): T
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|x|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** X轴位置。初始值:  0.vp|
-|y|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** Y轴位置。初始值:  0.vp|
+|x|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** X轴位置。初始值:  0.vp|
+|y|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** Y轴位置。初始值:  0.vp|
 
 **返回值：**
 
@@ -157,7 +157,7 @@ func backgroundImageSize(value: ?ImageSize): T
 ## func backgroundImageSize(?Length, ?Length)
 
 ```cangjie
-func backgroundImageSize(width!: ?Length = None, height!: ?Length = None): T
+func backgroundImageSize(width!: ?Length, height!: ?Length): T
 ```
 
 **功能：** 设置背景图片的宽度和高度。
@@ -170,8 +170,8 @@ func backgroundImageSize(width!: ?Length = None, height!: ?Length = None): T
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|width|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 图片宽度。初始值:  0.vp|
-|height|?[Length](./cj-common-types.md#interface-length)|否|None|**命名参数。** 图片高度。初始值:  0.vp|
+|width|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 图片宽度。初始值:  0.vp|
+|height|?[Length](./cj-common-types.md#interface-length)|是|-|**命名参数。** 图片高度。初始值:  0.vp|
 
 **返回值：**
 

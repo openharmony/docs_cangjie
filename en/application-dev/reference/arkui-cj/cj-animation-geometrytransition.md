@@ -11,7 +11,7 @@ import kit.ArkUI.*
 ## func geometryTransition(?String, ?Bool)
 
 ```cangjie
-func geometryTransition(id: ?String, follow!: ?Bool = None): T
+func geometryTransition(id: ?String, follow!: ?Bool): T
 ```
 
 **Function:** Implicit shared element transition within components
@@ -29,7 +29,7 @@ func geometryTransition(id: ?String, follow!: ?Bool = None): T
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | id | ?String | Yes | - | Used to establish binding relationships. Setting id to an empty string clears the binding to avoid participation in sharing behavior. The id can be changed to re-establish binding relationships. Only two components can be bound to the same id, and they must be of different in/out roles. Multiple components cannot share the same id.<br>Initial value: "". |
-| follow | ?Bool | No | None | **Named parameter.** Used only in if paradigms to mark whether components always present in the component tree should follow the shared animation. Initial value: false |
+| follow | ?Bool | Yes | - | **Named parameter.** Used only in if paradigms to mark whether components always present in the component tree should follow the shared animation. Initial value: false |
 
 **Return Value:**
 

@@ -112,7 +112,7 @@ public func font(
 ### func itemSize(?Length)
 
 ```cangjie
-public func itemSize(size: ?Length): This
+public func itemSize(value: ?Length): This
 ```
 
 **Function:** Sets the size of the index item area.
@@ -125,7 +125,7 @@ public func itemSize(size: ?Length): This
 
 | Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| size | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Size of the index item area. The index item area is square, i.e., the side length of the square.<br>Percentage values are not supported. Initial value: 16.vp |
+| value | ?[Length](./cj-common-types.md#interface-length) | Yes | - | Size of the index item area. The index item area is square, i.e., the side length of the square.<br>Percentage values are not supported. Initial value: 16.vp |
 
 ### func popupBackground(?ResourceColor)
 

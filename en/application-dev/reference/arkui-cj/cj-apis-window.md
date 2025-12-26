@@ -1234,7 +1234,7 @@ public func resize(width: UInt32, height: UInt32): Unit
 
 **Description:** Sets the window size.
 
-**System Capability:** SystemCapability.WindowManager.WindowManager.Core
+**System Capability:** SystemCapability.Window.SessionManager
 
 **Since:** 22
 

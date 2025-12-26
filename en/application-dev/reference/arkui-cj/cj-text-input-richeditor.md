@@ -1690,6 +1690,22 @@ public var objectFit: ?ImageFit
 
 **Since:** 22
 
+#### var layoutStyle
+
+```cangjie
+public var layoutStyle: ?RichEditorLayoutStyle
+```
+
+**Function:** Image layout style.
+
+**Type:** ?[RichEditorLayoutStyle](#class-richeditorlayoutstyle)
+
+**Read-Write Access:** Readable and Writable
+
+**System Capability:** SystemCapability.ArkUI.ArkUI.Full
+
+**Since:** 22
+
 #### init(Option\<(Length, Length)>, ?ImageSpanAlignment, ?ImageFit)
 
 ```cangjie

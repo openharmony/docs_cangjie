@@ -19,7 +19,7 @@ import kit.ArkUI.*
 
 ```cangjie
 public func bindContextMenu(builder!: ?CustomBuilder, responseType!: ?ResponseType,
-    options!: ?ContextMenuOptions = None): T
+    options!: ?ContextMenuOptions): T
 ```
 
 **功能：** 绑定上下文菜单到组件。
@@ -34,7 +34,7 @@ public func bindContextMenu(builder!: ?CustomBuilder, responseType!: ?ResponseTy
 | :--- | :--- | :--- | :--- | :--- |
 | builder | ?[CustomBuilder](./cj-common-types.md#type-custombuilder) | 是 | \- | **命名参数。** 自定义构建器。<br>初始值：{ => }。|
 | responseType | ?[ResponseType](./cj-common-types.md#enum-responsetype) |是|-| **命名参数。** 响应类型。<br>初始值：ResponseType.LongPress。|
-| options | ?[ContextMenuOptions](./cj-common-types.md#class-contextmenuoptions) | 否 | None | **命名参数。** 上下文菜单选项。<br>初始值：ContextMenuOptions()。|
+| options | ?[ContextMenuOptions](./cj-common-types.md#class-contextmenuoptions) | 是 | - | **命名参数。** 上下文菜单选项。<br>初始值：ContextMenuOptions()。|
 
 **返回值：**
 

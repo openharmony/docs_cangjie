@@ -29,7 +29,7 @@ func sharedTransition(id: String, options!: ?SharedTransitionOptions): T
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
 | id | String | Yes | - | Components with the same non-empty `id` value across two pages are considered shared elements and will display shared element transition effects during page navigation. |
-| options | ?[SharedTransitionOptions](./cj-common-types.md#class-sharedtransitionoptions) | No | None | **Named parameter.** Shared element transition animation parameters.<br>Default: `SharedTransitionOptions()`. |
+| options | ?[SharedTransitionOptions](./cj-common-types.md#class-sharedtransitionoptions) | Yes | - | **Named parameter.** Shared element transition animation parameters.<br>Default: `SharedTransitionOptions()`. |
 
 **Return Value:**
 

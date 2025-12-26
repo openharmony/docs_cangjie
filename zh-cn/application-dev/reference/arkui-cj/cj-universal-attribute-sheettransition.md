@@ -15,7 +15,7 @@ import kit.ArkUI.*
 ## func bindSheet(?Bool, CustomBuilder, ?SheetOptions)
 
 ```cangjie
-func bindSheet(isShow: ?Bool, builder: CustomBuilder, options!: ?SheetOptions = None): T
+func bindSheet(isShow: ?Bool, builder: CustomBuilder, options!: ?SheetOptions): T
 ```
 
 **功能：** 给组件绑定半模态页面，点击后显示模态页面。
@@ -30,7 +30,7 @@ func bindSheet(isShow: ?Bool, builder: CustomBuilder, options!: ?SheetOptions = 
 |:---|:---|:---|:---|:---|
 | isShow | ?Bool |是|-| 是否显示半模态页面。 <br>初始值：false。|
 | builder | [CustomBuilder](./cj-common-types.md#type-custombuilder) | 是 | \- | 配置半模态页面内容。 |
-| options | ?[SheetOptions](./cj-common-types.md#class-sheetoptions) | 否 | None | **命名参数。**  配置半模态页面的可选属性。 <br/>初始值：SheetOptions()。 |
+| options | ?[SheetOptions](./cj-common-types.md#class-sheetoptions) | 是 | - | **命名参数。**  配置半模态页面的可选属性。 <br/>初始值：SheetOptions()。 |
 
 **返回值：**
 
