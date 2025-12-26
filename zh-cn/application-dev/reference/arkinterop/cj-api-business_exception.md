@@ -75,7 +75,3 @@ public type AsyncCallback<T>=(Option<AsyncError>, Option<T>) -> Unit
 ```
 
 **功能：** 定义了异步回调类型。
-
-**系统能力：** SystemCapability.Base
-
-**起始版本：** 22

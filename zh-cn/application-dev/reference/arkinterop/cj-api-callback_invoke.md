@@ -243,6 +243,3 @@ public type Callback<T>=(T) -> Unit
 
 **功能：** 回调函数类型。
 
-**系统能力：** SystemCapability.Base
-
-**起始版本：** 22
