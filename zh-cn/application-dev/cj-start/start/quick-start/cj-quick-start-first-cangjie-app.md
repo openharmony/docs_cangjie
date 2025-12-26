@@ -48,7 +48,7 @@ Project_name
 │    ├── hvigorfile.ts
 │    └── oh-package.json5
 ├── hvigor
-│    ├── cangjie-build-support-x.y.z-cj.x.tgz
+│    ├── cangjie-build-support-x.y.z.tgz
 │    └── hvigor-config.json5
 ├── oh_modules
 ├── build-profile.json5
@@ -72,7 +72,7 @@ Project_name
     - **oh-package.json5**：用来描述包名、版本、入口文件（类型声明文件）和依赖项等信息。
     - **src > ohosTest**：存放仓颉测试源码，用于仓颉Instrument Test。
 - **hvigor**：用于存放当前工程使用的 hvigor。
-    - **cangjie-build-support-x.y.z-cj.x.tgz**：仓颉指定的hvigor任务包。
+    - **cangjie-build-support-x.y.z.tgz**：仓颉指定的hvigor任务包。其中x.y.z为hvigor仓颉包版本号。
     - **hvigor-config.json5**：指定工程全局使用的 hvigor 以及 hvigor 参数配置。
 - **oh_modules**：用于存放三方库依赖信息，包含应用/服务所依赖的第三方库文件。
 - **build-profile.json5**：应用级配置信息，包括签名、产品配置等。

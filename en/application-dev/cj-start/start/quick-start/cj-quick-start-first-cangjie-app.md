@@ -47,7 +47,7 @@ Project_name
 │    ├── hvigorfile.ts
 │    └── oh-package.json5
 ├── hvigor
-│    ├── cangjie-build-support-x.y.z-cj.x.tgz
+│    ├── cangjie-build-support-x.y.z.tgz
 │    └── hvigor-config.json5
 ├── oh_modules
 ├── build-profile.json5
@@ -71,7 +71,7 @@ Key file descriptions:
     - **oh-package.json5**: Package metadata (name, version, entry files, dependencies).
     - **src > ohosTest**: Contains Cangjie test code for Instrument Test.
 - **hvigor**: Stores project-specific hvigor configurations.
-    - **cangjie-build-support-x.y.z-cj.x.tgz**: Cangjie-specific hvigor task package.
+    - **cangjie-build-support-x.y.z.tgz**: Cangjie-specific hvigor task package. The x/x/z is the version number of the hvigor Cangjie supported package.
     - **hvigor-config.json5**: Global hvigor configuration and parameters.
 - **oh_modules**: Stores third-party library dependencies.
 - **build-profile.json5**: Application-level configurations (signing, product settings).
