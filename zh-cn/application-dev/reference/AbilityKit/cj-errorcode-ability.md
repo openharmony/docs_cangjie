@@ -847,7 +847,7 @@ The multi-instance is not supported.
 
 **处理步骤**
 
-1. 对目标应用配置多实例。
+对目标应用配置多实例。
 
 ## 16000079 不支持指定APP_INSTANCE_KEY
 
