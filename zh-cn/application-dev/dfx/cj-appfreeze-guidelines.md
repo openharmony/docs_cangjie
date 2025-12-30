@@ -38,7 +38,7 @@
 
 ### 生命周期切换超时
 
-生命周期切换超时指的是[Ability生命周期](../application-models/cj-uiability-lifecycle.md#uiability组件生命周期)切换超时。
+生命周期切换超时指的是[Ability生命周期](../application-models/cj-uiability-lifecycle.md)切换超时。
 
 该故障出现在生命周期切换的过程中，影响当前应用内Ability的切换。
 
