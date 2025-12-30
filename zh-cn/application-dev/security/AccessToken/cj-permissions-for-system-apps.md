@@ -4060,20 +4060,6 @@
 
 **起始版本：** 14
 
-## ohos.permission.ACCESS_VIRTUAL_KEYBOARD
-
-允许应用/服务更新/查询虚拟键盘状态。
-
-通过该权限，应用可以更新虚拟键盘状态，服务可以查询虚拟键盘状态。
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**ACL使能：** true
-
-**起始版本：** 14
-
 ## ohos.permission.READ_APP_LOCK
 
 允许系统应用读取应用锁状态。
@@ -4255,20 +4241,6 @@
 **ACL使能：** true
 
 **起始版本：** 18
-
-## ohos.permission.VIRTUAL_KEYBOARD_WINDOW
-
-允许系统应用创建虚拟键盘窗口。
-
-系统应用获取此权限后，才可以成功创建虚拟键盘窗口。
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**ACL使能：** true
-
-**起始版本：** 15
 
 ## ohos.permission.GET_FAMILY_INFO
 

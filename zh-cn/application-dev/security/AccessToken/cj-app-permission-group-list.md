@@ -120,23 +120,6 @@
 
 - [ohos.permission.CUSTOM_SCREEN_CAPTURE](./cj-permissions-for-all-user.md#ohospermissioncustom_screen_capture)
 
-## 文件夹
-
-> **说明：**
->
-
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](./cj-permissions-for-all-user.md#ohospermissionread_write_download_directory)
-- [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](./cj-restricted-permissions.md#ohospermissionread_write_desktop_directory)
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](./cj-permissions-for-all-user.md#ohospermissionread_write_documents_directory)
-
-## 文件夹
-
-> **说明：**
->
-
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](./cj-permissions-for-all-user.md#ohospermissionread_write_download_directory)
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](./cj-permissions-for-all-user.md#ohospermissionread_write_documents_directory)
-
 ## 文件
 
 - 读取媒体库音频文件：
