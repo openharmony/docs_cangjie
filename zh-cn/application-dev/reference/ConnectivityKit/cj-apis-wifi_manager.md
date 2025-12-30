@@ -196,7 +196,7 @@ public func on(eventType: WifiCallbackType, callback: Callback1Argument<Int32>):
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[WifiCallbackType](#enum-wificallbacktype)|是|-|回调事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32>|是|-|状态改变回调函数。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Int32>|是|-|状态改变回调函数。|
 
 **异常：**
 

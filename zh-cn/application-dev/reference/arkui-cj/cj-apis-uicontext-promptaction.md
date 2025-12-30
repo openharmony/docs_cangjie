@@ -1919,7 +1919,7 @@ public type ShowDialogCallBack = AsyncCallback<Int32>
 
 **功能：** ShowDialogCallBack回调函数
 
-**类型：** [AsyncCallback\<Int32>](../arkinterop/cj-api-business_exception.md#type-asynccallback)
+**类型：** [AsyncCallback\<Int32>](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)
 
 ## type ShowActionMenuCallBack
 
@@ -1929,4 +1929,4 @@ public type ShowActionMenuCallBack = AsyncCallback<Int32>
 
 **功能：** ShowActionMenuCallBack回调函数
 
-**类型：** [AsyncCallback\<Int32>](../arkinterop/cj-api-business_exception.md#type-asynccallback)
+**类型：** [AsyncCallback\<Int32>](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)

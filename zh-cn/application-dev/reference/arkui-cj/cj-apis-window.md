@@ -1176,7 +1176,7 @@ public func off(callbackType: WindowCallbackType, callback: Callback1Argument<UI
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|是|-|值固定为KeyboardHeightChange，表示键盘高度变化事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|是|-|用于返回当前键盘高度的回调，该高度为整数，单位为px。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<UInt32>|是|-|用于返回当前键盘高度的回调，该高度为整数，单位为px。|
 
 **异常：**
 
@@ -1203,7 +1203,7 @@ public func on(callbackType: WindowCallbackType, callback: Callback1Argument<UIn
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |callbackType|[WindowCallbackType](#enum-windowcallbacktype)|是|-|值固定为KeyboardHeightChange，表示键盘高度变化事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<UInt32>|是|-|用于返回当前键盘高度的回调，该高度为整数，单位为px。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<UInt32>|是|-|用于返回当前键盘高度的回调，该高度为整数，单位为px。|
 
 **异常：**
 

@@ -23,7 +23,7 @@ public func arktsValuetoNapiValue(env: napi_env, ark_value: JSValue): napi_value
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |env|[napi_env](cj-apis-ark_interop.md#type-napi_env)|是|-|环境上下文。|
-|ark_value|[JSValue](cj-apis-ark_interop.md#struct-jsvalue)|是|-|需要转换的值。|
+|ark_value|[JSValue](cj-apis-ark_interop.md#class-jsvalue)|是|-|需要转换的值。|
 
 **返回值：**
 
@@ -73,8 +73,8 @@ public func mapFromJSValue<T>(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |context|[JSContext](cj-apis-ark_interop.md#class-jscontext)|是|-|互操作上下文。|
-|value|[JSValue](cj-apis-ark_interop.md#struct-jsvalue)|是|-|需要转换的 JSValue 数据。|
-|convert|([JSContext](cj-apis-ark_interop.md#class-jscontext), [JSValue](cj-apis-ark_interop.md#struct-jsvalue))->T|是|-|把 JSValue 当作一个 HashMap 后，获取这个 HashMap 的 key 对应的 value 转换成 T。|
+|value|[JSValue](cj-apis-ark_interop.md#class-jsvalue)|是|-|需要转换的 JSValue 数据。|
+|convert|([JSContext](cj-apis-ark_interop.md#class-jscontext), [JSValue](cj-apis-ark_interop.md#class-jsvalue))->T|是|-|把 JSValue 当作一个 HashMap 后，获取这个 HashMap 的 key 对应的 value 转换成 T。|
 
 **返回值：**
 
@@ -102,10 +102,10 @@ public func mapToJSValue<T>(
 |:---|:---|:---|:---|:---|
 |context|[JSContext](cj-apis-ark_interop.md#class-jscontext)|是|-|互操作上下文。|
 |parameter|?HashMap\<String, T>|是|-|需要转换的 HashMap 数据。|
-|convert|([JSContext](cj-apis-ark_interop.md#class-jscontext), T)->[JSValue](cj-apis-ark_interop.md#struct-jsvalue)|是|-|把 HashMap 的 T 转换成 JSValue。|
+|convert|([JSContext](cj-apis-ark_interop.md#class-jscontext), T)->[JSValue](cj-apis-ark_interop.md#class-jsvalue)|是|-|把 HashMap 的 T 转换成 JSValue。|
 
 **返回值：**
 
 |类型|说明|
 |:----|:----|
-|[JSValue](cj-apis-ark_interop.md#struct-jsvalue)|转换后的 JSValue 数据。|
+|[JSValue](cj-apis-ark_interop.md#class-jsvalue)|转换后的 JSValue 数据。|
