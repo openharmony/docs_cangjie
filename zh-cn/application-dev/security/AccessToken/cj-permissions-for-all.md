@@ -406,13 +406,3 @@
 
 **起始版本：** 12
 
-### ohos.permission.NDK_START_SELF_UI_ABILITY
-
-允许应用通过C API启动同应用的Ability。
-
-
-**权限级别：** normal
-
-**授权方式：** system_grant
-
-**起始版本：** 12

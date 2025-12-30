@@ -210,34 +210,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本：** 12
 
-### ohos.permission.READ_WRITE_USER_FILE
-
-允许应用访问并修改用户目录下的文件。
-
-<!--RP19-->
-
-<!--RP19End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
-### ohos.permission.READ_WRITE_USB_DEV
-
-允许应用连接设备，并通过USB调试读写该设备。
-
-<!--RP20-->
-
-<!--RP20End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
 ### ohos.permission.GET_WIFI_PEERS_MAC
 
 允许应用获取对端Wi-Fi设备的MAC地址。
