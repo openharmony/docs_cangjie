@@ -859,6 +859,15 @@
                 - [Webview错误码](reference/ArkWeb/cj-errorcode-webview.md)
         - Cangjie（仓颉）
             - [仓颉标准库API](reference/cj-libs-api.md)
+            - 仓颉与ArkTS互操作库
+                - 互操作API
+                    - [ohos.ark_interop（ArkTS互操作库）](reference/arkinterop/cj-apis-ark_interop.md)
+                    - [ohos.ark_interop_helper（ArkTS互操作公共辅助功能函数）](reference/arkinterop/cj-apis-ark_interop_helper.md)
+                    - [ohos.ark_interop_macro（ArkTS互操作宏）](reference/arkinterop/cj-apis-ark_interop_macro.md)
+                    - [ohos.business_exception（通用异常信息）](reference/arkinterop/cj-api-business_exception.md)
+                    - [ohos.callback_invoke（通用回调信息）](reference/arkinterop/cj-api-callback_invoke.md)
+                - 错误码
+                    - [ArkTS互操作库错误码](reference/arkinterop/cj-errorcode-ark_interop.md)
         - Core File Kit（文件基础服务）
             - 仓颉API
                 - [ohos.file.fileuri（文件URI）](reference/CoreFileKit/cj-apis-file_fileuri.md)
@@ -994,15 +1003,6 @@
                 - [ohos.geo_location_manager（位置服务）](reference/LocationKit/cj-apis-geo_location_manager.md)
             - 错误码
                 - [位置服务错误码](reference/LocationKit/cj-errorcode-geo_location_manager.md)
-    - 仓颉与ArkTS互操作库
-        - 互操作API
-            - [ohos.ark_interop（ArkTS互操作库）](reference/arkinterop/cj-apis-ark_interop.md)
-            - [ohos.ark_interop_helper（ArkTS互操作公共辅助功能函数）](reference/arkinterop/cj-apis-ark_interop_helper.md)
-            - [ohos.ark_interop_macro（ArkTS互操作宏）](reference/arkinterop/cj-apis-ark_interop_macro.md)
-            - [ohos.business_exception（通用异常信息）](reference/arkinterop/cj-api-business_exception.md)
-            - [ohos.callback_invoke（通用回调信息）](reference/arkinterop/cj-api-callback_invoke.md)
-        - 错误码
-            - [ArkTS互操作库错误码](reference/arkinterop/cj-errorcode-ark_interop.md)
     - 公共基础能力
         - 仓颉API
             - [SysCap（系统能力）](reference/arkui-cj/cj-apis-syscap.md)
