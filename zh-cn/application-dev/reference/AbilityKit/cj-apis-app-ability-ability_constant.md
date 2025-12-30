@@ -421,7 +421,7 @@ public enum WindowMode {
 WindowModeFullscreen
 ```
 
-**功能：** 全屏模式。
+**功能：** 全屏模式。仅在Tablet设备上生效。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
