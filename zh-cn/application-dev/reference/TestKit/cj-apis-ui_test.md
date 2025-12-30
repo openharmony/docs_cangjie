@@ -4136,7 +4136,7 @@ public func once(onceType: OnceType, callback: Callback<UiElementInfo>): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |onceType|[OnceType](#enum-oncetype)|是|-|订阅的事件类型。|
-|callback|[Callback](./../arkui-cj/cj-common-types.md#type-callback)\<[UiElementInfo](#class-uielementinfo)>|是|-|事件发生时执行的回调函数。|
+|callback|[Callback](../../reference/arkui-cj/cj-common-types.md#type-callbackt-v)\<[UiElementInfo](#class-uielementinfo)>|是|-|事件发生时执行的回调函数。|
 
 **异常：**
 

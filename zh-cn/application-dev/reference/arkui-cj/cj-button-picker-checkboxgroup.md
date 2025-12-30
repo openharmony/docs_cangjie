@@ -48,7 +48,7 @@ public init(group!: ?String = None)
 public func selectAll(value: ?Bool): This
 ```
 
-**功能：** 设置是否全选。若同组的[Checkbox](./cj-button-picker-checkbox.md#checkbox)显式设置了select属性，则Checkbox的优先级高。
+**功能：** 设置是否全选。若同组的[Checkbox](./cj-button-picker-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
