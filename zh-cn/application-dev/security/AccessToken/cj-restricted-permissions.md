@@ -117,7 +117,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用访问公共目录下Desktop目录及子目录。
 
 <!--RP15-->
-当前仅2in1设备和平板上的应用可申请此权限。
+当前仅平板上的应用可申请此权限。
 <!--RP15End-->
 
 **权限级别：** system_basic
@@ -210,34 +210,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本：** 12
 
-### ohos.permission.READ_WRITE_USER_FILE
-
-允许应用访问并修改用户目录下的文件。
-
-<!--RP19-->
-当前仅2in1设备应用可申请此权限。
-<!--RP19End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
-### ohos.permission.READ_WRITE_USB_DEV
-
-允许应用连接设备，并通过USB调试读写该设备。
-
-<!--RP20-->
-当前仅2in1设备应用可申请此权限。
-<!--RP20End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
 ### ohos.permission.GET_WIFI_PEERS_MAC
 
 允许应用获取对端Wi-Fi设备的MAC地址。
@@ -257,7 +229,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用禁用本应用的代码运行时完整性保护。
 
 <!--RP11-->
-针对使用跨平台框架开发的应用，用于应用豁免代码运行时的完整性保护。当前仅平板、2in1设备应用可申请此权限。
+针对使用跨平台框架开发的应用，用于应用豁免代码运行时的完整性保护。当前仅平板设备应用可申请此权限。
 <!--RP11End-->
 
 **权限级别：** system_basic
@@ -271,7 +243,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用申请可写可执行匿名内存。
 
 <!--RP10-->
-针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板设备应用可申请此权限。
 <!--RP10End-->
 
 **权限级别：** system_basic
