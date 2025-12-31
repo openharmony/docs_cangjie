@@ -334,8 +334,8 @@
             - Web调试维测
                 - [使用DevTools工具调试前端页面](web/cj-web-debugging-with-devtools.md)
                 - [使用crashpad收集Web组件崩溃信息](web/cj-web-crashpad.md)
-        - Cangjie(仓颉)
-            - [Cangjie简介](cangjie-overview.md)
+        - Cangjie（仓颉）
+            - [仓颉简介](learn-cj/FFI/cangjie-overview.md)
             - 仓颉-ArkTS 互操作
                 - 互操作入门
                     - [构建第一个仓颉与ArkTS混合应用](learn-cj/FFI/cangjie-arkts/cj-quick-start-first-cangjie-hybrid-app.md)
@@ -369,7 +369,7 @@
                 - [应用文件概述](file-management/cj-app-file-overview.md)
                 - [应用沙箱目录](file-management/cj-app-sandbox-directory.md)
                 - 应用文件访问与管理
-                    - [应用文件访问(仓颉)](file-management/cj-app-file-access.md)
+                    - [应用文件访问](file-management/cj-app-file-access.md)
                 <!--Del-->
                 - [向应用沙箱推送文件](file-management/cj-send-file-to-app-sandbox.md)
                 <!--DelEnd-->

@@ -1,6 +1,6 @@
-# FFI（Beta特性）
+# Cangjie（仓颉）
 
-- [仓颉与 C 互操作](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/FFI/cangjie-c.md)
+- [仓颉简介](cangjie-overview.md)
 - 仓颉-ArkTS 互操作
     - 入门
         - [构建第一个仓颉与ArkTS混合应用](cangjie-arkts/cj-quick-start-first-cangjie-hybrid-app.md)
