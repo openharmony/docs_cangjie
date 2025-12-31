@@ -6,7 +6,7 @@
 
 对应的算法规格请参见[对称密钥生成规格：3DES](./cj-crypto-sym-key-generation-conversion-spec.md#3des)。
 
-1. 获取3DES二进制密钥数据，封装成[DataBlob](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#struct-datablob)对象。
+1. 获取3DES二进制密钥数据，封装成[DataBlob](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#class-datablob)对象。
 
 2. 调用[createSymKeyGenerator](../../reference/CryptoArchitectureKit/cj-apis-crypto.md#func-createsymkeygeneratorstring)，指定字符串参数'3DES192'，创建密钥算法为3DES、密钥长度为192位的对称密钥生成器（SymKeyGenerator）。
 
