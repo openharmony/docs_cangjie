@@ -83,7 +83,7 @@ public func stepSize(size: ?Float64): This
 public func starStyle(backgroundUri!: ?ResourceStr, foregroundUri!: ?ResourceStr, secondaryUri!: ?ResourceStr = None): This
 ```
 
-**功能：** 设置评分的样式。该属性所支持的图片类型能力参考[Image](./cj-image-video-image.md#image)组件。支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
+**功能：** 设置评分的样式。该属性所支持的图片类型能力参考[Image](./cj-image-video-image.md)组件。支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
 
 默认图片加载方式为异步，暂不支持同步加载。
 

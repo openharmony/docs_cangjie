@@ -1711,7 +1711,7 @@ public func on(event: EventCallbackType, callback: Callback1Argument<HttpRespons
 | 参数名   | 类型  | 必填 | 默认值 | 说明  |
 | :------- | :----  | :--- | :----- | :----  |
 | event    | [EventCallbackType](#enum-eventcallbacktype)  | 是   | -      | 订阅的事件类型。<br>- 取值为Response，表示任务响应。     |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<HttpResponse> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务响应头的数据结构。 |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<HttpResponse> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务响应头的数据结构。 |
 
 **示例：**
 
@@ -1763,7 +1763,7 @@ public func on(event: EventCallbackType, callback: Callback1Argument<Progress>):
 | 参数名   | 类型 | 必填 | 默认值 | 说明 |
 | :------- | :---  | :--- | :----- | :----  |
 | event    | [EventCallbackType](#enum-eventcallbacktype) | 是   | -      | 订阅的事件类型。<br>- 取值为Progress，表示任务进度，任务进度有进展时触发该事件。 |
-| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[Progress](#class-progress)> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务信息的数据结构。 |
+| callback | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[Progress](#class-progress)> | 是   | -      | 发生相关的事件时触发该回调方法，返回任务信息的数据结构。 |
 
 **示例：**
 
