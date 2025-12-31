@@ -393,7 +393,7 @@ class EntryView {
 }
 ```
 
-![relativecontainer1](figures/relativecontainer1.png)
+![relativecontainer1](figures/relative_container1.png)
 
 ### 示例2（子组件设置外边距）
 
@@ -456,7 +456,7 @@ class EntryView {
 }
 ```
 
-![relativecontainer2](figures/relativecontainer2.png)
+![relativecontainer2](figures/relative_container2.png)
 
 ### 示例3（设置偏移）
 
