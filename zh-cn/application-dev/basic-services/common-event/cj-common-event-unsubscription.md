@@ -8,7 +8,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/BasicServicesKit/cj-apis-common_event_manager.md#class-commoneventsubscriber)): Unit | 取消订阅公共事件。 |
+| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/BasicServicesKit/cj-apis-common_event_subscriber.md#class-commoneventsubscriber)): Unit | 取消订阅公共事件。 |
 
 ## 开发步骤
 
