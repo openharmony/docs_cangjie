@@ -425,7 +425,7 @@ public func on(event: HttpRequestEvent, callback: Callback1Argument<HashMap<Stri
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |event|[HttpRequestEvent](#enum-httprequestevent)|是|-|HTTP请求事件类型，仅支持HeadersReceive事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<HashMap\<String,String>>|是|-|回调函数，返回HTTP响应头对象。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<HashMap\<String,String>>|是|-|回调函数，返回HTTP响应头对象。|
 
 **异常：**
 
@@ -484,7 +484,7 @@ public func on(event: HttpRequestEvent, callback: Callback1Argument<Array<Byte>>
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |event|[HttpRequestEvent](#enum-httprequestevent)|是|-|HTTP请求事件类型，仅支持DataReceive事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Array\<Byte>>|是|-|回调函数，用于接收HTTP流式响应数据。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Array\<Byte>>|是|-|回调函数，用于接收HTTP流式响应数据。|
 
 **异常：**
 
@@ -600,7 +600,7 @@ public func on(event: HttpRequestEvent, callback: Callback1Argument<DataReceiveP
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |event|[HttpRequestEvent](#enum-httprequestevent)|是|-|HTTP请求事件类型，仅支持DataReceiveProgress事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[DataReceiveProgressInfo](#class-datareceiveprogressinfo)>|是|-|回调函数，用于接收数据接收进度信息，参数为DataReceiveProgressInfo对象。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[DataReceiveProgressInfo](#class-datareceiveprogressinfo)>|是|-|回调函数，用于接收数据接收进度信息，参数为DataReceiveProgressInfo对象。|
 
 **异常：**
 
@@ -658,7 +658,7 @@ public func on(event: HttpRequestEvent, callback: Callback1Argument<DataSendProg
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |event|[HttpRequestEvent](#enum-httprequestevent)|是|-|HTTP请求事件类型，仅支持DataSendProgress事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[DataSendProgressInfo](#class-datasendprogressinfo)>|是|-|回调函数，用于接收数据发送进度信息，参数为DataSendProgressInfo对象。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[DataSendProgressInfo](#class-datasendprogressinfo)>|是|-|回调函数，用于接收数据发送进度信息，参数为DataSendProgressInfo对象。|
 
 **异常：**
 
@@ -717,7 +717,7 @@ public func once(event: HttpRequestEvent, callback: Callback1Argument<HashMap<St
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |event|[HttpRequestEvent](#enum-httprequestevent)|是|-|HTTP请求事件类型，仅支持HeadersReceive事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<HashMap\<String,String>>|是|-|回调函数。返回HTTP响应头对象。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<HashMap\<String,String>>|是|-|回调函数。返回HTTP响应头对象。|
 
 **异常：**
 
@@ -755,7 +755,7 @@ public func request(url: String, options: HttpRequestOptions, callback: AsyncCal
 |:---|:---|:---|:---|:---|
 |url|String|是|-|发起网络请求的URL地址。|
 |options|[HttpRequestOptions](#class-httprequestoptions)|是|-|参考[HttpRequestOptions](#class-httprequestoptions)。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[HttpResponse](#class-httpresponse)>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<[HttpResponse](#class-httpresponse)>|是|-|回调函数。|
 
 **异常：**
 
@@ -852,7 +852,7 @@ public func request(url: String, callback: AsyncCallback<HttpResponse>): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |url|String|是|-|发起网络请求的URL地址。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[HttpResponse](#class-httpresponse)>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<[HttpResponse](#class-httpresponse)>|是|-|回调函数。|
 
 **异常：**
 
@@ -943,7 +943,7 @@ public func requestInStream(url: String, options: HttpRequestOptions, callback: 
 |:---|:---|:---|:---|:---|
 |url|String|是|-|发起网络请求的URL地址。|
 |options|[HttpRequestOptions](#class-httprequestoptions)|是|-|参考[HttpRequestOptions](#class-httprequestoptions)。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<UInt32>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<UInt32>|是|-|回调函数。|
 
 **异常：**
 
@@ -1032,7 +1032,7 @@ public func requestInStream(url: String, callback: AsyncCallback<UInt32>): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |url|String|是|-|发起网络请求的URL地址。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<UInt32>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<UInt32>|是|-|回调函数。|
 
 **异常：**
 

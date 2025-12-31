@@ -37,7 +37,7 @@ public func animateTo(value: AnimateParam, event: VoidCallback): Unit
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |value|[AnimateParam](./cj-common-types.md#class-animateparam)|是|-|动画参数。|
-|event|[VoidCallback](./cj-common-types.md#type-VoidCallback)|是|-|动画执行的回调函数。|
+|event|[VoidCallback](./cj-common-types.md#type-voidcallback)|是|-|动画执行的回调函数。|
 
 ### func createAnimator(AnimatorOptions)
 

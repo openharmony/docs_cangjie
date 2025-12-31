@@ -194,7 +194,7 @@ public func on(eventType: BluetoothBleCallbackType, callback: Callback1Argument<
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleCallbackType](#enum-bluetoothblecallbacktype)|是|-|事件回调类型，支持的事件为AdvertisingStateChange，表示广播状态事件。<br>当调用[startAdvertising](#func-startadvertisingadvertisingparams)、[stopAdvertising](#func-stopadvertisinguint32)，广播状态改变时，均会触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[AdvertisingStateChangeInfo](#class-advertisingstatechangeinfo)>|是|-|指定订阅的回调函数，会携带广播状态信息。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[AdvertisingStateChangeInfo](#class-advertisingstatechangeinfo)>|是|-|指定订阅的回调函数，会携带广播状态信息。|
 
 **异常：**
 
@@ -252,7 +252,7 @@ public func on(eventType: BluetoothBleCallbackType, callback: Callback1Argument<
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleCallbackType](#enum-bluetoothblecallbacktype)|是|-|事件回调类型，支持的事件为BleDeviceFind，表示BLE设备扫描结果上报事件。<br>当调用[startAdvertising](#func-startadvertisingadvertisingparams) 后，开始BLE扫描，若扫描到BLE设备，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Array\<[ScanResult](#class-scanresult)>>|是|-|指定订阅的回调函数，会携带扫描结果的集合。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Array\<[ScanResult](#class-scanresult)>>|是|-|指定订阅的回调函数，会携带扫描结果的集合。|
 
 **异常：**
 
@@ -2162,7 +2162,7 @@ public func getRssiValue(callback: AsyncCallback<Int32>): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Int32>|是|-|返回链路的信号强度，单位：dBm。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<Int32>|是|-|返回链路的信号强度，单位：dBm。|
 
 **异常：**
 
@@ -2220,7 +2220,7 @@ public func getServices(callback: AsyncCallback<Array<GattService>>): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Array\<[GattService](#class-gattservice)>>|是|-|返回获取到的server端服务列表。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<Array\<[GattService](#class-gattservice)>>|是|-|返回获取到的server端服务列表。|
 
 **异常：**
 
@@ -2340,7 +2340,7 @@ public func on(eventType: BluetoothBleGattClientDeviceCallbackType, callback: Ca
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|是|-|事件回调类型，支持的事件为BleCharacteristicChange，表示server端特征值变化事件。<br>当client端收到server端特征值内容变更的通知或者指示时，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BleCharacteristic](#class-blecharacteristic)>|是|-|指定订阅的回调函数，会携带server端变化后的特征值内容。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[BleCharacteristic](#class-blecharacteristic)>|是|-|指定订阅的回调函数，会携带server端变化后的特征值内容。|
 
 **异常：**
 
@@ -2402,7 +2402,7 @@ public func on(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|是|-|事件回调类型，支持的事件为BleConnectionStateChange，表示连接状态变化事件。<br>client和server端之间的连接状态发生变化时，触发该事件。<br>当client端调用[connect](#func-connect)或[disconnect](#func-disconnect)时，可能引起连接状态生变化。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BleConnectionChangeState](#class-bleconnectionchangestate)>|是|-|指定订阅的回调函数，会携带连接状态信息。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[BleConnectionChangeState](#class-bleconnectionchangestate)>|是|-|指定订阅的回调函数，会携带连接状态信息。|
 
 **异常：**
 
@@ -2461,7 +2461,7 @@ public func on(eventType: BluetoothBleGattClientDeviceCallbackType, callback: Ca
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattClientDeviceCallbackType](#enum-bluetoothblegattclientdevicecallbacktype)|是|-|事件回调类型，支持的事件为ClientBleMtuChange，表示MTU大小变更事件。<br>当调用[setBleMtuSize](#func-setblemtusizeint32)方法，client端发起MTU大小协商后，会触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32>|是|-|指定订阅的回调函数，会携带协商后的MTU大小。单位：Byte。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Int32>|是|-|指定订阅的回调函数，会携带协商后的MTU大小。单位：Byte。|
 
 **异常：**
 
@@ -2529,7 +2529,7 @@ public func readCharacteristicValue(
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |characteristic|[BleCharacteristic](#class-blecharacteristic)|是|-|需要读取的特征值。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[BleCharacteristic](#class-blecharacteristic)>|是|-|回调函数。当读取成功，获取到的特征值对象，包含读取到的数据内容。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<[BleCharacteristic](#class-blecharacteristic)>|是|-|回调函数。当读取成功，获取到的特征值对象，包含读取到的数据内容。|
 
 **异常：**
 
@@ -2628,7 +2628,7 @@ public func readDescriptorValue(descriptor: BleDescriptor, callback: AsyncCallba
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |descriptor|[BleDescriptor](#class-bledescriptor)|是|-|需要读取的描述符。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<[BleDescriptor](#class-bledescriptor)>|是|-|回调函数。当读取成功，data为获取到的描述符对象，包含读取到的数据内容。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<[BleDescriptor](#class-bledescriptor)>|是|-|回调函数。当读取成功，data为获取到的描述符对象，包含读取到的数据内容。|
 
 **异常：**
 
@@ -2780,7 +2780,7 @@ public func setCharacteristicChangeIndication(characteristic: BleCharacteristic,
 |:---|:---|:---|:---|:---|
 |characteristic|[BleCharacteristic](#class-blecharacteristic)|是|-|需要管理的server端特征值。|
 |enable|Bool|是|-|蓝牙设备特征的写入类型。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Unit>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<Unit>|是|-|回调函数。|
 
 **异常：**
 
@@ -2874,7 +2874,7 @@ public func setCharacteristicChangeNotification(characteristic: BleCharacteristi
 |:---|:---|:---|:---|:---|
 |characteristic|[BleCharacteristic](#class-blecharacteristic)|是|-|需要管理的server端特征值。|
 |enable|Bool|是|-|是否启用接收server端特征值通知的能力。<br>true表示启用，false表示禁用。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Unit>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<Unit>|是|-|回调函数。|
 
 **异常：**
 
@@ -2960,7 +2960,7 @@ public func writeCharacteristicValue(characteristic: BleCharacteristic, writeTyp
 |:---|:---|:---|:---|:---|
 |characteristic|[BleCharacteristic](#class-blecharacteristic)|是|-|需要写入的特征值，包含写入的数据内容。|
 |writeType|[GattWriteType](#enum-gattwritetype)|是|-|写入特征值的方式。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Unit>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<Unit>|是|-|回调函数。|
 
 **异常：**
 
@@ -3053,7 +3053,7 @@ public func writeDescriptorValue(descriptor: BleDescriptor, callback: AsyncCallb
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |descriptor|[BleDescriptor](#class-bledescriptor)|是|-|需要写入的描述符，包含写入的数据内容。|
-|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallback)\<Unit>|是|-|回调函数。|
+|callback|[AsyncCallback](../arkinterop/cj-api-business_exception.md#type-asynccallbackt)\<Unit>|是|-|回调函数。|
 
 **异常：**
 
@@ -3810,7 +3810,7 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|是|-|事件回调类型，支持的事件为CharacteristicRead，表示特征值读请求事件。<br>当收到client端设备的读取特征值请求时，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CharacteristicReadRequest](#class-characteristicreadrequest)>|是|-|指定订阅的回调函数，会携带client端发送的读请求数据。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[CharacteristicReadRequest](#class-characteristicreadrequest)>|是|-|指定订阅的回调函数，会携带client端发送的读请求数据。|
 
 **异常：**
 
@@ -3884,7 +3884,7 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|是|-|事件回调类型，支持的事件为CharacteristicWrite，表示特征值写请求事件。<br>当收到client端设备的写特征值请求时，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[CharacteristicWriteRequest](#class-characteristicwriterequest)>|是|-|指定订阅的回调函数，会携带client端发送的写请求数据。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[CharacteristicWriteRequest](#class-characteristicwriterequest)>|是|-|指定订阅的回调函数，会携带client端发送的写请求数据。|
 
 **异常：**
 
@@ -3965,7 +3965,7 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|是|-|事件回调类型，支持的事件为DescriptorRead，表示描述符读请求事件。<br>当收到client端设备的读取描述符请求时，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[DescriptorReadRequest](#class-descriptorreadrequest)>|是|-|指定订阅的回调函数，会携带client端发送的读请求数据。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[DescriptorReadRequest](#class-descriptorreadrequest)>|是|-|指定订阅的回调函数，会携带client端发送的读请求数据。|
 
 **异常：**
 
@@ -4039,7 +4039,7 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|是|-| 事件回调类型，支持的事件为DescriptorWrite，表示描述符写请求事件。<br>当收到client端设备的写描述符请求时，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[DescriptorWriteRequest](#class-descriptorwriterequest)>|是|-|指定订阅的回调函数，会携带client端发送的写请求数据。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[DescriptorWriteRequest](#class-descriptorwriterequest)>|是|-|指定订阅的回调函数，会携带client端发送的写请求数据。|
 
 **异常：**
 
@@ -4117,7 +4117,7 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|是|-|事件回调类型，支持的事件为ConnectionStateChange，表示GATT profile连接状态发生变化的事件。<br>当client和server端之间的连接状态发生变化时，触发该事件。<br>例如：收到连接请求或者断连请求时，可能引起连接状态生变化。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<[BleConnectionChangeState](#class-bleconnectionchangestate)>|是|-|指定订阅的回调函数，会携带连接状态。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[BleConnectionChangeState](#class-bleconnectionchangestate)>|是|-|指定订阅的回调函数，会携带连接状态。|
 
 **异常：**
 
@@ -4175,7 +4175,7 @@ public func on(eventType: BluetoothBleGattServerCallbackType, callback: Callback
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |eventType|[BluetoothBleGattServerCallbackType](#enum-bluetoothblegattservercallbacktype)|是|-|事件回调类型，支持的事件为ServerBleMtuChange，表示MTU状态变化事件。<br>当收到了client端发起了MTU协商请求时，触发该事件。|
-|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<Int32>|是|-|指定订阅的回调函数，会携带协商后的MTU大小。单位：Byte。|
+|callback|[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Int32>|是|-|指定订阅的回调函数，会携带协商后的MTU大小。单位：Byte。|
 
 **异常：**
 

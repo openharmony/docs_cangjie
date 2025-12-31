@@ -201,7 +201,7 @@ public func on<T>(sensorType: SensorId, callback: Callback1Argument<T>, option!:
 | 参数名        | 类型 | 必填  | 默认值  | 说明 |
 |:---------- |:--------- |:--- |:---- |:---- |
 | sensorType | [SensorId](#enum-sensorid) | 是   | -    | 传感器类型。|
-| callback   | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<T> | 是   | -    | 回调函数。|
+| callback   | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<T> | 是   | -    | 回调函数。|
 | option     | ?[Options](#class-options) | 否   | None | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **异常：**
@@ -257,7 +257,7 @@ public func once<T>(sensorType: SensorId, callback: Callback1Argument<T>): Unit 
 
 | 参数名        | 类型 | 必填  | 默认值 | 说明 | |
 | sensorType | [SensorId](#enum-sensorid)                                                                  | 是   | -   | 传感器类型。                            |
-| callback   | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argument)\<T> | 是   | -   | 回调函数，异步上报的传感器数据，每种传感器类型对应的数据类型不同。 |
+| callback   | [Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<T> | 是   | -   | 回调函数，异步上报的传感器数据，每种传感器类型对应的数据类型不同。 |
 
 **异常：**
 
