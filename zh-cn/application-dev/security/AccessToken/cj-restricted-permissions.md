@@ -112,44 +112,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本：** 12
 
-### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
-
-允许应用访问公共目录下Desktop目录及子目录。
-
-<!--RP15-->
-当前仅平板上的应用可申请此权限。
-<!--RP15End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 用户授权（user_grant）
-
-**起始版本：** 12
-
-### ohos.permission.ACCESS_DDK_USB
-
-允许扩展外设驱动访问USB DDK接口开发USB总线扩展外设驱动。
-
-<!--RP31--><!--RP31End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
-### ohos.permission.ACCESS_DDK_HID
-
-允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
-
-<!--RP30--><!--RP30End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
 ### ohos.permission.READ_PASTEBOARD
 
 允许应用读取剪贴板。
@@ -170,19 +132,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式：** 系统授权（system_grant）
 
-**起始版本：** 12
-
-### ohos.permission.INTERCEPT_INPUT_EVENT
-
-允许应用拦截输入事件。
-
-<!--RP24--><!--RP24End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
+**起始版本：** 1
 
 ### ohos.permission.INPUT_MONITORING
 
@@ -405,18 +355,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用读取或设置APN信息。
 
 <!--RP38--><!--RP38End-->
-
-**权限级别：** system_basic
-
-**授权方式：** 系统授权（system_grant）
-
-**起始版本：** 12
-
-### ohos.permission.GET_WIFI_LOCAL_MAC
-
-允许应用获取本机的Wi-Fi设备的MAC地址。
-
-<!--RP43--><!--RP43End-->
 
 **权限级别：** system_basic
 
