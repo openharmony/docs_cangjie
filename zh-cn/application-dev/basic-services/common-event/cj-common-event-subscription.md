@@ -18,7 +18,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../../reference/BasicServicesKit/cj-apis-common_event_subscribe_info.md#class-commoneventsubscribeinfo)): [CommonEventSubscriber](../../reference/BasicServicesKit/ccj-apis-common_event_subscriber.md#class-commoneventsubscriber)| 创建订阅者对象。 |
+| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../../reference/BasicServicesKit/cj-apis-common_event_subscribe_info.md#class-commoneventsubscribeinfo)): [CommonEventSubscriber](../../reference/BasicServicesKit/cj-apis-common_event_subscriber.md#class-commoneventsubscriber)| 创建订阅者对象。 |
 | subscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/BasicServicesKit/cj-apis-common_event_subscriber.md#class-commoneventsubscriber),&nbsp;callback: ([CommonEventData](../../reference/BasicServicesKit/cj-apis-common_event_data.md#struct-commoneventdata)) -> Unit): Unit | 订阅公共事件。 |
 
 ## 开发步骤
