@@ -1631,7 +1631,7 @@ public enum DeviceType {
 }
 ```
 
-**功能：** 用于表示当前设备类型。
+**功能：** 用于表示当前设备类型。目前仓颉仅支持手机（Phone），平板（Tablet）。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
