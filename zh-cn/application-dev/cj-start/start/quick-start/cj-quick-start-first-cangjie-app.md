@@ -359,3 +359,4 @@ Project_name
 3. 在编辑窗口右上角的工具栏，单击![runButton](../../figures/runButton.png)按钮运行。效果同使用真机运行。
 
 您已经成功构建第一个仓颉应用。
+<!--RP1--><!--RP1End-->
