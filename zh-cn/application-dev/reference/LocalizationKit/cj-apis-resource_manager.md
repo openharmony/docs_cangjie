@@ -1631,23 +1631,23 @@ public enum DeviceType {
 }
 ```
 
-**功能：** 用于表示当前设备类型。
+**功能：** 用于表示当前设备类型。目前仓颉仅支持手机（Phone），平板（Tablet）。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **起始版本：** 22
 
- ### DeviceType2In1 
+### DeviceType2In1
  
- ```cangjie 
- DeviceType2In1 
- ``` 
+```cangjie 
+DeviceType2In1 
+``` 
  
- **功能：** 2in1设备。 
+**功能：** 2in1设备。
  
- **系统能力：** SystemCapability.Global.ResourceManager 
+**系统能力：** SystemCapability.Global.ResourceManager
  
- **起始版本：** 22
+**起始版本：** 22
 
 ### DeviceTypeCar
 
