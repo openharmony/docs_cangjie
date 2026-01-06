@@ -33,6 +33,8 @@ Here, we use getDefaultDisplaySync() to obtain the current default Display objec
 
 ```cangjie
 import ohos.display.*
+import ohos.hilog.Hilog
+
 func getDefaultDisplaySyncExample() {
     try {
         let displayClass: Display = getDefaultDisplaySync()
@@ -50,18 +52,19 @@ func getDefaultDisplaySyncExample() {
 
     ```cangjie
     import ohos.display.*
+    import ohos.hilog.Hilog
 
     func getDefaultDisplaySyncExample() {
         try {
             let displayClass: Display = getDefaultDisplaySync()
             // Get screen ID
-            Hilog.info(0, "AppLogCj", "The screen Id is ${displayClass.id}.")
+            Hilog.info(0, "1", "AppLogCj", "The screen Id is ${displayClass.id}.")
             // Get screen refresh rate
-            Hilog.info(0, "AppLogCj", "The screen Id is ${displayClass.refreshRate}.")
+            Hilog.info(0, "1", "AppLogCj", "The screen Id is ${displayClass.refreshRate}.")
             // Get screen width
-            Hilog.info(0, "AppLogCj", "The screen Id is ${displayClass.width}.")
+            Hilog.info(0, "1", "AppLogCj", "The screen Id is ${displayClass.width}.")
             // Get screen height
-            Hilog.info(0, "AppLogCj", "The screen Id is ${displayClass.height}.")
+            Hilog.info(0, "1", "AppLogCj", "The screen Id is ${displayClass.height}.")
             // ...
         } catch (exception: Exception) {
             Hilog.error(0, "AppLogCj", exception.toString())
@@ -73,6 +76,7 @@ func getDefaultDisplaySyncExample() {
 
     ```cangjie
     import ohos.display.*
+    import ohos.hilog.Hilog
 
     func getCutoutInfoExample() {
         try {
@@ -91,6 +95,8 @@ func getDefaultDisplaySyncExample() {
 
     ```cangjie
     import ohos.display.*
+    import ohos.hilog.Hilog
+
     func isFoldableExample() {
         try {
             let displayClass = getDefaultDisplaySync()
@@ -101,9 +107,9 @@ func getDefaultDisplaySyncExample() {
                 Hilog.error(0, "AppLogCj", exception.toString())
             }
             if (ret) {
-                Hilog.info(0, "AppLogCj", "The device is foldable.")
+                Hilog.info(0, "1", "AppLogCj", "The device is foldable.")
             } else {
-                Hilog.info(0, "AppLogCj", "The device is not foldable.")
+                Hilog.info(0, "1", "AppLogCj", "The device is not foldable.")
             }
         } catch (exception: Exception) {
             Hilog.error(0, "AppLogCj", exception.toString())
@@ -115,10 +121,12 @@ func getDefaultDisplaySyncExample() {
 
     ```cangjie
     import ohos.display.*
+    import ohos.hilog.Hilog
+
     class TestCallback <: Callback1Argument<FoldStatus> {
         public init() {}
         public open func invoke(value: FoldStatus): Unit {
-            Hilog.info(0, "AppLogCj", 
+            Hilog.info(0, "1", "AppLogCj", 
                 "Display fold status changed, current fold status: " + match (value) {
                     case FoldStatusUnknown => "FoldStatusUnknown"
                     case FoldStatusExpanded => "FoldStatusExpanded"

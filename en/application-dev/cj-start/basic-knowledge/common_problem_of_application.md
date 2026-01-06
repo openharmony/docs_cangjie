@@ -11,14 +11,16 @@
     ```cangjie
     import ohos.base.*
     import kit.AbilityKit.*
+    import ohos.business_exception.BusinessException
+    import ohos.hilog.Hilog
 
     let bundleFlags =  GET_BUNDLE_INFO_WITH_APPLICATION.getValue() | GET_BUNDLE_INFO_WITH_SIGNATURE.getValue()
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let fingerprint = res.signatureInfo.fingerprint
-        Hilog.info(1, "info", "getBundleInfoForSelf successfully, fingerprint: ${fingerprint}")
+        Hilog.info(1, "1", "info", "getBundleInfoForSelf successfully, fingerprint: ${fingerprint}")
     } catch (e: BusinessException)  {
-        Hilog.error(1, "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
+        Hilog.error(1, "1", "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
     }
     ```
 
@@ -55,14 +57,16 @@ Therefore, for scenarios requiring consistent appIdentifier across devices (e.g.
     ```cangjie
     import ohos.base.*
     import kit.AbilityKit.*
+    import ohos.business_exception.BusinessException
+    import ohos.hilog.Hilog
 
     let bundleFlags =  GET_BUNDLE_INFO_WITH_APPLICATION.getValue() | GET_BUNDLE_INFO_WITH_SIGNATURE.getValue()
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let appIdentifier = res.signatureInfo.appIdentifier
-        Hilog.info(1, "info", "getBundleInfoForSelf successfully, appIdentifier: ${appIdentifier}")
+        Hilog.info(1, "1", "info", "getBundleInfoForSelf successfully, appIdentifier: ${appIdentifier}")
     } catch (e: BusinessException)  {
-        Hilog.error(1, "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
+        Hilog.error(1, "1", "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
     }
     ```
 

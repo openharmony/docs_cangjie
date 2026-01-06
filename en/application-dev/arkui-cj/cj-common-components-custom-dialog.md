@@ -85,12 +85,12 @@ The dialog can be used for data interaction to complete a series of user respons
             Flex(justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center) {
                 Text("I am the content").fontSize(20)
 
-                Button("cancel").onClick { evt =>
+                Button("cancel").onClick({ evt =>
                     controller?.closeDialog()
-                }
-                Button("confirm").onClick { evt =>
+                })
+                Button("confirm").onClick({ evt =>
                     controller?.closeDialog()
-                }
+                })
             }.height(500.px)
         }
     }
