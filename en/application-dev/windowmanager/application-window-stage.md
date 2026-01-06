@@ -35,7 +35,7 @@ The commonly used APIs for the above scenarios are listed in the table below. Fo
 | Window         | `moveWindowTo(x: Int32, y: Int32): Unit`                    | Moves the current window's position.                         |
 | Window         | `resize(width: UInt32, height: UInt32): Unit`               | Resizes the current window.                                  |
 | Window         | `setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit` | Sets whether the main window or sub-window uses an immersive layout. `true` for immersive layout; `false` for non-immersive layout. |
-| Window         | `setWindowSystemBarEnable(names: Array<SystemBarType>): Unit` | Sets the visibility mode of the main window's status bar and navigation bar. The status bar is controlled via `status`, and the navigation bar via `navigation`.<br>For example, setting this parameter to `[SystemBarType.Status, SystemBarType.Navigation]` displays both; setting it to `[]` hides both. |
+| Window         | `setWindowSystemBarEnabled(names: Array<SystemBarType>): Unit` | Sets the visibility mode of the main window's status bar and navigation bar. The status bar is controlled via `status`, and the navigation bar via `navigation`.<br>For example, setting this parameter to `[SystemBarType.Status, SystemBarType.Navigation]` displays both; setting it to `[]` hides both. |
 | Window         | `setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Unit` | Sets properties for the navigation bar and status bar within the window.<br/>`systemBarProperties`: A collection of properties for the navigation bar and status bar. |
 | Window         | `func showWindow(): Unit`                                    | Displays the current window.                                 |
 | Window         | `func destroyWindow(): Unit`                                 | Destroys the current window.                                 |
@@ -66,7 +66,7 @@ class MainAbility <: UIAbility {
         // 1. Retrieve the main application window.
         let mainWindow: Window = windowStage.getMainWindow()
         // 2. Set main window properties. Example: Set "touchable" property.
-        window.setWindowTouchable(false)
+        mainWindow.setWindowTouchable(false)
         // 3. Load the target page into the main window.
         windowStage.loadContent("EntryView")
     }
@@ -121,7 +121,7 @@ class MainAbility <: UIAbility {
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
         // Sub-windows can be created at appropriate times (e.g., button clicks). This example shows creation in onWindowStageCreate for demonstration.
         // 1. Create a sub-window.
-        let subWindow = windowStage.createSubWindow("mySubWindow")
+        subWindow = windowStage.createSubWindow("mySubWindow")
         // 2. Set sub-window properties (position, size, etc.).
         subWindow.getOrThrow().moveWindowTo(300, 300)
         subWindow.getOrThrow().resize(500, 500)
@@ -150,9 +150,6 @@ internal import kit.ArkUI.*
 internal import kit.AbilityKit.*
 internal import ohos.arkui.state_management.AppStorage
 
-var windowStage: ?WindowStage = None
-var subWindow: ?Window = None
-
 class MainAbility <: UIAbility {
     public init() {
         super()
@@ -173,6 +170,7 @@ package ohos_app_cangjie_entry
 import kit.ArkUI.*
 import kit.UIKit.*
 import ohos.arkui.state_management.AppStorage
+import ohos.arkui.state_macro_manage.*
 
 var windowStage: ?WindowStage = None
 var subWindow: ?Window = None
@@ -180,7 +178,6 @@ var subWindow: ?Window = None
 @Entry
 @Component
 class EntryView{
-
     @State
     var message: String = "Hello World"
 
@@ -199,7 +196,7 @@ class EntryView{
                     .backgroundColor(0x0D9FFB)
                     .width(220)
                     .height(68)
-                    .onClick {
+                    .onClick ({
                         evt =>
                             windowStage = AppStorage.get('windowStage')
                             // 1. Create a sub-window.
@@ -209,7 +206,7 @@ class EntryView{
                             subWindow.getOrThrow().resize(500, 500)
                             // 3. Display the sub-window.
                             subWindow.getOrThrow().showWindow()
-                    }
+                    })
                 Button() {
                     Text("destroySubWindow")
                         .fontSize(30)
@@ -246,7 +243,7 @@ In scenarios like video playback or gaming, users often prefer to hide system wi
    Use the `getMainWindow` API to obtain the main window.
 
 2. Implement immersive effects via one of two methods:  
-   - Method 1: Hide the status bar and navigation bar using `setWindowSystemBarEnable` when the main window is in full-screen mode.  
+   - Method 1: Hide the status bar and navigation bar using `setWindowSystemBarEnabled` when the main window is in full-screen mode.  
    - Method 2: Set the main window to full-screen layout via `setWindowLayoutFullScreen`, then configure the transparency, colors, and highlight icons of the status bar and navigation bar via `setWindowSystemBarProperties` to harmonize with the main window.
 
 3. Load and display immersive window content.  
@@ -263,7 +260,7 @@ class MainAbility <: UIAbility {
         // 1. Retrieve the main application window.
         let mainWindow: Window = windowStage.getMainWindow()
         // 2. Implement immersive effects. Method 1: Hide the status bar and navigation bar.
-        mainWindow.setWindowSystemBarEnable([])
+        mainWindow.setWindowSystemBarEnabled([])
         // 2. Implement immersive effects. Method 2: Set full-screen layout and configure system bar properties.
         mainWindow.setWindowLayoutFullScreen(true)
         let sysBarProps: SystemBarProperties = SystemBarProperties(
