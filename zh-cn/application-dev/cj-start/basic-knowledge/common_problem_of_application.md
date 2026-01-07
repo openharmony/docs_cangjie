@@ -11,12 +11,14 @@
     ```cangjie
     import ohos.base.*
     import kit.AbilityKit.*
+    import ohos.business_exception.BusinessException
+    import ohos.hilog.Hilog
 
-    let bundleFlags =  BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE
+    let bundleFlags =  BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let fingerprint = res.signatureInfo.fingerprint
-        Hilog.info(1, "info", "getBundleInfoForSelf successfully, fingerprint: ${fingerprint}")
+        Hilog.info(1, "1", "info", "getBundleInfoForSelf successfully, fingerprint: ${fingerprint}")
     } catch (e: BusinessException)  {
         Hilog.error(1, "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
     }
@@ -55,13 +57,13 @@ appIdentifier是<!--RP1-->[Profile签名文件](https://gitcode.com/openharmony/
     ```cangjie
     import kit.AbilityKit.*
     import ohos.business_exception.BusinessException
-    import kit.PerformanceAnalysisKit.Hilog
+    import ohos.hilog.Hilog
 
     let bundleFlags =  BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let appIdentifier = res.signatureInfo.appIdentifier
-        Hilog.info(1, "info", "getBundleInfoForSelf successfully, appIdentifier: ${appIdentifier}")
+        Hilog.info(1, "1", "info", "getBundleInfoForSelf successfully, appIdentifier: ${appIdentifier}")
     } catch (e: BusinessException)  {
         Hilog.error(1, "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
     }
@@ -90,13 +92,13 @@ appId是应用的唯一标识，由包名、下划线和证书公钥的Base64编
     ```cangjie
     import kit.AbilityKit.*
     import ohos.business_exception.BusinessException
-    import kit.PerformanceAnalysisKit.Hilog
+    import ohos.hilog.Hilog
 
     let bundleFlags =  BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO
     try {
         let res = BundleManager.getBundleInfoForSelf(bundleFlags)
         let appId = res.signatureInfo.appId
-        Hilog.info(1, "info", "getBundleInfoForSelf successfully, appId: ${appId}")
+        Hilog.info(1, "1", "info", "getBundleInfoForSelf successfully, appId: ${appId}")
     } catch (e: BusinessException)  {
         Hilog.error(1, "info", "Failed to getBundleInfoForSelf. Code is ${e.code}, message is ${e.message}")
     }

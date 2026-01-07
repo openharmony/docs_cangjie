@@ -39,7 +39,7 @@
 | Window         | moveWindowTo(x: Int32, y: Int32): Unit | 移动当前窗口位置。                                           |
 | Window         | resize(width: UInt32, height: UInt32): Unit | 改变当前窗口大小。                                           |
 | Window         | setWindowLayoutFullScreen(isLayoutFullScreen: Bool): Unit | 设置主窗口或子窗口的布局是否为沉浸式布局。true表示沉浸式布局；false表示非沉浸式布局。|
-| Window         | setWindowSystemBarEnable(names: Array\<SystemBarType>): Unit | 设置主窗口状态栏、三键导航栏的可见模式，状态栏通过status控制、三键导航栏通过navigation控制。<br>例如，该参数设置为[SystemBarType.Status,&nbsp;SystemBarType.Navigation]，则全部显示；设置为[]，则不显示。|
+| Window         | setWindowSystemBarEnabled(names: Array\<SystemBarType>): Unit | 设置主窗口状态栏、三键导航栏的可见模式，状态栏通过status控制、三键导航栏通过navigation控制。<br>例如，该参数设置为[SystemBarType.Status,&nbsp;SystemBarType.Navigation]，则全部显示；设置为[]，则不显示。|
 | Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Unit | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window         | func showWindow(): Unit             | 显示当前窗口。                                               |
 | Window         | func destroyWindow(): Unit     | 销毁当前窗口。                                               |
@@ -73,7 +73,7 @@ class MainAbility <: UIAbility {
         // 1.获取应用主窗口。
         let mainWindow: Window = windowStage.getMainWindow()
         // 2.设置主窗口属性。以设置"是否可触"属性为例。
-        window.setWindowTouchable(false)
+        mainWindow.setWindowTouchable(false)
         // 3.为主窗口加载对应的目标页面。
         windowStage.loadContent("EntryView")
     }
@@ -135,7 +135,7 @@ class MainAbility <: UIAbility {
     public override func onWindowStageCreate(windowStage: WindowStage): Unit {
         // 开发者可以在适当的时机，如主窗口上按钮点击事件等，创建子窗口。并不一定需要在onWindowStageCreate调用，这里仅作展示
         // 1.创建应用子窗口。
-        let subWindow = windowStage.createSubWindow("mySubWindow")
+        subWindow = windowStage.createSubWindow("mySubWindow")
         // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
         subWindow.getOrThrow().moveWindowTo(300, 300)
         subWindow.getOrThrow().resize(500, 500)
@@ -164,9 +164,6 @@ internal import kit.ArkUI.*
 internal import kit.AbilityKit.*
 internal import ohos.arkui.state_management.AppStorage
 
-var windowStage: ?WindowStage = None
-var subWindow: ?Window = None
-
 class MainAbility <: UIAbility {
     public init() {
         super()
@@ -185,8 +182,8 @@ class MainAbility <: UIAbility {
 package ohos_app_cangjie_entry
 
 import kit.ArkUI.*
-import kit.UIKit.*
 import ohos.arkui.state_management.AppStorage
+import ohos.arkui.state_macro_manage.*
 
 var windowStage: ?WindowStage = None
 var subWindow: ?Window = None
@@ -194,7 +191,6 @@ var subWindow: ?Window = None
 @Entry
 @Component
 class EntryView{
-
     @State
     var message: String = "Hello World"
 
@@ -233,14 +229,14 @@ class EntryView{
                     .backgroundColor(0x0D9FFB)
                     .width(220)
                     .height(68)
-                    .onClick {
+                    .onClick( {
                         evt =>
                             // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
                             if (!subWindow.isSome()) {
                                 return
                             }
                             subWindow.getOrThrow().destroyWindow()
-                    }
+                    })
             }.width(100.percent)
         }.height(100.percent)
     }
@@ -263,7 +259,7 @@ class EntryView{
 
 2. 实现沉浸式效果。有以下两种方式：
 
-   - 方式一：应用主窗口为全屏窗口时，调用`setWindowSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
+   - 方式一：应用主窗口为全屏窗口时，调用`setWindowSystemBarEnabled`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
 
    - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setWindowSystemBarProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
@@ -282,7 +278,7 @@ class MainAbility <: UIAbility {
         // 1.获取应用主窗口。
         let mainWindow: Window = windowStage.getMainWindow()
         // 2.实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
-        mainWindow.setWindowSystemBarEnable([])
+        mainWindow.setWindowSystemBarEnabled([])
         // 2.实现沉浸式效果。方式二：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
         mainWindow.setWindowLayoutFullScreen(true)
         let sysBarProps: SystemBarProperties = SystemBarProperties(
