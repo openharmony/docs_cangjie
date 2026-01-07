@@ -211,7 +211,7 @@ class EntryView {
             Button("Reset").onClick({ evt=>
               this.translateX = 0
               this.translateY = 0
-            }).width(80).height(35)
+            }).width(80).height(35).margin(top: 20)
             Button("Pause").onClick({ evt=>
               this.backAnimator?.pause()
               this.animatorStatus = 'Paused'
@@ -223,7 +223,7 @@ class EntryView {
               .borderRadius(45.vp)
               .width(60)
               .height(60)
-              .translate( x: this.translateX, y: this.translateY )
+              .translate( x: this.translateX, y: this.translateY ).margin(left: 20)
           }
           .width(100.percent)
           .height(45.percent)

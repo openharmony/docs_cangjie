@@ -80,16 +80,19 @@ import ohos.state_macro_manage.*
 class EntryView {
     func build() {
         Column(100) {
+            Button("ORANGE")
+                .width(50.percent)
+                .height(80)
+                .fontSize(20)
+                .foregroundColor(0xED6F21)
+                .margin(top: 200)
+                .backgroundColor(0xD1D1D6)
             Button("GREEN")
                 .width(50.percent)
                 .height(80)
                 .fontSize(20)
-                .foregroundColor(Color.GREEN)
-            Button("RED")
-                .width(50.percent)
-                .height(80)
-                .fontSize(20)
-                .foregroundColor(Color.RED)
+                .foregroundColor(0x64BB5C)
+                .backgroundColor(0xD1D1D6)
             }
             .width(100.percent)
         }
@@ -106,25 +109,23 @@ This example uses `INVERT` to set the foreground color as the inversion of the b
 
 ```cangjie
 package ohos_app_cangjie_entry
-import kit.UIKit.*
-import ohos.state_macro_manage.*
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
 
 @Entry
 @Component
 class EntryView {
     func build() {
-        Column(100) {
-            Button("NO INVERT")
-                .width(100.percent)
+        Column(space: 100) {
+            Circle()
+                .width(60)
                 .height(80)
-                .fontSize(20)
-                .backgroundColor(Color.BLUE)
-            Button("INVERT")
-                .width(100.percent)
+                .margin(top: 100)
+            Circle()
+                .width(60)
                 .height(80)
-                .fontSize(20)
-                .backgroundColor(Color.BLUE)
-                .foregroundColor(INVERT)
+                .backgroundColor(Color.Black)
+                .foregroundColor(ColoringStrategy.Invert)
             }
             .width(100.percent)
         }

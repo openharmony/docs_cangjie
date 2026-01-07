@@ -373,7 +373,7 @@ import ohos.arkui.state_macro_manage.*
 @Entry
 @Component
 class EntryView {
-    var bgColors: Array<Color> = [Color.Red, Color.Green, Color.Gray, Color.Red, Color.Green, Color.Blue, Color.Gray]
+    var bgColors: Array<Color> = [Color(0xD4344C), Color(0x64BB5C), Color(0xED6F21), Color(0x0A59F7), Color(0xD1D1D6), Color(0xFBD7DD), Color(0x4D0A59F7)]
     var currentBp: String = ""
     func build() {
         Column {
@@ -398,7 +398,7 @@ class EntryView {
                         .width(100.percent)
                         .height(40.vp)
                 }
-                .borderColor(Color.Blue)
+                .borderColor(0xD4344C)
                 .borderWidth(2.vp)
                 .span(2)
                 //Construct the second GridCol sub-component, occupying 2 columns, offset by 1 column from the previous grid, thus occupying columns 4 and 5
@@ -411,7 +411,7 @@ class EntryView {
                     .width(100.percent)
                     .height(40.vp)
                 }
-                .borderColor(Color.Green)
+                .borderColor(0x64BB5C)
                 .borderWidth(2.vp)
                 .span(2)
                 .gridColOffset(1)
@@ -425,7 +425,7 @@ class EntryView {
                     .width(100.percent)
                     .height(40.vp)
                 }
-                .borderColor(Color.Red)
+                .borderColor(0xED6F21)
                 .borderWidth(2.vp)
                 .span(1)
                 .gridColOffset(2)

@@ -404,8 +404,8 @@ class EntryView {
     func build() {
         Column() {
             Button() {
-                Text('在第1项后插入新项').fontSize(30)
-            }
+                Text('在第1项后插入新项').fontSize(20)
+            }.width(240).height(45).backgroundColor(0x0A59F7)
             .onClick({ evt =>
                 this.simpleList.insert(1,'new item')
             })
@@ -469,7 +469,7 @@ class EntryView {
         Column() {
             Button() {
             Text('在第1项后插入新项').fontSize(30)
-            }
+            }.width(240).height(45).backgroundColor(0x0A59F7)
             .onClick({
                 evt =>this.simpleList.insert(1,'new item')
             })

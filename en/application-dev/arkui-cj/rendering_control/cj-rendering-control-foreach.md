@@ -404,8 +404,8 @@ class EntryView {
     func build() {
         Column() {
             Button() {
-                Text('Insert new item after the 1st item').fontSize(30)
-            }
+                Text('Insert new item after the 1st item').fontSize(20)
+            }.width(240).height(45).backgroundColor(0x0A59F7)
             .onClick({ evt =>
                 this.simpleList.insert(1,'new item')
             })
@@ -465,7 +465,7 @@ class EntryView {
         Column() {
             Button() {
             Text('Insert new item after the first item').fontSize(30)
-            }
+            }.width(240).height(45).backgroundColor(0x0A59F7)
             .onClick({
                 evt =>this.simpleList.insert(1,'new item')
             })

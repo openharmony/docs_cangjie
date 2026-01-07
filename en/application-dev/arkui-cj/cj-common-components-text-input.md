@@ -66,7 +66,7 @@ init(placeholder!: ?ResourceStr = None, text!: ?ResourceStr = None,controller!: 
 
     ```cangjie
     TextInput( placeholder: 'I am placeholder text', text: 'I am the current text content' )
-    .backgroundColor(0xFEC0CD)
+    .backgroundColor(0x4D0A59F7)
     ```
 
     ![Text12](figures/Text12.png)
