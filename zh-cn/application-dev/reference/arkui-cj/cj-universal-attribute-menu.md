@@ -191,7 +191,7 @@ class EntryView {
                             }
                         )
                     ]
-                )
+                ).margin(left: 20, top: 20)
 
                 Button("BindMenu").bindMenu(
                     [
@@ -208,7 +208,7 @@ class EntryView {
                             }
                         )
                     ]
-                )
+                ).margin(left: 20)
             }
         }
     }

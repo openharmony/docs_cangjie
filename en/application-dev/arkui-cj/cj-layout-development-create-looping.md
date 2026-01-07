@@ -138,7 +138,7 @@ The `indicator` property allows positioning indicators relative to the Swiper's 
       .itemHeight(13)
       .selectedItemWidth(16)
       .selectedItemHeight(13)
-      .color(Color.Red)
+      .color(0xED6F21)
       .selectedColor(0X007fff)
   )
   ```

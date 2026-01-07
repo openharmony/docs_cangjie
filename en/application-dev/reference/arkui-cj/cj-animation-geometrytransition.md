@@ -63,9 +63,9 @@ class EntryView {
                 Image(@r(app.media.startIcon))
                     .autoResize(false)
                     .clip(true)
-                    .width(300)
-                    .height(400)
-                    .offset(x: 0, y: 100)
+                    .width(350)
+                    .height(500)
+                    .offset(x: 20, y: 100)
                     .geometryTransition("picture")
                     .transition(TransitionEffect.OPACITY)
             } else {
@@ -80,6 +80,7 @@ class EntryView {
                 }
                     .width(80)
                     .height(80)
+                    .offset(x: 10, y: 10)
                     .borderRadius(20)
                     .clip(true)
                     .geometryTransition("picture")

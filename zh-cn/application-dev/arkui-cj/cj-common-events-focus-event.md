@@ -152,7 +152,7 @@ class EntryView {
             .fontColor(Color.Black)
             // 监听第一个组件的获焦事件，获焦后改变颜色
             .onFocus({ =>
-                oneButtonColor = Color.Green
+                oneButtonColor = Color(0x64BB5C)
             })
             // 监听第一个组件的失焦事件，失焦后改变颜色
             .onBlur({=>
@@ -165,7 +165,7 @@ class EntryView {
             .fontColor(Color.Black)
             // 监听第二个组件的获焦事件，获焦后改变颜色
             .onFocus({=>
-                twoButtonColor = Color.Green
+                twoButtonColor = Color(0x64BB5C)
             })
             // 监听第二个组件的失焦事件，失焦后改变颜色
             .onBlur({=>
@@ -178,7 +178,7 @@ class EntryView {
             .fontColor(Color.Black)
             // 监听第三个组件的获焦事件，获焦后改变颜色
             .onFocus({=>
-                threeButtonColor = Color.Green
+                threeButtonColor = Color(0x64BB5C)
             })
             // 监听第三个组件的失焦事件，失焦后改变颜色
             .onBlur({=>
@@ -303,9 +303,9 @@ class EntryView {
 
             Row() {
                 Button("Button1")
-                    .width(140).height(70)
+                    .width(140).height(70).margin(right: 20)
                 Button("Button2")
-                    .width(160).height(70)
+                    .width(140).height(70)
             }
 
             Divider()
@@ -374,7 +374,7 @@ class EntryView {
                 .fontColor(Color.Black)
                 // 监听第一个组件的获焦事件，获焦后改变颜色
                 .onFocus({ =>
-                    oneButtonColor = Color.Green
+                    oneButtonColor = Color(0x64BB5C)
                 })
                 // 监听第一个组件的失焦事件，失焦后改变颜色
                 .onBlur({ =>
@@ -388,7 +388,7 @@ class EntryView {
                 .fontColor(Color.Black)
                 // 监听第二个组件的获焦事件，获焦后改变颜色
                 .onFocus({ =>
-                    twoButtonColor = Color.Green
+                    twoButtonColor = Color(0x64BB5C)
                 })
                 // 监听第二个组件的失焦事件，失焦后改变颜色
                 .onBlur({ =>
@@ -404,7 +404,7 @@ class EntryView {
                 .defaultFocus(true)
                 // 监听第三个组件的获焦事件，获焦后改变颜色
                 .onFocus({ =>
-                    threeButtonColor = Color.Green
+                    threeButtonColor = Color(0x64BB5C)
                 })
                 // 监听第三个组件的失焦事件，失焦后改变颜色
                 .onBlur({ =>

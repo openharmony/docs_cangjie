@@ -330,7 +330,7 @@ class EntryView {
         .fontSize(20)
         .backgroundColor(0xAABBCC)
         .width(100.percent)
-        .padding(10)
+        .padding(20)
     }
 
     @Builder func itemFoot(num:Int64) {
@@ -338,7 +338,7 @@ class EntryView {
         .fontSize(16)
         .backgroundColor(0xAABBCC)
         .width(100.percent)
-        .padding(5)
+        .padding(20)
   }
 
     func build() {

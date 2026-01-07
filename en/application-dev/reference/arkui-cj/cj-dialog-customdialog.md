@@ -591,7 +591,8 @@ class EntryView {
         Column {
             Button("open dialog").onClick({evt =>
                 dialogController.openDialog()
-            })
+            }).margin(top: 40.percent, left: 35.percent)
+              .width(30.percent)
         }
     }
 }

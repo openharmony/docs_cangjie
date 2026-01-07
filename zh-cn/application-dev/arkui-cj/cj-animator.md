@@ -217,7 +217,7 @@ class EntryView {
             Button('播放').onClick({ evt=>
               this.backAnimator?.play()
               this.animatorStatus = '播放中'
-            }).width(80).height(35)
+            }).width(80).height(35).margin(top: 20)
             Button("重置").onClick({ evt=>
               this.translateX = 0
               this.translateY = 0
@@ -233,7 +233,7 @@ class EntryView {
               .borderRadius(45.vp)
               .width(60)
               .height(60)
-              .translate( x: this.translateX, y: this.translateY )
+              .translate( x: this.translateX, y: this.translateY ).margin(left: 20)
           }
           .width(100.percent)
           .height(45.percent)
