@@ -46,7 +46,7 @@
 
 ## 设置应用主窗口
 
-在`Stage`模型下，应用主窗口由[UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)创建并维护生命周期。在[UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)的[onWindowStageCreate](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-onwindowstagecreatewindowstage)回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件中的abilities标签](../cj-start/basic-knowledge/module-configuration-file.md#abilities标签)。
+在`Stage`模型下，应用主窗口由[UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)创建并维护生命周期。在[UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)的[onWindowStageCreate](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#func-onwindowstagecreatewindowstage)回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件中的abilities标签](../cj-start/basic-knowledge/cj-module-configuration-file.md#abilities标签)。
 
 ### 开发步骤
 
