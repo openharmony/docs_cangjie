@@ -429,7 +429,7 @@ Failed to verify the visibility of the target ability.
 
 **可能原因**
 
-当目标应用在module.json5配置文件中的[abilities标签](../cj-start/basic-knowledge/module-configuration-file.md#abilities标签)/[extensionAbilities标签](../cj-start/basic-knowledge/module-configuration-file.md#extensionabilities标签)中的exported字段配置为false时，表示对应UIAbility组件/ExtensionAbility组件不可以被其他应用调用，也无法被aa工具命令拉起。
+当目标应用在module.json5配置文件中的[abilities标签](../cj-start/basic-knowledge/cj-module-configuration-file.md#abilities标签)/[extensionAbilities标签](../cj-start/basic-knowledge/cj-module-configuration-file.md#extensionabilities标签)中的exported字段配置为false时，表示对应UIAbility组件/ExtensionAbility组件不可以被其他应用调用，也无法被aa工具命令拉起。
 
 **处理步骤**
 

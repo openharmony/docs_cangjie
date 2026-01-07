@@ -39,7 +39,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 开发
 
-- 仓颉HAP中支持引用HAR，详见[HAR的使用](./har-package.md)。
+- 仓颉HAP中支持引用HAR，详见[HAR的使用](./cj-har-package.md)。
 
 ## 调试
 

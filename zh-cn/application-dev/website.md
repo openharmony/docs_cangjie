@@ -8,22 +8,22 @@
         - [构建第一个OpenHarmony应用（仓颉）](cj-start/start/quick-start/cj-quick-start-first-cangjie-app.md)
     - 开发基础知识<!--cj-basic-knowledge-->
         - 应用程序包基础知识<!--cj-development-fundamentals-->
-            - [应用程序包概述](cj-start/basic-knowledge/application-package-overview.md)
+            - [应用程序包概述](cj-start/basic-knowledge/cj-application-package-overview.md)
             - 应用程序包结构<!--cj-application-package-structure-->
-                - [Stage模型应用程序包结构](cj-start/basic-knowledge/application-package-structure-stage.md)
+                - [Stage模型应用程序包结构](cj-start/basic-knowledge/cj-application-package-structure-stage.md)
             - 应用程序包开发与使用<!--cj-application-package-dev-->
-                - [HAP](cj-start/basic-knowledge/hap-package.md)
-                - [HAR](cj-start/basic-knowledge/har-package.md)
+                - [HAP](cj-start/basic-knowledge/cj-hap-package.md)
+                - [HAR](cj-start/basic-knowledge/cj-har-package.md)
             - 应用程序包安装卸载与更新<!--cj-application-package-install-->
-                - [应用安装卸载与更新开发指导](cj-start/basic-knowledge/application-package-install-uninstall.md)
-                - [应用安装与更新一致性校验](cj-start/basic-knowledge/multi_module_installation_update_consistency_verification.md)
+                - [应用安装卸载与更新开发指导](cj-start/basic-knowledge/cj-application-package-install-uninstall.md)
+                - [应用安装与更新一致性校验](cj-start/basic-knowledge/cj-module_install_update_consistency_verify.md)
         - 应用配置文件（Stage模型）<!--cj-application-configuration-file-stage-->
-            - [应用配置文件概述（Stage模型）](cj-start/basic-knowledge/application-configuration-file-overview-stage.md)
-            - [app.json5配置文件](cj-start/basic-knowledge/app-configuration-file.md)
-            - [module.json5配置文件](cj-start/basic-knowledge/module-configuration-file.md)
-        - [应用程序包常见问题](cj-start/basic-knowledge/common_problem_of_application.md)
-        - [应用程序包术语](cj-start/basic-knowledge/application-package-glossary.md)
-    - [资源分类与访问](cj-start/start/ide-resource-categories-and-access.md)
+            - [应用配置文件概述（Stage模型）](cj-start/basic-knowledge/cj-application-configuration-file-overview-stage.md)
+            - [app.json5配置文件](cj-start/basic-knowledge/cj-app-configuration-file.md)
+            - [module.json5配置文件](cj-start/basic-knowledge/cj-module-configuration-file.md)
+        - [应用程序包常见问题](cj-start/basic-knowledge/cj-common_problem_of_application.md)
+        - [应用程序包术语](cj-start/basic-knowledge/cj-application-package-glossary.md)
+    - [资源分类与访问](cj-start/start/cj-ide-resource-categories-and-access.md)
     - 学习仓颉语言<!--cj-learn-cj-->
         - [初识仓颉语言](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/first_understanding/basic.md)
         - 基本概念<!--cj-basic-concept-->
