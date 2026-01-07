@@ -221,7 +221,7 @@ public static prop buildVersion: Int32
 public static prop deviceType: String
 ```
 
-**功能：** 设备类型。详细请参考[deviceTypes标签](../../cj-start/basic-knowledge/module-configuration-file.md#devicetypes标签)。例如“<!--RP1-->tablet<!--RP1End-->”。
+**功能：** 设备类型。详细请参考[deviceTypes标签](../../cj-start/basic-knowledge/cj-module-configuration-file.md#devicetypes标签)。例如“<!--RP1-->tablet<!--RP1End-->”。
 
 **类型：** String
 

@@ -19,7 +19,7 @@ Ability Kit（程序框架服务）提供了应用程序开发和运行的应用
 
 - 提供应用流转能力。
 
-- 提供多包机制、共享包、应用信息配置等能力，详情请参见[应用程序包概述](../cj-start/basic-knowledge/application-package-overview.md)。
+- 提供多包机制、共享包、应用信息配置等能力，详情请参见[应用程序包概述](../cj-start/basic-knowledge/cj-application-package-overview.md)。
 
 - 提供程序访问控制能力，详情请参见[访问控制概述](../security/AccessToken/cj-access-token-overview.md)。
 

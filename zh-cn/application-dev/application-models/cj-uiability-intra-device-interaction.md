@@ -130,7 +130,7 @@
 
     > **说明：**
     >
-    > 调用terminateSelf()方法停止当前Ability实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应Ability的[module.json5配置文件](../cj-start/basic-knowledge/module-configuration-file.md)中，将[abilities标签](../cj-start/basic-knowledge/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
+    > 调用terminateSelf()方法停止当前Ability实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应Ability的[module.json5配置文件](../cj-start/basic-knowledge/cj-module-configuration-file.md)中，将[abilities标签](../cj-start/basic-knowledge/cj-module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
 
 ## 启动UIAbility的指定页面
 
