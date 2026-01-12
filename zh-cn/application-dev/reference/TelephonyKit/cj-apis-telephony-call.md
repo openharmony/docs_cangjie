@@ -322,6 +322,10 @@ public static func makeCall(phoneNumber: String): Unit
 
 **功能：** 跳转到拨号界面，并显示待拨出的号码。后台调用需要申请ohos.permission.START_ABILITIES_FROM_BACKGROUND权限。
 
+> **说明：**
+>
+> 该接口为预埋接口，当前功能受限。
+
 **系统能力：** SystemCapability.Applications.Contacts
 
 **起始版本：** 22
