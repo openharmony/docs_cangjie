@@ -1,5 +1,11 @@
 # Key Generation Introduction and Algorithm Specifications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Key Generation Introduction
 
 When a service requires HUKS to generate random keys and securely store them, it can invoke HUKS interfaces for key generation.

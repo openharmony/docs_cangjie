@@ -1,5 +1,11 @@
 # app.json5 Configuration File
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Configuration File Example
 
 First, let's gain an overall understanding of the app.json5 configuration file through an example.

@@ -1,5 +1,11 @@
 # Overview of Component Navigation and Page Routing  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Component Navigation (Navigation) and page routing (@ohos.router) both support page navigation within an application. However, Component Navigation offers greater flexibility by enabling navigation within components. It provides enhanced "Write Once, Run Anywhere" (WORA) capabilities, more flexible page stack operations, and supports richer animations and lifecycle management. Therefore, it is recommended to use Component Navigation (Navigation) for page navigation and intra-component navigation to achieve a better user experience.  
 
 ## Architectural Differences  

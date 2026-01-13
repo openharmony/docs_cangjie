@@ -1,5 +1,11 @@
 # ohos.data.data_share_predicates
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Predicates (data_share_predicates) are filtering conditions used by developers to query data from databases through DataShare, commonly applied in data updates, deletions, and queries.
 
 The interface functions of predicates correspond one-to-one with database filtering conditions. Developers should understand relevant database knowledge before use.

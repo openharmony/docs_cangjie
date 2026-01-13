@@ -1,5 +1,11 @@
 # Resource Management Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## 9001001 Invalid Resource ID
 
 **Error Message**

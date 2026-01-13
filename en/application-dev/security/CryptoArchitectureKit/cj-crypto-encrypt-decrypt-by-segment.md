@@ -1,5 +1,11 @@
 # Segment Encryption and Decryption Instructions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 During the encryption and decryption process, the algorithm library does not impose size limits on single or cumulative data input. However, when processing large data volumes (e.g., exceeding 2MB), developers are advised to segment the data and perform segmented encryption/decryption for improved efficiency.
 
 ## Symmetric Encryption and Decryption

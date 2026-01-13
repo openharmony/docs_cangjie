@@ -1,5 +1,11 @@
 # 启动应用内的UIAbility组件
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的Ability，包括应用内的其他Ability，或其他应用的Ability（例如启动三方支付Ability）。
 
 本章主要介绍启动应用内的Ability组件的方式。
@@ -291,7 +297,8 @@ class FuncAbilityA <: UIAbility {
 > **说明：**
 >
 > 当被调用方[UIAbility组件启动模式](cj-uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么onNewWant()回调就不会被用到。
-
+<!--Del-->
 ## 示例代码
 
-[启动应用内的UIAbility组件](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Ability/LaunchUIAbilityComponentsApp)
+[启动应用内的UIAbility组件](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Ability/LaunchUIAbilityComponentsApp)
+<!--DelEnd-->

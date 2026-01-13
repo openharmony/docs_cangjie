@@ -1,5 +1,11 @@
 # ohos.arkui.component_utils (ComponentUtils)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides the capability to obtain the coordinates and dimensions of a component's drawing area.
 
 ## Import Module

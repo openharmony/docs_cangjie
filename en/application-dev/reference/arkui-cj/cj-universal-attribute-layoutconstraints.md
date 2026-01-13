@@ -1,5 +1,11 @@
 # Layout Constraints
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Control component behavior in layouts by constraining dimensions, alignment, and other properties.
 
 ## Import Module

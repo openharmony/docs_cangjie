@@ -1,5 +1,11 @@
 # Stage Model Application Package Structure
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 To provide developers with a clearer understanding of the application package's form at different stages, this section introduces the application structure in development state, compilation state, and release state respectively.
 
 ## Development State Package Structure

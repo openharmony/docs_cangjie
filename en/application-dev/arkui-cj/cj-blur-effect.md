@@ -1,5 +1,11 @@
 # Blur
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Animation effects can enrich interface details, enhancing the realism and quality of the UI. For example, blur and shadow effects can make objects appear more three-dimensional, bringing animations to life. ArkUI provides a rich set of effect APIs, enabling developers to quickly create refined and personalized effects. This chapter introduces commonly used effect APIs such as blur, shadow, and color effects.
 
 Blur can be used to convey depth in the interface space and distinguish hierarchical relationships between front and back elements.

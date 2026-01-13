@@ -1,5 +1,11 @@
 # Page Transition Animation (Not Recommended)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 For better transition effects, it is recommended to use [Modal Transition](./cj-modal-transition.md).
 
 When navigating between two pages where one page disappears and another appears, custom page transition effects can be configured by setting page transition parameters for each page. [Page transition](../reference/arkui-cj/cj-animation-pagetransition.md) effects are defined in the `pageTransition` function, using [PageTransitionEnter](../reference/arkui-cj/cj-animation-pagetransition.md#class-pagetransitionenter) and [PageTransitionExit](../reference/arkui-cj/cj-animation-pagetransition.md#class-pagetransitionexit) to specify the animation effects for page entry and exit.

@@ -1,5 +1,11 @@
 # Page Transition (pageTransition)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When routing switches occur, custom page entrance and exit transition effects can be defined.
 
 > **Note:**

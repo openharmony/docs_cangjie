@@ -1,5 +1,11 @@
 # Overview of Cross-Device Data Synchronization Within the Same Application
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Introduction
 
 Cross-device data synchronization (also known as distributed functionality) refers to synchronizing data to other devices within a networked environment. It is commonly used for freely synchronizing, modifying, and querying user application data content across different devices with trusted authentication.

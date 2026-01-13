@@ -1,5 +1,11 @@
 # Basic Custom Dialog (CustomDialog) (Not Recommended)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 CustomDialog is a customizable dialog box that can be used for advertisements, prize notifications, warnings, software updates, and other user interaction responses. Developers can display custom dialogs using the CustomDialogController class. For specific usage, please refer to [Custom Dialog](../reference/arkui-cj/cj-dialog-customdialog.md).
 
 > **Note:**

@@ -1,5 +1,11 @@
 # Overview of Rendering Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ArkUI constructs corresponding UI through declarative UI description statements in the [custom component's](../paradigm/cj-create-custom-components.md) build() function and [@Builder macro](../paradigm/cj-macro-builder.md). In declarative description statements, developers can not only use system components but also employ rendering control statements to assist in UI construction. These rendering control statements include:
 - Conditional rendering statements that control whether components are displayed
 - Loop rendering statements that quickly generate components based on array data

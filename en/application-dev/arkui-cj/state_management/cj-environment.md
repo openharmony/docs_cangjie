@@ -1,5 +1,11 @@
 # Environment: Device Environment Query
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Developers who need to access the environmental parameters of the device running the application to make different scenario judgments—such as multilingual support or light/dark mode—should utilize the Environment device environment query.
 
 Environment is a singleton object created by the ArkUI framework when the application starts. It provides a series of properties describing the application's runtime state to [AppStorage](./cj-appstorage.md). All properties of Environment are immutable (i.e., applications cannot write to them), and all properties are of simple types.

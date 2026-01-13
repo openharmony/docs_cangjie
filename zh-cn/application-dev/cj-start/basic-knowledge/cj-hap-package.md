@@ -1,5 +1,11 @@
 # HAP
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包是由代码、资源、第三方库、配置文件等打包生成的模块包，其主要分为两种类型：entry和feature。
 
 - entry：应用的主模块，作为应用的入口，提供了应用的基础功能。

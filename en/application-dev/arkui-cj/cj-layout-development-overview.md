@@ -1,5 +1,11 @@
 # Layout Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Components are arranged sequentially according to layout requirements to form application pages. In declarative UI, all pages are composed of custom components. Developers can choose appropriate layouts for page development based on their needs.
 
 Layout refers to managing the size and position of UI components on user pages using specific components or attributes. In actual development, the following process should be followed to ensure overall layout effectiveness:

@@ -1,5 +1,11 @@
 # ImageBitmap
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ImageBitmap object can store pixel data rendered by a canvas.
 
 ## Import Module

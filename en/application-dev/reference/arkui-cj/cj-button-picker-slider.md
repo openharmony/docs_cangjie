@@ -1,5 +1,11 @@
 # Slider
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The slider component is typically used for quick adjustment of settings such as volume control, brightness adjustment, and similar application scenarios.
 
 ## Import Module

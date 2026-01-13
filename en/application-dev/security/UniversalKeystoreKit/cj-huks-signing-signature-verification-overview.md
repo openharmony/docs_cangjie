@@ -1,5 +1,11 @@
 # Signature/Verification Introduction and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 To achieve data integrity protection and non-repudiation, generated/imported keys can be used to perform signature/verification operations on data.  
 
 ## Supported Algorithms  

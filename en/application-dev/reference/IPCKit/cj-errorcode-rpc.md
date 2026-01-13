@@ -1,5 +1,11 @@
 # RPC Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## 1900001 System Call mmap Failed
 
 **Error Message**

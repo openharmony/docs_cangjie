@@ -1,5 +1,11 @@
 # Safe Area Calculation and Adaptation in Web Pages
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 The safe area is defined as the display region of a page that, by default, does not overlap with system-defined non-safe areas (such as the status bar or navigation bar), ensuring that interfaces designed by developers are laid out within the safe area. However, when the Web component enables immersive mode, webpage elements may overlap with the status bar or navigation bar. As illustrated in Figure 1, the area enclosed by the red dashed line represents the safe area, while the top status bar, screen cutout area, and bottom navigation bar are defined as non-safe areas. When the Web component activates immersive effects, bottom elements on the webpage may overlap with the navigation bar.

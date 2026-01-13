@@ -1,5 +1,11 @@
 # ohos.common_event_subscribe_info
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 导入模块
 
 ```cangjie

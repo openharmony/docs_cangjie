@@ -1,5 +1,11 @@
 # Introduction to Ability Kit  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Ability Kit (Program Framework Service) provides the application model for application development and operation, abstracting and refining the capabilities required by applications for developers. It offers essential components and operational mechanisms for applications. With the application model, developers can build applications based on a unified framework, making development simpler and more efficient.  
 
 ## Usage Scenarios  

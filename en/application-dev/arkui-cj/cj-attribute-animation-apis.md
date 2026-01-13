@@ -1,5 +1,11 @@
 # Implementing Property Animations
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Continuous visual effects on the UI caused by changes in animatable properties are referred to as property animations. Property animations are the most fundamental and easy-to-understand type of animation. ArkUI provides two property animation interfaces: [animateTo](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-animatetoanimateparam-voidcallback) and [animation](../reference/arkui-cj/cj-animation-animation.md), which drive component properties to change continuously according to animation curves and other animation parameters, thereby producing property animations.
 
 | Property Animation Interface | Scope | Principle | Use Cases |

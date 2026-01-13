@@ -1,5 +1,11 @@
 # Public Event Publishing
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 When needing to publish a custom public event, you can use the [publish()](../../reference/BasicServicesKit/cj-apis-common_event_manager.md#static-func-publishstring) method to publish the event. Published public events can carry data for subscribers to parse and process further.

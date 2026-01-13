@@ -1,5 +1,11 @@
 # Using Display to Implement Screen Property Queries and State Monitoring
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Introduction
 
 [Display](../reference/arkui-cj/cj-apis-display.md) screen properties provide basic capabilities for managing device screens, such as obtaining information about the default display device, retrieving information about all display devices, and monitoring plug-and-play behaviors of display devices. Applications can adapt their UI displays based on corresponding screen information, screen state changes, and foldable screen states.

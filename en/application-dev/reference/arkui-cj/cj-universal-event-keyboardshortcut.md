@@ -1,5 +1,11 @@
 # Component Keyboard Shortcut Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Developers can set custom key combinations for components, with each component supporting multiple key combinations.
 
 Even if a component is not focused or not displayed on its current page, it will respond to custom key combinations as long as it is mounted on the component tree of the focused window.

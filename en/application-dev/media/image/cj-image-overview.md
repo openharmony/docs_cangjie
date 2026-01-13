@@ -1,5 +1,11 @@
 # Introduction to Image Kit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Image development in application development involves the process of parsing, processing, and constructing image pixel data to achieve the desired image effect. It primarily includes image decoding, image processing, and image encoding.
 
 Before learning image development, it is essential to familiarize yourself with the following basic concepts:

@@ -1,5 +1,11 @@
 # ohos.window (Window)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides window-related functionalities.
 
 ## Import Module

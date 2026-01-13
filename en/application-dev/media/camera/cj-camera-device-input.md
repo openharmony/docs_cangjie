@@ -1,5 +1,11 @@
 # Device Input (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When developing a camera application, you need to first refer to the [Development Preparation](./cj-camera-preparation.md) to apply for relevant permissions.
 
 The camera application can perform basic operations such as preview, photo capture, and video recording by invoking and controlling the camera device.

@@ -1,5 +1,11 @@
 # Stack
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A stacking container where child components are sequentially pushed onto the stack, with each subsequent child component overlaying the previous one.
 
 ## Import Module

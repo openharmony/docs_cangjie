@@ -1,5 +1,11 @@
 # API Labeling Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 Typically, developers need to label certain APIs to restrict their usage in different locations within the source code. Global labels are obtained from the Cangjie project created by Deveco Studio. For example, if the created project is version 5.1.0, its global API level will be 18. Labeled APIs must comply with the global label configuration to be legally used.

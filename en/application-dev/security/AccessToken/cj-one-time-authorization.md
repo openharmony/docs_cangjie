@@ -1,5 +1,11 @@
 # Requesting One-Time Authorization from Users
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Based on the principle of minimal authorization to prevent applications from obtaining and misusing user data, a new "Allow this time" authorization option has been added to the pop-up window when requesting sensitive permissions from users.
 
 When developing applications, developers do not need additional configurations. They can still call `requestPermissionsFromUser()` [Request User Authorization](./cj-request-user-authorization.md). The system will display the corresponding pop-up window based on the [supported permissions](#supported-scope) of this capability.

@@ -1,5 +1,11 @@
 # Scroll
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A scrollable container component that allows content to scroll when the layout size of child components exceeds the parent component's dimensions.
 
 > **Note:**

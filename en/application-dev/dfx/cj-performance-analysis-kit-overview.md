@@ -1,5 +1,11 @@
 # Introduction to Performance Analysis Kit  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Performance Analysis Kit provides developers with tools for application event, log, and trace analysis, enabling observation of application runtime states. It supports behavior analysis, fault analysis, security analysis, and statistical analysis, helping developers continuously improve application performance.  
 
 ## Use Cases  

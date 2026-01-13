@@ -1,5 +1,11 @@
 # ohos.ark_interop (ArkTS Interoperability Library)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The development languages for ArkTS applications include ArkTS, TypeScript, and JavaScript. The ArkTS interoperation library provides interoperability capabilities between the Cangjie language and ArkTS language.
 
 ## Import Module

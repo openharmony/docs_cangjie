@@ -1,5 +1,11 @@
 # ListItemGroup
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This component is used to display grouped list items. By default, it fills the width of the [List](cj-scroll-swipe-list.md) component and must be used in conjunction with the List component.
 
 > **Note:**

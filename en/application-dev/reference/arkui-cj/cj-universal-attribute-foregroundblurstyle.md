@@ -1,5 +1,11 @@
 # Component Content Blur
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Adds a content blur effect to the current component.
 
 ## Import Module

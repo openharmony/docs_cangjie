@@ -1,5 +1,11 @@
 # Event Reporting
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiAppEvent provides interfaces for processing and reporting events.
 
 ## Interface Description

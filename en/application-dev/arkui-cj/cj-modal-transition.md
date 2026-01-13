@@ -1,5 +1,11 @@
 # Modal Transition  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Modal transition is a type of transition where a new interface overlays the old one without the old interface disappearing.  
 
 **Table 1** Modal Transition Interfaces  

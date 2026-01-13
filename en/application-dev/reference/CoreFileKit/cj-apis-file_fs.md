@@ -1,5 +1,11 @@
 # ohos.file.fs (File Management)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides basic file operation APIs, offering fundamental file handling capabilities including file basic management, directory management, file information statistics, and stream-based file read/write operations.
 
 ## Import Module

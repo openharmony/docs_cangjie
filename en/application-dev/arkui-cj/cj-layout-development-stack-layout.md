@@ -1,5 +1,11 @@
 # Stack Layout (Stack)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 The Stack Layout (StackLayout) is used to reserve an area on the screen to display elements within components, providing a layout where elements can overlap. The Stack layout achieves fixed positioning and layering through the [Stack](../reference/arkui-cj/cj-row-column-stack-stack.md) container component. Child elements within the container are pushed onto the stack sequentially, with each subsequent child element covering the previous one. Child elements can be stacked and their positions can be set.

@@ -1,5 +1,11 @@
 # Requesting Restricted Permissions  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Restricted permissions are typically not available for third-party applications to request. When an application requests permissions to access necessary resources, it may encounter situations where certain permission levels exceed the application's APL (Ability Privilege Level). In such cases, developers can resolve the level mismatch by using the ACL (Access Control List) method to gain access to restricted permissions.  
 
 For example:  

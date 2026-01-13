@@ -1,5 +1,11 @@
 # Overview of Transition Animations
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Transition animations refer to animations applied to components that are about to appear or disappear. For components that remain visible, [property animations](./cj-attribute-animation-overview.md) should be used instead. The primary purpose of transition animations is to free developers from the cumbersome management of disappearing nodes. If property animations were used for component transitions, developers would need to delete component nodes in the animation end callback. Additionally, since deleted component nodes might reappear before the animation ends, it would also require adding state checks for nodes in the end callback.
 
 Transition animations are divided into basic transitions and advanced templated transitions, including the following categories:

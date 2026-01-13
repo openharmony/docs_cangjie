@@ -1,5 +1,11 @@
 # ohos.common_event_data
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module describes the data of common events.
 
 ## Import Module

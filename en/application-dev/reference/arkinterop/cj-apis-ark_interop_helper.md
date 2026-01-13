@@ -1,5 +1,11 @@
 # ohos.ark_interop_helper (ArkTS Interoperability Common Utility Functions)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides some common utility functions.
 
 ## Import Module

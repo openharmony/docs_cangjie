@@ -1,5 +1,11 @@
 # Animation Transitions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 In addition to running animations, UI interfaces also serve the function of real-time interaction with users. When user behavior changes based on intent, the UI interface should respond immediately. For example, if a user swipes up to exit during the app launch process, the launch animation should immediately transition to the exit animation rather than waiting for the launch animation to complete before exiting, thereby reducing user wait time. For scenarios like desktop page-flipping animations triggered from touch-down to touch-up, the initial speed of the post-touch-up animation should inherit the gesture speed to avoid a sense of discontinuity or pause due to mismatched velocities. To address these scenarios, the system provides seamless transition capabilities between animations and between gestures and animations, ensuring smooth transitions across various use cases while minimizing development complexity.
 
 Assume there is an ongoing animation for a particular animatable property. When UI-side behavior changes the target value of this property, developers only need to modify the property value within the [animateTo](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-animateto) animation closure or change the property value affected by the [animation](../reference/arkui-cj/cj-animation-animation.md#func-animationanimateparam) interface to trigger a new animation. The system will automatically transition from the previous animation to the current one, allowing developers to focus solely on implementing the single animation instance.

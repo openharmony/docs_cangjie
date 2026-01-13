@@ -1,5 +1,11 @@
 # Checkbox
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A checkbox component, typically used for toggling an option on or off.
 
 ## Import Module

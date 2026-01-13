@@ -1,5 +1,11 @@
 # Web Component Nested Scrolling
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A typical application scenario for nested scrolling in web components is when a page contains multiple independent areas that require scrolling. When users scroll the content of a web area, it can drive other scrollable areas to achieve a seamless vertical page scrolling experience.
 
 For web components embedded in scrollable containers ([Scroll](../reference/arkui-cj/cj-scroll-swipe-scroll.md), [List](../reference/arkui-cj/cj-scroll-swipe-list.md)), they need to handle swipe gesture events by interfacing with the ArkUI framework's [NestedScrollMode](../reference/arkui-cj/cj-common-types.md#enum-nestedscrollmode) enumeration type. This enables web components to nest within ArkUI scrollable containers for nested scrolling. Developers can specify the default nested scrolling mode during web component creation using the [nestedScroll](../reference/arkui-cj/cj-web-web.md#func-nestedscrollnestedscrollmode-nestedscrollmode) property interface, and can also dynamically change the nested scrolling mode during runtime.

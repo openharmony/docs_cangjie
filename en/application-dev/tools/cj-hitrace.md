@@ -1,5 +1,11 @@
 # hitrace  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiTrace provides developers with debugging interfaces for tracking business process call chains. By utilizing the functionalities offered by these interfaces, developers can quickly obtain runtime logs of specified business process call chains, facilitating the identification of cross-device, cross-process, and cross-thread fault issues.  
 
 ## Environment Requirements  

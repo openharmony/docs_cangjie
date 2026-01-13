@@ -1,5 +1,11 @@
 # Application Package Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before developing applications based on the [Stage Model](application-configuration-file-overview-stage.md#application-configuration-file-overview-stage-model), developers need to understand fundamental concepts such as the application design mechanism and application package structure.
 
 ## Applications and Application Packages

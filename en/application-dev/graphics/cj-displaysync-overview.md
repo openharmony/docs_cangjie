@@ -1,5 +1,11 @@
 # Introduction to Variable Frame Rate
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 With the continuous evolution of device screens, current mainstream devices adopt LTPO screens, which support switching screen refresh rates between multiple levels.
 
 For rapidly changing content such as shooting games and interactive animations, higher display frame rates result in smoother visuals but correspondingly higher power consumption.

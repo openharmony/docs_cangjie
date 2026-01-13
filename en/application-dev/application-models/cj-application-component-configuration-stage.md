@@ -1,5 +1,11 @@
 # Application/Component-Level Configuration
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When developing an application, certain tags need to be configured, such as the application's package name, icon, and other identifying attributes. This document describes key tags that require configuration during application development.
 
 ## Application Package Name Configuration

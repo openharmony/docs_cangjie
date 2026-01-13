@@ -1,5 +1,11 @@
 # @Link Macro: Two-Way Synchronization Between Parent and Child Components
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Variables decorated with \@Link in child components establish two-way data binding with their corresponding data sources in parent components.
 
 Before reading the \@Link documentation, developers are advised to first understand the basic usage of [\@State](./cj-macro-state.md).

@@ -1,5 +1,11 @@
 # devicedebug Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The devicedebug tool provides developers with the capability to send signals to debug applications. Currently, it only supports sending signal signals to the PID of debug-type application processes managed by AMS, enabling the termination of the corresponding PID process.
 
 > **Note:**

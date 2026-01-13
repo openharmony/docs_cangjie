@@ -1,5 +1,11 @@
 # Application File Upload and Download
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Applications can upload files to web servers or download network resource files to local application directories.
 
 ## Uploading Application Files

@@ -1,5 +1,11 @@
 # CheckboxGroup
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A checkbox group component used to control the select-all or deselect-all state of checkboxes.
 
 ## Import Module

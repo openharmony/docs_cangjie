@@ -1,5 +1,11 @@
 # CanvasRenderingContext2D
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。
 
 > **说明**

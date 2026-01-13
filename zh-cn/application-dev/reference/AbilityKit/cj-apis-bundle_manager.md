@@ -1,5 +1,11 @@
 # ohos.bundle.bundle_manager（bundleManager管理）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 bundle_manager模块提供应用信息的查询能力，支持应用包信息[BundleInfo](#class-bundleinfo)、应用程序信息[ApplicationInfo](#class-applicationinfo)、UIAbility组件信息[AbilityInfo](#class-abilityinfo)、ExtensionAbility组件信息[ExtensionAbilityInfo](#class-extensionabilityinfo)等信息的查询。
 
 ## 导入模块

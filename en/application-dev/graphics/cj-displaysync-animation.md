@@ -1,5 +1,11 @@
 # Requesting Animation Frame Rate
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 In application development, [Property Animation](../reference/arkui-cj/cj-animation-animation.md) and [Explicit Animation](../reference/arkui-cj/cj-apis-uicontext-uicontext.md) can use the optional parameter [ExpectedFrameRateRange](../reference/arkui-cj/cj-common-types.md#class-expectedframeraterange) to configure different expected frame rates for various animations.
 
 ## Requesting Frame Rate for Property Animation

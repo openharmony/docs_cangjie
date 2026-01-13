@@ -1,5 +1,11 @@
 # Application Permission Group List
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Usage Notes
 
 - Before applying for target permissions, developers are advised to first read [Application Permission Management Overview - Permission Groups and Sub-permissions](./cj-app-permission-mgmt-overview.md#权限组和子权限) to understand related concepts, then apply for the corresponding permission groups appropriately.

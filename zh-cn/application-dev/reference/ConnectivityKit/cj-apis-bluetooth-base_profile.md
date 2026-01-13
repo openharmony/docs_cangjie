@@ -1,5 +1,11 @@
 # ohos.bluetooth.base_profile（蓝牙baseProfile模块）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 baseProfile模块提供了基础的Profile类型和相关方法。
 
 ## 导入模块

@@ -1,5 +1,11 @@
 # ohos.callback_invoke (Generic Callback Information)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## class Callback0Argument
 
 ```cangjie

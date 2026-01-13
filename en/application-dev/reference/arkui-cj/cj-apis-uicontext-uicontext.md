@@ -1,5 +1,11 @@
 # UIContext
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides UI context-related functionalities.
 
 ## Import Module

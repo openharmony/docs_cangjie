@@ -1,5 +1,11 @@
 # Bluetooth Service Development Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 Bluetooth technology is a wireless communication technology that enables data transmission over short distances. It was proposed by Ericsson in 1994 and operates in the 2.4 GHz ISM band, allowing communication within a range of approximately 10 meters. It can be used to connect various devices such as mobile phones, headphones, speakers, keyboards, mice, printers, etc. Key features include low power consumption, low cost, and ease of use. Currently, it has evolved to the fifth generation, supporting higher data transfer rates and broader coverage.

@@ -1,5 +1,11 @@
 # Custom Component Lifecycle
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The lifecycle callback functions of custom components are used to notify users about the lifecycle of the custom component. These callback functions are invoked by the development framework at specific times during runtime and cannot be manually called from the application. Do not reuse the same custom component node across multiple windows, as this may cause lifecycle disorder.
 
 > **Note:**

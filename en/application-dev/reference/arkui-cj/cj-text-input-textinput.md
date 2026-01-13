@@ -1,5 +1,11 @@
 # TextInput
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A single-line text input component.
 
 ## Import Module

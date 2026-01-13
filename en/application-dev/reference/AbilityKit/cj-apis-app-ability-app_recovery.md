@@ -1,5 +1,11 @@
 # ohos.app.ability.app_recovery
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 AppRecovery provides functionalities related to application recovery, including process restart, etc.
 
 ## Import Module

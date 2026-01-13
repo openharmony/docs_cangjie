@@ -1,5 +1,11 @@
 # Global Custom Dialog Independent of UI Components (openCustomDialog)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Due to the numerous limitations of [CustomDialogController](../reference/arkui-cj/cj-dialog-customdialog.md#class-customdialogcontroller), which does not support dynamic creation or dynamic updates.
 
 > **Note:**

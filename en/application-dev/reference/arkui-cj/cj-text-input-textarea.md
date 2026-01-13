@@ -1,5 +1,11 @@
 # TextArea
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A multi-line text input component that automatically wraps text when the content exceeds the component's width. When height is not set, the component has no default height and adapts to the content height. When width is not set, it defaults to occupying the maximum available width.
 
 ## Import Module

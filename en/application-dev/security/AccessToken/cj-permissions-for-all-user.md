@@ -1,5 +1,11 @@
 # Open Permissions (User Authorization)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 All permissions listed here are user-granted (user_grant) open permissions, available to all applications.
 
 For this type of permission, applications must not only declare the permission in the installation package but also request user authorization dynamically during runtime by displaying a pop-up dialog. Only after the user manually grants permission will the application truly obtain the corresponding permission, enabling successful access to the target operation.

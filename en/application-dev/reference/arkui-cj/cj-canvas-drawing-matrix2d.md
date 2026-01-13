@@ -1,5 +1,11 @@
 # Matrix2D
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A matrix object capable of performing transformations such as scaling, rotation, and translation.
 
 ## Import Module

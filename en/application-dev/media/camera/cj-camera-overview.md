@@ -1,5 +1,11 @@
 # Introduction to Camera Kit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Developers can create camera applications by invoking the interfaces provided by Camera Kit (camera service). Through accessing and operating camera hardware, applications can perform basic operations such as preview, photo capture, and video recording. Additionally, more advanced operations can be achieved by combining interfaces, such as controlling flash, exposure time, focus, or zoom.
 
 ## Development Scenarios

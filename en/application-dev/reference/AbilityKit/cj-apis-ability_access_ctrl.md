@@ -1,5 +1,11 @@
 # ohos.ability_access_ctrl (Application Access Control Management)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Application access control provides permission management capabilities for applications, including authentication, authorization, and revocation of authorization.
 
 ## Import Module

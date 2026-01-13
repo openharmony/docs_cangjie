@@ -1,5 +1,11 @@
 # ohos.common_event_publish_data
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 common_event_publish_data模块描述公共事件内容和属性。
 
 ## 导入模块

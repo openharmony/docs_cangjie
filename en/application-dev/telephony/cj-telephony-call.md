@@ -1,5 +1,11 @@
 # Making Phone Calls
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 Developers can implement phone call functionality through the following methods:

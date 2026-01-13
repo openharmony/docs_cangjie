@@ -1,5 +1,11 @@
 # Introduction to ArkWeb
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Usage Scenarios
 
 ArkWeb (Ark Web) provides Web components for displaying Web page content within applications. Common usage scenarios include:

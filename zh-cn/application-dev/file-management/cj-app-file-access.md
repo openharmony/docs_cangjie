@@ -1,5 +1,11 @@
 # 应用文件访问
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 应用需要对应用文件目录下的应用文件进行查看、创建、读写、删除、移动、复制、获取属性等访问操作，下文介绍具体方法。
 
 ## 接口说明
@@ -207,7 +213,8 @@ func getListFile() {
     }
 }
 ```
-
+<!--Del-->
 ## 示例代码
 
-[查询文件列表](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/FileManagement/FileList)
+[查询文件列表](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/FileManagement/FileList)
+<!--DelEnd-->

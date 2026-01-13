@@ -1,5 +1,11 @@
 # Configuring Dark Mode
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Web component supports dark mode configuration for frontend pages.
 
 - The [darkMode()](../reference/arkui-cj/cj-web-web.md#func-darkmodewebdarkmode) interface can be used to configure different dark modes, which is disabled by default. When dark mode is enabled, the Web component will apply the dark styles defined in the webpage's media query `prefers-color-scheme`. If the webpage doesn't define dark styles, it will remain unchanged. To enable forced dark mode, it is recommended to use it in conjunction with [forceDarkAccess()](../reference/arkui-cj/cj-web-web.md#func-forcedarkaccessbool). The [WebDarkMode.Off](../reference/arkui-cj/cj-common-types.md#enum-webdarkmode) mode indicates that dark mode is disabled. [WebDarkMode.On](../reference/arkui-cj/cj-common-types.md#enum-webdarkmode) indicates that dark mode is enabled and follows the frontend page's settings. [WebDarkMode.Auto](../reference/arkui-cj/cj-common-types.md#enum-webdarkmode) indicates that dark mode is enabled and follows the system settings.

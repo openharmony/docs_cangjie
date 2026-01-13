@@ -1,5 +1,11 @@
 # ohos.telephony.call
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides call management functionalities, including making phone calls, redirecting to the dialer interface, obtaining call status, formatting phone numbers, etc.
 
 ## Import Module

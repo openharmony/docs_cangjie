@@ -1,5 +1,11 @@
 # Packaging Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The packaging tool is used to package compiled files after program compilation for installation and distribution. Developers can use DevEco Studio for packaging or utilize the JAR package of the packaging tool, which is typically located in the `toolchains` directory under the SDK path.
 
 The packaging tool supports generating:

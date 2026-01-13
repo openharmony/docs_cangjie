@@ -1,5 +1,11 @@
 # Fixed-Style Popup Dialogs
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Fixed-style popup dialogs adopt a consistent layout format, allowing developers to focus on inputting the required text content without concerning themselves with display layout details. This simplifies the usage process and enhances convenience.
 
 ## Usage Constraints

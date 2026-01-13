@@ -1,5 +1,11 @@
 # MDM-Exclusive Permissions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The following permissions are exclusively available for MDM (Mobile Device Management) applications.
 
 > **Note:**

@@ -1,5 +1,11 @@
 # ohos.web.webview（Webview）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 webview模块提供web控制能力，组件提供网页显示的能力。
 
 ## 导入模块

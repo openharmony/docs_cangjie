@@ -1,5 +1,11 @@
 # ohos.curves (Interpolation Calculation)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides interpolator functions such as initialization, cubic Bézier curves, and spring curves.
 
 ## Import Module

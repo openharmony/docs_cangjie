@@ -1,5 +1,11 @@
 # Implementing Data Persistence with Key-Value Databases
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 Key-value databases store data in key-value pairs. When the data to be stored does not have a complex relational model—such as storing product names and their corresponding prices, or employee IDs and their attendance status for the day—a key-value database is recommended for persistence due to its low complexity, which ensures better compatibility across different database versions and device types.

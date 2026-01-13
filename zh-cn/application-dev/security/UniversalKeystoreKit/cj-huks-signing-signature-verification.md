@@ -1,5 +1,11 @@
 # 签名/验签
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 当前指导共提供四种示例，供开发者参考完成签名、验签开发：
 
 - [SM2/SM3](#sm2sm3)、[RSA/SHA256/PSS](#rsasha256pss)、[RSA/SHA256/PKCS1\_V1\_5](#rsasha256pkcs1_v1_5)

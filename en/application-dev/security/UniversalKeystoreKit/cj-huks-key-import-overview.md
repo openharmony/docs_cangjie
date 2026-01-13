@@ -1,5 +1,11 @@
 # Key Import Introduction and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 If a service generates keys outside of HUKS (e.g., through inter-application negotiation or server-side generation), the service can import these keys into HUKS for management. Once a key is imported into HUKS, its plaintext is only accessible within a secure environment during its lifecycle and will never be transmitted outside the secure environment, ensuring that no one can obtain the plaintext of the key.  
 
 Key import methods include [Plaintext Import](#plaintext-import) and [Encrypted Import](#encrypted-import).  

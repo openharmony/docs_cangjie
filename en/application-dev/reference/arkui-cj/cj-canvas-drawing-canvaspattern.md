@@ -1,5 +1,11 @@
 # CanvasPattern
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 An Object instance created using the createPattern method, which generates an image filling template by specifying an image and repetition method.
 
 ## Import Module

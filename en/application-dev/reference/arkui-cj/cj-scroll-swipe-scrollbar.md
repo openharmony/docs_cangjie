@@ -1,5 +1,11 @@
 # ScrollBar
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ScrollBar component is used in conjunction with scrollable components such as [List](./cj-scroll-swipe-list.md), [Grid](./cj-scroll-swipe-grid.md), and [Scroll](./cj-scroll-swipe-scroll.md).
 
 > **Note:**

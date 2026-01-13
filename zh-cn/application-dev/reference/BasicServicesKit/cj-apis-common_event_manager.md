@@ -1,5 +1,11 @@
 # ohos.common_event_manager（公共事件模块）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 common_event_manager模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件、以及退订公共事件。
 
 ## 导入模块

@@ -1,5 +1,11 @@
 # Launching UIAbility Components Within an Application
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability) is the smallest unit scheduled by the system. When navigating between functional modules within a device, it involves launching specific Abilities, including other Abilities within the same application or Abilities from other applications (e.g., launching a third-party payment Ability).
 
 This chapter primarily introduces methods for launching Ability components within an application.

@@ -1,5 +1,11 @@
 # Using ImageSource for Image Decoding
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Image decoding refers to the process of converting supported archive image formats into a unified [PixelMap](./cj-image-overview.md) for image display or [image processing](./cj-image-transformation.md) in applications or systems. Currently supported archive image formats include JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (support may vary across different hardware devices).
 
 ## Development Steps

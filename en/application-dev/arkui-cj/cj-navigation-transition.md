@@ -1,5 +1,11 @@
 # Navigation Transition
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Navigation transition refers to the route transition method between pages, which is the animation effect where one interface disappears and another appears.
 
 It is recommended to use the [Navigation](../reference/arkui-cj/cj-navigation-switching-navigation.md) component for navigation transitions, which can be combined with the [NavDestination](../reference/arkui-cj/cj-navigation-switching-navdestination.md) component to implement navigation functionality.

@@ -1,5 +1,11 @@
 # ohos.multimedia.camera (Camera Management)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides developers with a set of simple and easy-to-understand camera service interfaces, enabling them to develop camera applications. Through accessing and operating camera hardware, applications can perform basic operations such as preview, photo capture, and video recording. Additionally, more advanced operations can be achieved by combining interfaces, such as controlling flashlights, exposure time, focus or zoom adjustments.
 
 ## Importing the Module

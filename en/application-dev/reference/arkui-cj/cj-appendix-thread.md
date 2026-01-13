@@ -1,5 +1,11 @@
 # Thread Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Background
 
 During the development of OpenHarmony applications in Cangjie, the code logic is primarily divided into two parts: UI-related logic code and UI-independent logic code.

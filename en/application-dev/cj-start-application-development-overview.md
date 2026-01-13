@@ -1,5 +1,11 @@
 # Application Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The application development documentation guides developers in completing application development using the open capabilities provided by the OpenHarmony SDK.
 
 In the application development documentation, you can access the following content.

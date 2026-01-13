@@ -1,5 +1,11 @@
 # Introduction to ArkUI
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ArkUI (Ark UI Framework) provides a comprehensive infrastructure for application UI development, including concise UI syntax, rich UI features (components, layouts, animations, and interaction events), as well as real-time interface preview tools, supporting developers in visual interface development.
 
 ## Basic Concepts

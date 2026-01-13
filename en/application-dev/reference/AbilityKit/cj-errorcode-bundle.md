@@ -1,5 +1,11 @@
 # Package Management Subsystem Common Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## 17700001 Specified bundleName does not exist
 
 **Error Message**  

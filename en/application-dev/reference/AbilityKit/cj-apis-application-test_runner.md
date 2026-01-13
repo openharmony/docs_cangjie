@@ -1,5 +1,11 @@
 # ohos.application.test_runner
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides framework testing capabilities.
 
 ## Importing the Module

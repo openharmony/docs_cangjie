@@ -1,5 +1,11 @@
 # Hover Event
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Triggered when the cursor slides or a stylus hovers and moves over a component on the screen.
 
 > **Note:**

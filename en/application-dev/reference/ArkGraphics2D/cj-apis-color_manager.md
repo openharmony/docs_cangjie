@@ -1,5 +1,11 @@
 # ohos.graphics.color_space_manager (Color Management)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides fundamental capabilities for managing abstract color gamut objects, including the creation of color gamut objects and retrieval of basic color gamut properties.
 
 ## Importing the Module

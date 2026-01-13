@@ -1,5 +1,11 @@
 # 崩溃事件介绍
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 HiAppEvent提供接口用于订阅系统崩溃事件。
 
 [订阅崩溃事件](./cj-hiappevent-watcher-crash-events-cangjie.md)

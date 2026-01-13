@@ -1,5 +1,11 @@
 # Cangjie Crash Analysis
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When an uncaught Cangjie exception causes an application to terminate unexpectedly, the application crashes upon throwing the uncaught exception and generates corresponding `Crash` log files. Developers can use these error logs to identify the code location that triggered the crash and analyze the root cause.
 
 ## Cangjie Crash Log Specifications

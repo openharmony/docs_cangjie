@@ -1,5 +1,11 @@
 # State Management Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 To build a dynamic and interactive interface, the concept of "state" must be introduced.
 
 **Figure 1** Demonstration  

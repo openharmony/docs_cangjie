@@ -1,5 +1,11 @@
 # Sensor Development Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Sensor Types
 
 System sensors are device abstractions that allow applications to access underlying hardware sensors. By utilizing the [Sensor interface](../../reference/SensorServiceKit/cj-apis-sensor.md) provided by sensors, developers can query available sensors on the device, subscribe to sensor data, and develop various applications with customized algorithms based on sensor data, such as compasses, fitness tracking, games, etc.

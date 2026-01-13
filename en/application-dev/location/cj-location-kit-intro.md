@@ -1,5 +1,11 @@
 # Introduction to Location Kit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Overview  
 
 Mobile terminal devices have become deeply integrated into various aspects of people's daily lives, such as checking local weather, reading news and anecdotes, hailing rides, travel navigation, and exercise tracking. These commonplace activities all rely on locating the user's terminal device.  

@@ -1,5 +1,11 @@
 # State Management at Component Level Variables
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides `ObservedArray` and `ObservedArrayList` as array types for state management. When changes occur in these arrays, such as modifying an item's value, deleting or adding an item, UI updates will be triggered.
 
 ## Import Module

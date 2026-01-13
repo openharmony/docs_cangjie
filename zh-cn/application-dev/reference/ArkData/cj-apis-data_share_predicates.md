@@ -1,5 +1,11 @@
 # ohos.data.data_share_predicates（数据共享谓词）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 谓词（data_share_predicates）是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据、删除数据和查询数据中。
 
 谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。

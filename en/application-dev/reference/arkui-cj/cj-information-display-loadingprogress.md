@@ -1,5 +1,11 @@
 # LoadingProgress
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for displaying loading animations.
 
 The loading animation stops when the component is not visible. The visibility state of the component is determined by [onVisibleAreaChange](./cj-universal-event-visibleareachange.md#func-onvisibleareachangearrayfloat64-bool-float64---unit), where a visibility threshold ratio greater than 0 is considered as the visible state.

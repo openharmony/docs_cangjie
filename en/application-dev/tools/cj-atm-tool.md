@@ -1,5 +1,11 @@
 # ATM Tool  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Access Token Manager (referred to as ATM tool) is a utility for querying <!--Del-->or configuring<!--DelEnd--> application process permissions, usage types, and related information. It provides developers with the capability to manage access control based on token IDs, package names, process names, and other identifiers.  
 
 ## Environment Setup  

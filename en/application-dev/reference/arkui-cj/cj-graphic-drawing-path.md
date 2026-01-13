@@ -1,5 +1,11 @@
 # Path
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A path drawing component that generates closed custom shapes based on the drawn path.
 
 ## Import Module

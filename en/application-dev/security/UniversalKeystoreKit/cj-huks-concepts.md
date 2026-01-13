@@ -1,5 +1,11 @@
 # Fundamental Concepts of Universal Keystore
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before developing applications using the Universal Keystore, developers need to understand the following key concepts, which will be referenced throughout the development process.
 
 ## Trusted Execution Environment (TEE)

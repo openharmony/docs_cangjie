@@ -1,5 +1,11 @@
 # ohos.value_type
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module contains additional information for common events.
 
 ## Importing the Module

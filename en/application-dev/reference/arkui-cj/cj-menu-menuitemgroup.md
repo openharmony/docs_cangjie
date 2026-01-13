@@ -1,5 +1,11 @@
 # MenuItemGroup
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This component is used to display grouped menu items (MenuItem).
 
 ## Import Module

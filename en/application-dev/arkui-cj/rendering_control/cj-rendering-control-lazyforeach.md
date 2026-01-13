@@ -1,5 +1,11 @@
 # LazyForEach: Data Lazy Loading
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 For API parameter descriptions, see: [LazyForEach API Parameters](../../reference/arkui-cj/cj-state-rendering-lazyforeach.md).
 
 LazyForEach iterates through the provided data source on demand and creates corresponding components during each iteration. When used within a scrollable container, the framework creates components on demand based on the visible area of the container. When components scroll out of the visible area, the framework destroys and recycles them to reduce memory usage.

@@ -1,5 +1,11 @@
 # Framework Interfaces
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This page documents the public interfaces used by the UI framework. Application developers are prohibited from using these interfaces, as doing so may lead to unexpected results.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # ohos.application.error_observer
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module defines exception monitoring.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # StepperItem
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used as a child component of the [Stepper](cj-navigation-switching-stepper.md) component.
 
 ## Import Module

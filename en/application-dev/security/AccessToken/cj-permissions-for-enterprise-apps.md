@@ -1,5 +1,11 @@
 # Available Permissions for Enterprise Applications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The following permissions are available for <!--Del-->system applications and<!--DelEnd--> enterprise applications, which include general enterprise applications and MDM (Mobile Device Management) applications.
 
 Enterprise applications have the following characteristics:

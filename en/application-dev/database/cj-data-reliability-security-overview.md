@@ -1,5 +1,11 @@
 # Overview of Data Reliability and Security  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Functional Scenarios  
 
 During system operation, storage corruption, insufficient storage space, file system permissions, and power failures may cause database malfunctions. For example, corruption of a contacts application's database could result in loss of user contacts; corruption of a calendar application's database could lead to missed calendar reminders. To address these issues, data management provides solutions and capabilities to ensure data reliability and security.  

@@ -1,5 +1,11 @@
 # State Management Best Practices Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Due to unfamiliarity with current state management features, many developers encounter issues like UI not refreshing or poor refresh performance when using state management for development. This document analyzes five typical scenarios from two perspectives, providing corresponding positive and negative examples to help developers learn how to properly utilize state management in development.
 
 ## Proper Use of Properties

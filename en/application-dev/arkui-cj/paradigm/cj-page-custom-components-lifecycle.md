@@ -1,5 +1,11 @@
 # Page and Custom Component Lifecycle
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before diving in, it's essential to clarify the relationship between custom components and pages:
 
 - **Custom Component**: A UI unit decorated with [@Component](./cj-create-custom-components.md#component), which can combine multiple system components to achieve UI reuse and invoke component lifecycle methods.

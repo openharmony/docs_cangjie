@@ -1,5 +1,11 @@
 # ListItemGroup
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 该组件用来展示列表item分组，宽度默认充满[List](cj-scroll-swipe-list.md)组件，必须配合List组件来使用。
 
 > **说明：**

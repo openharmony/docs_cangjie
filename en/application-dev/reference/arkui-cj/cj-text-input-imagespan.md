@@ -1,5 +1,11 @@
 # ImageSpan
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A child component of the [Text](./cj-text-input-text.md#text) component, used to display inline images.
 
 ## Import Module

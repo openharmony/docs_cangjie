@@ -1,5 +1,11 @@
 # @Provide and @Consume Macros: Two-Way Synchronization with Descendant Components
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 `@Provide` and `@Consume` are used for two-way data synchronization with descendant components, applicable in scenarios where state data needs to be passed across multiple levels. Unlike the parent-child component parameter passing mechanism mentioned earlier, `@Provide` and `@Consume` break free from the constraints of parameter passing, enabling cross-level data transfer.
 
 The variable decorated with `@Provide` resides in the ancestor component and can be understood as a state variable "provided" to descendant components. The variable decorated with `@Consume` resides in descendant components and "consumes (binds)" the variable provided by the ancestor component.

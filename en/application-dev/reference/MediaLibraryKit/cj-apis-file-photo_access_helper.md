@@ -1,5 +1,11 @@
 # ohos.file.photo_access_helper
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides capabilities for album management, including creating albums and accessing/modifying media data within albums.
 
 ## Importing the Module

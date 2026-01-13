@@ -1,5 +1,11 @@
 # ohos.multimedia.image (Image Processing)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides image processing capabilities, including creating PixelMap through properties, reading image pixel data, and extracting image data within specified regions.
 
 ## Importing the Module

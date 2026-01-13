@@ -1,5 +1,11 @@
 # Broadcast and Scan Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction
 
 Broadcast and scan primarily provide methods for Bluetooth devices to start/stop broadcasting and scanning. Through broadcasting and scanning, peer Bluetooth devices can be discovered to achieve low-power communication.

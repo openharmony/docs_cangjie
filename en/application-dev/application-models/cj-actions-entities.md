@@ -1,5 +1,11 @@
 # Common Actions and Entities (Not Recommended)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Actions
 
 Represents generic operations that the caller intends to perform (e.g., view, share, application details). When actions are declared in the [skills field](../cj-start/basic-knowledge/module-configuration-file.md#skills-tag) of the callee application's configuration file, it indicates that the application supports these declared operations. Common actions are listed below.

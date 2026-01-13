@@ -1,5 +1,11 @@
 # Menu Control (Menu)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Menu is a menu interface, typically used for right-click pop-ups, click pop-ups, etc. For specific usage, please refer to [Menu Control](../reference/arkui-cj/cj-universal-attribute-menu.md).
 
 When using [bindContextMenu](../reference/arkui-cj/cj-universal-attribute-menu.md#func-bindcontextmenucustombuilder-responsetype-contextmenuoptions) with a preview image set, the menu will have an overlay when popped up, making it modal.

@@ -1,5 +1,11 @@
 # Managing Application Windows
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Basic Concepts
 
 - **Window Immersive Capability**: Refers to the ability to control system windows such as the status bar and navigation bar, reducing the abruptness of these system interfaces to provide users with an optimal experience.  

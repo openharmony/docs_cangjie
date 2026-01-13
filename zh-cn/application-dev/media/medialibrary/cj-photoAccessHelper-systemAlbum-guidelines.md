@@ -1,5 +1,11 @@
 # 系统相册资源使用指导
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏相册进行相关操作。
 
 > **说明：**
@@ -315,7 +321,8 @@ class MainAbility <: UIAbility {
     }
 }
 ```
-
+<!--Del-->
 ## 示例代码
 
-[获取相册图片](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/FileManagement/Photo)
+[获取相册图片](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/FileManagement/Photo)
+<!--DelEnd-->

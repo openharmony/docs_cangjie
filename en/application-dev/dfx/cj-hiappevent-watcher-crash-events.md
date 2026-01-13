@@ -1,5 +1,11 @@
 # Crash Event Introduction
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiAppEvent provides interfaces for subscribing to system crash events.
 
 [Subscribe to Crash Events (Cangjie)](./cj-hiappevent-watcher-crash-events-cangjie.md)

@@ -1,5 +1,11 @@
 # ohos.app.ability.ability_stage
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ability_stage模块提供AbilityStage相关的功能，包括AbilityStage的创建、注册等。
 
 ## 导入模块

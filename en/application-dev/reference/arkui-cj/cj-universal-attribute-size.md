@@ -1,5 +1,11 @@
 # Dimension Settings
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Configure dimension-related properties such as component width, height, size, padding, and margin.
 
 ## Import Module

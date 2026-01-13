@@ -1,5 +1,11 @@
 # Ellipse
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 An ellipse drawing component.
 
 ## Import Module

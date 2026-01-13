@@ -1,5 +1,11 @@
 # \@Observed Macro and \@Publish Macro: Nested Class Object Property Changes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The macros mentioned above (including [\@State](./cj-macro-state.md), [\@Prop](./cj-macro-prop.md), [\@Link](./cj-macro-link.md), [\@Provide and \@Consume](./cj-macro-provide-and-consume.md) macros) can only observe changes in simple types. However, in actual application development, applications may use arrays or encapsulate their own data models based on development needs. For such cases, such as arrays, custom class types, or arrays of custom class types, changes in their member variables' properties cannot be observed. This leads to the introduction of the \@Observed macro and \@Publish macro.
 
 The combination of \@Observed and \@Publish is used to observe property changes in class types, primarily to compensate for the limitation of other macros that can only observe one level deep. Developers are advised to first read the basic usage of [\@State](./cj-macro-state.md) to understand the fundamental observation capabilities of macros before comparing and reading this document.

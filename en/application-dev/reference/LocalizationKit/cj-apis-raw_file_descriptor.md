@@ -1,5 +1,11 @@
 # ohos.raw_file_descriptor
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module represents the descriptor information of rawfile.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Binding Full-Screen Modal Page (bindContentCover)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 [Full-screen modal page (bindContentCover)](../reference/arkui-cj/cj-universal-attribute-bindcontentcover.md#func-bindcontentcoverboolunitcontentcoveroptions) is an interactive popup page in full-screen modal form that completely covers the underlying parent view. It is suitable for scenarios such as viewing large images or full-screen document browsing.
 
 ## Usage Constraints

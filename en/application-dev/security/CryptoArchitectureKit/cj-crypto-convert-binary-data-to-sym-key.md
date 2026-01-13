@@ -1,5 +1,11 @@
 # Generating Keys from Specified Binary Data
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking 3DES and HMAC as examples, this section describes how to generate a symmetric key (SymKey) from specified binary data. This involves converting external or stored binary data into a key object that can be used for subsequent cryptographic operations like encryption and decryption.
 
 ## Generating a 3DES Key from Specified Binary Data

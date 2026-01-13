@@ -1,5 +1,11 @@
 # 发布公共事件
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 场景介绍
 
 当需要发布某个自定义公共事件时，可以通过[publish()](../../reference/BasicServicesKit/cj-apis-common_event_manager.md#static-func-publishstring-commoneventpublishdata)方法发布事件。发布的公共事件可以携带数据，供订阅者解析并进行下一步处理。

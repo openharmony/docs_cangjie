@@ -1,5 +1,11 @@
 # ohos.display (Screen Properties)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides screen property-related functionalities.
 
 ## Import Module

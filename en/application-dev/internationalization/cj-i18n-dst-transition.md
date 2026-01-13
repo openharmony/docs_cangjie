@@ -1,5 +1,11 @@
 # Daylight Saving Time (DST) Transition
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Feature Description
 
 Daylight Saving Time is a system artificially established to conserve energy by adjusting local time, where clocks are set forward by one hour during the summer months when daylight arrives earlier. This encourages people to wake up and go to bed earlier, reducing lighting usage and thereby saving electricity.

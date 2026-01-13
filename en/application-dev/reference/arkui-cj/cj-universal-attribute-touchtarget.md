@@ -1,5 +1,11 @@
 # Touch Hotspot Settings
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Set the responsive hot zone of a component. In the ArkUI development framework, when handling touch and mouse events, a touch test is performed between the press point and the component's responsive hot zone before the event is triggered, in order to collect the components that need to respond to the event.
 
 ## Import Module

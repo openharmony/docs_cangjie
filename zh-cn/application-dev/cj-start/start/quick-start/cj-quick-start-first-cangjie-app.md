@@ -1,5 +1,11 @@
 # 构建第一个OpenHarmony应用（仓颉）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 > **说明：**
 >
 > 为确保运行效果，本文以使用**最新DevEco Studio版本**为例，点击[此处](https://developer.huawei.com/consumer/cn/download/)获取下载链接。

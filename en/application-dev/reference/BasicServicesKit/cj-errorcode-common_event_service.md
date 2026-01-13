@@ -1,5 +1,11 @@
 # Event Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 > **Note:**
 >
 > This document only covers error codes specific to this module. For general error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).

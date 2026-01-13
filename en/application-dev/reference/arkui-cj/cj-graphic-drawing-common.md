@@ -1,5 +1,11 @@
 # Common Attributes for Graphic Drawing
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Common attributes for graphic drawing are currently supported by components such as [Circle](./cj-graphic-drawing-circle.md), [Ellipse](./cj-graphic-drawing-ellipse.md), [Line](./cj-graphic-drawing-line.md), [Path](./cj-graphic-drawing-path.md), [Rect](./cj-graphic-drawing-rect.md), and [Shape](./cj-graphic-drawing-shape.md).
 
 ## Import Module

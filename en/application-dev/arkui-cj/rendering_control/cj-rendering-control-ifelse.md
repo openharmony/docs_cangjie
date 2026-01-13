@@ -1,5 +1,11 @@
 # if/else: Conditional Rendering
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Cangjie provides the capability for rendering control. Conditional rendering allows displaying UI content corresponding to different application states using `if`, `else`, and `else if` statements.
 
 ## Usage Rules

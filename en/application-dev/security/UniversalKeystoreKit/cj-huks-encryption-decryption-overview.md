@@ -1,5 +1,11 @@
 # Encryption/Decryption Introduction and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 In HUKS, when a key already exists, both encryption and decryption operations on data can be performed using HUKS.  
 
 ## Supported Algorithms  

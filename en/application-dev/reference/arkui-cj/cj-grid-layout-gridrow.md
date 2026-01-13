@@ -1,5 +1,11 @@
 # GridRow
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The grid layout provides a structured regularity for layouts, addressing dynamic layout challenges across multiple sizes and devices, ensuring consistent module arrangement across different devices.
 
 The grid container component can only be used with grid child components ([GridCol](./cj-grid-layout-gridcol.md)) in grid layout scenarios.

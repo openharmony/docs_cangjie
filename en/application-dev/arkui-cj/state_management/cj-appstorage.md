@@ -1,5 +1,11 @@
 # AppStorage: Application-wide UI State Storage
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 AppStorage is an application-wide UI state storage that is bound to the application process. It is created by the UI framework when the application starts, providing a centralized storage for the UI state properties of the application.
 
 Unlike AppStorage, LocalStorage is page-level and typically used for data sharing within a page. AppStorage, on the other hand, is application-level global state sharing and serves as the "hub" of the entire application. [PersistentStorage](./cj-persiststorage.md) and [Environment](./cj-environment.md) variables interact with the UI through AppStorage.

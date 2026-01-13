@@ -1,5 +1,11 @@
 # Application File Access (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Applications need to perform operations such as viewing, creating, reading, writing, deleting, moving, copying, and retrieving attributes on application files within the application file directory. The specific methods are described below.
 
 ## Interface Description

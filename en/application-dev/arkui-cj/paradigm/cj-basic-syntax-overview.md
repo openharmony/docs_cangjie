@@ -1,5 +1,11 @@
 # Overview of Basic Syntax
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 After gaining a preliminary understanding of the Cangjie language, this section illustrates its fundamental components through a concrete example. As shown in the figure below, when a developer clicks a button, the text content changes from "Hello World" to "Hello Cangjie."
 
 **Figure 1** Example Effect  

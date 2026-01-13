@@ -1,5 +1,11 @@
 # ohos.app.ability.error_manager
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ErrorManager provides capabilities for managing Ability errors, including listening to and unregistering from error events.
 
 ## Import Module

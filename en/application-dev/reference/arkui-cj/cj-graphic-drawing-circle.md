@@ -1,5 +1,11 @@
 # Circle
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for drawing circular shapes.
 
 ## Import Module

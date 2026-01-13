@@ -1,5 +1,11 @@
 # MeasureUtils
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides calculations related to text width, height, etc.
 
 > **Note:**

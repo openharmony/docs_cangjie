@@ -1,5 +1,11 @@
 # ohos.app.ability.dialog_request
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 DialogRequest provides capabilities related to dialog requests, including request results and result codes.
 
 ## Import Module
