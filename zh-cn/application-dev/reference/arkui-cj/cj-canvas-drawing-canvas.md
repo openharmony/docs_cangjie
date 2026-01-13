@@ -159,9 +159,7 @@ public let height: Float64
 ### class CanvasGradient
 
 ```cangjie
-public class CanvasGradient {
-    public func addColorStop(offset: Float64, color: ?ResourceColor): Unit
-}
+public class CanvasGradient {}
 ```
 
 **功能：** 描述渐变的不透明对象，由createLinearGradient()或createRadialGradient()创建。

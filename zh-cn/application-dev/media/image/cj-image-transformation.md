@@ -102,7 +102,8 @@
      ```
 
      ![Transparency](./figures/transparency.png)
-
+<!--Del-->
 ## 示例代码
 
-[使用PixelMap完成图像变换](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Media/ImageTransformation)
+[使用PixelMap完成图像变换](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Media/ImageTransformation)
+<!--DelEnd-->
