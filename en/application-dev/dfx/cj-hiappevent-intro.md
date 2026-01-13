@@ -1,5 +1,11 @@
 # Introduction to HiAppEvent
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiAppEvent is an event tracking mechanism provided at the system level for application developers, helping applications record fault information, statistical data, security events, and user behavior information during runtime. It supports developers in analyzing application performance to further conduct statistical analysis on metrics such as visit counts, daily active users, user behavior patterns, and other key factors affecting product usage.
 
 ## Basic Concepts

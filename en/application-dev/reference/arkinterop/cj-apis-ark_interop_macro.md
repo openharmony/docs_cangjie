@@ -1,5 +1,11 @@
 # ohos.ark_interop_macro (ArkTS Interoperability Macros)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provide macros for interoperability between the Cangjie language and ArkTS language.
 
 ## @Interop macro

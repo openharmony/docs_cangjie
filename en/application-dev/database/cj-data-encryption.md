@@ -1,5 +1,11 @@
 # Database Encryption  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description  
 
 To enhance database security, the database provides a secure and applicable encryption capability that effectively protects stored content. Through security methods like database encryption, the confidentiality and integrity requirements of database storage are achieved, enabling the database to store data in ciphertext and operate in an encrypted state, thereby ensuring data security.  

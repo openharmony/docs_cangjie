@@ -1,5 +1,11 @@
 # Flashlight Usage (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The flashlight mode is activated by operating the terminal to enable the flashlight function, keeping the device's flashlight in a constant on state.
 
 When using the camera application and operating the flashlight function, the following scenarios apply:

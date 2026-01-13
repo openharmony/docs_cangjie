@@ -1,5 +1,11 @@
 # TabContent
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used exclusively within Tabs, corresponding to the content view of a switchable tab.
 
 ## Import Module

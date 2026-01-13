@@ -1,5 +1,11 @@
 # Focus Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Basic Concepts and Specifications
 
 ### Basic Concepts

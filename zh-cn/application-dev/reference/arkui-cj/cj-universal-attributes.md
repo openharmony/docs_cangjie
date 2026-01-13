@@ -1,4 +1,11 @@
 # 通用属性
+
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 <!--Del-->
 - [尺寸设置](cj-universal-attribute-size.md)
 - [位置设置](cj-universal-attribute-location.md)

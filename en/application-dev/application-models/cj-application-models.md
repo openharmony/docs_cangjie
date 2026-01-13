@@ -1,5 +1,11 @@
 # Application Model
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Components of the Application Model
 
 The application model is an abstract refinement of the capabilities required by applications, provided by the system for developers. It offers essential components and operational mechanisms for applications. With the application model, developers can build applications based on a unified framework, making development simpler and more efficient.

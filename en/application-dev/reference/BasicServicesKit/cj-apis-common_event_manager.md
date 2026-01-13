@@ -1,5 +1,11 @@
 # ohos.common_event_manager
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides capabilities related to common events, including publishing common events, subscribing to common events, and unsubscribing from common events.
 
 ## Importing the Module

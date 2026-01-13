@@ -1,5 +1,11 @@
 # ContextMenuController
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides the capability to control menu closure.
 
 > **Note:**

@@ -1,5 +1,11 @@
 # Dynamic Subscription to Public Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 Dynamic subscription refers to an application subscribing to a public event while it is running. During operation, if a subscribed event is published, the application that subscribed to that event will receive the event along with its transmitted parameters.

@@ -1,5 +1,11 @@
 # Keyboard and Mouse Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Keyboard and mouse events refer to input events from external devices such as keyboards and mice.
 
 ## Mouse Events

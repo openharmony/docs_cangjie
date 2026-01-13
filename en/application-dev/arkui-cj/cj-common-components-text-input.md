@@ -1,5 +1,11 @@
 # Text Input (TextInput/TextArea)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 TextInput and TextArea are input field components, typically used to respond to user input operations such as comment section inputs, chat box inputs, form inputs, etc. They can also be combined with other components to build functional pages, such as login/registration pages. For specific usage, please refer to [TextInput](../reference/arkui-cj/cj-text-input-textinput.md) and [TextArea](../reference/arkui-cj/cj-text-input-textarea.md).
 
 ## Creating Input Fields

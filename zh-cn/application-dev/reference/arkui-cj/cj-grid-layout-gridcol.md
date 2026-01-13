@@ -1,5 +1,11 @@
 # GridCol
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 栅格子组件，必须作为栅格容器组件([GridRow](./cj-grid-layout-gridrow.md))的子组件使用。
 
 ## 导入模块

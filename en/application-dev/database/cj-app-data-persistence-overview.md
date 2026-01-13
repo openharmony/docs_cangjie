@@ -1,5 +1,11 @@
 # Overview of Application Data Persistence
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Application data persistence refers to the process where an application saves in-memory data to a device in the form of files or databases. Data in memory typically exists as arbitrary data structures or objects, while data on storage media may take forms such as text, databases, or binary files.
 
 The OpenHarmony standard system supports typical data storage forms, including user preferences, key-value databases, and relational databases.

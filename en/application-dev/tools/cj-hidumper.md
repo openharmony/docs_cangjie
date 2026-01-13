@@ -1,5 +1,11 @@
 # hidumper
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiDumper provides a unified system information retrieval tool for developers and testers, assisting users in analyzing and troubleshooting issues.
 
 ## Environment Requirements

@@ -1,5 +1,11 @@
 # Component Visible Area Change Event
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The component visible area change event is triggered when the display area of a component on the screen changes. It provides the capability to determine whether a component is fully or partially displayed on the screen, suitable for scenarios such as ad exposure tracking.
 
 ## Import Module

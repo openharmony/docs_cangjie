@@ -1,5 +1,11 @@
 # ohos.bluetooth.a2dp (Bluetooth A2DP Module)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The a2dp module provides methods to access Bluetooth audio interfaces.
 
 ## Importing the Module

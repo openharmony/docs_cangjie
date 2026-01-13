@@ -1,5 +1,11 @@
 # Introduction to Test Kit  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Test Kit provides developers with an automated testing framework that offers unit testing and UI testing capabilities. It supports writing unit and UI automated test scripts in the Cangjie language, allowing developers to verify the implementation effects of corresponding features through test results.  
 
 **Unit Testing Capabilities:**  

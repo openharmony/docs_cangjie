@@ -1,5 +1,11 @@
 # Popup Overview  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A popup generally refers to a UI interface that automatically appears when an application is opened or is triggered by user actions. It is used to briefly display information requiring user attention or actions to be processed.  
 
 ## Types of Popups  

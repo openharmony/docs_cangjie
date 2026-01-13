@@ -1,5 +1,11 @@
 # Counter
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A counter component that provides corresponding increment or decrement operations.
 
 ## Import Module

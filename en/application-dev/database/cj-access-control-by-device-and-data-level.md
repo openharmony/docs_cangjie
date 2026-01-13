@@ -1,5 +1,11 @@
 # Access Control Based on Device Classification and Data Classification
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Basic Concepts
 
 Distributed data management implements classified and hierarchical protection for data, providing an access control mechanism based on data security labels and device security levels.

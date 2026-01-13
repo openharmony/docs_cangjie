@@ -1,5 +1,11 @@
 # RichText
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The RichText component parses and displays HTML-formatted text.
 
 - **Applicable Scenarios**:

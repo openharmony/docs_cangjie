@@ -1,5 +1,11 @@
 # Radio Button (Radio)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Radio button is a component typically used to provide interactive selection options for users. Within the same group of Radio buttons, only one can be selected at a time. For specific usage, please refer to [Radio](../reference/arkui-cj/cj-button-picker-radio.md).
 
 ## Creating a Radio Button

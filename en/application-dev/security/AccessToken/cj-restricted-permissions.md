@@ -1,5 +1,11 @@
 # Restricted Open Permissions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Application Method
 
 <!--RP1-->

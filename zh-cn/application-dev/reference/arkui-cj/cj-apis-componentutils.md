@@ -1,5 +1,11 @@
 # ohos.arkui.component_utils（ComponentUtils）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 提供获取组件绘制区域坐标和大小的能力。
 
 ## 导入模块

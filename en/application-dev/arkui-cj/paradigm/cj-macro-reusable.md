@@ -1,5 +1,11 @@
 # @Reusable Macro: Component Reusability
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The @Reusable macro decorates any custom component, indicating that the custom component can be reused.
 
 ## Overview

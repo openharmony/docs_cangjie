@@ -1,5 +1,11 @@
 # PatternLock
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A pattern lock component that allows password input via a 3x3 grid pattern, designed for password verification scenarios. The input state begins when a finger presses within the PatternLock component area and ends when the finger leaves the screen, completing the password input.
 
 ## Import Module

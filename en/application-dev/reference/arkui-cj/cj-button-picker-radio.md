@@ -1,5 +1,11 @@
 # Radio
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Radio button, providing corresponding user interaction options.
 
 ## Import Module

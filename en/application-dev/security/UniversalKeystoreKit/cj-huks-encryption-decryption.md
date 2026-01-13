@@ -1,5 +1,11 @@
 # Encryption and Decryption (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Using AES 128, RSA 2048, and SM2 as examples to demonstrate encryption and decryption operations. For specific usage scenarios and supported algorithm specifications, please refer to [Supported Algorithms for Key Generation](./cj-huks-encryption-decryption-overview.md#supported-algorithms).
 
 ## Development Steps

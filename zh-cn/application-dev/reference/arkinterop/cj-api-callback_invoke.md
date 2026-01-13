@@ -1,5 +1,11 @@
 # ohos.callback_invoke（通用回调信息）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## class Callback0Argument
 
 ```cangjie

@@ -1,5 +1,11 @@
 # PDF Document Preview Capability Using Web Components
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Web components provide the ability to preview PDF documents within web pages. Applications can load PDF documents by passing PDF files through the [src](../reference/arkui-cj/cj-web-web.md#web) parameter interface of web components. Depending on the source of the PDF document, there are three common scenarios: loading network PDF documents, loading local PDF documents, and loading in-app resource PDF documents.
 
 During the PDF document preview loading process, if network document retrieval is involved, please configure network access permissions in module.json5. For adding methods, refer to [Declaring Permissions in Configuration Files](../security/AccessToken/cj-declare-permissions.md).

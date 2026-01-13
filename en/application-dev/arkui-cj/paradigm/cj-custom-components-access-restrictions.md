@@ -1,5 +1,11 @@
 # Restrictions on Access Modifiers for Custom Component Member Properties
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 In state management, when component developers encapsulate custom components, the absence of clear input/output identifiers makes it difficult for callers to uniformly determine which variables should be passed as component parameters. In state management, qualifiers cannot be used to modify state variables.
 
 Cangjie validates the access modifiers (private/public/protected) used for member variables in custom components. When these modifiers are not used according to specifications, corresponding log messages will be generated.

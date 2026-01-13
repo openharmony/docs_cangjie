@@ -1,5 +1,11 @@
 # Mounting and Unmounting Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Mounting and unmounting events refer to the events triggered when a component is mounted to or unmounted from the component tree.
 
 ## Import Module

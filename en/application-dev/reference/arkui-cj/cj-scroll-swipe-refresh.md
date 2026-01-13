@@ -1,5 +1,11 @@
 # Refresh
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A container component that enables pull-to-refresh operations and displays refresh animations.
 
 ## Import Module

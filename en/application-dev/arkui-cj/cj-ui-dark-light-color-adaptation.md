@@ -1,5 +1,11 @@
 # Dark and Light Mode Adaptation for Applications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview  
 
 The current system supports both dark and light display modes. To provide users with a better experience, applications should adapt to these dark and light modes.  

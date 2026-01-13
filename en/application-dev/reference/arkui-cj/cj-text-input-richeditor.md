@@ -1,5 +1,11 @@
 # RichEditor
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component that supports mixed text and image layout with interactive text editing capabilities.
 
 ## Import Module

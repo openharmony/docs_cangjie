@@ -1,5 +1,11 @@
 # ohos.security.crypto_framework（加解密算法库框架）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 crypto_framework模块为屏蔽底层硬件和算法库，向上提供统一的密码算法库加解密相关接口。
 
 ## 导入模块

@@ -1,5 +1,11 @@
 # Using the Cangjie Module in ArkTS Applications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 The Cangjie program runs on a lightweight runtime while delivering excellent performance in high-performance and high-concurrency scenarios. Cangjie supports cross-language interoperability with ArkTS, enabling the use of Cangjie modules in ArkTS applications to enhance overall application performance.

@@ -1,5 +1,11 @@
 # 系统能力SystemCapability使用指南
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 概述
 
 ### 系统能力与 API

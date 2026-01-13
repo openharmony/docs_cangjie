@@ -1,5 +1,11 @@
 # ohos.metadata
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module describes metadata information.
 
 ## Importing the Module

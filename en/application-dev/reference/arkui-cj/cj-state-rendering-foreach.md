@@ -1,5 +1,11 @@
 # ForEach
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ForEach interface performs loop rendering based on array-type data.
 
 ## Import Module

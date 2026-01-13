@@ -1,5 +1,11 @@
 # @BuilderParam Macro: Referencing @Builder Functions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When developers create custom components and want to add specific functionalities—such as adding a click-to-navigate operation to a designated custom component—embedding the event method directly within the component would result in all instances of that custom component inheriting the functionality. To address this issue, ArkUI introduces the @BuilderParam macro. @BuilderParam is used to decorate variables that point to @Builder methods (i.e., @BuilderParam is designed to receive @Builder functions). Developers can initialize custom components by passing parameters to the @BuilderParam-decorated custom builder function in various ways (e.g., parameter modification, parent component initialization, etc.). Inside the custom component, specific functionalities can be added by invoking @BuilderParam. This macro declares an element for arbitrary UI descriptions, similar to a slot placeholder.
 
 Before reading this document, it is recommended to review: [@Builder](./cj-macro-builder.md).

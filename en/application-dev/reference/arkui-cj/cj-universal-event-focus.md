@@ -1,5 +1,11 @@
 # Focus Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Focus events are triggered when the page focus moves between focusable components. Components can use focus events to handle related logic.
 
 > **Note:**

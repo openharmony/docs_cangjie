@@ -1,5 +1,11 @@
 # Mouse Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When a single action triggers multiple events, the order of events is fixed, and mouse events are passed through by default.
 
 > Note:

@@ -1,5 +1,11 @@
 # ohos.net.connection (Network Connection Management)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Network connection management provides fundamental capabilities for managing networks, including obtaining the default active data network, retrieving a list of all active data networks, enabling/disabling airplane mode, obtaining network capability information, and more.
 
 For detailed error code descriptions in this section, please refer to [Network Connection Management Error Codes](./cj-errorcode-net-connection.md).

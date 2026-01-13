@@ -1,5 +1,11 @@
 # Pushing Files to Application Sandbox
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 During application development and debugging, developers may need to push certain files into the application sandbox for access or testing within the app. There are two approaches available:
 
 1. Using DevEco Studio to place target files in the application installation path. For details, refer to [Application Installation Resource Access](..//cj-start/start/ide-resource-categories-and-access.md#resource-access).

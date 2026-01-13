@@ -1,5 +1,11 @@
 # NavDestination
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 作为子页面的根容器，用于显示[Navigation](./cj-navigation-switching-navigation.md)的内容区。
 
 > **说明：**

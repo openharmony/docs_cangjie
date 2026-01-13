@@ -1,4 +1,11 @@
 # Universal Attributes
+
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 <!--Del-->
 - [Size Settings](cj-universal-attribute-size.md)
 - [Position Settings](cj-universal-attribute-location.md)

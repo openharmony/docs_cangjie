@@ -1,5 +1,11 @@
 # Power-Shell Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Power-Shell is a tool designed to implement device power state transitions and related functionalities, providing developers with basic device power state debugging capabilities, such as screen off, wake-up, setting power modes, etc.
 
 ## Environment Requirements

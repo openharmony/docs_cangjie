@@ -1,5 +1,11 @@
 # Frame Animation (ohos.animator)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Frame animation features frame-by-frame callback capabilities, enabling developers to handle properties requiring adjustment in each frame. By providing an onFrame callback to applications, frame animation allows developers to set property values in every frame of the application, thereby achieving smooth transitions of component property values and creating animation effects.
 
 Compared to property animation, frame animation enables developers to perceive animation progress in real-time and adjust UI values instantly, offering advantages such as immediate event response and pausability. However, it performs slightly worse than property animation in terms of performance. When property animation meets the requirements, it is recommended to prioritize using property animation interfaces. For property animation interfaces, refer to [Implementing Property Animation](cj-attribute-animation-apis.md).

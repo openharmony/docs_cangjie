@@ -1,5 +1,11 @@
 # Implementing Data Persistence with Relational Databases
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Introduction
 
 Relational databases, based on the SQLite component, are suitable for scenarios involving complex relational data storage. Examples include student information in a class (requiring fields like name, student ID, and subject scores) or employee information in a company (requiring fields like name, employee ID, and position). When data exhibits strong interrelationships and higher complexity compared to key-value data, relational databases should be used for persistent storage.

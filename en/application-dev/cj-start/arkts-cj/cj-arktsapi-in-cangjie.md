@@ -1,5 +1,11 @@
 # Using ArkTS APIs in Cangjie Applications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 Cangjie supports cross-language interoperability with ArkTS. Therefore, developers can call application development APIs and standard libraries provided by ArkTS in applications developed with the Cangjie language.

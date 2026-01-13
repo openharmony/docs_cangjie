@@ -1,5 +1,11 @@
 # Toggle Button (Toggle)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Toggle component provides state button styles, checkbox styles, and switch styles, typically used for switching between two states. For specific usage, please refer to [Toggle](../reference/arkui-cj/cj-button-picker-toggle.md).
 
 ## Creating a Toggle Button

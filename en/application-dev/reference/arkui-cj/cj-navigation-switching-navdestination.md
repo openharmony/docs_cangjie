@@ -1,5 +1,11 @@
 # NavDestination
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Serves as the root container for subpages, used to display the content area of [Navigation](./cj-navigation-switching-navigation.md).
 
 > **NOTE:**

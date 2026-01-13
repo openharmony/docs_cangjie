@@ -1,5 +1,11 @@
 # Development Preparation
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This document is intended for beginners in OpenHarmony application development. By using the Cangjie language to build a simple application with page navigation/return functionality (as shown in the figure below), you can quickly understand the main files in the project directory and familiarize yourself with the OpenHarmony application development process.
 
 <!-- Cangjie diff -->

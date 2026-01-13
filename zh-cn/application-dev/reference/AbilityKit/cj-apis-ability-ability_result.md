@@ -1,5 +1,11 @@
 # ohos.ability.ability_result
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ability_result模块定义了Ability被拉起并退出后返回的结果码和数据。
 
 ## 导入模块

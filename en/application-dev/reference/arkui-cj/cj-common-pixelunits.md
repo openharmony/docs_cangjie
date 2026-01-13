@@ -1,5 +1,11 @@
 # Pixel Units
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Cangjie provides 4 types of pixel units, using vp as the base data unit.
 
 | Name | Description |

@@ -1,5 +1,11 @@
 # Using SM4 Symmetric Key (ECB Mode) for Encryption and Decryption
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 For corresponding algorithm specifications, please refer to [Symmetric Key Encryption/Decryption Algorithm Specifications: SM4](./cj-crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 ## Encryption

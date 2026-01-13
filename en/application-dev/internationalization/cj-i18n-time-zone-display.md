@@ -1,5 +1,11 @@
 # Localized Time Zone Names  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Usage Scenarios  
 
 In multilingual environments, users from different regions may refer to time zones differently. For example, in Chinese contexts, the Central Time Zone is called "中部时区," while in English contexts, it is referred to as "Central Time Zone." To ensure that time zone displays align with local language conventions, time zone names need to be localized.  

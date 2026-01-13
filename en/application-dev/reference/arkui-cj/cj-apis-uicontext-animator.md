@@ -1,5 +1,11 @@
 # AnimatorResult
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides the result of component animations, including starting animations, resetting animation parameters, and playing animations in reverse order.
 
 > **NOTE:**

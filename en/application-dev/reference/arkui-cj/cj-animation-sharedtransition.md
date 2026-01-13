@@ -1,5 +1,11 @@
 # Shared Element Transition (sharedTransition)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 By setting the `sharedTransition` property of a component, the element can be marked as a shared element and configured with corresponding shared element transition effects. The `sharedTransition` effect only occurs during page routing ([router](cj-apis-uicontext-router.md#class-router)) navigation.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Resource Classification and Access
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 During application development, resources such as colors, fonts, spacing, and images are frequently required. These resource values may vary across different devices or configurations.
 
 - **Application Resources**: Using resource file capabilities, developers can customize resources within applications and manage their behavior across different devices or configurations.

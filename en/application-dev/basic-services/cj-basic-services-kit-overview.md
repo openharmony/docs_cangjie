@@ -1,5 +1,11 @@
 # Introduction to Basic Services Kit  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Basic Services Kit serves as a foundational service suite, providing application developers with essential capabilities. Common functionalities such as clipboard read/write, file upload/download, file compression, file printing, inter-process/inter-thread communication, device management, and application account management are all offered by this Kit.  
 
 ## Usage Scenarios  

@@ -1,5 +1,11 @@
 # Button
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A button component for quickly creating buttons with different styles.
 
 ## Import Module

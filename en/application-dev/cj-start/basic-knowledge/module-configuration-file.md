@@ -1,5 +1,11 @@
 # module.json5 Configuration File
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Configuration File Example
 
 An example to provide an overall understanding of the module.json5 configuration file.

@@ -1,5 +1,11 @@
 # TextTimer
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component that displays timing information through text and controls its timer state.
 
 Time changes will stop when the component is invisible. The component's visibility state is based on [onVisibleAreaChange](./cj-universal-event-visibleareachange.md#func-onvisibleareachangearrayfloat64-bool-float64-unit---unit) handling, where a visibility threshold ratio greater than 0 is considered visible.

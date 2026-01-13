@@ -1,5 +1,11 @@
 # Overview of Want
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Definition and Usage of Want
 
 [Want](../reference/AbilityKit/cj-apis-app-ability-want.md#class-want) is an object used for transferring information between application components.

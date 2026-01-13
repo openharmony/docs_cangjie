@@ -1,5 +1,11 @@
 # Navigation
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Navigation component is the root view container for route navigation, typically used as the root container for Page components. By default, it includes a title bar, content area, and toolbar. The content area displays navigation content (child components of Navigation) on the homepage or non-homepage content (child components of [NavDestination](./cj-navigation-switching-navdestination.md)), with switching between homepage and non-homepage achieved through routing.
 
 > **Note:**

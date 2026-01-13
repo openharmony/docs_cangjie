@@ -1,5 +1,11 @@
 # Using ImagePacker for Image Encoding
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Image encoding refers to the process of converting a PixelMap into archived images of different formats. Currently supported formats include JPEG, WebP, PNG, and HEIF (availability may vary across different hardware devices), which can be used for subsequent processing such as storage or transmission.
 
 ## Development Procedure

@@ -1,5 +1,11 @@
 # Opacity Setting
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Sets the opacity of a component.
 
 ## Import Module

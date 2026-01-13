@@ -1,5 +1,11 @@
 # Overlay
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Sets the overlay text for a component.
 
 ## Import Module

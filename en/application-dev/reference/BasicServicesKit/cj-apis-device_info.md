@@ -1,5 +1,11 @@
 # ohos.device_info (Device Information)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides terminal device information queries and cannot be configured by developers.
 
 ## Importing the Module

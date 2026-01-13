@@ -1,5 +1,11 @@
 # Displaying Images (Image)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Developers often need to display images in applications, such as icons in buttons, network images, or local images. To display images in an application, the Image component must be used. The Image component supports multiple image formats, including png, jpg, bmp, svg, gif, and heif. For specific usage, refer to the [Image](../reference/arkui-cj/cj-image-video-image.md) component.
 
 The Image component is created by calling an interface, which is invoked as follows:

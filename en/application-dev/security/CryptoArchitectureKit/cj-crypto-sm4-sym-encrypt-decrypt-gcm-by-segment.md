@@ -1,5 +1,11 @@
 # Segment Encryption and Decryption Using SM4 Symmetric Key (GCM Mode)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 For corresponding algorithm specifications, refer to [Symmetric Key Encryption/Decryption Algorithm Specifications: SM4](./cj-crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 ## Encryption

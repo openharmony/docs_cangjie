@@ -1,5 +1,11 @@
 # Introduction to Sensor Service Kit Development
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Usage Scenarios
 
 Sensor Service Kit enables applications to obtain raw data from sensors and provides vibration control capabilities.

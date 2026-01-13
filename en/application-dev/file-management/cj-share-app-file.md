@@ -1,5 +1,11 @@
 # File Sharing Between Applications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 File sharing between applications is the process of sharing files through URIs (Uniform Resource Identifier).
 
 ## Sharing Files by Launching File Handler Applications (startAbility)

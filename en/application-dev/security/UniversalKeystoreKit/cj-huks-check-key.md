@@ -1,5 +1,11 @@
 # Check If a Key Exists (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HUKS provides interfaces for applications to check whether a specified key exists.
 
 ## Development Procedure

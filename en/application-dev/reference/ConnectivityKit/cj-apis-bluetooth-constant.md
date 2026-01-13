@@ -1,5 +1,11 @@
 # ohos.bluetooth.constant (Bluetooth Constant Module)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The constant module provides definitions for Bluetooth-related constants.
 
 ## Importing the Module

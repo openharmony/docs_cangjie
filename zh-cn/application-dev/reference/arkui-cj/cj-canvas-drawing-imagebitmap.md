@@ -1,5 +1,11 @@
 # ImageBitmap
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ImageBitmap对象可以存储canvas渲染的像素数据。
 
 ## 导入模块

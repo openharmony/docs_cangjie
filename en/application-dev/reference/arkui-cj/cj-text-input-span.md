@@ -1,5 +1,11 @@
 # Span
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A child component of the [Text](cj-text-input-text.md) component, used to display inline text.
 
 ## Import Module

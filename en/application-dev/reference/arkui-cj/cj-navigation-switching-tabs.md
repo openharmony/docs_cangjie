@@ -1,5 +1,11 @@
 # Tabs
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A container component for switching content views through tabs, where each tab corresponds to a content view.
 
 ## Import Module

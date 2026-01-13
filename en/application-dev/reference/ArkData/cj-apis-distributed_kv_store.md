@@ -1,5 +1,11 @@
 # ohos.data.distributed_kv_store
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The distributed key-value database provides applications with distributed collaboration capabilities across different devices. By calling various interfaces of the distributed key-value database, applications can save data to the database and perform operations such as addition, deletion, modification, query, and synchronization on the data.
 
 This module offers the following common functionalities related to distributed key-value databases:

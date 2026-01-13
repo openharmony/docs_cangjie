@@ -1,5 +1,11 @@
 # PersistentStorage: Persisting UI State
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The first two sections introduced LocalStorage and AppStorage, which are runtime memory solutions. However, a common requirement in application development is to preserve selected results even after the application exits and restarts. This is where PersistentStorage comes into play.
 
 PersistentStorage is an optional singleton object in an application. Its purpose is to persistently store selected AppStorage properties, ensuring these properties retain their values from when the application was last closed upon subsequent restarts.

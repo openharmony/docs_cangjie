@@ -1,5 +1,11 @@
 # RowSplit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Arranges child components horizontally and inserts vertical divider lines between each child component.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Application Package FAQ
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## How to Obtain Fingerprint Information from Signature
 
 1. Obtain via API call.

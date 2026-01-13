@@ -1,5 +1,11 @@
 # Application Permissions List
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The method for requesting permissions varies depending on their scope of availability and authorization method.
 
 The system currently maintains the following permissions list. Developers can search based on actual requirements and determine the appropriate method for requesting corresponding permissions.

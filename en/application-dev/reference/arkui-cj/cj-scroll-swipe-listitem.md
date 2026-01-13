@@ -1,5 +1,11 @@
 # ListItem
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used to display specific items in a list, must be used in conjunction with List.
 
 ## Import Module

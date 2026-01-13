@@ -1,5 +1,11 @@
 # ohos.security.huks
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides applications with keystore capabilities, including key management and cryptographic operations.
 
 Keys managed by HUKS can be either imported by applications or generated through HUKS interfaces.

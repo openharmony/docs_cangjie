@@ -1,5 +1,11 @@
 # Linear Layout (Row/Column)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 Linear Layout (LinearLayout) is the most commonly used layout in development, constructed through linear containers [Row](../reference/arkui-cj/cj-row-column-stack-row.md) and [Column](../reference/arkui-cj/cj-row-column-stack-column.md). As the foundation of other layouts, child elements in a linear layout are arranged sequentially along a linear direction (horizontal or vertical). The arrangement direction is determined by the selected container component: child elements in a Column container are arranged vertically, while those in a Row container are arranged horizontally. Developers can choose between Row or Column containers to create linear layouts based on different arrangement requirements.

@@ -1,5 +1,11 @@
 # Asymmetric Key Encryption/Decryption Algorithm Specifications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This document introduces the asymmetric encryption/decryption algorithms currently supported by Cangjie and their corresponding specifications.
 
 For each algorithm, the supported encryption modes will be described in their respective algorithm specifications.

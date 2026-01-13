@@ -1,5 +1,11 @@
 # Rect
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A rectangular drawing component.
 
 ## Import Module

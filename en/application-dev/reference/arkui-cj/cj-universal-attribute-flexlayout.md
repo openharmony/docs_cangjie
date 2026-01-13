@@ -1,5 +1,11 @@
 # Flex Layout
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 > **Note:**
 >
 > Only takes effect when the parent component is [Flex](./cj-row-column-stack-flex.md), [Column](./cj-row-column-stack-column.md), [Row](./cj-row-column-stack-row.md), or [GridRow](./cj-grid-layout-gridrow.md) (specifically for [alignSelf](./cj-universal-attribute-flexlayout.md#func-alignselfitemalign)).

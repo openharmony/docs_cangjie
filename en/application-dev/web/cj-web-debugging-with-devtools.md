@@ -1,5 +1,11 @@
 # Debugging Frontend Pages Using DevTools
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Web components support debugging frontend pages using DevTools. DevTools is a web frontend development debugging tool that provides the capability to debug mobile device frontend pages on a computer. Developers can use DevTools to debug frontend web pages on mobile devices from a computer. The device must be version 4.1.0 or higher.
 
 ## Debugging Steps

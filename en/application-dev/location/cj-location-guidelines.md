@@ -1,5 +1,11 @@
 # Development Guide for Obtaining Device Location Information
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Overview
 
 Developers can call location-related interfaces to obtain the device's real-time location or recent historical location, as well as monitor changes in the device's location.

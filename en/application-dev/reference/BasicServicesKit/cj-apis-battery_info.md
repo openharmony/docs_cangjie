@@ -1,5 +1,11 @@
 # ohos.battery_info
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module primarily provides query interfaces for battery status and charging/discharging states.
 
 ## Importing the Module

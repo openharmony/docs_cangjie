@@ -1,5 +1,11 @@
 # Appearance/Disappearance Transition
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 [transition](../reference/arkui-cj/cj-animation-transition.md#func-transitiontransitioneffect) is a fundamental component transition interface used to implement animation effects when a component appears or disappears. By combining [TransitionEffect objects](../reference/arkui-cj/cj-animation-transition.md#class-transitioneffect), various effects can be defined.
 
 **Table 1** Transition Effect Interfaces

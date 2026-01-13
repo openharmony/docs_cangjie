@@ -1,5 +1,11 @@
 # ohos.security.crypto_framework (Cryptographic Algorithm Library Framework)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides a unified cryptographic algorithm library interface for encryption and decryption operations, shielding the underlying hardware and algorithm libraries.
 
 ## Import Module

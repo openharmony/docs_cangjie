@@ -1,5 +1,11 @@
 # Key Derivation (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking HKDF256 key as an example, complete key derivation. For specific scenario descriptions and supported algorithm specifications, please refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
 
 ## Development Steps

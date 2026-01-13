@@ -1,5 +1,11 @@
 # Search
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides a search box component for users to input search content.
 
 ## Import Module

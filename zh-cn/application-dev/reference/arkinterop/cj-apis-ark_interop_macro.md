@@ -1,5 +1,11 @@
 # ohos.ark_interop_macro（ArkTS互操作宏）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 提供仓颉语言与 ArkTS 语言的互操作宏。
 
 ## @Interop 宏

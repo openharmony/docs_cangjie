@@ -1,5 +1,11 @@
 # Common Event Service Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 CES (Common Event Service) provides applications with the capability to subscribe to, publish, and unsubscribe from common events.
 
 ## Classification of Common Events

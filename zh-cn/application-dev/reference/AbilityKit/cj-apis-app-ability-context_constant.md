@@ -1,5 +1,11 @@
 # ohos.app.ability.context_constant
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 context_constant模块提供Context相关的枚举，包含文件加密分区等级、UIAbility启动后的进程模式等。
 
 ## 导入模块

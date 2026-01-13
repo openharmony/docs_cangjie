@@ -1,5 +1,11 @@
 # ohos.ability.ability_result
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module defines the result codes and data returned after an Ability is started and terminated.
 
 ## Import Module

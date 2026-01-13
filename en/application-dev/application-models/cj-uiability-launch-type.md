@@ -1,5 +1,11 @@
 # UIAbility Component Launch Mode
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The launch mode of [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability) refers to the different presentation states of UIAbility instances during startup. For different business scenarios, the system provides two launch modes:
 
 - [UIAbility Component Launch Mode](#uiability-component-launch-mode)

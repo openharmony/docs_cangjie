@@ -1,5 +1,11 @@
 # Shared Element Transition (One-Shot Effect)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Shared element transition is an animation effect that matches the position and size of identical or similar elements during interface switching, also known as the one-shot animation effect.
 
 As shown in the following example, when clicking an image, it disappears while a new image appears at another location. Since both images share the same content, a one-shot animation effect can be applied between them. The left image demonstrates the effect without one-shot animation, while the right image shows the effect with one-shot animation. The one-shot effect creates a coordinated appearance and disappearance, making the content transition appear natural and fluid rather than abrupt.

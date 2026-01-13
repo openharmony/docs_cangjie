@@ -1,5 +1,11 @@
 # ohos.app.ability.ability_stage
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 AbilityStage provides functionalities related to AbilityStage, including its creation and registration.
 
 ## Import Module

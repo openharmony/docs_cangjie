@@ -1,5 +1,11 @@
 # ohos.graphics.color_space_manager（色彩管理）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 color_space_manager模块提供管理抽象化色域对象的一些基础能力，包括色域对象的创建与色域基础属性的获取等。
 
 ## 导入模块

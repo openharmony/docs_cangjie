@@ -1,5 +1,11 @@
 # ohos.rpc
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides inter-process communication (IPC) capabilities, including intra-device IPC (based on Binder driver) and inter-device IPC (RPC, based on soft bus driver).
 
 ## Import Module

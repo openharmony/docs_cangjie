@@ -1,5 +1,11 @@
 # Component Navigation (Navigation) (Recommended)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Navigation component is primarily used to implement page navigation between pages and within components. It supports passing navigation parameters between different components and provides flexible navigation stack operations, enabling more convenient access and reuse of different pages. This document will provide a detailed introduction to the Navigation component from several aspects, including routing operations, subpage management, and transition animations.
 
 [Navigation](../reference/arkui-cj/cj-navigation-switching-navigation.md) serves as the root view container for route navigation and is typically used as the root container for pages (@Entry). The Navigation component is suitable for route switching within modules, offering a more natural and smooth transition experience through component-level routing capabilities. It also provides various title bar styles to deliver better title and content interaction effects. In the "Write Once, Deploy Anywhere" scenario, the Navigation component can automatically adapt to window display sizes and switch to a split-column display effect in larger window scenarios.

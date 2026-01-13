@@ -1,5 +1,11 @@
 # Using HiLog for Logging (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 During application development, you can output log information at critical code points. After running the application, you can analyze its execution by reviewing the log information (such as whether the application is running normally, the runtime sequence of the code, and whether the logical branches are functioning correctly).
 
 ## Interface Description

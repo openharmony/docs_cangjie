@@ -1,5 +1,11 @@
 # Touch Event
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Triggered when a finger presses, slides, or lifts on a component.
 
 ## Import Module

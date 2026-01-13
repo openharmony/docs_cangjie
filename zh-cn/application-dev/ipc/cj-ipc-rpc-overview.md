@@ -1,5 +1,11 @@
 # IPC Kit简介
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 基本概念
 
 IPC：设备内的进程间通信（Inter-Process Communication）

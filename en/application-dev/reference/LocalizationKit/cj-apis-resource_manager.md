@@ -1,5 +1,11 @@
 # ohos.resource_manager
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The resource management module provides interfaces for obtaining application resource objects based on the current configuration: language, region, screen orientation (portrait/landscape), MCC (Mobile Country Code), MNC (Mobile Network Code), device capability (device type), and screen density.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Image
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Image component is used to display images in applications. It supports image formats including png, jpg, jpeg, bmp, svg, webp, gif, and heif.
 
 > **Notes:**

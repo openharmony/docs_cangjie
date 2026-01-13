@@ -1,5 +1,11 @@
 # Background Settings
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Configure the background style of components.
 
 ## Import Module

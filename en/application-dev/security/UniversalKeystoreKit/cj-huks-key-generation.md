@@ -1,5 +1,11 @@
 # Generating Keys (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking the generation of DH keys as an example, this section describes how to generate random keys. For specific scenarios and supported algorithm specifications, refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
 
 > **Note:**

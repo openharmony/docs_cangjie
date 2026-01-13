@@ -1,5 +1,11 @@
 # Color
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Color
 
 Through the color gradient interface, you can set gradient background color effects for components, achieving smooth transitions between two or more specified colors.

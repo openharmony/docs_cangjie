@@ -1,5 +1,11 @@
 # Application Sandbox Directory
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The application sandbox is an isolation mechanism designed for security protection, preventing data from being accessed via malicious path traversal. Under this sandbox protection mechanism, the directory scope visible to an application is referred to as the "Application Sandbox Directory."
 
 - For each application, the system maps a dedicated "Application Sandbox Directory" in the internal storage space. It is a collection of the "[Application File Directory](#application-file-directory-and-application-file-path)" and a subset of system files (a minimal set of system files required for the application to run).

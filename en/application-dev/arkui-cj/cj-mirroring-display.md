@@ -1,5 +1,11 @@
 # Using Mirroring Capability
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 To accommodate different users' reading habits, ArkUI provides mirroring capability. Under specific circumstances, it mirrors the display content along the X-axis, transforming left-to-right display into right-to-left display.

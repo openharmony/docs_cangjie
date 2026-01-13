@@ -1,5 +1,11 @@
 # Menu
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A menu displayed in a vertical list format.
 
 > **Note:**

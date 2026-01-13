@@ -1,5 +1,11 @@
 # Shape Clipping
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used for clipping and masking components.
 
 ## Import Module

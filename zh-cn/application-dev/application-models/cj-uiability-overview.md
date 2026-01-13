@@ -1,5 +1,11 @@
 # UIAbility组件概述
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 概述
 
 [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)组件是一种包含UI的应用组件，主要用于和用户交互。

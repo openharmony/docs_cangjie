@@ -1,5 +1,11 @@
 # ForEach: Loop Rendering
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ForEach interface performs loop rendering based on array-type data and must be used in conjunction with container components. The components returned by the interface should be child components that are allowed to be included within the parent container component of ForEach. For example, the ListItem component requires that the parent container component of ForEach must be a [List component](../../reference/arkui-cj/cj-scroll-swipe-list.md).
 
 ## Key Generation Rules

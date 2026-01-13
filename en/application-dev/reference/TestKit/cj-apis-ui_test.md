@@ -1,5 +1,11 @@
 # ohos.ui_test (UI Testing)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ui_test provides the capability to simulate UI operations for developers to use in testing scenarios, primarily supporting UI operations such as clicking, double-clicking, long-pressing, swiping, etc.
 
 This module offers the following functionalities:

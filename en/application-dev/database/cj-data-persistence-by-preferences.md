@@ -1,5 +1,11 @@
 # Implementing Data Persistence Through User Preferences
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 User Preferences provide applications with Key-Value pair data processing capabilities, supporting lightweight data persistence, modification, and querying. When users need a globally unique storage location, User Preferences can be utilized. Preferences cache this data in memory. When users read data, it can be quickly retrieved from memory. For persistence, the `flush` interface can be used to write memory data into persistent files. As the volume of stored data increases, the memory footprint of the application also grows. Therefore, Preferences are not suitable for storing excessive data and do not support configuration encryption. Typical use cases include saving user personalization settings (e.g., font size, night mode toggle).

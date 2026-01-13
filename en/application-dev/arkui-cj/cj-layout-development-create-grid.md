@@ -1,5 +1,11 @@
 # Creating Grid Layout (Grid/GridItem)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 A grid layout consists of cells divided by "rows" and "columns", enabling diverse layouts by specifying which cells contain "items". Grid layouts excel at evenly distributing page space and controlling child component proportions, making them a crucial adaptive layout solution. Common use cases include 9-grid image displays, calendars, calculators, etc.

@@ -1,5 +1,11 @@
 # RichEditor
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 RichEditor is a component that supports mixed text-image layout and interactive text editing, typically used for responding to user input operations involving mixed content, such as comment sections that allow both text and images. For specific usage, refer to [RichEditor](../reference/arkui-cj/cj-text-input-richeditor.md).
 
 ## Creating a RichEditor Component Without Attribute String Construction

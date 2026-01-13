@@ -1,5 +1,11 @@
 # ohos.app.ability.start_options
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 StartOptions provides the capability to configure Ability startup options, including window mode, display ID, and other settings.
 
 ## Import Module

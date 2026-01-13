@@ -1,5 +1,11 @@
 # ohos.data.preferences
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 User Preferences provide applications with Key-Value pair data processing capabilities, supporting lightweight data persistence for applications, along with modification and query operations.
 
 Data is stored in key-value pairs where keys are of string type, and values can be numeric, string, boolean, or arrays of these three types.

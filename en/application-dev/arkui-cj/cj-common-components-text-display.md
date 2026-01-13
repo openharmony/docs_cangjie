@@ -1,5 +1,11 @@
 # Text Display (Text/Span)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Text is a text component typically used to display user views, such as presenting article content. It supports binding custom text selection menus, allowing users to choose different functions as needed. Additionally, it can extend custom menus to enrich available options, further enhancing the user experience. Span is used to render inline text. For specific usage, refer to the documentation of the [Text](../reference/arkui-cj/cj-text-input-text.md) and [Span](../reference/arkui-cj/cj-text-input-span.md) components.
 
 ## Creating Text
