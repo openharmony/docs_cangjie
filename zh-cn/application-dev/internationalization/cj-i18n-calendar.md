@@ -90,7 +90,8 @@
 | islamic_umalqura | 伊斯兰历（乌姆库拉） |
 | japanese | 日本历 |
 | persian | 波斯历 |
-
+<!--Del-->
 ## 示例代码
 
-[日历转换](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/International/CalendarConversion)
+[日历转换](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/International/CalendarConversion)
+<!--DelEnd-->

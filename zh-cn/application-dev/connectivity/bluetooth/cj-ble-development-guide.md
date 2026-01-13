@@ -340,7 +340,8 @@
     ```
 
 8. 错误码请参见[蓝牙服务子系统错误码](../../reference/ConnectivityKit/cj-errorcode-bluetooth_manager.md)。
-
+<!--Del-->
 ## 示例代码
 
-[开启、关闭广播](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/Broadcast)
+[开启、关闭广播](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/Broadcast)
+<!--DelEnd-->

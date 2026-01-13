@@ -184,7 +184,8 @@ public func requestWaitFor(timeout: Duration, condition: () -> Bool) {
     cancellerTimer.cancel()
 }
 ```
-
+<!--Del-->
 ## 示例代码
 
-[下载文件](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/FileDownload)
+[下载文件](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/FileDownload)
+<!--DelEnd-->

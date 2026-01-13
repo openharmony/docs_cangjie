@@ -291,7 +291,8 @@ class FuncAbilityA <: UIAbility {
 > **说明：**
 >
 > 当被调用方[UIAbility组件启动模式](cj-uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么onNewWant()回调就不会被用到。
-
+<!--Del-->
 ## 示例代码
 
-[启动应用内的UIAbility组件](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Ability/LaunchUIAbilityComponentsApp)
+[启动应用内的UIAbility组件](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Ability/LaunchUIAbilityComponentsApp)
+<!--DelEnd-->
