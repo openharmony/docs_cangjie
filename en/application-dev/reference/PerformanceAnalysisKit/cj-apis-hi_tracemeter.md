@@ -1,5 +1,11 @@
 # ohos.hi_trace_meter (Performance Tracing)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides the capability to trace process trajectories and measure program execution performance. The traced data is intended for analysis using the hiTraceMeter tool.
 
 > **Note**

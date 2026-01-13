@@ -1,5 +1,11 @@
 # Network Connection Management
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction
 
 Network Connection Management provides fundamental capabilities for managing networks, including priority management for multiple network connections (WiFi, cellular, Ethernet, etc.), network quality assessment, subscription to default or specified network connection status changes, querying network connection information, DNS resolution, and other functionalities.

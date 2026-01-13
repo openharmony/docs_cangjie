@@ -1,5 +1,11 @@
 # ohos.settings (Setting Data Item Names)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides the capability to access setting data items.
 
 ## Import Module

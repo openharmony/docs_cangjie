@@ -1,5 +1,11 @@
 # ohos.i18n (Internationalization-I18n)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides system-related or enhanced internationalization capabilities, including locale management, phone number processing, calendars, etc. The interfaces here supplement those not defined in the ECMA 402 standard. The Intl module offers basic internationalization interfaces as defined by ECMA 402 standard, which when used together with this module provide comprehensive internationalization support.
 
 ## Importing the Module

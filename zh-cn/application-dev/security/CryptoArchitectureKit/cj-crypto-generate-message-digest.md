@@ -1,5 +1,11 @@
 # 消息摘要计算SHA256
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 对应的算法规格请参见[消息摘要计算算法规格](./cj-crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
 ## 开发步骤

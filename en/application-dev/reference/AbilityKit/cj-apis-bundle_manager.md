@@ -1,5 +1,11 @@
 # ohos.bundle.bundle_manager (bundleManager Management)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides capabilities to query information related to application packages, including applications (Application), modules (HAP Module), abilities (Ability), extension abilities (ExtensionAbility), permissions, signatures, and more.
 
 ## Import Module

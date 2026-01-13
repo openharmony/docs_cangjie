@@ -1,5 +1,11 @@
 # bm Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Bundle Manager (abbreviated as bm) is a tool that implements functionalities such as application installation, uninstallation, updates, and queries. It provides developers with basic debugging capabilities for application installation packages.
 
 > **Note:**

@@ -1,5 +1,11 @@
 # Grid
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A grid container composed of cells divided by "rows" and "columns", enabling diverse layouts by specifying the cells where "items" are placed.
 
 ## Import Module

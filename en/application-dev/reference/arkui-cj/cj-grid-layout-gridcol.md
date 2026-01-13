@@ -1,5 +1,11 @@
 # GridCol
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A grid sub-component that must be used as a child component of a grid container component ([GridRow](./cj-grid-layout-gridrow.md)).
 
 ## Import Module

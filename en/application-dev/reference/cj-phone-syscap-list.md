@@ -1,5 +1,11 @@
 # Phone
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 SysCap, short for SystemCapability, refers to each relatively independent feature in an operating system.
 
 Before using a specific interface for development, developers are advised to first read the [SysCap Usage Guide](cj-syscap.md) to understand the definition and usage guidelines of SysCap. Then, refer to the tables below to determine whether a particular capability set is supported by a target device, thereby improving development efficiency.

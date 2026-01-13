@@ -1,5 +1,11 @@
 # 应用文件上传下载
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 应用可以将应用文件上传到网络服务器，也可以从网络服务器下载网络资源文件到本地应用文件目录。
 
 ## 上传应用文件
@@ -184,7 +190,8 @@ public func requestWaitFor(timeout: Duration, condition: () -> Bool) {
     cancellerTimer.cancel()
 }
 ```
-
+<!--Del-->
 ## 示例代码
 
-[下载文件](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/FileDownload)
+[下载文件](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/FileDownload)
+<!--DelEnd-->

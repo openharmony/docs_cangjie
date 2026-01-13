@@ -1,5 +1,11 @@
 # AES Symmetric Key Encryption and Decryption (ECB Mode)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 For the corresponding algorithm specifications, please refer to [Symmetric Key Encryption and Decryption Algorithm Specifications: AES](./cj-crypto-sym-encrypt-decrypt-spec.md#aes).
 
 ## Encryption

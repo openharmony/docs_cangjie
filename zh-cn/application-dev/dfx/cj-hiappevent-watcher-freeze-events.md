@@ -1,5 +1,11 @@
 # appfreeze事件介绍
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 HiAppEvent提供接口用于订阅系统appfreeze事件。
 
 [订阅appfreeze事件](./cj-hiappevent-watcher-freeze-events-cangjie.md)

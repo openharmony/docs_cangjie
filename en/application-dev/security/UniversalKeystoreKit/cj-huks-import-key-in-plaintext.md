@@ -1,5 +1,11 @@
 # Plaintext Key Import (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking the import of AES256 and RSA2048 keys as examples, for specific scenarios and supported algorithm specifications, please refer to [Supported Algorithms for Key Import](./cj-huks-key-import-overview.md#supported-algorithms).
 
 ## Development Steps

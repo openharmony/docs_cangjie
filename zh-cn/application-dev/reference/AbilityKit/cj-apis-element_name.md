@@ -1,5 +1,11 @@
 # ohos.element_name
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 element_name模块描述应用组件结构体，包含bundleName、moduleName和abilityName等。
 
 ## 导入模块

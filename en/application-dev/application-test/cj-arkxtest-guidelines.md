@@ -1,5 +1,11 @@
 # Automated Testing Framework Usage Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 The Cangjie Automated Testing Framework consists of two components: the Cangjie OpenHarmony Unit Testing Framework and UiTest.

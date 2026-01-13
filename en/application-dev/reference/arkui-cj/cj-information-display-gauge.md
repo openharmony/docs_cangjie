@@ -1,5 +1,11 @@
 # Gauge
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A gauge chart component that displays data in a circular (ring-style) format.
 
 ## Import Module

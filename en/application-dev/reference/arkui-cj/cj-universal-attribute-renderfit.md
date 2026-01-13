@@ -1,5 +1,11 @@
 # Component Content Filling Mode
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used to determine how the final animated component content is rendered on the component during width/height animations.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # SystemCapability Usage Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 ### SystemCapability and APIs

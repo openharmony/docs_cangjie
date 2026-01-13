@@ -1,5 +1,11 @@
 # Application Installation and Update Consistency Verification  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 As applications grow increasingly complex, they are often divided into multiple modules for development and maintenance, with different teams responsible for individual or multiple modules. During installation and updates, applications undergo consistency verification and validation for various fields to ensure security and legitimacy. This document outlines the consistency verification rules for signature certificates and configuration files during multi-module installation or updates.  
 
 > **Note**  

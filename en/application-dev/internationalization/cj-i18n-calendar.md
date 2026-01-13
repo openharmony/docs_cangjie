@@ -1,5 +1,11 @@
 # Setting Calendar and Date Systems
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Usage Scenarios
 
 Users in different regions utilize various calendar systems. Most regions follow the Gregorian calendar, while some users adopt alternative calendars such as the Lunar calendar, Islamic calendar, or Hebrew calendar. Additionally, time and date representations vary across time zones and daylight saving time adjustments. Therefore, users should configure calendars that align with local conventions. The internationalization module provides the [Calendar](../reference/LocalizationKit/cj-apis-i18n.md#class-calendar) class, which enables setting calendar types, dates, year-month-day values, time zones, first day of the week, minimum days in the first week of the year, determining whether a specific date falls on a weekend, calculating day differences, and more. During application development, developers can select appropriate functions based on business requirements.

@@ -1,5 +1,11 @@
 # Development Preparation
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The main workflow for camera application development includes preparation, device input, session management, preview, photo capture, and video recording.
 
 ## Requesting Permissions

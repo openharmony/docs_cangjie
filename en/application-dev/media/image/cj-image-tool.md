@@ -1,5 +1,11 @@
 # Editing Image EXIF Information
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The image tool currently primarily provides the capability to read and edit image EXIF information.
 
 EXIF (Exchangeable Image File Format) is a file format specifically designed for digital camera photos, which can record attribute information and shooting data of digital photos. Currently, only JPEG format images are supported.

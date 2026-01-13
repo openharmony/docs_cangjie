@@ -1,5 +1,11 @@
 # ohos.web.webview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides web control capabilities, enabling components to display web pages.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Using Crashpad to Collect Web Component Crash Information
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Web components support using Crashpad to record process crash information. Crashpad is a process crash information handling tool provided by the Chromium kernel. When a process crash occurs due to the use of web components (including the application's main process and web rendering process), Crashpad writes a minidump file in the application's main process sandbox directory. This file is in binary format with a `.dmp` extension, recording the cause of the process crash, thread information, register information, etc. Applications can use this file to analyze web component-related process crash issues.
 
 Usage steps:

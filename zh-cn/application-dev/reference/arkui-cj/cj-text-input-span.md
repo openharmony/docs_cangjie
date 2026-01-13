@@ -1,5 +1,11 @@
 # Span
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 作为[Text](cj-text-input-text.md)组件的子组件，用于显示行内文本的组件。
 
 ## 导入模块

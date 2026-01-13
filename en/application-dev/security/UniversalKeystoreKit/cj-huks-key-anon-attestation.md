@@ -1,5 +1,11 @@
 # Anonymous Key Attestation (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Ensure network connectivity is available when using this feature.
 
 ## Development Procedure

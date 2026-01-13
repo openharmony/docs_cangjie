@@ -1,5 +1,11 @@
 # Rating
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component that provides the ability to select a rating within a given range.
 
 ## Import Module

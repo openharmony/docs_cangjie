@@ -1,5 +1,11 @@
 # Common Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## 201 Permission Verification Failed
 
 **Error Message**  

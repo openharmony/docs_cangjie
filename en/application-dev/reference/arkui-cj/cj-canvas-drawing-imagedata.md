@@ -1,5 +1,11 @@
 # ImageData
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ImageData object can store pixel data rendered by a canvas.
 
 ## Import Module

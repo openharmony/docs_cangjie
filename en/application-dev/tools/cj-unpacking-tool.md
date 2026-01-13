@@ -1,5 +1,11 @@
 # Unpacking Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The unpacking tool is a debugging utility provided by OpenHarmony that supports decompressing HAP, HSP, and App files into folders via command-line interface, and offers Java APIs for parsing these files.
 
 The app_unpacking_tool.jar used for unpacking can be found in the locally downloaded OpenHarmony SDK library.

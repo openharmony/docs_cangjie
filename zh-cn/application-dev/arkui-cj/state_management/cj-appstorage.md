@@ -1,5 +1,11 @@
 # AppStorage：应用全局的UI状态存储
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，由UI框架在应用程序启动时创建，为应用程序UI状态属性提供中央存储。
 
 和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，[持久化数据PersistentStorage](./cj-persiststorage.md)和[环境变量Environment](./cj-environment.md)都是通过AppStorage中转，才可以和UI交互。

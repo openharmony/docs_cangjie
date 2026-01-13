@@ -1,5 +1,11 @@
 # ohos.bluetooth.base_profile (Bluetooth BaseProfile Module)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The baseProfile module provides basic Profile types and related methods.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Basic Usage of UIAbility Component
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The basic usage of the [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability) component includes: specifying the startup page for UIAbility and obtaining the context information of UIAbility [UIAbilityContext](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext).
 
 ## Specifying the Startup Page for UIAbility

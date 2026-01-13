@@ -1,5 +1,11 @@
 # Video
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for playing video files and controlling their playback state.
 
 > **Note:**

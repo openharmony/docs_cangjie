@@ -1,5 +1,11 @@
 # Obtaining Key Attributes (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HUKS provides interfaces for applications to retrieve relevant attributes of specified keys. Before obtaining the attributes of a specified key, ensure that the key has been generated or imported and persistently stored in HUKS.
 
 > **Note:**

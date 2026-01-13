@@ -1,5 +1,11 @@
 # ohos.common_event_publish_data
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module describes the content and attributes of common events.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Component Identifier
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The id serves as the unique identifier for a component and must be unique across the entire application. This module provides interfaces related to component identifiers, enabling retrieval of attributes for a specified component id, as well as the functionality to send events to a designated component id.
 
 > **Note:**

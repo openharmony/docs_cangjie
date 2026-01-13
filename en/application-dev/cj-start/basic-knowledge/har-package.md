@@ -1,5 +1,11 @@
 # HAR  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HAR (Harmony Archive) is a static shared package that can contain code, C++ libraries, resources, and configuration files. Through HAR, Cangjie components and resources can be shared across multiple modules or projects.  
 
 ## Usage Scenarios  

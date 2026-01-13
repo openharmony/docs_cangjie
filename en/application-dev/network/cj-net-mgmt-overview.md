@@ -1,5 +1,11 @@
 # Introduction to Network Kit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Network Kit (Network Service) primarily provides the following functionalities:
 
 - [HTTP Data Request](./cj-http-request.md): Initiates a data request via HTTP.

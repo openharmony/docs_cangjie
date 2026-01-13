@@ -1,5 +1,11 @@
 # Signature/Verification (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This guide provides four examples for developers to reference when implementing signature and verification development:
 
 - [Signature/Verification (Cangjie)](#signatureverification-cangjie)

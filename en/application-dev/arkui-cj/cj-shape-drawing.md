@@ -1,5 +1,11 @@
 # Drawing Geometric Shapes (Shape)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The drawing component is used to render shapes on a page. The Shape component serves as the parent component for all drawing components, encapsulating common properties supported by all drawing components. For specific usage, please refer to [Shape](../reference/arkui-cj/cj-graphic-drawing-shape.md).
 
 ## Creating Drawing Components

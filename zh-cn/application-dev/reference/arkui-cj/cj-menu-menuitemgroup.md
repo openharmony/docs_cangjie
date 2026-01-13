@@ -1,5 +1,11 @@
 # MenuItemGroup
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 该组件用来展示菜单MenuItem的分组。
 
 ## 导入模块

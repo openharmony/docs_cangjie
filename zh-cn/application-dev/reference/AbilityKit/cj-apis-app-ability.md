@@ -1,5 +1,11 @@
 # ohos.app.ability
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ability模块提供了包含BaseContext类的定义。
 
 ## 导入模块

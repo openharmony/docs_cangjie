@@ -1,5 +1,11 @@
 # Introduction to HMAC and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction to HMAC  
 
 MAC (Message Authentication Code) provides a method for verifying the integrity of transmitted or stored information over unreliable media. HMAC (Hash-based Message Authentication Code) is a keyed-hash message authentication code that uses cryptographic hash functions and a secret key for message authentication. HMAC can be combined with any cryptographic hash function (e.g., MD5, SHA-1, etc.). HUKS supports HMAC in conjunction with mainstream digest algorithms.  

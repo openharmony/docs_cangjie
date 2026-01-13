@@ -1,5 +1,11 @@
 # Menu Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Bind a pop-up menu to a component. The pop-up menu displays menu items in a vertical list and can be triggered via long press, click, or right-click.
 
 > **Note:**

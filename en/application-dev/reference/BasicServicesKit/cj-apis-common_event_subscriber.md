@@ -1,5 +1,11 @@
 # ohos.common_event_subscriber
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module represents the subscriber of common events.
 
 ## Import Module

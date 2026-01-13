@@ -1,5 +1,11 @@
 # Analyzing AppFreeze (Application Not Responding)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Users may encounter unresponsive clicks or application freezes during usage. If such conditions persist beyond a certain time limit, they are defined as Application Not Responding (appfreeze). The system provides mechanisms to detect appfreeze incidents and generates appfreeze logs for application development analysis.
 
 > **Note:**

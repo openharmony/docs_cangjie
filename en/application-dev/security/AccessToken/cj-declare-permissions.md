@@ -1,5 +1,11 @@
 # Declaring Permissions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When an application requests permissions, it must declare each required permission in the project configuration file; otherwise, the application will not be granted authorization.
 
 ## Declaring Permissions in the Configuration File

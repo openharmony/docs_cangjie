@@ -1,5 +1,11 @@
 # Time and Timezone Service Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## -1 Time and Timezone Service Exception
 
 **Error Message**

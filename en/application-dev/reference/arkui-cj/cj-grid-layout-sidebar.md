@@ -1,5 +1,11 @@
 # SideBarContainer
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides a sidebar container that can be shown or hidden. The sidebar and content area are defined through child components, where the first child component represents the sidebar and the second represents the content area.
 
 ## Import Module

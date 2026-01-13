@@ -1,5 +1,11 @@
 # ohos.system_date_time (System Time and Timezone)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module primarily consists of system time and timezone functionalities. Developers can set and retrieve the system time and timezone.
 
 ## Importing the Module

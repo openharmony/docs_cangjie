@@ -1,5 +1,11 @@
 # 订阅appfreeze事件
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 接口说明
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参见[应用事件打点API文档](../reference/PerformanceAnalysisKit/cj-apis-hiappevent.md)。

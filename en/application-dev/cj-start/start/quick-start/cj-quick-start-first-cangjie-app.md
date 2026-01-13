@@ -1,5 +1,11 @@
 # Building Your First Cangjie Application
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 > **Note:**
 >
 > To ensure optimal performance, this guide uses the **latest DevEco Studio version** as an example. Click [here](https://developer.huawei.com/consumer/en/download/) to download.

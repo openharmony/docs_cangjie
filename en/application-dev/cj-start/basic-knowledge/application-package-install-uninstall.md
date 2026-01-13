@@ -1,5 +1,11 @@
 # Application Installation, Uninstallation, and Update Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This chapter introduces the installation/uninstallation process of application packages and two update methods.
 
 ## Application Package Installation and Uninstallation

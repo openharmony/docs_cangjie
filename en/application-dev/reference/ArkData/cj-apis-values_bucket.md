@@ -1,5 +1,11 @@
 # ohos.data.values_bucket
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A ValuesBucket is a collection of data that developers insert into a database, transmitted in the form of key-value pairs.
 
 ## Import Module

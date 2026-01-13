@@ -1,5 +1,11 @@
 # Syscap (System Capability)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 System Capability (SystemCapability, abbreviated as SysCap) refers to each relatively independent feature in an operating system. Different devices correspond to different sets of system capabilities, where each system capability corresponds to one or more APIs. Developers can determine whether an interface is available based on system capabilities.
 
 ## func canIUse(String)

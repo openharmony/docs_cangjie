@@ -1,5 +1,11 @@
 # Text Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Text typically encompasses user input information, displayed text content, and small icons. These elements collectively construct the interactive interface between users and the system, enhancing operational convenience and the intuitiveness of information presentation.
 
 Developers can select appropriate text components for page development based on actual application scenarios.

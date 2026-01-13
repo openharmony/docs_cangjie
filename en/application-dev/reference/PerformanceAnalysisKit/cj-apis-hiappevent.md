@@ -1,5 +1,11 @@
 # ohos.hiviewdfx.hi_app_event (Application Event Logging)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides application event logging capabilities, including event persistence, event subscription, event cleanup, and logging configuration.
 
 ## Importing the Module

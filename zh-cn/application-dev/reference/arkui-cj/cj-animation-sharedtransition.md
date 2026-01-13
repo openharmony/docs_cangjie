@@ -1,5 +1,11 @@
 # 共享元素转场（sharedTransition）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 可以通过设置组件的 sharedTransition 属性将该元素标记为共享元素并设置对应的共享元素转场动效。sharedTransition仅发生在页面路由（[router](cj-apis-uicontext-router.md#class-router)）跳转时。
 
 ## 导入模块

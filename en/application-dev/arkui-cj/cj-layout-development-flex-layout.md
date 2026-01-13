@@ -1,5 +1,11 @@
 # Flex Layout
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 Flex layout ([Flex](../reference/arkui-cj/cj-row-column-stack-flex.md)) provides a more efficient way to arrange, align, and distribute space among items in a container. It is commonly used for evenly distributing navigation bars in page headers, building page frameworks, and arranging multi-line data.

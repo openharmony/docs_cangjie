@@ -1,5 +1,11 @@
 # ohos.arkui.shape
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides fundamental capabilities for drawing shapes.
 
 ## Import Module

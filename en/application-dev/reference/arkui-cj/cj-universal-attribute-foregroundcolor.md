@@ -1,5 +1,11 @@
 # Foreground Color Setting
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Sets the foreground color of a component.
 
 ## Import Module

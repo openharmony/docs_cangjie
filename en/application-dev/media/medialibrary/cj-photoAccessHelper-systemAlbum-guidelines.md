@@ -1,5 +1,11 @@
 # System Album Resource Usage Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 photoAccessHelper only provides developers with operations related to favorites, video albums, screenshots, and screen recordings albums.
 
 > **Note:**

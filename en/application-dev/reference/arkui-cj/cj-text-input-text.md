@@ -1,5 +1,11 @@
 # Text
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for displaying text content.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # 申请位置权限开发指导
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 场景概述
 
 应用在使用[Location Kit](../reference/LocationKit/cj-apis-geo_location_manager.md)系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限。

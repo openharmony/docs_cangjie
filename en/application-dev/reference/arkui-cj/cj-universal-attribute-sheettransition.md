@@ -1,5 +1,11 @@
 # Half-Modal Transition
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Use the `bindSheet` property to bind a half-modal page to a component. When the component is inserted, the size of the half-modal can be determined by setting a custom or default built-in height.
 
 > **Note:**

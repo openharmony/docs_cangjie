@@ -1,5 +1,11 @@
 # ohos.data.relational_store
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A Relational Database (RDB) is a database that manages data based on the relational model. The relational database provides a complete mechanism for managing local databases based on the SQLite component, offering a series of interfaces for operations such as insert, delete, update, and query. It can also directly execute user-input SQL statements to meet complex scenario requirements. Worker threads are not supported.
 
 Basic data types supported on the Cangjie side: Int64, Float64, String, binary data, Bool. To ensure successful data insertion and reading, it is recommended that a single piece of data does not exceed 2MB. If the size exceeds this limit, insertion may succeed but reading will fail.

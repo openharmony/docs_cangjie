@@ -1,5 +1,11 @@
 # Key Deletion (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 To ensure data security, keys should be deleted when they are no longer needed.
 
 ## Development Procedure

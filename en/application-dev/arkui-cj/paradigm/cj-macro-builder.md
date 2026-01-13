@@ -1,5 +1,11 @@
 # @Builder Macro: Custom Build Functions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Cangjie UI provides a lightweight UI element reuse mechanism called @Builder, which has a fixed internal UI structure and only interacts with the caller through data transfer. Developers can abstract reusable UI elements into a method and call it within the build method.
 
 For simplicity, functions decorated with @Builder are also referred to as "custom build functions."

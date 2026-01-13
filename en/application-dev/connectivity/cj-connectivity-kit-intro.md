@@ -1,5 +1,11 @@
 # Introduction to Connectivity Kit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview of Connectivity Kit Development
 
 Mobile terminal devices have become deeply integrated into people's daily lives. Common behaviors for end users now include connecting Bluetooth headphones for music, using WiFi for internet access, and employing NFC for touch-to-open door functions.

@@ -1,4 +1,11 @@
 # Universal Events
+
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 <!--Del-->
 - [Click Event](cj-universal-event-click.md)
 - [Touch Event](cj-universal-event-touch.md)

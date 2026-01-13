@@ -1,5 +1,11 @@
 # Key Events  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Key events refer to the events triggered when components interact with input devices such as keyboards or remote controls. These events apply to all focusable components, such as Button. For components like Text and Image that are not focusable by default, key events are currently unsupported. However, support may be added in the future by setting the `focusable` property to `true`.
 
 ## Import Module  

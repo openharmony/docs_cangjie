@@ -1,5 +1,11 @@
 # Subscribing to appfreeze Events (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Interface Description
 
 For detailed usage instructions of the API interface (parameter usage restrictions, specific value ranges, etc.), please refer to the [Application Event Tracking API Documentation](../reference/PerformanceAnalysisKit/cj-apis-hiappevent.md).

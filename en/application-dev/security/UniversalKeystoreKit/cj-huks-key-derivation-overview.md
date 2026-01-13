@@ -1,5 +1,11 @@
 # Introduction to Key Derivation and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction to Key Derivation  
 
 In cryptography, a Key Derivation Function (KDF) uses a pseudorandom function to derive one or more secret keys from a secret value such as a master password or passphrase.  

@@ -1,5 +1,11 @@
 # 基础自定义弹出框（CustomDialog）（不推荐）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹出框。具体用法请参见[自定义弹出框](../reference/arkui-cj/cj-dialog-customdialog.md)。
 
 > **说明：**

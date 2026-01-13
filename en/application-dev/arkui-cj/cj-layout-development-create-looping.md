@@ -1,5 +1,11 @@
 # Creating a Swiper
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The [Swiper](../reference/arkui-cj/cj-scroll-swipe-swiper.md) component provides slide-based carousel display capabilities. As a container component, Swiper can display its child components in a carousel format when multiple children are set. This feature is commonly used for showcasing recommended content on application homepages.
 
 For complex page scenarios, Swiper's preloading mechanism can be utilized to leverage idle time on the main thread for pre-building, layout, and rendering of components, thereby optimizing the sliding experience.

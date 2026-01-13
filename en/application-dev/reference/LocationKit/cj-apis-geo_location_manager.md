@@ -1,5 +1,11 @@
 # ohos.geo_location_manager (Location Services)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Location services provide basic functionalities including GNSS positioning, network positioning (cellular base station, WLAN, Bluetooth positioning technologies).
 
 > **Note:**

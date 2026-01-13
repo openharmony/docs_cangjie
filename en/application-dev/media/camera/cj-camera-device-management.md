@@ -1,5 +1,11 @@
 # Camera Management (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before developing a camera application, you need to create an independent camera device by calling camera APIs.
 
 ## Development Procedure

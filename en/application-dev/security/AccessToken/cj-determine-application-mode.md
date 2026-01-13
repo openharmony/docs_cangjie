@@ -1,5 +1,11 @@
 # Methods for Requesting Permissions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When an application accesses data or performs operations, it needs to evaluate whether the action requires the application to possess relevant permissions. If the target permission is confirmed to be necessary, the application must declare the target permission in its installation package.
 
 Each permission has different levels and authorization methods, and the approach to requesting permissions varies accordingly. Before requesting permissions, developers need to perform the following steps:

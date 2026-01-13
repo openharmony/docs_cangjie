@@ -1,5 +1,11 @@
 # Sensor Development Guide (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 When a device needs to acquire sensor data, the `sensor` module can be utilized. For example: 

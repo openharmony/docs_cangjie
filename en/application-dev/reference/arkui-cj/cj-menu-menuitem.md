@@ -1,5 +1,11 @@
 # MenuItem
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used to display specific menu items within a Menu component.
 
 ## Import Module

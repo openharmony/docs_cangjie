@@ -1,5 +1,11 @@
 # Random Symmetric Key Generation  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking AES and SM4 as examples, randomly generate a symmetric key (SymKey) and obtain its binary data.  
 
 The symmetric key can be used for subsequent encryption and decryption operations, while the binary data can be stored or transmitted.  

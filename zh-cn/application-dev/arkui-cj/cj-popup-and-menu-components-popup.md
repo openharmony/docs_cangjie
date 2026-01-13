@@ -1,5 +1,11 @@
 # 气泡提示（Popup）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、交互逻辑和显示状态。主要用于屏幕录制、信息弹出提醒等显示状态。
 
 气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/arkui-cj/cj-common-types.md#class-popupoptions)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/arkui-cj/cj-common-types.md#class-custompopupoptions)。其中，PopupOptions通过配置primaryButton和secondaryButton来设置带按钮的气泡，CustomPopupOptions通过配置builder来设置自定义的气泡。

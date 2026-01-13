@@ -1,5 +1,11 @@
 # Position Settings
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Configure the position, anchor point, and offset of components.
 
 ## Import Module

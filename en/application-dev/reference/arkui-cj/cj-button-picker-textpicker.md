@@ -1,5 +1,11 @@
 # TextPicker
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for sliding to select text content.
 
 ## Import Module

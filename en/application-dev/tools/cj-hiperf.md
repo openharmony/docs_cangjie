@@ -1,5 +1,11 @@
 # hiperf
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 hiperf provides command-line tools for developers to debug and capture performance data of specific programs or systems, similar to the kernel's perf tool. This tool supports running on operating systems such as Windows/Linux/Mac.
 
 ## Environment Requirements

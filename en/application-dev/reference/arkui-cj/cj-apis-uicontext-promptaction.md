@@ -1,5 +1,11 @@
 # PromptAction
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Create and display instant feedback, dialogs, action menus, and custom popups.
 
 > **Note:**

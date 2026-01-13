@@ -1,5 +1,11 @@
 # Component Transition
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Component transition is primarily configured through the `transition` property to display animation effects during component insertion and deletion. It is mainly used to enhance user experience when child components are inserted or deleted within container components.
 
 > **Note:**

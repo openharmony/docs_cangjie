@@ -1,5 +1,11 @@
 # Key Export (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Used when a business needs to obtain the public key of a persistently stored asymmetric key. Currently supports exporting public keys for ECC/RSA/ED25519/X25519/SM2.
 
 > **Note:**

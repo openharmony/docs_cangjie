@@ -1,5 +1,11 @@
 # Message Digest Calculation MD5
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 For the corresponding algorithm specifications, please refer to [Message Digest Calculation Algorithm Specifications](./cj-crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 
 ## Development Steps

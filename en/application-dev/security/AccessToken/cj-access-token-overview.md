@@ -1,5 +1,11 @@
 # Access Control Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 By default, applications can only access limited system resources. However, in certain scenarios, applications may require extended functionalities that necessitate access to additional system data (including user personal data) and capabilities. The system must also provide explicit interfaces to share its data or functionalities externally.
 
 The system employs access control mechanisms to prevent improper or malicious use of data or functionalities. Current access control mechanisms involve multiple aspects, including application sandboxing, application permissions, system controls, and other solutions.

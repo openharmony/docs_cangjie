@@ -1,5 +1,11 @@
 # Introduction to IPC Kit  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Basic Concepts  
 
 **IPC**: Inter-Process Communication within a device  

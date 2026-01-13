@@ -1,5 +1,11 @@
 # AVCodec Supported Formats
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Media Codecs
 
 ### Video Decoding

@@ -1,5 +1,11 @@
 # Application Package Terminology
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## E
 
 ### ExtensionAbility

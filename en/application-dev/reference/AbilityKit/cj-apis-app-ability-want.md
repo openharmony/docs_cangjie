@@ -1,5 +1,11 @@
 # ohos.app.ability.want
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Want provides the capability for Ability startup and communication, containing information such as device ID, bundle name, Ability name, module name, flags, URI, action, entities, Want type, and parameters.
 
 ## Import Module

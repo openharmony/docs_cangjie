@@ -1,5 +1,11 @@
 # Path2D
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A path object that supports path description through object interfaces and rendering via Canvas's stroke or fill interfaces.
 
 ## Import Module

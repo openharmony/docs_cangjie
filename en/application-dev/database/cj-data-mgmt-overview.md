@@ -1,5 +1,11 @@
 # Introduction to ArkData
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Features
 
 ArkData (Ark Data Management) provides developers with capabilities for data storage, data management, and data synchronization. For example, contact application data can be saved to a database, offering secure, reliable, and shared access management mechanisms. It also supports synchronizing contact information with smartwatches.

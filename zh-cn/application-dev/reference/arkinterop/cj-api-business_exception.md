@@ -1,5 +1,11 @@
 # ohos.business_exception（通用异常信息）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 本模块定义了接口调用过程中出现的常见异常信息。
 
 ## class BusinessException

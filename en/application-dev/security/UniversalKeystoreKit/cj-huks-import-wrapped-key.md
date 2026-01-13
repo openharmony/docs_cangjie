@@ -1,5 +1,11 @@
 # Encrypted Key Import (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking the encrypted import of an ECDH key pair as an example, operations such as [key generation](./cj-huks-key-generation-overview.md) and [negotiation](./cj-huks-key-agreement-overview.md) involving business-side encryption keys are not reflected in this example.
 
 For specific scenario descriptions and supported algorithm specifications, please refer to [Supported Algorithms for Key Import](./cj-huks-key-import-overview.md#supported-algorithms).

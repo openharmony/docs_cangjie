@@ -1,5 +1,11 @@
 # 查找设备
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 简介
 
 本指南主要提供了BLE扫描和BLE广播相关操作的开发指导。可以实现发现周边BLE设备和其他设备发现本机设备的场景。
@@ -340,7 +346,8 @@
     ```
 
 8. 错误码请参见[蓝牙服务子系统错误码](../../reference/ConnectivityKit/cj-errorcode-bluetooth_manager.md)。
-
+<!--Del-->
 ## 示例代码
 
-[开启、关闭广播](https://gitcode.com/openharmony-sig/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/Broadcast)
+[开启、关闭广播](https://gitcode.com/openharmony/applications_app_samples_cangjie/tree/master/code/BasicFeature/Connectivity/Broadcast)
+<!--DelEnd-->

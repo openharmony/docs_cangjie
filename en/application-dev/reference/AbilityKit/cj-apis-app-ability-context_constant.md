@@ -1,5 +1,11 @@
 # ohos.app.ability.context_constant
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ContextConstant provides enumerations related to Context, including file partition information such as AreaMode.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # DataPanel
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A data panel component used to display multiple data proportions using proportion charts.
 
 ## Import Module

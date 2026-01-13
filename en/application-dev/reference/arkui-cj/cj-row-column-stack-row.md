@@ -1,5 +1,11 @@
 # Row
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A container that arranges its children horizontally.
 
 ## Import Module

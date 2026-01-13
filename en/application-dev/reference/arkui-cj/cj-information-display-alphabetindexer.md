@@ -1,5 +1,11 @@
 # AlphabetIndexer
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component that can interact with container components to quickly locate the display area of a container based on logical structure.
 
 ## Import Module

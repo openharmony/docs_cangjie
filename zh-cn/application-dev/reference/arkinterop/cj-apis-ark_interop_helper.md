@@ -1,5 +1,11 @@
 # ohos.ark_interop_helper（ArkTS互操作公共辅助功能函数）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 提供一些公共的辅助功能函数。
 
 ## 导入模块

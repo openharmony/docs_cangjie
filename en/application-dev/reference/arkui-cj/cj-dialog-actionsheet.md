@@ -1,5 +1,11 @@
 # Action Sheet Dialog (ActionSheet)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A list selection dialog.
 
 ## Import Module

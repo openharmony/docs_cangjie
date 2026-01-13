@@ -1,5 +1,11 @@
 # ohos.app.ability.ability_delegator_registry
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The AbilityDelegatorRegistry module provides the capability to store registered [AbilityDelegator](#class-abilitydelegator) and [AbilityDelegatorArgs](#class-abilitydelegatorargs) objects in a global registry, including obtaining the application's [AbilityDelegator](#class-abilitydelegator) object and unit test parameter objects. The interfaces in this module can only be used within test frameworks.
 
 ## Import Module

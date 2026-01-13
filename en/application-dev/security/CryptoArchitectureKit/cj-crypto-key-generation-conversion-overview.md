@@ -1,5 +1,11 @@
 # Key Generation Introduction
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Key generation operations are commonly required in the following scenarios:
 
 1. Randomly generating keys. The generated key object can be used for subsequent cryptographic operations such as encryption and decryption.

@@ -1,5 +1,11 @@
 # User File Overview  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 User Files: Files owned by users logged into the terminal device, including private images, videos, audio, documents, etc.  
 
 1. User files are stored in the user directory and belong to the user logged into the device.  

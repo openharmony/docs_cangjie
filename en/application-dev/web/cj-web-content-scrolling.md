@@ -1,5 +1,11 @@
 # Web Page Content Scrolling
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Webview.WebviewController in ArkWeb provides the `scrollTo` and `scrollBy` interfaces.
 
 When the displayed content size in Web is significantly larger than the component size, users can scroll the displayed content in the Web page using `scrollTo` and `scrollBy` to reveal hidden portions, with the capability to generate animated scrolling effects. Currently, the animation effect does not support gesture interruption, but it can be forcibly interrupted by executing another animation with a duration of approximately 0.

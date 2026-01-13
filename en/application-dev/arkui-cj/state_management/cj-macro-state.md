@@ -1,5 +1,11 @@
 # @State Macro: Component Internal State
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A variable decorated with \@State, also known as a state variable, can trigger UI component refreshes once it possesses the state attribute. When the state changes, the UI will undergo corresponding rendering updates.
 
 Among state variable-related macros, \@State is the most fundamental macro that endows variables with state attributes, serving as the data source for most state variables.

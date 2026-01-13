@@ -1,5 +1,11 @@
 # Key Agreement Introduction and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction to Key Agreement  
 
 To prevent malicious third parties from obtaining confidential information, the key itself cannot be directly transmitted between devices. Generally, a key agreement method is adopted to securely share the key between two (or multiple) parties. During key agreement, only the public key portion of the key is transmitted, while the private key remains stored within the device to ensure data security and confidentiality.  

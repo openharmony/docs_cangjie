@@ -1,5 +1,11 @@
 # Generic Attribute Profile (GATT) Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction
 
 The Generic Attribute Profile (GATT) is an acronym for Generic Attribute, which is a protocol used for data transmission between Bluetooth Low Energy (BLE) devices. It defines a universal framework of attributes and services. Through the GATT protocol, Bluetooth devices can provide services to other devices or obtain services from them.

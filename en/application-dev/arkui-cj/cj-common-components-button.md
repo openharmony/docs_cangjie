@@ -1,5 +1,11 @@
 # Button
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A Button is a button component typically used to respond to user click actions. It comes in various types including capsule buttons, circular buttons, and standard buttons. When used as a container, a Button can incorporate child components to create buttons containing elements such as text and images. For specific usage, please refer to [Button](../reference/arkui-cj/cj-button-picker-button.md).
 
 ## Creating a Button

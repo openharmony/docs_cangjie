@@ -1,5 +1,11 @@
 # Grid Layout (GridRow/GridCol)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 Grid layout is a universal auxiliary positioning tool that provides valuable reference for mobile device interface design. Its main advantages include:

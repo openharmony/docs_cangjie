@@ -1,5 +1,11 @@
 # aa Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Ability Assistant (abbreviated as aa) is a tool for launching applications and test cases, providing developers with basic application debugging and testing capabilities, such as starting application components, forcibly terminating processes, printing component-related information, etc.
 
 ## Environment Requirements

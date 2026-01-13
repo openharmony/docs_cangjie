@@ -1,5 +1,11 @@
 # Tabs
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When a page contains abundant information, tabs are used to help users focus on the currently displayed content by categorizing page content and improving space utilization. The [Tabs](../reference/arkui-cj/cj-navigation-switching-tabs.md) component enables quick switching between views within a single page, enhancing information retrieval efficiency while streamlining the amount of information users access at once.
 
 ## Basic Layout

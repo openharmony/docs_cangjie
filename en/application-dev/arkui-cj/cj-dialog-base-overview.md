@@ -1,5 +1,11 @@
 # Popup Overview  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A popup is a modal window typically used to temporarily display information requiring user attention or pending operations while maintaining the current context. Users must complete relevant interactive tasks within the modal popup before exiting the modal mode. Popups can be independent of any component and their content is usually composed of various components such as text, lists, input fields, images, etc., to achieve layout. ArkUI currently provides two types of popup components: **fixed-style** and **custom**.  
 
 * **Custom Popup:** Developers need to pass custom components to fill the popup based on usage scenarios to achieve customized popup content. This mainly includes the basic custom popup (CustomDialog) and the UI component-independent custom popup (openCustomDialog).  

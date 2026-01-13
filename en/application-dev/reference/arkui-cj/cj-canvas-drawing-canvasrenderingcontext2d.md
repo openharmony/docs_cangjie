@@ -1,5 +1,11 @@
 # CanvasRenderingContext2D
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Use RenderingContext to draw on Canvas components, with drawable objects including rectangles, text, images, etc.
 
 > **NOTE**

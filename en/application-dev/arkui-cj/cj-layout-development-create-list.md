@@ -1,5 +1,11 @@
 # Creating Lists
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 A list is a complex container that automatically provides scrolling functionality when the number of list items exceeds the screen size. It is suitable for displaying homogeneous data types or datasets, such as images and text. Presenting data collections in lists is a common requirement in many applications (e.g., contact lists, music playlists, shopping lists, etc.).

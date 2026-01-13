@@ -1,5 +1,11 @@
 # Component Area Change Event
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The component area change event refers to an event triggered when the displayed size, position, or other attributes of a component change.
 
 > **Note:**

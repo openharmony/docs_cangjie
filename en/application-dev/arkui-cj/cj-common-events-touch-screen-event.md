@@ -1,5 +1,11 @@
 # Touch Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Touch events refer to callback events triggered when a finger/stylus presses, slides, or lifts on a component. These include [Click Events](#click-events) and [Touch Events](#touch-events). The principle of touch events is illustrated below:
 
 **Figure 1** Touch Event Principle

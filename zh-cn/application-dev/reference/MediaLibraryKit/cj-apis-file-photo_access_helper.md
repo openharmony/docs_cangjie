@@ -1,5 +1,11 @@
 # ohos.file.photo_access_helper（相册管理模块）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 photo_access_helper模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
 ## 导入模块

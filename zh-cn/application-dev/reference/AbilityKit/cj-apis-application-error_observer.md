@@ -1,5 +1,11 @@
 # ohos.application.error_observer
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 error_observer模块定义异常监听，可以作为[ErrorManager.on](./cj-apis-app-ability-error_manager.md#static-func-onerrormanagerevent-errorobserver)的入参监听当前应用发生的异常。
 
 ## 导入模块

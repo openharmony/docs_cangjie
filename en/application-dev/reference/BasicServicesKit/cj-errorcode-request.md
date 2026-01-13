@@ -1,5 +1,11 @@
 # Upload/Download Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 > **Note:**
 >
 > This document only covers module-specific error codes. For universal error codes, please refer to the [Universal Error Code Documentation](../cj-errorcode-universal.md).

@@ -1,5 +1,11 @@
 # Shape
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The parent component for drawing components, which describes the common properties supported by all drawing components.
 
 1. Drawing components use Shape as their parent component to achieve SVG-like effects.

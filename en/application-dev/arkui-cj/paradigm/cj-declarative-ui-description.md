@@ -1,5 +1,11 @@
 # Declarative UI Description
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Cangjie programming language uses a declarative approach to compose and extend components for describing application UIs, while also providing basic property, event, and child component configuration methods to help developers implement application interaction logic.
 
 ## Building Components

@@ -1,5 +1,11 @@
 # ohos.hilog (HiLog Printing)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The hilog logging system enables applications/services to output log content with specified levels, tags, and format strings, helping developers understand the operational status of applications/services and debug programs more effectively.
 
 ## Import Module

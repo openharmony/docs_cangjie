@@ -1,5 +1,11 @@
 # Basic Type Definitions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This page documents the public type definitions used by the UI framework.
 
 ## Import Module

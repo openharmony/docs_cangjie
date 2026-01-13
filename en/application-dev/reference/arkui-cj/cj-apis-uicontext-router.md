@@ -1,5 +1,11 @@
 # Router
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides functionality to access different pages through different URLs, including navigating to a specified page within the application, replacing the current page with another page within the same application, returning to the previous page, or navigating to a specified page.
 
 > **Note:**
