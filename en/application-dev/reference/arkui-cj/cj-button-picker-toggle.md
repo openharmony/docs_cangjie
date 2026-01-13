@@ -1,5 +1,11 @@
 # Toggle
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The component provides checkbox style, state button style, and switch style.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # ohos.app.ability
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Ability module provides definitions including the BaseContext class.
 
 ## Import Module

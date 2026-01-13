@@ -1,5 +1,11 @@
 # Popup Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Bind a popup dialog to a component and configure its content, interaction logic, and display state.
 
 > **Note:**

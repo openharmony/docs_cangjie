@@ -1,5 +1,11 @@
 # Performing Image Transformations with PixelMap  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Image processing involves performing operations on PixelMap, such as retrieving image information, cropping, scaling, translating, rotating, flipping, setting opacity, and reading/writing pixel data. Image processing primarily includes image transformations and [bitmap operations](./cj-image-pixelmap-operation.md). This document focuses on image transformations.  
 
 ## Development Procedure  

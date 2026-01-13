@@ -1,5 +1,11 @@
 # Development Notes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The API reference is primarily intended for developers to consult various API descriptions related to application development. To facilitate developers' use of API documentation, common fields in the documentation are explained below.
 
 ## Version Notes

@@ -1,5 +1,11 @@
 # ohos.app.ability.ui_ability
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ui_ability模块提供Ability相关的枚举，包括应用启动原因LaunchReason、上次退出原因LastExitReason、迁移结果OnContinueResult等。
 
 ## 导入模块

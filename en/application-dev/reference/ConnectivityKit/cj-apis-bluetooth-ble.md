@@ -1,5 +1,11 @@
 # ohos.bluetooth.ble (Bluetooth BLE Module)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ble module provides methods for Bluetooth operation and management.
 
 ## Import Module

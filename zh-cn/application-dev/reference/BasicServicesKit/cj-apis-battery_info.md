@@ -1,5 +1,11 @@
 # ohos.battery_info（电量信息）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 battery_info模块主要提供电池状态和充放电状态的查询接口。
 
 ## 导入模块

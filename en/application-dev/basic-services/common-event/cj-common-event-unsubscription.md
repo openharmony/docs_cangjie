@@ -1,5 +1,11 @@
 # Unsubscribe from Dynamic Common Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 After completing business requirements, dynamic subscribers should proactively unsubscribe. Call the [unsubscribe()](../../reference/BasicServicesKit/cj-apis-common_event_manager.md#static-func-unsubscribecommoneventsubscriber) method to cancel event subscriptions.

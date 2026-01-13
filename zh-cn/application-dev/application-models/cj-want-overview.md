@@ -1,5 +1,11 @@
 # Want概述
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## Want的定义与用途
 
 [Want](../reference/AbilityKit/cj-apis-app-ability-want.md#class-want)是一种对象，用于在应用组件之间传递信息。

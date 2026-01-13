@@ -1,5 +1,11 @@
 # Alert Dialog (AlertDialog)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Displays an alert dialog component, allowing configuration of text content and response callbacks.
 
 ## Import Module

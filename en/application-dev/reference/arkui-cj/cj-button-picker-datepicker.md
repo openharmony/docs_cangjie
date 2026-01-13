@@ -1,5 +1,11 @@
 # DatePicker
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A date picker component used to create a sliding date selector within a specified date range.
 
 ## Import Module

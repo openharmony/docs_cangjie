@@ -1,5 +1,11 @@
 # ohos.resource
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module describes resource types.
 
 ## Import Module

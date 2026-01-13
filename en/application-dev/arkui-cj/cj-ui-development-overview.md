@@ -1,5 +1,11 @@
 # Overview of UI Development (Cangjie Declarative Development Paradigm)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The ArkUI development framework based on the Cangjie declarative development paradigm is a minimalist, high-performance, cross-device UI development framework that provides essential capabilities for building application UIs, including:
 
 - **Cangjie**

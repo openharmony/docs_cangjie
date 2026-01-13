@@ -1,5 +1,11 @@
 # Environment：设备环境查询
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 开发者如果需要应用程序运行的设备的环境参数，以此来作出不同的场景判断，比如多语言，深浅色模式等，需要用到Environment设备环境查询。
 
 Environment是ArkUI框架在应用程序启动时创建的单例对象。它为[AppStorage](./cj-appstorage.md)提供了一系列描述应用程序运行状态的属性。Environment的所有属性都是不可变的（即应用不可写入），所有的属性都是简单类型。

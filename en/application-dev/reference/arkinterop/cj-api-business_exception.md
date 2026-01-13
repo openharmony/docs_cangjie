@@ -1,5 +1,11 @@
 # ohos.business_exception (General Exception Information)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module defines common exception information that occurs during interface calls.
 
 ## class BusinessException

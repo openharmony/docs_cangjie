@@ -1,5 +1,11 @@
 # UIAbility Component Lifecycle
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 When users open, switch, or return to an application, the [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability) instances within the application transition between different states in their lifecycle. The UIAbility class provides a series of callbacks that notify when the current UIAbility instance undergoes state changes, including creation and destruction, or transitions between foreground and background states.

@@ -1,5 +1,11 @@
 # restool Tool  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction  
 
 restool is an application engineering resource compilation tool that creates resource indexes and parses resources by compiling resource files. Developers can access corresponding resources by calling the [Resource Management Interface](../reference/LocalizationKit/cj-apis-resource_manager.md). The restool tool is located in the `toolchains` subdirectory of the SDK installation directory.  

@@ -1,5 +1,11 @@
 # ohos.hi_trace_meter（性能打点）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 hi_trace_meter模块提供了跟踪进程轨迹，度量程序执行性能的打点能力。本模块打点的数据供hiTraceMeter工具分析使用。
 
 > **说明**

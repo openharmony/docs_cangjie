@@ -1,5 +1,11 @@
 # 使用SM4对称密钥（GCM模式）分段加解密
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 对应的算法规格请参见[对称密钥加解密算法规格：SM4](./cj-crypto-sym-encrypt-decrypt-spec.md#sm4)。
 
 ## 加密

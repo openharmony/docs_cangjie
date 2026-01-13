@@ -1,5 +1,11 @@
 # HMAC (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HMAC stands for Hash-based Message Authentication Code with keyed-hashing. For specific usage scenarios and supported algorithm specifications, please refer to [HMAC Introduction and Algorithm Specifications](./cj-huks-hmac-overview.md).
 
 ## Development Procedure

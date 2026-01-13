@@ -1,5 +1,11 @@
 # 仅MDM应用可用权限
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。
 
 > **注意：**

@@ -1,5 +1,11 @@
 # Overview of Interaction Events
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 General events are categorized by their trigger types, including touch events, keyboard/mouse events, focus events, and drag events.
 
 - [Touch Events](./cj-common-events-touch-screen-event.md): Single-finger or single-stylus operations on a touchscreen.

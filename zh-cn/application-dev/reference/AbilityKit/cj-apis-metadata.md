@@ -1,5 +1,11 @@
 # ohos.metadata
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 metadata模块描述元数据信息。
 
 > **说明：**

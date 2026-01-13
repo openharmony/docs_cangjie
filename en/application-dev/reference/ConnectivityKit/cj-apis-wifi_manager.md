@@ -1,5 +1,11 @@
 # ohos.wifi_manager (WLAN)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module primarily provides WLAN basic functions, P2P (peer-to-peer) capabilities, and WLAN notification services, enabling applications to interconnect with other devices via WLAN.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Click Event
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A click event refers to the event triggered when a component is clicked.
 
 ## Import Module

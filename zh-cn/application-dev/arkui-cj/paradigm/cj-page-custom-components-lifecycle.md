@@ -1,5 +1,11 @@
 # 页面和自定义组件生命周期
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 在开始之前，需要先明确自定义组件和页面的关系：
 
 - 自定义组件：[@Component](./cj-create-custom-components.md#component)修饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。

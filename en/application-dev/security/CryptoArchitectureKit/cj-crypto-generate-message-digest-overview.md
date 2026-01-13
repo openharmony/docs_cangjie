@@ -1,5 +1,11 @@
 # Introduction to Message Digest Calculation and Algorithm Specifications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A message digest algorithm is a type of algorithm that can generate a fixed-length digest from an input message of arbitrary length through specific computations. Message digest algorithms are also known as hash algorithms or one-way hash algorithms.
 
 When using the same digest algorithm, the generated digest values exhibit the following key characteristics:

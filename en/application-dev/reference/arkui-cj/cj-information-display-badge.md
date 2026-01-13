@@ -1,5 +1,11 @@
 # Badge
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 An information marker component that can be attached to a single component as a container for information alerts.
 
 ## Import Module

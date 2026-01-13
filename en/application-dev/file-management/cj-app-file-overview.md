@@ -1,5 +1,11 @@
 # Application File Overview  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Application Files: Files owned by the application, including installation files, resource files, cache files, etc.  
 
 - Data used and stored by applications on the device is saved in an application-specific directory in the form of files, key-value pairs, databases, etc. This dedicated directory is called the "Application File Directory," where all data is stored in various file formats. These files are referred to as application files.  

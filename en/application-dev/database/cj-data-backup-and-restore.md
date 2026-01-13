@@ -1,5 +1,11 @@
 # Database Backup and Recovery
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Introduction
 
 When an application is performing a critical operation that cannot be interrupted, such as writing transactions involving multiple related tables, each table write is performed individually, but the transactional relationships between tables must not be split.

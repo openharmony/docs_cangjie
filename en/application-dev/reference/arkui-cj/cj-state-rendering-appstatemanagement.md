@@ -1,5 +1,11 @@
 # Application-Level Variable State Management
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The state management module provides capabilities for application data storage, persistent data management, UIAbility data storage, and the environmental state required by applications.
 
 ## Importing the Module

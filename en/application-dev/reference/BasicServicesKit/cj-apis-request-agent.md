@@ -1,5 +1,11 @@
 # ohos.request
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The request component primarily provides applications with fundamental capabilities for uploading/downloading files and background transfer proxying.
 
 ## Import Module

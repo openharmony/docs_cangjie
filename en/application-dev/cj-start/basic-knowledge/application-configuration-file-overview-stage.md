@@ -1,5 +1,11 @@
 # Overview of Application Configuration Files (Stage Model)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Each application project's code directory must contain application configuration files, which provide basic information about the application to compilation tools, the operating system, and application markets.
 
 In application projects developed based on the Stage model, there exists an app.json5 configuration file and one or more module.json5 configuration files.

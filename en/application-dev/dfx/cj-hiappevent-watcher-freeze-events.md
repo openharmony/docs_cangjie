@@ -1,5 +1,11 @@
 # Introduction to appfreeze Events  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiAppEvent provides interfaces for subscribing to system appfreeze events.  
 
 [Subscribe to appfreeze Events (Cangjie)](./cj-hiappevent-watcher-freeze-events-cangjie.md)  

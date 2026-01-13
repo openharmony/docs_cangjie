@@ -1,5 +1,11 @@
 # toybox
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 toybox is a lightweight collection of Linux command-line utilities that combines commonly used Linux commands into a single executable.
 
 ## Prerequisites

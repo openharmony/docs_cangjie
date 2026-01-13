@@ -1,5 +1,11 @@
 # Font
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Registration information for custom fonts.
 
 > **Note:**

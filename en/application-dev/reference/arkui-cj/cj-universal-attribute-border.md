@@ -1,5 +1,11 @@
 # Border Settings
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Configure the border style of components.
 
 ## Import Module

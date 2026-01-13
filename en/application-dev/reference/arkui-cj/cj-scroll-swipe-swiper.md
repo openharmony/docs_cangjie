@@ -1,5 +1,11 @@
 # Swiper
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A sliding view container that provides the ability to display child components in a carousel.
 
 ## Import Module

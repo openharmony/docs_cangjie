@@ -1,5 +1,11 @@
 # LocalStorage: Page-Level UI State Storage
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 LocalStorage is a page-level UI state storage mechanism. The parameters received through the `@Entry` macro allow sharing the same LocalStorage instance within a page. LocalStorage supports state sharing among multiple pages within a UIAbility instance.
 
 This document focuses only on the usage scenarios of LocalStorage and related macros: `@LocalStorageProp` and `@LocalStorageLink`.

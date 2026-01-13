@@ -1,5 +1,11 @@
 # Component Animation  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ArkUI provides components with general attribute animation and transition animation capabilities, while also offering default animation effects for certain components. For example, the sliding animation of [List](../reference/arkui-cj/cj-scroll-swipe-list.md) and the click animation of [Button](../reference/arkui-cj/cj-button-picker-button.md#button) are built-in default animation effects. Based on these default animations, developers can further customize the animation effects of child components within container components using attribute animation and transition animation.  
 
 ## Using Default Component Animations  

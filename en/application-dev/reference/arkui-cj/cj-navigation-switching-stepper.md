@@ -1,5 +1,11 @@
 # Stepper
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A step navigator component. When a task requires multiple steps to complete, the step navigator can be used to display the current progress.
 
 ## Import Module

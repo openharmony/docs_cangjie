@@ -1,5 +1,11 @@
 # ohos.security.permission_request_result (PermissionRequestResult)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The permission request result object, returned when calling [requestPermissionsFromUser](cj-apis-ability_access_ctrl.md#func-requestpermissionsfromuseruiabilitycontext-arraypermissions-asynccallbackpermissionrequestresult) to request permissions, indicating the outcome of this permission request.
 
 ## Import Module

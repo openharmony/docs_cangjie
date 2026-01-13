@@ -1,5 +1,11 @@
 # Key Attestation Introduction and Algorithm Specifications  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Key Attestation Introduction  
 
 HUKS provides key legitimacy attestation capabilities, primarily used for attesting the public keys of asymmetric keys.  

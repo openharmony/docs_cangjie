@@ -1,5 +1,11 @@
 # Lock Screen Sensitive Data Management Error Codes
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## 29300001 Invalid Parameter
 
 **Error Message**

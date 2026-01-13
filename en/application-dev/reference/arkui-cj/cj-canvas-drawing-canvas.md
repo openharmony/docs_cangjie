@@ -1,5 +1,11 @@
 # Canvas
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides a canvas component for custom drawing of graphics.
 
 ## Import Module

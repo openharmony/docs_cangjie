@@ -1,5 +1,11 @@
 # Toast Feedback  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Toast is a temporary message prompt used to provide brief operational feedback or status information to users. It typically pops up briefly at the bottom or top of the screen and automatically disappears after a short duration. The primary purpose of Toast is to deliver concise, non-intrusive feedback without interrupting the user's current workflow.
 
 You can use the [getPromptAction](../reference/arkui-cj/cj-apis-uicontext-uicontext.md#func-getpromptaction) method in [UIContext](../reference/arkui-cj/cj-apis-uicontext-uicontext.md) to obtain the [PromptAction](../reference/arkui-cj/cj-apis-uicontext-promptaction.md) object associated with the current UI context, then call [showToast](../reference/arkui-cj/cj-apis-uicontext-promptaction.md#func-showtoastshowtoastoptions) on this object to create and display a text toast.

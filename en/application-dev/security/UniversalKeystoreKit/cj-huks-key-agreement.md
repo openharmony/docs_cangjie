@@ -1,5 +1,11 @@
 # Key Agreement (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Taking X25519 as the negotiated key type and keys used exclusively within HUKS as an example, complete key agreement. For specific scenarios and supported algorithm specifications, refer to [Supported Algorithms for Key Generation](./cj-huks-key-generation-overview.md#supported-algorithms).
 
 ## Development Steps

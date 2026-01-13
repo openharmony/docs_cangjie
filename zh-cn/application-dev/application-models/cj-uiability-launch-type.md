@@ -1,5 +1,11 @@
 # UIAbility组件启动模式
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)的启动模式是指UIAbility实例在启动时的不同呈现状态。针对不同的业务场景，系统提供了两种启动模式：
 
 - [singleton启动模式](#singleton启动模式)

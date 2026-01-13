@@ -1,5 +1,11 @@
 # ohos.common_event_subscribe_info
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Import Module
 
 ```cangjie

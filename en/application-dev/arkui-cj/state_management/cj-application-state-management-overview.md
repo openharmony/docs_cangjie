@@ -1,5 +1,11 @@
 # Overview of Application-Owned State Management
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The decorators introduced in the previous chapter can only share state variables within a page, i.e., on a single component tree. If developers need to achieve application-level state data sharing or share state across multiple pages, they must utilize the concept of application-level state management. Depending on different characteristics, the framework provides multiple capabilities for application state management:
 
 - [LocalStorage](./cj-localstorage.md): Page-level UI state storage, typically used for state sharing within a [UIAbility](../../application-models/cj-uiability-overview.md) or between pages.

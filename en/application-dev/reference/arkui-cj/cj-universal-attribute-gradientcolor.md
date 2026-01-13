@@ -1,5 +1,11 @@
 # Color Gradient
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Set the color gradient effect for components.
 
 > **Note:**

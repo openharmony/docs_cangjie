@@ -1,5 +1,11 @@
 # Performing Bitmap Operations Using PixelMap
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When it's necessary to process specific regions within a target image, bitmap operation functionality can be utilized. This feature is commonly used for operations such as image beautification.
 
 As illustrated below, pixel data from a specified rectangular area in an image is read, modified, and then written back to the corresponding area in the original image.

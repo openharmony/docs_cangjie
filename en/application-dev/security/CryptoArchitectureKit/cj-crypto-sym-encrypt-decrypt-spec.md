@@ -1,5 +1,11 @@
 # Symmetric Key Encryption/Decryption Algorithm Specifications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This section describes the algorithms currently supported by the system and their corresponding specifications.
 
 For each algorithm, the supported encryption modes will be introduced in the specific algorithm specifications.

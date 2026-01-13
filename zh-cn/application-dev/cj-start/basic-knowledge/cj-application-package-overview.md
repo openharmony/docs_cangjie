@@ -1,5 +1,11 @@
 # 应用程序包概述
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 在基于[Stage模型](cj-application-configuration-file-overview-stage.md)开发应用之前，开发者需要了解应用的设计机制、应用程序包结构等基础知识。
 
 ## 应用与应用程序包

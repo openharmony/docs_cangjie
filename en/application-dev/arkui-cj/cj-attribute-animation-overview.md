@@ -1,5 +1,11 @@
 # Overview of Property Animation  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Property interfaces (hereinafter referred to as properties) encompass various types such as dimension properties, layout properties, and position properties, which are used to control component behavior. For components on the current interface, changes to certain properties (e.g., position properties) can trigger UI updates. Adding animations allows property values to transition gradually from a starting point to an endpoint, thereby creating a continuous animation effect. Based on whether animations can be applied during changes, properties can be categorized into animatable properties and non-animatable properties. Two primary criteria determine whether a property is suitable as an animatable property:  
 
 - **Property changes can trigger UI updates.** For example, the [`enabled`](../reference/arkui-cj/cj-universal-attribute-enable.md#func-enabledbool) property controls whether a component can respond to events like clicks or touches, but changes to the `enabled` property do not affect the UI. Thus, it is unsuitable as an animatable property.  

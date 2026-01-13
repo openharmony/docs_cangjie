@@ -1,5 +1,11 @@
 # User-Agent Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 <!--RP1-->
 User-Agent (abbreviated as UA) is a special string containing key information such as device type, operating system, and its version. In web development, this string enables servers to identify the source device and its characteristics of a request, thereby providing customized content and services accordingly. If a page fails to correctly recognize the UA, various anomalies may occur. For instance, a page layout optimized for mobile devices might display incorrectly on desktop devices, and vice versa. Additionally, certain browser features or CSS styles may only be supported in specific browser versions. If the page cannot make correct judgments based on the UA string, rendering issues or logical errors may arise.
 

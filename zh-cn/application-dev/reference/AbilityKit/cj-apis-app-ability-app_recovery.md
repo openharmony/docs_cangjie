@@ -1,5 +1,11 @@
 # ohos.app.ability.app_recovery（应用故障恢复）
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 app_recovery模块提供了应用在故障状态下的恢复能力。
 
 ## 导入模块

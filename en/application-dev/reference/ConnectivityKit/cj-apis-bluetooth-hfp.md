@@ -1,5 +1,11 @@
 # ohos.bluetooth.hfp (Bluetooth HFP Module)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The hfp module provides methods to access Bluetooth call interfaces.
 
 ## Importing the Module

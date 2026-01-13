@@ -1,5 +1,11 @@
 # Select
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides a dropdown selection menu that allows users to choose among multiple options.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Focus Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Custom component focus navigation effects, allowing configuration of whether a component can receive focus and the specific focus navigation order. Focus can be switched using the Tab key or arrow keys.
 
 > **Note:**

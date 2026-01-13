@@ -1,5 +1,11 @@
 # Session Management (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before using camera functions such as preview, photo capture, video recording, or metadata, a camera session must be created.
 
 Within a session, the following functionalities can be achieved:

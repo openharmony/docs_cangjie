@@ -1,5 +1,11 @@
 # LazyForEach
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 In scenarios with a large number of child components, using LazyForEach in combination with cached list items, dynamic preloading, and component reuse can further improve scrolling frame rates and reduce application memory consumption.
 
 ## Import Module

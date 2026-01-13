@@ -1,5 +1,11 @@
 # Development Guide for Requesting Location Permissions
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Overview
 
 Before using the [Location Kit](../reference/LocationKit/cj-apis-geo_location_manager.md) system capabilities, an application needs to verify whether it has obtained user authorization to access device location information. If authorization has not been granted, the application can request the required location permissions from the user.

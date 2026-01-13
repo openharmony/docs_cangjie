@@ -1,5 +1,11 @@
 # System Application Permissions Not Available via ACL (System-Granted)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before applying for target permissions, developers are advised to first understand the [application paths for different permissions](./cj-determine-application-mode.md). After gaining a basic understanding of the permission workflow, combine it with the specific descriptions of the following permission fields to determine whether the application can apply for the target permissions, thereby improving development efficiency.
 
 > **Note:**

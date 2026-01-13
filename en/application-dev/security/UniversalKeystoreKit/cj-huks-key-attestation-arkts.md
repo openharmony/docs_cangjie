@@ -1,5 +1,11 @@
 # Non-Anonymous Key Attestation (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Before using this feature, you need to apply for the permission: [ohos.permission.ATTEST_KEY](../AccessToken/cj-permissions-for-system-apps.md#ohospermissionattest_key). Developers should refer to the specific operation path [Permission Application](../AccessToken/cj-determine-application-mode.md) based on the application's APL level.
 
 ## Development Steps

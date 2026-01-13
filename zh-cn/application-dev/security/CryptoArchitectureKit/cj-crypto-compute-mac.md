@@ -1,5 +1,11 @@
 # 消息认证码计算
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 MAC（Message Authentication Code，消息认证码）可以对消息进行完整性校验，通过使用双方共享的密钥，识别出信息伪装篡改等行为。
 
 HMAC（Hash-based Message Authentication Code）是一种基于哈希的消息认证码算法。

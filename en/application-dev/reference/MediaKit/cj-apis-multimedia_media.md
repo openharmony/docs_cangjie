@@ -1,5 +1,11 @@
 # ohos.multimedia.media (Media Services)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The media services module provides developers with a set of simple and easy-to-understand interfaces, enabling convenient access to system media resources.
 
 The media subsystem encompasses audio and video-related media operations, offering the following common functionalities:

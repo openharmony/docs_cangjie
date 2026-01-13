@@ -1,5 +1,11 @@
 # Introduction to ArkGraphics 2D
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ArkGraphics 2D (Ark 2D Graphics Service) primarily provides capabilities related to graphics rendering and display. Developers can build applications based on a unified set of graphics APIs, making application development simpler and more efficient.
 
 ## Capability Scope

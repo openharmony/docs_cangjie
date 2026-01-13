@@ -1,5 +1,11 @@
 # @Prop Macro: Unidirectional Parent-Child Synchronization
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Variables decorated with \@Prop can establish a unidirectional synchronization relationship with the parent component. \@Prop-decorated variables are mutable, but changes will not be synchronized back to their parent component.
 
 Before reading the \@Prop documentation, developers are advised to first understand the basic usage of [\@State](./cj-macro-state.md).

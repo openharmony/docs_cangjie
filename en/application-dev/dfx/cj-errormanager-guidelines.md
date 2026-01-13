@@ -1,5 +1,11 @@
 # Error Management Development Guide
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 When an application's code contains specification issues or errors, exceptions and errors may occur during runtime, such as uncaught exceptions or application lifecycle timeouts. After an error occurs, the application will terminate abnormally. Error logs are typically stored in local user storage, making it inconvenient for developers to locate issues. Therefore, application developers can use error management interfaces to promptly report relevant errors and logs to the developer's service platform for troubleshooting before the application exits.

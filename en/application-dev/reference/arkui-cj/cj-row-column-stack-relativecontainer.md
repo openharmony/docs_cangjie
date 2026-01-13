@@ -1,5 +1,11 @@
 # RelativeContainer
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A relative layout component used for aligning elements in complex scenarios.
 
 > **Note:**

@@ -1,5 +1,11 @@
 # Support for Singular and Plural Forms
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 During translation, different languages have varying requirements for singular and plural forms of nouns or unit expressions. Some languages do not distinguish between singular and plural, while others have multiple forms. For example, in English, nouns support both singular and plural forms, whereas in Chinese, nouns do not differentiate between singular and plural, and quantity is expressed through measure words.
 
 Internationally, the following categories are commonly used to distinguish singular and plural forms:

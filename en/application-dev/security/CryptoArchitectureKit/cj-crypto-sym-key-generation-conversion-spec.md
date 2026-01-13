@@ -1,5 +1,11 @@
 # Symmetric Key Generation Specifications
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This section describes the algorithms currently supported by the system and their corresponding specifications.
 
 Developers can generate corresponding keys by using string parameters to carry key specifications. The supported string parameters for each algorithm will be introduced in the specific algorithm specifications.

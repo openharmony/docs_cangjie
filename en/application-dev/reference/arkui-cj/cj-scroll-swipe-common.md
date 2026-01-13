@@ -1,5 +1,11 @@
 # Universal Scroll Component API
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Common properties and events for scroll components are currently only supported by [List](./cj-scroll-swipe-list.md), [Grid](./cj-scroll-swipe-grid.md), and [Scroll](./cj-scroll-swipe-scroll.md).
 
 ## Component Properties

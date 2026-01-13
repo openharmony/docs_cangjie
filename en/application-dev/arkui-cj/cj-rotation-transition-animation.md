@@ -1,5 +1,11 @@
 # Rotation Screen Animation
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The screen rotation animation primarily includes the [Layout Transition Rotation Animation](#layout-transition-rotation-animation), designed to achieve natural transitions when the screen display orientation changes. The layout transition rotation animation is relatively simple to implement—for example, configuring auto-rotation in `module.json5` (or setting the window display orientation) suffices.
 
 ## Layout Transition Rotation Animation

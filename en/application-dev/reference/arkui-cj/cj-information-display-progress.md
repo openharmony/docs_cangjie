@@ -1,5 +1,11 @@
 # Progress
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A progress bar component used to display the loading progress of content or the processing status of operations.
 
 ## Import Module

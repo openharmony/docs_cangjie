@@ -1,5 +1,11 @@
 # Cross-Device Data Synchronization for Relational Databases
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Scenario Description
 
 When an application's locally stored relational data requires cross-device synchronization, the table data that needs synchronization can be migrated to new tables that support cross-device functionality. Alternatively, tables can be configured to support cross-device synchronization immediately after creation.

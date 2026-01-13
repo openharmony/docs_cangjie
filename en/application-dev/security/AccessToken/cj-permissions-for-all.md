@@ -1,5 +1,11 @@
 # Open Permissions (System Authorization)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 All permissions listed here are system-granted (system_grant) open permissions, available to all applications.
 
 When an application requests a system_grant permission, the system will automatically grant the corresponding permission to the application upon user installation.

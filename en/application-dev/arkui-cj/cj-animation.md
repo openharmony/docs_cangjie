@@ -1,5 +1,11 @@
 # Animation Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The UI (User Interface) consists of various components (such as time, wallpapers, etc.) that developers interact with when using the device. Properties serve as interfaces to control the behavior of these components. For example, developers can adjust a component's position on the screen through its position property.
 
 Changes in property values typically lead to UI updates. Animations can add smooth transition effects when the UI changes. Without animations, property changes would occur instantaneously, resulting in abrupt transitions that may cause users to lose visual focus.

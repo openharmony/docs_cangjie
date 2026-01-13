@@ -1,5 +1,11 @@
 # Subscribing to Application Events (Cangjie)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiAppEvent provides event subscription interfaces for locally retrieving application events.
 
 ## Interface Description

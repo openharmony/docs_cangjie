@@ -1,5 +1,11 @@
 # Key Usage Introduction and General Process  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Key Usage Introduction  
 
 To achieve data confidentiality, integrity, and other protections, generated/imported keys can be used to perform cryptographic operations on data, such as:  

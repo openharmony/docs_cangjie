@@ -1,5 +1,11 @@
 # anm Tool  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Advanced Notification Manager (referred to as anm) is a tool designed to implement notification printing, setting notification parameters, and other functionalities. It provides developers with basic notification debugging and testing capabilities, such as printing detailed information of published notifications, configuring the number of notification caches, and enabling notifications.  
 
 ## Environment Requirements  

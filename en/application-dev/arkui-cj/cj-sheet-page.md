@@ -1,5 +1,11 @@
 # Bind Sheet Modal (bindSheet)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 [Sheet Modal (bindSheet)](../reference/arkui-cj/cj-universal-attribute-sheettransition.md#func-bindsheetbool----unit-sheetoptions) is by default a non-fullscreen popup interaction page in modal form, allowing partial visibility of the underlying parent view, helping users maintain their parent view context while interacting with the sheet modal.
 
 Sheet modals are suitable for displaying simple tasks or information panels, such as personal information, text introductions, share panels, schedule creation, content addition, etc. If you need to display a sheet modal that may affect the parent view, the sheet modal supports configuration as a non-modal interaction form.

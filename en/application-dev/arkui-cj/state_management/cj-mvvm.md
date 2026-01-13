@@ -1,5 +1,11 @@
 # MVVM Pattern
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When developers grasp the basic concepts of state management, they often want to build their own applications. However, if the project structure is not carefully planned during the initial stages of app development, as the project expands and becomes more complex, the increasing number of state variables will lead to intricate relationships between components. At this point, developing any new feature may trigger a chain reaction, and maintenance costs will rise. To address this, this article introduces the MVVM pattern and the relationship between ArkUI's UI development model and MVVM, guiding developers on how to design their project structure to facilitate easier development and maintenance during product iteration and upgrades.
 
 This document covers most of the state management V1 decorators, so it is recommended that developers have a basic understanding of state management V1 before reading this document. It is advisable to review the following beforehand: [State Management Overview](cj-state-management-overview.md) and the documentation related to state management V1 decorators.

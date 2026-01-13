@@ -1,5 +1,11 @@
 # ScrollBar
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 滚动条组件ScrollBar，用于配合可滚动组件使用。如[List](./cj-scroll-swipe-list.md)、[Grid](./cj-scroll-swipe-grid.md)、[Scroll](./cj-scroll-swipe-scroll.md)。
 
 > **说明：**

@@ -1,5 +1,11 @@
 # Visibility Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Controls whether a component is visible.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Creating Custom Components
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 In ArkUI, all UI-displayed content consists of components. Those provided directly by the framework are called system components, while those defined by developers are called custom components. When developing UI interfaces, it is usually not just a simple combination of system components but also requires consideration of code reusability, separation of business logic from UI, and future version evolution. Therefore, encapsulating the UI and part of the business logic into custom components is an essential capability.
 
 Custom components have the following characteristics:

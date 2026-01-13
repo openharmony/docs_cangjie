@@ -1,5 +1,11 @@
 # Flex
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Flex is a container component that arranges child components in a flexible layout, providing a more efficient way to align, distribute, and allocate remaining space among child elements within the container.
 
 For detailed guidelines, refer to [Flexible Layout](../../arkui-cj/cj-layout-development-flex-layout.md).

@@ -1,5 +1,11 @@
 # UIAbility组件基本用法
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability)组件的基本用法包括：指定UIAbility的启动页面以及获取uiability的上下文信息[UIAbilityContext](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext)。
 
 ## 指定UIAbility的启动页面

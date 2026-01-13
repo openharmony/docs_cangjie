@@ -1,5 +1,11 @@
 # Introduction to Crypto Architecture Kit
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Crypto Architecture Kit provides functionalities related to encryption/decryption, signature/verification, message authentication codes, hashing, secure random number generation, key derivation, and more.
 
 By abstracting the implementation differences of third-party cryptographic algorithm libraries, the Crypto Architecture Kit offers a unified algorithmic framework. Developers can invoke the encryption/decryption algorithm framework services while ignoring the discrepancies among underlying third-party algorithm libraries, enabling rapid development.

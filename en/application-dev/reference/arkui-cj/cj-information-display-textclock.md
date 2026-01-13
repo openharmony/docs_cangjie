@@ -1,5 +1,11 @@
 # TextClock
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The TextClock component displays the current system time on the device through text. It supports time display in different time zones with second-level precision.
 
 When the component is not visible, time updates will stop. The component's visibility state is based on [onVisibleAreaChange](./cj-universal-event-visibleareachange.md#func-onvisibleareachangearrayfloat64-bool-float64-unit---unit) handling, where a visibility threshold ratio greater than 0 is considered visible.

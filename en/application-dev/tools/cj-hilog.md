@@ -1,5 +1,11 @@
 # hilog  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 HiLog is a logging system provided for system frameworks, services, and applications to print logs, record user operations, system runtime status, etc. Developers can query relevant log information through the hilog command line.
 
 ## Environment Requirements  

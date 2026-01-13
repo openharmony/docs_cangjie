@@ -1,5 +1,11 @@
 # Loading Pages with Web Components
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Page loading is a fundamental feature of Web components. Based on the data source, page loading can be categorized into three common scenarios: loading network pages, loading local pages, and loading HTML-formatted rich text data.
 
 During the page loading process, if network resource acquisition is involved, please configure network access permissions in module.json5. For adding methods, refer to [Declaring Permissions in Configuration Files](../security/AccessToken/cj-declare-permissions.md).

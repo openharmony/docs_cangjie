@@ -1,5 +1,11 @@
 # 取消动态订阅公共事件
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 ## 场景介绍
 
 动态订阅者完成业务需求后，应主动取消订阅。通过调用[unsubscribe()](../../reference/BasicServicesKit/cj-apis-common_event_manager.md#static-func-unsubscribecommoneventsubscriber)方法，取消订阅事件。

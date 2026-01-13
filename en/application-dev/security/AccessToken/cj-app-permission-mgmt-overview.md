@@ -1,5 +1,11 @@
 # Overview of Application Permission Control  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction  
 
 The system provides a universal permission access mechanism that allows applications to access system resources (e.g., contacts) and system capabilities (e.g., camera, microphone) while protecting system data (including user personal data) or functionalities from improper or malicious use.  

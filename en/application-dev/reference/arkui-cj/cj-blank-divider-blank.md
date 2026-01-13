@@ -1,5 +1,11 @@
 # Blank
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Blank component is a space-filling component that automatically occupies the remaining space along the main axis of its container. It only takes effect when the parent component is a [Row](./cj-row-column-stack-row.md), [Column](./cj-row-column-stack-column.md), or [Flex](./cj-row-column-stack-flex.md).
 
 ## Import Module

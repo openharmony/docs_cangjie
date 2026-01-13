@@ -1,5 +1,11 @@
 # Divider
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides a divider component to separate different content blocks/elements.
 
 ## Import Module

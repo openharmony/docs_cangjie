@@ -1,5 +1,11 @@
 # Shield Protection Mode
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Shield Protection Mode is a system-level security mode designed for users with high-security requirements. This mode enhances security by restricting basic device functionalities, effectively defending against targeted attacks from remote attack surfaces.
 
 ## HTML5 Features Restricted by ArkWeb

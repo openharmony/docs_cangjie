@@ -1,5 +1,11 @@
 # Z-Order Control
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Z-order of a component determines its stacking order in the layout.
 
 ## Import Module

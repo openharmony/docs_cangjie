@@ -1,5 +1,11 @@
 # ohos.skill
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module introduces the Skill tag object.
 
 ## Import Module

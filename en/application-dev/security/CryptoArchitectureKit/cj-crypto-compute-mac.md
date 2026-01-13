@@ -1,5 +1,11 @@
 # Message Authentication Code Calculation
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 MAC (Message Authentication Code) enables integrity verification of messages by using a shared secret key between communicating parties to detect tampering or forgery attempts.
 
 HMAC (Hash-based Message Authentication Code) is a hash-based message authentication code algorithm.

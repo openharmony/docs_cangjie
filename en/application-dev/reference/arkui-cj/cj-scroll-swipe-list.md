@@ -1,5 +1,11 @@
 # List
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A container component that contains a series of list items with the same width. Suitable for presenting homogeneous data in continuous, multi-line formats, such as images and text.
 
 ## Import Module

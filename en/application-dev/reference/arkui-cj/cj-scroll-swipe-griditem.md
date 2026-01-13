@@ -1,5 +1,11 @@
 # GridItem
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A single item content container within a grid container.
 
 > **Note:**

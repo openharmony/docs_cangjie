@@ -1,5 +1,11 @@
 # ohos.file.fileuri
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module provides the capability to obtain a Uniform Resource Identifier (URI) from a PATH, enabling subsequent file operations such as open, read, and write through [ohos.file_fs (File Management)](cj-apis-file_fs.md), thereby facilitating file sharing.
 
 ## Importing the Module

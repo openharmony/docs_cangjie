@@ -1,5 +1,11 @@
 # ohos.element_name
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 This module describes the ElementName information.
 
 ## Import Module

@@ -1,5 +1,11 @@
 # Full-Screen Modal Transition  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 By using the `bindContentCover` property, a component can be bound to a full-screen modal page. Transition effects can be displayed during the insertion and deletion of the component by setting the `ModalTransition` parameter.  
 
 > **Note:**  

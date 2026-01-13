@@ -1,5 +1,11 @@
 # Line
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for drawing straight lines.
 
 ## Import Module

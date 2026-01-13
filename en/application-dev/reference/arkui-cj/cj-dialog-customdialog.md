@@ -1,5 +1,11 @@
 # Custom Dialog (CustomDialog)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Display custom dialogs through the CustomDialogController class. When using dialog components, custom dialogs should be prioritized for easier customization of dialog styles and content.
 
 ## Import Module

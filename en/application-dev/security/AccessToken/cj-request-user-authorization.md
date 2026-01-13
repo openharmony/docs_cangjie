@@ -1,5 +1,11 @@
 # Requesting User Authorization
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 When an application needs to access user privacy information or utilize system capabilities—such as obtaining location data, accessing calendars, using the camera to take photos, or recording videos—it must request authorization from the user. These permissions are classified as `user_grant` permissions.
 
 When an application requests `user_grant` permissions, the following steps must be completed:

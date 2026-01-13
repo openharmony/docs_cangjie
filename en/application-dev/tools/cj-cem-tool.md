@@ -1,5 +1,11 @@
 # CEM Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Common Event Manager (abbreviated as CEM) is a tool designed to implement functionalities such as printing public event information and publishing public events. It provides developers with fundamental public event debugging and testing capabilities, including printing all public event subscribers, sent public events and their recipients, simulating public event publishing, and more.
 
 ## Environment Requirements

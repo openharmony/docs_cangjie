@@ -1,5 +1,11 @@
 # Popup
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Popup attribute can be bound to components to display popup tooltips, configuring popup content, interaction logic, and display states. It is primarily used for scenarios like screen recording and informational popup reminders.
 
 There are two types of popups: one is the system-provided [PopupOptions](../reference/arkui-cj/cj-universal-attribute-popup.md#struct-popupoptions), and the other is the developer-customizable [CustomPopupOptions](../reference/arkui-cj/cj-universal-attribute-popup.md#struct-custompopupoptions). PopupOptions configures buttons via `primaryButton` and `secondaryButton` to create popups with buttons, while CustomPopupOptions uses the `builder` configuration for custom popups.

@@ -1,5 +1,11 @@
 # Image Effects
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Configure blur, shadow, spherical effects for components, and set image effects for pictures.
 
 ## Import Module

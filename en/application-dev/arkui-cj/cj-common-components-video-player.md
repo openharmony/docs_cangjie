@@ -1,5 +1,11 @@
 # Video Playback (Video)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The Video component is used to play video files and control their playback state, commonly employed for short video lists and in-app video pages. It automatically plays when fully displayed, pauses upon user click on the video area, and shows a progress bar that allows seeking to specific positions. For detailed usage, refer to [Video](../reference/arkui-cj/cj-image-video-video.md).
 
 ## Creating a Video Component

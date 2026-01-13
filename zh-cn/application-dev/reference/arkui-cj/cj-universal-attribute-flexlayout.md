@@ -1,5 +1,11 @@
 # Flex布局
 
+<!--Del-->
+> **说明：**
+>
+> 当前为Beta阶段。
+<!--DelEnd-->
+
 > **说明：**
 >
 > 仅当父组件是 [Flex](./cj-row-column-stack-flex.md)、[Column](./cj-row-column-stack-column.md)、[Row](./cj-row-column-stack-row.md)、[GridRow](./cj-grid-layout-gridrow.md)（仅针对[alignSelf](./cj-universal-attribute-flexlayout.md#func-alignselfitemalign)）时生效。

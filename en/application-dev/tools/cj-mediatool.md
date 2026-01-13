@@ -1,5 +1,11 @@
 # mediatool Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 mediatool is a lightweight command-line toolset that allows developers to manipulate media library resources. The media library provides and manages data for the gallery, where images and videos from the media library are displayed in the gallery interface.
 
 The mediatool comes pre-installed with the system and does not require additional installation. It is built into the `/bin` folder and can be directly invoked via hdc shell.

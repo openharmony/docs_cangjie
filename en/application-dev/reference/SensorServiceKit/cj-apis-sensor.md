@@ -1,5 +1,11 @@
 # ohos.sensor (Sensors)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 The sensor module provides capabilities to obtain sensor data, including retrieving sensor attribute lists, subscribing to sensor data, and some common sensor algorithms.
 
 ## Import Module

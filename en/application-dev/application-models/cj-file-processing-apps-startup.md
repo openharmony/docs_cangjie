@@ -1,5 +1,11 @@
 # Launching File Handling Applications (startAbility)
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Usage Scenario
 
 For example, when an application downloads a PDF file in a browser, this interface can be called to select a file handling application to open the PDF file. Developers need to set fields such as the URI path of the file to be opened ([uri](#Key Parameter Descriptions)) and the file format ([type](#Key Parameter Descriptions)) in the request, so that the system can recognize and directly launch the file opening application or display a selection dialog for the user to choose an appropriate application to open the file. The effect is illustrated in the following figure.

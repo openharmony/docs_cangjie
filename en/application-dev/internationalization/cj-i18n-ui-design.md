@@ -1,5 +1,11 @@
 # International UI Design  
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A set of effective international interface layout design rules can not only establish the product's tone in global design but also ensure operational consistency. Following these design rules can significantly enhance the globalization quality of applications.  
 
 ## Interface Space Reservation and Flexible Layout  

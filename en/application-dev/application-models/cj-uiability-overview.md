@@ -1,5 +1,11 @@
 # UIAbility Component Overview
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Overview
 
 [UIAbility](../reference/AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiability) is a UI-containing application component primarily designed for user interaction.

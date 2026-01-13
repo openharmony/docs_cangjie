@@ -1,5 +1,11 @@
 # QRCode
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 A component for displaying a single QR code.
 
 > **Note:**

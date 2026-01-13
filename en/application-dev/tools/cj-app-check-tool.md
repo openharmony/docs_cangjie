@@ -1,5 +1,11 @@
 # Scanning Tool
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 ## Introduction
 
 The scanning tool can be used to analyze and inspect application installation packages. Based on different parameter settings, it scans the contents of HAP, HSP, or App packages in specified paths and outputs inspection reports, providing developers with data support for optimizing package structures or troubleshooting issues. Currently, the scanning tool supports the following types of analysis and statistics:

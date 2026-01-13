@@ -1,5 +1,11 @@
 # Web
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 Provides Web components with web display capabilities. [@ohos.web.webview](../ArkWeb/cj-apis-webview.md) offers web control functionalities.
 
 ## Importing Modules

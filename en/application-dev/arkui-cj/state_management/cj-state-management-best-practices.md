@@ -1,5 +1,11 @@
 # Best Practices for State Management
 
+<!--Del-->
+> **Note:**
+>
+> Currently in the beta phase.
+<!--DelEnd-->
+
 To assist application developers in improving their application quality, particularly in efficient state management, this chapter presents several common inefficient development scenarios encountered when developing ArkUI applications, along with corresponding solutions. Additionally, it provides comparisons and explanations between recommended and non-recommended approaches for the same scenarios, visually demonstrating their differences. This helps developers learn how to correctly use state variables in application development for high-performance outcomes.
 
 ## Forcibly Updating Non-State Variable Associated Components Without Using State Variables
