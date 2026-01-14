@@ -14,6 +14,10 @@ Provides some common utility functions.
 import ohos.ark_interop_helper.*
 ```
 
+> **Note:**
+>
+> Kit import methods are not supported and are expected to be supported in the next version.
+
 ## func arktsValuetoNapiValue(napi_env, JSValue)
 
 ```cangjie
