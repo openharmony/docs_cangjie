@@ -14,6 +14,10 @@ ArkTS 应用的开发语言包括 ArkTS、typescript、javascript，ArkTS 互操
 import ohos.ark_interop.*
 ```
 
+> **说明：**
+>
+> 当前暂不支持Kit化的导入方式，预计在下个版本支持。
+
 ## interface JSInteropByte
 
 ```cangjie

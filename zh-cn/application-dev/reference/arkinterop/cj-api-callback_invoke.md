@@ -6,6 +6,16 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
+## 导入模块
+
+```cangjie
+import ohos.callback_invoke.*
+```
+
+> **说明：**
+>
+> 当前暂不支持Kit化的导入方式，预计在下个版本支持。
+
 ## class Callback0Argument
 
 ```cangjie

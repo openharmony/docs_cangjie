@@ -6,6 +6,16 @@
 > Currently in the beta phase.
 <!--DelEnd-->
 
+## Import Module
+
+```cangjie
+import ohos.callback_invoke.*
+```
+
+> **Note:**
+>
+> Kit import methods are not supported and are expected to be supported in the next version.
+
 ## class Callback0Argument
 
 ```cangjie
