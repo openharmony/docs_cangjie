@@ -14,6 +14,10 @@ The development languages for ArkTS applications include ArkTS, TypeScript, and 
 import ohos.ark_interop.*
 ```
 
+> **Note:**
+>
+> Kit import methods are not supported and are expected to be supported in the next version.
+
 ## interface JSInteropByte
 
 ```cangjie

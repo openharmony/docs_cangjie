@@ -8,6 +8,16 @@
 
 This module defines common exception information that occurs during interface calls.
 
+## Import Module
+
+```cangjie
+import ohos.business_exception.*
+```
+
+> **Note:**
+>
+> Kit import methods are not supported and are expected to be supported in the next version.
+
 ## class BusinessException
 
 ```cangjie

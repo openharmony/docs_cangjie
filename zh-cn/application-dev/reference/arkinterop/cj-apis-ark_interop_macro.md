@@ -8,6 +8,16 @@
 
 提供仓颉语言与 ArkTS 语言的互操作宏。
 
+## 导入模块
+
+```cangjie
+import ohos.ark_interop_macro.*
+```
+
+> **说明：**
+>
+> 当前暂不支持Kit化的导入方式，预计在下个版本支持。
+
 ## @Interop 宏
 
 ```cangjie

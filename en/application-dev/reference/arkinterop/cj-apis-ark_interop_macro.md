@@ -8,6 +8,16 @@
 
 Provide macros for interoperability between the Cangjie language and ArkTS language.
 
+## Import Module
+
+```cangjie
+import ohos.ark_interop_macro.*
+```
+
+> **Note:**
+>
+> Kit import methods are not supported and are expected to be supported in the next version.
+
 ## @Interop macro
 
 ```cangjie

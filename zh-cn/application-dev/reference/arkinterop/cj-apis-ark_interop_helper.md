@@ -14,6 +14,10 @@
 import ohos.ark_interop_helper.*
 ```
 
+> **说明：**
+>
+> 当前暂不支持Kit化的导入方式，预计在下个版本支持。
+
 ## func arktsValuetoNapiValue(napi_env, JSValue)
 
 ```cangjie
