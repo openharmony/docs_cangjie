@@ -40,7 +40,7 @@ class EntryView {
                 .aspectRatio(1.0)
                 .margin(10)
                 .justifyContent(FlexAlign.Center)
-                .backgroundColor(0xa8a888)
+                .backgroundColor(0xF48899)
                 .borderRadius(20)
                 .shadow(radius: 10.0, color: Color.Gray, offsetX: 20.0, offsetY: 20.0)
             }

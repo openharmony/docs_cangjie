@@ -153,7 +153,7 @@ class EntryView {
             .fontColor(Color.Black)
             // Monitor focus event for the first component; change color on focus.
             .onFocus({ =>
-                oneButtonColor = Color.Green
+                oneButtonColor = Color(0x64BB5C)
             })
             // Monitor blur event for the first component; revert color on blur.
             .onBlur({=>
@@ -166,7 +166,7 @@ class EntryView {
             .fontColor(Color.Black)
             // Monitor focus event for the second component; change color on focus.
             .onFocus({=>
-                twoButtonColor = Color.Green
+                twoButtonColor = Color(0x64BB5C)
             })
             // Monitor blur event for the second component; revert color on blur.
             .onBlur({=>
@@ -179,7 +179,7 @@ class EntryView {
             .fontColor(Color.Black)
             // Monitor focus event for the third component; change color on focus.
             .onFocus({=>
-                threeButtonColor = Color.Green
+                threeButtonColor = Color(0x64BB5C)
             })
             // Monitor blur event for the third component; revert color on blur.
             .onBlur({=>

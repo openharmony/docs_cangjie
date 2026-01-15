@@ -102,7 +102,7 @@ class EntryView {
                     .fontColor(Color.White)
                     .width(100.percent)
                     .textAlign(TextAlign.Center)
-                    .padding(top: 30.vp, bottom: 15.vp)
+                    .padding(top: 60.vp, bottom: 15.vp)
             }.backgroundColor(0x007dfe)
 
             Row {

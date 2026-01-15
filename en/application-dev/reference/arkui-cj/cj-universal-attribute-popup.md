@@ -101,9 +101,9 @@ class EntryView {
 
     public func build() {
         Flex(FlexOptions(direction: FlexDirection.Column)) {
-            Text(msg)
-            Text(dismiss)
-            Text(custom)
+            Text(msg).margin(left: 100, top: 50)
+            Text(dismiss).margin(left: 100)
+            Text(custom).margin(left: 100)
             Button('PopupOptions')
                 .margin(top: 200)
                 .onClick {
@@ -164,6 +164,7 @@ class EntryView {
                     )
                 )
             Button("CustomPopupOptions")
+                .margin(left: 100, top: 200)
                 .onClick({=> customPopup = !customPopup})
                 .bindPopup(
                     show: customPopup,

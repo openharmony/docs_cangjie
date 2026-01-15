@@ -954,11 +954,13 @@ class EntryView {
                 })
                 .width(800.px)
                 .height(400.px)
+                .margin(left: 200.px, top: 100.px)
 
             if (this.flag) {
                 Button("abc")
                     .width(800.px)
                     .height(400.px)
+                    .margin(left: 200.px)
                     .transition(
                         TransitionEffect
                             .OPACITY
@@ -968,6 +970,7 @@ class EntryView {
                 Button("abc")
                     .width(800.px)
                     .height(400.px)
+                    .margin(left: 200.px)
                     .transition(
                         TransitionEffect
                             .asymmetric(
@@ -1016,6 +1019,7 @@ class EntryView {
                 })
                 .width(800.px)
                 .height(400.px)
+                .margin(left:50, top: 50)
 
             if (this.flag) {
                 Column() {
@@ -1038,6 +1042,7 @@ class EntryView {
                 }.transition(TransitionEffect
                     .OPACITY
                     .animation(AnimateParam(duration: 1000)))
+                    .margin(left:50)
             }
         }
     }

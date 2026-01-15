@@ -453,16 +453,21 @@ class EntryView {
                 position: BadgePosition.RightTop,
             ){
                 Text("message")
-                    .width(100)
+                    .width(200)
                     .height(50)
                     .backgroundColor(0x317aff)
+                    .textAlign(TextAlign.Center)
             }
                 .width(100)
                 .height(50)
             Button("count 0")
                 .onClick({ evt =>  this.badgeCount =0;})
+                .margin(top:20)
+                .width(200)
             Button("count 1")
                 .onClick({ evt =>  this.badgeCount =1;})
+                .margin(top:20)
+                .width(200)
         }.margin(10)
     }
 }

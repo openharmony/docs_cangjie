@@ -764,7 +764,9 @@ class EntryView {
             Image(this.imageSrcList[this.imageSrcIndex])
                 .width(100)
                 .height(100)
+                .margin(left: 100, top: 100)
             Button("Click to switch Image src")
+                .margin(left: 100, top: 20)
                 .padding(20)
                 .onClick({
                     evt =>

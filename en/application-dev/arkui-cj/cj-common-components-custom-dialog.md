@@ -64,13 +64,13 @@ The dialog (CustomDialog) can be configured as modal or non-modal via the [isMod
                 Button("click me")
                     .onClick({evt =>
                         dialogController.openDialog()
-                    })
+                    }).position(x: 30.percent, y: 20.percent).width(40.percent).height(15.percent)
             }
         }
     }
     ```
 
-    ![constructor](figures/zidingyi.jpg)
+    ![constructor](figures/zidingyi.png)
 
 ## Dialog Interaction
 

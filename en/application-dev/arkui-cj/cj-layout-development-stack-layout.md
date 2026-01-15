@@ -38,15 +38,15 @@ class EntryView {
                 Column() {}
                     .width(90.percent)
                     .height(100.percent)
-                    .backgroundColor(0xff58b87c)
+                    .backgroundColor(0xC7C7CC)
                 Text('text')
                     .width(60.percent)
                     .height(60.percent)
-                    .backgroundColor(0xffc3f6aa)
+                    .backgroundColor(0xD1D1D6)
                 Button('button')
                     .width(30.percent)
                     .height(30.percent)
-                    .backgroundColor(0xff8ff3eb)
+                    .backgroundColor(0x0A9F7)
                     .fontColor(0x000)
             }
             .width(100.percent)
