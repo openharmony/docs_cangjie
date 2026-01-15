@@ -87,7 +87,7 @@ class EntryView {
                 .fontSize(20)
                 .height(200)
                 .margin(20)
-                .backgroundColor(Color.Green)
+                .backgroundColor(Color(0xED6F21))
                 // 通过设置raitos为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调
                 .onVisibleAreaChange([0.0, 1.0], {isVisible, currentRatio =>
                 this.sizeValue = isVisible.toString() + ", currentRatio:" + currentRatio.toString()
@@ -105,7 +105,7 @@ class EntryView {
 
                 ForEach(this.arr, itemGeneratorFunc: {item: String, idx: Int64 =>
                     Text(item.toString())
-                    .width(90.percent)
+                    .width(60.percent)
                     .height(150)
                     .backgroundColor(0xFFFFFF)
                     .borderRadius(15)

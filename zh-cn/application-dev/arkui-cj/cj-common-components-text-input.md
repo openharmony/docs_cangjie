@@ -66,7 +66,7 @@ init(placeholder!: ?ResourceStr = None, text!: ?ResourceStr = None,controller!: 
 
     ```cangjie
     TextInput( placeholder: '我是提示文本', text: '我是当前文本内容' )
-    .backgroundColor(0xFEC0CD)
+    .backgroundColor(0x4D0A59F7)
     ```
 
     ![Text12](figures/Text12.png)
