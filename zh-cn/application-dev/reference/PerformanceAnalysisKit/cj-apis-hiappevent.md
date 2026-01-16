@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-hi_app_event模块提供应用打点和事件订阅能力，包括事件存储、事件订阅、事件清理、打点配置等功能。HiAppEvent将应用运行过程中触发的事件信息统一归纳到[AppEventInfo](#class-appeventinfo)中，并将事件分为系统事件和应用事件两类。
+hi_app_event模块提供应用打点和事件订阅能力，包括事件存储、事件订阅、事件清理、打点配置等功能。[HiAppEvent](#class-hiappevent)将应用运行过程中触发的事件信息统一归纳到[AppEventInfo](#class-appeventinfo)中，并将事件分为系统事件和应用事件两类。
 
 系统事件来源于系统服务，是系统预先定义的事件，这类事件信息中的事件参数对象params包含的字段已由各系统事件定义，具体字段含义在各系统事件指南的介绍中。
 

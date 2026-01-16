@@ -25,7 +25,7 @@ func border(width!: ?Length, color!: ?ResourceColor, radius!: ?Length,
 
 > **说明：**
 >
-> 当color、radius缺省时，为了保证borderColor、borderRadius生效，需要将borderColor、borderRadius设置在border后。
+> 当color、radius缺省时，为了保证[borderColor](#func-bordercolorresourcecolor)、[borderRadius](#func-borderradiuslength)设置生效，需要将borderColor、borderRadius设置在[border](#func-borderlength-resourcecolor-length-borderstyle)后。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

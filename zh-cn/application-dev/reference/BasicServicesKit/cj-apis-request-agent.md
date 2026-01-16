@@ -2055,7 +2055,7 @@ public let ctime: UInt64
 
 > **说明：**
 >
-> - 使用[request.agent.search](#func-searchfilter)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#class-filter)。
+> 使用[request.agent.search](#func-searchfilter)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#class-filter)。
 
 **类型：** UInt64
 

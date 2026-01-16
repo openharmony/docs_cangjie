@@ -34,7 +34,7 @@ public func createImagePacker(): ImagePacker
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImagePacker实例使用完成后，应主动调用[release](#func-release-1)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImagePacker实例使用完成后，应主动调用[release](#func-release-1)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -134,7 +134,7 @@ public func createImageSource(uri: String): ImageSource
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -189,7 +189,7 @@ public func createImageSource(uri: String, options: SourceOptions): ImageSource
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -245,7 +245,7 @@ public func createImageSource(fd: Int32): ImageSource
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -299,7 +299,7 @@ public func createImageSource(fd: Int32, options: SourceOptions): ImageSource
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -355,7 +355,7 @@ public func createImageSource(buf: Array<UInt8>): ImageSource
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -410,7 +410,7 @@ public func createImageSource(buf: Array<UInt8>, options: SourceOptions): ImageS
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -467,7 +467,7 @@ public func createImageSource(rawfile: RawFileDescriptor, options!: SourceOption
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用[release](#func-release-3)方法及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -525,7 +525,7 @@ public func createPixelMap(colors: Array<UInt8>, options: InitializationOptions)
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当PixelMap对象使用完成后，应主动调用[release](#func-release-4)方法及时释放内存。释放时应确保后续不再使用该对象。
+> 由于图片占用内存较大，所以当PixelMap对象使用完成后，应主动调用[release](#func-release-4)方法及时释放内存。释放时应确保后续不再使用该对象。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1518,7 +1518,7 @@ public func release(): Unit
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImagePacker实例使用完成后，应主动调用该方法，及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImagePacker实例使用完成后，应主动调用该方法，及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -1758,7 +1758,7 @@ public func release(): Unit
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageReceiver实例使用完成后，应主动调用该方法，及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageReceiver实例使用完成后，应主动调用该方法，及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2034,7 +2034,7 @@ public func createPixelMap(options!: DecodingOptions = DecodingOptions()): Pixel
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当PixelMap对象使用完成后，应主动调用[release](#func-release-4)方法，及时释放内存。释放时应确保后续不再使用该对象。
+> 由于图片占用内存较大，所以当PixelMap对象使用完成后，应主动调用[release](#func-release-4)方法，及时释放内存。释放时应确保后续不再使用该对象。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2428,7 +2428,7 @@ public func modifyImageProperty(key: PropertyKey, value: String): Unit
 
 > **说明：**
 >
-> - 调用modifyImageProperty修改属性会改变属性字节长度，使用buffer创建的ImageSource调用modifyImageProperty会导致buffer内容覆盖，目前buffer创建的ImageSource不支持调用此接口，请改用fd或path创建的ImageSource。
+> 调用modifyImageProperty修改属性会改变属性字节长度，使用buffer创建的ImageSource调用modifyImageProperty会导致buffer内容覆盖，目前buffer创建的ImageSource不支持调用此接口，请改用fd或path创建的ImageSource。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2486,7 +2486,7 @@ public func release(): Unit
 
 > **说明：**
 >
-> - 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用该方法，及时释放内存。释放时应确保后续不再使用该实例。
+> 由于图片占用内存较大，所以当ImageSource实例使用完成后，应主动调用该方法，及时释放内存。释放时应确保后续不再使用该实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2788,7 +2788,7 @@ public var format: String
 
 > **说明：**
 >
-> - 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。
+> 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。
 
 **类型：** String
 

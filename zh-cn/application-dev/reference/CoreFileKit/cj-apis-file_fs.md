@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-fs模块为基础文件操作API，提供基础文件操作能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
+fs模块提供基础文件操作能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
 ## 导入模块
 
@@ -1693,7 +1693,7 @@ public static func moveDir(src: String, dest: String, mode!: Int32 = 0): Unit
 
 > **说明：**
 >
-> - 该接口不支持在分布式文件路径下操作。
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力：** SystemCapability.FileManagement.File.FileIO
 
@@ -1765,7 +1765,7 @@ public static func moveFile(src: String, dest: String, mode!: Int32 = 0): Unit
 
 > **说明：**
 >
-> - 该接口不支持在分布式文件路径下操作。
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力：** SystemCapability.FileManagement.File.FileIO
 
@@ -2121,7 +2121,7 @@ public static func rename(oldPath: String, newPath: String): Unit
 
 > **说明：**
 >
-> - 该接口不支持在分布式文件路径下操作。
+> 该接口不支持在分布式文件路径下操作。
 
 **系统能力：** SystemCapability.FileManagement.File.FileIO
 

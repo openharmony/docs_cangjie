@@ -123,6 +123,11 @@ public func tabBar(icon!: ?ResourceStr = None, text!: ?ResourceStr = None): This
 
 **功能：** 设置TabBar上显示内容。
 
+> **说明：**
+>
+> - 底部标签样式不包含指示器。
+> - 当图标显示错误时，会显示灰色空白块。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
@@ -133,11 +138,6 @@ public func tabBar(icon!: ?ResourceStr = None, text!: ?ResourceStr = None): This
 |:---|:---|:---|:---|:---|
 |icon|?[ResourceStr](./cj-common-types.md#interface-resourcestr)|否|None| **命名参数。** TabBar图标。初始值：""。|
 |text|?[ResourceStr](./cj-common-types.md#interface-resourcestr)|否|None| **命名参数。** TabBar文本。初始值：""。|
-
-> **说明：**
->
-> - 底部标签样式不包含指示器。
-> - 当图标显示错误时，会显示灰色空白块。
 
 ## 示例代码
 

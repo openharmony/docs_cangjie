@@ -339,7 +339,7 @@ public func closeAshmem(): Unit
 
 > **说明：**
 >
-> - 关闭Ashmem对象前需要先解除地址映射。
+> 关闭Ashmem对象前需要先解除地址映射。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
@@ -662,7 +662,7 @@ public func writeDataToAshmem(buf: Array<Byte>, size: Int64, offset: Int64): Uni
 
 > **说明：**
 >
-> - 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#func-mapreadwriteashmem)进行映射。
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#func-mapreadwriteashmem)进行映射。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 

@@ -6,7 +6,9 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-resource_manager模块，根据当前configuration：语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）提供获取应用资源对象读取接口。
+resource_manager模块提供资源获取能力。根据当前的Configuration配置提供获取应用资源对象读取接口。
+
+Configuration配置包括语言、区域、横竖屏、Mcc（移动国家码）和Mnc（移动网络码）、Device capability（设备类型）、Density（分辨率）。
 
 ## 导入模块
 
