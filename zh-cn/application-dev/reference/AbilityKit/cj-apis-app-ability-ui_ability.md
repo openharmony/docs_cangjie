@@ -661,7 +661,7 @@ public open func onDestroy(): Unit
 
 > **说明：**
 >
-> - 该回调仅在UIAbility正常退出时触发，当UIAbility异常退出（例如低内存终止进程）时，该回调将不被触发。
+> 该回调仅在UIAbility正常退出时触发，当UIAbility异常退出（例如低内存终止进程）时，该回调将不被触发。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1128,7 +1128,7 @@ public func terminateSelf(): Unit
 
 > **说明：**
 >
-> - 调用该接口后，任务中心的任务默认不会清理。
+> 调用该接口后，任务中心的任务默认不会清理。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1170,7 +1170,7 @@ public func terminateSelfWithResult(parameter: AbilityResult): Unit
 
 > **说明：**
 >
-> - 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置
+> 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

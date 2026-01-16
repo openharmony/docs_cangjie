@@ -130,7 +130,7 @@ Normal
 
 > **说明：**
 >
-> - 当开发者直接调用内核kill命令等非Ability Kit提供的能力强制退出应用进程时，也会返回Normal。
+> 当开发者直接调用内核kill命令等非Ability Kit提供的能力强制退出应用进程时，也会返回Normal。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

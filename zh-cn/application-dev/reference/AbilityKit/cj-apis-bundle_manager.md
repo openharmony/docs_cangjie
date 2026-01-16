@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-bundle_manager模块提供应用信息的查询能力，支持应用包信息[BundleInfo](#class-bundleinfo)、应用程序信息[ApplicationInfo](#class-applicationinfo)、UIAbility组件信息[AbilityInfo](#class-abilityinfo)、ExtensionAbility组件信息[ExtensionAbilityInfo](#class-extensionabilityinfo)等信息的查询。
+bundle_manager模块提供应用信息的查询能力，支持查询应用包信息[BundleInfo](#class-bundleinfo)、应用程序信息[ApplicationInfo](#class-applicationinfo)、UIAbility组件信息[AbilityInfo](#class-abilityinfo)、ExtensionAbility组件信息[ExtensionAbilityInfo](#class-extensionabilityinfo)等。
 
 ## 导入模块
 
@@ -1249,7 +1249,7 @@ public let installTime: Int64
 
 > **说明：**
 >
-> - 设备出厂首次开机时，如果未获取到当前时间，会以Unix时间戳基准（1970-01-01 08:00:00 UTC+8）作为当前系统的起始时间。例如，开机后未获取到时间，等待32s之后安装成功，则应用包安装时间戳为32000。
+> 设备出厂首次开机时，如果未获取到当前时间，会以Unix时间戳基准（1970-01-01 08:00:00 UTC+8）作为当前系统的起始时间。例如，开机后未获取到时间，等待32s之后安装成功，则应用包安装时间戳为32000。
 
 **类型：** Int64
 
@@ -2587,7 +2587,7 @@ public class ReqPermissionDetail {
 
 > **说明：**
 >
-> - 如果应用内多包申请的权限名称一样，但是权限申请理由不一致，系统只会返回一个权限申请理由，优先级从高到低顺序为entry类型HAP、feature类型HAP、应用内HSP。
+> 如果应用内多包申请的权限名称一样，但是权限申请理由不一致，系统只会返回一个权限申请理由，优先级从高到低顺序为entry类型HAP、feature类型HAP、应用内HSP。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

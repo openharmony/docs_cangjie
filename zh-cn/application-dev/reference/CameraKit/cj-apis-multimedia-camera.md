@@ -114,7 +114,7 @@ func getExposureMode(): ExposureMode
 
 > **说明：**
 >
-> - 若未通过[setExposureMode](#func-setexposuremodeexposuremode)接口进行设置，直接调用该接口查询当前曝光模式，会返回无效值。
+> 若未通过[setExposureMode](#func-setexposuremodeexposuremode)接口进行设置，直接调用该接口查询当前曝光模式，会返回无效值。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1944,11 +1944,11 @@ public interface Stabilization <: StabilizationQuery {
 
 **功能：** 提供设备在录像模式下设置视频防抖的操作。
 
- > **说明：**
- >
- > - 需要会话中有录像流（[VideoOutput](#class-videooutput)）的前提下，才可以对视频进行防抖设置，
- >
- > - 其中[VideoStabilizationMode](#enum-videostabilizationmode)中的枚举HIGH需要在[Profile](#class-profile)的分辨率为1920*1080的场景下生效。
+> **说明：**
+>
+> - 对视频进行防抖设置的前提是会话中有录像流（[VideoOutput](#class-videooutput)）。
+>
+> - 设置防抖操作时，[VideoStabilizationMode.HIGH](#high)需要在[Profile](#class-profile)的分辨率为1920*1080的场景下生效。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2660,7 +2660,7 @@ public func on(eventType: CameraEvents, camera: CameraDevice, callback: Callback
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3792,7 +3792,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<CameraStatus
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3853,7 +3853,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FoldStatusIn
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3914,7 +3914,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<TorchStatusI
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5448,7 +5448,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<CaptureStart
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5574,7 +5574,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<CaptureEndIn
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5639,7 +5639,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FrameShutter
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5704,7 +5704,7 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5769,7 +5769,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<Float64>): U
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6174,7 +6174,7 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6231,7 +6231,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>)
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6288,7 +6288,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomIn
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6830,7 +6830,7 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 > **说明：**
 >
-> - 不支持在on监听的回调方法里调用off注销回调。
+> 不支持在on监听的回调方法里调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6952,7 +6952,7 @@ public func setFrameRate(minFps: Int32, maxFps: Int32): Unit
 
 > **说明：**
 >
-> - 仅在[PhotoSession](#class-photosession)或[VideoSession](#class-videosession)模式下支持。
+> 仅在[PhotoSession](#class-photosession)或[VideoSession](#class-videosession)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7709,7 +7709,7 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8031,7 +8031,7 @@ public class VideoSession <: Session & Flash & AutoExposure & Focus & Zoom & Sta
 
 > **说明：**
 >
-> - 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
+> 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8307,7 +8307,7 @@ public func on(eventType: CameraEvents, callback: Callback0Argument): Unit
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8372,7 +8372,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<FocusState>)
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8437,7 +8437,7 @@ public func on(eventType: CameraEvents, callback: Callback1Argument<SmoothZoomIn
 
 > **说明：**
 >
-> - 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

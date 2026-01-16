@@ -22,17 +22,6 @@ func expandSafeArea(types!: ?Array<SafeAreaType>, edges!: ?Array<SafeAreaEdge>):
 
 **功能：** 设置控制组件扩展其安全区域。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**起始版本：** 22
-
-**参数：**
-
-|名称|类型|必填|默认值|说明|
-| :--- | :--- | :--- | :--- | :--- |
-| types | ?Array\<[SafeAreaType](./cj-common-types.md#enum-safeareatype)> | 是 | - | **命名参数。**  配置扩展安全区域的类型。 <br/>初始值：[SafeAreaType.System, SafeAreaType.Cutout, SafeAreaType.Keyboard]。 |
-| edges | ?Array\<[SafeAreaEdge](./cj-common-types.md#enum-safeareatype)> | 是 | - | **命名参数。**  配置扩展安全区域的方向。 <br/>初始值：[SafeAreaEdge.Top, SafeAreaEdge.Bottom, SafeAreaEdge.Start, SafeAreaEdge.End]。|
-
 > **说明：**
 >
 > - 设置expandSafeArea属性进行组件绘制扩展时，建议组件尺寸不要设置固定宽高（百分比除外），当设置固定宽高时，扩展安全区域的方向只支持[SafeAreaEdge.TOP, SafeAreaEdge.START]，扩展后的组件尺寸保持不变。
@@ -47,3 +36,14 @@ func expandSafeArea(types!: ?Array<SafeAreaType>, edges!: ?Array<SafeAreaEdge>):
 > - expandSafeArea属性仅作用于当前组件，不会向父组件或子组件传递，因此使用过程中，所有相关组件均需配置。
 > - 在同时设置了expandSafeArea和position属性时，position属性会先生效，expandSafeArea属性会后生效。对于未设置position、offset等绘制属性的组件，如果组件边界没有和避让区重叠，设置expandSafeArea属性不生效，如弹窗和半模态组件。
 > - 对于expandSafeArea属性无法生效的场景，若要将组件部署在避让区，需要手动调整组件的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**起始版本：** 22
+
+**参数：**
+
+|名称|类型|必填|默认值|说明|
+| :--- | :--- | :--- | :--- | :--- |
+| types | ?Array\<[SafeAreaType](./cj-common-types.md#enum-safeareatype)> | 是 | - | **命名参数。**  配置扩展安全区域的类型。 <br/>初始值：[SafeAreaType.System, SafeAreaType.Cutout, SafeAreaType.Keyboard]。 |
+| edges | ?Array\<[SafeAreaEdge](./cj-common-types.md#enum-safeareatype)> | 是 | - | **命名参数。**  配置扩展安全区域的方向。 <br/>初始值：[SafeAreaEdge.Top, SafeAreaEdge.Bottom, SafeAreaEdge.Start, SafeAreaEdge.End]。|

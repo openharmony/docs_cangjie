@@ -41,7 +41,7 @@ func keyboardShortcut(value: ?FunctionKey, keys: ?Array<ModifierKey>): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func keyboardShortcut(?String, ?Array\<ModifierKey>)
 
@@ -66,7 +66,7 @@ func keyboardShortcut(value: ?String, keys: ?Array<ModifierKey>): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func keyboardShortcut(?FunctionKey, ?Array\<ModifierKey>, ?() -> Unit)
 
@@ -92,7 +92,7 @@ func keyboardShortcut(value: ?FunctionKey, keys: ?Array<ModifierKey>, action: ?(
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func keyboardShortcut(?String, ?Array\<ModifierKey>, ?() -> Unit)
 
@@ -118,7 +118,7 @@ func keyboardShortcut(value: ?String, keys: ?Array<ModifierKey>, action: ?() -> 
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## 快捷键使用注意事项
 

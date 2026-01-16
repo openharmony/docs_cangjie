@@ -36,7 +36,7 @@ func width(value: Option<Length>): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func height(Option\<Length>)
 
@@ -60,7 +60,7 @@ func height(value: Option<Length>): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func size(?Length, ?Length)
 
@@ -85,7 +85,7 @@ func size(width!: ?Length, height!: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func padding(?Length)
 
@@ -109,7 +109,7 @@ func padding(value: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func padding(?Length, ?Length, ?Length, ?Length)
 
@@ -136,7 +136,7 @@ func padding(top!: ?Length, right!: ?Length, bottom!: ?Length, left!: ?Length): 
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func margin(?Length)
 
@@ -160,7 +160,7 @@ func margin(value: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func margin(?Length, ?Length, ?Length, ?Length)
 
@@ -187,7 +187,7 @@ func margin(top!: ?Length, right!: ?Length, bottom!: ?Length, left!: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func layoutWeight(?Int32)
 
@@ -211,7 +211,7 @@ func layoutWeight(value: ?Int32): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func aspectRatio(Float64)
 
@@ -235,7 +235,7 @@ func aspectRatio(value: Float64): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func displayPriority(?Int32)
 
@@ -259,4 +259,4 @@ func displayPriority(value: ?Int32): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|

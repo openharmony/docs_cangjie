@@ -1853,7 +1853,7 @@ public static const COMMON_EVENT_PACKAGE_ADDED: String = "usual.event.PACKAGE_AD
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的安装事件。
+> 三方应用只能监听自身应用的安装事件。
 
 **类型：** String
 
@@ -1873,7 +1873,7 @@ public static const COMMON_EVENT_PACKAGE_CACHE_CLEARED: String = "usual.event.PA
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的缓存清理事件。
+> 三方应用只能监听自身应用的缓存清理事件。
 
 **类型：** String
 
@@ -1893,7 +1893,7 @@ public static const COMMON_EVENT_PACKAGE_CHANGED: String = "usual.event.PACKAGE_
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的更改事件。
+> 三方应用只能监听自身应用的更改事件。
 
 **类型：** String
 
@@ -1913,7 +1913,7 @@ public static const COMMON_EVENT_PACKAGE_DATA_CLEARED: String = "usual.event.PAC
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的数据清理事件。
+> 三方应用只能监听自身应用的数据清理事件。
 
 **类型：** String
 
@@ -1975,7 +1975,7 @@ public static const COMMON_EVENT_PACKAGE_REMOVED: String = "usual.event.PACKAGE_
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的卸载事件。
+> 三方应用只能监听自身应用的卸载事件。
 
 **类型：** String
 
@@ -2009,7 +2009,7 @@ public static const COMMON_EVENT_PACKAGE_RESTARTED: String = "usual.event.PACKAG
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的重启事件。
+> 三方应用只能监听自身应用的重启事件。
 
 **类型：** String
 
@@ -2091,7 +2091,7 @@ public static const COMMON_EVENT_QUICK_FIX_APPLY_RESULT: String = "usual.event.Q
 
 > **说明：**
 >
-> - 三方应用只能监听自身应用的快速修复事件。
+> 三方应用只能监听自身应用的快速修复事件。
 
 **类型：** String
 

@@ -31,10 +31,6 @@ public interface FillStyle {}
 
 **起始版本：** 22
 
-## Int64
-
-**功能：** Int64类型定义的描述
-
 ### extend Int64 <: FillStyle
 
 ```cangjie
@@ -42,10 +38,6 @@ extend Int64 <: FillStyle {}
 ```
 
 **功能：** 扩展Int64为FillStyle子类。
-
-## UInt32
-
-**功能：** UInt32类型定义的描述
 
 ### extend UInt32 <: FillStyle
 
@@ -55,10 +47,6 @@ extend UInt32 <: FillStyle {}
 
 **功能：** 扩展UInt32为FillStyle子类。
 
-## Color
-
-**功能：** Color类型定义的描述
-
 ### extend Color <: FillStyle
 
 ```cangjie
@@ -67,10 +55,6 @@ extend Color <: FillStyle {}
 
 **功能：** 扩展Color为FillStyle子类。
 
-## CanvasGradient
-
-**功能：** CanvasGradient类型定义的描述
-
 ### extend CanvasGradient <: FillStyle
 
 ```cangjie
@@ -78,10 +62,6 @@ extend CanvasGradient <: FillStyle {}
 ```
 
 **功能：** 扩展CanvasGradient为FillStyle子类。
-
-## CanvasPattern
-
-**功能：** CanvasPattern类型定义的描述
 
 ### extend CanvasPattern <: FillStyle
 
@@ -103,10 +83,6 @@ public interface StrokeStyle {}
 
 **起始版本：** 22
 
-## Int64
-
-**功能：** Int64类型定义的描述
-
 ### extend Int64 <: StrokeStyle
 
 ```cangjie
@@ -114,10 +90,6 @@ extend Int64 <: StrokeStyle {}
 ```
 
 **功能：** 扩展Int64为StrokeStyle子类。
-
-## UInt32
-
-**功能：** UInt32类型定义的描述
 
 ### extend UInt32 <: StrokeStyle
 
@@ -127,10 +99,6 @@ extend UInt32 <: StrokeStyle {}
 
 **功能：** 扩展UInt32为StrokeStyle子类。
 
-## Color
-
-**功能：** Color类型定义的描述
-
 ### extend Color <: StrokeStyle
 
 ```cangjie
@@ -139,10 +107,6 @@ extend Color <: StrokeStyle {}
 
 **功能：** 扩展Color为StrokeStyle子类。
 
-## CanvasGradient
-
-**功能：** CanvasGradient类型定义的描述
-
 ### extend CanvasGradient <: StrokeStyle
 
 ```cangjie
@@ -150,10 +114,6 @@ extend CanvasGradient <: StrokeStyle {}
 ```
 
 **功能：** 扩展CanvasGradient为StrokeStyle子类。
-
-## CanvasPattern
-
-**功能：** CanvasPattern类型定义的描述
 
 ### extend CanvasPattern <: StrokeStyle
 
