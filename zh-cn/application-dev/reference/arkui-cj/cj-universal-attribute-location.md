@@ -37,7 +37,7 @@ func position(x!: ?Length, y!: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func markAnchor(?Length, ?Length)
 
@@ -62,7 +62,7 @@ func markAnchor(x!: ?Length, y!: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func offset(?Length, ?Length)
 
@@ -87,7 +87,7 @@ func offset(x!: ?Length, y!: ?Length): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func alignRules(?AlignRuleOption)
 
@@ -115,7 +115,7 @@ func alignRules(value: ?AlignRuleOption): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## 示例代码
 

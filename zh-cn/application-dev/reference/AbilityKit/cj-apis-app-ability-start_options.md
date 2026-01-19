@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-start_options模块提供StartOptions可以作为启动UIAbility接口（例如[startAbility()](./cj-apis-app-ability-ui_ability.md#func-startabilitywant-startoptions)）的入参，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。
+start_options模块提供StartOptions，可以作为启动UIAbility接口（例如[startAbility()](./cj-apis-app-ability-ui_ability.md#func-startabilitywant-startoptions)）的入参，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。
 
 ## 导入模块
 
@@ -78,7 +78,7 @@ public var displayId: Int32
 public var windowMode:?WindowMode
 ```
 
-**功能：** 启动UIAbility时的窗口模式，详见[WindowMode](./cj-apis-app-ability-ability_constant.md#enum-windowmode)。
+**功能：** 启动UIAbility时的窗口模式。
 
 **类型：** ?[WindowMode](cj-apis-app-ability-ability_constant.md#enum-windowmode)
 
@@ -107,7 +107,7 @@ public init(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|windowMode|?[WindowMode](cj-apis-app-ability-ability_constant.md#enum-windowmode)|否|None|**命名参数。** 启动UIAbility时的窗口模式，详见[WindowMode](./cj-apis-app-ability-ability_constant.md#enum-windowmode)。|
+|windowMode|?[WindowMode](cj-apis-app-ability-ability_constant.md#enum-windowmode)|否|None|**命名参数。** 启动UIAbility时的窗口模式。|
 |displayId|Int32|否|0|**命名参数。** 屏幕ID，取值为大于等于-1的整数。|
 
 **示例：**

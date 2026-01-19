@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-ArkTS 应用的开发语言包括 ArkTS、typescript、javascript，ArkTS 互操作库是为仓颉语言提供与 ArkTS 语言互操作能力。
+ArkTS 应用的开发语言包括 ArkTS、typescript、javascript，ArkTS 互操作库为仓颉语言提供与 ArkTS 语言进行互操作的能力。
 
 ## 导入模块
 

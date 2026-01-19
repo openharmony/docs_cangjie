@@ -45,4 +45,4 @@ The sensor is not supported by the device.
 
 **处理步骤**
 
-1. 使用GetSingleSensor接口，返回14500102则表示设备不支持该传感器。
+使用GetSingleSensor接口，返回14500102则表示设备不支持该传感器。

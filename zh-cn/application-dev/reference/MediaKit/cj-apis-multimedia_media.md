@@ -8,9 +8,7 @@
 
 media模块为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
-媒体子系统包含了音视频相关媒体业务，提供以下常用功能：
-
-- 获取视频缩略图（[AVImageGenerator](#class-avimagegenerator)）
+媒体子系统包含了音视频相关媒体业务，目前主要提供获取视频缩略图（[AVImageGenerator](#class-avimagegenerator)）的功能。
 
 ## 导入模块
 
@@ -195,7 +193,7 @@ public mut prop fdSrc: AVFileDescriptor
 
 > **说明：**
 >
-> - 将资源句柄（fd）传递给AVImageGenerator实例之后，不允许通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个AVPlayer/AVImageGenerator/AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图数据获取异常。
+> 将资源句柄（fd）传递给AVImageGenerator实例之后，不允许通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个AVPlayer/AVImageGenerator/AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图数据获取异常。
 
 **类型：** [AVFileDescriptor](#class-avfiledescriptor)
 

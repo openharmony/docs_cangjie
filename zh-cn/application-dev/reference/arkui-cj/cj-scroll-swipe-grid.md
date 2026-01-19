@@ -145,7 +145,7 @@ auto-stretch模式只支持track-size为一个有效列宽值，并且track-size
 
 > **说明：**
 >
-> - 设置包含单位的track-size时，需按照数字+单位的格式，如'16vp'、'20%'，与填写Length类型的格式不同。
+> 设置包含单位的track-size时，需按照数字+单位的格式，如'16vp'、'20%'，与填写Length类型的格式不同。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
