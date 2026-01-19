@@ -43,7 +43,7 @@ public class BackForwardList {}
 
 > **说明：**
 >
-> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
+> 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -758,7 +758,7 @@ public class WebviewController {
 
 > **说明：**
 >
-> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
+> 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -774,7 +774,7 @@ public init(webTag!: ?String = None)
 
 > **说明：**
 >
-> - Web组件销毁后会解绑WebViewController，之后调用WebviewController的非静态方法会抛出17100001异常，应注意调用时机和捕获异常，防止进程异常退出。
+> Web组件销毁后会解绑WebViewController，之后调用WebviewController的非静态方法会抛出17100001异常，应注意调用时机和捕获异常，防止进程异常退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2554,7 +2554,7 @@ public func setCustomUserAgent(userAgent: String): Unit
 
 > **说明：**
 >
-> - 当Web组件src设置了url，再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置User-Agent不符的异常现象。
+> 当Web组件src设置了url，再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置User-Agent不符的异常现象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3298,7 +3298,7 @@ public func removeCache(clearRom: Bool): Unit
 
 > **说明：**
 >
-> - 可以通过在data/storage/el2/base/cache/web/Cache目录下查看Webview的缓存。
+> 可以通过在data/storage/el2/base/cache/web/Cache目录下查看Webview的缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

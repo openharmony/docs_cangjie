@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
+程序访问控制管理模块提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ API示例代码使用说明：
 public class AbilityAccessCtrl {}
 ```
 
-**功能：** 此类用于创建管理访问控制模块的实例。
+**功能：** 此类用于创建[AtManager](#class-atmanager)，AtManager为管理访问控制模块的实例。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -41,7 +41,7 @@ public class AbilityAccessCtrl {}
 public static func createAtManager(): AtManager
 ```
 
-**功能：** 创建程序访问控制管理的实例对象。
+**功能：** 创建程序管理访问控制模块的实例对象。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -51,7 +51,7 @@ public static func createAtManager(): AtManager
 
 |类型|说明|
 |:----|:----|
-|[AtManager](#class-atmanager)|获取访问控制模块的实例。|
+|[AtManager](#class-atmanager)|管理访问控制模块的实例。|
 
 **示例：**
 
@@ -321,4 +321,4 @@ public func toString(): String
 public type Permissions = String
 ```
 
-**功能：** [Permissions](#type-permissions)是String类型的别名。
+**功能：** 表示权限名称，是String类型的别名。

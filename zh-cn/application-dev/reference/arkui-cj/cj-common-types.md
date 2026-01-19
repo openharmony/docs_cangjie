@@ -251,10 +251,6 @@ prop lpx: Length
 
 **起始版本：** 22
 
-## Float64
-
-**功能：** Float64类型定义的描述。
-
 ### extend Float64 <: LengthProp & Length
 
 ```cangjie
@@ -374,10 +370,6 @@ public prop unitType: LengthUnit
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 22
-
-## Int64
-
-**功能：** Int64类型定义的描述。
 
 ### extend Int64 <: LengthProp & Length
 

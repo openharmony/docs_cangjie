@@ -37,7 +37,7 @@ public func createHttp(): HttpRequest
 
 > **说明：**
 >
-> - 当该请求使用完毕时，需调用destroy方法主动销毁HttpRequest对象，否则会出现资源泄露问题。
+> 当该请求使用完毕时，需调用destroy方法主动销毁HttpRequest对象，否则会出现资源泄露问题。
 
 **系统能力：** SystemCapability.Communication.NetStack
 
@@ -1253,7 +1253,7 @@ public var extraData: HttpData
 
 > **说明：**
 >
-> - 没有额外数据时，避免添加该参数；若必须添加，避免直接传入空字符串或者空数组。
+> 没有额外数据时，避免添加该参数；若必须添加，避免直接传入空字符串或者空数组。
 
 1. 当HTTP请求为POST、PUT、DELETE等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。
 
@@ -1796,7 +1796,7 @@ public var filePath: String
 
 > **说明：**
 >
-> - 需传入文件管理模块支持的格式，可以通过文件管理的[access](../CoreFileKit/cj-apis-file_fs.md#static-func-accessstring-accessmodetype-accessflagtype)接口，验证文件是否存在且可访问。
+> 需传入文件管理模块支持的格式，可以通过文件管理的[access](../CoreFileKit/cj-apis-file_fs.md#static-func-accessstring-accessmodetype-accessflagtype)接口，验证文件是否存在且可访问。
 
 **类型：** String
 

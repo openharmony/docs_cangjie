@@ -20,7 +20,7 @@ import kit.ArkUI.*
 
 > **说明：**
 >
-> - Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+> Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 
 ## 创建组件
 

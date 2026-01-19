@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-权限请求结果对象，在调用[requestPermissionsFromUser](cj-apis-ability_access_ctrl.md#func-requestpermissionsfromuseruiabilitycontext-arraypermissions-asynccallbackpermissionrequestresult)申请权限时返回此对象表明此次权限申请的结果
+权限请求结果对象，在调用[requestPermissionsFromUser](cj-apis-ability_access_ctrl.md#func-requestpermissionsfromuseruiabilitycontext-arraypermissions-asynccallbackpermissionrequestresult)申请权限时返回此对象表明此次权限申请的结果。
 
 ## 导入模块
 

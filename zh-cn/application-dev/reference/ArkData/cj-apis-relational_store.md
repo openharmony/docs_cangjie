@@ -574,7 +574,7 @@ public func inValues(field: String, value: Array<RelationalStoreValueType>): Rdb
 
 > **说明：**
 >
-> - `value`集合不能为空。如果传入空集，此条件将失效，导致操作针对所有数据（如全量查询、更新或删除）。请在调用前判断`value`是否为空集，避免误操作。
+> `value`集合不能为空。如果传入空集，此条件将失效，导致操作针对所有数据（如全量查询、更新或删除）。请在调用前判断`value`是否为空集，避免误操作。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

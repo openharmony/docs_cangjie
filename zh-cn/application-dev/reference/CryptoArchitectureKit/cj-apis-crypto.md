@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-crypto_framework模块为屏蔽底层硬件和算法库，向上提供统一的密码算法库加解密相关接口。
+crypto_framework模块向上提供统一的密码算法库加解密相关接口，以屏蔽底层硬件和算法库。
 
 ## 导入模块
 
@@ -340,7 +340,7 @@ func getEncoded(): DataBlob
 
 > **说明：**
 >
-> - RSA算法使用密钥参数生成私钥时，私钥对象支持getEncoded。
+> RSA算法使用密钥参数生成私钥时，私钥对象支持getEncoded。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key
 
@@ -1388,7 +1388,7 @@ public func convertKey(key: DataBlob): SymKey
 
 > **说明：**
 >
-> - 对于HMAC算法的对称密钥，如果在创建对称密钥生成器时指定了具体哈希算法（如“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如SHA256对应的256位密钥数据）。如果在创建对称密钥生成器时未指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在1到4096字节范围内的任意二进制密钥数据。
+> 对于HMAC算法的对称密钥，如果在创建对称密钥生成器时指定了具体哈希算法（如“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如SHA256对应的256位密钥数据）。如果在创建对称密钥生成器时未指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在1到4096字节范围内的任意二进制密钥数据。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
@@ -1508,7 +1508,7 @@ public class CcmParamsSpec <: ParamsSpec {
 
 > **说明：**
 >
-> - 传入[initialize()](#func-initializecryptomode-key-paramsspec)方法前需要指定其algName属性（来源于父类[ParamsSpec](#class-paramsspec)）。
+> 传入[initialize()](#func-initializecryptomode-key-paramsspec)方法前需要指定其algName属性（来源于父类[ParamsSpec](#class-paramsspec)）。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
@@ -1789,7 +1789,7 @@ public class IvParamsSpec <: ParamsSpec {
 
 > **说明：**
 >
-> - 传入[initialize()](#func-initializecryptomode-key-paramsspec)方法前需要指定其algName属性（来源于父类    [ParamsSpec](#class-paramsspec)）。
+> 传入[initialize()](#func-initializecryptomode-key-paramsspec)方法前需要指定其algName属性（来源于父类    [ParamsSpec](#class-paramsspec)）。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 

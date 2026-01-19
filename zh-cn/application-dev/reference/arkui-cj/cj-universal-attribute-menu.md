@@ -94,7 +94,7 @@ func bindMenu(builder!: ?CustomBuilder): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## 示例代码
 

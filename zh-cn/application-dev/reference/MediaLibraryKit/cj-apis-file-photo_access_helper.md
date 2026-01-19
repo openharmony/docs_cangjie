@@ -2431,7 +2431,7 @@ public func showAssetsCreationDialog(srcFileUris: Array<String>, photoCreationCo
 
 > **说明：**
 >
-> - 当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
+> 当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 

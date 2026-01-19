@@ -592,4 +592,4 @@ class EntryView {
 }
 ```
 
-![text](figures/text1.png)
+![text](figures/text_component.png)

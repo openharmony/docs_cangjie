@@ -32,7 +32,7 @@ API示例代码使用说明：
 public const MAX_KEY_LENGTH: UInt32 = 1024
 ```
 
-**功能：** Key的最大长度限制为1024个字节。
+**功能：** Key的最大长度，限制为1024个字节。
 
 **类型：** UInt32
 
@@ -46,7 +46,7 @@ public const MAX_KEY_LENGTH: UInt32 = 1024
 public const MAX_VALUE_LENGTH: UInt32 = 16 * 1024 * 1024
 ```
 
-**功能：** Value的最大长度限制为16MB。
+**功能：** Value的最大长度，限制为16MB。
 
 **类型：** UInt32
 

@@ -36,7 +36,7 @@ func responseRegion(value: ?Rectangle): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
 
 ## func responseRegion(?Array\<Rectangle>)
 
@@ -60,4 +60,4 @@ func responseRegion(value: ?Array<Rectangle>): T
 
 |类型|说明|
 |:---|:---|
-|T|返回通用方法接口类型|
+|T|返回通用方法接口类型。|
