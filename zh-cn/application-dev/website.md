@@ -376,8 +376,6 @@
                 - [应用文件分享](file-management/cj-share-app-file.md)
             - 用户文件
                 - [用户文件概述](file-management/cj-user-file-overview.md)
-        - IPC Kit（进程间通信服务）
-            - [IPC Kit简介](ipc/cj-ipc-rpc-overview.md)
         - Localization Kit（本地化开发服务）
             - [国际化和本地化概述](internationalization/cj-i18n-l10n.md)
             - 应用国际化
