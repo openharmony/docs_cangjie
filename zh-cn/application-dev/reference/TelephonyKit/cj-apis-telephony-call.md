@@ -330,7 +330,7 @@ public static func makeCall(phoneNumber: String): Unit
 
 > **说明：**
 >
-> 该接口为预埋接口，当前功能受限。
+> 该接口为预埋接口，当前功能受限，推荐使用双参接口[makeCall](#static-func-makecalluiabilitycontext-string)。
 
 **系统能力：** SystemCapability.Applications.Contacts
 
