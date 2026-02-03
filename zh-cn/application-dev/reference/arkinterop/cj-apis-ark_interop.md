@@ -10281,9 +10281,9 @@ public func contains(target: Utf16String): Bool
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|是|-|目标字符串。|
+|参数名|类型|必填|默认值| 说明                      |
+|:---|:---|:---|:---|:------------------------|
+|target|[Utf16String](#class-utf16string)|是|-| 目标字符串。当目标字符串为空时返回false。 |
 
 **返回值：**
 
@@ -10392,9 +10392,9 @@ public func endsWith(target: Utf16String): Bool
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|是|-|目标字符串。|
+|参数名|类型|必填|默认值| 说明                     |
+|:---|:---|:---|:---|:-----------------------|
+|target|[Utf16String](#class-utf16string)|是|-| 目标字符串。目标字符串为空时返回false。 |
 
 **返回值：**
 
@@ -10535,7 +10535,7 @@ public func indexOf(target: Utf16String, fromIndex: Int64): ?Int64
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |target|[Utf16String](#class-utf16string)|是|-|目标字符串。|
-|fromIndex|Int64|是|-|当前字符串的查找起始位置，不填是 0。|
+|fromIndex|Int64|是|-|当前字符串的查找起始位置。|
 
 **返回值：**
 
@@ -10700,10 +10700,10 @@ public func lastIndexOf(target: Utf16String, fromIndex: Int64): ?Int64
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|是|-|目标字符串。|
-|fromIndex|Int64|是|-|当前字符串的查找起始位置，不填是 size。|
+|参数名|类型|必填|默认值| 说明                                                                 |
+|:---|:---|:---|:---|:-------------------------------------------------------------------|
+|target|[Utf16String](#class-utf16string)|是|-| 目标字符串。                                                             |
+|fromIndex|Int64|是|-| 当前字符串的查找起始位置（从目标字符串末尾往前匹配）。fromIndex小于0或大于等于size时视为size-1，字符串末尾位置。 |
 
 **返回值：**
 
@@ -10757,7 +10757,7 @@ public func lazySplit(separator: Utf16String, removeEmpty!: Bool = false): Itera
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
 |separator|[Utf16String](#class-utf16string)|是|-|分隔符。当分隔符为空字符串时，每个字符都是单独的元素。|
-|removeEmpty|Bool|否|false|是否删除空白元素。|
+|removeEmpty|Bool|否|false|是否删除空白元素，为true时删除空白元素。|
 
 **返回值：**
 
@@ -10808,11 +10808,11 @@ public func lazySplit(separator: Utf16String, maxSplit: Int64, removeEmpty!: Boo
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|separator|[Utf16String](#class-utf16string)|是|-|分隔符。当分隔符为空字符串时，每个字符都是单独的元素。|
-|maxSplit|Int64|是|-|分割最大数量。为 0 时无上限。|
-|removeEmpty|Bool|否|false|是否删除空白元素。|
+|参数名|类型|必填|默认值| 说明                          |
+|:---|:---|:---|:---|:----------------------------|
+|separator|[Utf16String](#class-utf16string)|是|-| 分隔符。当分隔符为空字符串时，每个字符都是单独的元素。 |
+|maxSplit|Int64|是|-| 分割最大数量。为0时最大分割数量无限制。        |
+|removeEmpty|Bool|否|false| 是否删除空白元素，为true时删除空白元素。                   |
 
 **返回值：**
 
@@ -10963,10 +10963,10 @@ public func split(separator: Utf16String, removeEmpty!: Bool = false): Array<Utf
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|separator|[Utf16String](#class-utf16string)|是|-|分隔符。当分隔符为空字符串时，每个字符都是单独的元素。|
-|removeEmpty|Bool|否|false|是否删除空白元素。|
+|参数名|类型|必填|默认值| 说明                        |
+|:---|:---|:---|:---|:--------------------------|
+|separator|[Utf16String](#class-utf16string)|是|-| 分隔符。当分隔符为空字符串时，每个字符都是单独的元素。|
+|removeEmpty|Bool|否|false| 是否删除空白元素，为true时删除空白元素。    |
 
 **返回值：**
 
@@ -11017,11 +11017,11 @@ public func split(separator: Utf16String, maxSplit: Int64, removeEmpty!: Bool = 
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|separator|[Utf16String](#class-utf16string)|是|-|分隔符。当分隔符为空字符串时，每个字符都是单独的元素。|
-|maxSplit|Int64|是|-|分割最大数量。为 0 时无上限。|
-|removeEmpty|Bool|否|false|是否删除空白元素。|
+|参数名|类型|必填|默认值| 说明                          |
+|:---|:---|:---|:---|:----------------------------|
+|separator|[Utf16String](#class-utf16string)|是|-| 分隔符。当分隔符为空字符串时，每个字符都是单独的元素。 |
+|maxSplit|Int64|是|-| 分割最大数量。为0时最大分割数量无限制。            |
+|removeEmpty|Bool|否|false| 是否删除空白元素，为true时删除空白元素。      |
 
 **返回值：**
 
@@ -11050,9 +11050,9 @@ public func startsWith(target: Utf16String): Bool
 
 **参数：**
 
-|参数名|类型|必填|默认值|说明|
-|:---|:---|:---|:---|:---|
-|target|[Utf16String](#class-utf16string)|是|-|目标字符串。|
+|参数名|类型|必填|默认值| 说明                     |
+|:---|:---|:---|:---|:-----------------------|
+|target|[Utf16String](#class-utf16string)|是|-| 目标字符串。目标字符串为空时返回false。 |
 
 **返回值：**
 
