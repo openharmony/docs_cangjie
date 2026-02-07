@@ -386,4 +386,5 @@ Image(@r(sys.media.ohos_app_icon))
 
 ## 限制与说明
 
-当前资源名称不能使用仓颉语言保留关键字，例如func和main等。仓颉保留关键字，参见<!--RP1-->[《仓颉编程语言开发指南》-附录-关键字](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/keyword.md)<!--RP1End-->章节。
+- 当前资源名称不能使用仓颉语言保留关键字，例如func和main等。仓颉保留关键字，参见<!--RP1-->[《仓颉编程语言开发指南》-附录-关键字](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/keyword.md)<!--RP1End-->章节。
+- 应用资源中的color不支持透明色。当color.json中传入"#00000000"（透明色）时，会被处理为黑色（#000000），即不提供透明色的能力。如需使用透明色，请在应用开发程序中调用[Color.Transparent](../../reference/arkui-cj/cj-common-types.md#static-let-transparent)设置透明色。
