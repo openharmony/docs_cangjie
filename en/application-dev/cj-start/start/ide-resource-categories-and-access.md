@@ -353,4 +353,5 @@ When accessing resources, the system prioritizes qualifier directories matching 
 
 ## Limitations and Notes
 
-Resource names cannot use Cangjie language reserved keywords (e.g., `func`, `main`). For a full list, see <!-- RP1 -->[Cangjie Programming Language Guide - Appendix - Keywords](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/keyword.md)<!-- RP1End -->.
+- Resource names cannot use Cangjie language reserved keywords (e.g., `func`, `main`). For a full list, see <!-- RP1 -->[Cangjie Programming Language Guide - Appendix - Keywords](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/source_zh_cn/Appendix/keyword.md)<!-- RP1End -->.
+- Transparent colors are not supported in application resources. When `"#00000000"` (transparent color) is passed in `color.json`, it will be processed as black (`#000000`), meaning transparent color capability is not provided. To use transparent colors, call [Color.Transparent](../../reference/arkui-cj/cj-common-types.md#static-let-transparent) in your application code.
