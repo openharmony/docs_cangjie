@@ -2057,7 +2057,7 @@ public class SharedTransitionOptions {
 public var duration: ?Int32
 ```
 
-**Function:** Sets the duration of the shared transition.
+**Function:** Describes the playback duration of the shared element transition animation.
 
 **Type:** ?Int32
 
@@ -2073,7 +2073,7 @@ public var duration: ?Int32
 public var curve: ?Curve
 ```
 
-**Function:** Sets the animation curve for the shared transition.
+**Function:** The animation curve.
 
 **Type:** ?[Curve](#enum-curve)
 
@@ -2089,7 +2089,7 @@ public var curve: ?Curve
 public var delay: ?Int32
 ```
 
-**Function:** Sets the delay time for the shared transition.
+**Function:** Delay before playback.
 
 **Type:** ?Int32
 
@@ -2121,7 +2121,7 @@ public var motionPath: ?MotionPathOptions
 public var zIndex: ?Int32
 ```
 
-**Function:** Sets the z-index for the shared transition.
+**Function:** Sets the z-index.
 
 **Type:** ?Int32
 
@@ -2137,7 +2137,7 @@ public var zIndex: ?Int32
 public var effectType: ?SharedTransitionEffectType
 ```
 
-**Function:** Sets the effect type for the shared transition.
+**Function:** The animation effect type.
 
 **Type:** ?[SharedTransitionEffectType](#enum-sharedtransitioneffecttype)
 
@@ -2163,12 +2163,12 @@ public init(duration!: ?Int32 = None, curve!: ?Curve = None, delay!: ?Int32 = No
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| duration | ?Int32 | No | None | **Named parameter.** Sets the animation curve for the shared transition. Initial value is 1000. |
-| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** Sets the animation curve for the shared transition. Initial value is Curve.Linear. |
-| delay | ?Int32 | No | None | **Named parameter.** Sets the delay time for the shared transition. Initial value is 0. |
-| motionPath | ?[MotionPathOptions](#class-motionpathoptions) | No | None | **Named parameter.** Sets the motion path for the shared transition. Initial value is MotionPathOptions(path: ""). |
-| zIndex | ?Int32 | No | None | **Named parameter.** Sets the z-index for the shared transition. Initial value is 0. |
-| effectType | ?[SharedTransitionEffectType](./cj-common-types.md#enum-sharedtransitioneffecttype) | No | None | **Named parameter.** Sets the effect type for the shared transition. Initial value is SharedTransitionEffectType.Exchange. |
+| duration | ?Int32 | No | None | **Named parameter.** Describes the playback duration of the shared element transition animation.<br>Initial value: 1000.<br>Unit: milliseconds.<br>Value range: [0, +∞). |
+| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve.<br>Initial value: Curve.Linear. |
+| delay | ?Int32 | No | None | **Named parameter.** Delay before playback.<br>Initial value: 0.<br>Unit: milliseconds. |
+| motionPath | ?[MotionPathOptions](#class-motionpathoptions) | No | None | **Named parameter.** Sets the motion path for the shared transition.<br>Initial value: MotionPathOptions(path: ""). |
+| zIndex | ?Int32 | No | None | **Named parameter.** Sets the z-index.<br>Value range: (−∞, +∞).<br>Initial value: 0. |
+| effectType | ?[SharedTransitionEffectType](./cj-common-types.md#enum-sharedtransitioneffecttype) | No | None | **Named parameter.** The animation effect type.<br>Initial value: SharedTransitionEffectType.Exchange. |
 
 ## class AnimateParam
 
@@ -2353,15 +2353,16 @@ public init(duration!: ?Int32 = None, tempo!: ?Float32 = None, curve!: ?Curve = 
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| duration | ?Int32 | No | None | **Named parameter.** Animation duration in milliseconds. Values less than 0 are treated as 0. Initial value is 1000. |
-| tempo | ?Float32 | No | None | **Named parameter.** Animation playback speed. Higher values play faster, lower values play slower. A value of 0 disables animation. Initial value is 1.0. |
-| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** Animation curve. Initial value is Curve.EaseInOut. |
-| delay | ?Int32 | No | None | **Named parameter.** Animation delay time in milliseconds. Initial value is 0. |
-| iterations | ?Int32 | No | None | **Named parameter.** Number of animation iterations. -1 means infinite iterations. 0 disables animation. Initial value is 1. |
-| playMode | ?[PlayMode](./cj-common-types.md#enum-playmode) | No | None | **Named parameter.** Animation play mode. Default is restart from beginning after completion. Initial value is PlayMode.Normal. |
+| duration | ?Int32 | No | None | **Named parameter.** Animation duration in milliseconds. Values less than 0 are treated as 0.<br>Initial value: 1000.<br>**Note:**<br>1. You can change a property inside an animation closure with duration 0 to achieve the effect of stopping that property's animation.<br>2. Values less than 0 are treated as 0. |
+| tempo | ?Float32 | No | None | **Named parameter.** Animation playback speed. Higher values play faster, lower values play slower. A value of 0 disables animation.<br>Initial value: 1.0.<br>Value range: [0, +∞). |
+| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** Animation curve. Initial value: Curve.EaseInOut. |
+| delay | ?Int32 | No | None | **Named parameter.** Animation delay time in ms (milliseconds).<br>Initial value: 0.<br>Value range: (−∞, +∞).<br>**Note:**<br>delay≥0 means delayed playback; delay<0 means advanced playback. For delay<0: when the absolute value of delay is less than the actual animation duration, the animation will jump to the state at the time of the absolute value of delay in the first frame after start; when the absolute value of delay is greater than or equal to the actual animation duration, the animation will jump to the end state in the first frame after start. The actual animation duration equals the single animation duration multiplied by the number of iterations. |
+| iterations | ?Int32 | No | None | **Named parameter.** Number of animation iterations. -1 means infinite playback. 0 disables animation.<br>Initial value: 1.<br>Value range: [-1, +∞). |
+| playMode | ?[PlayMode](./cj-common-types.md#enum-playmode) | No | None | **Named parameter.** Animation play mode. By default, playback restarts from the beginning after completion.<br>Initial value: PlayMode.Normal. |
 | onFinish | Option\<() -> Unit> | No | Option.None | **Named parameter.** Callback when animation completes. |
-| finishCallbackType | ?[FinishCallbackType](./cj-common-types.md#enum-finishcallbacktype) | No | None | **Named parameter.** Defines the type of onFinish callback in animations. Initial value is FinishCallbackType.Removed. |
-| expectedFrameRateRange | Option<[ExpectedFrameRateRange](./cj-animation-animation.md#class-expectedframeraterange)> | No | Option.None | **Named parameter.** Sets the expected frame rate for animations. |```markdown
+| finishCallbackType | ?[FinishCallbackType](./cj-common-types.md#enum-finishcallbacktype) | No | None | **Named parameter.** Defines the type of onFinish callback in animations.<br>Initial value: FinishCallbackType.Removed. |
+| expectedFrameRateRange | Option<[ExpectedFrameRateRange](./cj-animation-animation.md#class-expectedframeraterange)> | No | Option.None | **Named parameter.** Sets the expected frame rate for animations. |
+
 ## class HorizontalAlignParam
 
 ```cangjie
