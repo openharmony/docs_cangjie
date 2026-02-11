@@ -2165,7 +2165,7 @@ public class SharedTransitionOptions {
 public var duration: ?Int32
 ```
 
-**功能：** 设置共享转场的持续时间。
+**功能：** 描述共享元素转场动效播放时长。
 
 **类型：** ?Int32
 
@@ -2181,7 +2181,7 @@ public var duration: ?Int32
 public var curve: ?Curve
 ```
 
-**功能：** 设置共享转场的动画曲线。
+**功能：** 动画曲线。
 
 **类型：** ?[Curve](#enum-curve)
 
@@ -2197,7 +2197,7 @@ public var curve: ?Curve
 public var delay: ?Int32
 ```
 
-**功能：** 设置共享转场的延迟时间。
+**功能：** 延迟播放时间。
 
 **类型：** ?Int32
 
@@ -2229,7 +2229,7 @@ public var motionPath: ?MotionPathOptions
 public var zIndex: ?Int32
 ```
 
-**功能：** 设置共享转场的层级。
+**功能：** 设置Z轴。
 
 **类型：** ?Int32
 
@@ -2245,7 +2245,7 @@ public var zIndex: ?Int32
 public var effectType: ?SharedTransitionEffectType
 ```
 
-**功能：** 设置共享转场的效果类型。
+**功能：** 动画类型。
 
 **类型：** ?[SharedTransitionEffectType](#enum-sharedtransitioneffecttype)
 
@@ -2271,12 +2271,12 @@ public init(duration!: ?Int32 = None, curve!: ?Curve = None, delay!: ?Int32 = No
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|duration|?Int32|否|None|**命名参数。** 设置共享转场的动画曲线。初始值为1000。|
-|curve|?[Curve](./cj-common-types.md#enum-curve)|否|None|**命名参数。** 设置共享转场的动画曲线。初始值为Curve.Linear。|
-|delay|?Int32|否|None|**命名参数。** 设置共享转场的延迟时间。初始值为0。|
-|motionPath|?[MotionPathOptions](#class-motionpathoptions)|否|None|**命名参数。** 设置共享转场的运动路径。初始值为MotionPathOptions(path: "")。|
-|zIndex|?Int32|否|None|**命名参数。** 设置共享转场的层级。初始值为0。|
-|effectType|?[SharedTransitionEffectType](./cj-common-types.md#enum-sharedtransitioneffecttype)|否|None|**命名参数。** 设置共享转场的效果类型。初始值为SharedTransitionEffectType.Exchange。|
+|duration|?Int32|否|None|**命名参数。** 描述共享元素转场动效播放时长。<br>初始值：1000。<br>单位：毫秒。<br>取值范围：[0, +∞)。|
+|curve|?[Curve](./cj-common-types.md#enum-curve)|否|None|**命名参数。** 动画曲线。<br>初始值：Curve.Linear。|
+|delay|?Int32|否|None|**命名参数。** 延迟播放时间。<br>初始值：0。<br>单位：毫秒。|
+|motionPath|?[MotionPathOptions](#class-motionpathoptions)|否|None|**命名参数。** 设置共享转场的运动路径。<br>初始值：MotionPathOptions(path: "")。|
+|zIndex|?Int32|否|None|**命名参数。** 设置Z轴。<br>取值范围：(-∞, +∞)。<br>初始值：0。|
+|effectType|?[SharedTransitionEffectType](./cj-common-types.md#enum-sharedtransitioneffecttype)|否|None|**命名参数。** 动画类型。<br>初始值为SharedTransitionEffectType.Exchange。|
 
 ## class AnimateParam
 
@@ -2461,14 +2461,14 @@ public init(duration!: ?Int32 = None, tempo!: ?Float32 = None, curve!: ?Curve = 
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|duration|?Int32|否|None|**命名参数。** 动画持续时间，单位为毫秒。设置小于0的值时按0处理。初始值为1000。|
-|tempo|?Float32|否|None|**命名参数。** 动画播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。初始值为1.0。|
+|duration|?Int32|否|None|**命名参数。** 动画持续时间，单位为毫秒。设置小于0的值时按0处理。<br>初始值：1000。<br>**说明：**<br>1. 可以通过在持续时间为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。<br>2. 设置小于0的值时按0处理。|
+|tempo|?Float32|否|None|**命名参数。** 动画播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br>初始值：1.0。<br>取值范围：[0, +∞)。|
 |curve|?[Curve](./cj-common-types.md#enum-curve)|否|None|**命名参数。** 动画曲线。初始值为Curve.EaseInOut。|
-|delay|?Int32|否|None|**命名参数。** 动画延迟播放时间，单位为ms(毫秒)。初始值为0。|
-|iterations|?Int32|否|None|**命名参数。** 动画播放次数。设置为-1时表示无限次播放。设置为0时表示无动画效果。初始值为1。|
-|playMode|?[PlayMode](./cj-common-types.md#enum-playmode)|否|None|**命名参数。** 动画播放模式，默认播放完成后重头开始播放。初始值为PlayMode.Normal。|
+|delay|?Int32|否|None|**命名参数。** 动画延迟播放时间，单位为ms(毫秒)。<br>初始值：0。<br>取值范围：(-∞, +∞)。<br>**说明：**<br>delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。|
+|iterations|?Int32|否|None|**命名参数。** 动画播放次数。设置为-1时表示无限次播放。设置为0时表示无动画效果。<br>初始值：1。<br>取值范围：[-1, +∞)。|
+|playMode|?[PlayMode](./cj-common-types.md#enum-playmode)|否|None|**命名参数。** 动画播放模式，默认播放完成后重头开始播放。<br>初始值：PlayMode.Normal。|
 |onFinish|Option\<() -> Unit>|否|Option.None|**命名参数。** 动画播放完成回调。|
-|finishCallbackType|?[FinishCallbackType](./cj-common-types.md#enum-finishcallbacktype)|否|None|**命名参数。** 在动画中定义onFinish回调的类型。初始值为FinishCallbackType.Removed。|
+|finishCallbackType|?[FinishCallbackType](./cj-common-types.md#enum-finishcallbacktype)|否|None|**命名参数。** 在动画中定义onFinish回调的类型。<br>初始值：FinishCallbackType.Removed。|
 |expectedFrameRateRange|Option<[ExpectedFrameRateRange](#class-expectedframeraterange)>|否|Option.None|**命名参数。** 设置动画的期望帧率。|
 
 ## class HorizontalAlignParam

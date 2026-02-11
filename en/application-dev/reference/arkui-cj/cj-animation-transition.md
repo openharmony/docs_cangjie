@@ -13,7 +13,7 @@ Component transition is primarily configured through the `transition` property t
 > Currently, there are two ways to trigger component transition:
 >
 > - When a component is inserted or deleted (e.g., due to `if` condition changes or `ForEach` adding/removing components), the transition effects of all newly inserted/deleted components will be triggered recursively.
-> - When the [Visibility](./cj-universal-attribute-visibility.md) attribute of a component changes between visible and invisible, only the transition effect of that component will be triggered.
+> - When the [Visibility](./cj-universal-attribute-visibility.md) attribute of a component changes between visible and invisible ([Visibility.Hidden](./cj-common-types.md#enum-visibility) or [Visibility.None](./cj-common-types.md#enum-visibility)), only the transition effect of that component will be triggered. When switching between [Visibility.Visible](./cj-common-types.md#enum-visibility) and [Visibility.None](./cj-common-types.md#enum-visibility), setting directly to Visibility.None will make the component layout size 0, in which case the transition effect cannot be observed. When the visibility property is changed to [Visibility.None](./cj-common-types.md#enum-visibility) during the animation, the component layout becoming 0 is animated, presenting a combined effect of transition and layout animation—a composite of two animations.
 
 ## Import Module
 
@@ -37,7 +37,7 @@ func transition(value: ?TransitionEffect): T
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | ?[TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect in function form. |
+| value | ?[TransitionEffect](#class-transitioneffect) | Yes | - | Sets the transition effect for component insertion display and deletion hide. |
 
 **Return Value:**
 
@@ -61,7 +61,7 @@ func transition(value: ?TransitionEffect, onFinish: ?TransitionFinishCallback): 
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| value | ?[TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect in function form. |
+| value | ?[TransitionEffect](#class-transitioneffect) | Yes | - | Sets the transition effect for component insertion display and deletion hide. |
 | onFinish | ?[TransitionFinishCallback](./cj-common-types.md#type-transitionfinishcallback) | Yes | - | Callback type for the end of component transition animation.<br>When this parameter is `true`, it indicates the callback is for the appearance animation; when `false`, it indicates the callback is for the disappearance animation. |
 
 **Return Value:**
@@ -151,9 +151,9 @@ public init(x!: ?Length = None, y!: ?Length = None, z!: ?Length = None)
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the x-axis. Initial value: 0.0.vp |
-| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the y-axis. Initial value: 0.0.vp |
-| z | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the z-axis. Initial value: 0.0.vp |
+| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the x-axis.<br>Initial value: 0.0.vp. |
+| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the y-axis.<br>Initial value: 0.0.vp. |
+| z | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Translation distance along the z-axis.<br>Initial value: 0.0.vp. |
 
 ## class ScaleOptions
 
@@ -281,11 +281,11 @@ public init(x!: ?Float32 = None, y!: ?Float32 = None, z!: ?Float32 = None, cente
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| x | ?Float32 | No | None | **Named parameter.** Scaling ratio along the x-axis. Initial value: 1.0 |
-| y | ?Float32 | No | None | **Named parameter.** Scaling ratio along the y-axis. Initial value: 1.0 |
-| z | ?Float32 | No | None | **Named parameter.** Scaling ratio along the z-axis. Initial value: 1.0 |
-| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
-| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
+| x | ?Float32 | No | None | **Named parameter.** Scaling ratio along the x-axis. When x>1, scale up along the x-axis; when 0<x<1, scale down along the x-axis; when x<0, reflect and scale along the x-axis.<br>Initial value: 1.0. |
+| y | ?Float32 | No | None | **Named parameter.** Scaling ratio along the y-axis. When y>1, scale up along the y-axis; when 0<y<1, scale down along the y-axis; when y<0, reflect and scale along the y-axis.<br>Initial value: 1.0. |
+| z | ?Float32 | No | None | **Named parameter.** Scaling ratio along the z-axis. When z>1, scale up along the z-axis; when 0<z<1, scale down along the z-axis; when z<0, reflect and scale along the z-axis.<br>Initial value: 1.0. |
+| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the transformation center point (anchor). For numeric types, unit is vp.<br>Initial value: 50.percent. |
+| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the transformation center point (anchor). For numeric types, unit is vp.<br>Initial value: 50.percent. |
 
 ## class RotateOptions
 
@@ -459,10 +459,12 @@ public init(angle: ?Float32, x!: ?Float32 = None, y!: ?Float32 = None, z!: ?Floa
 | x | ?Float32 | No | None | **Named parameter.** X-coordinate of the rotation axis vector. Initial value: 0.0 |
 | y | ?Float32 | No | None | **Named parameter.** Y-coordinate of the rotation axis vector. Initial value: 0.0 |
 | z | ?Float32 | No | None | **Named parameter.** Z-coordinate of the rotation axis vector. Initial value: 0.0 |
-| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
-| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the transformation center point. Unit: vp. Initial value: 50.percent |
-| centerZ | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Z-axis anchor point, i.e., the z-component of the 3D rotation center point. Initial value: 0 |
-| perspective | ?Float32 | No | None | **Named parameter.** Distance from the user to the z=0 plane. The axis and rotation center are based on the coordinate system, which remains fixed when the component moves. Initial value: 0.0 |## class TransitionEffect
+| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** X-coordinate of the transformation center point (anchor). For numeric types, unit is vp.<br>Initial value: 50.percent. |
+| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Y-coordinate of the transformation center point (anchor). For numeric types, unit is vp.<br>Initial value: 50.percent. |
+| centerZ | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Z-axis anchor point, i.e., the z-component of the 3D rotation center point. For numeric types, unit is vp.<br>Initial value: 0. |
+| perspective | ?Float32 | No | None | **Named parameter.** Distance from the user to the z=0 plane. The axis and rotation center are based on the coordinate system, which remains fixed when the component moves.<br>Initial value: 0.0.<br>Unit: px. |
+
+## class TransitionEffect
 
 ```cangjie
 public class TransitionEffect {
@@ -479,6 +481,18 @@ public class TransitionEffect {
 > **Note:**
 >
 > - Multiple transition effects can be combined using the `combine` function. The `animation` parameter can be specified separately for each effect, and the animation parameters of the preceding effect also apply to the subsequent effect. For example, `TransitionEffect.OPACITY.animation(AnimateParam(duration: 1000)).combine(TransitionEffect.translate(TranslateOptions(x:100)))` means the animation parameters with a duration of 1000ms apply to both `OPACITY` and `translate`.
+>
+> - The order of precedence for animation parameters is: the `animation` parameter of this TransitionEffect > the `animation` parameter of the preceding TransitionEffect > the animation parameters in the `animateTo` that triggers the component appearance/disappearance.
+>
+> - If the transition animation is not triggered by `animateTo` and there is no `animation` parameter in TransitionEffect, the component will appear or disappear directly.
+>
+> - If the property values specified in TransitionEffect are the same as the default values, that property will not produce a transition animation. For example, `TransitionEffect.opacity(1.0).animation(duration:1000)` — since the default opacity is also 1.0, no opacity animation is produced and the component appears or disappears directly.
+>
+> - For more details on scale and rotate effects, see [Transform](./cj-universal-attribute-transform.md).
+>
+> - If a component's attachment to or detachment from the tree or its visibility change is triggered within an animation scope ([animateTo](./cj-apis-uicontext-uicontext.md#func-animatetoanimateparam-voidcallback), [animation](./cj-animation-animation.md#func-animationanimateparam)) and the root component has no transition configured, a default opacity transition (TransitionEffect.OPACITY) will be applied to that component, with animation parameters following the surrounding animation environment. To disable this and make the component appear or disappear directly, explicitly configure TransitionEffect.IDENTITY.
+>
+> - When a disappear transition is triggered by removing an entire subtree, to see the full disappear transition, ensure the root component of the removed subtree has sufficient disappear transition duration; see Example 3.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -506,7 +520,7 @@ public static let IDENTITY: TransitionEffect
 public static let OPACITY: TransitionEffect = TransitionEffect.opacity(0.0)
 ```
 
-**Function:** Defines a transition effect with opacity set to 0, equivalent to `TransitionEffect.opacity(0.0)`.
+**Function:** Adds an opacity transition effect to the component: opacity goes from 0 to 1 on appearance and from 1 to 0 on disappearance, equivalent to `TransitionEffect.opacity(0.0)`.
 
 **Type:** [TransitionEffect](#class-transitioneffect)
 
@@ -523,7 +537,7 @@ public static let SLIDE: TransitionEffect = TransitionEffect.asymmetric(Transiti
         TransitionEffect.move(TransitionEdge.End))
 ```
 
-**Function:** Defines a slide transition effect.
+**Function:** Equivalent to `TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.Start), TransitionEffect.move(TransitionEdge.End))`. Slides in from the Start edge and slides out from the End edge. In LTR mode: slides in from the left and out from the right; in RTL mode: slides in from the right and out from the left.
 
 **Type:** [TransitionEffect](#class-transitioneffect)
 
@@ -613,7 +627,7 @@ public static func scale(options: ?ScaleOptions): TransitionEffect
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| options | ?[ScaleOptions](#class-scaleoptions) | Yes | - | Sets the scaling effect during component transition, which is the value at the start of insertion and the end of deletion. |
+| options | ?[ScaleOptions](#class-scaleoptions) | Yes | - | Scaling effect during component transition, which is the value at the start of insertion and the end of deletion. The set scale value is applied on top of the component's current scale property. For example, if the component's current scale is 0.8 and the transition scale is set to 0.5, the component's entrance animation will run from a scale of 0.4. |
 
 **Return Value:**
 
@@ -689,8 +703,8 @@ public static func asymmetric(appear: TransitionEffect, disappear: TransitionEff
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| appear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect for appearance. |
-| disappear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect for disappearance. |
+| appear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect for appearance.<br>If TransitionEffect is not constructed using the asymmetric function, the effect applies to both component appearance and disappearance. |
+| disappear | [TransitionEffect](#class-transitioneffect) | Yes | - | Specifies the transition effect for disappearance.<br>If TransitionEffect is not constructed using the asymmetric function, the effect applies to both component appearance and disappearance. |
 
 **Return Value:**
 
@@ -868,7 +882,9 @@ public operator func ==(other: TransitionEdge): Bool
 |:----|:----|
 | Bool | Returns `true` if the two enum values are equal, otherwise returns `false`. |
 
-## Example Code### Example Code 1 (Using the Same Interface for Image Appearance and Disappearance)
+## Example Code
+
+### Example Code 1 (Using the Same Interface for Image Appearance and Disappearance)
 
 This example demonstrates how to use the same TransitionEffect to achieve both the appearance and disappearance of an image, where these two processes are inverses of each other.
 
