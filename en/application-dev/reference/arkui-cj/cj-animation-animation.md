@@ -6,7 +6,7 @@
 > Currently in the beta phase.
 <!--DelEnd-->
 
-When certain common properties of a component change, smooth transition effects can be achieved through property animation to enhance user experience. Supported properties include [width](./cj-universal-attribute-size.md#func-widthlength), [height](./cj-universal-attribute-size.md#func-heightlength), [backgroundColor](cj-universal-attribute-background.md#func-backgroundcolorresourcecolor), [opacity](cj-universal-attribute-opacity.md#func-opacityfloat64), [scale](./cj-universal-attribute-transform.md#func-scalefloat32-float32-float32-length-length), [rotate](./cj-universal-attribute-transform.md#func-rotatefloat32-float32-float32-float64-length-length), [translate](./cj-universal-attribute-transform.md#func-translatelength-length-length), etc. For layout animations that change width/height, the content jumps directly to the final state (e.g., text, [Canvas](./cj-canvas-drawing-canvas.md) content). To make content follow width/height changes, use the [renderFit](./cj-universal-attribute-renderfit.md) property configuration.
+When certain common properties of a component change, smooth transition effects can be achieved through property animation to enhance user experience. Supported properties include [width](./cj-universal-attribute-size.md#func-widthlength), [height](./cj-universal-attribute-size.md#func-heightlength), [backgroundColor](cj-universal-attribute-background.md#func-backgroundcolorresourcecolor), [opacity](cj-universal-attribute-opacity.md#func-opacityfloat64), [scale](./cj-universal-attribute-transform.md#func-scalefloat32-float32-float32-length-length), [rotate](./cj-universal-attribute-transform.md#func-rotatefloat32-float32-float32-float64-length-length), [translate](./cj-universal-attribute-transform.md#func-translatelength-length-length), etc. For animations that change layout-related properties (such as width and height), the content typically jumps directly to the final state (e.g., text or [Canvas](./cj-canvas-drawing-canvas.md) content). To make content follow width/height changes, use the [renderFit](./cj-universal-attribute-renderfit.md) property configuration.
 
 ## Import Module
 
@@ -37,6 +37,56 @@ public func animation(value: ?AnimateParam): T
 | Type | Description |
 |:----|:----|
 | T | Returns the component instance. |
+
+Property animation only applies to properties that are written before the animation modifier, and does not apply to properties of the component constructor.
+
+<!-- run -->
+
+```cangjie
+package ohos_app_cangjie_entry
+
+import kit.ArkUI.*
+import ohos.arkui.state_macro_manage.*
+import ohos.hilog.Hilog
+
+@Entry
+@Component
+class EntryView {
+    @State var widthSize: Length = 250.vp
+    @State var heightSize: Length = 100.vp
+    @State var rotateAngle: Float32 = 0.0
+    @State var flag: Bool = true
+    @State var space: Length = 10.vp
+    func build() {
+        Column(space: this.space) // Changing space in the Column constructor does not animate.
+            .onClick({
+                evt =>
+                     if (this.flag) {
+                       this.widthSize = 150.vp
+                       this.heightSize = 60.vp
+                       this.space = 20.vp // Changing this.space does not animate.
+                     } else {
+                       this.widthSize = 250.vp
+                       this.heightSize = 100.vp
+                       this.space = 10.vp // Changing this.space does not animate.
+                     }
+                     this.flag = !this.flag
+            })
+            .backgroundColor(Color.Black)
+            .margin(30)
+            .width(this.widthSize) // Only properties written before the animation modifier take effect.
+            .height(this.heightSize) // Only properties written before the animation modifier take effect.
+            .animation(AnimateParam(
+                duration: 2000,
+                curve: Curve.EaseOut,
+                iterations: 3,
+                playMode: PlayMode.Normal
+            ))
+//            .width(this.widthSize) // Animation does not take effect.
+//            .height(this.heightSize) // Animation does not take effect.
+    }
+}
+```
 
 ## Example Code
 
