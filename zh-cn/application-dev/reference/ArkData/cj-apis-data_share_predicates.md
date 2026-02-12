@@ -6,9 +6,9 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-谓词（data_share_predicates）是开发者通过DataShare查询数据库中的数据时所使用的筛选条件，经常被应用在更新数据、删除数据和查询数据中。
+谓词（data_share_predicates）是开发者通过DataShare查询数据库中的数据时所使用的筛选条件，通常被应用在更新数据、删除数据和查询数据中。
 
-谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
+谓词的接口函数与数据库的筛选条件具有明确的对应关系，开发者在使用前需了解数据库相关知识。
 
 ## 导入模块
 
@@ -71,7 +71,7 @@ public func inValues(field: String, value: Array<VBValueType>): DataSharePredica
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|field|String|是|-|数据库表中的列名。</br>field为""时，此次调用接口配置的谓词无效。|
+|field|String|是|-|数据库表中的列名。</br>当field为空字符串""时，调用接口配置的谓词无效。|
 |value|Array\<[VBValueType](cj-apis-values_bucket.md#enum-vbvaluetype)>|是|-|以VBValueType数组形式指定的要匹配的值。|
 
 **返回值：**
@@ -170,7 +170,7 @@ public func equalTo(field: String, value: VBValueType): DataSharePredicates
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|field|String|是|-|数据库表中的列名。</br>field为""时，此次调用接口配置的谓词无效。|
+|field|String|是|-|数据库表中的列名。</br>当field为空字符串""时，调用接口配置的谓词无效。|
 |value|[VBValueType](./cj-apis-values_bucket.md#enum-vbvaluetype)|是|-|指示要与谓词匹配的值。|
 
 **返回值：**
@@ -274,7 +274,7 @@ public func orderByAsc(field: String): DataSharePredicates
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|field|String|是|-|数据库表中的列名。 </br>field为""时，此次调用接口配置的谓词无效。。|
+|field|String|是|-|数据库表中的列名。 </br>当field为空字符串""时，调用接口配置的谓词无效。|
 
 **返回值：**
 
@@ -325,7 +325,7 @@ public func orderByDesc(field: String): DataSharePredicates
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|field|String|是|-|数据库表中的列名。</br>field为""时，此次调用接口配置的谓词无效|
+|field|String|是|-|数据库表中的列名。</br>当field为空字符串""时，调用接口配置的谓词无效。|
 
 **返回值：**
 
