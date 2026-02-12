@@ -6,7 +6,7 @@
 > Currently in the beta phase.
 <!--DelEnd-->
 
-When routing switches occur, custom page entrance and exit transition effects can be defined.
+When switching routes ([Router](./cj-apis-uicontext-router.md)), you can customize the page entrance and page exit transition animations in the [pageTransition](./cj-custom-component-lifecycle.md#func-pagetransition) function. For detailed guidance, see [Page Transition Animation](../../arkui-cj/cj-page-transition-animation.md).
 
 > **Note:**
 >
@@ -24,7 +24,7 @@ import kit.ArkUI.*
 abstract sealed class CommonTransition {}
 ```
 
-**Function:** The common base class for page transition animations, providing a series of reusable animation effect methods.
+**Function:** Common page transition animation effects.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,7 +36,7 @@ abstract sealed class CommonTransition {}
 public func slide(value: SlideEffect): This
 ```
 
-**Function:** Sets the sliding effect during page transitions.
+**Function:** Sets the slide-in and slide-out effect for page transition.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,7 +46,7 @@ public func slide(value: SlideEffect): This
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | [SlideEffect](#enum-slideeffect) | Yes | - | The type of sliding effect. |
+| value | [SlideEffect](#enum-slideeffect) | Yes | - | Slide-in and slide-out effect during page transition. |
 
 ### func translate(?Length, ?Length, ?Length)
 
@@ -64,9 +64,9 @@ public func translate(x!: ?Length = None, y!: ?Length = None, z!: ?Length = None
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the x-axis. Initial value: 0.0vp |
-| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the y-axis. Initial value: 0.0vp |
-| z | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the z-axis. Initial value: 0.0vp |
+| x | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the x-axis. <br>Value range: (−∞, +∞).<br>Initial value: 0.0.vp. |
+| y | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the y-axis. <br>Value range: (−∞, +∞).<br>Initial value: 0.0.vp. |
+| z | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The translation distance on the z-axis. <br>Value range: (−∞, +∞).<br>Initial value: 0.0.vp. |
 
 ### func scale(?Float32, ?Float32, ?Float32, ?Length, ?Length)
 
@@ -90,11 +90,11 @@ public func scale(
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| x | ?Float32 | No | None | **Named parameter.** The scaling ratio on the x-axis. Initial value: 1.0 |
-| y | ?Float32 | No | None | **Named parameter.** The scaling ratio on the y-axis. Initial value: 1.0 |
-| z | ?Float32 | No | None | **Named parameter.** The scaling ratio on the z-axis. Initial value: 1.0 |
-| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The x-coordinate of the transformation center point. Initial value: 50.percent |
-| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The y-coordinate of the transformation center point. Initial value: 50.percent |
+| x | ?Float32 | No | None | **Named parameter.** The scaling ratio on the x-axis. When x>1, scale up along the x-axis; when 0<x<1, scale down along the x-axis; when x<0, reflect and scale along the x-axis.<br>Initial value: 1.0. |
+| y | ?Float32 | No | None | **Named parameter.** The scaling ratio on the y-axis. When y>1, scale up along the y-axis; when 0<y<1, scale down along the y-axis; when y<0, reflect and scale along the y-axis.<br>Initial value: 1.0. |
+| z | ?Float32 | No | None | **Named parameter.** The scaling ratio on the z-axis. When z>1, scale up along the z-axis; when 0<z<1, scale down along the z-axis; when z<0, reflect and scale along the z-axis.<br>Initial value: 1.0. |
+| centerX | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The x-coordinate of the transformation center point.<br>Initial value: 50.percent. |
+| centerY | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** The y-coordinate of the transformation center point.<br>Initial value: 50.percent. |
 
 ### func opacity(Float64)
 
@@ -102,7 +102,7 @@ public func scale(
 public func opacity(value: Float64): This
 ```
 
-**Function:** Sets the opacity effect during page transitions.
+**Function:** Sets the opacity value at the start of the entrance or at the end of the exit.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -112,7 +112,7 @@ public func opacity(value: Float64): This
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| value | Float64 | Yes | - | The opacity value, ranging from [0.0, 1.0], where 0.0 means fully transparent and 1.0 means fully opaque. |
+| value | Float64 | Yes | - | Sets the opacity value at the start of the entrance or at the end of the exit. Value range: [0.0, 1.0]. 0.0 means fully transparent, 1.0 means fully opaque. |
 
 ## class PageTransitionEnter
 
@@ -158,10 +158,10 @@ public init(
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| routeType | ?[RouteType](#enum-routetype) | No | Option.None | **Named parameter.** The route type for which the page transition effect is applied. |
-| duration | ?Int32 | No | None | **Named parameter.** The duration of the animation. Unit: milliseconds. Range: [0, +∞). |
-| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve. |
-| delay | ?Int32 | No | None | **Named parameter.** The delay time of the animation. Unit: milliseconds. |
+| routeType | ?[RouteType](#enum-routetype) | No | Option.None | **Named parameter.** The route type for which the page transition effect is applied.<br>Initial value: RouteType.None. |
+| duration | ?Int32 | No | None | **Named parameter.** The duration of the animation.<br>Unit: milliseconds.<br>Value range: [0, +∞).<br>Initial value: 1000. |
+| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve.<br>Curve.Linear |
+| delay | ?Int32 | No | None | **Named parameter.** The delay time of the animation.<br>Unit: milliseconds.<br>Initial value: 1000. |
 
 ### func onEnter(?PageTransitionCallback)
 
@@ -225,10 +225,10 @@ public init(
 
 | Parameter | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| routeType | ?[RouteType](#enum-routetype) | No | Option.None | **Named parameter.** The route type for which the page transition effect is applied. |
-| duration | ?Int32 | No | None | **Named parameter.** The duration of the animation. Unit: milliseconds. Range: [0, +∞). |
-| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve. |
-| delay | ?Int32 | No | None | **Named parameter.** The delay time of the animation. Unit: milliseconds. |
+| routeType | ?[RouteType](#enum-routetype) | No | Option.None | **Named parameter.** The route type for which the page transition effect is applied.<br>Initial value: RouteType.None. |
+| duration | ?Int32 | No | None | **Named parameter.** The duration of the animation.<br>Unit: milliseconds.<br>Value range: [0, +∞).<br>Initial value: 1000. |
+| curve | ?[Curve](./cj-common-types.md#enum-curve) | No | None | **Named parameter.** The animation curve.<br>Curve.Linear |
+| delay | ?Int32 | No | None | **Named parameter.** The delay time of the animation.<br>Unit: milliseconds.<br>Initial value: 1000. |
 
 ### func onExit(?PageTransitionCallback)
 
@@ -275,7 +275,7 @@ public enum RouteType <: Equatable<RouteType> {
 None
 ```
 
-**Function:** The page is not redirected.
+**Function:** The page is not redirected. When RouteType is None as described in Push and Pop, the PageTransitionEnter transition effect applies when the page enters, and the PageTransitionExit transition effect applies when the page exits.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -287,7 +287,7 @@ None
 Push
 ```
 
-**Function:** Navigates to the next page.
+**Function:** Navigates to the next page. PageA navigates to a new page PageB. For PageA, the PageTransitionExit component style with RouteType set to None or Push takes effect; for PageB, the PageTransitionEnter component style with RouteType set to None or Push takes effect.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -299,7 +299,7 @@ Push
 Pop
 ```
 
-**Function:** Redirects to the specified page.
+**Function:** Redirects to the specified page. When returning from PageB to the previous page PageA. For PageB, the PageTransitionExit component style with RouteType set to None or Pop takes effect; for PageA, the PageTransitionEnter component style with RouteType set to None or Pop takes effect.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -365,7 +365,7 @@ public enum SlideEffect <: Equatable<SlideEffect> {
 }
 ```
 
-**Function:** The type of page sliding effect.
+**Function:** Slide-in and slide-out effect during page transition.
 
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
@@ -469,7 +469,9 @@ public operator func ==(other: SlideEffect): Bool
 
 | Type | Description |
 |:----|:----|
-| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |## type PageTransitionCallback
+| Bool | Returns true if the two enumeration values are equal, otherwise returns false. |
+
+## type PageTransitionCallback
 
 ```cangjie
 public type PageTransitionCallback = (RouteType, Float64) -> Unit
@@ -479,10 +481,10 @@ public type PageTransitionCallback = (RouteType, Float64) -> Unit
 
 **Type:** ([RouteType](#enum-routetype), Float64) -> Unit
 
-|类型参数|说明|
+| Type Parameter | Description |
 |:---|:---|
-|[RouteType](#enum-routetype)|Page transition type.|
-|Float64|Transition progress, which changes from 0 to 1.|
+| [RouteType](#enum-routetype) | Page transition type. |
+| Float64 | Transition progress, which changes from 0 to 1. |
 
 ## Example Code
 
