@@ -102,7 +102,7 @@ public var moduleName: String
 public init(bundleName: String, abilityName: String, deviceId!: String = "", moduleName!: String = "")
 ```
 
-**功能：** 通过指定设备ID，应用Bundle名称，Ability名称，模块名称构造ElementName。
+**功能：** 通过指定设备ID、应用Bundle名称、Ability名称和模块名称构造ElementName对象。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

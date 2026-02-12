@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-error_manager模块提供对错误观测器的注册和注销的能力，主要是观测应用发生cj crash和appfreeze等错误。
+error_manager模块提供对错误观测器的注册和注销的能力，主要是观测发生应用崩溃（crash）和应用冻结（appfreeze）等错误的情况。
 
 ## 导入模块
 

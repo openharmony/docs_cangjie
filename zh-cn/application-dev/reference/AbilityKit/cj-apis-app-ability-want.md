@@ -91,7 +91,7 @@ public var abilityName: String
 public var action: String
 ```
 
-**功能：** 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，开发者可以定义该字段，配合uri或parameters来表示对数据执行的操作。隐式Want定义及匹配规则请参见[显式Want与隐式Want匹配规则](../../application-models/cj-explicit-implicit-want-mappings.md)。
+**功能：** 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，开发者可以定义该action字段，配合uri或parameters来表示对数据执行的操作。隐式Want定义及匹配规则请参见[显式Want与隐式Want匹配规则](../../application-models/cj-explicit-implicit-want-mappings.md)。
 
 **类型：** String
 
@@ -139,7 +139,7 @@ public var deviceId: String
 public var entities: Array<String>
 ```
 
-**功能：** 表示目标Ability额外的类别信息（如：浏览器、视频播放器）。在隐式Want中是对action字段的补充。在隐式Want中，开发者可以定义该字段，来过滤匹配Ability类型。
+**功能：** 表示目标Ability额外的类别信息（如：浏览器、视频播放器）。在隐式Want中是对action字段的补充。在隐式Want中，开发者可以定义该entities字段，来过滤匹配Ability类型。
 
 **类型：** Array\<String>
 
@@ -155,7 +155,7 @@ public var entities: Array<String>
 public var flags: UInt32
 ```
 
-**功能：** 表示处理Want的方式。值为枚举类型[Flags](./cj-apis-app-ability-want_constant.md#class-flags)，默认传数字。例如取值为0x00000001（即Flags.FLAG_AUTH_READ_URI_PERMISSION）表示临时授予接收方读取该URI指向的数据的权限。
+**功能：** 表示处理Want的方式。值为枚举类型[Flags](./cj-apis-app-ability-want_constant.md#class-flags)，默认传数字。例如取值为0x00000001（即Flags.FLAG_AUTH_READ_URI_PERMISSION）表示临时授予接收方读取该Want对象中URI指向的数据的权限。
 
 **类型：** UInt32
 

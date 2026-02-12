@@ -139,7 +139,7 @@ public init(name: String, dataGroupId!: String = String.empty,
 |:---|:---|:---|:---|:---|
 |name|String|是|-|Preferences实例的名称。名称长度需大于零且小于等于255字节，名称中不能包含'/'且不能以'/'结尾。|
 |dataGroupId|String|否|String.empty|**命名参数。** 应用组ID，为可选参数。|
-|storageType|[StorageType](#enum-storagetype)|否|StorageType.Xml|**命名参数。** 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用StorageType.Xml存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。|
+|storageType|[StorageType](#enum-storagetype)|否|StorageType.Xml|**命名参数。** 存储模式。表示当前Preferences实例需要使用的存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。|
 
 ## class Preferences
 
@@ -383,7 +383,9 @@ public static func removePreferencesFromCache(context: UIAbilityContext, name: S
 
 **功能：** 从缓存中移出指定的Preferences实例。
 
-应用首次调用[getPreferences](#static-func-getpreferencesuiabilitycontext-string)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#static-func-getpreferencesuiabilitycontext-string)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#static-func-getpreferencesuiabilitycontext-string)接口获取某个Preferences实例后，该实例会被会被缓存起来。后续再次调用getPreferences时，不会再从持久化文件中读取，而是直接从缓存中获取Preferences实例。
+
+调用此接口移出缓存中的实例之后，再次调用getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题。
 
