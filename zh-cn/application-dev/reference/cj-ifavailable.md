@@ -52,9 +52,9 @@
 
 - 当调用的 API 满足**交集**时，不报错；
 - 当调用 API 不满足**交集**，但满足**并集**时，编译告警；
-- 当调用 API 既不满足**交集**，也不满足时**并集**，编译报错。
+- 当调用 API 既不满足**交集**，也不满足**并集**时，编译报错。
 
-在任何作用域中，不允许调用任何设备中都不支持的 API，允许调用 syscap 在**交集**与**并集**中的 API。`@IfAvailable` 可以为**交集**与**并集**增加能力，即 `<lambda1>` 中可以调用 `syscap: <value>` 中 `<value>` 指定的 syscap API，在 `<lambda2>` 中则不允许。
+在任何作用域中，不允许调用任何设备中都不支持的 API，允许调用 SysCap 在**交集**与**并集**中的 API。`@IfAvailable` 可以为**交集**与**并集**增加能力，即 `<lambda1>` 中可以调用 `syscap: <value>` 中 `<value>` 指定的 SysCap API，在 `<lambda2>` 中则不允许。
 
 ## `@IfAvailable` 使用示例
 
@@ -83,7 +83,7 @@ public func f24() {
 }
 ```
 
-假设 `ohos.sample` 为 sdk 提供的包，用户使用 Deveco Studio 仓颉项目工程时可以选择所需的 level 等级：
+假设 `ohos.sample` 为 sdk 提供的包，用户使用 Deveco Studio 仓颉项目工程时可以选择所需的 APILevel 等级：
 
 ![image-Create-Project-With-Level](./figures/image-Create-Project-With-Level.png)
 

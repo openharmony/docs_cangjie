@@ -649,7 +649,11 @@ public var default: String
 public var nodeType: Int32
 ```
 
-**功能：** 表示指定节点对应的数据类型，取值为[KVValueType](#enum-kvvaluetype)对应的枚举值。暂不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#func-getkvstoretstring-kvoptions-where-t--singlekvstore)失败。
+**功能：** 表示指定节点对应的数据类型，取值为[KVValueType](#enum-kvvaluetype)对应的枚举值。
+
+> **说明：**
+>
+> 当前版本不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#func-getkvstoretstring-kvoptions-where-t--singlekvstore)失败。
 
 **类型：** Int32
 
@@ -1272,7 +1276,7 @@ public var root: FieldNode
 public var skip: Int32
 ```
 
-**功能：** 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。
+**功能：** 支持在检查Value时跳过skip指定的字节数，取值范围为[0, 4 * 1024 * 1024 - 2]字节。
 
 **类型：** Int32
 

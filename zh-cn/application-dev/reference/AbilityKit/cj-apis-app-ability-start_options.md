@@ -6,7 +6,7 @@
 > 当前为Beta阶段。
 <!--DelEnd-->
 
-start_options模块提供StartOptions，可以作为启动UIAbility接口（例如[startAbility()](./cj-apis-app-ability-ui_ability.md#func-startabilitywant-startoptions)）的入参，用于指定目标UIAbility启动时的选项，包括但不局限于窗口模式、目标UIAbility启动时所在的屏幕等。
+start_options模块提供StartOptions，可以作为启动UIAbility接口（例如[startAbility()](./cj-apis-app-ability-ui_ability.md#func-startabilitywant-startoptions)）的入参，用于指定目标UIAbility启动时的选项，包括窗口模式、目标UIAbility启动时所在的屏幕等。
 
 ## 导入模块
 
