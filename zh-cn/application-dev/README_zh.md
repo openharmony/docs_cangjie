@@ -10,7 +10,6 @@
         - [ArkWeb（方舟Web）](web/README_zh.md)（Beta特性）
         - [Cangjie（仓颉）](learn-cj/FFI/README_zh.md)
         - [Core File Kit（文件基础服务）](file-management/README_zh.md)（Beta特性）
-        - [IPC Kit（进程间通信服务）](ipc/README_zh.md)（Beta特性）
         - [Localization Kit（本地化开发服务）](internationalization/README_zh.md)（Beta特性）
     - 系统
         - 安全
