@@ -97,7 +97,7 @@ public func deleteRdbStore(context: UIAbilityContext, config: StoreConfig): Unit
 
 **功能：** 使用指定的数据库文件配置删除数据库。
 
-若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口，当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](#class-storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
+若数据库文件处于公共沙箱目录下，则删除数据库时必须使用该接口。当存在多个进程操作同一个数据库的情况，建议向其他进程发送数据库删除通知使其感知并处理。建立数据库时，若在[StoreConfig](#class-storeconfig)中配置了自定义路径，则必须调用此接口进行删库。
 
 当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已打开的RdbStore和ResultSet均已成功关闭。
 
@@ -4953,7 +4953,7 @@ Sha256
 Sha512
 ```
 
-**功能：**  HMAC_SHA512算法。
+**功能：** HMAC_SHA512算法。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

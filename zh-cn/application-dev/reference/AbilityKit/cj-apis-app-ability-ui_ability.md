@@ -178,7 +178,7 @@ public func createUIAbilityContextFromJSValue(context: JSContext, input: JSValue
 
 |类型|说明|
 |:----|:----|
-|[UIAbilityContext](#class-uiabilitycontext)|返回AbilityContext类型实例。|
+|[UIAbilityContext](#class-uiabilitycontext)|返回UIAbilityContext类型实例。|
 
 **示例：**
 
@@ -333,7 +333,7 @@ public class ApplicationContext <: Context {}
 public open class Context <: BaseContext {}
 ```
 
-**功能：** Context提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+**功能：** Context为ability或application提供上下文支持能力，包括访问特定应用程序的资源等。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -509,7 +509,7 @@ public open class UIAbility <: Ability {}
 public mut prop context: UIAbilityContext
 ```
 
-**功能：** UIAbility的上下文。
+**功能：** 提供UIAbility运行所需的上下文环境。
 
 **类型：** [UIAbilityContext](#class-uiabilitycontext)
 
@@ -540,9 +540,9 @@ public mut prop lastRequestWant: Want
 
 **功能：** 最近一次拉起UIAbility请求的Want参数。
 
-首次拉起UIAbility时，取值为[onCreate](#func-oncreatewant-launchparam)接收到的Want参数。
+当UIAbility被首次创建并拉起时，取值为[onCreate](#func-oncreatewant-launchparam)接收到的Want参数。
 
-重复拉起UIAbility时，取值为[onNewWant](#func-onnewwantwant-launchparam)最近一次接收到的Want参数。
+当UIAbility被再次拉起时，取值为[onNewWant](#func-onnewwantwant-launchparam)最近一次接收到的Want参数。
 
 **类型：** [Want](./cj-apis-app-ability-want.md#class-want)
 
@@ -979,9 +979,9 @@ public func startAbilityForResult(want: Want, callback: AsyncCallback<AbilityRes
 
 UIAbility被启动后，有如下情况：
 
-- 正常情况下可以通过调用[terminateSelfWithResult](#func-terminateselfwithresultabilityresult)接口销毁自身，并将结果返回给调用方。
+- 在正常情况下，可以通过调用[terminateSelfWithResult](#func-terminateselfwithresultabilityresult)接口销毁自身，并将结果返回给调用方。
 
-- 异常情况下比如杀死UIAbility会将异常结果返回给调用方，异常结果中resultCode为-1。
+- 在异常情况下，如杀死UIAbility，会将异常结果返回给调用方，异常结果中resultCode为-1。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1054,9 +1054,9 @@ public func startAbilityForResult(want: Want, options: StartOptions, callback: A
 
 UIAbility被启动后，有如下情况：
 
-- 正常情况下可以通过调用[terminateSelfWithResult](#func-terminateselfwithresultabilityresult)接口销毁自身，并将结果返回给调用方。
+- 在正常情况下，可以通过调用[terminateSelfWithResult](#func-terminateselfwithresultabilityresult)接口销毁自身，并将结果返回给调用方。
 
-- 异常情况下比如杀死UIAbility会将异常结果返回给调用方，异常结果中resultCode为-1。
+- 在异常情况下，如杀死UIAbility，会将异常结果返回给调用方，异常结果中resultCode为-1。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1128,7 +1128,7 @@ public func terminateSelf(): Unit
 
 > **说明：**
 >
-> 调用该接口后，任务中心的任务默认不会清理。
+> 调用该接口后，任务中心的任务默认不会被清理。如需清理，请进行配置。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1170,7 +1170,7 @@ public func terminateSelfWithResult(parameter: AbilityResult): Unit
 
 > **说明：**
 >
-> 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置
+> 调用该接口后，任务中心的任务默认不会被清理。如需清理，请进行配置。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
