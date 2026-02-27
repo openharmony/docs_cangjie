@@ -10289,9 +10289,9 @@ public func contains(target: Utf16String): Bool
 
 **Parameters:**
 
-| Parameter | Type                     | Required | Default | Description                     |
-|:----------|:-------------------------|:---------|:--------|:--------------------------------|
-| target    | [Utf16String](#class-utf16string) | Yes      | -       | The target string.               |
+| Parameter | Type                     | Required | Default | Description                                                 |
+|:----------|:-------------------------|:---------|:--------|:------------------------------------------------------------|
+| target    | [Utf16String](#class-utf16string) | Yes      | -       | The target string. Returns false if target string is empty. |
 
 **Return Value:**
 
@@ -10400,9 +10400,9 @@ public func endsWith(target: Utf16String): Bool
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
+| Parameter | Type | Required | Default | Description                                             |
+|:---|:---|:---|:---|:--------------------------------------------------------|
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. Returns false if target string is empty. |
 
 **Return Value:**
 
@@ -10708,10 +10708,10 @@ public func lastIndexOf(target: Utf16String, fromIndex: Int64): ?Int64
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
-| fromIndex | Int64 | Yes | - | Starting position for search in the current string. Default is size if not specified. |
+| Parameter | Type | Required | Default | Description                                                                                                                                                                           |
+|:---|:---|:---|:---|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string.                                                                                                                                                                        |
+| fromIndex | Int64 | Yes | - | Starting position for search in the current string. Default is size - 1 if not specified. Treat as size - 1 if the value is less than 0. Treat as size - 1 if the value is greater than size. |
 
 **Return Value:**
 
@@ -10816,11 +10816,11 @@ public func lazySplit(separator: Utf16String, maxSplit: Int64, removeEmpty!: Boo
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| Parameter Name | Type | Required | Default Value | Description                                                                                        |
+|:---|:---|:---|:---|:---------------------------------------------------------------------------------------------------|
 | separator | [Utf16String](#class-utf16string) | Yes | - | Delimiter. When the delimiter is an empty string, each character is treated as a separate element. |
-| maxSplit | Int64 | Yes | - | Maximum number of splits. Unlimited when set to 0. |
-| removeEmpty | Bool | No | false | Whether to remove empty elements. |
+| maxSplit | Int64 | Yes | - | Maximum number of splits. Treat as 0 when less than 0.                                             |
+| removeEmpty | Bool | No | false | Whether to remove empty elements.                                                                  |
 
 **Return Value:**
 
@@ -11025,11 +11025,11 @@ public func split(separator: Utf16String, maxSplit: Int64, removeEmpty!: Bool = 
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
+| Parameter Name | Type | Required | Default Value | Description                                                                                        |
+|:---|:---|:---|:---|:---------------------------------------------------------------------------------------------------|
 | separator | [Utf16String](#class-utf16string) | Yes | - | Delimiter. When the delimiter is an empty string, each character is treated as a separate element. |
-| maxSplit | Int64 | Yes | - | Maximum number of splits. Unlimited when set to 0. |
-| removeEmpty | Bool | No | false | Whether to remove empty elements. |
+| maxSplit | Int64 | Yes | - | Maximum number of splits. Unlimited when set to 0. Throws exception when less than 0.              |
+| removeEmpty | Bool | No | false | Whether to remove empty elements.                                                                  |
 
 **Return Value:**
 
@@ -11058,9 +11058,9 @@ public func startsWith(target: Utf16String): Bool
 
 **Parameters:**
 
-| Parameter Name | Type | Required | Default Value | Description |
-|:---|:---|:---|:---|:---|
-| target | [Utf16String](#class-utf16string) | Yes | - | Target string. |
+| Parameter Name | Type | Required | Default Value | Description                                      |
+|:---|:---|:---|:---|:-------------------------------------------------|
+| target | [Utf16String](#class-utf16string) | Yes | - | Target string. Returns false if target is empty. |
 
 **Return Value:**
 
