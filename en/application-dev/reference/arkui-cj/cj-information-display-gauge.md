@@ -185,7 +185,7 @@ public func indicator(icon!: ?ResourceStr = None, space!: ?Length = None): This
 
 | Parameter | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| icon | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Initial value: "default". Pointer style: "default" is a triangular arrow, "null" means no pointer. |
+| icon | ?[ResourceStr](./cj-common-types.md#interface-resourcestr) | No | None | **Named parameter.** Initial value: "SystemStyle". Pointer style: "SystemStyle" is a triangular arrow, "null" means no pointer. |
 | space | ?[Length](./cj-common-types.md#interface-length) | No | None | **Named parameter.** Initial value: 8.0.vp. The spacing between the pointer and the outer edge of the ring (percentage not supported).<br>Unit: vp. |
 
 ### func startAngle(?Float32)
