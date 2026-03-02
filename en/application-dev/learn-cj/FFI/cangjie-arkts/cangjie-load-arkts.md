@@ -17,7 +17,7 @@ public func requireArkModule(src: String): JSValue
 * Some system modules (e.g., ohos.router) are only available in the main runtime; importing them in worker threads will result in an error.
 
 > **Note:**
-> Currently, directly calling this interface in the callback of `spawn(Main)` or `context.postJSTask` will fail. This restriction is planned to be removed in subsequent versions.
+> Currently, directly calling this interface in the callback of `spawn(UIThread)` or `context.postJSTask` will fail. This restriction is planned to be removed in subsequent versions.
 
 ## Supported Scenarios
 

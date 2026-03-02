@@ -37,6 +37,13 @@ public init(
 
 **Functionality:** Creates a scrollbar component.
 
+> **Note:**
+>
+>  - The ScrollBar component is responsible for defining the behavior and style of the scrollable area, while the child nodes of the ScrollBar are responsible for defining the behavior and style of the scroll bar.
+>  - The scrollbar component is bound to the scrollable component through the Scroller, and they can only be linked when their directions are the same. ScrollBar and scrollable components only support one-to-one binding.
+>  - When the ScrollBar component has no child nodes, it supports displaying a scroll bar with the default style.
+>  - The visibility of the ScrollBar component is controlled by BarState. The component internally adjusts opacity to control visibility based on the BarState setting. Therefore, setting the [opacity](./cj-universal-attribute-opacity.md#func-opacity) attribute for the ScrollBar component does not take effect.
+
 **System Capability:** SystemCapability.ArkUI.ArkUI.Full
 
 **Since Version:** 22
