@@ -89,3 +89,11 @@ When developing applications with the UI framework, the main workflow includes:
     - If the parameter has a default value, the default is used.
   
     - If no default exists, the associated property or API is ignored.
+
+## Precautions
+
+**Time-consuming operation**
+
+  If time-consuming tasks such as reading files are executed on the UI main thread or in tasks scheduled via spawn(main), it may cause the UI main thread to be blocked, leading to interface delays, stuttering, dropped frames, or even freezing.
+
+  In application development practice, redundant and time-consuming operations should be avoided on the UI main thread to improve interface response speed and overall smoothness.
