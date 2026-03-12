@@ -348,13 +348,13 @@ public class EntryView {
     func build() {
         List() {
             ListItemGroup(
-                header: {=> bind(this.itemHead, this)("a")}){
+                header: this.itemHead("a")){
                     =>
                     // 循环渲染分组A的ListItem
                 }
 
             ListItemGroup(
-                header: {=> bind(this.itemHead, this)("b")}) {
+                header: this.itemHead("b")) {
                     =>
                     // 循环渲染分组A的ListItem
                 }
@@ -444,7 +444,7 @@ public class EntryView {
         List() {
             // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
             ForEach(this.contactsGroups, itemGeneratorFunc: { itemGroup: ContactGroup, _: Int64 =>
-                    ListItemGroup(header: { => bind(this.itemHead, this)(itemGroup.title)}) {
+                    ListItemGroup(header: this.itemHead(itemGroup.title)) {
                         this.footertest(itemGroup)
                     }
                     .divider(ListDividerOptions(strokeWidth: 1, color: Color(0X08000000), startMargin: 48, endMargin: 48))
@@ -731,7 +731,7 @@ List() {
                 ForEach(
                     this.routes,
                     itemGeneratorFunc: { itemGroup: ItemGroupInfo, _: Int64 =>
-                        ListItemGroup(header: {=> bind(this.ListItemGroupHeader, this)(itemGroup)},
+                        ListItemGroup(header: this.ListItemGroupHeader(itemGroup),
                             footer: {=>}, space: 0, style: ListItemGroupStyle.Card) {
                                 if (this.expandedItems[itemGroup.index] == 180.0) {
                                     ForEach(itemGroup.children, itemGeneratorFunc: { item: ItemInfo, _: Int64 =>
