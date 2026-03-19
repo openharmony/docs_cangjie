@@ -5026,7 +5026,7 @@ public init(
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|builder|() -> Unit|是|-|**命名参数。** 提示气泡内容的构造器。|
+|builder|() -> Unit|是|-|**命名参数。** 提示气泡内容的构造器。<br> **说明：** 仅支持接收@Builder修饰的自定义构建函数。|
 |placement|?[Placement](#enum-placement)|否|Option.None|**命名参数。** 气泡组件优先显示的位置。<br>**说明：** 当前位置显示不下时，会自动调整位置。初始值为Placement.Bottom。|
 |popupColor|?[Color](./cj-common-types.md#class-color)|否|None|**命名参数。** 提示气泡的背景颜色。初始值为Color(0x1000000)。|
 |enableArrow|?Bool|否|None|**命名参数。** 是否显示箭头。<br>**说明：** 如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，但气泡高度小于箭头的宽度（32vp），则实际不会显示箭头。初始值为true。|
@@ -5089,7 +5089,7 @@ public init(backgroundColor!: Option<ResourceColor> = Option.None, onAppear!: Op
 |dragBar|Option\<Bool>|否|Option.None|**命名参数。** 是否显示控制条。<br>**说明：**<br>半模态面板的dentents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。|
 |blurStyle|Option\<[BlurStyle](#enum-blurstyle)>|否|Option.None|**命名参数。** 半模态面板的模糊背景。|
 |maskColor|Option<[Color](./cj-common-types.md#class-color)>|否|Option.None|**命名参数。** 半模态页面的背景蒙层颜色。|
-|title|Option\<() -> Unit>|否|Option.None|**命名参数。** 半模态面板的标题。在使用时结合@Builder使用。|
+|title|Option\<() -> Unit>|否|Option.None|**命名参数。** 半模态面板的标题。<br>**说明：** 仅支持接收@Builder修饰的自定义构建函数。|
 |enableOutsideInteractive|Option\<Bool>|否|Option.None|**命名参数。** **命名参数。**  半模态所在页面是否允许交互。<br>**说明：**<br>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。|
 |shouldDismiss|Option<([SheetDismiss](#class-sheetdismiss)) -> Unit>|否|Option.None|**命名参数。** 半模态页面交互式关闭回调函数。<br>**说明：**<br>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。|
 |onWillDismiss|Option<([DismissSheetAction](#class-dismisssheetaction)) -> Unit>|否|Option.None|**命名参数。** 半模态页面的交互式关闭回调函数允许开发者注册，以获取关闭操作的类型，并决定是否关闭半模态状态。<br>**说明：**<br>当用户触发关闭操作时，若已注册回调函数，则不会立即关闭页面，而是由开发者通过回调函数中的reason参数判断关闭操作的类型，进而根据具体原因自主选择是否关闭半模态页面。如果不注册该回调函数，则用户执行关闭操作时，正常关闭半模态，无其他行为。在onWillDismiss回调中，不能再做onWillDismiss拦截。建议在二次确认场景使用。|
@@ -5920,7 +5920,7 @@ public init(
 |placement|Option\<[Placement](#enum-placement)>|否|Option.None|**命名参数。** 菜单组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br> **说明：**<br> placement值设置为undefined、null或没有设置此选项时，按未设置placement处理，当使用bindMenu，按初始值：Placement.BottomLeft设置。|
 |enableArrow|?Bool|否|None| **命名参数。** 是否显示箭头。如果菜单的大小和位置不足以放置箭头时，不会显示箭头。<br> **说明：** <br> enableArrow为true时，placement未设置或者值为非法值，默认在目标物上方显示，否则按照placement的位置优先显示。当前位置显示不下时，会自动调整位置，enableArrow为undefined时，不显示箭头。|
 |arrowOffset|?[Length](./cj-common-types.md#interface-length)|否|None| **命名参数。** 箭头在菜单处的偏移。偏移量必须合法且转换为具体数值时大于0才会生效，另外该值生效时不会导致箭头超出菜单四周的安全距离。<br> 单位：vp<br> **说明：**<br> 箭头距菜单四周的安全距离为菜单圆角大小与箭头宽度的一半之和。<br> 根据配置的placement来计算是在水平还是垂直方向上偏移。<br> 箭头在菜单水平方向时，偏移量为箭头至最左侧箭头安全距离处的距离。箭头在菜单垂直方向时，偏移量为箭头至最上侧箭头安全距离处的距离。<br> 根据配置的placement的不同，箭头展示的默认位置不同：<br> 在菜单不发生避让的情况下，placement设置为Placement.Top、Placement.Bottom时，箭头显示在水平方向且默认居中；<br> placement设置为Placement.Left、Placement.Right时，箭头显示在垂直方向且默认居中；<br> placement设置为Placement.TopLeft、Placement.BottomLeft时，箭头默认显示在水平方向，且距离菜单左侧边缘距离为箭头安全距离；<br> placement设置为Placement.TopRight、Placement.BottomRight时，箭头默认显示在水平方向，且距离菜单右侧距离为箭头安全距离；<br> placement设置为Placement.LeftTop、Placement.RightTop时，箭头默认显示在垂直方向，且距离菜单上侧距离为箭头安全距离；<br> placement设置为Placement.LeftBottom、Placement.RightBottom时，箭头默认显示在垂直方向，且距离菜单下侧距离为箭头安全距离。|
-|preview|Option\<() -> Unit>|否|Option.None| **命名参数。** 长按悬浮菜单或使用bindContextMenu显示菜单的预览内容样式，为用户自定义的内容。<br> **说明：** <br> - 不支持responseType为ResponseType.RightClick时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。<br> - 当未设置preview参数时，enableArrow参数生效。<br> - 当preview参数设置为CustomBuilder时，enableArrow为true时也不显示箭头。|
+|preview|Option\<() -> Unit>|否|Option.None| **命名参数。** 长按悬浮菜单或使用bindContextMenu显示菜单的预览内容样式，为用户自定义的内容。<br> **说明：** <br> - 仅支持接收@Builder修饰的自定义构建函数。<br> - 不支持responseType为ResponseType.RightClick时触发，如果responseType为ResponseType.RightClick，则不会显示预览内容。<br> - 当未设置preview参数时，enableArrow参数生效。<br> - 当preview参数设置为CustomBuilder时，enableArrow为true时也不显示箭头。|
 |previewAnimationOptions|?[ContextMenuAnimationOptions](#class-contextmenuanimationoptions)|否|None|**命名参数。** 控制长按预览显示动画开始倍率和结束倍率（相对预览原图比例）。|
 |onAppear|?() -> Unit|否|None| **命名参数。** 菜单弹出时的事件回调。|
 |onDisappear|?() -> Unit|否|None| **命名参数。** 菜单消失时的事件回调。|
