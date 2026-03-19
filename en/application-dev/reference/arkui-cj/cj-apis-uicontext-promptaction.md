@@ -932,7 +932,7 @@ public init(
 
 | Name | Type | Required | Default | Description |
 |:---|:---|:---|:---|:---|
-| builder | () -> Unit | Yes | - | **Named parameter.** Custom dialog content builder. |
+| builder | () -> Unit | Yes | - | **Named parameter.** Custom dialog content builder.<br>**Note:** Only supports receiving custom builder functions decorated with @Builder. |
 | maskRect | [Rectangle](./cj-common-types.md#class-rectangle) | No | Rectangle(x: 0.vp, y: 0.vp, width: 100.percent, height: 100.percent) | **Named parameter.** Dialog mask area. |
 | alignment | [DialogAlignment](./cj-common-types.md#enum-dialogalignment) | No | DialogAlignment.Default | **Named parameter.** Dialog alignment on screen. |
 | offset | [Offset](./cj-common-types.md#class-offset) | No | Offset(0.vp, 0.vp) | **Named parameter.** Dialog offset. |
