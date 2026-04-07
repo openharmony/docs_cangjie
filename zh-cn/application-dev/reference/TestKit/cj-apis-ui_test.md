@@ -92,8 +92,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let txt: Component = driver.findComponent(On().text("cangjie")).getOrThrow()
-    txt.clearText()
+    if (let Some(txt) <- driver.findComponent(On().text("cangjie"))) {
+        txt.clearText()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -132,8 +133,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    button.click()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.click()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -172,8 +174,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    button.doubleClick()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.doubleClick()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -218,9 +221,11 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let drag: Component = driver.findComponent(On().text("ohos")).getOrThrow()
-    button.dragTo(drag)
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        if (let Some(drag) <- driver.findComponent(On().text("ohos"))) {
+            button.dragTo(drag)
+        }
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -265,8 +270,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let rect: Rect = button.getBounds()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.getBounds()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -311,8 +317,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let point = button.getBoundsCenter()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.getBoundsCenter()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -357,8 +364,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let des: String = button.getDescription()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.getDescription()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -403,8 +411,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let id: String = button.getId()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.getId()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -449,8 +458,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let text: String = button.getText()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.getText()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -495,8 +505,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let btype: String = button.getType()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.getType()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -541,8 +552,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let txt: Component = driver.findComponent(On().text("cangjie")).getOrThrow()
-    txt.inputText("111")
+    if (let Some(txt) <- driver.findComponent(On().text("cangjie"))) {
+        txt.inputText("111")
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -587,8 +599,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let c: Bool = button.isCheckable()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isCheckable()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -633,8 +646,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let c2: Bool = button.isChecked()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isChecked()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -679,8 +693,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let c: Bool = button.isClickable()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isClickable()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -725,8 +740,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let e: Bool = button.isEnabled()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isEnabled()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -771,8 +787,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let f: Bool = button.isFocused()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isFocused()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -817,8 +834,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let c1: Bool = button.isLongClickable()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isLongClickable()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -863,8 +881,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let s: Bool = button.isScrollable()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isScrollable()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -909,8 +928,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    let s1: Bool = button.isSelected()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.isSelected()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -949,8 +969,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let button: Component = driver.findComponent(On().id("button")).getOrThrow()
-    button.longClick()
+    if (let Some(button) <- driver.findComponent(On().id("button"))) {
+        button.longClick()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -995,8 +1016,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let image: Component = driver.findComponent(On().id("icon")).getOrThrow()
-    image.pinchIn(0.5)
+    if (let Some(image) <- driver.findComponent(On().id("icon"))) {
+        image.pinchIn(0.5)
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -1041,8 +1063,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let image: Component = driver.findComponent(On().id("icon")).getOrThrow()
-    image.pinchOut(2.5)
+    if (let Some(image) <- driver.findComponent(On().id("icon"))) {
+        image.pinchOut(2.5)
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -1093,8 +1116,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let scrollBar: Component = driver.findComponent(On().onType("Scroll")).getOrThrow()
-    let button: Option<Component> = scrollBar.scrollSearch(On().text("1"))
+    if (let Some(scrollBar) <- driver.findComponent(On().onType("Scroll"))) {
+        let button: Option<Component> = scrollBar.scrollSearch(On().text("1"))
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -1139,8 +1163,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let scrollBar: Component = driver.findComponent(On().onType("Scroll")).getOrThrow()
-    scrollBar.scrollToBottom()
+    if (let Some(scrollBar) <- driver.findComponent(On().onType("Scroll"))) {
+        scrollBar.scrollToBottom()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -1185,8 +1210,9 @@ import kit.PerformanceAnalysisKit.Hilog
 
 try {
     let driver: Driver = Driver.create()
-    let scrollBar: Component = driver.findComponent(On().onType("Scroll")).getOrThrow()
-    scrollBar.scrollToTop()
+    if (let Some(scrollBar) <- driver.findComponent(On().onType("Scroll"))) {
+        scrollBar.scrollToTop()
+    }
 } catch (e: BusinessException) {
     Hilog.info(0, "test", "${e.message}")
 }
@@ -1891,11 +1917,12 @@ import kit.TestKit.*
 import kit.PerformanceAnalysisKit.*
 import ohos.business_exception.BusinessException
 
-let driver: Driver = Driver.create()
 try {
-    let text: Component = driver.findComponent(On().onType("TextInput")).getOrThrow()
-    let point = text.getBoundsCenter()
-    driver.inputText(point, "123")
+    let driver: Driver = Driver.create()
+    if (let Some(text) <- driver.findComponent(On().onType("TextInput"))) {
+        let point = text.getBoundsCenter()
+        driver.inputText(point, "123")
+    }
 } catch (e: BusinessException) {
     Hilog.error(0, "UITest", "The component `TextInput` does not exist")
 }
