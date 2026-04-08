@@ -6746,7 +6746,7 @@ public static func registerClass(name: String, register: ClassRegister): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|name|String|是|-|导出名称。|
+|name|String|是|-|要导出的类名称，或类所在动态库名与类名称的拼接（用@分隔）。|
 |register|[ClassRegister](#type-classregister)|是|-|一个返回 ArkTS 类的函数。|
 
 **示例：**
@@ -6755,7 +6755,7 @@ public static func registerClass(name: String, register: ClassRegister): Unit
 ```cangjie
 class Main {
     static init() {
-        JSModule.registerClass("SomeClass") { context =>
+        JSModule.registerClass("libcangjieclass.so@SomeClass") { context =>
             let ctor: JSLambda = { context, callInfo =>
                 return callInfo.thisArg
             }
@@ -6779,7 +6779,7 @@ public static func registerFunc(name: String, register: FuncRegister): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|name|String|是|-|导出函数名称。|
+|name|String|是|-|要导出的函数名称，或函数所在动态库名与函数名称的拼接（用@分隔）。|
 |register|[FuncRegister](#type-funcregister)|是|-|一个返回 JSFunction 的函数。|
 
 **示例：**
@@ -6788,7 +6788,7 @@ public static func registerFunc(name: String, register: FuncRegister): Unit
 ```cangjie
 class Main {
     static init() {
-        JSModule.registerFunc("doSth") { context, callInfo =>
+        JSModule.registerFunc("libcangjieclass.so@doSth") { context, callInfo =>
             return context.undefined().toJSValue()
         }
     }
@@ -6809,7 +6809,7 @@ public static func registerFunc(name: String, lambda: JSLambda): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|name|String|是|-|导出函数名称。|
+|name|String|是|-|要导出的函数名称，或函数所在动态库名与函数名称的拼接（用@分隔）。|
 |lambda|[JSLambda](#type-jslambda)|是|-|要导出的函数。|
 
 **示例：**
@@ -6818,7 +6818,7 @@ public static func registerFunc(name: String, lambda: JSLambda): Unit
 ```cangjie
 class Main {
     static init() {
-        JSModule.registerFunc("doSth") { context, callInfo =>
+        JSModule.registerFunc("libcangjieclass.so@doSth") { context, callInfo =>
             return context.undefined().toJSValue()
         }
     }

@@ -6746,7 +6746,7 @@ public static func registerClass(name: String, register: ClassRegister): Unit
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| name | String | Yes | - | Export name. |
+| name | String | Yes | - | The class name to be exported, or the concatenation of the dynamic library name and the class name (separated by @) . |
 | register | [ClassRegister](#type-classregister) | Yes | - | A function that returns an ArkTS class. |
 
 **Example:**
@@ -6755,7 +6755,7 @@ public static func registerClass(name: String, register: ClassRegister): Unit
 ```cangjie
 class Main {
     static init() {
-        JSModule.registerClass("SomeClass") { context =>
+        JSModule.registerClass("libcangjieclass.so@SomeClass") { context =>
             let ctor: JSLambda = { context, callInfo =>
                 return callInfo.thisArg
             }
@@ -6779,7 +6779,7 @@ public static func registerFunc(name: String, register: FuncRegister): Unit
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| name | String | Yes | - | Export function name. |
+| name | String | Yes | - | The function name to be exported, or the concatenation of the dynamic library name and the function name (separated by @) . |
 | register | [FuncRegister](#type-funcregister) | Yes | - | A function that returns a JSFunction. |
 
 **Example:**
@@ -6788,7 +6788,7 @@ public static func registerFunc(name: String, register: FuncRegister): Unit
 ```cangjie
 class Main {
     static init() {
-        JSModule.registerFunc("doSth") { context, callInfo =>
+        JSModule.registerFunc("libcangjieclass.so@doSth") { context, callInfo =>
             return context.undefined().toJSValue()
         }
     }
@@ -6809,7 +6809,7 @@ public static func registerFunc(name: String, lambda: JSLambda): Unit
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| name | String | Yes | - | Export function name. |
+| name | String | Yes | - | The function name to be exported, or the concatenation of the dynamic library name and the function name (separated by @) . |
 | lambda | [JSLambda](#type-jslambda) | Yes | - | The function to be exported. |
 
 **Example:**
@@ -6818,7 +6818,7 @@ public static func registerFunc(name: String, lambda: JSLambda): Unit
 ```cangjie
 class Main {
     static init() {
-        JSModule.registerFunc("doSth") { context, callInfo =>
+        JSModule.registerFunc("libcangjieclass.so@doSth") { context, callInfo =>
             return context.undefined().toJSValue()
         }
     }
