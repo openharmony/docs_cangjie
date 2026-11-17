@@ -1,6 +1,8 @@
 # Connectivity Kit（短距通信服务）（Beta特性）
 
 - 仓颉API
+    - [ohos.bluetooth.access（蓝牙开关控制与状态订阅）](cj-apis-bluetooth-access.md)（Beta特性）
+    - [ohos.bluetooth.connection（设备发现、配对和信息查询）](cj-apis-bluetooth-connection.md)（Beta特性）
     - [ohos.bluetooth.a2dp（蓝牙a2dp模块）](cj-apis-bluetooth-a2dp.md)（Beta特性）
     - [ohos.bluetooth.ble（蓝牙ble模块）](cj-apis-bluetooth-ble.md)（Beta特性）
     - [ohos.bluetooth.base_profile（蓝牙baseProfile模块）](cj-apis-bluetooth-base_profile.md)（Beta特性）
