@@ -28,6 +28,58 @@ API sample code usage instructions:
 
 For the above sample project and configuration template, please refer to [Cangjie Sample Code Instructions](../cj-development-intro.md#Cangjie-Sample-Code-Instructions).
 
+## func getConnectedBLEDevices()
+
+```cangjie
+public func getConnectedBLEDevices(): Array<String>
+```
+
+**Description:** Obtains the addresses of BLE devices with a GATT connection to the local device. Use this API on the GATT server side; the client side returns an empty list.
+
+**Required Permissions:** ohos.permission.ACCESS_BLUETOOTH
+
+**System Capability:** SystemCapability.Communication.Bluetooth.Core
+
+**Since:** 26.1.0
+
+**Return Value:**
+
+|Type|Description|
+|:---|:---|
+|Array\<String\>|Addresses of BLE devices connected to the local GATT server.|
+
+**Exceptions:**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception): For details, see [Universal Error Codes](../cj-errorcode-universal.md) and [Bluetooth Error Codes](cj-errorcode-bluetooth_manager.md).
+
+|Code|Message|
+|:---|:---|
+|201|Permission denied.|
+|801|Capability not supported.|
+|2900001|Service stopped.|
+|2900003|Bluetooth disabled.|
+|2900099|Operation failed.|
+
+**Example:**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.CangjieKit.BusinessException
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let devices = getConnectedBLEDevices()
+    Hilog.info(0, "Bluetooth", devices.size.toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+}
+```
+
+
 ## func createGattClientDevice(String)
 
 ```cangjie

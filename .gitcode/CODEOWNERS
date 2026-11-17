@@ -565,6 +565,8 @@
 /zh-cn/application-dev/reference/UniversalKeystoreKit/cj-errorcode-huks.md @luoming25 @abc_qgy @qq_35037212 @luojianing
 # Connectivity Kit（短距通信服务）
 /zh-cn/application-dev/reference/ConnectivityKit/ @luoming25 @abc_qgy @pupuHan @luojianing
+/zh-cn/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-access.md @luoming25 @abc_qgy @pupuHan @luojianing
+/zh-cn/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-connection.md @luoming25 @abc_qgy @pupuHan @luojianing
 /zh-cn/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-a2dp.md @luoming25 @abc_qgy @pupuHan @luojianing
 /zh-cn/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-ble.md @luoming25 @abc_qgy @pupuHan @luojianing
 /zh-cn/application-dev/reference/ConnectivityKit/cj-apis-bluetooth-base_profile.md @luoming25 @abc_qgy @pupuHan @luojianing

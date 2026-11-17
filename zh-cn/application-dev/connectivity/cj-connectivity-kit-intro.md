@@ -19,6 +19,18 @@
 蓝牙技术是一种无线通信技术，可以在短距离内传输数据。可以用于连接手机、耳机、音箱、键盘、鼠标、打印机等各种设备。特点是低功耗、低成本、简单易用。目前已经发展到了第五代，支持更高的数据传输速率和更广的覆盖范围。
 下面简介几种常见的蓝牙涉及的模块：
 
+- **access**
+
+  蓝牙开关控制与状态订阅。
+
+  [ohos.bluetooth.access](../reference/ConnectivityKit/cj-apis-bluetooth-access.md)
+
+- **connection**
+
+  设备发现、配对和信息查询。
+
+  [ohos.bluetooth.connection](../reference/ConnectivityKit/cj-apis-bluetooth-connection.md)
+
 - **BLE模块（低功耗蓝牙）**
 
   BLE是Bluetooth Low Energy的缩写，意为“低功耗蓝牙”。它是一种能够在低功耗情况下进行通信的蓝牙技术，与传统蓝牙相比，BLE的功耗更低，适用于需要长时间运行的低功耗设备。
