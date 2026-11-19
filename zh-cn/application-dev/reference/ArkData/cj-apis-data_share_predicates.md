@@ -33,7 +33,7 @@ public class DataSharePredicates {
 }
 ```
 
-**功能：** 提供用于不同实现不同查询方法的数据共享谓词。
+**功能：** 提供用于实现不同查询方法的数据共享谓词。
 
 > **说明：**
 >
@@ -123,7 +123,7 @@ public func and(): DataSharePredicates
 
 |类型|说明|
 |:----|:----|
-|[DataSharePredicates](#class-datasharepredicates)|返回与指定字段匹配的谓词。|
+|[DataSharePredicates](#class-datasharepredicates)|返回添加“与”条件后的谓词。|
 
 **异常：**
 
@@ -229,7 +229,7 @@ public func limit(total: Int32, offset: Int32): DataSharePredicates
 
 |类型|说明|
 |:----|:----|
-|[DataSharePredicates](#class-datasharepredicates)|返回与指定字段匹配的谓词。|
+|[DataSharePredicates](#class-datasharepredicates)|返回添加条数限制后的谓词。|
 
 **异常：**
 
@@ -280,7 +280,7 @@ public func orderByAsc(field: String): DataSharePredicates
 
 |类型|说明|
 |:----|:----|
-|[DataSharePredicates](#class-datasharepredicates)|返回与指定字段匹配的谓词。|
+|[DataSharePredicates](#class-datasharepredicates)|返回按指定列升序排列后的谓词。|
 
 **异常：**
 
@@ -331,7 +331,7 @@ public func orderByDesc(field: String): DataSharePredicates
 
 |类型|说明|
 |:----|:----|
-|[DataSharePredicates](#class-datasharepredicates)|返回与指定字段匹配的谓词。|
+|[DataSharePredicates](#class-datasharepredicates)|返回按指定列降序排列后的谓词。|
 
 **异常：**
 

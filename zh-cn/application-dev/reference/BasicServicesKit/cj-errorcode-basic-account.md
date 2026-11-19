@@ -16,6 +16,10 @@
 
 The system service works abnormally.
 
+**错误描述**
+
+系统服务异常。
+
 **可能原因**
 
 该错误码表示系统服务异常，可能原因如下：
@@ -39,6 +43,10 @@ The system service works abnormally.
 **错误信息**
 
 Invalid parameter.
+
+**错误描述**
+
+无效参数。
 
 **可能原因**
 
@@ -79,6 +87,10 @@ Invalid parameter.
 
 The account does not exist.
 
+**错误描述**
+
+账号不存在。
+
 **可能原因**
 
 该错误码表示操作的账号不存在，可能原因如下：
@@ -105,6 +117,10 @@ The account does not exist.
 
 The account already exists.
 
+**错误描述**
+
+账号已存在。
+
 **可能原因**
 
 该错误码表示账号已存在，可能原因如下：
@@ -120,6 +136,10 @@ The account already exists.
 **错误信息**
 
 Multi-user is not supported.
+
+**错误描述**
+
+不支持多用户。
 
 **可能原因**
 
@@ -137,6 +157,10 @@ Multi-user is not supported.
 
 The account type is not supported.
 
+**错误描述**
+
+不支持的账号类型。
+
 **可能原因**
 
 该错误码表示提供了不支持的账号类型，可能原因如下：
@@ -153,6 +177,10 @@ The account type is not supported.
 
 The number of accounts has reached the upper limit.
 
+**错误描述**
+
+账号数量已达上限。
+
 **可能原因**
 
 该错误码表示账号数量已达上限，可能原因如下：
@@ -168,6 +196,10 @@ The number of accounts has reached the upper limit.
 **错误信息**
 
 The specified account is restricted.
+
+**错误描述**
+
+受限的账号。
 
 **可能原因**
 
@@ -187,6 +219,10 @@ The specified account is restricted.
 
 The account has been activated.
 
+**错误描述**
+
+账号已激活。
+
 **可能原因**
 
 该错误码表示账号已激活，可能原因如下：
@@ -202,6 +238,10 @@ The account has been activated.
 **错误信息**
 
 The account service is busy.
+
+**错误描述**
+
+账号服务忙碌。
 
 **可能原因**
 
@@ -220,6 +260,10 @@ The account service is busy.
 
 The event listener has been registered.
 
+**错误描述**
+
+事件监听器已注册。
+
 **可能原因**
 
 该错误码表示监听器已注册，可能原因如下：
@@ -236,6 +280,10 @@ The event listener has been registered.
 
 The event listener has not been registered.
 
+**错误描述**
+
+事件监听器未注册。
+
 **可能原因**
 
 该错误码表示监听器未注册，可能原因如下：
@@ -251,6 +299,10 @@ The event listener has not been registered.
 **错误信息**
 
 Network exception.
+
+**错误描述**
+
+网络异常。
 
 **可能原因**
 
@@ -274,6 +326,10 @@ Network exception.
 
 The domain account is not authenticated.
 
+**错误描述**
+
+域账号未认证。
+
 **可能原因**
 
 域账号未登录。
@@ -287,6 +343,10 @@ The domain account is not authenticated.
 **错误信息**
 
 The short name already exists.
+
+**错误描述**
+
+短名称已存在。
 
 **可能原因**
 
@@ -302,6 +362,10 @@ The short name already exists.
 
 The number of logged in accounts reaches the upper limit.
 
+**错误描述**
+
+账号登录数已达上限。
+
 **可能原因**
 
 登录的账号数已经达到上限，不能再登录新账号。
@@ -315,6 +379,10 @@ The number of logged in accounts reaches the upper limit.
 **错误信息**
 
 The credential is incorrect.
+
+**错误描述**
+
+凭据不正确。
 
 **可能原因**
 
@@ -334,6 +402,10 @@ The credential is incorrect.
 
 The credential does not exist.
 
+**错误描述**
+
+凭据不存在。
+
 **可能原因**
 
 该错误码表示凭据不存在，可能原因如下：
@@ -352,6 +424,10 @@ The credential does not exist.
 
 The credential inputer already exists.
 
+**错误描述**
+
+凭据输入器已注册。
+
 **可能原因**
 
 该错误码表示凭据输入器已注册，可能原因如下：
@@ -367,6 +443,10 @@ PIN码输入器已注册，解注册之前无法重复注册。
 **错误信息**
 
 The credential inputer is not found.
+
+**错误描述**
+
+凭据输入器不存在。
 
 **可能原因**
 
@@ -384,6 +464,10 @@ The credential inputer is not found.
 
 The trust level is not supported.
 
+**错误描述**
+
+可信等级不支持。
+
 **可能原因**
 
 该错误码表示可信等级不支持，可能原因如下：
@@ -399,6 +483,10 @@ The trust level is not supported.
 **错误信息**
 
 The authentication type is not supported.
+
+**错误描述**
+
+认证类型不支持。
 
 **可能原因**
 
@@ -416,6 +504,10 @@ The authentication type is not supported.
 
 The authentication type does not exist.
 
+**错误描述**
+
+认证类型不存在。
+
 **可能原因**
 
 该错误码表示认证类型不存在，可能原因如下：
@@ -432,6 +524,10 @@ The authentication type does not exist.
 
 The authentication session does not exist.
 
+**错误描述**
+
+认证会话不存在。
+
 **可能原因**
 
 该错误码表示会话不存在，可能原因如下：
@@ -447,6 +543,10 @@ The authentication session does not exist.
 **错误信息**
 
 The authentication, enrollment, or update operation is canceled.
+
+**错误描述**
+
+认证、凭据录入、更新等操作被取消。
 
 **可能原因**
 
@@ -466,6 +566,10 @@ The authentication, enrollment, or update operation is canceled.
 
 The authentication is locked.
 
+**错误描述**
+
+认证被锁定。
+
 **可能原因**
 
 该错误码表示认证被锁定，可能原因如下：
@@ -481,6 +585,10 @@ The authentication is locked.
 **错误信息**
 
 The authentication time out.
+
+**错误描述**
+
+认证超时。
 
 **可能原因**
 
@@ -500,6 +608,10 @@ The authentication time out.
 
 The authentication service is busy.
 
+**错误描述**
+
+认证服务忙。
+
 **可能原因**
 
 该错误码表示认证服务忙，可能原因如下：
@@ -516,6 +628,10 @@ The authentication service is busy.
 **错误信息**
 
 The account authentication service does not exist.
+
+**错误描述**
+
+认证服务不存在。
 
 **可能原因**
 
@@ -539,6 +655,10 @@ The account authentication service does not exist.
 
 The account authentication service works abnormally.
 
+**错误描述**
+
+认证服务异常。
+
 **可能原因**
 
 该错误码表示账号认证服务异常，可能原因如下：
@@ -557,6 +677,10 @@ The account authentication service works abnormally.
 
 The number of credentials reaches the upper limit.
 
+**错误描述**
+
+用户认证密码个数达到上限。
+
 **可能原因**
 
 1. 身份认证服务出现未知错误。
@@ -573,6 +697,10 @@ The number of credentials reaches the upper limit.
 
 Credential complexity verification failed.
 
+**错误描述**
+
+凭证复杂度验证失败。
+
 **可能原因**
 
 设置的凭证太过简单。
@@ -587,6 +715,10 @@ Credential complexity verification failed.
 
 PIN is expired.
 
+**错误描述**
+
+PIN码过期。
+
 **可能原因**
 
 用户认证的PIN码过期。
@@ -600,6 +732,10 @@ PIN is expired.
 **错误信息**
 
 The application does not exist.
+
+**错误描述**
+
+应用不存在。
 
 **可能原因**
 
@@ -618,6 +754,10 @@ The application does not exist.
 
 The custom data does not exist.
 
+**错误描述**
+
+自定义数据不存在。
+
 **可能原因**
 
 该错误码表示自定义数据不存在，可能原因如下：
@@ -633,6 +773,10 @@ The custom data does not exist.
 **错误信息**
 
 The number of custom data records reaches the upper limit.
+
+**错误描述**
+
+自定义数据的数量已达上限。
 
 **可能原因**
 
@@ -650,6 +794,10 @@ The number of custom data records reaches the upper limit.
 
 The number of tokens reaches the upper limit.
 
+**错误描述**
+
+令牌数量已达上限。
+
 **可能原因**
 
 该错误码表示令牌数量已达上限，可能原因如下：
@@ -665,6 +813,10 @@ The number of tokens reaches the upper limit.
 **错误信息**
 
 The size of the authorization list reaches the upper limit.
+
+**错误描述**
+
+授权列表已达上限。
 
 **可能原因**
 

@@ -1427,6 +1427,10 @@ notify代理初始化失败。
 
 Cloud status not ready.
 
+**错误描述**
+
+云端状态未ready。
+
 **可能原因**
 
 1.未启用云。
@@ -1445,6 +1449,10 @@ Cloud status not ready.
 
 Network unavailable.
 
+**错误描述**
+
+网络不可用。
+
 **可能原因**
 
 设备未联网或网络不可用。
@@ -1458,6 +1466,10 @@ Network unavailable.
 **错误信息**
 
 Low battery level.
+
+**错误描述**
+
+告警电量。
 
 **可能原因**
 
@@ -1473,6 +1485,10 @@ Low battery level.
 
 Exceeded the maximum limit.
 
+**错误描述**
+
+入参请求超过最大限制。
+
 **可能原因**
 
 请求数量超过接口规格定义的上限。
@@ -1486,6 +1502,10 @@ Exceeded the maximum limit.
 **错误信息**
 
 Inner error.
+
+**错误描述**
+
+内部错误。
 
 **可能原因**
 
@@ -1507,6 +1527,10 @@ Inner error.
 
 The same task is already in progress.
 
+**错误描述**
+
+已经有同类型任务正在运行。
+
 **可能原因**
 
 有同类型任务正在运行。
@@ -1520,6 +1544,10 @@ The same task is already in progress.
 **错误信息**
 
 The version file specified to replace the original file does not exist.
+
+**错误描述**
+
+指定用于替换原始文件的历史版本文件不存在。
 
 **可能原因**
 

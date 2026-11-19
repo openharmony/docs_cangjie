@@ -161,7 +161,7 @@ public let deviceTypes: Array<String>
 public let enabled: Bool
 ```
 
-**功能：** Ability的可用性。可用表示可以拉起或查询，不可用时调用getAbilityInfo需携带GET_ABILITY_INFO_WITH_DISABLE的AbilityFlag。取值true表示可用，false表示不可用。
+**功能：** Ability的可用性。可用表示可以拉起或查询，不可用时调用getBundleInfoForSelf需携带GET_BUNDLE_INFO_WITH_DISABLE的BundleFlag。取值true表示可用，false表示不可用。
 
 **类型：** Bool
 

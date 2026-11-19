@@ -36,11 +36,11 @@ Parameter error. Possible causes: 1. Parameter verification failed.
 
 **错误信息**
 
-Original service error.
+The context is not a UIAbility context.
 
 **错误描述**
 
-原始服务错误。
+上下文参数不是UIAbility类型。
 
 **可能原因**
 
