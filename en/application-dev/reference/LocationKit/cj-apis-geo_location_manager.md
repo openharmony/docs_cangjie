@@ -263,6 +263,477 @@ public init(priority!: LocationRequestPriority = LocationRequestPriority.FirstFi
 | maxAccuracy | Float32 | No | 0.0 | **Named parameter.** Represents accuracy information in meters.<br/>Only effective in precise location scenarios (where both ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions are granted). This field is meaningless in approximate location scenarios (where only ohos.permission.APPROXIMATELY_LOCATION is granted).<br/>Default value is 0, with a valid range of greater than or equal to 0.<br/>When scenario is Navigation/TrajectoryTracking/CarHailing or priority is Accuracy, it is recommended to set maxAccuracy to a value greater than 10.<br/>When scenario is DailyLifeService/NoPower or priority is LowPower/FirstFix, it is recommended to set maxAccuracy to a value greater than 100. |
 | timeoutMs | Int32 | No | 5000 | **Named parameter.** Represents the timeout duration in milliseconds, with a minimum of 1000 milliseconds. Valid range is greater than or equal to 1000. |
 
+## class GeoAddress
+
+```cangjie
+public class GeoAddress {}
+```
+
+**Function:** Geocoding address information, describing the query results of geocoding and reverse geocoding.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop latitude
+
+```cangjie
+public mut prop latitude: ?Float64
+```
+
+**Function:** Represents latitude information. Positive values indicate north latitude, and negative values indicate south latitude. Valid range is -90 to 90. Only supports the WGS84 coordinate system.
+
+**Type:** ?Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop longitude
+
+```cangjie
+public mut prop longitude: ?Float64
+```
+
+**Function:** Represents longitude information. Positive values indicate east longitude, and negative values indicate west longitude. Valid range is -180 to 180. Only supports the WGS84 coordinate system.
+
+**Type:** ?Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop locale
+
+```cangjie
+public mut prop locale: ?String
+```
+
+**Function:** Represents the language of the location description information, where "zh" indicates Chinese and "en" indicates English.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop placeName
+
+```cangjie
+public mut prop placeName: ?String
+```
+
+**Function:** Represents the detailed address information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop countryCode
+
+```cangjie
+public mut prop countryCode: ?String
+```
+
+**Function:** Represents the country code information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop countryName
+
+```cangjie
+public mut prop countryName: ?String
+```
+
+**Function:** Represents the country information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop administrativeArea
+
+```cangjie
+public mut prop administrativeArea: ?String
+```
+
+**Function:** Represents the first-level administrative division of a country, usually a province or state.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop subAdministrativeArea
+
+```cangjie
+public mut prop subAdministrativeArea: ?String
+```
+
+**Function:** Represents the second-level administrative division of a country, usually a city.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop locality
+
+```cangjie
+public mut prop locality: ?String
+```
+
+**Function:** Represents the city information, usually a city.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop subLocality
+
+```cangjie
+public mut prop subLocality: ?String
+```
+
+**Function:** Represents the sub-city information, usually a district or county.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop roadName
+
+```cangjie
+public mut prop roadName: ?String
+```
+
+**Function:** Represents the road name information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop subRoadName
+
+```cangjie
+public mut prop subRoadName: ?String
+```
+
+**Function:** Represents the sub-road name information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop premises
+
+```cangjie
+public mut prop premises: ?String
+```
+
+**Function:** Represents the house number information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop postalCode
+
+```cangjie
+public mut prop postalCode: ?String
+```
+
+**Function:** Represents the postal code information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop phoneNumber
+
+```cangjie
+public mut prop phoneNumber: ?String
+```
+
+**Function:** Represents the contact information.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop addressUrl
+
+```cangjie
+public mut prop addressUrl: ?String
+```
+
+**Function:** Represents the website information near the location.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop descriptions
+
+```cangjie
+public mut prop descriptions: ?Array<String>
+```
+
+**Function:** Represents the additional description information. Currently it contains the city code (array index 0) and the administrative division code (array index 1), for example ["025","320114001"].
+
+**Type:** ?Array\<String\>
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop descriptionsSize
+
+```cangjie
+public mut prop descriptionsSize: ?Int32
+```
+
+**Function:** Represents the number of additional description items. Valid range is greater than or equal to 0, and it is recommended that the value be less than 10.
+
+**Type:** ?Int32
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+## class GeoCodeRequest
+
+```cangjie
+public class GeoCodeRequest {
+    public init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+        minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+        maxLongitude!: ?Float64 = None)
+}
+```
+
+**Function:** Geocoding request parameters, used to convert a geographic description into latitude and longitude coordinates.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop locale
+
+```cangjie
+public mut prop locale: ?String
+```
+
+**Function:** Represents the language of the location description information, where "zh" indicates Chinese and "en" indicates English. The default value is obtained from "Language & Region" in Settings.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop country
+
+```cangjie
+public mut prop country: ?String
+```
+
+**Function:** Restricts the query results to the specified country, using the ISO 3166-1 alpha-2 code, for example "CN" for China. The default value is obtained from "Language & Region" in Settings.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop description
+
+```cangjie
+public mut prop description: String
+```
+
+**Function:** Represents the location description, such as "xx Road, Pudong New District, Shanghai". The string length cannot exceed 100.
+
+**Type:** String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop maxItems
+
+```cangjie
+public mut prop maxItems: ?Int32
+```
+
+**Function:** Represents the maximum number of location information items to return. Valid range is greater than or equal to 0, and it is recommended that the value be less than 10. The default value is 1.
+
+**Type:** ?Int32
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop minLatitude
+
+```cangjie
+public mut prop minLatitude: ?Float64
+```
+
+**Function:** Represents the minimum latitude information. Together with minLongitude, maxLatitude, and maxLongitude, it represents a latitude-longitude range. Valid range is -90 to 90. Only supports the WGS84 coordinate system. The default value is -90.0. When this parameter has a value, the other three range parameters are required.
+
+**Type:** ?Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop minLongitude
+
+```cangjie
+public mut prop minLongitude: ?Float64
+```
+
+**Function:** Represents the minimum longitude information. Valid range is -180 to 180. Only supports the WGS84 coordinate system. The default value is -180.0.
+
+**Type:** ?Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop maxLatitude
+
+```cangjie
+public mut prop maxLatitude: ?Float64
+```
+
+**Function:** Represents the maximum latitude information. Valid range is -90 to 90. Only supports the WGS84 coordinate system. The default value is 90.0.
+
+**Type:** ?Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop maxLongitude
+
+```cangjie
+public mut prop maxLongitude: ?Float64
+```
+
+**Function:** Represents the maximum longitude information. Valid range is -180 to 180. Only supports the WGS84 coordinate system. The default value is 180.0.
+
+**Type:** ?Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### init(String, ?String, ?String, ?Int32, ?Float64, ?Float64, ?Float64, ?Float64)
+
+```cangjie
+public init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+    minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+    maxLongitude!: ?Float64 = None)
+```
+
+**Function:** Constructs a GeoCodeRequest object.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| description | String | Yes | - | Represents the location description. The string length cannot exceed 100. |
+| locale | ?String | No | None | **Named parameter.** Represents the language of the location description information. If not specified, the system language is used. |
+| country | ?String | No | None | **Named parameter.** Restricts the query results to the specified country, using the ISO 3166-1 alpha-2 code. If not specified, the system region is used. |
+| maxItems | ?Int32 | No | None | **Named parameter.** Represents the maximum number of location information items to return. The default value is 1. |
+| minLatitude | ?Float64 | No | None | **Named parameter.** Represents the minimum latitude information. The default value is -90.0. |
+| minLongitude | ?Float64 | No | None | **Named parameter.** Represents the minimum longitude information. The default value is -180.0. |
+| maxLatitude | ?Float64 | No | None | **Named parameter.** Represents the maximum latitude information. The default value is 90.0. |
+| maxLongitude | ?Float64 | No | None | **Named parameter.** Represents the maximum longitude information. The default value is 180.0. |
+
 ## class GeoLocationManager
 
 ```cangjie
@@ -1027,6 +1498,124 @@ public mut prop satelliteAdditionalInfo: ?Array<Int32>
 
 **Since:** 26.1.0
 
+## class ReverseGeoCodeRequest
+
+```cangjie
+public class ReverseGeoCodeRequest {
+    public init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+        maxItems!: ?Int32 = None)
+}
+```
+
+**Function:** Reverse geocoding request parameters, used to convert latitude and longitude coordinates into a geographic description.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop locale
+
+```cangjie
+public mut prop locale: ?String
+```
+
+**Function:** Specifies the language of the location description information, where "zh" indicates Chinese and "en" indicates English. The default value is obtained from "Language & Region" in Settings.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop country
+
+```cangjie
+public mut prop country: ?String
+```
+
+**Function:** Restricts the query results to the specified country, using the ISO 3166-1 alpha-2 code, for example "CN" for China. The default value is obtained from "Language & Region" in Settings.
+
+**Type:** ?String
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop latitude
+
+```cangjie
+public mut prop latitude: Float64
+```
+
+**Function:** Represents latitude information. Positive values indicate north latitude, and negative values indicate south latitude. Valid range is -90 to 90. Only supports the WGS84 coordinate system.
+
+**Type:** Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop longitude
+
+```cangjie
+public mut prop longitude: Float64
+```
+
+**Function:** Represents longitude information. Positive values indicate east longitude, and negative values indicate west longitude. Valid range is -180 to 180. Only supports the WGS84 coordinate system.
+
+**Type:** Float64
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### prop maxItems
+
+```cangjie
+public mut prop maxItems: ?Int32
+```
+
+**Function:** Specifies the maximum number of location information items to return. Valid range is greater than or equal to 0, and it is recommended that the value be less than 10. The default value is 1.
+
+**Type:** ?Int32
+
+**Read/Write Capability:** Readable and Writable
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+### init(Float64, Float64, ?String, ?String, ?Int32)
+
+```cangjie
+public init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+    maxItems!: ?Int32 = None)
+```
+
+**Function:** Constructs a reverse geocoding request object.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| latitude | Float64 | Yes | - | Represents latitude information. Positive values indicate north latitude, and negative values indicate south latitude. Valid range is -90 to 90. |
+| longitude | Float64 | Yes | - | Represents longitude information. Positive values indicate east longitude, and negative values indicate west longitude. Valid range is -180 to 180. |
+| locale | ?String | No | None | **Named parameter.** Specifies the language of the location description information, where "zh" indicates Chinese and "en" indicates English. If not specified, the system language is used. |
+| country | ?String | No | None | **Named parameter.** Restricts the query results to the specified country, using the ISO 3166-1 alpha-2 code. If not specified, the system region is used. |
+| maxItems | ?Int32 | No | None | **Named parameter.** Specifies the maximum number of location information items to return. The default value is 1. |
+
 ## class SingleLocationRequest
 
 ```cangjie
@@ -1093,6 +1682,117 @@ public init(locatingPriority: LocatingPriority, locatingTimeoutMs: Int32)
 |:---|:---|:---|:---|:---|
 | locatingPriority | [LocatingPriority](#enum-locatingpriority) | Yes | - | Indicates priority information. For valid values, see the definition of [LocatingPriority](#enum-locatingpriority). |
 | locatingTimeoutMs | Int32 | Yes | - | Indicates the timeout duration in milliseconds, with a minimum of 1000 ms. The value must be greater than or equal to 1000. |
+
+## enum CoordinateSystemType
+
+```cangjie
+public enum CoordinateSystemType {
+    | Wgs84
+    | Gcj02
+    | ...
+}
+```
+
+**Function:** Coordinate system type, used to describe the coordinate system used by capabilities such as geofencing.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+**Parent Types:**
+
+- Equatable\<CoordinateSystemType\>
+- ToString
+
+### Wgs84
+
+```cangjie
+Wgs84
+```
+
+**Function:** World Geodetic System 1984, a coordinate system established for the GPS global positioning system.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+### Gcj02
+
+```cangjie
+Gcj02
+```
+
+**Function:** GCJ-02 is a coordinate system of the geographic information system formulated by the China State Bureau of Surveying and Mapping.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+### func toString()
+
+```cangjie
+public func toString(): String
+```
+
+**Function:** Converts the coordinate system type to a string representation.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| String | String representation of the coordinate system type. |
+
+### func ==(CoordinateSystemType)
+
+```cangjie
+public operator func ==(other: CoordinateSystemType): Bool
+```
+
+**Function:** Checks whether two coordinate system types are equal.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| other | [CoordinateSystemType](#enum-coordinatesystemtype) | Yes | - | The coordinate system type to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | true if the two coordinate system types are equal; false otherwise. |
+
+### func !=(CoordinateSystemType)
+
+```cangjie
+public operator func !=(other: CoordinateSystemType): Bool
+```
+
+**Function:** Checks whether two coordinate system types are not equal.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| other | [CoordinateSystemType](#enum-coordinatesystemtype) | Yes | - | The coordinate system type to compare. |
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | true if the two coordinate system types are not equal; false otherwise. |
 
 ## enum CountryCodeType
 
@@ -2934,6 +3634,158 @@ try {
 }
 ```
 
+## func getAddressesFromLocation(ReverseGeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)
+
+```cangjie
+public func getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>): Unit
+```
+
+**Function:** Calls the reverse geocoding service to convert coordinates into a geographic description. This API uses a callback to return the result asynchronously.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| request | [ReverseGeoCodeRequest](#class-reversegeocoderequest) | Yes | - | Sets the parameters related to the reverse geocoding request. |
+| callback | AsyncCallback\<Array\<[GeoAddress](#class-geoaddress)\>\> | Yes | - | Callback used to return the reverse geocoding result. |
+
+**Exceptions:**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception): The error codes are as follows. For details, see [Location Service Error Codes](./cj-errorcode-geo_location_manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301300 | Reverse geocoding query failed. |
+
+**Example:**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let request = ReverseGeoCodeRequest(31.12, 121.32, maxItems: 1)
+    let callback: AsyncCallback<Array<GeoAddress>> = {
+        err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+        if (let Some(e) <- err) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        } else if (let Some(addresses) <- data) {
+            Hilog.info(0, "test", "addresses size: ${addresses.size}")
+        }
+    }
+    getAddressesFromLocation(request, callback)
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
+## func getAddressesFromLocationName(GeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)
+
+```cangjie
+public func getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>): Unit
+```
+
+**Function:** Calls the geocoding service to convert a geographic description into specific coordinates. This API uses a callback to return the result asynchronously.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+**Parameters:**
+
+| Parameter Name | Type | Required | Default Value | Description |
+|:---|:---|:---|:---|:---|
+| request | [GeoCodeRequest](#class-geocoderequest) | Yes | - | Sets the parameters related to the geocoding request. |
+| callback | AsyncCallback\<Array\<[GeoAddress](#class-geoaddress)\>\> | Yes | - | Callback used to return the geocoding result. |
+
+**Exceptions:**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception): The error codes are as follows. For details, see [Location Service Error Codes](./cj-errorcode-geo_location_manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301400 | Geocoding query failed. |
+
+**Example:**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let request = GeoCodeRequest("xx Road, Pudong New District, Shanghai", maxItems: 1)
+    let callback: AsyncCallback<Array<GeoAddress>> = {
+        err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+        if (let Some(e) <- err) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        } else if (let Some(addresses) <- data) {
+            Hilog.info(0, "test", "addresses size: ${addresses.size}")
+        }
+    }
+    getAddressesFromLocationName(request, callback)
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
+## func isGeocoderAvailable()
+
+```cangjie
+public func isGeocoderAvailable(): Bool
+```
+
+**Function:** Checks the status of the geocoding and reverse geocoding services.
+
+**System Capability:** SystemCapability.Location.Location.Geocoder
+
+**Since:** 26.1.0
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Bool | true if the geocoding and reverse geocoding services are available; false otherwise. |
+
+**Exceptions:**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception): The error codes are as follows. For details, see [Location Service Error Codes](./cj-errorcode-geo_location_manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.isGeocoderAvailable} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+
+**Example:**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let isAvailable = isGeocoderAvailable()
+    Hilog.info(0, "test", "isGeocoderAvailable: ${isAvailable}")
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
 ## func sendCommand(LocationCommand, AsyncCallback\<Unit>)
 
 ```cangjie
@@ -3034,6 +3886,50 @@ try {
         }
     }
     getCountryCode(callback)
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
+## func getGeofenceSupportedCoordTypes()
+
+```cangjie
+public func getGeofenceSupportedCoordTypes(): Array<CoordinateSystemType>
+```
+
+**Function:** Obtains the list of coordinate systems supported by the geofencing feature.
+
+**System Capability:** SystemCapability.Location.Location.Geofence
+
+**Since:** 26.1.0
+
+**Return Value:**
+
+| Type | Description |
+|:----|:----|
+| Array\<[CoordinateSystemType](#enum-coordinatesystemtype)\> | List of coordinate systems supported by the geofencing feature. |
+
+**Exceptions:**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception): The error codes are as follows. For details, see [Location Service Error Codes](./cj-errorcode-geo_location_manager.md).
+
+  | Error Code ID | Error Message |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getGeofenceSupportedCoordTypes} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+
+**Example:**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let coordTypes = getGeofenceSupportedCoordTypes()
+    Hilog.info(0, "test", "supported coord types size: ${coordTypes.size}")
 } catch (e: BusinessException) {
     Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
 }

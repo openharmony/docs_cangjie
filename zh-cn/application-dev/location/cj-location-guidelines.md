@@ -12,7 +12,7 @@
 
 对于位置敏感的应用业务，建议获取设备实时位置信息。如果不需要设备实时位置信息，并且希望尽可能地节省耗电，开发者可以考虑获取最近的历史位置。
 
-此外，还可以订阅位置变化、定位错误、位置开关状态、国家码变化等事件，并使用扩展命令发送等能力，构建更加丰富的位置体验。
+此外，还可以订阅位置变化、定位错误、位置开关状态、国家码变化、GNSS卫星状态与NMEA报文等事件，并使用地理编码与逆地理编码、扩展命令发送、地理围栏坐标系查询等能力，构建更加丰富的位置体验。
 
 ## 接口说明
 
@@ -40,8 +40,12 @@
 | [offNmeaMessage(?Callback1Argument\<String>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-offnmeamessagecallback1argumentstring) | 取消订阅NMEA消息事件。 |
 | [onCountryCodeChange(Callback1Argument\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-oncountrycodechangecallback1argumentcountrycode) | 订阅国家码信息变化事件。 |
 | [offCountryCodeChange(?Callback1Argument\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-offcountrycodechangecallback1argumentcountrycode) | 取消订阅国家码信息变化事件。 |
+| [getAddressesFromLocation(ReverseGeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getaddressesfromlocationreversegeocoderequest-asynccallbackarraygeoaddress) | 调用逆地理编码服务，将坐标转换为地理描述。 |
+| [getAddressesFromLocationName(GeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getaddressesfromlocationnamegeocoderequest-asynccallbackarraygeoaddress) | 调用地理编码服务，将地理描述转换为具体坐标。 |
+| [isGeocoderAvailable()](../reference/LocationKit/cj-apis-geo_location_manager.md#func-isgeocoderavailable) | 判断地理编码与逆地理编码服务状态。 |
 | [sendCommand(LocationCommand, AsyncCallback\<Unit>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-sendcommandlocationcommand-asynccallbackunit) | 给位置服务子系统的各个部件发送扩展命令。 |
 | [getCountryCode(AsyncCallback\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getcountrycodeasynccallbackcountrycode) | 查询当前的国家码。 |
+| [getGeofenceSupportedCoordTypes()](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getgeofencesupportedcoordtypes) | 获取地理围栏功能支持的坐标系列表。 |
 
 ## 开发步骤
 
@@ -319,7 +323,87 @@
         }
         ```
 
-8. 发送扩展命令。多用于向位置服务子系统的各个部件下发扩展指令的场景，命令发送成功时callback的err为None，否则err包含错误信息。
+8. 地理编码与逆地理编码。多用于将地址描述与经纬度坐标互相转换的场景。
+    - 使用经纬度坐标描述一个位置非常准确，但是并不直观，面向用户表达并不友好。系统提供以下两种转化能力：<br/>
+        - 正地理编码：将地理描述转化为具体经纬度坐标。<br/>
+        - 逆地理编码：将具体的经纬度坐标转化为地理描述。<br/>
+
+        其中地理描述包含多个属性来描述位置信息，包括国家、行政区划、街道、门牌号、地址描述等，这样的信息更便于用户理解，参见[GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress)。
+
+    - 正地理编码与逆地理编码功能需要访问后端服务，请确保设备联网，以进行信息获取。可以调用isGeocoderAvailable接口判断服务是否可用，如果服务可用再继续后续步骤。
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let isAvailable = isGeocoderAvailable()
+            Hilog.info(0, "test", "isGeocoderAvailable: ${isAvailable}")
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+    - 调用getAddressesFromLocation接口，把经纬度坐标转化为地理描述。应用可以获得与此坐标匹配的[GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress)（地理编码地址信息）列表，根据实际使用需求，读取相应的参数数据。
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let request = ReverseGeoCodeRequest(31.12, 121.32, maxItems: 1)
+            let callback: AsyncCallback<Array<GeoAddress>> = {
+                err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+                if (let Some(e) <- err) {
+                    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+                } else if (let Some(addresses) <- data) {
+                    for (address in addresses) {
+                        Hilog.info(0, "test", "placeName: ${address.placeName}")
+                    }
+                }
+            }
+            getAddressesFromLocation(request, callback)
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+    - 调用getAddressesFromLocationName接口，把地理描述转化为经纬度坐标。应用可以获得与位置信息相匹配的GeoAddress（地理编码地址信息）列表，其中包含对应的坐标数据。
+
+        如果需要查询的位置信息可能出现多地重名的情况，可以实例化[GeoCodeRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geocoderequest)时设置一个经纬度范围，以高效地获取期望的准确结果。
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let request = GeoCodeRequest("上海市浦东新区xx路xx号", maxItems: 1)
+            let callback: AsyncCallback<Array<GeoAddress>> = {
+                err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+                if (let Some(e) <- err) {
+                    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+                } else if (let Some(addresses) <- data) {
+                    for (address in addresses) {
+                        Hilog.info(0, "test", "latitude: ${address.latitude}, longitude: ${address.longitude}")
+                    }
+                }
+            }
+            getAddressesFromLocationName(request, callback)
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+9. 发送扩展命令。多用于向位置服务子系统的各个部件下发扩展指令的场景，命令发送成功时callback的err为None，否则err包含错误信息。
 
     <!-- run -->
 
@@ -344,7 +428,7 @@
     }
     ```
 
-9. 订阅卫星状态与NMEA消息。多用于查看卫星信号质量、调试定位问题等场景。
+10. 订阅卫星状态与NMEA消息。多用于查看卫星信号质量、调试定位问题等场景。
     - 调用onSatelliteStatusChange接口订阅卫星状态变化事件，回调参数[SatelliteStatusInfo](../reference/LocationKit/cj-apis-geo_location_manager.md#class-satellitestatusinfo)包含卫星数量、卫星ID、载波噪声密度、高度角、方位角、载波频率、星座类型等信息；不再需要时调用offSatelliteStatusChange接口取消订阅，传入的回调实例需要与onSatelliteStatusChange接口传入的回调实例保持一致；不传入callback时取消当前类型的所有订阅。
 
         <!-- run -->
@@ -388,6 +472,23 @@
             Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
         }
         ```
+
+11. 查询地理围栏支持的坐标系。调用getGeofenceSupportedCoordTypes接口获取地理围栏功能支持的坐标系列表，参见[CoordinateSystemType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-coordinatesystemtype)。
+
+    <!-- run -->
+
+    ```cangjie
+    import kit.LocationKit.*
+    import kit.CangjieKit.*
+    import kit.PerformanceAnalysisKit.Hilog
+
+    try {
+        let coordTypes = getGeofenceSupportedCoordTypes()
+        Hilog.info(0, "test", "supported coord types size: ${coordTypes.size}")
+    } catch (e: BusinessException) {
+        Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+    }
+    ```
 
 <!--Del-->
 ## 示例代码
