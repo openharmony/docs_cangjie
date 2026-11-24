@@ -148,6 +148,8 @@ public func getRemoteDeviceName(deviceId: String): String
 
 **功能：** 获取指定远端蓝牙设备的名称或别名。
 
+此接口支持使用对端设备的实际MAC地址获取设备名称。
+
 **需要权限：** ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
@@ -204,6 +206,8 @@ public func getRemoteDeviceClass(deviceId: String): DeviceClass
 ```
 
 **功能：** 获取指定远端蓝牙设备的类别信息，包括主要类型、主要和次要组合类型、完整设备类别码。
+
+此接口支持使用对端设备的实际MAC地址获取设备类别信息。
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 
@@ -320,7 +324,7 @@ public func getPairedDevices(): Array<String>
 
 |类型|说明|
 |:---|:---|
-|Array\<String\>|已配对设备地址集合，不表示这些设备当前均已连接。|
+|Array\<String\>|已配对设备地址集合，不表示这些设备当前均已连接。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 已配对的地址不会变更。<br>- 若该设备重启蓝牙开关，重新获取到的虚拟地址会立即变更。<br>- 若取消配对，蓝牙子系统会根据该地址的实际使用情况，决策后续变更时机；若其他应用正在使用该地址，则不会立刻变更。|
 
 **异常：**
 
@@ -360,6 +364,8 @@ public func getPairState(deviceId: String): BondState
 ```
 
 **功能：** 获取指定远端设备的绑定状态。
+
+此接口支持使用对端设备的实际MAC地址获取配对状态信息。
 
 **需要权限：** ohos.permission.ACCESS_BLUETOOTH
 

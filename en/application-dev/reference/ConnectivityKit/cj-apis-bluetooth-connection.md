@@ -148,6 +148,8 @@ public func getRemoteDeviceName(deviceId: String): String
 
 **Description:** Obtains the name or alias of the specified remote Bluetooth device.
 
+This API can be used to obtain the device name by using the actual MAC address of the peer device.
+
 **Required Permissions:** ohos.permission.ACCESS_BLUETOOTH
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
@@ -204,6 +206,8 @@ public func getRemoteDeviceClass(deviceId: String): DeviceClass
 ```
 
 **Description:** Obtains the device class, including the major class, combined major/minor class, and complete class-of-device code.
+
+This API can be used to obtain the device class information by using the actual MAC address of the peer device.
 
 **System Capability:** SystemCapability.Communication.Bluetooth.Core
 
@@ -320,7 +324,7 @@ public func getPairedDevices(): Array<String>
 
 |Type|Description|
 |:---|:---|
-|Array\<String\>|Addresses of paired devices; these devices are not necessarily connected.|
+|Array\<String\>|Addresses of paired devices; these devices are not necessarily connected.<br>For information security purposes, the device address obtained here is a virtual MAC address.<br>- The address of a paired device does not change.<br>- If Bluetooth is restarted on the device, the virtual address obtained again changes immediately.<br>- If pairing is canceled, the Bluetooth subsystem determines when to change the address based on its actual usage. If another application is using the address, it will not be changed immediately.|
 
 **Exceptions:**
 
@@ -360,6 +364,8 @@ public func getPairState(deviceId: String): BondState
 ```
 
 **Description:** Obtains the bonding state of the specified device.
+
+This API can be used to obtain the pairing state by using the actual MAC address of the peer device.
 
 **Required Permissions:** ohos.permission.ACCESS_BLUETOOTH
 
