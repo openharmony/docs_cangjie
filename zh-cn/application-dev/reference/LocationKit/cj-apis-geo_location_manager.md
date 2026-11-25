@@ -2429,7 +2429,7 @@ public func offLocationChange(callback!: ?Callback1Argument<Location> = None): U
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Location\>|否|None|需要取消订阅的回调函数。不填写时取消所有订阅。|
+|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Location\>|否|None|**命名参数。** 需要取消订阅的回调函数。不填写时取消所有订阅。|
 
 **异常：**
 
@@ -2535,7 +2535,7 @@ public func offLocationError(callback!: ?Callback1Argument<LocationError> = None
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[LocationError](#enum-locationerror)\>|否|None|需要取消订阅的回调函数。不填写时取消所有订阅。|
+|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[LocationError](#enum-locationerror)\>|否|None|**命名参数。** 需要取消订阅的回调函数。不填写时取消所有订阅。|
 
 **异常：**
 
@@ -2628,7 +2628,7 @@ public func offLocationEnabledChange(callback!: ?Callback1Argument<Bool> = None)
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Bool\>|否|None|需要取消订阅的回调函数。不填写时取消所有订阅。|
+|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<Bool\>|否|None|**命名参数。** 需要取消订阅的回调函数。不填写时取消所有订阅。|
 
 **异常：**
 
@@ -2726,7 +2726,7 @@ public func offSatelliteStatusChange(callback!: ?Callback1Argument<SatelliteStat
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[SatelliteStatusInfo](#class-satellitestatusinfo)\>|否|None|需要取消订阅的回调函数。不填写时取消所有订阅。|
+|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[SatelliteStatusInfo](#class-satellitestatusinfo)\>|否|None|**命名参数。** 需要取消订阅的回调函数。不填写时取消所有订阅。|
 
 **异常：**
 
@@ -2826,7 +2826,7 @@ public func offNmeaMessage(callback!: ?Callback1Argument<String> = None): Unit
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<String\>|否|None|需要取消订阅的回调函数。不填写时取消所有订阅。|
+|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<String\>|否|None|**命名参数。** 需要取消订阅的回调函数。不填写时取消所有订阅。|
 
 **异常：**
 
@@ -2921,7 +2921,7 @@ public func offCountryCodeChange(callback!: ?Callback1Argument<CountryCode> = No
 
 |参数名|类型|必填|默认值|说明|
 |:---|:---|:---|:---|:---|
-|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[CountryCode](#class-countrycode)\>|否|None|需要取消订阅的回调函数。不填写时取消所有订阅。|
+|callback|?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[CountryCode](#class-countrycode)\>|否|None|**命名参数。** 需要取消订阅的回调函数。不填写时取消所有订阅。|
 
 **异常：**
 

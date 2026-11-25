@@ -2662,7 +2662,7 @@ public func offSatelliteStatusChange(callback!: ?Callback1Argument<SatelliteStat
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | ?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[SatelliteStatusInfo](#class-satellitestatusinfo)\> | No | None | Callback to be unsubscribed. If it is not specified, all subscriptions are canceled. |
+| callback | ?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<[SatelliteStatusInfo](#class-satellitestatusinfo)\> | No | None | **Named parameter.** Callback to be unsubscribed. If it is not specified, all subscriptions are canceled. |
 
 **Exceptions:**
 
@@ -2762,7 +2762,7 @@ public func offNmeaMessage(callback!: ?Callback1Argument<String> = None): Unit
 
 | Parameter Name | Type | Required | Default Value | Description |
 |:---|:---|:---|:---|:---|
-| callback | ?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<String\> | No | None | Callback to be unsubscribed. If it is not specified, all subscriptions are canceled. |
+| callback | ?[Callback1Argument](../arkinterop/cj-api-callback_invoke.md#class-callback1argumenta)\<String\> | No | None | **Named parameter.** Callback to be unsubscribed. If it is not specified, all subscriptions are canceled. |
 
 **Exceptions:**
 
