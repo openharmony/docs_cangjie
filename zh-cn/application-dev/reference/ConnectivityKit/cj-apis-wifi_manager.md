@@ -926,7 +926,7 @@ public func getSignalLevel(rssi: Int32, band: Int32): UInt32
 
 |类型|说明|
 |:----|:----|
-|UInt32|信号强度，取值范围为0~4。|
+|UInt32|信号强度，取值范围为[0, 4]。|
 
 **异常：**
 
@@ -1139,7 +1139,7 @@ public func p2pCancelConnect(): Unit
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
-  | 2501001 | Wi-Fi STA disabled. |
+  | 2801001 | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -1188,7 +1188,7 @@ public func p2pConnect(config: WifiP2pConfig): Unit
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
-  | 2501001 | Wi-Fi STA disabled. |
+  | 2801001 | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -1336,7 +1336,7 @@ public func startDiscoverDevices(): Unit
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
-  | 2501001 | Wi-Fi STA disabled. |
+  | 2801001 | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -1426,7 +1426,7 @@ public func stopDiscoverDevices(): Unit
   | 201 | Permission denied. |
   | 801 | Capability not supported. |
   | 2801000 | Operation failed. |
-  | 2501001 | Wi-Fi STA disabled. |
+  | 2801001 | Wi-Fi STA disabled. |
 
 **示例：**
 

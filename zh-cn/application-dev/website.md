@@ -537,6 +537,7 @@
             - Telephony Kit（蜂窝通信服务）
                 - [拨打电话](telephony/cj-telephony-call.md)
                 - [获取蜂窝网络信息](telephony/cj-telephony-network-guidelines.md)
+                - [电话服务状态监听](telephony/cj-telephony-observer-guidelines.md)
                 - [使用SIM卡类型和状态枚举](telephony/cj-telephony-sim-guidelines.md)
         - 基础功能
             - Basic Services Kit（基础服务）
@@ -547,6 +548,8 @@
                         - [动态订阅公共事件](basic-services/common-event/cj-common-event-subscription.md)
                         - [取消动态订阅公共事件](basic-services/common-event/cj-common-event-unsubscription.md)
                         - [发布公共事件](basic-services/common-event/cj-common-event-publish.md)
+                - 剪贴板
+                    - [复制粘贴](basic-services/pasteboard/cj-pasteboard-guidelines.md)
                 - 上传下载
                     - [应用文件上传下载](basic-services/request/cj-app-file-upload-download.md)
             - Notification Kit（用户通知服务）
@@ -561,6 +564,9 @@
                 - 传感器
                     - [传感器开发概述](device/sensor/cj-sensor-overview.md)
                     - [传感器开发指导](device/sensor/cj-sensor-guidelines.md)
+                - 振动
+                    - [振动开发概述](device/sensor/cj-vibrator-overview.md)
+                    - [振动开发指导](device/sensor/cj-vibrator-guidelines.md)
         - 调测调优
             - Performance Analysis Kit（性能分析服务）
                 - [Performance Analysis Kit简介](dfx/cj-performance-analysis-kit-overview.md)
@@ -976,6 +982,7 @@
                         - [ohos.device_info（设备信息）](reference/BasicServicesKit/cj-apis-device_info.md)
                     - 数据文件处理
                         - [ohos.request（上传下载）](reference/BasicServicesKit/cj-apis-request-agent.md)
+                        - [ohos.zlib（Zip模块）](basic-services/zlib/cj-apis-zlib.md)
                     - 进程线程通信
                         - [ohos.common_event_manager（公共事件模块）](reference/BasicServicesKit/cj-apis-common_event_manager.md)
                     - 其他
@@ -986,6 +993,7 @@
                         - [ohos.common_event_data](reference/BasicServicesKit/cj-apis-common_event_data.md)
                         - [ohos.common_event_publish_data](reference/BasicServicesKit/cj-apis-common_event_publish_data.md)
                         - [ohos.value_type](reference/BasicServicesKit/cj-apis-value_type.md)
+                        - [ohos.pasteboard（剪贴板）](reference/BasicServicesKit/cj-apis-pasteboard.md)
                 - 错误码
                     - [上传下载错误码](reference/BasicServicesKit/cj-errorcode-request.md)
                     - [时间时区服务错误码](reference/BasicServicesKit/cj-errorcode-time.md)
@@ -993,6 +1001,8 @@
                     - [系统电源管理错误码](reference/BasicServicesKit/cj-errorcode-power.md)
                     - [账号管理错误码](reference/BasicServicesKit/cj-errorcode-basic-account.md)
                     - [设置数据项错误码](reference/BasicServicesKit/cj-errorcode-settings.md)
+                    - [zlib子系统错误码](basic-services/zlib/cj-errorcode-zlib.md)
+                    - [剪贴板错误码](reference/BasicServicesKit/cj-errorcode-pasteboard.md)
             - Notification Kit（用户通知服务）
                 - 仓颉API
                     - [ohos.notification_manager（通知管理）](reference/NotificationKit/cj-apis-notification-manager.md)
@@ -1002,13 +1012,16 @@
             - Sensor Service Kit（传感器服务）
                 - 仓颉API
                     - [ohos.sensor（传感器）](reference/SensorServiceKit/cj-apis-sensor.md)
+                    - [ohos.vibrator（振动）](reference/SensorServiceKit/cj-apis-vibrator.md)
                 - 错误码
                     - [传感器错误码](reference/SensorServiceKit/cj-errorcode-sensor.md)
+                    - [振动错误码](reference/SensorServiceKit/cj-errorcode-vibrator.md)
             - Telephony Kit
                 - 仓颉API
                     - [ohos.telephony.call（拨打电话）](reference/TelephonyKit/cj-apis-telephony-call.md)
                     - [ohos.telephony.radio（网络搜索）](reference/TelephonyKit/cj-apis-telephony-radio.md)
                     - [ohos.telephony.sim（SIM卡管理）](reference/TelephonyKit/cj-apis-telephony-sim.md)
+                    - [ohos.telephony.observer（电话服务状态监听）](reference/TelephonyKit/cj-apis-telephony-observer.md)
                 - 错误码
                     - [电话子系统错误码](reference/TelephonyKit/cj-errorcode-telephony.md)
         - 调测调优

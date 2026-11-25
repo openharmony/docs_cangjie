@@ -376,6 +376,7 @@
             - Telephony Kit (Cellular Communication Service)
                 - [Making Phone Calls](telephony/cj-telephony-call.md)
                 - [Obtaining Cellular Network Information](telephony/cj-telephony-network-guidelines.md)
+                - [Observing Telephony State Changes](telephony/cj-telephony-observer-guidelines.md)
                 - [Using SIM Card Type and State Enums](telephony/cj-telephony-sim-guidelines.md)
         - Basic Features
             - Basic Services Kit (Basic Services)
@@ -386,6 +387,8 @@
                         - [Dynamic Common Event Subscription](basic-services/common-event/cj-common-event-subscription.md)
                         - [Dynamic Common Event Unsubscription](basic-services/common-event/cj-common-event-unsubscription.md)
                         - [Publishing Common Events](basic-services/common-event/cj-common-event-publish.md)
+                - Pasteboard
+                    - [Copy and Paste](basic-services/pasteboard/cj-pasteboard-guidelines.md)
                 - Upload/Download
                     - [Application File Upload/Download](basic-services/request/cj-app-file-upload-download.md)
             - Notification Kit (User Notification Service)
@@ -400,6 +403,9 @@
                 - Sensors
                     - [Sensor Development Overview](device/sensor/cj-sensor-overview.md)
                     - [Sensor Development Guide (Cangjie)](device/sensor/cj-sensor-guidelines.md)
+                - Vibrator
+                    - [Vibrator Development Overview](device/sensor/cj-vibrator-overview.md)
+                    - [Vibrator Development Guide (Cangjie)](device/sensor/cj-vibrator-guidelines.md)
         - Debugging and Optimization
             - Performance Analysis Kit (Performance Analysis Service)
                 - [Introduction to Performance Analysis Kit](dfx/cj-performance-analysis-kit-overview.md)
@@ -802,6 +808,7 @@
                         - [ohos.device_info (Device Information)](reference/BasicServicesKit/cj-apis-device_info.md)
                     - Data File Processing
                         - [kit.BasicServicesKit.agent (Upload/Download)](reference/BasicServicesKit/cj-apis-request-agent.md)
+                        - [ohos.zlib (Zip)](basic-services/zlib/cj-apis-zlib.md)
                     - Process/Thread Communication
                         - [ohos.common_event_manager (Common Event Module)](reference/BasicServicesKit/cj-apis-common_event_manager.md)
                     - Others
@@ -812,12 +819,15 @@
                         - [ohos.common_event_data](reference/BasicServicesKit/cj-apis-common_event_data.md)
                         - [ohos.common_event_publish_data](reference/BasicServicesKit/cj-apis-common_event_publish_data.md)
                         - [ohos.value_type](reference/BasicServicesKit/cj-apis-value_type.md)
+                        - [ohos.pasteboard (Pasteboard)](reference/BasicServicesKit/cj-apis-pasteboard.md)
                 - Error Codes
                     - [Upload/Download Error Codes](reference/BasicServicesKit/cj-errorcode-request.md)
                     - [Time/Timezone Error Codes](reference/BasicServicesKit/cj-errorcode-time.md)
                     - [Event Error Codes](reference/BasicServicesKit/cj-errorcode-common_event_service.md)
                     - [System Power Management Error Codes](reference/BasicServicesKit/cj-errorcode-power.md)
                     - [Account Management Error Codes](reference/BasicServicesKit/cj-errorcode-basic-account.md)
+                    - [zlib Error Codes](basic-services/zlib/cj-errorcode-zlib.md)
+                    - [Pasteboard Error Codes](reference/BasicServicesKit/cj-errorcode-pasteboard.md)
             - Notification Kit (User Notification Service)
                 - Cangjie API
                     - [ohos.notification_manager (Notification Management)](reference/NotificationKit/cj-apis-notification-manager.md)
@@ -827,13 +837,16 @@
             - Sensor Service Kit (Sensor Service)
                 - Cangjie API
                     - [ohos.sensor (Sensors)](reference/SensorServiceKit/cj-apis-sensor.md)
+                    - [ohos.vibrator (Vibrator)](reference/SensorServiceKit/cj-apis-vibrator.md)
                 - Error Codes
                     - [Sensor Error Codes](reference/SensorServiceKit/cj-errorcode-sensor.md)
+                    - [Vibrator Error Codes](reference/SensorServiceKit/cj-errorcode-vibrator.md)
             - Telephony Kit
                 - Cangjie API
                     - [ohos.telephony.call](reference/TelephonyKit/cj-apis-telephony-call.md)
                     - [ohos.telephony.radio (Network Search)](reference/TelephonyKit/cj-apis-telephony-radio.md)
                     - [ohos.telephony.sim (SIM Card Management)](reference/TelephonyKit/cj-apis-telephony-sim.md)
+                    - [ohos.telephony.observer (Telephony Status Observer)](reference/TelephonyKit/cj-apis-telephony-observer.md)
                 - Error Codes
                     - [Telephony Error Codes](reference/TelephonyKit/cj-errorcode-telephony.md)
         - Debugging & Optimization
