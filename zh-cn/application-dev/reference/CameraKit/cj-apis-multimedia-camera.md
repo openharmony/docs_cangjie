@@ -7839,7 +7839,7 @@ public init(topLeftX: Float64, topLeftY: Float64, width: Float64, height: Float6
 import kit.CameraKit.*
 import kit.PerformanceAnalysisKit.Hilog
 
-let rect = Rect(0.0, 0.0, 100.0, 100.0)
+let rect = Rect(0.0, 0.0, 1.0, 1.0)
 Hilog.info(0, "test", "width=${rect.width}, height=${rect.height}")
 ```
 
