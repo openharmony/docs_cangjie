@@ -180,7 +180,7 @@ class EntryView {
                                     expectedFrameRateRange: ExpectedFrameRateRange( // 设置属性动画的帧率范围
                                         min: 0, // 设置帧率范围
                                         max: 120, // 设置帧率范围
-                                        expected: 40 // 设置动画的期望帧率为30hz
+                                        expected: 40 // 设置动画的期望帧率为40hz
                                     )
                                 ),
                                 {

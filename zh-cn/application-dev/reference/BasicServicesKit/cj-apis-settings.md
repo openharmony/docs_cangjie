@@ -98,7 +98,7 @@ public func getValue<T, P>(context: UIAbilityContext, name: T, defValue: String,
 |context|[UIAbilityContext](../AbilityKit/cj-apis-app-ability-ui_ability.md#class-uiabilitycontext)|是|-|应用上下文。|
 |name|T|是|-|类型T需实现ToString 接口。数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。|
 |defValue|String|是|-|默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。|
-|domainName|P|是|-|类型P需实现ToString 接口。指定要设置的域名。 <br>- domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br>- domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域(仅对系统应用开放)。|
+|domainName|P|是|-|类型P需实现ToString 接口。指定要设置的域名。 <br>- domainName为DomainName.DeviceShared，<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为DomainName.UserProperty，<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。|
 
 **返回值：**
 

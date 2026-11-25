@@ -84,6 +84,7 @@
 
     // 判断数据库版本，如果不匹配则需进行升降级操作
     // 假设当前数据库版本为3，表结构：EMPLOYEE (ID, NAME, AGE, SALARY, CODES)
+    // 假设数据库版本1的表结构：EMPLOYEE (ID, NAME, ADDRESS, SALARY, CODES)，升级时先增加AGE列，再删除已废弃的ADDRESS列
     const SQL_CREATE_TABLE = "CREATE TABLE EMPLOYEE(ID int NOT NULL, NAME varchar(255) NOT NULL, AGE int, SALARY float NOT NULL, CODES Bit NOT NULL, PRIMARY KEY (Id))"
     var rdbStore: Option<RdbStore> = Option<RdbStore>.None
 

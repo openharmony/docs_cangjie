@@ -525,7 +525,7 @@ Invalid advertising id.
 
 **错误信息**
 
-HID application is not int the foreground.
+HID application is not in the foreground.
 
 **错误描述**
 

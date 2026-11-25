@@ -294,7 +294,7 @@ public static func getCurrentLocation(): Location
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-  | 801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities. |
+  | 801 | Capability not supported. Failed to call getCurrentLocation due to limited device capabilities. |
   | 3301000 | The location service is unavailable. |
   | 3301100 | The location switch is off. |
   | 3301200 | Failed to obtain the geographical location. |
@@ -350,7 +350,7 @@ public static func getCurrentLocation(request: CurrentLocationRequest): Location
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-  | 801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities. |
+  | 801 | Capability not supported. Failed to call getCurrentLocation due to limited device capabilities. |
   | 3301000 | The location service is unavailable. |
   | 3301100 | The location switch is off. |
   | 3301200 | Failed to obtain the geographical location. |
@@ -406,7 +406,7 @@ public static func getCurrentLocation(request: SingleLocationRequest): Location
   | 错误码ID | 错误信息 |
   | :---- | :--- |
   | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-  | 801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities. |
+  | 801 | Capability not supported. Failed to call getCurrentLocation due to limited device capabilities. |
   | 3301000 | The location service is unavailable. |
   | 3301100 | The location switch is off. |
   | 3301200 | Failed to obtain the geographical location. |
@@ -453,7 +453,7 @@ public static func isLocationEnabled(): Bool
 
   | 错误码ID | 错误信息 |
   | :---- | :--- |
-  | 801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities. |
+  | 801 | Capability not supported. Failed to call isLocationEnabled due to limited device capabilities. |
   | 3301000 | The location service is unavailable. |
 
 **示例：**

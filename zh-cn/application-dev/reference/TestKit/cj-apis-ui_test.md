@@ -45,7 +45,7 @@ hdc shell aa test -b com.example.myapplication -m entry -s unittest OpenHarmonyT
 ```
 
 - 这里的`-b com.example.myapplication -m entry`按照app里实际的bundle name和module name填。
-- 最后的`CJTestRunner`是TestRunner.registerCreator注册TestRunner的第一个参数。
+- 最后的`OpenHarmonyTestRunner`是TestRunner.registerCreator注册TestRunner的第一个参数。
 
 ## class Component
 

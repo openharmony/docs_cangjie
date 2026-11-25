@@ -90,7 +90,7 @@ public var code: Int32
 public var data: String
 ```
 
-**功能：** 表示发布方传递的公共事件数据（string类型）。数据大小不超过64KB。
+**功能：** 表示发布方传递的公共事件数据（String类型）。数据大小不超过64KB。
 
 **类型：** String
 
