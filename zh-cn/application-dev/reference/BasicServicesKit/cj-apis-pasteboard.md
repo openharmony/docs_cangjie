@@ -323,7 +323,7 @@ public func addRecord(mimeType: String, value: PasteDataValueType): Unit
 
 | 参数名 | 类型 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
-| mimeType | String | 是 | 数据的MIME类型，取值范围：长度不超过1024字节。超出范围时抛出错误码 401 的 BusinessException。 |
+| mimeType | String | 是 | 数据的MIME类型，长度不能超过1024字节。 |
 | value | [PasteDataValueType](#enum-pastedatavaluetype) | 是 | 数据内容，设置后更新剪贴板内容的属性信息，包括时间戳、数据类型、粘贴范围等。 |
 
 **示例：**
@@ -1300,7 +1300,7 @@ public func hasDataType(mimeType: String): Bool
 
 | 参数名 | 类型 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- |
-| mimeType | String | 是 | 数据类型，设置后用于检查剪贴板内容中是否存在该类型的特定数据。其长度不能超过1024字节，超出范围时抛出错误码 401 的 BusinessException。 |
+| mimeType | String | 是 | 数据类型，设置后用于检查剪贴板内容中是否存在该类型的特定数据。其长度不能超过1024字节。 |
 
 **返回值：**
 
@@ -1314,7 +1314,6 @@ public func hasDataType(mimeType: String): Bool
 
   | 错误码ID | 错误信息 |
   | :--- | :--- |
-  | 401 | The parameter check failed. |
   | 12900005 | Excessive processing time for internal data. |
 
 **示例：**
