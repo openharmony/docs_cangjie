@@ -78,18 +78,18 @@ This module's capabilities only support the WGS-84 coordinate system.
     If the location switch is not turned on, you can trigger a global settings dialog to guide users to enable the location switch. For details, refer to [Triggering the Global Settings Dialog](../reference/AbilityKit/cj-apis-ability_access_ctrl.md#func-requestglobalswitchcontext-switchtype-asynccallbackbool).
 
 4. Obtain the current device location once. Commonly used for scenarios such as checking the current location, check-ins, and service recommendations.
-    - Get the current location.<br/>
+    - Get the current location.
 
-        First, instantiate the [SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest) object to inform the system about the type of location service to provide to the application and the timeout duration for single location requests.<br/>
+        First, instantiate the [SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest) object to inform the system about the type of location service to provide to the application and the timeout duration for single location requests.
 
-        - Set `LocatingPriority`:<br/>
-            If high accuracy is required for location results, it is recommended to set the `LocatingPriority` parameter to `PRIORITY_ACCURACY`, which will return the most accurate results within a certain period.<br/>
-            If faster location acquisition is prioritized, set the `LocatingPriority` parameter to `PRIORITY_LOCATING_SPEED`, which will return the first available location result.<br/>
-            Both strategies utilize GNSS and network positioning technologies to ensure location results can be obtained in both indoor and outdoor scenarios, but they consume significant hardware resources and power.<br/>
-        - Set `locatingTimeoutMs`:<br/>
-            Due to factors such as device environment, device state, and system power management policies, the latency of location results may vary significantly. It is recommended to set the single location timeout to 10 seconds.<br/>
+        - Set `LocatingPriority`:
+            If high accuracy is required for location results, it is recommended to set the `LocatingPriority` parameter to `PRIORITY_ACCURACY`, which will return the most accurate results within a certain period.
+            If faster location acquisition is prioritized, set the `LocatingPriority` parameter to `PRIORITY_LOCATING_SPEED`, which will return the first available location result.
+            Both strategies utilize GNSS and network positioning technologies to ensure location results can be obtained in both indoor and outdoor scenarios, but they consume significant hardware resources and power.
+        - Set `locatingTimeoutMs`:
+            Due to factors such as device environment, device state, and system power management policies, the latency of location results may vary significantly. It is recommended to set the single location timeout to 10 seconds.
 
-        Using the fast location strategy (`PRIORITY_LOCATING_SPEED`) as an example, the calling method is as follows:<br/>
+        Using the fast location strategy (`PRIORITY_LOCATING_SPEED`) as an example, the calling method is as follows:
 
         <!-- run -->
 
@@ -113,7 +113,7 @@ This module's capabilities only support the WGS-84 coordinate system.
     Third-party map SDKs can be used for coordinate system conversion. <!--DelEnd-->
 
 5. Continuous positioning. This is commonly used in scenarios such as navigation, motion tracks, and travel.
-    - Obtain the last location.<br/>
+    - Obtain the last location.
 
         If the real-time device location is not required, you can call the getLastLocation API to obtain the most recent location result cached by the system, reducing power consumption. If the system does not have a cached location, an error code is returned.
 
@@ -132,15 +132,15 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-    - Subscribe to location changes and initiate a location request.<br/>
+    - Subscribe to location changes and initiate a location request.
 
-        First, instantiate a [LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest) object to inform the system about the type of location service to provide to the application and the frequency of location reporting.<br/>
+        First, instantiate a [LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest) object to inform the system about the type of location service to provide to the application and the frequency of location reporting.
 
-        - Set priority/scenario:<br/>
-            When scenario is set to Unset, the priority parameter takes effect; otherwise, it does not. If both scenario and priority are set to Unset, the location request cannot be initiated.<br/>
-            It is recommended that priority be set based on the requirements for location results. Select Accuracy if high accuracy is required, FirstFix if fast location acquisition is required, and LowPower if power saving is expected.<br/>
-        - Set timeInterval:<br/>
-            Represents the time interval for reporting location information, in seconds. If there is no special requirement on the location reporting time interval, this field can be left unset.<br/>
+        - Set priority/scenario:
+            When scenario is set to Unset, the priority parameter takes effect; otherwise, it does not. If both scenario and priority are set to Unset, the location request cannot be initiated.
+            It is recommended that priority be set based on the requirements for location results. Select Accuracy if high accuracy is required, FirstFix if fast location acquisition is required, and LowPower if power saving is expected.
+        - Set timeInterval:
+            Represents the time interval for reporting location information, in seconds. If there is no special requirement on the location reporting time interval, this field can be left unset.
 
         The following is an example using fast location acquisition priority (FirstFix):
 
@@ -167,14 +167,14 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-    - Initiate positioning using a continuous location request.<br/>
+    - Initiate positioning using a continuous location request.
 
-        Alternatively, you can instantiate a [ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest) object to describe the continuous positioning requirement through a user activity scenario or a power consumption scenario.<br/>
+        Alternatively, you can instantiate a [ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest) object to describe the continuous positioning requirement through a user activity scenario or a power consumption scenario.
 
-        - Set locationScenario:<br/>
-            It is recommended that this parameter be set based on the application scenario. For example, a map application can use the Navigation parameter during navigation to continuously obtain locations in both indoor and outdoor scenarios for navigation. For valid values, see [ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype).<br/>
-        - Set interval:<br/>
-            Represents the time interval for reporting location information, in seconds. The default value is 1. If there is no special requirement on the location reporting time interval, you can set it to 1.<br/>
+        - Set locationScenario:
+            It is recommended that this parameter be set based on the application scenario. For example, a map application can use the Navigation parameter during navigation to continuously obtain locations in both indoor and outdoor scenarios for navigation. For valid values, see [ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype).
+        - Set interval:
+            Represents the time interval for reporting location information, in seconds. The default value is 1. If there is no special requirement on the location reporting time interval, you can set it to 1.
 
         The following is an example using the map navigation scenario:
 
@@ -200,7 +200,7 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-    - Subscribe to error information during continuous positioning.<br/>
+    - Subscribe to error information during continuous positioning.
 
         During continuous positioning, positioning may fail due to reasons such as permission verification failure, location switch off, or network unavailability. You can call the onLocationError API to subscribe to error information and handle it based on the value of [LocationError](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-locationerror).
 
@@ -327,9 +327,9 @@ This module's capabilities only support the WGS-84 coordinate system.
         ```
 
 8. Geocoding and reverse geocoding. This is commonly used in scenarios where address descriptions and latitude-longitude coordinates need to be converted to each other.
-    - Using latitude and longitude coordinates to describe a location is very accurate but not intuitive, and is not user-friendly. The system provides the following two conversion capabilities:<br/>
-        - Geocoding: converts a geographic description into specific latitude and longitude coordinates.<br/>
-        - Reverse geocoding: converts specific latitude and longitude coordinates into a geographic description.<br/>
+    - Using latitude and longitude coordinates to describe a location is very accurate but not intuitive, and is not user-friendly. The system provides the following two conversion capabilities:
+        - Geocoding: converts a geographic description into specific latitude and longitude coordinates.
+        - Reverse geocoding: converts specific latitude and longitude coordinates into a geographic description.
 
         The geographic description contains multiple attributes to describe location information, including the country, administrative divisions, streets, house numbers, and address descriptions. Such information is easier for users to understand. For details, see [GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress).
 

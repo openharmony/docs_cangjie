@@ -76,18 +76,18 @@
     ```
 
 4. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
-    - 获取当前位置。<br/>
+    - 获取当前位置。
 
-        首先要实例化[SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及单次定位超时时间。<br/>
+        首先要实例化[SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及单次定位超时时间。
 
-        - 设置LocatingPriority：<br/>
-            如果对位置的返回精度要求较高，建议LocatingPriority参数优先选择PRIORITY_ACCURACY，会将一段时间内精度较好的结果返回给应用。<br/>
-            如果对定位速度要求较高，建议LocatingPriority参数选择PRIORITY_LOCATING_SPEED，会将最先拿到的定位结果返回给应用。<br/>
-            两种定位策略均会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以获取到位置结果，对设备的硬件资源消耗较大，功耗也较大。<br/>
-        - 设置locatingTimeoutMs：<br/>
-            因为设备环境、设备所处状态、系统功耗管控策略等的影响，定位返回的时延会有较大波动，建议把单次定位超时时间设置为10秒。<br/>
+        - 设置LocatingPriority：
+            如果对位置的返回精度要求较高，建议LocatingPriority参数优先选择PRIORITY_ACCURACY，会将一段时间内精度较好的结果返回给应用。
+            如果对定位速度要求较高，建议LocatingPriority参数选择PRIORITY_LOCATING_SPEED，会将最先拿到的定位结果返回给应用。
+            两种定位策略均会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以获取到位置结果，对设备的硬件资源消耗较大，功耗也较大。
+        - 设置locatingTimeoutMs：
+            因为设备环境、设备所处状态、系统功耗管控策略等的影响，定位返回的时延会有较大波动，建议把单次定位超时时间设置为10秒。
 
-        以快速定位策略(PRIORITY_LOCATING_SPEED)为例，调用方式如下：<br/>
+        以快速定位策略(PRIORITY_LOCATING_SPEED)为例，调用方式如下：
 
         <!-- run -->
 
@@ -110,7 +110,7 @@
     可使用三方地图提供的SDK能力进行坐标系转换。
 
 5. 持续定位。多用于导航、运动轨迹、出行等场景。
-    - 获取上一次位置。<br/>
+    - 获取上一次位置。
 
         如果不需要设备实时位置，可以调用getLastLocation接口获取系统缓存的最近一次定位结果，减少设备功耗。如果系统当前没有缓存位置，会返回错误码。
 
@@ -129,15 +129,15 @@
         }
         ```
 
-    - 开启位置变化订阅，并发起定位请求。<br/>
+    - 开启位置变化订阅，并发起定位请求。
 
-        首先要实例化[LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。<br/>
+        首先要实例化[LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。
 
-        - 设置priority/scenario：<br/>
-            当scenario取值为Unset时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为Unset时，无法发起定位请求。<br/>
-            priority建议根据对定位结果的要求进行设置，如对定位结果精度要求较高选择Accuracy，对定位速度要求较高选择FirstFix，希望节省功耗选择LowPower。<br/>
-        - 设置timeInterval：<br/>
-            表示上报位置信息的时间间隔，单位为秒。如果对位置上报时间间隔无特殊要求，可以不填写该字段。<br/>
+        - 设置priority/scenario：
+            当scenario取值为Unset时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为Unset时，无法发起定位请求。
+            priority建议根据对定位结果的要求进行设置，如对定位结果精度要求较高选择Accuracy，对定位速度要求较高选择FirstFix，希望节省功耗选择LowPower。
+        - 设置timeInterval：
+            表示上报位置信息的时间间隔，单位为秒。如果对位置上报时间间隔无特殊要求，可以不填写该字段。
 
         以快速获取位置优先（FirstFix）为例，调用方式如下：
 
@@ -164,14 +164,14 @@
         }
         ```
 
-    - 使用持续定位请求发起定位。<br/>
+    - 使用持续定位请求发起定位。
 
-        也可以实例化[ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest)对象，通过用户活动场景或功耗场景描述持续定位需求。<br/>
+        也可以实例化[ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest)对象，通过用户活动场景或功耗场景描述持续定位需求。
 
-        - 设置locationScenario：<br/>
-            建议优先根据应用的使用场景进行设置，例如地图在导航时使用Navigation参数，可以持续在室内和室外场景获取位置用于导航。取值范围参见[ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype)。<br/>
-        - 设置interval：<br/>
-            表示上报位置信息的时间间隔，单位是秒，默认值为1。如果对位置上报时间间隔无特殊要求，可以设置为1。<br/>
+        - 设置locationScenario：
+            建议优先根据应用的使用场景进行设置，例如地图在导航时使用Navigation参数，可以持续在室内和室外场景获取位置用于导航。取值范围参见[ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype)。
+        - 设置interval：
+            表示上报位置信息的时间间隔，单位是秒，默认值为1。如果对位置上报时间间隔无特殊要求，可以设置为1。
 
         以地图导航场景为例，调用方式如下：
 
@@ -197,7 +197,7 @@
         }
         ```
 
-    - 订阅持续定位过程中的错误信息。<br/>
+    - 订阅持续定位过程中的错误信息。
 
         持续定位过程中可能因为权限校验失败、位置开关关闭、网络不可用等原因导致定位失败，可以调用onLocationError接口订阅错误信息，并根据[LocationError](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-locationerror)的取值进行相应处理。
 
@@ -324,9 +324,9 @@
         ```
 
 8. 地理编码与逆地理编码。多用于将地址描述与经纬度坐标互相转换的场景。
-    - 使用经纬度坐标描述一个位置非常准确，但是并不直观，面向用户表达并不友好。系统提供以下两种转化能力：<br/>
-        - 正地理编码：将地理描述转化为具体经纬度坐标。<br/>
-        - 逆地理编码：将具体的经纬度坐标转化为地理描述。<br/>
+    - 使用经纬度坐标描述一个位置非常准确，但是并不直观，面向用户表达并不友好。系统提供以下两种转化能力：
+        - 正地理编码：将地理描述转化为具体经纬度坐标。
+        - 逆地理编码：将具体的经纬度坐标转化为地理描述。
 
         其中地理描述包含多个属性来描述位置信息，包括国家、行政区划、街道、门牌号、地址描述等，这样的信息更便于用户理解，参见[GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress)。
 
