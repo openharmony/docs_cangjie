@@ -323,7 +323,7 @@ public func addRecord(mimeType: String, value: PasteDataValueType): Unit
 
 | Parameter | Type | Required | Default | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| mimeType | String | Yes | - | MIME type of the data. Value range: no more than 1024 bytes. If the value is out of range, a BusinessException with error code 401 is thrown. |
+| mimeType | String | Yes | - | MIME type of the data. Value range: no more than 1024 bytes. |
 | value | [PasteDataValueType](#enum-pastedatavaluetype) | Yes | - | Data content. After it is set, the property information of the pasteboard content is updated, including the timestamp, data type, and paste range. |
 
 **Example:**
@@ -1300,7 +1300,7 @@ public func hasDataType(mimeType: String): Bool
 
 | Parameter | Type | Required | Default | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| mimeType | String | Yes | - | Data type. After it is set, it is used to check whether the pasteboard content contains specific data of this type. The length cannot exceed 1024 bytes. If the value is out of range, a BusinessException with error code 401 is thrown. |
+| mimeType | String | Yes | - | Data type. After it is set, it is used to check whether the pasteboard content contains specific data of this type. The length cannot exceed 1024 bytes. |
 
 **Return Value:**
 
@@ -1314,7 +1314,6 @@ public func hasDataType(mimeType: String): Bool
 
   | Error Code ID | Error Message |
   | :--- | :--- |
-  | 401 | The parameter check failed. |
   | 12900005 | Excessive processing time for internal data. |
 
 **Example:**
