@@ -781,6 +781,8 @@
         - Network
             - Connectivity Kit (Short-Range Communication Service)
                 - Cangjie API
+                    - [ohos.bluetooth.access (Bluetooth switch control and state subscriptions)](reference/ConnectivityKit/cj-apis-bluetooth-access.md)
+                    - [ohos.bluetooth.connection (Device discovery, pairing, and information queries)](reference/ConnectivityKit/cj-apis-bluetooth-connection.md)
                     - [ohos.bluetooth.a2dp (Bluetooth A2DP Module)](reference/ConnectivityKit/cj-apis-bluetooth-a2dp.md)
                     - [ohos.bluetooth.ble (Bluetooth BLE Module)](reference/ConnectivityKit/cj-apis-bluetooth-ble.md)
                     - [ohos.bluetooth.baseProfile (Bluetooth BaseProfile Module)](reference/ConnectivityKit/cj-apis-bluetooth-base_profile.md)

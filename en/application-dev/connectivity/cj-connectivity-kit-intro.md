@@ -20,6 +20,18 @@ Bluetooth technology is a wireless communication standard that enables short-ran
 
 Below are introductions to several common Bluetooth-related modules:
 
+- **access**
+
+  Bluetooth switch control and state subscriptions.
+
+  [ohos.bluetooth.access](../reference/ConnectivityKit/cj-apis-bluetooth-access.md)
+
+- **connection**
+
+  Device discovery, pairing, and information queries.
+
+  [ohos.bluetooth.connection](../reference/ConnectivityKit/cj-apis-bluetooth-connection.md)
+
 - **BLE Module (Bluetooth Low Energy)**
 
   BLE stands for Bluetooth Low Energy. It's a Bluetooth technology that enables communication with minimal power consumption. Compared to traditional Bluetooth, BLE consumes significantly less power, making it ideal for low-power devices requiring long-term operation, such as smartwatches, health monitoring devices, and smart home products.

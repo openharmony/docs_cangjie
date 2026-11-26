@@ -28,6 +28,58 @@ API示例代码使用说明：
 
 上述示例工程及配置模板详见[仓颉示例代码说明](../cj-development-intro.md#仓颉示例代码说明)。
 
+## func getConnectedBLEDevices()
+
+```cangjie
+public func getConnectedBLEDevices(): Array<String>
+```
+
+**功能：** 获取与本机已建立 GATT 连接的 BLE 设备地址集合。建议在 GATT server 端使用；在 client 端使用时返回的设备地址集合为空。
+
+**需要权限：** ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力：** SystemCapability.Communication.Bluetooth.Core
+
+**起始版本：** 26.1.0
+
+**返回值：**
+
+|类型|说明|
+|:---|:---|
+|Array\<String\>|与本机 GATT server 已连接的 BLE 设备地址集合。|
+
+**异常：**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception): 对应错误码如下表，详见[通用错误码](../cj-errorcode-universal.md)和[蓝牙服务子系统错误码](cj-errorcode-bluetooth_manager.md)。
+
+|错误码ID|错误信息|
+|:---|:---|
+|201|Permission denied.|
+|801|Capability not supported.|
+|2900001|Service stopped.|
+|2900003|Bluetooth disabled.|
+|2900099|Operation failed.|
+
+**示例：**
+
+<!-- compile -->
+
+```cangjie
+// index.cj
+
+import kit.CangjieKit.BusinessException
+import kit.ConnectivityKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let devices = getConnectedBLEDevices()
+    Hilog.info(0, "Bluetooth", devices.size.toString())
+} catch (e: BusinessException) {
+    Hilog.info(0, "Bluetooth", "errCode: ${e.code}, errMessage: ${e.message}")
+}
+```
+
+
 ## func createGattClientDevice(String)
 
 ```cangjie

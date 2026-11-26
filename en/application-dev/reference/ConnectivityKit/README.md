@@ -1,6 +1,8 @@
 # Connectivity Kit (Beta Feature)
 
 - Cangjie API
+    - [ohos.bluetooth.access (Bluetooth switch control and state subscriptions)](cj-apis-bluetooth-access.md)(Beta Feature)
+    - [ohos.bluetooth.connection (Device discovery, pairing, and information queries)](cj-apis-bluetooth-connection.md)(Beta Feature)
     - [ohos.bluetooth.a2dp (Bluetooth A2DP Module)](cj-apis-bluetooth-a2dp.md)(Beta Feature)
     - [ohos.bluetooth.ble (Bluetooth BLE Module)](cj-apis-bluetooth-ble.md)(Beta Feature)
     - [ohos.bluetooth.baseProfile (Bluetooth Base Profile Module)](cj-apis-bluetooth-base_profile.md)(Beta Feature)

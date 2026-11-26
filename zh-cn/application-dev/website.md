@@ -955,6 +955,8 @@
         - 网络
             - Connectivity Kit（短距通信服务）
                 - 仓颉API
+                    - [ohos.bluetooth.access (蓝牙开关控制与状态订阅)](reference/ConnectivityKit/cj-apis-bluetooth-access.md)
+                    - [ohos.bluetooth.connection (设备发现、配对和信息查询)](reference/ConnectivityKit/cj-apis-bluetooth-connection.md)
                     - [ohos.bluetooth.a2dp（蓝牙a2dp模块）](reference/ConnectivityKit/cj-apis-bluetooth-a2dp.md)
                     - [ohos.bluetooth.ble（蓝牙ble模块）](reference/ConnectivityKit/cj-apis-bluetooth-ble.md)
                     - [ohos.bluetooth.base_profile（蓝牙baseProfile模块）](reference/ConnectivityKit/cj-apis-bluetooth-base_profile.md)
