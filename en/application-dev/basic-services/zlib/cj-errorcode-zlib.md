@@ -37,13 +37,13 @@ This error code is reported when the compression or decompression stream is abno
 **Possible Causes**
 
 1. When APIs such as **deflate** or **inflate** are called, the compression or decompression stream is not initialized by using **deflateInit** or **inflateInit** in advance.
-2. When APIs such as **gzsetparams**, **gzclose**, or **gzflush** are called, the flush mode passed in is incorrect, or the file access mode passed in the gz file opening API is incorrect before the invocation.
+2. When APIs such as **gzclose** are called, the flush mode passed in is incorrect, or the file access mode passed in the gz file opening API is incorrect before the invocation.
 
 **Resolution Steps**
 
 1. Before calling APIs such as **deflate** or **inflate**, initialize the compression or decompression stream by using **deflateInit** or **inflateInit**.
 2. Check whether the gz file opening API is not called or fails to be called before the invocation.
-3. Check whether the access mode passed in the gz file opening API matches the API to be called. For example, **gzprintf** is a compression API. Therefore, the access mode passed in the gz file opening API must be a compression mode (such as w or wb).
+3. Check whether the access mode passed in the gz file opening API matches the API to be called.
 4. Check whether the enum parameters passed in are correct.
 
 ## 17800005 Incorrect Input Data
@@ -72,15 +72,16 @@ Memory allocation failed.
 
 **Error Description**
 
-This error code is reported when memory allocation fails during the invocation of the **gzclose** API.
+Memory allocation failed when calling the gzclose function.
 
 **Possible Causes**
 
-Before the **gzclose** API is called, the **gzsetparams** API is called with an incorrect compression level or compression strategy.
+The system doesn't have enough available memory. When closing a gz file opened in write or append mode, it can't allocate the memory needed for final compression.
 
 **Resolution Steps**
 
-Check the invocation of the **gzsetparams** API, and pass in the correct compression level and compression strategy.
+1. Check the device's available memory, free up memory that's no longer being used, or close background apps and try again.
+2. Avoid running multiple large file compression tasks at the same time.
 
 ## 17800007 Incorrect Buffer
 

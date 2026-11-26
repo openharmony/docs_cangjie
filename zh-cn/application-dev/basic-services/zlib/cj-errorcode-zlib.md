@@ -37,13 +37,13 @@ Compression or decompression stream error, which may be caused by an initializat
 **可能原因**
 
 1. 当调用deflate或inflate等接口时，未先使用deflateInit或inflateInit接口对压缩或解压流进行初始化。
-2. 当调用gzsetparams、gzclose或gzflush等接口时，传入的刷新模式错误或接口调用前，调用打开gz文件的相关接口时传入的文件访问模式错误。
+2. 当调用gzclose等接口时，传入的刷新模式错误或接口调用前，调用打开gz文件的相关接口时传入的文件访问模式错误。
 
 **处理步骤**
 
 1. 当调用deflate或inflate等接口前，先使用deflateInit或inflateInit接口对压缩或解压流进行初始化。
 2. 检查接口调用前，打开gz文件的相关接口是否未被调用或调用失败。
-3. 检查接口调用前，调用打开gz文件的相关接口时传入的访问模式是否与该接口匹配。例如gzprintf属于压缩操作接口，调用打开gz文件的相关接口时传入的访问模式需要为压缩模式(w或wb等)。
+3. 检查接口调用前，调用打开gz文件的相关接口时传入的访问模式是否与该接口匹配。
 4. 检查传入的枚举参数是否正确。
 
 ## 17800005 传入的数据错误
@@ -54,15 +54,15 @@ The input data is incorrect. For example, the data does not conform to the zlib 
 
 **错误描述**
 
-当调用uncompress或uncompress2等接口时，传入的数据错误。
+当调用uncompress接口时，传入的数据错误。
 
 **可能原因**
 
-当调用uncompress或uncompress2接口时，未先使用compress接口进行压缩。
+当调用uncompress接口时，未先使用compress接口进行压缩。
 
 **处理步骤**
 
-先使用compress进行压缩后再通过uncompress2或uncompress进行解压。
+先使用compress进行压缩后再通过uncompress进行解压。
 
 ## 17800006 内存分配失败错误
 
@@ -72,15 +72,16 @@ Memory allocation failed.
 
 **错误描述**
 
-当调用gzclose或gzclosew接口时，内存分配失败。
+当调用gzclose接口时，内存分配失败。
 
 **可能原因**
 
-在调用gzclose或gzclosew接口前，调用了gzsetparams接口，传入错误的压缩级别或压缩策略。
+系统可用内存不足。关闭以写或追加模式打开的gz文件时，在收尾压缩过程中无法分配所需内存。
 
 **处理步骤**
 
-检查gzsetparams接口的调用，传入正确的压缩级别和压缩策略。
+1. 检查设备可用内存，释放不再使用的内存或关闭后台应用释放内存后重试。
+2. 避免同时进行多个大文件压缩任务。
 
 ## 17800007 传入的缓冲区错误
 
@@ -90,13 +91,13 @@ The input buffer is incorrect, and the output buffer is too small to accommodate
 
 **错误描述**
 
-当调用compress或compress2或uncompress或uncompress2接口时，传入的缓冲区错误。
+当调用compress或compress2或uncompress接口时，传入的缓冲区错误。
 
 **可能原因**
 
-1. 当调用uncompress或uncompress2接口时，传入的输入buffer大小大于解压后输出buffer的大小。
+1. 当调用uncompress接口时，传入的输入buffer大小大于解压后输出buffer的大小。
 2. 当调用compress或compress2接口时，传入的输入buffer大小大于压缩后输出buffer的大小。
-3. 当调用compress或compress2或uncompress或uncompress2接口，传入的buffer大小为0。
+3. 当调用compress或compress2或uncompress接口，传入的buffer大小为0。
 
 **处理步骤**
 
@@ -110,22 +111,19 @@ Internal structure error.
 
 **错误描述**
 
-当调用gzputc、gzwrite、gzread等接口时，传入的参数错误或接口调用前，调用打开gz文件的相关接口时传入的文件访问模式错误。
+当调用gzwrite、gzread等接口时，传入的参数错误或接口调用前，调用打开gz文件的相关接口时传入的文件访问模式错误。
 
 **可能原因**
 
 1. 当调用接口前，打开gz文件的相关接口未被调用或调用失败。
 2. 当调用接口前，调用打开gz文件的相关接口时传入的文件访问模式错误。
 3. 当调用gzwrite接口时，传入的未压缩字节长度为0。
-4. 当调用gzfwrite或gzfread接口时，传入的数据块大小或数量为0。
-5. 当调用gzprintf接口时，传入的格式化描述符和纯文本为空字符串。
-6. 当调用gzgets接口时，传入空的ArrayBuffer。
-7. 当调用gzgetc接口时，gz文件为空文件。
+4. 当调用gzgets接口时，传入空的ArrayBuffer。
 
 **处理步骤**
 
 1. 检查接口调用前，打开gz文件的相关接口是否未被调用或调用失败。
-2. 检查接口调用前，调用打开gz文件的相关接口时传入的访问模式是否与该接口匹配。例如gzgetc属于解压缩操作接口，调用打开gz文件的相关接口时传入的访问模式需要为解压缩模式(r或rb等)。
+2. 检查接口调用前，调用打开gz文件的相关接口时传入的访问模式是否与该接口匹配。例如gzread属于解压缩操作接口，调用打开gz文件的相关接口时传入的访问模式需要为解压缩模式(r或rb等)。
 3. 检查传入的参数是否正确。
 ## 900001 传入的源文件错误
 
