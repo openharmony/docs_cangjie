@@ -12,7 +12,7 @@ Developers can call location-related interfaces to obtain the device's real-time
 
 For applications with location-sensitive business logic, it is recommended to obtain the device's real-time location information. If real-time location information is not required and the goal is to minimize power consumption, developers may consider obtaining the most recent historical location instead.
 
-In addition, you can subscribe to events such as location changes, location errors, location switch status changes, and country code changes, and use capabilities such as extended command sending to build a richer location experience.
+In addition, you can subscribe to events such as location changes, location errors, location switch status changes, country code changes, GNSS satellite status changes, and NMEA messages, and use capabilities such as geocoding and reverse geocoding, extended command sending, and geofence coordinate system query to build a richer location experience.
 
 ## Interface Description
 
@@ -40,8 +40,12 @@ This module's capabilities only support the WGS-84 coordinate system.
 | [offNmeaMessage(?Callback1Argument\<String>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-offnmeamessagecallback1argumentstring) | Unsubscribe from NMEA message events. |
 | [onCountryCodeChange(Callback1Argument\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-oncountrycodechangecallback1argumentcountrycode) | Subscribe to country code change events. |
 | [offCountryCodeChange(?Callback1Argument\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-offcountrycodechangecallback1argumentcountrycode) | Unsubscribe from country code change events. |
+| [getAddressesFromLocation(ReverseGeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getaddressesfromlocationreversegeocoderequest-asynccallbackarraygeoaddress) | Call the reverse geocoding service to convert coordinates into a geographic description. |
+| [getAddressesFromLocationName(GeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getaddressesfromlocationnamegeocoderequest-asynccallbackarraygeoaddress) | Call the geocoding service to convert a geographic description into specific coordinates. |
+| [isGeocoderAvailable()](../reference/LocationKit/cj-apis-geo_location_manager.md#func-isgeocoderavailable) | Check the status of the geocoding and reverse geocoding services. |
 | [sendCommand(LocationCommand, AsyncCallback\<Unit>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-sendcommandlocationcommand-asynccallbackunit) | Send an extended command to the components of the location subsystem. |
 | [getCountryCode(AsyncCallback\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getcountrycodeasynccallbackcountrycode) | Query the current country code. |
+| [getGeofenceSupportedCoordTypes()](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getgeofencesupportedcoordtypes) | Obtain the list of coordinate systems supported by the geofencing feature. |
 
 ## Development Steps
 
@@ -74,18 +78,18 @@ This module's capabilities only support the WGS-84 coordinate system.
     If the location switch is not turned on, you can trigger a global settings dialog to guide users to enable the location switch. For details, refer to [Triggering the Global Settings Dialog](../reference/AbilityKit/cj-apis-ability_access_ctrl.md#func-requestglobalswitchcontext-switchtype-asynccallbackbool).
 
 4. Obtain the current device location once. Commonly used for scenarios such as checking the current location, check-ins, and service recommendations.
-    - Get the current location.<br/>
+    - Get the current location.
 
-        First, instantiate the [SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest) object to inform the system about the type of location service to provide to the application and the timeout duration for single location requests.<br/>
+        First, instantiate the [SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest) object to inform the system about the type of location service to provide to the application and the timeout duration for single location requests.
 
-        - Set `LocatingPriority`:<br/>
-            If high accuracy is required for location results, it is recommended to set the `LocatingPriority` parameter to `PRIORITY_ACCURACY`, which will return the most accurate results within a certain period.<br/>
-            If faster location acquisition is prioritized, set the `LocatingPriority` parameter to `PRIORITY_LOCATING_SPEED`, which will return the first available location result.<br/>
-            Both strategies utilize GNSS and network positioning technologies to ensure location results can be obtained in both indoor and outdoor scenarios, but they consume significant hardware resources and power.<br/>
-        - Set `locatingTimeoutMs`:<br/>
-            Due to factors such as device environment, device state, and system power management policies, the latency of location results may vary significantly. It is recommended to set the single location timeout to 10 seconds.<br/>
+        - Set `LocatingPriority`:
+            If high accuracy is required for location results, it is recommended to set the `LocatingPriority` parameter to `PRIORITY_ACCURACY`, which will return the most accurate results within a certain period.
+            If faster location acquisition is prioritized, set the `LocatingPriority` parameter to `PRIORITY_LOCATING_SPEED`, which will return the first available location result.
+            Both strategies utilize GNSS and network positioning technologies to ensure location results can be obtained in both indoor and outdoor scenarios, but they consume significant hardware resources and power.
+        - Set `locatingTimeoutMs`:
+            Due to factors such as device environment, device state, and system power management policies, the latency of location results may vary significantly. It is recommended to set the single location timeout to 10 seconds.
 
-        Using the fast location strategy (`PRIORITY_LOCATING_SPEED`) as an example, the calling method is as follows:<br/>
+        Using the fast location strategy (`PRIORITY_LOCATING_SPEED`) as an example, the calling method is as follows:
 
         <!-- run -->
 
@@ -109,7 +113,7 @@ This module's capabilities only support the WGS-84 coordinate system.
     Third-party map SDKs can be used for coordinate system conversion. <!--DelEnd-->
 
 5. Continuous positioning. This is commonly used in scenarios such as navigation, motion tracks, and travel.
-    - Obtain the last location.<br/>
+    - Obtain the last location.
 
         If the real-time device location is not required, you can call the getLastLocation API to obtain the most recent location result cached by the system, reducing power consumption. If the system does not have a cached location, an error code is returned.
 
@@ -128,15 +132,15 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-    - Subscribe to location changes and initiate a location request.<br/>
+    - Subscribe to location changes and initiate a location request.
 
-        First, instantiate a [LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest) object to inform the system about the type of location service to provide to the application and the frequency of location reporting.<br/>
+        First, instantiate a [LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest) object to inform the system about the type of location service to provide to the application and the frequency of location reporting.
 
-        - Set priority/scenario:<br/>
-            When scenario is set to Unset, the priority parameter takes effect; otherwise, it does not. If both scenario and priority are set to Unset, the location request cannot be initiated.<br/>
-            It is recommended that priority be set based on the requirements for location results. Select Accuracy if high accuracy is required, FirstFix if fast location acquisition is required, and LowPower if power saving is expected.<br/>
-        - Set timeInterval:<br/>
-            Represents the time interval for reporting location information, in seconds. If there is no special requirement on the location reporting time interval, this field can be left unset.<br/>
+        - Set priority/scenario:
+            When scenario is set to Unset, the priority parameter takes effect; otherwise, it does not. If both scenario and priority are set to Unset, the location request cannot be initiated.
+            It is recommended that priority be set based on the requirements for location results. Select Accuracy if high accuracy is required, FirstFix if fast location acquisition is required, and LowPower if power saving is expected.
+        - Set timeInterval:
+            Represents the time interval for reporting location information, in seconds. If there is no special requirement on the location reporting time interval, this field can be left unset.
 
         The following is an example using fast location acquisition priority (FirstFix):
 
@@ -163,14 +167,14 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-    - Initiate positioning using a continuous location request.<br/>
+    - Initiate positioning using a continuous location request.
 
-        Alternatively, you can instantiate a [ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest) object to describe the continuous positioning requirement through a user activity scenario or a power consumption scenario.<br/>
+        Alternatively, you can instantiate a [ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest) object to describe the continuous positioning requirement through a user activity scenario or a power consumption scenario.
 
-        - Set locationScenario:<br/>
-            It is recommended that this parameter be set based on the application scenario. For example, a map application can use the Navigation parameter during navigation to continuously obtain locations in both indoor and outdoor scenarios for navigation. For valid values, see [ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype).<br/>
-        - Set interval:<br/>
-            Represents the time interval for reporting location information, in seconds. The default value is 1. If there is no special requirement on the location reporting time interval, you can set it to 1.<br/>
+        - Set locationScenario:
+            It is recommended that this parameter be set based on the application scenario. For example, a map application can use the Navigation parameter during navigation to continuously obtain locations in both indoor and outdoor scenarios for navigation. For valid values, see [ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype).
+        - Set interval:
+            Represents the time interval for reporting location information, in seconds. The default value is 1. If there is no special requirement on the location reporting time interval, you can set it to 1.
 
         The following is an example using the map navigation scenario:
 
@@ -196,7 +200,7 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-    - Subscribe to error information during continuous positioning.<br/>
+    - Subscribe to error information during continuous positioning.
 
         During continuous positioning, positioning may fail due to reasons such as permission verification failure, location switch off, or network unavailability. You can call the onLocationError API to subscribe to error information and handle it based on the value of [LocationError](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-locationerror).
 
@@ -322,7 +326,87 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
-8. Send an extended command. This is commonly used in scenarios where extended commands need to be delivered to the components of the location subsystem. If the command is sent successfully, err of the callback is None; otherwise, err contains the error information.
+8. Geocoding and reverse geocoding. This is commonly used in scenarios where address descriptions and latitude-longitude coordinates need to be converted to each other.
+    - Using latitude and longitude coordinates to describe a location is very accurate but not intuitive, and is not user-friendly. The system provides the following two conversion capabilities:
+        - Geocoding: converts a geographic description into specific latitude and longitude coordinates.
+        - Reverse geocoding: converts specific latitude and longitude coordinates into a geographic description.
+
+        The geographic description contains multiple attributes to describe location information, including the country, administrative divisions, streets, house numbers, and address descriptions. Such information is easier for users to understand. For details, see [GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress).
+
+    - The geocoding and reverse geocoding functions require access to backend services. Ensure that the device is connected to the network to obtain information. You can call the isGeocoderAvailable API to check whether the services are available, and then continue with the following steps if the services are available.
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let isAvailable = isGeocoderAvailable()
+            Hilog.info(0, "test", "isGeocoderAvailable: ${isAvailable}")
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+    - Call the getAddressesFromLocation API to convert latitude and longitude coordinates into a geographic description. The application can obtain a list of [GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress) objects (geocoding address information) matching the coordinates, and read the required parameter data based on actual usage requirements.
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let request = ReverseGeoCodeRequest(31.12, 121.32, maxItems: 1)
+            let callback: AsyncCallback<Array<GeoAddress>> = {
+                err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+                if (let Some(e) <- err) {
+                    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+                } else if (let Some(addresses) <- data) {
+                    for (address in addresses) {
+                        Hilog.info(0, "test", "placeName: ${address.placeName}")
+                    }
+                }
+            }
+            getAddressesFromLocation(request, callback)
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+    - Call the getAddressesFromLocationName API to convert a geographic description into latitude and longitude coordinates. The application can obtain a list of GeoAddress objects (geocoding address information) matching the location description, which contains the corresponding coordinate data.
+
+        If the location description to be queried may cause duplicate names in multiple places, you can set a latitude-longitude range when instantiating [GeoCodeRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geocoderequest) to efficiently obtain the expected accurate results.
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let request = GeoCodeRequest("xx Road, Pudong New District, Shanghai", maxItems: 1)
+            let callback: AsyncCallback<Array<GeoAddress>> = {
+                err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+                if (let Some(e) <- err) {
+                    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+                } else if (let Some(addresses) <- data) {
+                    for (address in addresses) {
+                        Hilog.info(0, "test", "latitude: ${address.latitude}, longitude: ${address.longitude}")
+                    }
+                }
+            }
+            getAddressesFromLocationName(request, callback)
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+9. Send an extended command. This is commonly used in scenarios where extended commands need to be delivered to the components of the location subsystem. If the command is sent successfully, err of the callback is None; otherwise, err contains the error information.
 
     <!-- run -->
 
@@ -347,7 +431,7 @@ This module's capabilities only support the WGS-84 coordinate system.
     }
     ```
 
-9. Subscribe to satellite status and NMEA messages. This is commonly used in scenarios such as checking satellite signal quality and troubleshooting positioning issues.
+10. Subscribe to satellite status and NMEA messages. This is commonly used in scenarios such as checking satellite signal quality and troubleshooting positioning issues.
     - Call onSatelliteStatusChange to subscribe to satellite status changes. The callback parameter [SatelliteStatusInfo](../reference/LocationKit/cj-apis-geo_location_manager.md#class-satellitestatusinfo) contains the number of satellites, satellite IDs, carrier-to-noise densities, altitudes, azimuths, carrier frequencies, constellation types, and other information. When the subscription is no longer needed, call offSatelliteStatusChange to unsubscribe. The callback passed in must be the same as the callback passed in to onSatelliteStatusChange. If no callback is passed in, all subscriptions of this type are canceled.
 
         <!-- run -->
@@ -392,3 +476,19 @@ This module's capabilities only support the WGS-84 coordinate system.
         }
         ```
 
+11. Query the coordinate systems supported by geofencing. Call the getGeofenceSupportedCoordTypes API to obtain the list of coordinate systems supported by the geofencing feature. For details, see [CoordinateSystemType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-coordinatesystemtype).
+
+    <!-- run -->
+
+    ```cangjie
+    import kit.LocationKit.*
+    import kit.CangjieKit.*
+    import kit.PerformanceAnalysisKit.Hilog
+
+    try {
+        let coordTypes = getGeofenceSupportedCoordTypes()
+        Hilog.info(0, "test", "supported coord types size: ${coordTypes.size}")
+    } catch (e: BusinessException) {
+        Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+    }
+    ```

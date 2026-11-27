@@ -255,6 +255,477 @@ public init(priority!: LocationRequestPriority = LocationRequestPriority.FirstFi
 |maxAccuracy|Float32|否|0.0|**命名参数。** 应用向系统请求位置信息时要求的精度值，单位为米。默认值为0，表示不限制位置信息的精度，取值范围为大于等于0。|
 |timeoutMs|Int32|否|5000|**命名参数。** 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。|
 
+## class GeoAddress
+
+```cangjie
+public class GeoAddress {}
+```
+
+**功能：** 地理编码地址信息，用于描述地理编码与逆地理编码的查询结果。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop latitude
+
+```cangjie
+public mut prop latitude: ?Float64
+```
+
+**功能：** 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90，仅支持WGS84坐标系。
+
+**类型：** ?Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop longitude
+
+```cangjie
+public mut prop longitude: ?Float64
+```
+
+**功能：** 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180，仅支持WGS84坐标系。
+
+**类型：** ?Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop locale
+
+```cangjie
+public mut prop locale: ?String
+```
+
+**功能：** 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop placeName
+
+```cangjie
+public mut prop placeName: ?String
+```
+
+**功能：** 表示详细地址信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop countryCode
+
+```cangjie
+public mut prop countryCode: ?String
+```
+
+**功能：** 表示国家码信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop countryName
+
+```cangjie
+public mut prop countryName: ?String
+```
+
+**功能：** 表示国家信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop administrativeArea
+
+```cangjie
+public mut prop administrativeArea: ?String
+```
+
+**功能：** 表示国家以下的一级行政区，一般是省或州。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop subAdministrativeArea
+
+```cangjie
+public mut prop subAdministrativeArea: ?String
+```
+
+**功能：** 表示国家以下的二级行政区，一般是市。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop locality
+
+```cangjie
+public mut prop locality: ?String
+```
+
+**功能：** 表示城市信息，一般是市。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop subLocality
+
+```cangjie
+public mut prop subLocality: ?String
+```
+
+**功能：** 表示子城市信息，一般是区或县。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop roadName
+
+```cangjie
+public mut prop roadName: ?String
+```
+
+**功能：** 表示路名信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop subRoadName
+
+```cangjie
+public mut prop subRoadName: ?String
+```
+
+**功能：** 表示子路名信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop premises
+
+```cangjie
+public mut prop premises: ?String
+```
+
+**功能：** 表示门牌号信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop postalCode
+
+```cangjie
+public mut prop postalCode: ?String
+```
+
+**功能：** 表示邮政编码信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop phoneNumber
+
+```cangjie
+public mut prop phoneNumber: ?String
+```
+
+**功能：** 表示联系方式信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop addressUrl
+
+```cangjie
+public mut prop addressUrl: ?String
+```
+
+**功能：** 表示位置信息附近的网址信息。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop descriptions
+
+```cangjie
+public mut prop descriptions: ?Array<String>
+```
+
+**功能：** 表示附加的描述信息。目前包含城市编码cityCode（数组下标为0）和区划编码adminCode（数组下标为1），例如["025","320114001"]。
+
+**类型：** ?Array&lt;String&gt;
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop descriptionsSize
+
+```cangjie
+public mut prop descriptionsSize: ?Int32
+```
+
+**功能：** 表示附加的描述信息数量。取值范围为大于等于0，推荐该值小于10。
+
+**类型：** ?Int32
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+## class GeoCodeRequest
+
+```cangjie
+public class GeoCodeRequest {
+    public init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+        minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+        maxLongitude!: ?Float64 = None)
+}
+```
+
+**功能：** 地理编码请求参数，用于将地理描述转换为经纬度坐标。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop locale
+
+```cangjie
+public mut prop locale: ?String
+```
+
+**功能：** 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop country
+
+```cangjie
+public mut prop country: ?String
+```
+
+**功能：** 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2编码，如“CN”代表中国。默认值从设置中的“语言和地区”获取。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop description
+
+```cangjie
+public mut prop description: String
+```
+
+**功能：** 表示位置信息描述，如“上海市浦东新区xx路xx号”，字符串长度不超过100。
+
+**类型：** String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop maxItems
+
+```cangjie
+public mut prop maxItems: ?Int32
+```
+
+**功能：** 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值为1。
+
+**类型：** ?Int32
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop minLatitude
+
+```cangjie
+public mut prop minLatitude: ?Float64
+```
+
+**功能：** 表示最小纬度信息，与minLongitude、maxLatitude、maxLongitude一起表示一个经纬度范围。取值范围为-90到90，仅支持WGS84坐标系。默认值为-90.0。该参数有值时，其余三个范围参数必填。
+
+**类型：** ?Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop minLongitude
+
+```cangjie
+public mut prop minLongitude: ?Float64
+```
+
+**功能：** 表示最小经度信息。取值范围为-180到180，仅支持WGS84坐标系。默认值为-180.0。
+
+**类型：** ?Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop maxLatitude
+
+```cangjie
+public mut prop maxLatitude: ?Float64
+```
+
+**功能：** 表示最大纬度信息。取值范围为-90到90，仅支持WGS84坐标系。默认值为90.0。
+
+**类型：** ?Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop maxLongitude
+
+```cangjie
+public mut prop maxLongitude: ?Float64
+```
+
+**功能：** 表示最大经度信息。取值范围为-180到180，仅支持WGS84坐标系。默认值为180.0。
+
+**类型：** ?Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### init(String, ?String, ?String, ?Int32, ?Float64, ?Float64, ?Float64, ?Float64)
+
+```cangjie
+public init(description: String, locale!: ?String = None, country!: ?String = None, maxItems!: ?Int32 = None,
+    minLatitude!: ?Float64 = None, minLongitude!: ?Float64 = None, maxLatitude!: ?Float64 = None,
+    maxLongitude!: ?Float64 = None)
+```
+
+**功能：** 构造地理编码请求参数。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|description|String|是|-|表示位置信息描述，字符串长度不超过100。|
+|locale|?String|否|None|表示位置描述信息的语言。不指定时使用系统语言。|
+|country|?String|否|None|限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2编码。不指定时使用系统地区。|
+|maxItems|?Int32|否|None|表示返回位置信息的最大个数，默认值为1。|
+|minLatitude|?Float64|否|None|表示最小纬度信息，默认值为-90.0。|
+|minLongitude|?Float64|否|None|表示最小经度信息，默认值为-180.0。|
+|maxLatitude|?Float64|否|None|表示最大纬度信息，默认值为90.0。|
+|maxLongitude|?Float64|否|None|表示最大经度信息，默认值为180.0。|
+
 ## class GeoLocationManager
 
 ```cangjie
@@ -1088,6 +1559,124 @@ public mut prop satelliteAdditionalInfo: ?Array<Int32>
 
 **起始版本：** 26.1.0
 
+## class ReverseGeoCodeRequest
+
+```cangjie
+public class ReverseGeoCodeRequest {
+    public init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+        maxItems!: ?Int32 = None)
+}
+```
+
+**功能：** 逆地理编码请求参数，用于将经纬度坐标转换为地理描述。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop locale
+
+```cangjie
+public mut prop locale: ?String
+```
+
+**功能：** 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop country
+
+```cangjie
+public mut prop country: ?String
+```
+
+**功能：** 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2编码，如“CN”代表中国。默认值从设置中的“语言和地区”获取。
+
+**类型：** ?String
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop latitude
+
+```cangjie
+public mut prop latitude: Float64
+```
+
+**功能：** 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90，仅支持WGS84坐标系。
+
+**类型：** Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop longitude
+
+```cangjie
+public mut prop longitude: Float64
+```
+
+**功能：** 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180，仅支持WGS84坐标系。
+
+**类型：** Float64
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### prop maxItems
+
+```cangjie
+public mut prop maxItems: ?Int32
+```
+
+**功能：** 指定返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值为1。
+
+**类型：** ?Int32
+
+**读写能力：** 可读写
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+### init(Float64, Float64, ?String, ?String, ?Int32)
+
+```cangjie
+public init(latitude: Float64, longitude: Float64, locale!: ?String = None, country!: ?String = None,
+    maxItems!: ?Int32 = None)
+```
+
+**功能：** 构造逆地理编码请求参数。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|latitude|Float64|是|-|表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。|
+|longitude|Float64|是|-|表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180。|
+|locale|?String|否|None|指定位置描述信息的语言。“zh”代表中文，“en”代表英文。不指定时使用系统语言。|
+|country|?String|否|None|限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2编码。不指定时使用系统地区。|
+|maxItems|?Int32|否|None|指定返回位置信息的最大个数，默认值为1。|
+
 ## class SingleLocationRequest
 
 ```cangjie
@@ -1154,6 +1743,117 @@ public init(locatingPriority: LocatingPriority, locatingTimeoutMs: Int32)
 |:---|:---|:---|:---|:---|
 |locatingPriority|[LocatingPriority](#enum-locatingpriority)|是|-|表示优先级信息。取值范围见[LocatingPriority](#enum-locatingpriority)的定义。|
 |locatingTimeoutMs|Int32|是|-|表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。|
+
+## enum CoordinateSystemType
+
+```cangjie
+public enum CoordinateSystemType {
+    | Wgs84
+    | Gcj02
+    | ...
+}
+```
+
+**功能：** 坐标系类型，用于描述地理围栏等能力使用的坐标系统。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+**父类型：**
+
+- Equatable\<CoordinateSystemType\>
+- ToString
+
+### Wgs84
+
+```cangjie
+Wgs84
+```
+
+**功能：** World Geodetic System 1984，是为GPS全球定位系统使用而建立的坐标系统。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+### Gcj02
+
+```cangjie
+Gcj02
+```
+
+**功能：** GCJ-02是由中国国家测绘局制订的地理信息系统的坐标系统。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+### func toString()
+
+```cangjie
+public func toString(): String
+```
+
+**功能：** 将坐标系类型转换为字符串表示。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|String|坐标系类型的字符串表示。|
+
+### func ==(CoordinateSystemType)
+
+```cangjie
+public operator func ==(other: CoordinateSystemType): Bool
+```
+
+**功能：** 判断两个坐标系类型是否相等。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|other|[CoordinateSystemType](#enum-coordinatesystemtype)|是|-|待比较的坐标系类型。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Bool|true表示相等，false表示不相等。|
+
+### func !=(CoordinateSystemType)
+
+```cangjie
+public operator func !=(other: CoordinateSystemType): Bool
+```
+
+**功能：** 判断两个坐标系类型是否不相等。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|other|[CoordinateSystemType](#enum-coordinatesystemtype)|是|-|待比较的坐标系类型。|
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Bool|true表示不相等，false表示相等。|
 
 ## enum CountryCodeType
 
@@ -2998,6 +3698,158 @@ try {
 }
 ```
 
+## func getAddressesFromLocation(ReverseGeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)
+
+```cangjie
+public func getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>): Unit
+```
+
+**功能：** 调用逆地理编码服务，将坐标转换为地理描述。使用callback异步回调。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|request|[ReverseGeoCodeRequest](#class-reversegeocoderequest)|是|-|设置逆地理编码请求的相关参数。|
+|callback|AsyncCallback\<Array\<[GeoAddress](#class-geoaddress)\>\>|是|-|用于返回逆地理编码结果的回调函数。|
+
+**异常：**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception)：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301300 | Reverse geocoding query failed. |
+
+**示例：**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let request = ReverseGeoCodeRequest(31.12, 121.32, maxItems: 1)
+    let callback: AsyncCallback<Array<GeoAddress>> = {
+        err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+        if (let Some(e) <- err) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        } else if (let Some(addresses) <- data) {
+            Hilog.info(0, "test", "addresses size: ${addresses.size}")
+        }
+    }
+    getAddressesFromLocation(request, callback)
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
+## func getAddressesFromLocationName(GeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)
+
+```cangjie
+public func getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>): Unit
+```
+
+**功能：** 调用地理编码服务，将地理描述转换为具体坐标。使用callback异步回调。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+**参数：**
+
+|参数名|类型|必填|默认值|说明|
+|:---|:---|:---|:---|:---|
+|request|[GeoCodeRequest](#class-geocoderequest)|是|-|设置地理编码请求的相关参数。|
+|callback|AsyncCallback\<Array\<[GeoAddress](#class-geoaddress)\>\>|是|-|用于返回地理编码结果的回调函数。|
+
+**异常：**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception)：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+  | 3301400 | Geocoding query failed. |
+
+**示例：**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let request = GeoCodeRequest("上海市浦东新区xx路xx号", maxItems: 1)
+    let callback: AsyncCallback<Array<GeoAddress>> = {
+        err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+        if (let Some(e) <- err) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        } else if (let Some(addresses) <- data) {
+            Hilog.info(0, "test", "addresses size: ${addresses.size}")
+        }
+    }
+    getAddressesFromLocationName(request, callback)
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
+## func isGeocoderAvailable()
+
+```cangjie
+public func isGeocoderAvailable(): Bool
+```
+
+**功能：** 判断地理编码与逆地理编码服务状态。
+
+**系统能力：** SystemCapability.Location.Location.Geocoder
+
+**起始版本：** 26.1.0
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Bool|true表示地理编码与逆地理编码服务可用，false表示不可用。|
+
+**异常：**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception)：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.isGeocoderAvailable} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+
+**示例：**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let isAvailable = isGeocoderAvailable()
+    Hilog.info(0, "test", "isGeocoderAvailable: ${isAvailable}")
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
 ## func sendCommand(LocationCommand, AsyncCallback\<Unit>)
 
 ```cangjie
@@ -3098,6 +3950,50 @@ try {
         }
     }
     getCountryCode(callback)
+} catch (e: BusinessException) {
+    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+}
+```
+
+## func getGeofenceSupportedCoordTypes()
+
+```cangjie
+public func getGeofenceSupportedCoordTypes(): Array<CoordinateSystemType>
+```
+
+**功能：** 获取地理围栏功能支持的坐标系列表。
+
+**系统能力：** SystemCapability.Location.Location.Geofence
+
+**起始版本：** 26.1.0
+
+**返回值：**
+
+|类型|说明|
+|:----|:----|
+|Array\<[CoordinateSystemType](#enum-coordinatesystemtype)\>|地理围栏功能支持的坐标系列表。|
+
+**异常：**
+
+- [BusinessException](../arkinterop/cj-api-business_exception.md#class-businessexception)：对应错误码如下表，详见[位置服务子系统错误码](./cj-errorcode-geo_location_manager.md)。
+
+  | 错误码ID | 错误信息 |
+  | :---- | :--- |
+  | 801 | Capability not supported. Failed to call ${geoLocationManager.getGeofenceSupportedCoordTypes} due to limited device capabilities. |
+  | 3301000 | The location service is unavailable. |
+
+**示例：**
+
+```cangjie
+// index.cj
+
+import kit.LocationKit.*
+import kit.CangjieKit.*
+import kit.PerformanceAnalysisKit.Hilog
+
+try {
+    let coordTypes = getGeofenceSupportedCoordTypes()
+    Hilog.info(0, "test", "supported coord types size: ${coordTypes.size}")
 } catch (e: BusinessException) {
     Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
 }

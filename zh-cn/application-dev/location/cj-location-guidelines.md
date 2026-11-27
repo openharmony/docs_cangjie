@@ -12,7 +12,7 @@
 
 对于位置敏感的应用业务，建议获取设备实时位置信息。如果不需要设备实时位置信息，并且希望尽可能地节省耗电，开发者可以考虑获取最近的历史位置。
 
-此外，还可以订阅位置变化、定位错误、位置开关状态、国家码变化等事件，并使用扩展命令发送等能力，构建更加丰富的位置体验。
+此外，还可以订阅位置变化、定位错误、位置开关状态、国家码变化、GNSS卫星状态与NMEA报文等事件，并使用地理编码与逆地理编码、扩展命令发送、地理围栏坐标系查询等能力，构建更加丰富的位置体验。
 
 ## 接口说明
 
@@ -40,8 +40,12 @@
 | [offNmeaMessage(?Callback1Argument\<String>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-offnmeamessagecallback1argumentstring) | 取消订阅NMEA消息事件。 |
 | [onCountryCodeChange(Callback1Argument\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-oncountrycodechangecallback1argumentcountrycode) | 订阅国家码信息变化事件。 |
 | [offCountryCodeChange(?Callback1Argument\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-offcountrycodechangecallback1argumentcountrycode) | 取消订阅国家码信息变化事件。 |
+| [getAddressesFromLocation(ReverseGeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getaddressesfromlocationreversegeocoderequest-asynccallbackarraygeoaddress) | 调用逆地理编码服务，将坐标转换为地理描述。 |
+| [getAddressesFromLocationName(GeoCodeRequest, AsyncCallback\<Array\<GeoAddress>>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getaddressesfromlocationnamegeocoderequest-asynccallbackarraygeoaddress) | 调用地理编码服务，将地理描述转换为具体坐标。 |
+| [isGeocoderAvailable()](../reference/LocationKit/cj-apis-geo_location_manager.md#func-isgeocoderavailable) | 判断地理编码与逆地理编码服务状态。 |
 | [sendCommand(LocationCommand, AsyncCallback\<Unit>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-sendcommandlocationcommand-asynccallbackunit) | 给位置服务子系统的各个部件发送扩展命令。 |
 | [getCountryCode(AsyncCallback\<CountryCode>)](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getcountrycodeasynccallbackcountrycode) | 查询当前的国家码。 |
+| [getGeofenceSupportedCoordTypes()](../reference/LocationKit/cj-apis-geo_location_manager.md#func-getgeofencesupportedcoordtypes) | 获取地理围栏功能支持的坐标系列表。 |
 
 ## 开发步骤
 
@@ -72,18 +76,18 @@
     ```
 
 4. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
-    - 获取当前位置。<br/>
+    - 获取当前位置。
 
-        首先要实例化[SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及单次定位超时时间。<br/>
+        首先要实例化[SingleLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-singlelocationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及单次定位超时时间。
 
-        - 设置LocatingPriority：<br/>
-            如果对位置的返回精度要求较高，建议LocatingPriority参数优先选择PRIORITY_ACCURACY，会将一段时间内精度较好的结果返回给应用。<br/>
-            如果对定位速度要求较高，建议LocatingPriority参数选择PRIORITY_LOCATING_SPEED，会将最先拿到的定位结果返回给应用。<br/>
-            两种定位策略均会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以获取到位置结果，对设备的硬件资源消耗较大，功耗也较大。<br/>
-        - 设置locatingTimeoutMs：<br/>
-            因为设备环境、设备所处状态、系统功耗管控策略等的影响，定位返回的时延会有较大波动，建议把单次定位超时时间设置为10秒。<br/>
+        - 设置LocatingPriority：
+            如果对位置的返回精度要求较高，建议LocatingPriority参数优先选择PRIORITY_ACCURACY，会将一段时间内精度较好的结果返回给应用。
+            如果对定位速度要求较高，建议LocatingPriority参数选择PRIORITY_LOCATING_SPEED，会将最先拿到的定位结果返回给应用。
+            两种定位策略均会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以获取到位置结果，对设备的硬件资源消耗较大，功耗也较大。
+        - 设置locatingTimeoutMs：
+            因为设备环境、设备所处状态、系统功耗管控策略等的影响，定位返回的时延会有较大波动，建议把单次定位超时时间设置为10秒。
 
-        以快速定位策略(PRIORITY_LOCATING_SPEED)为例，调用方式如下：<br/>
+        以快速定位策略(PRIORITY_LOCATING_SPEED)为例，调用方式如下：
 
         <!-- run -->
 
@@ -106,7 +110,7 @@
     可使用三方地图提供的SDK能力进行坐标系转换。
 
 5. 持续定位。多用于导航、运动轨迹、出行等场景。
-    - 获取上一次位置。<br/>
+    - 获取上一次位置。
 
         如果不需要设备实时位置，可以调用getLastLocation接口获取系统缓存的最近一次定位结果，减少设备功耗。如果系统当前没有缓存位置，会返回错误码。
 
@@ -125,15 +129,15 @@
         }
         ```
 
-    - 开启位置变化订阅，并发起定位请求。<br/>
+    - 开启位置变化订阅，并发起定位请求。
 
-        首先要实例化[LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。<br/>
+        首先要实例化[LocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-locationrequest)对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。
 
-        - 设置priority/scenario：<br/>
-            当scenario取值为Unset时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为Unset时，无法发起定位请求。<br/>
-            priority建议根据对定位结果的要求进行设置，如对定位结果精度要求较高选择Accuracy，对定位速度要求较高选择FirstFix，希望节省功耗选择LowPower。<br/>
-        - 设置timeInterval：<br/>
-            表示上报位置信息的时间间隔，单位为秒。如果对位置上报时间间隔无特殊要求，可以不填写该字段。<br/>
+        - 设置priority/scenario：
+            当scenario取值为Unset时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为Unset时，无法发起定位请求。
+            priority建议根据对定位结果的要求进行设置，如对定位结果精度要求较高选择Accuracy，对定位速度要求较高选择FirstFix，希望节省功耗选择LowPower。
+        - 设置timeInterval：
+            表示上报位置信息的时间间隔，单位为秒。如果对位置上报时间间隔无特殊要求，可以不填写该字段。
 
         以快速获取位置优先（FirstFix）为例，调用方式如下：
 
@@ -160,14 +164,14 @@
         }
         ```
 
-    - 使用持续定位请求发起定位。<br/>
+    - 使用持续定位请求发起定位。
 
-        也可以实例化[ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest)对象，通过用户活动场景或功耗场景描述持续定位需求。<br/>
+        也可以实例化[ContinuousLocationRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-continuouslocationrequest)对象，通过用户活动场景或功耗场景描述持续定位需求。
 
-        - 设置locationScenario：<br/>
-            建议优先根据应用的使用场景进行设置，例如地图在导航时使用Navigation参数，可以持续在室内和室外场景获取位置用于导航。取值范围参见[ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype)。<br/>
-        - 设置interval：<br/>
-            表示上报位置信息的时间间隔，单位是秒，默认值为1。如果对位置上报时间间隔无特殊要求，可以设置为1。<br/>
+        - 设置locationScenario：
+            建议优先根据应用的使用场景进行设置，例如地图在导航时使用Navigation参数，可以持续在室内和室外场景获取位置用于导航。取值范围参见[ScenarioValueType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-scenariovaluetype)。
+        - 设置interval：
+            表示上报位置信息的时间间隔，单位是秒，默认值为1。如果对位置上报时间间隔无特殊要求，可以设置为1。
 
         以地图导航场景为例，调用方式如下：
 
@@ -193,7 +197,7 @@
         }
         ```
 
-    - 订阅持续定位过程中的错误信息。<br/>
+    - 订阅持续定位过程中的错误信息。
 
         持续定位过程中可能因为权限校验失败、位置开关关闭、网络不可用等原因导致定位失败，可以调用onLocationError接口订阅错误信息，并根据[LocationError](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-locationerror)的取值进行相应处理。
 
@@ -319,7 +323,87 @@
         }
         ```
 
-8. 发送扩展命令。多用于向位置服务子系统的各个部件下发扩展指令的场景，命令发送成功时callback的err为None，否则err包含错误信息。
+8. 地理编码与逆地理编码。多用于将地址描述与经纬度坐标互相转换的场景。
+    - 使用经纬度坐标描述一个位置非常准确，但是并不直观，面向用户表达并不友好。系统提供以下两种转化能力：
+        - 正地理编码：将地理描述转化为具体经纬度坐标。
+        - 逆地理编码：将具体的经纬度坐标转化为地理描述。
+
+        其中地理描述包含多个属性来描述位置信息，包括国家、行政区划、街道、门牌号、地址描述等，这样的信息更便于用户理解，参见[GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress)。
+
+    - 正地理编码与逆地理编码功能需要访问后端服务，请确保设备联网，以进行信息获取。可以调用isGeocoderAvailable接口判断服务是否可用，如果服务可用再继续后续步骤。
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let isAvailable = isGeocoderAvailable()
+            Hilog.info(0, "test", "isGeocoderAvailable: ${isAvailable}")
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+    - 调用getAddressesFromLocation接口，把经纬度坐标转化为地理描述。应用可以获得与此坐标匹配的[GeoAddress](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geoaddress)（地理编码地址信息）列表，根据实际使用需求，读取相应的参数数据。
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let request = ReverseGeoCodeRequest(31.12, 121.32, maxItems: 1)
+            let callback: AsyncCallback<Array<GeoAddress>> = {
+                err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+                if (let Some(e) <- err) {
+                    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+                } else if (let Some(addresses) <- data) {
+                    for (address in addresses) {
+                        Hilog.info(0, "test", "placeName: ${address.placeName}")
+                    }
+                }
+            }
+            getAddressesFromLocation(request, callback)
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+    - 调用getAddressesFromLocationName接口，把地理描述转化为经纬度坐标。应用可以获得与位置信息相匹配的GeoAddress（地理编码地址信息）列表，其中包含对应的坐标数据。
+
+        如果需要查询的位置信息可能出现多地重名的情况，可以实例化[GeoCodeRequest](../reference/LocationKit/cj-apis-geo_location_manager.md#class-geocoderequest)时设置一个经纬度范围，以高效地获取期望的准确结果。
+
+        <!-- run -->
+
+        ```cangjie
+        import kit.LocationKit.*
+        import kit.CangjieKit.*
+        import kit.PerformanceAnalysisKit.Hilog
+
+        try {
+            let request = GeoCodeRequest("上海市浦东新区xx路xx号", maxItems: 1)
+            let callback: AsyncCallback<Array<GeoAddress>> = {
+                err: Option<BusinessException>, data: Option<Array<GeoAddress>> =>
+                if (let Some(e) <- err) {
+                    Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+                } else if (let Some(addresses) <- data) {
+                    for (address in addresses) {
+                        Hilog.info(0, "test", "latitude: ${address.latitude}, longitude: ${address.longitude}")
+                    }
+                }
+            }
+            getAddressesFromLocationName(request, callback)
+        } catch (e: BusinessException) {
+            Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+        }
+        ```
+
+9. 发送扩展命令。多用于向位置服务子系统的各个部件下发扩展指令的场景，命令发送成功时callback的err为None，否则err包含错误信息。
 
     <!-- run -->
 
@@ -344,7 +428,7 @@
     }
     ```
 
-9. 订阅卫星状态与NMEA消息。多用于查看卫星信号质量、调试定位问题等场景。
+10. 订阅卫星状态与NMEA消息。多用于查看卫星信号质量、调试定位问题等场景。
     - 调用onSatelliteStatusChange接口订阅卫星状态变化事件，回调参数[SatelliteStatusInfo](../reference/LocationKit/cj-apis-geo_location_manager.md#class-satellitestatusinfo)包含卫星数量、卫星ID、载波噪声密度、高度角、方位角、载波频率、星座类型等信息；不再需要时调用offSatelliteStatusChange接口取消订阅，传入的回调实例需要与onSatelliteStatusChange接口传入的回调实例保持一致；不传入callback时取消当前类型的所有订阅。
 
         <!-- run -->
@@ -388,6 +472,23 @@
             Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
         }
         ```
+
+11. 查询地理围栏支持的坐标系。调用getGeofenceSupportedCoordTypes接口获取地理围栏功能支持的坐标系列表，参见[CoordinateSystemType](../reference/LocationKit/cj-apis-geo_location_manager.md#enum-coordinatesystemtype)。
+
+    <!-- run -->
+
+    ```cangjie
+    import kit.LocationKit.*
+    import kit.CangjieKit.*
+    import kit.PerformanceAnalysisKit.Hilog
+
+    try {
+        let coordTypes = getGeofenceSupportedCoordTypes()
+        Hilog.info(0, "test", "supported coord types size: ${coordTypes.size}")
+    } catch (e: BusinessException) {
+        Hilog.error(0, "test", "errCode: ${e.code}, message: ${e.message}")
+    }
+    ```
 
 <!--Del-->
 ## 示例代码
